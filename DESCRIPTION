@@ -1,6 +1,5 @@
-Package: placeholder
-Type: Book
-Title: Does not matter.
+Package: Biometrie3
+Title: Biométrie 3
 Version: 0.0.1
-Imports: bookdown
+Imports: bookdown, tidyverse, knitr, nycflights13
 Remotes: rstudio/bookdown
