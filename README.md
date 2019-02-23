@@ -1,3 +1,9 @@
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). Please see the page "[Get Started](https://bookdown.org/yihui/bookdown/get-started.html)" at https://bookdown.org/yihui/bookdown/ for how to compile this example into HTML. You may generate a copy of the book in `bookdown::pdf_book` format by calling `bookdown::render_book('index.Rmd', 'bookdown::pdf_book')`. More detailed instructions are available here https://bookdown.org/yihui/bookdown/build-the-book.html.
+https://www.travis-ci.org/besibo/Biometrie3.svg?branch=master
 
-You can find the preview of this example at https://bookdown.org/yihui/bookdown-demo/.
+[![Build Status](https://travis-ci.org/besibo/Biometrie3.svg?branch=master)](https://travis-ci.org/besibo/Biometrie3)
+
+Ce dépôt contient le document permettant de réaliser les travaux pratiques de Biométrie 3 (Licence 3, Semestre 6).
+
+Le livre est consultable à cette adresse : https://besibo.github.io/Biometrie3/
+
+Ce livre est évrit en R Markdown et repose sur le package **bookdown** (https://github.com/rstudio/bookdown). Merci de consulter la page "Get Started" à https://bookdown.org/ pour apprendre comment compiler ce livre.
