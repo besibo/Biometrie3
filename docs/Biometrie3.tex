@@ -129,7 +129,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-02-23}
+    \date{2019-02-26}
 
 \usepackage[french]{babel}
 \usepackage{mathspec}  % \usepackage{fontspec}
@@ -153,24 +153,49 @@
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
-\hypertarget{prerequisites}{%
-\section{Prerequisites}\label{prerequisites}}
+\hypertarget{preambule}{%
+\section{Préambule}\label{preambule}}
 
-This is a \emph{sample} book written in \textbf{Markdown}. You can use anything that Pandoc's Markdown supports, e.g., a math equation \(a^2 + b^2 = c^2\).
+Ce livre contient l'ensemble du matériel (contenus, exemples, exercices\ldots{}) nécessaire à la réalisation des travaux pratiques et TEA de biométrie 3. Ces travaux pratiques ont un seul objectif principal : vous permettre de mettre en œuvre, dans \texttt{RStudio} les méthodes statistiques découvertes en cours magistral et en TD de biométrie 2 (au semestre précédent) et en biométrie 3 depuis début janvier.
 
-The \textbf{bookdown} package can be installed from CRAN or Github:
+Je considère qu'à ce stade, vous devez être à l'aise dans RStudio pour effectuer les tâches suivantes :
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{)}
-\CommentTok{# or the development version}
-\CommentTok{# devtools::install_github("rstudio/bookdown")}
-\end{Highlighting}
-\end{Shaded}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Importer des jeux de données dans RStudio
+\item
+  Manipuler des tableaux de données avec \texttt{tidyr} pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques
+\item
+  Faire des graphiques exploratoires avec \texttt{ggplot2} pour visualiser des données
+\item
+  Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonction \texttt{filter()}, \texttt{select()}, \texttt{arrange()}, \texttt{mutate()}, \texttt{summarise()} et \texttt{group\_by()} du package \texttt{dplyr}
+\item
+  Utiliser le pipe \texttt{\%\textgreater{}\%} afin d'enchaîner plusieurs commandes
+\item
+  Créer des scripts parlants contenant des commandes et des commentaires utiles
+\item
+  Spécifier/modifier votre répertoire de travail
+\item
+  Installer des packages additionnels.
+\end{enumerate}
 
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading \texttt{\#}.
+Si vous pensez avoir besoin de rappels sur ces notions, je vous encourrage vivement à consulter \href{https://besibo.github.io/Biometrie2/}{le livre en ligne} dédié aux travaux pratiques de Biometrie 2 pour vous rafraîchir la mémoire.
 
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.name/tinytex/}.
+L'organisation des TP et TEA de biométrie 3 sera la suivante :
+
+\begin{itemize}
+\tightlist
+\item
+  Séance 1 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Rappels concernant les statistiques descriptives et les visualisations graphiques utiles pour déméler la complexité de certains jeux de données. Comparaisons (paramétriques et non paramétriques) de la moyenne de 2 populations.
+\item
+  Séance 2 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Comparaisons (paramétriques et non paramétriques) la moyenne de plus de 2 populations : analyse de variance, hypothèses et conditions d'application.
+\item
+  Séance 3 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Étude de la liaison entre 2 variables. Corrélation (paramétrique et non paramétrique) et régression linéaire. Tests d'hypothèses, estimation et conditions d'application.
+\item
+  Séance 4 : 1h30 de TP. Exercices d'application et corrections en guise de préparation pour l'examen.
+\end{itemize}
 
 \hypertarget{intro}{%
 \section{Introduction}\label{intro}}

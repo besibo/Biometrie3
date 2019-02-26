@@ -28,22 +28,29 @@ urlcolor: "blue"
 description: "Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d'hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3."
 ---
 
-# Prerequisites
+# Préambule
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+Ce livre contient l'ensemble du matériel (contenus, exemples, exercices...) nécessaire à la réalisation des travaux pratiques et TEA de biométrie 3. Ces travaux pratiques ont un seul objectif principal : vous permettre de mettre en œuvre, dans `RStudio` les méthodes statistiques découvertes en cours magistral et en TD de biométrie 2 (au semestre précédent) et en biométrie 3 depuis début janvier.
 
-The **bookdown** package can be installed from CRAN or Github:
+Je considère qu'à ce stade, vous devez être à l'aise dans RStudio pour effectuer les tâches suivantes :
 
-```{r eval=FALSE}
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
-```
+1. Importer des jeux de données dans RStudio
+2. Manipuler des tableaux de données avec `tidyr` pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques
+3. Faire des graphiques exploratoires avec `ggplot2` pour visualiser des données
+4. Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonction `filter()`, `select()`, `arrange()`, `mutate()`, `summarise()` et `group_by()` du package `dplyr`
+5. Utiliser le pipe `%>%` afin d'enchaîner plusieurs commandes
+6. Créer des scripts parlants contenant des commandes et des commentaires utiles
+7. Spécifier/modifier votre répertoire de travail
+8. Installer des packages additionnels.
 
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
+Si vous pensez avoir besoin de rappels sur ces notions, je vous encourrage vivement à consulter [le livre en ligne](https://besibo.github.io/Biometrie2/) dédié aux travaux pratiques de Biometrie 2 pour vous rafraîchir la mémoire.
 
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.name/tinytex/>.
+L'organisation des TP et TEA de biométrie 3 sera la suivante :
 
+- Séance 1 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Rappels concernant les statistiques descriptives et les visualisations graphiques utiles pour déméler la complexité de certains jeux de données. Comparaisons (paramétriques et non paramétriques) de la moyenne de 2 populations.
+- Séance 2 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Comparaisons (paramétriques et non paramétriques) la moyenne de plus de 2 populations : analyse de variance, hypothèses et conditions d'application.
+- Séance 3 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Étude de la liaison entre 2 variables. Corrélation (paramétrique et non paramétrique) et régression linéaire. Tests d'hypothèses, estimation et conditions d'application.
+- Séance 4 : 1h30 de TP. Exercices d'application et corrections en guise de préparation pour l'examen.
 
 ```{r package_bibliography, include=FALSE}
 # automatically create a bib database for R packages

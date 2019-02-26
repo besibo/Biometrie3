@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2019-02-23">
+<meta name="date" content="2019-02-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -133,7 +133,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li><a href="./">Biométrie 3</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Préambule</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
 <li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
 <li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
@@ -166,17 +166,30 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="header">
 <h1 class="title">Travaux Pratiques de Biométrie 3</h1>
 <p class="author"><em>Benoît Simon-Bouhet</em></p>
-<p class="date"><em>2019-02-23</em></p>
+<p class="date"><em>2019-02-26</em></p>
 </div>
-<div id="prerequisites" class="section level1">
-<h1><span class="header-section-number">1</span> Prerequisites</h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports, e.g., a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<p>The <strong>bookdown</strong> package can be installed from CRAN or Github:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)
-<span class="co"># or the development version</span>
-<span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></code></pre>
-<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
-<p>To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.name/tinytex/" class="uri">https://yihui.name/tinytex/</a>.</p>
+<div id="preambule" class="section level1">
+<h1><span class="header-section-number">1</span> Préambule</h1>
+<p>Ce livre contient l’ensemble du matériel (contenus, exemples, exercices…) nécessaire à la réalisation des travaux pratiques et TEA de biométrie 3. Ces travaux pratiques ont un seul objectif principal : vous permettre de mettre en œuvre, dans <code>RStudio</code> les méthodes statistiques découvertes en cours magistral et en TD de biométrie 2 (au semestre précédent) et en biométrie 3 depuis début janvier.</p>
+<p>Je considère qu’à ce stade, vous devez être à l’aise dans RStudio pour effectuer les tâches suivantes :</p>
+<ol style="list-style-type: decimal">
+<li>Importer des jeux de données dans RStudio</li>
+<li>Manipuler des tableaux de données avec <code>tidyr</code> pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques</li>
+<li>Faire des graphiques exploratoires avec <code>ggplot2</code> pour visualiser des données</li>
+<li>Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonction <code>filter()</code>, <code>select()</code>, <code>arrange()</code>, <code>mutate()</code>, <code>summarise()</code> et <code>group_by()</code> du package <code>dplyr</code></li>
+<li>Utiliser le pipe <code>%&gt;%</code> afin d’enchaîner plusieurs commandes</li>
+<li>Créer des scripts parlants contenant des commandes et des commentaires utiles</li>
+<li>Spécifier/modifier votre répertoire de travail</li>
+<li>Installer des packages additionnels.</li>
+</ol>
+<p>Si vous pensez avoir besoin de rappels sur ces notions, je vous encourrage vivement à consulter <a href="https://besibo.github.io/Biometrie2/">le livre en ligne</a> dédié aux travaux pratiques de Biometrie 2 pour vous rafraîchir la mémoire.</p>
+<p>L’organisation des TP et TEA de biométrie 3 sera la suivante :</p>
+<ul>
+<li>Séance 1 : 1h30 de TP suivie d’une séance de 1h30 de TEA. Rappels concernant les statistiques descriptives et les visualisations graphiques utiles pour déméler la complexité de certains jeux de données. Comparaisons (paramétriques et non paramétriques) de la moyenne de 2 populations.</li>
+<li>Séance 2 : 1h30 de TP suivie d’une séance de 1h30 de TEA. Comparaisons (paramétriques et non paramétriques) la moyenne de plus de 2 populations : analyse de variance, hypothèses et conditions d’application.</li>
+<li>Séance 3 : 1h30 de TP suivie d’une séance de 1h30 de TEA. Étude de la liaison entre 2 variables. Corrélation (paramétrique et non paramétrique) et régression linéaire. Tests d’hypothèses, estimation et conditions d’application.</li>
+<li>Séance 4 : 1h30 de TP. Exercices d’application et corrections en guise de préparation pour l’examen.</li>
+</ul>
 <!-- Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab). -->
 <!-- You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015]. -->
 
@@ -229,19 +242,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
