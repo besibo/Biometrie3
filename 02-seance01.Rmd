@@ -1,0 +1,61 @@
+# Séance 1 : statistiques descriptives et tests d'hypothèses
+
+
+## Packages et données
+
+Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes fournis. 
+
+Les packages dont vous aurez besoin pour cette séance sont les suivants :
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(skimr)
+```
+
+Si ces commandes (que vous devez taper dans vos scripts avant de les executer dans la console de RStudio) renvoie des messages d'erreur, c'est que les packages que vous essayez de charger en mémoire ne sont pas installés sur votre ordinateur. Il vous faudra alors installer les packages manquants avec la fonction :
+```{r, eval = FALSE}
+install.packages("nom_du_package")
+```
+Comme d'habitude, si tout ça est un peu flou pour vous, relisez [la section 2.3](https://besibo.github.io/Biometrie2/bases.html#charger-un-package-en-memoire) du livre de biométrie 2 disponible en ligne.
+
+
+## Statistiques descriptives
+
+
+
+## Comparaison de moyennes et conditions d'application
+
+
+
+## Comparaison de la moyenne d'une population à une valeur théorique
+
+### Le test paramétrique
+
+
+### Le test non paramétrique
+
+
+
+## Comparaison de la moyenne de 2 populations : données appariées
+
+### Le test paramétrique
+
+
+### Le test non paramétrique
+
+
+
+## Comparaison de la moyenne de 2 populations : données indépendantes
+
+### Le test paramétrique
+
+
+### Le test non paramétrique
+
+
+
+## Tests bilatéraux et unilatéraux
+
+### Le test paramétrique
+
+
+### Le test non paramétrique

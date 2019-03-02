@@ -129,7 +129,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-02-26}
+    \date{2019-03-02}
 
 \usepackage[french]{babel}
 \usepackage{mathspec}  % \usepackage{fontspec}
@@ -181,7 +181,7 @@ Je considère qu'à ce stade, vous devez être à l'aise dans RStudio pour effec
   Installer des packages additionnels.
 \end{enumerate}
 
-Si vous pensez avoir besoin de rappels sur ces notions, je vous encourrage vivement à consulter \href{https://besibo.github.io/Biometrie2/}{le livre en ligne} dédié aux travaux pratiques de Biometrie 2 pour vous rafraîchir la mémoire.
+Si vous pensez avoir besoin de rappels sur ces notions, je vous encourrage vivement à consulter \href{https://besibo.github.io/Biometrie2/}{le livre en ligne} dédié aux travaux pratiques de Biométrie 2 pour vous rafraîchir la mémoire.
 
 L'organisation des TP et TEA de biométrie 3 sera la suivante :
 
@@ -200,99 +200,141 @@ L'organisation des TP et TEA de biométrie 3 sera la suivante :
 \hypertarget{intro}{%
 \section{Introduction}\label{intro}}
 
-You can label chapter and section titles using \texttt{\{\#label\}} after them, e.g., we can reference Chapter \ref{intro}. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \ref{methods}.
+Sur votre disque dur, créez un dossier nommé ``Biometrie3'' (sans accent, sans espace).
+Au début de chaque nouvelle séance de TP, vous devrez ensuite effectuer les opérations suivantes :
 
-Figures and tables with captions will be placed in \texttt{figure} and \texttt{table} environments, respectively.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}[htpb]
-
-{\centering \includegraphics[width=0.8\linewidth]{figure/nice-fig-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
-
-Reference a figure by its code chunk label with the \texttt{fig:} prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can reference tables generated from \texttt{knitr::kable()}, e.g., see Table \ref{tab:nice-tab}.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Créez, dans votre dossier ``Biometrie3'', un sous-dossier nommé ``TP\_1'', ``TP\_2'', etc.
+\item
+  Téléchargez les fichiers utiles disponibles sur l'ENT et placez-les dans le dossier du TP correspondant.
+\item
+  Lancez RStudio.
+\item
+  Dans l'onglet ``Files'' de RStudio, naviguez jusqu'au sous-dossier ``TP\_X'' que vous venez de créer et indiquez à RStudio qu'il s'agit de votre répertoire de travail. Si vous ne savez plus comment faire, consultez \href{https://besibo.github.io/Biometrie2/bases.html\#le-repertoire-de-travail}{la section 2.2.2} du livre en ligne de Biométrie 2. Si votre répertoire de travail a été correctement spécifié, vous devriez constater qu'une commande ressemblant à ceci est apparue dans la console de RStudio :
+\end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"C:/.........../Biometrie3/TP_X"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}[t]
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Dans la console, tapez :
+\end{enumerate}
 
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{list.files}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
 
-You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+La liste des fichiers contenus dans votre répertoire de travail (donc le nom des fichiers que vous avez téléchargé sur l'ENT) devrait apparaître dans la console. Si ce n'est pas le cas, recommencez depuis le début. Vous pouvez également vérifier à tout moment si le répertoire de travail utilisé par RStudio est bien celui que vous pensez en tapant :
 
-\hypertarget{literature}{%
-\section{Literature}\label{literature}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
 
-Here is a review of existing methods.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Créez un nouveau script dans votre répertoire de travail et sauvegardez-le. Si vous ne savez plus comment faire, consultez \href{https://besibo.github.io/Biometrie2/bases.html\#les-scripts}{la section 2.2.3} du livre en ligne de Biométrie 2.
+\item
+  Dans l'onglet ``History'' de RStudio, cliquez sur la commande commençant par \texttt{setwd()} puis cliquez sur le bouton ``To source'' (une flèche verte dirigée vers la gauche). Cela a pour effet de copier dans votre script la commande permettant de spécifier le répertoire de travail correct. Ainsi, lors de votre prochaine session de travail, vous n'aurez pas besoin de spécifier manuellement quel est votre répertoire de travail comme nous l'avons fait à l'étape 4 ci-dessus : il vous suffira d'ouvrir votre script et d'envoyer cette commande dans la console en pressant les touches \texttt{ctrl\ +\ Entrée}.
+\item
+  N'oubliez pas de sauvegarder votre script très régulièrement et d'y ajouter autant de commentaires que nécessaire avec le symbole \texttt{\#}.
+\end{enumerate}
 
-\hypertarget{methods}{%
-\section{Methods}\label{methods}}
+Si vous suivez rigoureusement ces étapes, vous devriez être dans la situation idéale pour commencer à travailler efficacement dans RStudio. Avec un minimum d'habitude, mettre tout ça en place ne devrait pas vous demander plus de 2 ou 3 minutes. À partir de maintenant, toutes vos analyses et commentaires doivent figurer dans vos scripts.
 
-We describe our methods in this chapter. And so much more\ldots{}
+\hypertarget{seance-1-statistiques-descriptives-et-tests-dhypotheses}{%
+\section{Séance 1 : statistiques descriptives et tests d'hypothèses}\label{seance-1-statistiques-descriptives-et-tests-dhypotheses}}
 
-\hypertarget{applications}{%
-\section{Applications}\label{applications}}
+\hypertarget{packages-et-donnees}{%
+\subsection{Packages et données}\label{packages-et-donnees}}
 
-Some \emph{significant} applications are demonstrated in this chapter.
+Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes fournis.
 
-\hypertarget{example-one}{%
-\subsection{Example one}\label{example-one}}
+Les packages dont vous aurez besoin pour cette séance sont les suivants :
 
-\hypertarget{example-two}{%
-\subsection{Example two}\label{example-two}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(skimr)}
+\end{Highlighting}
+\end{Shaded}
 
-\hypertarget{final-words}{%
-\section{Final Words}\label{final-words}}
+Si ces commandes (que vous devez taper dans vos scripts avant de les executer dans la console de RStudio) renvoie des messages d'erreur, c'est que les packages que vous essayez de charger en mémoire ne sont pas installés sur votre ordinateur. Il vous faudra alors installer les packages manquants avec la fonction :
 
-We have finished a nice book.
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"nom_du_package"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Comme d'habitude, si tout ça est un peu flou pour vous, relisez \href{https://besibo.github.io/Biometrie2/bases.html\#charger-un-package-en-memoire}{la section 2.3} du livre de biométrie 2 disponible en ligne.
+
+\hypertarget{statistiques-descriptives}{%
+\subsection{Statistiques descriptives}\label{statistiques-descriptives}}
+
+\hypertarget{comparaison-de-moyennes-et-conditions-dapplication}{%
+\subsection{Comparaison de moyennes et conditions d'application}\label{comparaison-de-moyennes-et-conditions-dapplication}}
+
+\hypertarget{comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique}{%
+\subsection{Comparaison de la moyenne d'une population à une valeur théorique}\label{comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique}}
+
+\hypertarget{le-test-parametrique}{%
+\subsubsection{Le test paramétrique}\label{le-test-parametrique}}
+
+\hypertarget{le-test-non-parametrique}{%
+\subsubsection{Le test non paramétrique}\label{le-test-non-parametrique}}
+
+\hypertarget{comparaison-de-la-moyenne-de-2-populations-donnees-appariees}{%
+\subsection{Comparaison de la moyenne de 2 populations : données appariées}\label{comparaison-de-la-moyenne-de-2-populations-donnees-appariees}}
+
+\hypertarget{le-test-parametrique-1}{%
+\subsubsection{Le test paramétrique}\label{le-test-parametrique-1}}
+
+\hypertarget{le-test-non-parametrique-1}{%
+\subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-1}}
+
+\hypertarget{comparaison-de-la-moyenne-de-2-populations-donnees-independantes}{%
+\subsection{Comparaison de la moyenne de 2 populations : données indépendantes}\label{comparaison-de-la-moyenne-de-2-populations-donnees-independantes}}
+
+\hypertarget{le-test-parametrique-2}{%
+\subsubsection{Le test paramétrique}\label{le-test-parametrique-2}}
+
+\hypertarget{le-test-non-parametrique-2}{%
+\subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-2}}
+
+\hypertarget{tests-bilateraux-et-unilateraux}{%
+\subsection{Tests bilatéraux et unilatéraux}\label{tests-bilateraux-et-unilateraux}}
+
+\hypertarget{le-test-parametrique-3}{%
+\subsubsection{Le test paramétrique}\label{le-test-parametrique-3}}
+
+\hypertarget{le-test-non-parametrique-3}{%
+\subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-3}}
+
+\hypertarget{seance-2-analyse-de-variance}{%
+\section{Séance 2 : analyse de variance}\label{seance-2-analyse-de-variance}}
+
+\hypertarget{seance-3-correlations-et-regressions}{%
+\section{Séance 3 : corrélations et régressions}\label{seance-3-correlations-et-regressions}}
+
+\hypertarget{seance-4-applications-et-corrections}{%
+\section{Séance 4 : applications et corrections}\label{seance-4-applications-et-corrections}}
 
 \bibliography{book.bib,packages.bib}
 

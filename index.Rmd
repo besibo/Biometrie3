@@ -43,7 +43,7 @@ Je considère qu'à ce stade, vous devez être à l'aise dans RStudio pour effec
 7. Spécifier/modifier votre répertoire de travail
 8. Installer des packages additionnels.
 
-Si vous pensez avoir besoin de rappels sur ces notions, je vous encourrage vivement à consulter [le livre en ligne](https://besibo.github.io/Biometrie2/) dédié aux travaux pratiques de Biometrie 2 pour vous rafraîchir la mémoire.
+Si vous pensez avoir besoin de rappels sur ces notions, je vous encourrage vivement à consulter [le livre en ligne](https://besibo.github.io/Biometrie2/) dédié aux travaux pratiques de Biométrie 2 pour vous rafraîchir la mémoire.
 
 L'organisation des TP et TEA de biométrie 3 sera la suivante :
 

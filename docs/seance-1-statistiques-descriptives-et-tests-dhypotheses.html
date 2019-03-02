@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>References | Travaux Pratiques de Biométrie 3</title>
+  <title>3 Séance 1 : statistiques descriptives et tests d’hypothèses | Travaux Pratiques de Biométrie 3</title>
   <meta name="description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="References | Travaux Pratiques de Biométrie 3" />
+  <meta property="og:title" content="3 Séance 1 : statistiques descriptives et tests d’hypothèses | Travaux Pratiques de Biométrie 3" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://besibo.github.io/Biometrie3/" />
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="besibo/Biometrie3" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Travaux Pratiques de Biométrie 3" />
+  <meta name="twitter:title" content="3 Séance 1 : statistiques descriptives et tests d’hypothèses | Travaux Pratiques de Biométrie 3" />
   
   <meta name="twitter:description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="seance-4-applications-et-corrections.html">
-
+<link rel="prev" href="intro.html">
+<link rel="next" href="seance-2-analyse-de-variance.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -180,17 +180,69 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="seance-1-statistiques-descriptives-et-tests-dhypotheses" class="section level1">
+<h1><span class="header-section-number">3</span> Séance 1 : statistiques descriptives et tests d’hypothèses</h1>
+<div id="packages-et-donnees" class="section level2">
+<h2><span class="header-section-number">3.1</span> Packages et données</h2>
+<p>Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d’utiliser des packages spécifiques et d’importer des données depuis des fichiers externes fournis.</p>
+<p>Les packages dont vous aurez besoin pour cette séance sont les suivants :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(skimr)</code></pre>
+<p>Si ces commandes (que vous devez taper dans vos scripts avant de les executer dans la console de RStudio) renvoie des messages d’erreur, c’est que les packages que vous essayez de charger en mémoire ne sont pas installés sur votre ordinateur. Il vous faudra alors installer les packages manquants avec la fonction :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;nom_du_package&quot;</span>)</code></pre>
+<p>Comme d’habitude, si tout ça est un peu flou pour vous, relisez <a href="https://besibo.github.io/Biometrie2/bases.html#charger-un-package-en-memoire">la section 2.3</a> du livre de biométrie 2 disponible en ligne.</p>
+</div>
+<div id="statistiques-descriptives" class="section level2">
+<h2><span class="header-section-number">3.2</span> Statistiques descriptives</h2>
+</div>
+<div id="comparaison-de-moyennes-et-conditions-dapplication" class="section level2">
+<h2><span class="header-section-number">3.3</span> Comparaison de moyennes et conditions d’application</h2>
+</div>
+<div id="comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique" class="section level2">
+<h2><span class="header-section-number">3.4</span> Comparaison de la moyenne d’une population à une valeur théorique</h2>
+<div id="le-test-parametrique" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Le test paramétrique</h3>
+</div>
+<div id="le-test-non-parametrique" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Le test non paramétrique</h3>
+</div>
+</div>
+<div id="comparaison-de-la-moyenne-de-2-populations-donnees-appariees" class="section level2">
+<h2><span class="header-section-number">3.5</span> Comparaison de la moyenne de 2 populations : données appariées</h2>
+<div id="le-test-parametrique-1" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Le test paramétrique</h3>
+</div>
+<div id="le-test-non-parametrique-1" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Le test non paramétrique</h3>
+</div>
+</div>
+<div id="comparaison-de-la-moyenne-de-2-populations-donnees-independantes" class="section level2">
+<h2><span class="header-section-number">3.6</span> Comparaison de la moyenne de 2 populations : données indépendantes</h2>
+<div id="le-test-parametrique-2" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Le test paramétrique</h3>
+</div>
+<div id="le-test-non-parametrique-2" class="section level3">
+<h3><span class="header-section-number">3.6.2</span> Le test non paramétrique</h3>
+</div>
+</div>
+<div id="tests-bilateraux-et-unilateraux" class="section level2">
+<h2><span class="header-section-number">3.7</span> Tests bilatéraux et unilatéraux</h2>
+<div id="le-test-parametrique-3" class="section level3">
+<h3><span class="header-section-number">3.7.1</span> Le test paramétrique</h3>
+</div>
+<div id="le-test-non-parametrique-3" class="section level3">
+<h3><span class="header-section-number">3.7.2</span> Le test non paramétrique</h3>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="seance-4-applications-et-corrections.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="seance-2-analyse-de-variance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
