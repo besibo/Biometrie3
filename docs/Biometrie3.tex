@@ -129,7 +129,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-03-03}
+    \date{2019-03-04}
 
 \usepackage[french]{babel}
 \usepackage{mathspec}  % \usepackage{fontspec}
@@ -1288,9 +1288,9 @@ Plusieurs remarques concernant cette première syntaxe :
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  on utilise le symbole \texttt{\textasciitilde{}} pour indiquer une formule. On cherche à regarder l'effet du \texttt{Traitement} sur la \texttt{DO} qui traduit l'immuno-compétence. Le \texttt{\textasciitilde{}} soit se lire ``en fonction de''.
+  on utilise le symbole \texttt{\textasciitilde{}} pour indiquer une formule. On cherche à regarder l'effet du \texttt{Traitement} sur la \texttt{DO} qui traduit l'immuno-compétence. Le \texttt{\textasciitilde{}} doit se lire ``en fonction de''.
 \item
-  Avec la synatxe utilisant les formules, on doit spécifier l'argument \texttt{data\ =\ Testo\textbackslash{}\_long} pour indiquer à RStudio que les variables \texttt{DO} et \texttt{Traitement} sont des colonnes de ce tableau.
+  Avec la synatxe utilisant les formules, on doit spécifier l'argument \texttt{data\ =\ Testo\_long} pour indiquer à RStudio que les variables \texttt{DO} et \texttt{Traitement} sont des colonnes de ce tableau.
 \item
   Enfin, il est important d'indiquer \texttt{paired\ =\ TRUE} puisque nous réalisons un test de Student sur données appariées. Si on ne mets pas cet argument, on réalise un test de Student sur échantillons indépendants.
 \end{enumerate}
@@ -1446,23 +1446,221 @@ Importez ces données et faites-en l'analyse pour savoir s'il existe une différ
 \hypertarget{comparaison-de-la-moyenne-de-2-populations-echantillons-independants}{%
 \subsection{Comparaison de la moyenne de 2 populations : échantillons indépendants}\label{comparaison-de-la-moyenne-de-2-populations-echantillons-independants}}
 
+On s'intéresse maintenant aux méthodes permettant de comparer la moyenne de deux groupes ou de deux traitements dans la cas d'échantillons indépendants. Dans ce type de design expérimentaux, les les deux traitements sont appliqués à des échantillons indépendants issus de 2 populations.
+
+\hypertarget{exploration-prealable-des-donnees}{%
+\subsubsection{Exploration préalable des données}\label{exploration-prealable-des-donnees}}
+
+Chez \href{https://fr.wikipedia.org/wiki/Phrynosoma_mcallii}{le lézard cornu \emph{Phrynosoma mcallii}}, une frange de piquants entoure la tête. Une équipe d'herpétologues \citep{Young2004} a étudié la question suivante : des piquants plus longs autour de la tête protègent-ils le lézard cornu de son prédateur naturel, \href{https://fr.wikipedia.org/wiki/Pie-grièche_migratrice}{la pie grièche migratrice \emph{Lanius ludovicianus}} ? Ce prédateur a en effet une particularité : il accroche ses proies mortes à des barbelés ou des branches pour les consommer plus tard. Les chercheurs ont donc mesuré la longueur des cornes de 30 lézards retrouvés morts et accrochés dans des arbres par la pie grièche migratrice. Et en parallèle, ils ont mesuré les cornes de 154 individus vivants et en bonne santé choisis au hasard dans la population.
+
+\hypertarget{importation-et-examen-visuel-2}{%
+\paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-2}}
+
+Les données de cette étude sont stockées dans le fichier \texttt{HornedLizards.csv}. Importez ces données dans un objet nommé \texttt{Lizard} et examinez le tableau obtenu.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lizard}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 185 x 2
+   squamosalHornLength Survival
+                 <dbl> <chr>   
+ 1                25.2 living  
+ 2                26.9 living  
+ 3                26.6 living  
+ 4                25.6 living  
+ 5                25.7 living  
+ 6                25.9 living  
+ 7                27.3 living  
+ 8                25.1 living  
+ 9                30.3 living  
+10                25.6 living  
+# ... with 175 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{View}\NormalTok{(Lizard)}
+\end{Highlighting}
+\end{Shaded}
+
+On constate ici 3 choses :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  la variable \texttt{Survival} devrait être un facteur.
+\item
+  le nom de la première colonne (\texttt{squamosalHornLength}) est bien trop long
+\item
+  pour un animal vivant, la mesure de longueur des cornes est manquante. Il nous faut donc retirer cet individu.
+\end{enumerate}
+
+Nous pouvons facilement réaliser les 3 modifications d'un coup :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lizard <-}\StringTok{ }\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Survival =} \KeywordTok{factor}\NormalTok{(Survival)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{Horn_len =}\NormalTok{ squamosalHornLength) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(Horn_len))}
+
+\NormalTok{Lizard}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 184 x 2
+   Horn_len Survival
+      <dbl> <fct>   
+ 1     25.2 living  
+ 2     26.9 living  
+ 3     26.6 living  
+ 4     25.6 living  
+ 5     25.7 living  
+ 6     25.9 living  
+ 7     27.3 living  
+ 8     25.1 living  
+ 9     30.3 living  
+10     25.6 living  
+# ... with 174 more rows
+\end{verbatim}
+
+\hypertarget{statistiques-descriptives-2}{%
+\paragraph{Statistiques descriptives}\label{statistiques-descriptives-2}}
+
+Comme dans la partie précédente sur les données appariées, les statistiques descriptives doivent être réalisées pour chaque groupe d'individus. Ici, le plus simple est d'utiliser la fonction \texttt{skim()} sur les données groupées par niveau du facteur \texttt{Survival} (avec la fonction \texttt{group\_by()}) :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Survival) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{skim}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Skim summary statistics
+ n obs: 184 
+ n variables: 2 
+ group variables: Survival 
+
+-- Variable type:numeric -----
+ Survival variable missing complete   n  mean   sd   p0  p25   p50
+   killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25
+   living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55
+  p75 p100     hist
+ 23.8 26.7 ▂▁▂▂▇▇▆▂
+ 26   30.3 ▁▁▁▃▅▇▅▁
+\end{verbatim}
+
+On constate ici que les tailles d'échantillons sont très différentes. C'est normal compte tenu de la difficulté de repérer des individus morts dans la nature, et ce n'est pas gênant pour nos analyses puisque la taille des deux échantillons reste élevée.
+
+On constate également que si les écarts-types des 2 groupes sont proches, les moyennes et médianes sont plus élévées dans le groupe des individus vivants que dans celui des individus morts (c'est le cas également des quartiles 1 et 3).
+
+\hypertarget{exploration-graphique-2}{%
+\paragraph{Exploration graphique}\label{exploration-graphique-2}}
+
+Comme toujours, nous pouvons réaliser 3 types de graphiques pour en apprendre plus sur la distribution des donnees dans les deux groupes. En revanche, sur le graphique de type ``nuage de points'', il est ici impossible de relier les points 2 à deux. Non seulement cela n'aurait aucun sens puisque les 2 échantillons sont indépendants, mais en outre, nous ne disposons pas du même nombre d'individus dans les 2 échantillons.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Stripchart
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Survival, }\DataTypeTok{y =}\NormalTok{ Horn_len)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{height =} \DecValTok{0}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.2}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-50-1} \end{center}
+
+Ce premier graphique permet de visualiser très clairement les différences de tailles d'échantillons entre les deux groupes. Il permet également de voir que l'étendue des longueurs de cornes est plus importante dans le groupe des individus vivants que dans celui des individus morts.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Histogrammes
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Horn_len)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{15}\NormalTok{, }\DataTypeTok{color =} \KeywordTok{grey}\NormalTok{(}\FloatTok{0.8}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{Survival, }\DataTypeTok{ncol =} \DecValTok{1}\NormalTok{, }\DataTypeTok{scales =} \StringTok{"free_y"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-51-1} \end{center}
+
+Notez ici l'utilisation de l'argument \texttt{scales\ =\ "free\_y"} dans la fonction \texttt{facet\_wrap()}. Cet argument permet de ne pas imposer la même échalle pour l'axe des ordonnée des 2 graphiques. Ce choix est ici pertinent puisque les effectifs des 2 groupes sont très différents. Faîtes un essai sans cet argument pour voir la différence.
+
+Cette visualisation nous montre que les données doivent suivre à peu près une distribution Normale dans les 2 groupes, et que globalement la longueur des cornes semble légèrement plus élevée dans le groupe des vivants (avec un mode autour de 25-26 mm) que dans le groupes des morts (avec un mode autour de 23-24 mm).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Boxplots
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Survival, }\DataTypeTok{y =}\NormalTok{ Horn_len)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-52-1} \end{center}
+
+Nous visualisons ici encore plus clairement que sur les histogrammes le fait que les longueurs de cornes des individus vivants sont légèrement plus longues que celles des individus morts. D'ailleurs, puisque les intervalles de confiance à 95\% des médianes des 2 groupes (les encoches) ne se chevauchent pas, un test de comparaison de moyenne devrait logiquement conclure à une différence significative en faveur des individus vivants. On peut également noter que la largeur de l'encoche pour les individus morts est plus large que celle des vivants. Cela traduit une incertitude plus grande autour de la médiane estimée dans le groupe des individus morts. C'est tout à fait logique compte tenu des effectifs modestes dans ce groupe.
+
 \hypertarget{le-test-parametrique-2}{%
 \subsubsection{Le test paramétrique}\label{le-test-parametrique-2}}
+
+Le test paramétrique le plus puissant que nous puissions faire pour comparer la moyenne de 2 populations est le test de Student. Ce test étant paramétrique, nous devons nous assurer que ses conditions d'application sont vérifiées avant de pouvoir le réaliser.
 
 \hypertarget{conditions-dapplication-2}{%
 \paragraph{Conditions d'application}\label{conditions-dapplication-2}}
 
+Les conditions d'application de ce test sont au nombre de 3 :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Chacun des deux échantillons est issu d'un échantillonnage aléatoire de la population générale. Comme toujours, en l'absence d'indication contraire, on considère que cette condition est toujours vérifiée.
+\item
+  La variable numérique étudiée est distribuée normalement dans les deux populations. Il nous faudra donc faire deux test de Shapiro-Wilk, un pour chaque échantillon.
+\item
+  L'écart-type (et la variance) de la variable numérique est la même dans les deux populations. C'est ce que l'on appelle l'homoscédasticité.
+\end{enumerate}
+
+\hypertarget{realisation-du-test-et-interpretation-2}{%
+\paragraph{Réalisation du test et interprétation}\label{realisation-du-test-et-interpretation-2}}
+
 \hypertarget{le-test-non-parametrique-1}{%
 \subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-1}}
 
+\hypertarget{exercice-dapplication-2}{%
+\subsubsection{Exercice d'application}\label{exercice-dapplication-2}}
+
 \hypertarget{tests-bilateraux-et-unilateraux}{%
 \subsection{Tests bilatéraux et unilatéraux}\label{tests-bilateraux-et-unilateraux}}
-
-\hypertarget{le-test-parametrique-3}{%
-\subsubsection{Le test paramétrique}\label{le-test-parametrique-3}}
-
-\hypertarget{le-test-non-parametrique-2}{%
-\subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-2}}
 
 \hypertarget{seance-2-analyse-de-variance}{%
 \section{Séance 2 : analyse de variance}\label{seance-2-analyse-de-variance}}
