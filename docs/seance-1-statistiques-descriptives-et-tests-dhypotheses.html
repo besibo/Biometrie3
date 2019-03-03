@@ -138,9 +138,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><i class="fa fa-check"></i><b>3</b> Séance 1 : statistiques descriptives et tests d’hypothèses</a><ul>
 <li class="chapter" data-level="3.1" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#packages-et-donnees"><i class="fa fa-check"></i><b>3.1</b> Packages et données</a></li>
 <li class="chapter" data-level="3.2" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique"><i class="fa fa-check"></i><b>3.2</b> Comparaison de la moyenne d’une population à une valeur théorique</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#exploration-prealable-des-donnees"><i class="fa fa-check"></i><b>3.2.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="3.2.1" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#Explo"><i class="fa fa-check"></i><b>3.2.1</b> Exploration préalable des données</a></li>
 <li class="chapter" data-level="3.2.2" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#le-test-parametrique"><i class="fa fa-check"></i><b>3.2.2</b> Le test paramétrique</a></li>
 <li class="chapter" data-level="3.2.3" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#lalternative-non-parametrique"><i class="fa fa-check"></i><b>3.2.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.2.4" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#exercice-dapplication"><i class="fa fa-check"></i><b>3.2.4</b> Exercice d’application</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#comparaison-de-la-moyenne-de-2-populations-donnees-appariees"><i class="fa fa-check"></i><b>3.3</b> Comparaison de la moyenne de 2 populations : données appariées</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#le-test-parametrique-1"><i class="fa fa-check"></i><b>3.3.1</b> Le test paramétrique</a></li>
@@ -201,7 +202,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </div>
 <div id="comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique" class="section level2">
 <h2><span class="header-section-number">3.2</span> Comparaison de la moyenne d’une population à une valeur théorique</h2>
-<div id="exploration-prealable-des-donnees" class="section level3">
+<div id="Explo" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Exploration préalable des données</h3>
 <p>Avant de se lancer dans les tests d’hypothèses, il est <strong>toujours indispensable</strong> d’examiner les données dont on dispose à l’aide, d’une part de statistiques descriptives numériques, et d’autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d’hypothèses risquer de grossières erreurs.</p>
 <div id="importation-et-examen-visuel" class="section level4">
@@ -296,7 +297,7 @@ Temp_clean</code></pre>
  n obs: 25 
  n variables: 1 
 
-── Variable type:numeric ─────
+── Variable type:numeric ───────────────────────────────────────────────────────────
     variable missing complete  n  mean   sd    p0   p25 p50   p75
  temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22
   p100     hist
@@ -464,6 +465,11 @@ sample estimates:
 </blockquote>
 <p>Si les données ne suivent pas la loi Normale, la médiane est bien la métrique la plus intéressante puisque c’est elle qui nous renseigne sur la tendance centrale des données.</p>
 <p>Enfin, les tests de Wilcoxon renvoient souvent des messages d’avretissement. Il ne s’agit que de ça : des avertissements. Tant que la <span class="math inline">\(p\)</span>-value des tests est éloignée de la valeur seuil <span class="math inline">\(\alpha\)</span>, cela n’a pas d’importance. Quand en revanche la <span class="math inline">\(p\)</span>-value est très proche de <span class="math inline">\(\alpha\)</span>, il faut être très prudent face aux conclusions du test qui peuvent alors être assez “fragiles”.</p>
+<p>(Notez que pour le test de Student à un échantillon comme pour le test de Wilcoxon des rangs signés, les conclusions sont en accord avec nos observations initiales réalisées à partir du boxplot).</p>
+</div>
+<div id="exercice-dapplication" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Exercice d’application</h3>
+<p>Le fichier <code>Temperature2.csv</code> contient les données brutes d’une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d’examiner vos données comme nous l’avons décrit dans la section <a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#Explo">3.2.1</a>, afin de savoir où vous aller, de repérer les éventuelles données manquantes ou aberrantes.</p>
 </div>
 </div>
 <div id="comparaison-de-la-moyenne-de-2-populations-donnees-appariees" class="section level2">

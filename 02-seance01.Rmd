@@ -29,7 +29,7 @@ Vous aurez également besoin des jeux de données suivants :
 
 ## Comparaison de la moyenne d'une population à une valeur théorique
 
-### Exploration préalable des données
+### Exploration préalable des données{#Explo}
 
 Avant de se lancer dans les tests d'hypothèses, il est **toujours indispensable** d'examiner les données dont on dispose à l'aide, d'une part de statistiques descriptives numériques, et d'autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d'hypothèses risquer de grossières erreurs.
 
@@ -327,6 +327,13 @@ Les hypothèses nulles et alternatives de ce test sont les mêmes que celles du 
 Si les données ne suivent pas la loi Normale, la médiane est bien la métrique la plus intéressante puisque c'est elle qui nous renseigne sur la tendance centrale des données.
 
 Enfin, les tests de Wilcoxon renvoient souvent des messages d'avretissement. Il ne s'agit que de ça : des avertissements. Tant que la $p$-value des tests est éloignée de la valeur seuil $\alpha$, cela n'a pas d'importance. Quand en revanche la $p$-value est très proche de $\alpha$, il faut être très prudent face aux conclusions du test qui peuvent alors être assez "fragiles".
+
+(Notez que pour le test de Student à un échantillon comme pour le test de Wilcoxon des rangs signés, les conclusions sont en accord avec nos observations initiales réalisées à partir du boxplot).
+
+
+### Exercice d'application
+
+Le fichier `Temperature2.csv` contient les données brutes d'une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d'examiner vos données comme nous l'avons décrit dans la section \@ref(Explo), afin de savoir où vous aller, de repérer les éventuelles données manquantes ou aberrantes.
 
 
 ## Comparaison de la moyenne de 2 populations : données appariées
