@@ -3,32 +3,265 @@
 
 ## Packages et données
 
-Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes fournis. 
+Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes disponibles sur l'ENT.
 
-Les packages dont vous aurez besoin pour cette séance sont les suivants :
+Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les suivants :
 ```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
+library(readr)
 library(skimr)
 ```
 
-Si ces commandes (que vous devez taper dans vos scripts avant de les executer dans la console de RStudio) renvoie des messages d'erreur, c'est que les packages que vous essayez de charger en mémoire ne sont pas installés sur votre ordinateur. Il vous faudra alors installer les packages manquants avec la fonction :
+Si ces commandes (que vous devez taper dans vos scripts avant de les exécuter dans la console de RStudio) renvoient des messages d'erreur, c'est que les packages que vous essayez de charger en mémoire ne sont pas installés sur votre ordinateur. Il vous faudra alors installer les packages manquants avec la fonction :
 ```{r, eval = FALSE}
 install.packages("nom_du_package")
 ```
 Comme d'habitude, si tout ça est un peu flou pour vous, relisez [la section 2.3](https://besibo.github.io/Biometrie2/bases.html#charger-un-package-en-memoire) du livre de biométrie 2 disponible en ligne.
 
 
-## Statistiques descriptives
+Vous aurez également besoin des jeux de données suivants :
+
+- `Temperature.csv`
+- `Testosterone.csv`
+- `HornedLizards.csv`
+- `HommesFemmes.txt`
 
 
+## Exploration préalable des données
 
-## Comparaison de moyennes et conditions d'application
+Avant de se lancer dans les tests d'hypothèses, il est **toujours indispensable** d'examiner les données dont on dispose à l'aide, d'une part de statistiques descriptives numériques, et d'autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d'hypothèses risquer de grossières erreurs.
+
+### Un seul échantillon
+
+#### Importation et examen visuel
+
+Commencez par importer les données contenues dans le fichier `Temperature.csv`. Pour cela, utilisez l'assistant d'importation de RStudio. Si vous ne savez plus comment faire, consultez [la section 5.3](https://besibo.github.io/Biometrie2/tidyr.html#importer-des-donnees-depuis-un-tableur) du livre en ligne de Biométrie 2.
+
+```{r, echo = FALSE, message = FALSE}
+Temperature <- read_csv("data/Temperature.csv")
+```
+
+Vous stockerez les données dans un objet que vous nommerez `Temperature`. Après l'importation, taper son nom dans la console de RStudio doit produire le résultat suivant :
+
+```{r}
+Temperature
+```
+
+Ce tableau contient les températures corporelles de 25 adultes en bonne santé choisis au hasard parmi la population américaine. On souhaite examiner la croyance populaire indiquant que la température moyenne d'adultes en bomme santé vaut 37ºC.
+
+La première chose à faire quand on travaille avec des données inconnues, c'est d'examiner les données brutes. Ici, les données sont importées au format `tibble`, donc seules les premières lignes sont visibles. Pour visualiser l'ensemble du tableau, utilisez la fonction `View()` :
+
+```{r, eval = FALSE}
+View(Temperature)
+```
+
+Cette commande doit ouvrir un nouvel onglet présentant les données dans un tableur simplifié, en lecture seule.
+
+On constate ici 2 choses que nous allons modifier :
+
+1. la première colonne, intitulé `inidividual`, n'est pas véritablement une variable. Cette colonne ne contient qu'un identifiant qui est en fait identique au numéro de ligne. Nous allons donc supprimer cette colonne
+2. les températures sont exprimées en degrés Fahrenheit, ce qui rend leur lecture difficile pour nous qui sommes habitués à utiliser le système métrique et les degrés Celsius. Nous allons donc convertir les températures en degrés Celsius grâce à la formule suivante : 
+
+$$ºC = \frac{ºF - 32}{1.8}$$
+
+```{r, tidy = FALSE}
+Temp_clean <- Temperature %>% 
+  select(-individual) %>%      # Suppression de la première colonne
+  mutate(                      # Transformation des tempértures en Celsius
+    temperature = (temperature - 32) / 1.8
+    )
+
+Temp_clean
+```
+
+Il nous est maintenant possible d'examiner à nouveau les données avec la fonction `View()`. Avec des valeurs de températures comprises entre 36.3 ºC et 37.8 ºC, il n'y a visiblement pas de données aberrantes. 
+
+C'est toujours la première chose à faire : regarder les données brutes pour repérer :
+- La nature des variables présentes.
+- Les variables inutiles qui pourront être supprimées ou négligées.
+- Les unités des variables utiles, afin de pouvoir les convertir si nécessaire.
+- Les valeurs manquantes ou aberrantes qui demanderont toujours un soin particulier.
+
+Une fois l'examen préliminaire des données réalisé, on peut passer au calcul des statistiques descriptives.
+
+#### Statistiques descriptives
+
+On s'intéresse ici au calcul de grandeurs statistiques nous apportant des renseignement sur la distribution des valeurs de l'échantillon. Les questions auxquelles on tente de répondre à ce stade sont les suivantes :
+
+- Quelle est la tendance moyenne
+- Quelle est la dispersion des données autour de la moyenne
+
+Pour répondre à ces questions, on peut faire appel à de multiples fonctions. J'en évoquerai ici seulement 3 qui permettent d'obtenir la plupart des informations dont nous avons besoin très simplement :
+
+```{r}
+summary(Temp_clean)
+```
+
+Comme son nom l'indique, la fonction `summary()` renvoie un résumé des données :
+
+- les valeurs extrêmes (minimum et maximum)
+- les valeurs "centrales" (moyenne et médiane)
+- les valeurs des quartiles (premier et troisième quartiles)
+
+Ces valeurs seront presques toutes reprises sur le graphique de type "boîte à moustaches" que nous verrons plus bas.
+
+On constate ici que la moyenne et la médiane sont très proches. La distribution des température doit donc être à peut près symmétrique, avec à peu près autant de valeurs au dessus que de valeurs en dessous de la moyenne.
+
+La seconde fonction utile est la fonction `IQR()`, comme "Inter Quartile Range" (ou intervalle inter-quartile). Cette fonction renvoie l'étendue de l'intervalle inter-quartile, c'est à dire la valeur du troisième quartile moins la valeur de premier quartile. Attention, cette fonction a besoin d'un vecteur en guise d'argument, or nos données sont stockées sous forme de `tibble`. Nous allons donc utiliser la fonction `pull()` du package `dplyr` afin de transformer (momentanément) la colonne `temperature` du tableau `Temp_clean` en vecteur :
+
+```{r}
+Temp_clean %>% 
+  pull(temperature) %>% 
+  IQR()
+```
+ On constate ici que l'intervalle inter quartile a une largeur de 0.55 degrés Celsius. Cela signifie que les 50% des températures les plus centrales sont situées dans un intervalle d'environ un demi-degré celsius.
+
+Enfin, un eautre façon d'obtenir des informations rapidement consiste à utiliser la fonction `skim()` du package `skimr` :
+
+```{r}
+skim(Temp_clean)
+```
+
+(Attention : si vous lisez ce document au format pdf, vous ne pourrez pas visualiser correctement la totalité des résultats produits par cette fonction. Consultez la version html de ce document, ou tapez la commande dans RStudio).
+
+Toute comme `summary()`, la fonction `skim()` renvoie les valeurs minimales et maximales, les premiers et troisièmes quartiles ainsi que la moyenne et la médiane. Elle nous indique en outre la valeur de l'écart-type de l'échantillon, ainsi que le nombre d'observation et le nombre de données manquantes. Enfin, elle fournit un histogramme très schématique et sans échelle. Cet histogramme nous permet de nous faire une première idée de la distribution des données.
+
+
+Outre ces 3 fonctions (`summary()`, `IQR()`, et `skim()`), il est bien sûr possible de calculer toutes ces valeurs manuellement si besoin :
+
+- `mean()` permet de calculer la moyenne
+- `median()` permet de calculer la médiane
+- `min()` et `max()` permettent de calculer les valeurs minimales et maximales respectivement
+- `quantile()` permet de calculer les quartiles
+- `sd()` permet de calculer l'écart-type
+- `var()` permet de calculer la variance
+
+Toutes ces fonctions prennent seulement un vecteur en guise d'argument. Il faut donc procéder comme avec `IQR()` pour les utiliser. Par exemple, pour calculer la variance, on peut taper :
+
+```{r}
+Temp_clean %>% 
+  pull(temperature) %>% 
+  var()
+```
+
+ou :
+
+```{r}
+var(Temp_clean$temperature)
+```
+
+
+#### Exploration graphique
+
+Ici, il s'agit d'examiner la distribution des données. Pour cela, 3 types de graphiques sont généralement utilisés.
+
+1. Les nuages de points ou stripcharts :
+
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2, tidy = FALSE}
+Temp_clean %>% 
+  ggplot(aes(x = 1, y = temperature)) +
+  geom_point()
+```
+
+Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut tenir compte de l'over-plotting. Si vous ne vous rappelez plus de quoi il s'agit, consultez [la section 4.3.4](https://besibo.github.io/DA/viz.html#over-plotting) du livre en ligne de Biométrie 2. Globalement, pour visualiser correctement les données, on va jouer soit sur la transparence des points, soit sur l'ajout d'un bruit aléatoire horizontal qui permettra de distinguer plsu facilement les points,m et de repérer les zones où les points sont abondants ou rares :
+
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2, tidy = FALSE}
+Temp_clean %>% 
+  ggplot(aes(x = 1, y = temperature)) +
+  geom_jitter(height = 0, width = 0.1) +
+  xlim(0.5, 1.5)
+```
+
+La fonction `xlim()` permet de spéccifier manuellement les valeurs limites que l'on souhaite pour l'axe des abscisses. Ici, cet axe n'a aucune signification particulière puisque nous n'avons qu'une unique série de données (c'est la raison pour laquelle les points sont centrés sur l'abscisse x = 1). Nous pouvons donc le masquer comme ceci :
+
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2, tidy = FALSE}
+Temp_clean %>% 
+  ggplot(aes(x = 1, y = temperature)) +
+  geom_jitter(height = 0, width = 0.1) +
+  xlim(0.5, 1.5) +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.title.x = element_blank())
+```
+
+On constate ici que la répartition des points est assez régulière, avec néanmoins une majorité de points entre 36.8 et 37.3 degrés Celsius.
+
+2. L'histogramme :
+
+```{r tidy = FALSE}
+Temp_clean %>% 
+  ggplot(aes(x = temperature)) +
+  geom_histogram(bins = 10, color = grey(0.8))
+```
+
+Si vous ne vous rappelez-plus ce qu'est un histogramme où comment le faire, ou la signification de l'argument `bins`, relisez [la section 4.5](https://besibo.github.io/DA/viz.html#histogram) du livre en ligne de Biométrie 2.
+
+Notez ici que la forme de cet histogramme est très proche de celle présenté plus tôt pas la fonction `skim()`. Cet histogramme nous apprend qu'en dehors d'un "trou" autour de la température 36.75 ºC, la distribution des données est proche d'une courbe en cloche. Il y a fort à parier qu'un test de normalité concluerait à la normalité des données de cet échantillon.
+
+3. Les boîtes à moustaches :
+
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2, tidy = FALSE}
+Temp_clean %>% 
+  ggplot(aes(y = temperature)) +
+  geom_boxplot(notch = TRUE)
+```
+
+Comme pour le stripchart présenté plus haut, l'axe des abscisses n'a ici aucun sens. Nous n'avons qu'une unique série de données, l'axe des `x` est donc inutile et nous pouvons donc le retirer :
+
+```{r, , fig.asp = 1.5, out.width = '25%', fig.width = 2, tidy = FALSE}
+Temp_clean %>% 
+  ggplot(aes(y = temperature)) +
+  geom_boxplot(notch = TRUE) +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank())
+```
+
+On retrouve sur ce graphique tous les éléments obtenus avec la fonction `summary()` à l'exception de la moyenne. Assurez-vous que vous êtes bien capables d'identifier tous ces éléments sur le graphique. Assurez-vous aussi que la signification de l'encoche (obtenue avec l'argument `notch = TRUE`) est bien claire pour vous. Comme toujours, si ce n'est pas le cas, consultez [la section dédiée aux boxplots](https://besibo.github.io/DA/viz.html#les-boites-a-moustaches-ou-boxplots) dans le livre en ligne de Biométrie 2.
+
+
+Pour conclure, ces 3 types de représentations graphiques (nuages de points ou stripchart, histogrammes et boxplots) sont complémentaires. Ces trois types de représentations graphiques permettent de visualiser la distribution d'une variable numérique. Les nuages de points permettent de voir toutes les données brutes. Les histogrammes résument les données en quelques valeurs : une valeur d'abondance pour chaque classe de taille. Les boxplots résument encore plus les données avec seulement 7 valeurs qui caractérisent la distribution :
+
+```{r compboxplot, tidy=FALSE, warning = FALSE, message = FALSE, echo=FALSE, fig.cap="Comparaison de 2 types de représentations graphiques"}
+library(gridExtra)
+
+pl1 <- Temp_clean %>% 
+  ggplot(aes(x = temperature)) +
+    geom_histogram(bins = 10) +
+    coord_flip()
+
+pl2 <- Temp_clean %>% 
+  ggplot(aes(y = temperature)) +
+    geom_boxplot(notch = TRUE) +
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank())
+
+pl3 <- Temp_clean %>% 
+  ggplot(aes(x = 1, y = temperature)) +
+  xlim(0.5, 1.5) +
+  geom_jitter(width = 0.2, height=1) +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.title.x = element_blank())
+
+
+grid.arrange(pl3, pl1, pl2, nrow=1)
+```
+
+À chaque nouvelle analyse statistique, il sera donc important de visualiser les données afin de repérer les éventuels problèmes, et afin d'anticiper sur les résultats que fourniront les tests d'hypothèses ultérieurs. Ici, l'examen de ces graphiques nous permet de dire les choses suivantes :
+
+1. Il n'y a visiblement pas de données aberrantes
+2. La distribution des données semble suivre à peu près la loi Normale
+3. La médiane et son intervalle de confiance à 95% sont centrés sur la valeur 37ºC. Un test devrait donc arriver à la conclusion que la température corporelle des adultes n'est pas significativement différente de 37ºC. Néanmoins, la largeur de l'intervalle de confiance à 95% est assez grande, ce qui indique une incertitude relativement élevée. Une plus grande quantité de données permettrait certainement d'obtenir plus de précision.
+
+### Plusieurs échantillons
 
 
 
 ## Comparaison de la moyenne d'une population à une valeur théorique
 
 ### Le test paramétrique
+
+#### Conditions d'application
 
 
 ### Le test non paramétrique
@@ -39,6 +272,8 @@ Comme d'habitude, si tout ça est un peu flou pour vous, relisez [la section 2.3
 
 ### Le test paramétrique
 
+#### Conditions d'application
+
 
 ### Le test non paramétrique
 
@@ -47,6 +282,8 @@ Comme d'habitude, si tout ça est un peu flou pour vous, relisez [la section 2.3
 ## Comparaison de la moyenne de 2 populations : données indépendantes
 
 ### Le test paramétrique
+
+#### Conditions d'application
 
 
 ### Le test non paramétrique

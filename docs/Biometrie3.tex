@@ -264,18 +264,19 @@ Si vous suivez rigoureusement ces étapes, vous devriez être dans la situation 
 \hypertarget{packages-et-donnees}{%
 \subsection{Packages et données}\label{packages-et-donnees}}
 
-Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes fournis.
+Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes disponibles sur l'ENT.
 
-Les packages dont vous aurez besoin pour cette séance sont les suivants :
+Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les suivants :
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(readr)}
 \KeywordTok{library}\NormalTok{(skimr)}
 \end{Highlighting}
 \end{Shaded}
 
-Si ces commandes (que vous devez taper dans vos scripts avant de les executer dans la console de RStudio) renvoie des messages d'erreur, c'est que les packages que vous essayez de charger en mémoire ne sont pas installés sur votre ordinateur. Il vous faudra alors installer les packages manquants avec la fonction :
+Si ces commandes (que vous devez taper dans vos scripts avant de les exécuter dans la console de RStudio) renvoient des messages d'erreur, c'est que les packages que vous essayez de charger en mémoire ne sont pas installés sur votre ordinateur. Il vous faudra alors installer les packages manquants avec la fonction :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -285,17 +286,319 @@ Si ces commandes (que vous devez taper dans vos scripts avant de les executer da
 
 Comme d'habitude, si tout ça est un peu flou pour vous, relisez \href{https://besibo.github.io/Biometrie2/bases.html\#charger-un-package-en-memoire}{la section 2.3} du livre de biométrie 2 disponible en ligne.
 
-\hypertarget{statistiques-descriptives}{%
-\subsection{Statistiques descriptives}\label{statistiques-descriptives}}
+Vous aurez également besoin des jeux de données suivants :
 
-\hypertarget{comparaison-de-moyennes-et-conditions-dapplication}{%
-\subsection{Comparaison de moyennes et conditions d'application}\label{comparaison-de-moyennes-et-conditions-dapplication}}
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Temperature.csv}
+\item
+  \texttt{Testosterone.csv}
+\item
+  \texttt{HornedLizards.csv}
+\item
+  \texttt{HommesFemmes.txt}
+\end{itemize}
+
+\hypertarget{exploration-prealable-des-donnees}{%
+\subsection{Exploration préalable des données}\label{exploration-prealable-des-donnees}}
+
+Avant de se lancer dans les tests d'hypothèses, il est \textbf{toujours indispensable} d'examiner les données dont on dispose à l'aide, d'une part de statistiques descriptives numériques, et d'autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d'hypothèses risquer de grossières erreurs.
+
+\hypertarget{un-seul-echantillon}{%
+\subsubsection{Un seul échantillon}\label{un-seul-echantillon}}
+
+\hypertarget{importation-et-examen-visuel}{%
+\paragraph{Importation et examen visuel}\label{importation-et-examen-visuel}}
+
+Commencez par importer les données contenues dans le fichier \texttt{Temperature.csv}. Pour cela, utilisez l'assistant d'importation de RStudio. Si vous ne savez plus comment faire, consultez \href{https://besibo.github.io/Biometrie2/tidyr.html\#importer-des-donnees-depuis-un-tableur}{la section 5.3} du livre en ligne de Biométrie 2.
+
+Vous stockerez les données dans un objet que vous nommerez \texttt{Temperature}. Après l'importation, taper son nom dans la console de RStudio doit produire le résultat suivant :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temperature}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 25 x 2
+   individual temperature
+        <dbl>       <dbl>
+ 1          1        98.4
+ 2          2        98.6
+ 3          3        97.8
+ 4          4        98.8
+ 5          5        97.9
+ 6          6        99  
+ 7          7        98.2
+ 8          8        98.8
+ 9          9        98.8
+10         10        99  
+# ... with 15 more rows
+\end{verbatim}
+
+Ce tableau contient les températures corporelles de 25 adultes en bonne santé choisis au hasard parmi la population américaine.
+
+La première chose à faire quand on travaille avec des données inconnues, c'est d'examiner les données brutes. Ici, les données sont importées au format \texttt{tibble}, donc seules les premières lignes sont visibles. Pour visualiser l'ensemble du tableau, utilisez la fonction \texttt{View()} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{View}\NormalTok{(Temperature)}
+\end{Highlighting}
+\end{Shaded}
+
+Cette commande doit ouvrir un nouvel onglet présentant les données dans un tableur simplifié, en lecture seule.
+
+On constate ici 2 choses que nous allons modifier :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  la première colonne, intitulé \texttt{inidividual}, n'est pas véritablement une variable. Cette colonne ne contient qu'un identifiant qui est en fait identique au numéro de ligne. Nous allons donc supprimer cette colonne
+\item
+  les températures sont exprimées en degrés Fahrenheit, ce qui rend leur lecture difficile pour nous qui sommes habitués à utiliser le système métrique et les degrés Celsius. Nous allons donc convertir les températures en degrés Celsius grâce à la formule suivante :
+\end{enumerate}
+
+\[ºC = \frac{ºF - 32}{1.8}\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temp_clean <-}\StringTok{ }\NormalTok{Temperature }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{individual) }\OperatorTok{%>%}\StringTok{      }\CommentTok{# Suppression de la première colonne}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(                      }\CommentTok{# Transformation des tempértures en Celsius}
+    \DataTypeTok{temperature =}\NormalTok{ (temperature }\OperatorTok{-}\StringTok{ }\DecValTok{32}\NormalTok{) }\OperatorTok{/}\StringTok{ }\FloatTok{1.8}
+\NormalTok{    )}
+
+\NormalTok{Temp_clean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 25 x 1
+   temperature
+         <dbl>
+ 1        36.9
+ 2        37.0
+ 3        36.6
+ 4        37.1
+ 5        36.6
+ 6        37.2
+ 7        36.8
+ 8        37.1
+ 9        37.1
+10        37.2
+# ... with 15 more rows
+\end{verbatim}
+
+Il nous est maintenant possible d'examiner à nouveau les données avec la fonction \texttt{View()}. Avec des valeurs de températures comprises entre 36.3 ºC et 37.8 ºC, il n'y a visiblement pas de données aberrantes.
+
+C'est toujours la première chose à faire : regarder les données brutes pour repérer :
+- La nature des variables présentes.
+- Les variables inutiles qui pourront être supprimées ou négligées.
+- Les unités des variables utiles, afin de pouvoir les convertir si nécessaire.
+- Les valeurs manquantes ou aberrantes qui demanderont toujours un soin particulier.
+
+Une fois l'examen préliminaire des données réalisé, on peut passer au calcul des statistiques descriptives.
+
+\hypertarget{statistiques-descriptives}{%
+\paragraph{Statistiques descriptives}\label{statistiques-descriptives}}
+
+On s'intéresse ici au calcul de grandeurs statistiques nous apportant des renseignement sur la distribution des valeurs de l'échantillon. Les questions auxquelles on tente de répondre à ce stade sont les suivantes :
+
+\begin{itemize}
+\tightlist
+\item
+  Quelle est la tendance moyenne
+\item
+  Quelle est la dispersion des données autour de la moyenne
+\end{itemize}
+
+Pour répondre à ces questions, on peut faire appel à de multiples fonctions. J'en évoquerai ici seulement 3 qui permettent d'obtenir la plupart des informations dont nous avons besoin très simplement :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(Temp_clean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  temperature   
+ Min.   :36.33  
+ 1st Qu.:36.67  
+ Median :37.00  
+ Mean   :36.96  
+ 3rd Qu.:37.22  
+ Max.   :37.78  
+\end{verbatim}
+
+Comme son nom l'indique, la fonction \texttt{summary()} renvoie un résumé des données :
+
+\begin{itemize}
+\tightlist
+\item
+  les valeurs extrêmes (minimum et maximum)
+\item
+  les valeurs ``centrales'' (moyenne et médiane)
+\item
+  les valeurs des quartiles (premier et troisième quartiles)
+\end{itemize}
+
+Ces valeurs seront presques toutes reprises sur le graphique de type ``boîte à moustaches'' que nous verrons plus bas.
+
+On constate ici que la moyenne et la médiane sont très proches. La distribution des température doit donc être à peut près symmétrique, avec à peu près autant de valeurs au dessus que de valeurs en dessous de la moyenne.
+
+La seconde fonction utile est la fonction \texttt{IQR()}, comme ``Inter Quartile Range'' (ou intervalle inter-quartile). Cette fonction renvoie l'étendue de l'intervalle inter-quartile, c'est à dire la valeur du troisième quartile moins la valeur de premier quartile. Attention, cette fonction a besoin d'un vecteur en guise d'argument, or nos données sont stockées sous forme de \texttt{tibble}. Nous allons donc utiliser la fonction \texttt{pull()} du package \texttt{dplyr} afin de transformer (momentanément) la colonne \texttt{temperature} du tableau \texttt{Temp\_clean} en vecteur :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }\KeywordTok{pull}\NormalTok{(temperature) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{IQR}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.5555556
+\end{verbatim}
+
+On constate ici que l'intervalle inter quartile a une largeur de 0.55 degrés Celsius. Cela signifie que les 50\% des températures les plus centrales sont situées dans un intervalle d'environ un demi-degré celsius.
+
+Enfin, un eautre façon d'obtenir des informations rapidement consiste à utiliser la fonction \texttt{skim()} du package \texttt{skimr} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{skim}\NormalTok{(Temp_clean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Skim summary statistics
+ n obs: 25 
+ n variables: 1 
+
+-- Variable type:numeric -----
+    variable missing complete  n  mean   sd    p0   p25 p50   p75
+ temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22
+  p100     hist
+ 37.78 ▅▃▁▇▇▂▂▁
+\end{verbatim}
+
+(Attention : si vous lisez ce document au format pdf, vous ne pourrez pas visualiser correctement la totalité des résultats produits par cette fonction. Consultez la version html de ce document, ou tapez la commande dans RStudio).
+
+Toute comme \texttt{summary()}, la fonction \texttt{skim()} renvoie les valeurs minimales et maximales, les premiers et troisièmes quartiles ainsi que la moyenne et la médiane. Elle nous indique en outre la valeur de l'écart-type de l'échantillon, ainsi que le nombre d'observation et le nombre de données manquantes. Enfin, elle fournit un histogramme très schématique et sans échelle. Cet histogramme nous permet de nous faire une première idée de la distribution des données.
+
+Outre ces 3 fonctions (\texttt{summary()}, \texttt{IQR()}, et \texttt{skim()}), il est bien sûr possible de calculer toutes ces valeurs manuellement si besoin :
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{mean()} permet de calculer la moyenne
+\item
+  \texttt{median()} permet de calculer la médiane
+\item
+  \texttt{min()} et \texttt{max()} permettent de calculer les valeurs minimales et maximales respectivement
+\item
+  \texttt{quantile()} permet de calculer les quartiles
+\item
+  \texttt{sd()} permet de calculer l'écart-type
+\item
+  \texttt{var()} permet de calculer la variance
+\end{itemize}
+
+Toutes ces fonctions prennent seulement un vecteur en guise d'argument. Il faut donc procéder comme avec \texttt{IQR()} pour les utiliser. Par exemple, pour calculer la variance, on peut taper :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }\KeywordTok{pull}\NormalTok{(temperature) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{var}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.1417901
+\end{verbatim}
+
+ou :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{var}\NormalTok{(Temp_clean}\OperatorTok{$}\NormalTok{temperature)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.1417901
+\end{verbatim}
+
+\hypertarget{exploration-graphique}{%
+\paragraph{Exploration graphique}\label{exploration-graphique}}
+
+Ici, il s'agit d'examiner la distribution des données. Pour cela, 3 types de graphiques sont généralement utilisés.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Les nuages de points ou stripcharts :
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{y =}\NormalTok{ temperature)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-15-1} \end{center}
+
+Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut tenir compte de l'over-plotting. Si vous ne vous rappelez plus de quoi il s'agit, consultez \href{https://besibo.github.io/DA/viz.html\#over-plotting}{la section 4.3.4} du livre en ligne de Biométrie 2. Globalement, pour visualiser correctement les données, on va jouer soit sur la transparence des points, soit sur l'ajout d'un bruit aléatoire horizontal qui permettra de distinguer plsu facilement les points,m et de repérer les zones où les points sont abondants ou rares :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{y =}\NormalTok{ temperature)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{height =} \DecValTok{0}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlim}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-16-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ temperature)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-17-1} \end{center}
+
+Ici, l'axe des abscisses n'a aucun sens. Nous n'avons qu'une unique série de données, l'axe des \texttt{x} est donc inutile. On peut le retirer :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ temperature)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_blank}\NormalTok{(),}
+        \DataTypeTok{axis.ticks.x =} \KeywordTok{element_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-18-1} \end{center}
+
+\hypertarget{plusieurs-echantillons}{%
+\subsubsection{Plusieurs échantillons}\label{plusieurs-echantillons}}
 
 \hypertarget{comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique}{%
 \subsection{Comparaison de la moyenne d'une population à une valeur théorique}\label{comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique}}
 
 \hypertarget{le-test-parametrique}{%
 \subsubsection{Le test paramétrique}\label{le-test-parametrique}}
+
+\hypertarget{conditions-dapplication}{%
+\paragraph{Conditions d'application}\label{conditions-dapplication}}
 
 \hypertarget{le-test-non-parametrique}{%
 \subsubsection{Le test non paramétrique}\label{le-test-non-parametrique}}
@@ -306,6 +609,9 @@ Comme d'habitude, si tout ça est un peu flou pour vous, relisez \href{https://b
 \hypertarget{le-test-parametrique-1}{%
 \subsubsection{Le test paramétrique}\label{le-test-parametrique-1}}
 
+\hypertarget{conditions-dapplication-1}{%
+\paragraph{Conditions d'application}\label{conditions-dapplication-1}}
+
 \hypertarget{le-test-non-parametrique-1}{%
 \subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-1}}
 
@@ -314,6 +620,9 @@ Comme d'habitude, si tout ça est un peu flou pour vous, relisez \href{https://b
 
 \hypertarget{le-test-parametrique-2}{%
 \subsubsection{Le test paramétrique}\label{le-test-parametrique-2}}
+
+\hypertarget{conditions-dapplication-2}{%
+\paragraph{Conditions d'application}\label{conditions-dapplication-2}}
 
 \hypertarget{le-test-non-parametrique-2}{%
 \subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-2}}
