@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  3 MAR 2019 10:46
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  3 MAR 2019 19:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1574,11 +1574,6 @@ LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/bx/n' will be
 Missing character: There is no º in font lmmi10!
 Missing character: There is no º in font lmmi10!
 [5] [6]
-Overfull \hbox (40.10066pt too wide) in paragraph at lines 484--484
-[]\TU/lmtt/m/n/10 -- Variable type:numeric ------------------------------------
------------------------[] 
- []
-
 Missing character: There is no ▅ in font [lmmono10-regular]:!
 Missing character: There is no ▃ in font [lmmono10-regular]:!
 Missing character: There is no ▁ in font [lmmono10-regular]:!
@@ -1598,27 +1593,80 @@ File: figure/unnamed-chunk-17-1.pdf Graphic file (type pdf)
 [9]
 File: figure/unnamed-chunk-18-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-18-1.pdf>
+[10]
 File: figure/unnamed-chunk-19-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-19-1.pdf>
-[10]
 File: figure/unnamed-chunk-20-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-20-1.pdf>
-File: figure/compboxplot-1.pdf Graphic file (type pdf)
-<use figure/compboxplot-1.pdf>
+[11]
+File: figure/unnamed-chunk-21-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-21-1.pdf>
 
 LaTeX Font Warning: Font shape `TU/FuturaLT-Book(0)/m/sc' undefined
-(Font)              using `TU/FuturaLT-Book(0)/m/n' instead on input line 649.
+(Font)              using `TU/FuturaLT-Book(0)/m/n' instead on input line 655.
 
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/sc' will be
-(Font)              scaled to size 9.0886pt on input line 649.
-[11] [12] [13] [14] [15]
-No file Biometrie3.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 856.
-[16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 856.
+(Font)              scaled to size 9.0886pt on input line 655.
+[12] [13] [14] [15] [16] [17] [18] [19]
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▂ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▇ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▂ in font [lmmono10-regular]:!
+Missing character: There is no ▃ in font [lmmono10-regular]:!
+Missing character: There is no ▇ in font [lmmono10-regular]:!
+[20]
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▂ in font [lmmono10-regular]:!
+Missing character: There is no ▃ in font [lmmono10-regular]:!
+Missing character: There is no ▇ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▂ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▇ in font [lmmono10-regular]:!
+File: figure/unnamed-chunk-32-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-32-1.pdf>
+File: figure/unnamed-chunk-33-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-33-1.pdf>
+[21]
+File: figure/unnamed-chunk-34-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-34-1.pdf>
+File: figure/unnamed-chunk-35-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-35-1.pdf>
+[22]
+File: figure/unnamed-chunk-36-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-36-1.pdf>
+[23]
+File: figure/unnamed-chunk-37-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-37-1.pdf>
+[24]
+File: figure/unnamed-chunk-39-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-39-1.pdf>
+[25] [26] [27] [28] [29] (./Biometrie3.bbl [30])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1473.
+[31]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1473.
 (./Biometrie3.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 856.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 856.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1473.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1473.
+
 Package rerunfilecheck Info: File `Biometrie3.out' has not changed.
 (rerunfilecheck)             Checksum: 843C8992BD59E66F0BA007A324C91A2A.
 
@@ -1630,12 +1678,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 ### semi simple group (level 1) entered at line 146 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25861 strings out of 492970
- 475073 string characters out of 6133937
- 628191 words of memory out of 5000000
- 29566 multiletter control sequences out of 15000+600000
+ 25904 strings out of 492970
+ 476369 string characters out of 6133937
+ 630622 words of memory out of 5000000
+ 29600 multiletter control sequences out of 15000+600000
  543071 words of font info for 62 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 60i,7n,118p,10451b,1406s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,7n,118p,10451b,1416s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Biometrie3.pdf (16 pages).
+Output written on Biometrie3.pdf (31 pages).

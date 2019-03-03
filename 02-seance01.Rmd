@@ -22,6 +22,7 @@ Comme d'habitude, si tout ça est un peu flou pour vous, relisez [la section 2.3
 Vous aurez également besoin des jeux de données suivants :
 
 - `Temperature.csv`
+- `Temperature2.csv`
 - `Testosterone.csv`
 - `HornedLizards.csv`
 - `HommesFemmes.txt`
@@ -65,7 +66,7 @@ On constate ici 2 choses que nous allons modifier :
 
 $$ºC = \frac{ºF - 32}{1.8}$$
 
-```{r, tidy = FALSE}
+```{r}
 Temp_clean <- Temperature %>% 
   select(-individual) %>%      # Suppression de la première colonne
   mutate(                      # Transformation des tempértures en Celsius
@@ -158,7 +159,7 @@ Ici, il s'agit d'examiner la distribution des données. Pour cela, 3 types de gr
 
 1. Les nuages de points ou stripcharts :
 
-```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2, tidy = FALSE}
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
 Temp_clean %>% 
   ggplot(aes(x = 1, y = temperature)) +
   geom_point()
@@ -166,7 +167,7 @@ Temp_clean %>%
 
 Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut tenir compte de l'over-plotting. Si vous ne vous rappelez plus de quoi il s'agit, consultez [la section 4.3.4](https://besibo.github.io/DA/viz.html#over-plotting) du livre en ligne de Biométrie 2. Globalement, pour visualiser correctement les données, on va jouer soit sur la transparence des points, soit sur l'ajout d'un bruit aléatoire horizontal qui permettra de distinguer plsu facilement les points,m et de repérer les zones où les points sont abondants ou rares :
 
-```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2, tidy = FALSE}
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
 Temp_clean %>% 
   ggplot(aes(x = 1, y = temperature)) +
   geom_jitter(height = 0, width = 0.1) +
@@ -175,7 +176,7 @@ Temp_clean %>%
 
 La fonction `xlim()` permet de spéccifier manuellement les valeurs limites que l'on souhaite pour l'axe des abscisses. Ici, cet axe n'a aucune signification particulière puisque nous n'avons qu'une unique série de données (c'est la raison pour laquelle les points sont centrés sur l'abscisse x = 1). Nous pouvons donc le masquer comme ceci :
 
-```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2, tidy = FALSE}
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
 Temp_clean %>% 
   ggplot(aes(x = 1, y = temperature)) +
   geom_jitter(height = 0, width = 0.1) +
@@ -189,7 +190,7 @@ On constate ici que la répartition des points est assez régulière, avec néan
 
 2. L'histogramme :
 
-```{r tidy = FALSE}
+```{r}
 Temp_clean %>% 
   ggplot(aes(x = temperature)) +
   geom_histogram(bins = 10, color = grey(0.8))
@@ -201,7 +202,7 @@ Notez ici que la forme de cet histogramme est très proche de celle présenté p
 
 3. Les boîtes à moustaches :
 
-```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2, tidy = FALSE}
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
 Temp_clean %>% 
   ggplot(aes(y = temperature)) +
   geom_boxplot(notch = TRUE)
@@ -209,7 +210,7 @@ Temp_clean %>%
 
 Comme pour le stripchart présenté plus haut, l'axe des abscisses n'a ici aucun sens. Nous n'avons qu'une unique série de données, l'axe des `x` est donc inutile et nous pouvons donc le retirer :
 
-```{r, , fig.asp = 1.5, out.width = '25%', fig.width = 2, tidy = FALSE}
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
 Temp_clean %>% 
   ggplot(aes(y = temperature)) +
   geom_boxplot(notch = TRUE) +
@@ -222,7 +223,7 @@ On retrouve sur ce graphique tous les éléments obtenus avec la fonction `summa
 
 Pour conclure, ces 3 types de représentations graphiques (nuages de points ou stripchart, histogrammes et boxplots) sont complémentaires. Ces trois types de représentations graphiques permettent de visualiser la distribution d'une variable numérique. Les nuages de points permettent de voir toutes les données brutes. Les histogrammes résument les données en quelques valeurs : une valeur d'abondance pour chaque classe de taille. Les boxplots résument encore plus les données avec seulement 7 valeurs qui caractérisent la distribution :
 
-```{r compboxplot, tidy=FALSE, warning = FALSE, message = FALSE, echo=FALSE, fig.cap="Comparaison de 2 types de représentations graphiques"}
+```{r, warning = FALSE, message = FALSE, echo=FALSE, fig.cap="Comparaison de 2 types de représentations graphiques"}
 library(gridExtra)
 
 pl1 <- Temp_clean %>% 
@@ -274,7 +275,7 @@ Pour un test de normalité, les hypothèses sont toujours les suivantes :
 
 Le test de Shapiro-Wilk se réalise de la façon suivante :
 
-```{r, tidy = FALSE}
+```{r}
 Temp_clean %>% 
   pull(temperature) %>% 
   shapiro.test()
@@ -338,14 +339,272 @@ Le fichier `Temperature2.csv` contient les données brutes d'une seconde étude 
 
 ## Comparaison de la moyenne de 2 populations : données appariées
 
+On s'intéresse ici à la comparaison de 2 séries de données dont les observations sont liées 2 à 2. C'est par exemple le cas lorsque l'on fait subir un tratiement à différents sujets et que l'on souhaite comparer les mesures obtenues avant et après le traitement. 
+
+Autrement dit, dans les plans d'expériences appariés, **les deux traitements** ou modalités **sont appliqués à chaque unité d'échantillonnage**.
+
+Voici quelques exemples de de situations qui devraient être traitées avec des tests sur données appariées :
+
+- Comparaison de la masse de patients avant et après une hospitalisation.
+- Comparaison de la diversité de peuplements de poissons dans des lacs avant et après contamination par des métaux lourds.
+- Test des effets d'une crème solaire appliquée sur un bras de chaque volontaire alors que l'autre bras ne reçoit qu'un placébo.
+- Test des effets du tabagisme dans un échantillon de fumeurs, dont chaque membre est comparé à un non fumeur choisi pour qu'il lui ressemble le plus possible en terme d'âge, de masse, d'origine éthnique et sociale
+- Test des effets que les conditions socio-économiques ont sur les préférences alimentaires en comparant des vrais jumaux élevés dans des familles adoptives séparées qui diffèrent en termes de conditions socio-économiques.
+
+Les 2 derniers exemples montrent que même des individus séparés peuvent constituer une  "pare statistique" s'ils partagent un certain nombre de caractéristiques (physiques, environnementales, génétiques, comportementales, etc.) pertinentes pour l'étude.
+
+### Exploration préalable des données{#Explo2}
+
+Ici, nous allons nous intéresser au lien qui pourrait exister entre la production de testostérone et l'immunité chez une espèce d'oiseau vivant en Amérique du Nord, [le carouge à épaulettes](https://fr.wikipedia.org/wiki/Carouge_à_épaulettes).
+
+Chez de nombreuses espèces, les mâles ont plus de chances d'attirer des femelles s'ils produisent des niveaux de testostérone élevés. Est-ce que la forte production de testostérone de certains mâle a un coût, notamment en terme d'immuno-compétence ? Autrement dit, est-ce que produire beaucoup de testostérone au moment de la reproduction (ce qui fournit un avantage sélectif) se traduit par une immunité plus faible par la suite, et donc une plus forte susceptibilité de contracter des maladies (ce qui constitue donc un désavantage sélectif) ?
+
+Pour étudier cette question, une équipe de chercheurs [@Hasselquist1999] a mis en place le dispositif expérimental suivant. Les niveaux de testostérone de 13 carouges à épaulettes mâles ont été artificiellement augmentés par l'implantation chirurgicale d'un microtube perméable contenant de la testostérone. L'immunocompeetence a été mesurée pour chaque oiseau avant et après l'opération chirurgicale. La variable mesurée est la production d'anticorps suite à l'exposition des oiseaux avec un antigène non pathogène mais censé déclencher une réponse immunitaire. Les taux de production d'anticorps sont exprimés en logarithmes de densité optique par minute ($\ln\frac{mOD}{min}$).
+
+#### Importation et examen visuel
+
+Les données se trouvent dans le fichier `Testosterone.csv`. Importez ces données dans un objet nommé `Testo` et examinez le tableau obtenu.
+
+```{r, echo = FALSE, message=FALSE}
+Testo <- read_csv("data/Testosterone.csv")
+```
+
+```{r}
+Testo
+```
+
+Visiblement, il n'y a pas de données manquantes mais certaines variables sont inutiles. En réalité, nous aurons besoin des données sous 2 formats disctincts : un format "large" pour les statistiques descriptives et les tests d'hypothèse, et un format "long" pour les représentations graphiques. Et dans tous les cas, l'identifiant individuel devrait être considéré comme un facteur, et non comme une variable numérique comme c'est le cas actuellement.
+
+Commençons par créer un tableau "large" pour les statistiques descriptives :
+
+```{r}
+Testo_large <- Testo %>% 
+  mutate(blackbird = factor(blackbird)) %>%
+  select(ID = blackbird,
+         Before = logBeforeImplant,
+         After = logAfterImplant)
+
+Testo_large
+```
+
+Il nous faut maintenant transformer ce tableau en format "long" pour les représentations graphiques :
+
+```{r}
+Testo_long <- Testo_large %>% 
+  gather(key = Traitement, 
+         value = DO, 
+         Before, After, 
+         factor_key = TRUE)
+
+Testo_long
+```
+
+Si vous ne comprenez pas ces commandes, je vous conseille vivement de reprendre [les chapitres 5 et 6](https://besibo.github.io/DA/tidyr.html) du livre en ligne de Biométrie 2. Dans l'idéal, depuis les TP de biométrie 2, vous devriez être capables de construire de telles séquences de commandes pour aboutir à un tableau rangé ne contenant que les variables utiles, au format long comme au format court (ou large). Mais évidemment, de telles groupes de commandes se construisent étape par étape, et pas d'un seul coup comme les comande précédentes pourraient le laisser croire.
+
+Maintenant que nous disposons de ces 2 tableaux, nous pouvons commencer à décrire nos données.
+
+
+#### Statistiques descriptives
+
+Pour décrire simplement les données, nous nous en tiendront ici à l'utilisation des fonctions `summary()` et `skim()`.
+
+Pour la fonction `summary()`, le plus simple est toujours d'utiliser le tableau au format large :
+
+```{r}
+summary(Testo_large)
+```
+
+On constate ici que pour les 2 traitements, les valeurs des différents indices sont très proches entre les 2 séries de données, avec des valeurs de densité optiques (DO) légèrement supérieures après l'opération chirurgicale (sauf pour le premier quartile).
+
+Pour la fonction `skim()` le plus simple est là aussi d'utiliser le tableau large :
+
+```{r}
+skim(Testo_large)
+```
+
+On arrive toutefois aux mêmes résultats avec le tableau long, à condition de grouper les données par traitement (Variable `Traitement`) avec `group_by()` :
+
+```{r}
+Testo_long %>% 
+  group_by(Traitement) %>% 
+  skim()
+```
+
+
+#### Exploration graphique
+
+Ici, c'est le tableau rangé au format long qui sera le plus adapté. Lorsque nous avions une unique série de données, nous avons utilisé 3 types de représentations graphiques pour visualiser les données. Nous allons là aussi réaliser ces 3 graphiques. Toutefois, puisque nous avons maintenant plusieurs séries de données, le format des graphique sera légèrement différent.
+
+1. Données brutes sous forme de nuage de point (ou de stripchart) :
+
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
+Testo_long %>% 
+  ggplot(aes(x = Traitement, y = DO)) +
+  geom_point()
+```
+
+Comme toujours, on peut réaliser un stripchart pour limiter les problèmes d'over-plotting (qui sont ici quasi-inexistants).
+
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
+Testo_long %>% 
+  ggplot(aes(x = Traitement, y = DO)) +
+  geom_jitter(height = 0, width = 0.25)
+```
+
+2. Histogrammes
+
+Nous allons faire un histogramme pour chaque série de données en utilisant des facettes :
+```{r}
+Testo_long %>% 
+  ggplot(aes(x = DO)) +
+  geom_histogram(bins = 10, color = grey(0.8))+
+  facet_wrap(~Traitement, ncol = 1)
+```
+
+3. Boxplots
+
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
+Testo_long %>% 
+  ggplot(aes(x = Traitement, y = DO)) +
+  geom_boxplot(notch = TRUE)
+```
+
+Ici, l'intervalle de confiance à 95% de la médiane pour la série "After" est tellement large que son extrémité supérieure dépasse la valeur du troisième quartile, la valeur maximale observée, et la limite supérieure de l'axe des ordonnées. Il vaut donc mieux ne pas faire figurer les encoches pour avoir un graphique plus présentable :
+
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
+Testo_long %>% 
+  ggplot(aes(x = Traitement, y = DO)) +
+  geom_boxplot()
+```
+
+À première vue, ces 3 représentations graphiques semblent montrer que la seconde série de données (après l'opération chirurgicale) présente des valeurs légèrement plus élevées que la première (avant l'opération). Toutefois, il semble que la dispersion des données soit aussi plus importante après l'opération qu'avant, sauf pour un individu outlier qui présente une immuno-compétence très faible avant l'opération.
+
+Toutes ces représentations graphiques sont certes utiles, mais elles masquent un élément crucial : ce sont les mêmes individus qui sont étudiés avant et après l'opération. Il s'agit de données appariées ! Pour avoir une bonne vision de ce qui se passe, il nous faut faire apparaître ce lien entre les 2 séries de données :
+
+```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
+Testo_long %>% 
+  ggplot(aes(x = Traitement, y = DO, group = ID, color = ID)) +
+  geom_line() +
+  geom_point(alpha = 0.7)
+```
+
+Ce graphique nous donne une image très différente de la réalité des données. On constate ici que l'immuno-compétence de certains individus augmente, alors que pour d'autres, elle diminue. 
+
+Une façon d'estimer si les changements d'immuno-compétence sont majoritairement orientés dans un sens ou non est de calculer l'intervalle de confiance à 95% de la différence d'immuno-compétence entre avant et après l'opération.
+
 ### Le test paramétrique
 
+Le test paramétrique permettant de comparer la moyenne sur des séries appariées est là encore un test de Student : le **test de Student sur données appariées** (original...). En réalité, ce test de Student n'est pas un test de comparaison de moyennes à proprement parler. La procédure est en réalité la suivante :
+
+1. Pour chaque individu, calculer la différence d'immuno-compétence entre les deux temps de l'expérience (DO après - DO avant)
+2. Puisque nous avons 13 individus, nous aurons 13 valeurs de différences. La moyenne de cette différence sera comparée à la valeur théorique 0. Autrement dit, si les 2 séries ont même moyenne, le moyenne des différences doit être nulle. Sinon, la moyenne des différence doit être différente de zéro.
+
 #### Conditions d'application
+
+Les conditions d'application de ce test paramétrique sont presque les mêmes que pour le test de Student à un échantillon :
+
+1. Les individus sur lesquels portent la comparaison doivent être issus d'un échantillonnage aléatoire. Comme toujours, en l'absence d'indication contraire, on considère que cette condition est vérifiée.
+2. Les différences par paires entre les 2 modalités du traitement doivent suivre une distribution normale. Ce n'est donc pas les données brutes de chaque série qui doivent suivre une loi normale, mais bien la différence "après" - "avant" calculée pour chaque individu. Commençons donc pas calculer ces différences :
+
+```{r}
+Testo_large <- Testo_large %>% 
+  mutate(Diff = After - Before)
+
+Testo_large
+```
+
+Il nous faut donc tester la normalité de la nouvelle variable `Diff`. Commençons par en faire un graphique :
+
+```{r}
+Testo_large %>% 
+  ggplot(aes(x = Diff)) +
+  geom_histogram(bins = 10, color = grey(0.8))
+```
+
+Compte tenu du faible nombre d'individus, la forme de l'histogramme n'est pas si éloignée que ça d'une courbe en cloche (notez que ce n'était pas du tout le cas pour les données brutes de chaque série de départ qui ont toutes les deux des distribution non Normales). On le vérifie avec un test de normalité de Shapiro-Wilk :
+
+- H$_0$ : la différence d'immuno-compétence des individus suit une distribution normale
+- H$_1$ : la différence d'immuno-compétence des individus ne suit pas une distribution normale
+
+```{r}
+Testo_large %>% 
+  pull(Diff) %>% 
+  shapiro.test()
+```
+
+> Au seuil $\alpha = 0.05$, on ne peut pas rejeter l'hypothèse nulle de normalité pour la différence d'immuno-compétence entre après et avant l'intervention chirurgicale (test de Shapiro-Wilk, $W = 0.98$, $p = 0.977$).
+
+Les conditions d'application du test paramétrique sont donc réunies.
+
+
+#### Réalisation du test et interprétation
+
+Le test de Student sur données appariées peut se faire de 3 façons distinctes. Les 3 méthodes fournissent exactement les mêmes résultats. Quelle que soit la méthode utilisée, les hypothèses nulles et alternatives sont toujours les mêmes :
+
+- H$_0$ : Le changement moyen de production d'anticorps après la pose chirurgicale de l'implant de testostérone est nul ($\mu_{Diff} = 0$).
+- H$_1$ : Le changement moyen de production d'anticorps après la pose chirurgicale de l'implant de testostérone n'est pas nul ($\mu_{Diff} \neq 0$).
+
+```{r}
+# Méthode nº1 : avec une formule et le tableau au format long
+t.test(DO ~ Traitement, data = Testo_long, paired = TRUE)
+```
+
+Plusieurs remarques concernant cette première syntaxe :
+
+1. on utilise le symbole `~` pour indiquer une formule. On cherche à regarder l'effet du `Traitement` sur la `DO` qui traduit l'immuno-compétence. Le `~` soit se lire "en fonction de".
+2. Avec la synatxe utilisant les formules, on doit spécifier l'argument `data = Testo\_long` pour indiquer à RStudio que les variables `DO` et `Traitement` sont des colonnes de ce tableau.
+3. Enfin, il est important d'indiquer `paired = TRUE` puisque nous réalisons un test de Student sur données appariées. Si on ne mets pas cet argument, on réalise un test de Student sur échantillons indépendants.
+
+Ici, voilà la conclusion de ce test :
+
+> Le test de Student sur données appariées ne permet pas de montrer de changement d'immuno-compétence suite à l'intégration de l'implant chirurgical de testostérone. On ne peut pas rejeter l'hypothèse nulle au seuil $\alpha = 0.05$ ($t = -1.27$, $ddl = 12$, $p = 0.223$). La moyenne des différences de densités optiques observées entre avant et après l'intervention chirurgicale vaut -0.056 (intervalle de confiance à 95% de cette différence : [-0.152 ; 0.040])
+
+Donc visiblement, une forte production de testostérone n'est pas significativement associée à une baisse de l'immuno-compétence.
+
+
+
+```{r}
+# Méthode nº2 : avec les 2 séries de données et le tableau au format large
+t.test(Testo_large$Before, Testo_large$After, paired = TRUE)
+```
+
+Cette deuxième syntaxe est différente de la première puisque nous n'utilisons plus le format `formule`. Ici, on indique le nom des 2 colonnes du tableau `Testo_large` qui contiennent les 2 séries de données. Puisque nous n'utilisons plus de formule, l'argument `data = ...` n'existe plus. C'est pourquoi il nous faut taper spécifiquement `Testo_large$Before` et `Testo_large$After`, et non pas simplement le nom des colonnes. En revanche, comme pour le test précédent, il est indispensable d'indiquer `paired = TRUE` pour faire un test de Student sur données appariées.
+
+Les résultats fournis et leur ointerprétation sont identiques à ceux de la syntaxe précédente.
+
+```{r}
+# Méthode nº3 : avec la variable Diff, mu = 0, et le tableau au format large
+t.test(Testo_large$Diff, mu = 0)
+```
+
+Enfin, comme expliqué plus haut, le test de Student sur données appariées est strictement équivalent à un test de Student à un échantillon pour lequel on compare la moyenne des différences individuelles à 0. Là encore, les résultats produits et leur interprétation sont identiques aux deux tests précédents. La seule différence concerne les signes puisque les deux premiers tests regardaient la différence "Before - After" alors que ce troisième test regarde la différence "After - Before" (que nous avons calculée manuellement).
+
+À vous donc de choisir la syntaxe qui vous paraît la plus parlante ou celle que vous avez le plus de facilité à retenir.
 
 
 ### Le test non paramétrique
 
+Comme pour le test de Student à un échantillon, lorsque les conditions d'application du test de Student sur données appariées ne sont pas vérifiées (c'est à dire lorsque la différence de moyenne entre les deux séries ne suit pas une loi Normale), il faut utiliser un test non paramétrique équivalent.
 
+Il s'agit là encore du **test de Wilcoxon des rangs signés** qui s'intéresse aux médianes. Les hypothèses nulles et alternatives sont les suivantes :
+
+- H$_0$ : Le changement **médian** de production d'anticorps après la pose chirurgicale de l'implant de testostérone est nul ($\widehat{med}_{Diff} = 0$).
+- H$_1$ : Le changement **médian** de production d'anticorps après la pose chirurgicale de l'implant de testostérone n'est pas nul ($\widehat{med}_{Diff} \neq 0$).
+
+Comme pour le test de Student, 3 syntaxes sont possibles et strictement équivalentes. Il est important de ne pas oublier l'argument `paired = TRUE` pour les 2 premières syntaxes afin de s'assurer que l'on réalise bien un test sur données appariées. Enfin, l'argument `conf.int = TRUE` doit être ajouté pour les 3 syntaxes afin que la (pseudo-) médiane et son intervalle de confiance à 95% soient calculés et affichés.
+
+```{r}
+wilcox.test(DO ~ Traitement, data = Testo_long, paired = TRUE, conf.int = TRUE)
+wilcox.test(Testo_large$Before, Testo_large$After, paired = TRUE, conf.int = TRUE)
+wilcox.test(Testo_large$Diff, mu = 0, conf.int = TRUE)
+```
+
+Ici, la conclusion de ce test est :
+
+> Le test de Wilcoxon des rangs signés n'a pas permis de montrer de changement d'immuno-compétence suite à l'intégration de l'implant chirurgical de testostérone. On ne peut pas rejeter l'hypothèse nulle au seuil $\alpha = 0.05$ ($V = 61$, $p = 0.305$). La médiane des différences de densités optiques observées entre après et avant l'intervention chirurgicale vaut 0.055 (intervalle de confiance à 95% de cette différence : [-0.040 ; 0.145]).
+
+
+### Exercice d'application
 
 ## Comparaison de la moyenne de 2 populations : données indépendantes
 
