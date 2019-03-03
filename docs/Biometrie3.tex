@@ -129,7 +129,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-03-02}
+    \date{2019-03-03}
 
 \usepackage[french]{babel}
 \usepackage{mathspec}  % \usepackage{fontspec}
@@ -300,13 +300,13 @@ Vous aurez également besoin des jeux de données suivants :
   \texttt{HommesFemmes.txt}
 \end{itemize}
 
+\hypertarget{comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique}{%
+\subsection{Comparaison de la moyenne d'une population à une valeur théorique}\label{comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique}}
+
 \hypertarget{exploration-prealable-des-donnees}{%
-\subsection{Exploration préalable des données}\label{exploration-prealable-des-donnees}}
+\subsubsection{Exploration préalable des données}\label{exploration-prealable-des-donnees}}
 
 Avant de se lancer dans les tests d'hypothèses, il est \textbf{toujours indispensable} d'examiner les données dont on dispose à l'aide, d'une part de statistiques descriptives numériques, et d'autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d'hypothèses risquer de grossières erreurs.
-
-\hypertarget{un-seul-echantillon}{%
-\subsubsection{Un seul échantillon}\label{un-seul-echantillon}}
 
 \hypertarget{importation-et-examen-visuel}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel}}
@@ -338,7 +338,7 @@ Vous stockerez les données dans un objet que vous nommerez \texttt{Temperature}
 # ... with 15 more rows
 \end{verbatim}
 
-Ce tableau contient les températures corporelles de 25 adultes en bonne santé choisis au hasard parmi la population américaine.
+Ce tableau contient les températures corporelles de 25 adultes en bonne santé choisis au hasard parmi la population américaine. On souhaite examiner la croyance populaire indiquant que la température moyenne d'adultes en bomme santé vaut 37ºC.
 
 La première chose à faire quand on travaille avec des données inconnues, c'est d'examiner les données brutes. Ici, les données sont importées au format \texttt{tibble}, donc seules les premières lignes sont visibles. Pour visualiser l'ensemble du tableau, utilisez la fonction \texttt{View()} :
 
@@ -564,6 +564,54 @@ Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut t
 
 \begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-16-1} \end{center}
 
+La fonction \texttt{xlim()} permet de spéccifier manuellement les valeurs limites que l'on souhaite pour l'axe des abscisses. Ici, cet axe n'a aucune signification particulière puisque nous n'avons qu'une unique série de données (c'est la raison pour laquelle les points sont centrés sur l'abscisse x = 1). Nous pouvons donc le masquer comme ceci :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{y =}\NormalTok{ temperature)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{height =} \DecValTok{0}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlim}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_blank}\NormalTok{(),}
+        \DataTypeTok{axis.ticks.x =} \KeywordTok{element_blank}\NormalTok{(),}
+        \DataTypeTok{axis.title.x =} \KeywordTok{element_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-17-1} \end{center}
+
+On constate ici que la répartition des points est assez régulière, avec néanmoins une majorité de points entre 36.8 et 37.3 degrés Celsius.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  L'histogramme :
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ temperature)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{10}\NormalTok{, }\DataTypeTok{color =} \KeywordTok{grey}\NormalTok{(}\FloatTok{0.8}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-18-1} \end{center}
+
+Si vous ne vous rappelez-plus ce qu'est un histogramme où comment le faire, ou la signification de l'argument \texttt{bins}, relisez \href{https://besibo.github.io/DA/viz.html\#histogram}{la section 4.5} du livre en ligne de Biométrie 2.
+
+Notez ici que la forme de cet histogramme est très proche de celle présenté plus tôt pas la fonction \texttt{skim()}. Cet histogramme nous apprend qu'en dehors d'un ``trou'' autour de la température 36.75 ºC, la distribution des données est proche d'une courbe en cloche. Il y a fort à parier qu'un test de normalité concluerait à la normalité des données de cet échantillon.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Les boîtes à moustaches :
+\end{enumerate}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
@@ -572,9 +620,9 @@ Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut t
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-17-1} \end{center}
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-19-1} \end{center}
 
-Ici, l'axe des abscisses n'a aucun sens. Nous n'avons qu'une unique série de données, l'axe des \texttt{x} est donc inutile. On peut le retirer :
+Comme pour le stripchart présenté plus haut, l'axe des abscisses n'a ici aucun sens. Nous n'avons qu'une unique série de données, l'axe des \texttt{x} est donc inutile et nous pouvons donc le retirer :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -586,13 +634,33 @@ Ici, l'axe des abscisses n'a aucun sens. Nous n'avons qu'une unique série de do
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-18-1} \end{center}
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-20-1} \end{center}
 
-\hypertarget{plusieurs-echantillons}{%
-\subsubsection{Plusieurs échantillons}\label{plusieurs-echantillons}}
+On retrouve sur ce graphique tous les éléments obtenus avec la fonction \texttt{summary()} à l'exception de la moyenne. Assurez-vous que vous êtes bien capables d'identifier tous ces éléments sur le graphique. Assurez-vous aussi que la signification de l'encoche (obtenue avec l'argument \texttt{notch\ =\ TRUE}) est bien claire pour vous. Comme toujours, si ce n'est pas le cas, consultez \href{https://besibo.github.io/DA/viz.html\#les-boites-a-moustaches-ou-boxplots}{la section dédiée aux boxplots} dans le livre en ligne de Biométrie 2.
 
-\hypertarget{comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique}{%
-\subsection{Comparaison de la moyenne d'une population à une valeur théorique}\label{comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique}}
+Pour conclure, ces 3 types de représentations graphiques (nuages de points ou stripchart, histogrammes et boxplots) sont complémentaires. Ces trois types de représentations graphiques permettent de visualiser la distribution d'une variable numérique. Les nuages de points permettent de voir toutes les données brutes. Les histogrammes résument les données en quelques valeurs : une valeur d'abondance pour chaque classe de taille. Les boxplots résument encore plus les données avec seulement 7 valeurs qui caractérisent la distribution :
+
+\begin{figure}[htpb]
+
+{\centering \includegraphics[width=0.9\linewidth]{figure/compboxplot-1} 
+
+}
+
+\caption{Comparaison de 2 types de représentations graphiques}\label{fig:compboxplot}
+\end{figure}
+
+À chaque nouvelle analyse statistique, il sera donc important de visualiser les données afin de repérer les éventuels problèmes, et afin d'anticiper sur les résultats que fourniront les tests d'hypothèses ultérieurs. Ici, l'examen de ces graphiques nous permet de dire les choses suivantes :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Il n'y a visiblement pas de données aberrantes
+\item
+  La distribution des données semble suivre à peu près la loi Normale
+\item
+  La médiane et son intervalle de confiance à 95\% sont centrés sur la valeur 37ºC. Un test devrait donc arriver à la conclusion que la température corporelle des adultes n'est pas significativement différente de 37ºC. Néanmoins, la largeur de l'intervalle de confiance à 95\% est assez grande, ce qui indique une incertitude relativement élevée. Une plus grande quantité de données permettrait certainement d'obtenir plus de précision.
+\end{enumerate}
 
 \hypertarget{le-test-parametrique}{%
 \subsubsection{Le test paramétrique}\label{le-test-parametrique}}
@@ -600,8 +668,11 @@ Ici, l'axe des abscisses n'a aucun sens. Nous n'avons qu'une unique série de do
 \hypertarget{conditions-dapplication}{%
 \paragraph{Conditions d'application}\label{conditions-dapplication}}
 
-\hypertarget{le-test-non-parametrique}{%
-\subsubsection{Le test non paramétrique}\label{le-test-non-parametrique}}
+\hypertarget{realisation-du-test-et-interpretation}{%
+\paragraph{Réalisation du test et interprétation}\label{realisation-du-test-et-interpretation}}
+
+\hypertarget{lalternative-non-parametrique}{%
+\subsubsection{L'alternative non paramétrique}\label{lalternative-non-parametrique}}
 
 \hypertarget{comparaison-de-la-moyenne-de-2-populations-donnees-appariees}{%
 \subsection{Comparaison de la moyenne de 2 populations : données appariées}\label{comparaison-de-la-moyenne-de-2-populations-donnees-appariees}}
@@ -612,8 +683,8 @@ Ici, l'axe des abscisses n'a aucun sens. Nous n'avons qu'une unique série de do
 \hypertarget{conditions-dapplication-1}{%
 \paragraph{Conditions d'application}\label{conditions-dapplication-1}}
 
-\hypertarget{le-test-non-parametrique-1}{%
-\subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-1}}
+\hypertarget{le-test-non-parametrique}{%
+\subsubsection{Le test non paramétrique}\label{le-test-non-parametrique}}
 
 \hypertarget{comparaison-de-la-moyenne-de-2-populations-donnees-independantes}{%
 \subsection{Comparaison de la moyenne de 2 populations : données indépendantes}\label{comparaison-de-la-moyenne-de-2-populations-donnees-independantes}}
@@ -624,8 +695,8 @@ Ici, l'axe des abscisses n'a aucun sens. Nous n'avons qu'une unique série de do
 \hypertarget{conditions-dapplication-2}{%
 \paragraph{Conditions d'application}\label{conditions-dapplication-2}}
 
-\hypertarget{le-test-non-parametrique-2}{%
-\subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-2}}
+\hypertarget{le-test-non-parametrique-1}{%
+\subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-1}}
 
 \hypertarget{tests-bilateraux-et-unilateraux}{%
 \subsection{Tests bilatéraux et unilatéraux}\label{tests-bilateraux-et-unilateraux}}
@@ -633,8 +704,8 @@ Ici, l'axe des abscisses n'a aucun sens. Nous n'avons qu'une unique série de do
 \hypertarget{le-test-parametrique-3}{%
 \subsubsection{Le test paramétrique}\label{le-test-parametrique-3}}
 
-\hypertarget{le-test-non-parametrique-3}{%
-\subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-3}}
+\hypertarget{le-test-non-parametrique-2}{%
+\subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-2}}
 
 \hypertarget{seance-2-analyse-de-variance}{%
 \section{Séance 2 : analyse de variance}\label{seance-2-analyse-de-variance}}

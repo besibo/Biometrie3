@@ -27,11 +27,12 @@ Vous aurez également besoin des jeux de données suivants :
 - `HommesFemmes.txt`
 
 
-## Exploration préalable des données
+## Comparaison de la moyenne d'une population à une valeur théorique
+
+### Exploration préalable des données
 
 Avant de se lancer dans les tests d'hypothèses, il est **toujours indispensable** d'examiner les données dont on dispose à l'aide, d'une part de statistiques descriptives numériques, et d'autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d'hypothèses risquer de grossières erreurs.
 
-### Un seul échantillon
 
 #### Importation et examen visuel
 
@@ -253,18 +254,17 @@ grid.arrange(pl3, pl1, pl2, nrow=1)
 2. La distribution des données semble suivre à peu près la loi Normale
 3. La médiane et son intervalle de confiance à 95% sont centrés sur la valeur 37ºC. Un test devrait donc arriver à la conclusion que la température corporelle des adultes n'est pas significativement différente de 37ºC. Néanmoins, la largeur de l'intervalle de confiance à 95% est assez grande, ce qui indique une incertitude relativement élevée. Une plus grande quantité de données permettrait certainement d'obtenir plus de précision.
 
-### Plusieurs échantillons
-
-
-
-## Comparaison de la moyenne d'une population à une valeur théorique
 
 ### Le test paramétrique
+
 
 #### Conditions d'application
 
 
-### Le test non paramétrique
+#### Réalisation du test et interprétation
+
+
+### L'alternative non paramétrique
 
 
 

@@ -55,8 +55,7 @@ L'organisation des TP et TEA de biométrie 3 sera la suivante :
 ```{r package_bibliography, include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2', 'gridExtra', 'skimr'
-), 'packages.bib')
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2', 'gridExtra', 'skimr', 'bindrcpp'), 'packages.bib')
 ```
 
 
@@ -64,7 +63,7 @@ knitr::write_bib(c(
 options(replace.assign = TRUE, width = 70)
 options(repos = "http://cran.r-project.org/")
 
-list.of.packages <- c("nycflights13", "gapminder", "knitr", "tidyverse", "gridExtra", "devtools", "extrafont", "kableExtra", "skimr")
+list.of.packages <- c("nycflights13", "gapminder", "knitr", "tidyverse", "gridExtra", "devtools", "extrafont", "kableExtra", "skimr", "bindrcpp")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages)
 
