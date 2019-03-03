@@ -665,14 +665,141 @@ Pour conclure, ces 3 types de représentations graphiques (nuages de points ou s
 \hypertarget{le-test-parametrique}{%
 \subsubsection{Le test paramétrique}\label{le-test-parametrique}}
 
+Le test permettant de comparer la moyenne d'une population à une valeur théorique, fixée par l'utilisateur, est le \textbf{test de Student à un échantillon}. Il s'agit d'un test paramétrique très puissant. Comme tous les tests paramétriques, certaines conditions d'application doivent être vérifiées avant de pouvoir l'appliquer.
+
 \hypertarget{conditions-dapplication}{%
 \paragraph{Conditions d'application}\label{conditions-dapplication}}
+
+Les conditions d'application du test de Student à un échantillon sont les suivantes :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Les données de l'échantillon sont issues d'un \textbf{échantillonnage aléatoire} au sein de la population générale. Cette condition est partagée par toutes les méthodes que nous verrons dans ces TP. En l'absence d'informations sur la façon dont l'échantillonnage a été réalisé, on considère que cette condition est remplie. Il n'y a pas de moyen statistique de le vérifier, cela fait uniquement référence à la stratégie d'échantillonnage et à la rigueur de la procédure mise en œuvre lors de l'acquisition des données.
+\item
+  La variable étudiée doit suivre une \textbf{distribution Normale} dans la population générale. Nous allons vérifier cette condition d'application avec un test de Normalité de Shapiro-Wilk.
+\end{enumerate}
+
+Comme pour tous les tests statistiques que nous allons réaliser lors de ces séances de TP et TEA, nous devons commencer par spécifier les hypothèses nulles et alternatives aoinsi que la valeur du seuil \(\alpha\) que nous allons utiliser. Ici, nous utiliserons toujours le seuil \(\alpha = 0.05\).
+
+Pour un test de normalité, les hypothèses sont toujours les suivantes :
+- H\(_0\) : la variable étudiée suit une distribution Normale dans la population générale.
+- H\(_1\) : la variable étudiée ne suit pas une distribution Normale dans la population générale.
+
+Le test de Shapiro-Wilk se réalise de la façon suivante :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pull}\NormalTok{(temperature) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{shapiro.test}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.97216, p-value = 0.7001
+\end{verbatim}
+
+\texttt{W} est la statistique du test. Elle permet à RStudio de calculer la \emph{p}-value du test. Ici, \(p > \alpha\). On ne peut donc pas rejeter l'hypothèse nulle de noramlité : on ne peut pas exclure que dans la population générale, la température suive bel et bien une distribution Normale. Les conditions d'application du test de Student sont bien vérifiées.
 
 \hypertarget{realisation-du-test-et-interpretation}{%
 \paragraph{Réalisation du test et interprétation}\label{realisation-du-test-et-interpretation}}
 
+Puisque les conditions d'application du test de Student à un échantillon sont vérifiées, nous devons maintenant spécifier les hypothèses nulles et alternatives que nous allons utiliser pour réaliser ce test :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : dans la population générale, la température corporelle moyenne des adultes en bonne santé vaut 37ºC (\(\mu = 37\)).
+\item
+  H\(_1\) : dans la population générale, la température corporelle moyenne des adultes en bonne santé est différente de 37ºC (\(\mu \neq 37\)).
+\end{itemize}
+
+On réalise ensuite le test de la façon suivante :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }\KeywordTok{pull}\NormalTok{(temperature) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{t.test}\NormalTok{(}\DataTypeTok{mu =} \DecValTok{37}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    One Sample t-test
+
+data:  .
+t = -0.56065, df = 24, p-value = 0.5802
+alternative hypothesis: true mean is not equal to 37
+95 percent confidence interval:
+ 36.80235 37.11321
+sample estimates:
+mean of x 
+ 36.95778 
+\end{verbatim}
+
+Sur la première ligne, R nous confirme que nous avons bien réalisé un test de STudent à un échantillon. La prmière ligne de résutats fournit la valeur du \(t\) calculé (ici, -0.56), le nombre de degrés de libertés (ici, \texttt{df} = 24), et la \(p\)-value (ici, 0.58, soit une valeur supérieure à \(alpha\)). Cette première ligne contient donc tous les résultats du test qu'il conviendrait de rappeler dans un rapport. On devrait ainsi dire :
+
+\begin{quote}
+Au seuil \(\alpha\) de 5\%, on ne peut pas rejeter l'hypothèse nulle \(\mu = 37\) (\(t = -0.56\), ddl = 24, \(p = 0.58\)). Les données observées sont donc compatibles avec l'hypothèse selon laquelle la température corporelle moyenne des adultes en bonne santé vaut 37ºC.
+\end{quote}
+
+C'est de cette manière que vous devriez rapporter les resultats de ce test dans vos comptes-rendus et rapports à partir de maintenant.
+
+Dans les résultats du test, la ligne suivante (\texttt{alternative\ hypothesis:\ ...}) \textbf{ne donne pas la conclusion du test}. Il s'agit simplement d'un rappel concernant l'hypothèse alternative qui a été utilisée pour réaliser le test. Ici, l'hypothèse alternative utilisée est une hypothèse bilatérale (\(\mu \neq 37\)). Nous verrons plus tard comment spécifier des hypothèse alternatives uni-latérales, même si la plupart du temps, mieux vaut s'abstenir de réaliser de tels tests (à moins bien sûr d'avoir une bonne raison de la faire).
+
+Les résultats fournis ensuite concernent non plus le test statistique à proprement parler, mais l'estimation. Ici, la moyenne de l'échantillon est fournie. Il s'agit de la meilleure estimation possible de la moyenne de la population : \(\bar{x} = \hat{\mu} = 36.96\). Comme pour toutes les estimations, cette valeur est entachée d'oncertitude liée à la fluctuation d'échantillonnage. L'intervalle de confiance à 95\% de cette estimation de moyenne est donc également fourni : \([36.80 ; 37.11]\). Autrement dit, cet intervalle contient les valeurs les plus vraissemblables pour la véritable valeur de moyenne dans la population générale. Cela confirme bien que nous n'avons pas prouvé au sens strict que la moyenne de la population vaut 37ºC. Nous avons en réalité montré que nous ne pouvions pas exclure que la moyenne de la population générale soit de 37ºC. Cette valeur est en effet comprise dans l'intervalle de confiance. On ne peut donc pas l'exclure. Mais beaucoup d'autres valeurs figurent aussi dans cet intervalle. Il est donc tout à fait possible que la moyenne soit en réalité différente de 37ºC. Pour en être sûr, il faudrait probablement un échantillon de plus grande taille afin de limiter l'incertitude.
+
 \hypertarget{lalternative-non-parametrique}{%
 \subsubsection{L'alternative non paramétrique}\label{lalternative-non-parametrique}}
+
+Si jamais les conditions d'application du test de Student à un échantillon n'étaient pas remplies, il faudrait alors réaliser son équivalent non paramétrique : le \textbf{test de Wilcoxon des rangs signés}. Ce test est moins puissant que son homologue paramétrique. On ne l'effectue donc que lorsque l'on n'a pas le choix :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }\KeywordTok{pull}\NormalTok{(temperature) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{wilcox.test}\NormalTok{(}\DataTypeTok{mu =} \DecValTok{37}\NormalTok{, }\DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot
+compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
+Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot
+compute exact confidence interval with ties
+\end{verbatim}
+
+\begin{verbatim}
+
+    Wilcoxon signed rank test with continuity correction
+
+data:  .
+V = 143, p-value = 0.6077
+alternative hypothesis: true location is not equal to 37
+95 percent confidence interval:
+ 36.77780 37.11114
+sample estimates:
+(pseudo)median 
+      36.94446 
+\end{verbatim}
+
+La syntaxe est identique à celle du test de Student à un échantillon à une exception près : l'ajout de l'argument \texttt{conf.int\ =\ TRUE} qui permet d'afficher la (pseudo)médiane de l'échantillon et son intervalle de confiance à 95\%.
+
+Les hypothèses nulles et alternatives de ce test sont les mêmes que celles du test de Student à un échantillon. En toute rigueur, on teste l'égalité de la médiane à une valeur théorique, et non l'égalité de la moyenne. Mais dans la pratique, la grande majorité des utilisateurs de ce test font l'amalgame entre moyenne et médiane. Ici, la conclusion correcte devrait être :
+
+\begin{quote}
+Au seuil \(\alpha\) de 5\%, on ne peut pas rejeter l'hypothèse nulle (test de Wilcoxon des rangs signés, \(V\) = 143, \(p\) = 0.6077). La médiane de la population (\(\widehat{med}\) = 36.94) n'est pas significativement différente de 37ºC (IC 95\% : \([36.78 ; 37.11]\)).
+\end{quote}
+
+Si les données ne suivent pas la loi Normale, la médiane est bien la métrique la plus intéressante puisque c'est elle qui nous renseigne sur la tendance centrale des données.
+
+Enfin, les tests de Wilcoxon renvoient souvent des messages d'avretissement. Il ne s'agit que de ça : des avertissements. Tant que la \(p\)-value des tests est éloignée de la valeur seuil \(\alpha\), cela n'a pas d'importance. Quand en revanche la \(p\)-value est très proche de \(\alpha\), il faut être très prudent face aux conclusions du test qui peuvent alors être assez ``fragiles''.
 
 \hypertarget{comparaison-de-la-moyenne-de-2-populations-donnees-appariees}{%
 \subsection{Comparaison de la moyenne de 2 populations : données appariées}\label{comparaison-de-la-moyenne-de-2-populations-donnees-appariees}}

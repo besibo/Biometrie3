@@ -386,15 +386,84 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 </div>
 <div id="le-test-parametrique" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Le test paramétrique</h3>
+<p>Le test permettant de comparer la moyenne d’une population à une valeur théorique, fixée par l’utilisateur, est le <strong>test de Student à un échantillon</strong>. Il s’agit d’un test paramétrique très puissant. Comme tous les tests paramétriques, certaines conditions d’application doivent être vérifiées avant de pouvoir l’appliquer.</p>
 <div id="conditions-dapplication" class="section level4">
 <h4><span class="header-section-number">3.2.2.1</span> Conditions d’application</h4>
+<p>Les conditions d’application du test de Student à un échantillon sont les suivantes :</p>
+<ol style="list-style-type: decimal">
+<li>Les données de l’échantillon sont issues d’un <strong>échantillonnage aléatoire</strong> au sein de la population générale. Cette condition est partagée par toutes les méthodes que nous verrons dans ces TP. En l’absence d’informations sur la façon dont l’échantillonnage a été réalisé, on considère que cette condition est remplie. Il n’y a pas de moyen statistique de le vérifier, cela fait uniquement référence à la stratégie d’échantillonnage et à la rigueur de la procédure mise en œuvre lors de l’acquisition des données.</li>
+<li>La variable étudiée doit suivre une <strong>distribution Normale</strong> dans la population générale. Nous allons vérifier cette condition d’application avec un test de Normalité de Shapiro-Wilk.</li>
+</ol>
+<p>Comme pour tous les tests statistiques que nous allons réaliser lors de ces séances de TP et TEA, nous devons commencer par spécifier les hypothèses nulles et alternatives aoinsi que la valeur du seuil <span class="math inline">\(\alpha\)</span> que nous allons utiliser. Ici, nous utiliserons toujours le seuil <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p>Pour un test de normalité, les hypothèses sont toujours les suivantes :
+- H<span class="math inline">\(_0\)</span> : la variable étudiée suit une distribution Normale dans la population générale.
+- H<span class="math inline">\(_1\)</span> : la variable étudiée ne suit pas une distribution Normale dans la population générale.</p>
+<p>Le test de Shapiro-Wilk se réalise de la façon suivante :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(temperature) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">shapiro.test</span>()</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.97216, p-value = 0.7001</code></pre>
+<p><code>W</code> est la statistique du test. Elle permet à RStudio de calculer la <em>p</em>-value du test. Ici, <span class="math inline">\(p &gt; \alpha\)</span>. On ne peut donc pas rejeter l’hypothèse nulle de noramlité : on ne peut pas exclure que dans la population générale, la température suive bel et bien une distribution Normale. Les conditions d’application du test de Student sont bien vérifiées.</p>
 </div>
 <div id="realisation-du-test-et-interpretation" class="section level4">
 <h4><span class="header-section-number">3.2.2.2</span> Réalisation du test et interprétation</h4>
+<p>Puisque les conditions d’application du test de Student à un échantillon sont vérifiées, nous devons maintenant spécifier les hypothèses nulles et alternatives que nous allons utiliser pour réaliser ce test :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : dans la population générale, la température corporelle moyenne des adultes en bonne santé vaut 37ºC (<span class="math inline">\(\mu = 37\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : dans la population générale, la température corporelle moyenne des adultes en bonne santé est différente de 37ºC (<span class="math inline">\(\mu \neq 37\)</span>).</li>
+</ul>
+<p>On réalise ensuite le test de la façon suivante :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(temperature) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">t.test</span>(<span class="dt">mu =</span> <span class="dv">37</span>)</code></pre>
+<pre><code>
+    One Sample t-test
+
+data:  .
+t = -0.56065, df = 24, p-value = 0.5802
+alternative hypothesis: true mean is not equal to 37
+95 percent confidence interval:
+ 36.80235 37.11321
+sample estimates:
+mean of x 
+ 36.95778 </code></pre>
+<p>Sur la première ligne, R nous confirme que nous avons bien réalisé un test de STudent à un échantillon. La prmière ligne de résutats fournit la valeur du <span class="math inline">\(t\)</span> calculé (ici, -0.56), le nombre de degrés de libertés (ici, <code>df</code> = 24), et la <span class="math inline">\(p\)</span>-value (ici, 0.58, soit une valeur supérieure à <span class="math inline">\(alpha\)</span>). Cette première ligne contient donc tous les résultats du test qu’il conviendrait de rappeler dans un rapport. On devrait ainsi dire :</p>
+<blockquote>
+<p>Au seuil <span class="math inline">\(\alpha\)</span> de 5%, on ne peut pas rejeter l’hypothèse nulle <span class="math inline">\(\mu = 37\)</span> (<span class="math inline">\(t = -0.56\)</span>, ddl = 24, <span class="math inline">\(p = 0.58\)</span>). Les données observées sont donc compatibles avec l’hypothèse selon laquelle la température corporelle moyenne des adultes en bonne santé vaut 37ºC.</p>
+</blockquote>
+<p>C’est de cette manière que vous devriez rapporter les resultats de ce test dans vos comptes-rendus et rapports à partir de maintenant.</p>
+<p>Dans les résultats du test, la ligne suivante (<code>alternative hypothesis: ...</code>) <strong>ne donne pas la conclusion du test</strong>. Il s’agit simplement d’un rappel concernant l’hypothèse alternative qui a été utilisée pour réaliser le test. Ici, l’hypothèse alternative utilisée est une hypothèse bilatérale (<span class="math inline">\(\mu \neq 37\)</span>). Nous verrons plus tard comment spécifier des hypothèse alternatives uni-latérales, même si la plupart du temps, mieux vaut s’abstenir de réaliser de tels tests (à moins bien sûr d’avoir une bonne raison de la faire).</p>
+<p>Les résultats fournis ensuite concernent non plus le test statistique à proprement parler, mais l’estimation. Ici, la moyenne de l’échantillon est fournie. Il s’agit de la meilleure estimation possible de la moyenne de la population : <span class="math inline">\(\bar{x} = \hat{\mu} = 36.96\)</span>. Comme pour toutes les estimations, cette valeur est entachée d’oncertitude liée à la fluctuation d’échantillonnage. L’intervalle de confiance à 95% de cette estimation de moyenne est donc également fourni : <span class="math inline">\([36.80 ; 37.11]\)</span>. Autrement dit, cet intervalle contient les valeurs les plus vraissemblables pour la véritable valeur de moyenne dans la population générale. Cela confirme bien que nous n’avons pas prouvé au sens strict que la moyenne de la population vaut 37ºC. Nous avons en réalité montré que nous ne pouvions pas exclure que la moyenne de la population générale soit de 37ºC. Cette valeur est en effet comprise dans l’intervalle de confiance. On ne peut donc pas l’exclure. Mais beaucoup d’autres valeurs figurent aussi dans cet intervalle. Il est donc tout à fait possible que la moyenne soit en réalité différente de 37ºC. Pour en être sûr, il faudrait probablement un échantillon de plus grande taille afin de limiter l’incertitude.</p>
 </div>
 </div>
 <div id="lalternative-non-parametrique" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> L’alternative non paramétrique</h3>
+<p>Si jamais les conditions d’application du test de Student à un échantillon n’étaient pas remplies, il faudrait alors réaliser son équivalent non paramétrique : le <strong>test de Wilcoxon des rangs signés</strong>. Ce test est moins puissant que son homologue paramétrique. On ne l’effectue donc que lorsque l’on n’a pas le choix :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(temperature) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">wilcox.test</span>(<span class="dt">mu =</span> <span class="dv">37</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot
+compute exact p-value with ties</code></pre>
+<pre><code>Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot
+compute exact confidence interval with ties</code></pre>
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  .
+V = 143, p-value = 0.6077
+alternative hypothesis: true location is not equal to 37
+95 percent confidence interval:
+ 36.77780 37.11114
+sample estimates:
+(pseudo)median 
+      36.94446 </code></pre>
+<p>La syntaxe est identique à celle du test de Student à un échantillon à une exception près : l’ajout de l’argument <code>conf.int = TRUE</code> qui permet d’afficher la (pseudo)médiane de l’échantillon et son intervalle de confiance à 95%.</p>
+<p>Les hypothèses nulles et alternatives de ce test sont les mêmes que celles du test de Student à un échantillon. En toute rigueur, on teste l’égalité de la médiane à une valeur théorique, et non l’égalité de la moyenne. Mais dans la pratique, la grande majorité des utilisateurs de ce test font l’amalgame entre moyenne et médiane. Ici, la conclusion correcte devrait être :</p>
+<blockquote>
+<p>Au seuil <span class="math inline">\(\alpha\)</span> de 5%, on ne peut pas rejeter l’hypothèse nulle (test de Wilcoxon des rangs signés, <span class="math inline">\(V\)</span> = 143, <span class="math inline">\(p\)</span> = 0.6077). La médiane de la population (<span class="math inline">\(\widehat{med}\)</span> = 36.94) n’est pas significativement différente de 37ºC (IC 95% : <span class="math inline">\([36.78 ; 37.11]\)</span>).</p>
+</blockquote>
+<p>Si les données ne suivent pas la loi Normale, la médiane est bien la métrique la plus intéressante puisque c’est elle qui nous renseigne sur la tendance centrale des données.</p>
+<p>Enfin, les tests de Wilcoxon renvoient souvent des messages d’avretissement. Il ne s’agit que de ça : des avertissements. Tant que la <span class="math inline">\(p\)</span>-value des tests est éloignée de la valeur seuil <span class="math inline">\(\alpha\)</span>, cela n’a pas d’importance. Quand en revanche la <span class="math inline">\(p\)</span>-value est très proche de <span class="math inline">\(\alpha\)</span>, il faut être très prudent face aux conclusions du test qui peuvent alors être assez “fragiles”.</p>
 </div>
 </div>
 <div id="comparaison-de-la-moyenne-de-2-populations-donnees-appariees" class="section level2">
