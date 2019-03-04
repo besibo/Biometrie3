@@ -484,7 +484,7 @@ Skim summary statistics
  n obs: 25 
  n variables: 1 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
     variable missing complete  n  mean   sd    p0   p25 p50   p75
  temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22
   p100     hist
@@ -996,11 +996,11 @@ Skim summary statistics
  n obs: 13 
  n variables: 3 
 
--- Variable type:factor ------
+-- Variable type:factor ------------------------------------
  variable missing complete  n n_unique             top_counts ordered
        ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
  variable missing complete  n mean   sd   p0 p25  p50  p75 p100
     After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
    Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
@@ -1025,7 +1025,7 @@ Skim summary statistics
  n variables: 3 
  group variables: Traitement 
 
--- Variable type:factor ------
+-- Variable type:factor ------------------------------------
  Traitement variable missing complete  n n_unique
      Before       ID       0       13 13       13
       After       ID       0       13 13       13
@@ -1033,7 +1033,7 @@ Skim summary statistics
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
  Traitement variable missing complete  n mean   sd   p0 p25  p50  p75
      Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88
       After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5   
@@ -1551,7 +1551,7 @@ Skim summary statistics
  n variables: 2 
  group variables: Survival 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
  Survival variable missing complete   n  mean   sd   p0  p25   p50
    killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25
    living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55
@@ -1938,10 +1938,266 @@ La seule différence par rapport à la syntaxe du test \(t\) de Student paramét
 \hypertarget{exercice-dapplication-2}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication-2}}
 
-On s'intéresse à la différence de taille supposée entre hommes et femmes. Le fichier \texttt{HommesFemmes.xls} contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à l'Université de La Rochelle. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentation graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à l'université de La Rochelle ont-il la même taille ?
+On s'intéresse à la différence de taille supposée entre hommes et femmes. Le fichier \texttt{HommesFemmes.xls} contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à l'Université de La Rochelle. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à l'université de La Rochelle ont-il la même taille ?
 
 \hypertarget{tests-bilateraux-et-unilateraux}{%
 \subsection{Tests bilatéraux et unilatéraux}\label{tests-bilateraux-et-unilateraux}}
+
+\hypertarget{principes}{%
+\subsubsection{Principes}\label{principes}}
+
+Jusqu'à maintenant, tous les tests que nous avons réalisés sont des tests bitaléraux. Pour chaque test, l'hypothèse nulle est imposée. En revanche, pour certains tests, l'hypothèse alternative est à choisir (et à spécifier) par l'utilisateur parmi 3 possibilités :
+
+\begin{itemize}
+\tightlist
+\item
+  1 hypothèse bilatérale. C'est celle qui est utilisée par défaut si l'utilisateur ne précise rien.
+\item
+  2 hypothèses unilatérales possibles, qui doivent être spécifiées explicitement par l'utilisateur.
+\end{itemize}
+
+Les tests unilatéraux peuvent concerner tous les tests pour lesquels les hypothèses sont de la forme suivante :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la valeur d'un paramètre de la population est égale à \(k\) (\(k\) peut être une valeur fixe, arbitraire, choisie par l'utilisateur, ou la valeur d'un paramètre d'une autre populations)
+\item
+  H\(_1\) : la valeur d'un paramètre de la population \textbf{n'est pas égale à} \(k\).
+\end{itemize}
+
+En réalité, si nous remplaçons l'hypothèse H\(_1\) par :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_1\) : la valeur d'un paramètre de la population \textbf{est supérieure à} \(k\).
+\end{itemize}
+
+ou par :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_1\) : la valeur d'un paramètre de la population \textbf{est inférieure à} \(k\).
+\end{itemize}
+
+nous réalisons un test unilatéral.
+
+Dans R, la syntaxe permettant de spécifier l'hypothèse alternative que nous souhaitons utiliser est toujours la même. Il faut préciser, au moment de faire le test l'argument suivant :
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{alternative\ =\ "two.sided"} : pour faire un test bilatéral. Si on ne le fait pas explicitement, c'est de toutes façons cette valeur qui est utilisée par défaut.
+\item
+  \texttt{alternative\ =\ "greater"} : pour choisir l'hypothèse unilatérale \texttt{\textgreater{}}
+\item
+  \texttt{alternative\ =\ "less"} : pour choisir l'hypothèse unilatérale \texttt{\textless{}}
+\end{itemize}
+
+Attention, le choix d'utiliser ``greater'' ou ``less'' dépend de l'ordre dans lequel les échantillons sont spécifiés. Cette synatxe est valable pour tous les tests de Student vus jusqu'ici (un échantillon, deux échantillons appariés, deux échantillons indépendants) et pour leurs alternatives non paramétriques (test de Wilcoxon des rangs signés, test de Wilcoxon de la somme des rangs, test du \(t\) de Welch).
+
+\textbf{Attention} : comme indiqué en TD, l'utilisation de tests unilatéraux doit être réservée exclusibvement aux situations pour lesquelles le choix de l'hypothèse unilatérale est possible à justifier par un mécanisme quelconque (biologique, physiologique, comportemental, écologique, génétique, etc.). Observer que l'un des échantillons a une moyenne plus grande ou plus faible qu'un autre lors de la phase des statstiques descriptives des données n'est pas du tout une raison suffisante. Il faut pouvoir justifier le choix de l'hypothèse alternative par une explication valable. Reprenons l'un des exemples examinés précédemment pour mieux comprendre comment tout cela fonctionne.
+
+\hypertarget{un-exemple-pas-a-pas}{%
+\subsubsection{Un exemple pas à pas}\label{un-exemple-pas-a-pas}}
+
+Reprenons l'exemple des lézards cornus. L'étude a été réalisée parce que les chercheurs supposaient que la longueur des cornes des lézards était susceptible de leur fournir une protection face à la prédation. Autrement dit, les chercheurs supposaient que des cornes plus kongues devaient fournir une meilleure protection vis à vis de la prédation. Ainsi, les lézards morts devaient avoir des cornes moins longues en moyenne que les les lézards vivants, simplement parce que proter des cornes courtes expose plus simplement les individus à la prédation. Nous avons donc une bonne raison ``écologique'' de considérer un test unilatéral.
+
+Lorsque nous avons examiné cette question, nous avons fait le test du \(t\) de Student sur échantillons indépendants de la façon suivante :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 2.27e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.335402 -1.253602
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 
+\end{verbatim}
+
+Comme l'indiquent les résultats fournis, l'hypothèse alternative utilisée pour faire le test est ``La vraie différence de moyenne n'est pas égale à 0''. Autrement dit, nous avons fait un test bilatéral avec les hypothèses suivantes :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la moyenne des 2 populations est égale, leur différence vaut 0 (\(\mu_{killed}-\mu_{living} = 0\)).
+\item
+  H\(_1\) : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (\(\mu_{killed}-\mu_{living} \neq 0\)).
+\end{itemize}
+
+Ce test est donc rigoureusement équivalent à celui-ci :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }
+       \DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{,}
+       \DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 2.27e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.335402 -1.253602
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 
+\end{verbatim}
+
+Ici, nous souhaitons en fait réaliser un \textbf{test unilatéral} avec les hypothèses suivantes :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la moyenne de longueur des cornes de la population des lézards morts est égale à celle des lézards vivants. Leur différence vaut 0 (\(\mu_{killed}-\mu_{living} = 0\)).
+\item
+  H\(_1\) : la moyenne de longueur des cornes de la population des lézards morts est \textbf{inférieure} à celle des lézards vivants. Leur différence est inférieure à 0 (\(\mu_{killed}-\mu_{living} < 0\)).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }
+       \DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{,}
+       \DataTypeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 1.135e-05
+alternative hypothesis: true difference in means is less than 0
+95 percent confidence interval:
+      -Inf -1.422321
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 
+\end{verbatim}
+
+Puisque la \(p\)-value de ce test est inferieure à \(\alpha = 0.05\), on rejette l'hypothèse nulle de l'égalité des moyennes. On valide donc l'hypothèse alternative : les lézards cornus morts ont en moyenne des cornes plus courtes que les lézards vivants. Cette différence de longueur de cornes est en faveur des lézars vivants et avut très probablement au moins \(1.4\) millimètres (c'est l'intervalle de confiance à 95\% de la différence de moyennes qui nous le dit).
+
+Dernière chose importante : il ne faut pas se tromper dans le choix de l'hypothèse alternative. En effet, nous aurions pu tenter de tester exactement la même chose en formulant les hypothèses suivantes :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la moyenne de longueur des cornes de la population des lézards \textbf{vivants} est égale à celle des lézards \textbf{morts}. Leur différence vaut 0 (\(\mu_{living}-\mu_{killed} = 0\)).
+\item
+  H\(_1\) : la moyenne de longueur des cornes de la population des lézards \textbf{vivants} est \textbf{supérieure} à celle des lézards \textbf{morts}. Leur différence est \textbf{supérieure} à 0 (\(\mu_{living}-\mu_{killed} > 0\)).
+\end{itemize}
+
+Ce test est normalement exactement le même que précédemment. Toutefois, si on essaie de le réaliser, on rencontre un problème :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }
+       \DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{,}
+       \DataTypeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 1
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ -3.166684       Inf
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 
+\end{verbatim}
+
+Ici, la \(p\)-value est très supérieure à \(\alpha\) puisqu'elle vaut 1. Une \(p\)-value de 1 devrait toujours attirer votre attention. La conclusion devrait donc être que l'on ne peut pas rejeter H\(_0\) : les lézards morts et vivants ont en moyenne des cornes de même longueur. Nous savons pourtant que c'est faux.
+
+Le problème est ici liè à l'ordre des catégories ``vivant'' ou ``mort'' dans le facteur \texttt{Survival} du tableau \texttt{Lizard}. Les dernières lignes des tests que nous venons de faire indique la moyenne de chaque groupe, mais le groupe ``killed'' apparaît toujours avant le groupe ``living''. C'est l'ordre des nibveaux dans le facteur \texttt{Survival} qui doit dicter la syntaxe appropriée :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lizard}\OperatorTok{$}\NormalTok{Survival}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  [1] living living living living living living living living living
+ [10] living living living living living living living living living
+ [19] living living living living living living living living living
+ [28] living living living living living living living living living
+ [37] living living living living living living living living living
+ [46] living living living living living living living living living
+ [55] living living living living living living living living living
+ [64] living living living living living living living living living
+ [73] living living living living living living living living living
+ [82] living living living living living living living living living
+ [91] living living living living living living living living living
+[100] living living living living living living living living living
+[109] living living living living living living living living living
+[118] living living living living living living living living living
+[127] living living living living living living living living living
+[136] living living living living living living living living living
+[145] living living living living living living living living living
+[154] living killed killed killed killed killed killed killed killed
+[163] killed killed killed killed killed killed killed killed killed
+[172] killed killed killed killed killed killed killed killed killed
+[181] killed killed killed killed
+Levels: killed living
+\end{verbatim}
+
+Par défaut, dans R, les niveaux d'un facteur sont classés par ordre alphabétique sauf si on spécifie manuellement un ordre différent. Ici, le niveau ``killed'' est donc le premier niveau du facteur, et ``living'' le second. Lorsque l'on réalise un test de Student avec ces données (ou un test de Wilcoxon d'ailleurs), la différence de moyenne qui est examinée par le test est donc ``moyenne des \texttt{killed} - moyenne des \texttt{living}''. Lorsque nous avons tapé ceci :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }
+       \DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{,}
+       \DataTypeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+nous avons en réalité posé les hypothèses suivantes :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la moyenne de longueur des cornes de la population des lézards \textbf{morts} est égale à celle des lézards \textbf{vivants}. Leur différence vaut 0 (\(\mu_{killed}-\mu_{living} = 0\)).
+\item
+  H\(_1\) : la moyenne de longueur des cornes de la population des lézards \textbf{morts} est \textbf{supérieure} à celle des lézards \textbf{vivants}. Leur différence est \textbf{supérieure} à 0 (\(\mu_{killed}-\mu_{living} > 0\)).
+\end{itemize}
+
+Ce test est donc erronné, ce qui explique qu'il nous renvoie un résultat faux et une \(p\)-value de 1. Ici, puisque l'ordre des catégories est ``killed'' d'abord et ``living'' ensuite, la seule façon correct de faire un test unilatéral qui a du sens est donc celle que nous avons réalisé en premier :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }
+       \DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{,}
+       \DataTypeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercice-dapplication-3}{%
+\subsubsection{Exercice d'application}\label{exercice-dapplication-3}}
+
+Reprenez chaque exemple et exercice de cet séance de TP et identifiez les situations où un test unilatéral aurait du sens. Si vous en trouvez, faîte ce test et assurez-vous que les hypothèses choisies sont bien celles qui sont utilisées lors du test.
 
 \hypertarget{seance-2-analyse-de-variance}{%
 \section{Séance 2 : analyse de variance}\label{seance-2-analyse-de-variance}}

@@ -842,9 +842,124 @@ La seule différence par rapport à la syntaxe du test $t$ de Student paramétri
 
 ### Exercice d'application
 
-On s'intéresse à la différence de taille supposée entre hommes et femmes. Le fichier `HommesFemmes.xls` contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à l'Université de La Rochelle. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentation graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à l'université de La Rochelle ont-il la même taille ?
+On s'intéresse à la différence de taille supposée entre hommes et femmes. Le fichier `HommesFemmes.xls` contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à l'Université de La Rochelle. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à l'université de La Rochelle ont-il la même taille ?
 
 
 
 ## Tests bilatéraux et unilatéraux
 
+
+### Principes
+
+Jusqu'à maintenant, tous les tests que nous avons réalisés sont des tests bitaléraux. Pour chaque test, l'hypothèse nulle est imposée. En revanche, pour certains tests, l'hypothèse alternative est à choisir (et à spécifier) par l'utilisateur parmi 3 possibilités :
+
+- 1 hypothèse bilatérale. C'est celle qui est utilisée par défaut si l'utilisateur ne précise rien.
+- 2 hypothèses unilatérales possibles, qui doivent être spécifiées explicitement par l'utilisateur.
+
+Les tests unilatéraux peuvent concerner tous les tests pour lesquels les hypothèses sont de la forme suivante :
+
+- H$_0$ : la valeur d'un paramètre de la population est égale à $k$ ($k$ peut être une valeur fixe, arbitraire, choisie par l'utilisateur, ou la valeur d'un paramètre d'une autre populations)
+- H$_1$ : la valeur d'un paramètre de la population **n'est pas égale à** $k$.
+
+En réalité, si nous remplaçons l'hypothèse H$_1$ par :
+
+- H$_1$ : la valeur d'un paramètre de la population **est supérieure à** $k$.
+
+ou par : 
+
+- H$_1$ : la valeur d'un paramètre de la population **est inférieure à** $k$.
+
+nous réalisons un test unilatéral.
+
+Dans R, la syntaxe permettant de spécifier l'hypothèse alternative que nous souhaitons utiliser est toujours la même. Il faut préciser, au moment de faire le test l'argument suivant :
+
+- `alternative = "two.sided"` : pour faire un test bilatéral. Si on ne le fait pas explicitement, c'est de toutes façons cette valeur qui est utilisée par défaut.
+- `alternative = "greater"` : pour choisir l'hypothèse unilatérale `>`
+- `alternative = "less"` : pour choisir l'hypothèse unilatérale `<`
+
+Attention, le choix d'utiliser "greater" ou "less" dépend de l'ordre dans lequel les échantillons sont spécifiés. Cette synatxe est valable pour tous les tests de Student vus jusqu'ici (un échantillon, deux échantillons appariés, deux échantillons indépendants) et pour leurs alternatives non paramétriques (test de Wilcoxon des rangs signés, test de Wilcoxon de la somme des rangs, test du $t$ de Welch).
+
+**Attention** : comme indiqué en TD, l'utilisation de tests unilatéraux doit être réservée exclusibvement aux situations pour lesquelles le choix de l'hypothèse unilatérale est possible à justifier par un mécanisme quelconque (biologique, physiologique, comportemental, écologique, génétique, etc.). Observer que l'un des échantillons a une moyenne plus grande ou plus faible qu'un autre lors de la phase des statstiques descriptives des données n'est pas du tout une raison suffisante. Il faut pouvoir justifier le choix de l'hypothèse alternative par une explication valable. Reprenons l'un des exemples examinés précédemment pour mieux comprendre comment tout cela fonctionne.
+
+### Un exemple pas à pas
+
+Reprenons l'exemple des lézards cornus. L'étude a été réalisée parce que les chercheurs supposaient que la longueur des cornes des lézards était susceptible de leur fournir une protection face à la prédation. Autrement dit, les chercheurs supposaient que des cornes plus kongues devaient fournir une meilleure protection vis à vis de la prédation. Ainsi, les lézards morts devaient avoir des cornes moins longues en moyenne que les les lézards vivants, simplement parce que proter des cornes courtes expose plus simplement les individus à la prédation. Nous avons donc une bonne raison "écologique" de considérer un test unilatéral.
+
+Lorsque nous avons examiné cette question, nous avons fait le test du $t$ de Student sur échantillons indépendants de la façon suivante :
+
+```{r}
+t.test(Horn_len ~ Survival, data = Lizard, var.equal = TRUE)
+```
+
+Comme l'indiquent les résultats fournis, l'hypothèse alternative utilisée pour faire le test est "La vraie différence de moyenne n'est pas égale à 0". Autrement dit, nous avons fait un test bilatéral avec les hypothèses suivantes :
+
+- H$_0$ : la moyenne des 2 populations est égale, leur différence vaut 0 ($\mu_{killed}-\mu_{living} = 0$).
+- H$_1$ : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 ($\mu_{killed}-\mu_{living} \neq 0$).
+
+Ce test est donc rigoureusement équivalent à celui-ci :
+
+```{r}
+t.test(Horn_len ~ Survival, 
+       data = Lizard, var.equal = TRUE,
+       alternative = "two.sided")
+```
+
+Ici, nous souhaitons en fait réaliser un **test unilatéral** avec les hypothèses suivantes :
+
+- H$_0$ : la moyenne de longueur des cornes de la population des lézards morts est égale à celle des lézards vivants. Leur différence vaut 0 ($\mu_{killed}-\mu_{living} = 0$).
+- H$_1$ : la moyenne de longueur des cornes de la population des lézards morts est **inférieure** à celle des lézards vivants. Leur différence est inférieure à 0 ($\mu_{killed}-\mu_{living} < 0$).
+
+```{r}
+t.test(Horn_len ~ Survival, 
+       data = Lizard, var.equal = TRUE,
+       alternative = "less")
+```
+
+Puisque la $p$-value de ce test est inferieure à $\alpha = 0.05$, on rejette l'hypothèse nulle de l'égalité des moyennes. On valide donc l'hypothèse alternative : les lézards cornus morts ont en moyenne des cornes plus courtes que les lézards vivants. Cette différence de longueur de cornes est en faveur des lézars vivants et avut très probablement au moins $1.4$ millimètres (c'est l'intervalle de confiance à 95% de la différence de moyennes qui nous le dit).
+
+Dernière chose importante : il ne faut pas se tromper dans le choix de l'hypothèse alternative. En effet, nous aurions pu tenter de tester exactement la même chose en formulant les hypothèses suivantes : 
+
+- H$_0$ : la moyenne de longueur des cornes de la population des lézards **vivants** est égale à celle des lézards **morts**. Leur différence vaut 0 ($\mu_{living}-\mu_{killed} = 0$).
+- H$_1$ : la moyenne de longueur des cornes de la population des lézards **vivants** est **supérieure** à celle des lézards **morts**. Leur différence est **supérieure** à 0 ($\mu_{living}-\mu_{killed} > 0$).
+
+Ce test est normalement exactement le même que précédemment. Toutefois, si on essaie de le réaliser, on rencontre un problème :
+
+```{r}
+t.test(Horn_len ~ Survival, 
+       data = Lizard, var.equal = TRUE,
+       alternative = "greater")
+```
+
+Ici, la $p$-value est très supérieure à $\alpha$ puisqu'elle vaut 1. Une $p$-value de 1 devrait toujours attirer votre attention. La conclusion devrait donc être que l'on ne peut pas rejeter H$_0$ : les lézards morts et vivants ont en moyenne des cornes de même longueur. Nous savons pourtant que c'est faux. 
+
+Le problème est ici liè à l'ordre des catégories "vivant" ou "mort" dans le facteur `Survival` du tableau `Lizard`. Les dernières lignes des tests que nous venons de faire indique la moyenne de chaque groupe, mais le groupe "killed" apparaît toujours avant le groupe "living". C'est l'ordre des nibveaux dans le facteur `Survival` qui doit dicter la syntaxe appropriée :
+
+```{r}
+Lizard$Survival
+```
+
+Par défaut, dans R, les niveaux d'un facteur sont classés par ordre alphabétique sauf si on spécifie manuellement un ordre différent. Ici, le niveau "killed" est donc le premier niveau du facteur, et "living" le second. Lorsque l'on réalise un test de Student avec ces données (ou un test de Wilcoxon d'ailleurs), la différence de moyenne qui est examinée par le test est donc "moyenne des `killed` - moyenne des `living`". Lorsque nous avons tapé ceci :
+
+```{r, eval = FALSE}
+t.test(Horn_len ~ Survival, 
+       data = Lizard, var.equal = TRUE,
+       alternative = "greater")
+```
+
+nous avons en réalité posé les hypothèses suivantes :
+
+- H$_0$ : la moyenne de longueur des cornes de la population des lézards **morts** est égale à celle des lézards **vivants**. Leur différence vaut 0 ($\mu_{killed}-\mu_{living} = 0$).
+- H$_1$ : la moyenne de longueur des cornes de la population des lézards **morts** est **supérieure** à celle des lézards **vivants**. Leur différence est **supérieure** à 0 ($\mu_{killed}-\mu_{living} > 0$).
+
+Ce test est donc erronné, ce qui explique qu'il nous renvoie un résultat faux et une $p$-value de 1. Ici, puisque l'ordre des catégories est "killed" d'abord et "living" ensuite, la seule façon correct de faire un test unilatéral qui a du sens est donc celle que nous avons réalisé en premier : 
+
+```{r, eval = FALSE}
+t.test(Horn_len ~ Survival, 
+       data = Lizard, var.equal = TRUE,
+       alternative = "less")
+```
+
+
+### Exercice d'application
+
+Reprenez chaque exemple et exercice de cet séance de TP et identifiez les situations où un test unilatéral aurait du sens. Si vous en trouvez, faîte ce test et assurez-vous que les hypothèses choisies sont bien celles qui sont utilisées lors du test.

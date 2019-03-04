@@ -155,7 +155,11 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3.4.3" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#le-test-non-parametrique-1"><i class="fa fa-check"></i><b>3.4.3</b> Le test non paramétrique</a></li>
 <li class="chapter" data-level="3.4.4" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#exercice-dapplication-2"><i class="fa fa-check"></i><b>3.4.4</b> Exercice d’application</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#tests-bilateraux-et-unilateraux"><i class="fa fa-check"></i><b>3.5</b> Tests bilatéraux et unilatéraux</a></li>
+<li class="chapter" data-level="3.5" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#tests-bilateraux-et-unilateraux"><i class="fa fa-check"></i><b>3.5</b> Tests bilatéraux et unilatéraux</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#principes"><i class="fa fa-check"></i><b>3.5.1</b> Principes</a></li>
+<li class="chapter" data-level="3.5.2" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#un-exemple-pas-a-pas"><i class="fa fa-check"></i><b>3.5.2</b> Un exemple pas à pas</a></li>
+<li class="chapter" data-level="3.5.3" data-path="seance-1-statistiques-descriptives-et-tests-dhypotheses.html"><a href="seance-1-statistiques-descriptives-et-tests-dhypotheses.html#exercice-dapplication-3"><i class="fa fa-check"></i><b>3.5.3</b> Exercice d’application</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="seance-2-analyse-de-variance.html"><a href="seance-2-analyse-de-variance.html"><i class="fa fa-check"></i><b>4</b> Séance 2 : analyse de variance</a></li>
 <li class="chapter" data-level="5" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html"><i class="fa fa-check"></i><b>5</b> Séance 3 : corrélations et régressions</a></li>
@@ -304,7 +308,7 @@ Temp_clean</code></pre>
  n obs: 25 
  n variables: 1 
 
-── Variable type:numeric ─────
+── Variable type:numeric ───────────────────────────────────
     variable missing complete  n  mean   sd    p0   p25 p50   p75
  temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22
   p100     hist
@@ -594,11 +598,11 @@ Testo_long</code></pre>
  n obs: 13 
  n variables: 3 
 
-── Variable type:factor ──────
+── Variable type:factor ────────────────────────────────────
  variable missing complete  n n_unique             top_counts ordered
        ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
-── Variable type:numeric ─────
+── Variable type:numeric ───────────────────────────────────
  variable missing complete  n mean   sd   p0 p25  p50  p75 p100
     After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
    Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
@@ -614,7 +618,7 @@ Testo_long</code></pre>
  n variables: 3 
  group variables: Traitement 
 
-── Variable type:factor ──────
+── Variable type:factor ────────────────────────────────────
  Traitement variable missing complete  n n_unique
      Before       ID       0       13 13       13
       After       ID       0       13 13       13
@@ -622,7 +626,7 @@ Testo_long</code></pre>
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
-── Variable type:numeric ─────
+── Variable type:numeric ───────────────────────────────────
  Traitement variable missing complete  n mean   sd   p0 p25  p50  p75
      Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88
       After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5   
@@ -918,7 +922,7 @@ Lizard</code></pre>
  n variables: 2 
  group variables: Survival 
 
-── Variable type:numeric ─────
+── Variable type:numeric ───────────────────────────────────
  Survival variable missing complete   n  mean   sd   p0  p25   p50
    killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25
    living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55
@@ -1131,12 +1135,161 @@ mean in group killed mean in group living
 </div>
 <div id="exercice-dapplication-2" class="section level3">
 <h3><span class="header-section-number">3.4.4</span> Exercice d’application</h3>
-<p>On s’intéresse à la différence de taille supposée entre hommes et femmes. Le fichier <code>HommesFemmes.xls</code> contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à l’Université de La Rochelle. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d’examiner les données à l’aide de statistiques descriptives et de représentation graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à l’université de La Rochelle ont-il la même taille ?</p>
+<p>On s’intéresse à la différence de taille supposée entre hommes et femmes. Le fichier <code>HommesFemmes.xls</code> contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à l’Université de La Rochelle. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d’examiner les données à l’aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à l’université de La Rochelle ont-il la même taille ?</p>
 </div>
 </div>
 <div id="tests-bilateraux-et-unilateraux" class="section level2">
 <h2><span class="header-section-number">3.5</span> Tests bilatéraux et unilatéraux</h2>
+<div id="principes" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Principes</h3>
+<p>Jusqu’à maintenant, tous les tests que nous avons réalisés sont des tests bitaléraux. Pour chaque test, l’hypothèse nulle est imposée. En revanche, pour certains tests, l’hypothèse alternative est à choisir (et à spécifier) par l’utilisateur parmi 3 possibilités :</p>
+<ul>
+<li>1 hypothèse bilatérale. C’est celle qui est utilisée par défaut si l’utilisateur ne précise rien.</li>
+<li>2 hypothèses unilatérales possibles, qui doivent être spécifiées explicitement par l’utilisateur.</li>
+</ul>
+<p>Les tests unilatéraux peuvent concerner tous les tests pour lesquels les hypothèses sont de la forme suivante :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la valeur d’un paramètre de la population est égale à <span class="math inline">\(k\)</span> (<span class="math inline">\(k\)</span> peut être une valeur fixe, arbitraire, choisie par l’utilisateur, ou la valeur d’un paramètre d’une autre populations)</li>
+<li>H<span class="math inline">\(_1\)</span> : la valeur d’un paramètre de la population <strong>n’est pas égale à</strong> <span class="math inline">\(k\)</span>.</li>
+</ul>
+<p>En réalité, si nous remplaçons l’hypothèse H<span class="math inline">\(_1\)</span> par :</p>
+<ul>
+<li>H<span class="math inline">\(_1\)</span> : la valeur d’un paramètre de la population <strong>est supérieure à</strong> <span class="math inline">\(k\)</span>.</li>
+</ul>
+<p>ou par :</p>
+<ul>
+<li>H<span class="math inline">\(_1\)</span> : la valeur d’un paramètre de la population <strong>est inférieure à</strong> <span class="math inline">\(k\)</span>.</li>
+</ul>
+<p>nous réalisons un test unilatéral.</p>
+<p>Dans R, la syntaxe permettant de spécifier l’hypothèse alternative que nous souhaitons utiliser est toujours la même. Il faut préciser, au moment de faire le test l’argument suivant :</p>
+<ul>
+<li><code>alternative = &quot;two.sided&quot;</code> : pour faire un test bilatéral. Si on ne le fait pas explicitement, c’est de toutes façons cette valeur qui est utilisée par défaut.</li>
+<li><code>alternative = &quot;greater&quot;</code> : pour choisir l’hypothèse unilatérale <code>&gt;</code></li>
+<li><code>alternative = &quot;less&quot;</code> : pour choisir l’hypothèse unilatérale <code>&lt;</code></li>
+</ul>
+<p>Attention, le choix d’utiliser “greater” ou “less” dépend de l’ordre dans lequel les échantillons sont spécifiés. Cette synatxe est valable pour tous les tests de Student vus jusqu’ici (un échantillon, deux échantillons appariés, deux échantillons indépendants) et pour leurs alternatives non paramétriques (test de Wilcoxon des rangs signés, test de Wilcoxon de la somme des rangs, test du <span class="math inline">\(t\)</span> de Welch).</p>
+<p><strong>Attention</strong> : comme indiqué en TD, l’utilisation de tests unilatéraux doit être réservée exclusibvement aux situations pour lesquelles le choix de l’hypothèse unilatérale est possible à justifier par un mécanisme quelconque (biologique, physiologique, comportemental, écologique, génétique, etc.). Observer que l’un des échantillons a une moyenne plus grande ou plus faible qu’un autre lors de la phase des statstiques descriptives des données n’est pas du tout une raison suffisante. Il faut pouvoir justifier le choix de l’hypothèse alternative par une explication valable. Reprenons l’un des exemples examinés précédemment pour mieux comprendre comment tout cela fonctionne.</p>
+</div>
+<div id="un-exemple-pas-a-pas" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Un exemple pas à pas</h3>
+<p>Reprenons l’exemple des lézards cornus. L’étude a été réalisée parce que les chercheurs supposaient que la longueur des cornes des lézards était susceptible de leur fournir une protection face à la prédation. Autrement dit, les chercheurs supposaient que des cornes plus kongues devaient fournir une meilleure protection vis à vis de la prédation. Ainsi, les lézards morts devaient avoir des cornes moins longues en moyenne que les les lézards vivants, simplement parce que proter des cornes courtes expose plus simplement les individus à la prédation. Nous avons donc une bonne raison “écologique” de considérer un test unilatéral.</p>
+<p>Lorsque nous avons examiné cette question, nous avons fait le test du <span class="math inline">\(t\)</span> de Student sur échantillons indépendants de la façon suivante :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>
+    Two Sample t-test
 
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 2.27e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.335402 -1.253602
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>Comme l’indiquent les résultats fournis, l’hypothèse alternative utilisée pour faire le test est “La vraie différence de moyenne n’est pas égale à 0”. Autrement dit, nous avons fait un test bilatéral avec les hypothèses suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} \neq 0\)</span>).</li>
+</ul>
+<p>Ce test est donc rigoureusement équivalent à celui-ci :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, 
+       <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>,
+       <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</code></pre>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 2.27e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.335402 -1.253602
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>Ici, nous souhaitons en fait réaliser un <strong>test unilatéral</strong> avec les hypothèses suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne de longueur des cornes de la population des lézards morts est égale à celle des lézards vivants. Leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne de longueur des cornes de la population des lézards morts est <strong>inférieure</strong> à celle des lézards vivants. Leur différence est inférieure à 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} &lt; 0\)</span>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, 
+       <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>,
+       <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</code></pre>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 1.135e-05
+alternative hypothesis: true difference in means is less than 0
+95 percent confidence interval:
+      -Inf -1.422321
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>Puisque la <span class="math inline">\(p\)</span>-value de ce test est inferieure à <span class="math inline">\(\alpha = 0.05\)</span>, on rejette l’hypothèse nulle de l’égalité des moyennes. On valide donc l’hypothèse alternative : les lézards cornus morts ont en moyenne des cornes plus courtes que les lézards vivants. Cette différence de longueur de cornes est en faveur des lézars vivants et avut très probablement au moins <span class="math inline">\(1.4\)</span> millimètres (c’est l’intervalle de confiance à 95% de la différence de moyennes qui nous le dit).</p>
+<p>Dernière chose importante : il ne faut pas se tromper dans le choix de l’hypothèse alternative. En effet, nous aurions pu tenter de tester exactement la même chose en formulant les hypothèses suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>vivants</strong> est égale à celle des lézards <strong>morts</strong>. Leur différence vaut 0 (<span class="math inline">\(\mu_{living}-\mu_{killed} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>vivants</strong> est <strong>supérieure</strong> à celle des lézards <strong>morts</strong>. Leur différence est <strong>supérieure</strong> à 0 (<span class="math inline">\(\mu_{living}-\mu_{killed} &gt; 0\)</span>).</li>
+</ul>
+<p>Ce test est normalement exactement le même que précédemment. Toutefois, si on essaie de le réaliser, on rencontre un problème :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, 
+       <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>,
+       <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</code></pre>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 1
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ -3.166684       Inf
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>Ici, la <span class="math inline">\(p\)</span>-value est très supérieure à <span class="math inline">\(\alpha\)</span> puisqu’elle vaut 1. Une <span class="math inline">\(p\)</span>-value de 1 devrait toujours attirer votre attention. La conclusion devrait donc être que l’on ne peut pas rejeter H<span class="math inline">\(_0\)</span> : les lézards morts et vivants ont en moyenne des cornes de même longueur. Nous savons pourtant que c’est faux.</p>
+<p>Le problème est ici liè à l’ordre des catégories “vivant” ou “mort” dans le facteur <code>Survival</code> du tableau <code>Lizard</code>. Les dernières lignes des tests que nous venons de faire indique la moyenne de chaque groupe, mais le groupe “killed” apparaît toujours avant le groupe “living”. C’est l’ordre des nibveaux dans le facteur <code>Survival</code> qui doit dicter la syntaxe appropriée :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Lizard<span class="op">$</span>Survival</code></pre>
+<pre><code>  [1] living living living living living living living living living
+ [10] living living living living living living living living living
+ [19] living living living living living living living living living
+ [28] living living living living living living living living living
+ [37] living living living living living living living living living
+ [46] living living living living living living living living living
+ [55] living living living living living living living living living
+ [64] living living living living living living living living living
+ [73] living living living living living living living living living
+ [82] living living living living living living living living living
+ [91] living living living living living living living living living
+[100] living living living living living living living living living
+[109] living living living living living living living living living
+[118] living living living living living living living living living
+[127] living living living living living living living living living
+[136] living living living living living living living living living
+[145] living living living living living living living living living
+[154] living killed killed killed killed killed killed killed killed
+[163] killed killed killed killed killed killed killed killed killed
+[172] killed killed killed killed killed killed killed killed killed
+[181] killed killed killed killed
+Levels: killed living</code></pre>
+<p>Par défaut, dans R, les niveaux d’un facteur sont classés par ordre alphabétique sauf si on spécifie manuellement un ordre différent. Ici, le niveau “killed” est donc le premier niveau du facteur, et “living” le second. Lorsque l’on réalise un test de Student avec ces données (ou un test de Wilcoxon d’ailleurs), la différence de moyenne qui est examinée par le test est donc “moyenne des <code>killed</code> - moyenne des <code>living</code>”. Lorsque nous avons tapé ceci :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, 
+       <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>,
+       <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</code></pre>
+<p>nous avons en réalité posé les hypothèses suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>morts</strong> est égale à celle des lézards <strong>vivants</strong>. Leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>morts</strong> est <strong>supérieure</strong> à celle des lézards <strong>vivants</strong>. Leur différence est <strong>supérieure</strong> à 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} &gt; 0\)</span>).</li>
+</ul>
+<p>Ce test est donc erronné, ce qui explique qu’il nous renvoie un résultat faux et une <span class="math inline">\(p\)</span>-value de 1. Ici, puisque l’ordre des catégories est “killed” d’abord et “living” ensuite, la seule façon correct de faire un test unilatéral qui a du sens est donc celle que nous avons réalisé en premier :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, 
+       <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>,
+       <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</code></pre>
+</div>
+<div id="exercice-dapplication-3" class="section level3">
+<h3><span class="header-section-number">3.5.3</span> Exercice d’application</h3>
+<p>Reprenez chaque exemple et exercice de cet séance de TP et identifiez les situations où un test unilatéral aurait du sens. Si vous en trouvez, faîte ce test et assurez-vous que les hypothèses choisies sont bien celles qui sont utilisées lors du test.</p>
+
+</div>
 </div>
 </div>
 <h3>References</h3>
