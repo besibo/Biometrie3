@@ -164,19 +164,19 @@ Je considère qu'à ce stade, vous devez être à l'aise dans RStudio pour effec
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Importer des jeux de données dans RStudio
+  Importer des jeux de données dans RStudio.
 \item
-  Manipuler des tableaux de données avec \texttt{tidyr} pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques
+  Manipuler des tableaux de données avec \texttt{tidyr} \citep{R-tidyr} pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.
 \item
-  Faire des graphiques exploratoires avec \texttt{ggplot2} pour visualiser des données
+  Faire des graphiques exploratoires avec \texttt{ggplot2} \citep{R-ggplot2} pour visualiser des données.
 \item
-  Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonction \texttt{filter()}, \texttt{select()}, \texttt{arrange()}, \texttt{mutate()}, \texttt{summarise()} et \texttt{group\_by()} du package \texttt{dplyr}
+  Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonction \texttt{filter()}, \texttt{select()}, \texttt{arrange()}, \texttt{mutate()}, \texttt{summarise()} et \texttt{group\_by()} du package \texttt{dplyr} \citep{R-dplyr}.
 \item
-  Utiliser le pipe \texttt{\%\textgreater{}\%} afin d'enchaîner plusieurs commandes
+  Utiliser le pipe \texttt{\%\textgreater{}\%} afin d'enchaîner plusieurs commandes.
 \item
-  Créer des scripts parlants contenant des commandes et des commentaires utiles
+  Créer des scripts parlants contenant des commandes et des commentaires utiles.
 \item
-  Spécifier/modifier votre répertoire de travail
+  Spécifier/modifier votre répertoire de travail.
 \item
   Installer des packages additionnels.
 \end{enumerate}
@@ -266,13 +266,15 @@ Si vous suivez rigoureusement ces étapes, vous devriez être dans la situation 
 
 Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes disponibles sur l'ENT.
 
-Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les suivants :
+Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du \texttt{tidyverse} \citep{R-tidyverse}, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} \citep{R-readr}, pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} \citep{R-readxl}, pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} \citep{R-skimr}, qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} \citep{R-car}, qui permet d'effectuer le test de comparaison de variances de Levene :
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
 \KeywordTok{library}\NormalTok{(readr)}
+\KeywordTok{library}\NormalTok{(readxl)}
 \KeywordTok{library}\NormalTok{(skimr)}
+\KeywordTok{library}\NormalTok{(car)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -293,7 +295,7 @@ Vous aurez également besoin des jeux de données suivants :
 \item
   \texttt{Autruches.csv}
 \item
-  \texttt{HommesFemmes.txt}
+  \texttt{HommesFemmes.xls}
 \item
   \texttt{HornedLizards.csv}
 \item
@@ -1363,9 +1365,9 @@ Il s'agit là encore du \textbf{test de Wilcoxon des rangs signés} qui s'intér
 \begin{itemize}
 \tightlist
 \item
-  H\(_0\) : Le changement \textbf{médian} de production d'anticorps après la pose chirurgicale de l'implant de testostérone est nul (\(\widehat{med}_{Diff} = 0\)).
+  H\(_0\) : Le changement \textbf{médian} de production d'anticorps après la pose chirurgicale de l'implant de testostérone est nul (\(med_{Diff} = 0\)).
 \item
-  H\(_1\) : Le changement \textbf{médian} de production d'anticorps après la pose chirurgicale de l'implant de testostérone n'est pas nul (\(\widehat{med}_{Diff} \neq 0\)).
+  H\(_1\) : Le changement \textbf{médian} de production d'anticorps après la pose chirurgicale de l'implant de testostérone n'est pas nul (\(med_{Diff} \neq 0\)).
 \end{itemize}
 
 Comme pour le test de Student, 3 syntaxes sont possibles et strictement équivalentes. Il est important de ne pas oublier l'argument \texttt{paired\ =\ TRUE} pour les 2 premières syntaxes afin de s'assurer que l'on réalise bien un test sur données appariées. Enfin, l'argument \texttt{conf.int\ =\ TRUE} doit être ajouté pour les 3 syntaxes afin que la (pseudo-) médiane et son intervalle de confiance à 95\% soient calculés et affichés.
@@ -1627,7 +1629,7 @@ Cette visualisation nous montre que les données doivent suivre à peu près une
 
 \begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-52-1} \end{center}
 
-Nous visualisons ici encore plus clairement que sur les histogrammes le fait que les longueurs de cornes des individus vivants sont légèrement plus longues que celles des individus morts. D'ailleurs, puisque les intervalles de confiance à 95\% des médianes des 2 groupes (les encoches) ne se chevauchent pas, un test de comparaison de moyenne devrait logiquement conclure à une différence significative en faveur des individus vivants. On peut également noter que la largeur de l'encoche pour les individus morts est plus large que celle des vivants. Cela traduit une incertitude plus grande autour de la médiane estimée dans le groupe des individus morts. C'est tout à fait logique compte tenu des effectifs modestes dans ce groupe.
+Nous visualisons ici encore plus clairement que sur les histogrammes le fait que les longueurs de cornes des individus vivants sont légèrement plus longues que celles des individus morts. D'ailleurs, puisque les intervalles de confiance à 95\% des médianes des 2 groupes (les encoches) ne se chevauchent pas, un test de comparaison des moyennes devrait logiquement conclure à une différence significative en faveur des individus vivants. On peut également noter que la largeur de l'encoche pour les individus morts est plus importante que celle des vivants. Cela traduit une incertitude plus grande autour de la médiane estimée dans le groupe des individus morts. C'est tout à fait logique compte tenu des effectifs modestes dans ce groupe.
 
 \hypertarget{le-test-parametrique-2}{%
 \subsubsection{Le test paramétrique}\label{le-test-parametrique-2}}
@@ -1650,14 +1652,293 @@ Les conditions d'application de ce test sont au nombre de 3 :
   L'écart-type (et la variance) de la variable numérique est la même dans les deux populations. C'est ce que l'on appelle l'homoscédasticité.
 \end{enumerate}
 
+En réalité, le test du \(t\) de Student sur deux échantillons indépendants est assez robuste face au non respect de cette troisième condition d'application. Cela signifie que si cette troisième condition d'application n'est pas strictement vérifiée, les résultats du tests peuvent malgré tout rester valides. Lorsque les 2 échantillons comparés ont des tailles supérieures ou égales à 30, ce test fonctionne bien même si l'écart-type d'un groupe est jusqu'à 3 fois supérieur ou inférieur à l'écart-type du second groupe, à condition que la taille des 2 échantillons soit proche (ce qui n'est pas le cas ici !). En revanche, s'il les écart-types diffèrent de plus d'un facteur 3, ou si les tailles d'échantillons sont très différentes, le test du \(t\) de Student ne devrait pas être utilisé. De même, si la taille des échantillons est inférieure à 30 et que les variances ne sont pas homogènes, ce test ne devrait pas être réalisé. En conclusion, les résultats du test du \(t\) de Student à deux échantillons indépendants peuvent rester valides si la troisième condition d'homscédasticité est violée, mais dans certains cas seulement.
+
+Le test du \(t\) de Student sur deux échantillons indépendants est également assez robuste face à des écarts mineurs à la distribution Normale, tant que la forme des deux distributions comparées reste similaire. En outre, la robustesse de ce test augmente avec la taille des échantillons.
+
+Ici, nous allons donc commencer par vérifier la normalité de chacun des 2 échantillons en réalisant 2 tests de Shapiro-Wilk. Si ces tests confirment que la taille des cornes suit une distribution Normale dans la population générale, nous comparerons alors la variance des 2 populations (nous verrons 3 méthodes pour cela). Les statistiques descriptives réalisées plus haut nous ont montré que les écarts-types des 2 échantillons sont proches, mais que les tailles d'échantillons sont très différentes. L'homoscédasticité doit donc être vérifiée pour que nous ayons le droit de faire le test de Student.
+
+\textbf{1. Normalité des données}
+
+Nous commençons donc par tester la Normalité des 2 populations dont sont issus les échantillons. Pour les individus morts les hypothèses sont les suivantes :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la taille des cornes suit une distribution Normale dans la population des lézards cornus morts.
+\item
+  H\(_1\) : la taille des cornes ne suit pas une distribution Normale dans la population des lézards cornus morts.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Survival }\OperatorTok{==}\StringTok{ "killed"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pull}\NormalTok{(Horn_len) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{shapiro.test}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.93452, p-value = 0.06482
+\end{verbatim}
+
+\begin{quote}
+La \(p\)-value est supérieure à \(\alpha = 0.05\), donc on ne peut pas rejeter l'hypothèse nulle de Normalité pour la taille des cornes de la population des lézards cornus morts (test de Shapiro-Wilk, \(W = 0.93\), \(p = 0.065\)).
+\end{quote}
+
+Pour les individus vivants :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la taille des cornes suit une distribution Normale dans la population des lézards cornus vivants.
+\item
+  H\(_1\) : la taille des cornes ne suit pas une distribution Normale dans la population des lézards cornus vivants.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Survival }\OperatorTok{==}\StringTok{ "living"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pull}\NormalTok{(Horn_len) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{shapiro.test}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.96055, p-value = 0.0002234
+\end{verbatim}
+
+\begin{quote}
+La \(p\)-value est inférieure à \(\alpha = 0.05\), donc on rejette l'hypothèse nulle de Normalité pour la taille des cornes de la population des lézards cornus vivants (test de Shapiro-Wilk, \(W = 0.96\), \(p < 0.001\)).
+\end{quote}
+
+Si l'on examine l'histogramme des 2 échantillons, on constate toutefois que la forme des distributions des 2 séries de données est très proche. Pour les 2 échantillons, la distribution est en effet unimodale, avec une asymétrie gauche assez marquée (une longue queue de distribution du côté gauche). La forme des distributions étant similaire (on parle bien de la forme des histogrammes et non de la position du pic), et les histogrammes étant proches de la forme typique d'une courbe en cloche, le test de Student restera valide.
+
+\textbf{2. Homogénéité des variances}
+
+Le test le plus simple pour comparer la variance de 2 échantillons est le test \(F\) :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la variance des 2 populations est égale, leur ratio vaut 1 (\(\frac{\sigma^2_{killed}}{\sigma^2_{living}} = 1\)).
+\item
+  H\(_1\) : la variance des 2 populations est différente, leur ratio ne vaut pas 1 (\(\frac{\sigma^2_{killed}}{\sigma^2_{living}} \neq 1\)).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{var.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    F test to compare two variances
+
+data:  Horn_len by Survival
+F = 1.0607, num df = 29, denom df = 153, p-value = 0.7859
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.6339331 1.9831398
+sample estimates:
+ratio of variances 
+          1.060711 
+\end{verbatim}
+
+\begin{quote}
+Ici, le ratio des variances (la variance des individus morts divisée par la variance des individus vivants) est très proche de 1 (\(F = 1.06\), IC 95\% : {[}0.63 ; 1.98{]}). Le test \(F\) nous montre qu'il est impossible de rejeter H\(_0\) : au seuil \(\alpha = 0.05\), le ratio des variances n'est pas significativement différent de 1 (ddl = 29 et 153, \(p = 0.79\)), les variances sont homogènes.
+\end{quote}
+
+Le test de Bartlett est un autre test qui permet de comparer la variance de plusieurs populations. Lorsque le nombe de populations est égal à 2 (comme ici), ce test est absolument équivalent au test \(F\) ci-dessus.
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : Toutes les populations ont même variance (\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)).
+\item
+  H\(_1\) : Au moins une population a une variance différente des autres.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{bartlett.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Bartlett test of homogeneity of variances
+
+data:  Horn_len by Survival
+Bartlett's K-squared = 0.042411, df = 1, p-value = 0.8368
+\end{verbatim}
+
+Enfin, le test de Levene devrait être préféré la plupart du temps. Comme le test de Bartlett, il permet de comparer la variance de plusieurs populations, mais il est plus robuste vis à vis de la non-normalité des données.
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : Toutes les populations ont même variance (\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)).
+\item
+  H\(_1\) : Au moins une population a une variance différente des autres.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Le test de Leven fait partie du package car. Il doit être chargé en mémoire}
+\CommentTok{# library(car)}
+\KeywordTok{leveneTest}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Levene's Test for Homogeneity of Variance (center = median)
+       Df F value Pr(>F)
+group   1  0.0035  0.953
+      182               
+\end{verbatim}
+
+Ici encore, les conclusions sont les mêmes :
+
+\begin{quote}
+Il est impossible de rejeter l'hypothèse nulle d'homogénéité des variances au seuil \(\alpha = 0.05\) (test de Levene, \(F\) = 0.004, ddl = 1, \(p = 0.953\)).
+\end{quote}
+
 \hypertarget{realisation-du-test-et-interpretation-2}{%
 \paragraph{Réalisation du test et interprétation}\label{realisation-du-test-et-interpretation-2}}
+
+Puisque la taille des cornes du lézard cornu suit approximativement la même distribution ``presque Normale'' dans les 2 ppulations (lézards morts et vivants) et que ces 2 ppulations ont des variances homogènes, on peut réaliser le test du \(t\) de Student sur deux échantillons indépendants.
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la moyenne des 2 populations est égale, leur différence vaut 0 (\(\mu_{killed}-\mu_{living} = 0\)).
+\item
+  H\(_1\) : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (\(\mu_{killed}-\mu_{living} \neq 0\)).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 2.27e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.335402 -1.253602
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 
+\end{verbatim}
+
+Notez bien la syntaxe :
+
+\begin{itemize}
+\tightlist
+\item
+  nous utilisons ici la syntaxe du type ``formule'' faisant appel au symbole \texttt{\textasciitilde{}} (Longueur des cornes en fonction de la Survie) et à l'argument \texttt{data\ =}.
+\item
+  l'argument \texttt{paired\ =\ TRUE} a disparu puisque nous avons ici deux échantillons indépendants
+\item
+  l'argument \texttt{var.equal\ =\ TRUE} doit obligatoirement être spécifié : nous nous sommes assuré que l'homogénéité des variances était vérifiée. Il faut donc l'indiquer à R afin que le test de Student classique soit réalisé. Si on omet de le spécifier, c'est un autre test qui est réalisé (voir plus bas).
+\end{itemize}
+
+\begin{quote}
+Au seuil \(\alpha\) de 5\%, on rejette l'hypothèse nulle d'égalité des moyennes de la longueur des cornes entre lézards vivants et morts (test \(t\) de Student sur deux échantillons indépendant, \(t = -4.35\), ddl = 182, \(p < 0.001\)). Les lézards morts ont en moyenne des cornes plus courtes (\(\hat{\mu}_{killed} = 21.99\) millimètres) que les lézards vivants (\(\hat{\mu}_{living} = 24.28\) millimètres). La gamme des valeurs les plus probables pour la différence de moyenne entre les deux populations est fournie par l'intervalle de confiance à 95\% de la différence de moyennes : {[}-3.34 ; -1.25{]}.
+\end{quote}
+
+Ce test confirme donc bien l'impression des chercheurs : les lézards principalement pris pour cibles par les pies grièches migratrices ont des cornes en moyenne plus courtes que les lézards de la population générale. Avoir des cornes plus longues protège donc les lézards de la prédation, du moins dans une certaine mesure.
 
 \hypertarget{le-test-non-parametrique-1}{%
 \subsubsection{Le test non paramétrique}\label{le-test-non-parametrique-1}}
 
+Si les conditions d'application du test de Student ne sont pas vérifiées, nous devons utiliser un équivalent non paramétrique. C'est le cas du \textbf{test de Wilcoxon sur la somme des rangs} (également appelé test de Mann-Whitney). Comme pour tous les tests de Wilcoxon, la comparaison porte alors non plus sur les moyennes mais sur les médianes.
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la médiane des 2 populations est égale, leur différence vaut 0 (\(med_{killed}-med_{living} = 0\)).
+\item
+  H\(_1\) : la médiane des 2 populations est différente, leur différence ne vaut pas 0 (\(med_{killed}-med_{living}\neq 0\)).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{wilcox.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Wilcoxon rank sum test with continuity correction
+
+data:  Horn_len by Survival
+W = 1181.5, p-value = 2.366e-05
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -3.200076 -1.300067
+sample estimates:
+difference in location 
+             -2.200031 
+\end{verbatim}
+
+L'argument \texttt{var.equal\ =\ TRUE} n'existe pas pour ce test puisque c'est justement un test non paramétrique qui ne requiert pas l'homogénéité des variances. En revanche, comme pour tous les autres test de Wilcoxon que nous avons réalisés dans ce TP, l'argument \texttt{conf.int\ =\ TRUE} permet d'afficher les estimateurs pertinents, ici, la différence de médiane entre les 2 populations et l'intervalle de confiance à 95\% de cette différence de médiane.
+
+La conclusion est ici la même que pour le test de Student : puisque la \(p\)-value est très inférieure à \(\alpha\), on rejette l'hypothèse nulle : les médianes sont bel et bien différentes.
+
+Enfin, dans le cas où la variable étudiée suit la loi Normale dans les deux populations mais qu'elle n'a pas la même variance dans les deux populations, il est toujours possible de réaliser un test de Wilcoxon, mais il est souvent préférable de réaliser un test de Student modifié : le \textbf{test de approché du \(t\) de Welch}. Ce test est moins puissant que le test de Student classique, mais il reste plus puissant que le test de Wilcoxon, et surtout, il permet de comparer les moyennes et non les variances.
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la moyenne des 2 populations est égale, leur différence vaut 0 (\(\mu_{killed}-\mu_{living} = 0\)).
+\item
+  H\(_1\) : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (\(\mu_{killed}-\mu_{living} \neq 0\)).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Welch Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.2634, df = 40.372, p-value = 0.0001178
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.381912 -1.207092
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 
+\end{verbatim}
+
+La seule différence par rapport à la syntaxe du test \(t\) de Student paramétrique est la suppression de l'argument \texttt{var.equal\ =\ TRUE}. Attention donc, à bien utiliser la syntaxe correcte. Le test du \(t\) de Welch ne devrait être réalisé que lorsque la normalité est vérifiée pour les 2 populations, mais pas l'homoscédasticité. Par rapport au test de Student classique, on constate que le nombre de degrés de libertés est très différent, et donc la \(p\)-value également. Les bornes de l'intervalle de confiance à 95\% de la différence de moyenne sont différentes également puisque leur calcul a été fait en supposant que les 2 populations n'avaient pas même variance.
+
 \hypertarget{exercice-dapplication-2}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication-2}}
+
+On s'intéresse à la différence de taille supposée entre hommes et femmes. Le fichier \texttt{HommesFemmes.xls} contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à l'Université de La Rochelle. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentation graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à l'université de La Rochelle ont-il la même taille ?
 
 \hypertarget{tests-bilateraux-et-unilateraux}{%
 \subsection{Tests bilatéraux et unilatéraux}\label{tests-bilateraux-et-unilateraux}}

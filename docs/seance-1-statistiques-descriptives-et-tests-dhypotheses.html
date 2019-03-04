@@ -186,17 +186,19 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="packages-et-donnees" class="section level2">
 <h2><span class="header-section-number">3.1</span> Packages et données</h2>
 <p>Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d’utiliser des packages spécifiques et d’importer des données depuis des fichiers externes disponibles sur l’ENT.</p>
-<p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les suivants :</p>
+<p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du <code>tidyverse</code> <span class="citation">(Wickham <a href="#ref-R-tidyverse">2017</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(Wickham, Hester, and Francois <a href="#ref-R-readr">2018</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(Wickham and Bryan <a href="#ref-R-readxl">2018</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(McNamara et al. <a href="#ref-R-skimr">2019</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(Fox, Weisberg, and Price <a href="#ref-R-car">2018</a>)</span>, qui permet d’effectuer le test de comparaison de variances de Levene :</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(readr)
-<span class="kw">library</span>(skimr)</code></pre>
+<span class="kw">library</span>(readxl)
+<span class="kw">library</span>(skimr)
+<span class="kw">library</span>(car)</code></pre>
 <p>Si ces commandes (que vous devez taper dans vos scripts avant de les exécuter dans la console de RStudio) renvoient des messages d’erreur, c’est que les packages que vous essayez de charger en mémoire ne sont pas installés sur votre ordinateur. Il vous faudra alors installer les packages manquants avec la fonction :</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;nom_du_package&quot;</span>)</code></pre>
 <p>Comme d’habitude, si tout ça est un peu flou pour vous, relisez <a href="https://besibo.github.io/Biometrie2/bases.html#charger-un-package-en-memoire">la section 2.3</a> du livre de biométrie 2 disponible en ligne.</p>
 <p>Vous aurez également besoin des jeux de données suivants :</p>
 <ul>
 <li><code>Autruches.csv</code></li>
-<li><code>HommesFemmes.txt</code></li>
+<li><code>HommesFemmes.xls</code></li>
 <li><code>HornedLizards.csv</code></li>
 <li><code>Temperature.csv</code></li>
 <li><code>Temperature2.csv</code></li>
@@ -801,8 +803,8 @@ sample estimates:
 <p>Comme pour le test de Student à un échantillon, lorsque les conditions d’application du test de Student sur données appariées ne sont pas vérifiées (c’est à dire lorsque la différence de moyenne entre les deux séries ne suit pas une loi Normale), il faut utiliser un test non paramétrique équivalent.</p>
 <p>Il s’agit là encore du <strong>test de Wilcoxon des rangs signés</strong> qui s’intéresse aux médianes. Les hypothèses nulles et alternatives sont les suivantes :</p>
 <ul>
-<li>H<span class="math inline">\(_0\)</span> : Le changement <strong>médian</strong> de production d’anticorps après la pose chirurgicale de l’implant de testostérone est nul (<span class="math inline">\(\widehat{med}_{Diff} = 0\)</span>).</li>
-<li>H<span class="math inline">\(_1\)</span> : Le changement <strong>médian</strong> de production d’anticorps après la pose chirurgicale de l’implant de testostérone n’est pas nul (<span class="math inline">\(\widehat{med}_{Diff} \neq 0\)</span>).</li>
+<li>H<span class="math inline">\(_0\)</span> : Le changement <strong>médian</strong> de production d’anticorps après la pose chirurgicale de l’implant de testostérone est nul (<span class="math inline">\(med_{Diff} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : Le changement <strong>médian</strong> de production d’anticorps après la pose chirurgicale de l’implant de testostérone n’est pas nul (<span class="math inline">\(med_{Diff} \neq 0\)</span>).</li>
 </ul>
 <p>Comme pour le test de Student, 3 syntaxes sont possibles et strictement équivalentes. Il est important de ne pas oublier l’argument <code>paired = TRUE</code> pour les 2 premières syntaxes afin de s’assurer que l’on réalise bien un test sur données appariées. Enfin, l’argument <code>conf.int = TRUE</code> doit être ajouté pour les 3 syntaxes afin que la (pseudo-) médiane et son intervalle de confiance à 95% soient calculés et affichés.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wilcox.test</span>(DO <span class="op">~</span><span class="st"> </span>Traitement, <span class="dt">data =</span> Testo_long, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)</code></pre>
@@ -954,7 +956,7 @@ Lizard</code></pre>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Survival, <span class="dt">y =</span> Horn_len)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>)</code></pre>
 <p><img src="figure/unnamed-chunk-52-1.png" width="25%" style="display: block; margin: auto;" /></p>
-<p>Nous visualisons ici encore plus clairement que sur les histogrammes le fait que les longueurs de cornes des individus vivants sont légèrement plus longues que celles des individus morts. D’ailleurs, puisque les intervalles de confiance à 95% des médianes des 2 groupes (les encoches) ne se chevauchent pas, un test de comparaison de moyenne devrait logiquement conclure à une différence significative en faveur des individus vivants. On peut également noter que la largeur de l’encoche pour les individus morts est plus large que celle des vivants. Cela traduit une incertitude plus grande autour de la médiane estimée dans le groupe des individus morts. C’est tout à fait logique compte tenu des effectifs modestes dans ce groupe.</p>
+<p>Nous visualisons ici encore plus clairement que sur les histogrammes le fait que les longueurs de cornes des individus vivants sont légèrement plus longues que celles des individus morts. D’ailleurs, puisque les intervalles de confiance à 95% des médianes des 2 groupes (les encoches) ne se chevauchent pas, un test de comparaison des moyennes devrait logiquement conclure à une différence significative en faveur des individus vivants. On peut également noter que la largeur de l’encoche pour les individus morts est plus importante que celle des vivants. Cela traduit une incertitude plus grande autour de la médiane estimée dans le groupe des individus morts. C’est tout à fait logique compte tenu des effectifs modestes dans ce groupe.</p>
 </div>
 </div>
 <div id="le-test-parametrique-2" class="section level3">
@@ -968,16 +970,168 @@ Lizard</code></pre>
 <li>La variable numérique étudiée est distribuée normalement dans les deux populations. Il nous faudra donc faire deux test de Shapiro-Wilk, un pour chaque échantillon.</li>
 <li>L’écart-type (et la variance) de la variable numérique est la même dans les deux populations. C’est ce que l’on appelle l’homoscédasticité.</li>
 </ol>
+<p>En réalité, le test du <span class="math inline">\(t\)</span> de Student sur deux échantillons indépendants est assez robuste face au non respect de cette troisième condition d’application. Cela signifie que si cette troisième condition d’application n’est pas strictement vérifiée, les résultats du tests peuvent malgré tout rester valides. Lorsque les 2 échantillons comparés ont des tailles supérieures ou égales à 30, ce test fonctionne bien même si l’écart-type d’un groupe est jusqu’à 3 fois supérieur ou inférieur à l’écart-type du second groupe, à condition que la taille des 2 échantillons soit proche (ce qui n’est pas le cas ici !). En revanche, s’il les écart-types diffèrent de plus d’un facteur 3, ou si les tailles d’échantillons sont très différentes, le test du <span class="math inline">\(t\)</span> de Student ne devrait pas être utilisé. De même, si la taille des échantillons est inférieure à 30 et que les variances ne sont pas homogènes, ce test ne devrait pas être réalisé. En conclusion, les résultats du test du <span class="math inline">\(t\)</span> de Student à deux échantillons indépendants peuvent rester valides si la troisième condition d’homscédasticité est violée, mais dans certains cas seulement.</p>
+<p>Le test du <span class="math inline">\(t\)</span> de Student sur deux échantillons indépendants est également assez robuste face à des écarts mineurs à la distribution Normale, tant que la forme des deux distributions comparées reste similaire. En outre, la robustesse de ce test augmente avec la taille des échantillons.</p>
+<p>Ici, nous allons donc commencer par vérifier la normalité de chacun des 2 échantillons en réalisant 2 tests de Shapiro-Wilk. Si ces tests confirment que la taille des cornes suit une distribution Normale dans la population générale, nous comparerons alors la variance des 2 populations (nous verrons 3 méthodes pour cela). Les statistiques descriptives réalisées plus haut nous ont montré que les écarts-types des 2 échantillons sont proches, mais que les tailles d’échantillons sont très différentes. L’homoscédasticité doit donc être vérifiée pour que nous ayons le droit de faire le test de Student.</p>
+<p><strong>1. Normalité des données</strong></p>
+<p>Nous commençons donc par tester la Normalité des 2 populations dont sont issus les échantillons. Pour les individus morts les hypothèses sont les suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la taille des cornes suit une distribution Normale dans la population des lézards cornus morts.</li>
+<li>H<span class="math inline">\(_1\)</span> : la taille des cornes ne suit pas une distribution Normale dans la population des lézards cornus morts.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">Lizard <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Survival <span class="op">==</span><span class="st"> &quot;killed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(Horn_len) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">shapiro.test</span>()</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.93452, p-value = 0.06482</code></pre>
+<blockquote>
+<p>La <span class="math inline">\(p\)</span>-value est supérieure à <span class="math inline">\(\alpha = 0.05\)</span>, donc on ne peut pas rejeter l’hypothèse nulle de Normalité pour la taille des cornes de la population des lézards cornus morts (test de Shapiro-Wilk, <span class="math inline">\(W = 0.93\)</span>, <span class="math inline">\(p = 0.065\)</span>).</p>
+</blockquote>
+<p>Pour les individus vivants :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la taille des cornes suit une distribution Normale dans la population des lézards cornus vivants.</li>
+<li>H<span class="math inline">\(_1\)</span> : la taille des cornes ne suit pas une distribution Normale dans la population des lézards cornus vivants.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">Lizard <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Survival <span class="op">==</span><span class="st"> &quot;living&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(Horn_len) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">shapiro.test</span>()</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.96055, p-value = 0.0002234</code></pre>
+<blockquote>
+<p>La <span class="math inline">\(p\)</span>-value est inférieure à <span class="math inline">\(\alpha = 0.05\)</span>, donc on rejette l’hypothèse nulle de Normalité pour la taille des cornes de la population des lézards cornus vivants (test de Shapiro-Wilk, <span class="math inline">\(W = 0.96\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>).</p>
+</blockquote>
+<p>Si l’on examine l’histogramme des 2 échantillons, on constate toutefois que la forme des distributions des 2 séries de données est très proche. Pour les 2 échantillons, la distribution est en effet unimodale, avec une asymétrie gauche assez marquée (une longue queue de distribution du côté gauche). La forme des distributions étant similaire (on parle bien de la forme des histogrammes et non de la position du pic), et les histogrammes étant proches de la forme typique d’une courbe en cloche, le test de Student restera valide.</p>
+<p><strong>2. Homogénéité des variances</strong></p>
+<p>Le test le plus simple pour comparer la variance de 2 échantillons est le test <span class="math inline">\(F\)</span> :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la variance des 2 populations est égale, leur ratio vaut 1 (<span class="math inline">\(\frac{\sigma^2_{killed}}{\sigma^2_{living}} = 1\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la variance des 2 populations est différente, leur ratio ne vaut pas 1 (<span class="math inline">\(\frac{\sigma^2_{killed}}{\sigma^2_{living}} \neq 1\)</span>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">var.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard)</code></pre>
+<pre><code>
+    F test to compare two variances
+
+data:  Horn_len by Survival
+F = 1.0607, num df = 29, denom df = 153, p-value = 0.7859
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.6339331 1.9831398
+sample estimates:
+ratio of variances 
+          1.060711 </code></pre>
+<blockquote>
+<p>Ici, le ratio des variances (la variance des individus morts divisée par la variance des individus vivants) est très proche de 1 (<span class="math inline">\(F = 1.06\)</span>, IC 95% : [0.63 ; 1.98]). Le test <span class="math inline">\(F\)</span> nous montre qu’il est impossible de rejeter H<span class="math inline">\(_0\)</span> : au seuil <span class="math inline">\(\alpha = 0.05\)</span>, le ratio des variances n’est pas significativement différent de 1 (ddl = 29 et 153, <span class="math inline">\(p = 0.79\)</span>), les variances sont homogènes.</p>
+</blockquote>
+<p>Le test de Bartlett est un autre test qui permet de comparer la variance de plusieurs populations. Lorsque le nombe de populations est égal à 2 (comme ici), ce test est absolument équivalent au test <span class="math inline">\(F\)</span> ci-dessus.</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : Toutes les populations ont même variance (<span class="math inline">\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : Au moins une population a une variance différente des autres.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bartlett.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard)</code></pre>
+<pre><code>
+    Bartlett test of homogeneity of variances
+
+data:  Horn_len by Survival
+Bartlett&#39;s K-squared = 0.042411, df = 1, p-value = 0.8368</code></pre>
+<p>Enfin, le test de Levene devrait être préféré la plupart du temps. Comme le test de Bartlett, il permet de comparer la variance de plusieurs populations, mais il est plus robuste vis à vis de la non-normalité des données.</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : Toutes les populations ont même variance (<span class="math inline">\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : Au moins une population a une variance différente des autres.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Le test de Leven fait partie du package car. Il doit être chargé en mémoire</span>
+<span class="co"># library(car)</span>
+<span class="kw">leveneTest</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard)</code></pre>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
+       Df F value Pr(&gt;F)
+group   1  0.0035  0.953
+      182               </code></pre>
+<p>Ici encore, les conclusions sont les mêmes :</p>
+<blockquote>
+<p>Il est impossible de rejeter l’hypothèse nulle d’homogénéité des variances au seuil <span class="math inline">\(\alpha = 0.05\)</span> (test de Levene, <span class="math inline">\(F\)</span> = 0.004, ddl = 1, <span class="math inline">\(p = 0.953\)</span>).</p>
+</blockquote>
 </div>
 <div id="realisation-du-test-et-interpretation-2" class="section level4">
 <h4><span class="header-section-number">3.4.2.2</span> Réalisation du test et interprétation</h4>
+<p>Puisque la taille des cornes du lézard cornu suit approximativement la même distribution “presque Normale” dans les 2 ppulations (lézards morts et vivants) et que ces 2 ppulations ont des variances homogènes, on peut réaliser le test du <span class="math inline">\(t\)</span> de Student sur deux échantillons indépendants.</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} \neq 0\)</span>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 2.27e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.335402 -1.253602
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>Notez bien la syntaxe :</p>
+<ul>
+<li>nous utilisons ici la syntaxe du type “formule” faisant appel au symbole <code>~</code> (Longueur des cornes en fonction de la Survie) et à l’argument <code>data =</code>.</li>
+<li>l’argument <code>paired = TRUE</code> a disparu puisque nous avons ici deux échantillons indépendants</li>
+<li>l’argument <code>var.equal = TRUE</code> doit obligatoirement être spécifié : nous nous sommes assuré que l’homogénéité des variances était vérifiée. Il faut donc l’indiquer à R afin que le test de Student classique soit réalisé. Si on omet de le spécifier, c’est un autre test qui est réalisé (voir plus bas).</li>
+</ul>
+<blockquote>
+<p>Au seuil <span class="math inline">\(\alpha\)</span> de 5%, on rejette l’hypothèse nulle d’égalité des moyennes de la longueur des cornes entre lézards vivants et morts (test <span class="math inline">\(t\)</span> de Student sur deux échantillons indépendant, <span class="math inline">\(t = -4.35\)</span>, ddl = 182, <span class="math inline">\(p &lt; 0.001\)</span>). Les lézards morts ont en moyenne des cornes plus courtes (<span class="math inline">\(\hat{\mu}_{killed} = 21.99\)</span> millimètres) que les lézards vivants (<span class="math inline">\(\hat{\mu}_{living} = 24.28\)</span> millimètres). La gamme des valeurs les plus probables pour la différence de moyenne entre les deux populations est fournie par l’intervalle de confiance à 95% de la différence de moyennes : [-3.34 ; -1.25].</p>
+</blockquote>
+<p>Ce test confirme donc bien l’impression des chercheurs : les lézards principalement pris pour cibles par les pies grièches migratrices ont des cornes en moyenne plus courtes que les lézards de la population générale. Avoir des cornes plus longues protège donc les lézards de la prédation, du moins dans une certaine mesure.</p>
 </div>
 </div>
 <div id="le-test-non-parametrique-1" class="section level3">
 <h3><span class="header-section-number">3.4.3</span> Le test non paramétrique</h3>
+<p>Si les conditions d’application du test de Student ne sont pas vérifiées, nous devons utiliser un équivalent non paramétrique. C’est le cas du <strong>test de Wilcoxon sur la somme des rangs</strong> (également appelé test de Mann-Whitney). Comme pour tous les tests de Wilcoxon, la comparaison porte alors non plus sur les moyennes mais sur les médianes.</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la médiane des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(med_{killed}-med_{living} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la médiane des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(med_{killed}-med_{living}\neq 0\)</span>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wilcox.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  Horn_len by Survival
+W = 1181.5, p-value = 2.366e-05
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -3.200076 -1.300067
+sample estimates:
+difference in location 
+             -2.200031 </code></pre>
+<p>L’argument <code>var.equal = TRUE</code> n’existe pas pour ce test puisque c’est justement un test non paramétrique qui ne requiert pas l’homogénéité des variances. En revanche, comme pour tous les autres test de Wilcoxon que nous avons réalisés dans ce TP, l’argument <code>conf.int = TRUE</code> permet d’afficher les estimateurs pertinents, ici, la différence de médiane entre les 2 populations et l’intervalle de confiance à 95% de cette différence de médiane.</p>
+<p>La conclusion est ici la même que pour le test de Student : puisque la <span class="math inline">\(p\)</span>-value est très inférieure à <span class="math inline">\(\alpha\)</span>, on rejette l’hypothèse nulle : les médianes sont bel et bien différentes.</p>
+<p>Enfin, dans le cas où la variable étudiée suit la loi Normale dans les deux populations mais qu’elle n’a pas la même variance dans les deux populations, il est toujours possible de réaliser un test de Wilcoxon, mais il est souvent préférable de réaliser un test de Student modifié : le <strong>test de approché du <span class="math inline">\(t\)</span> de Welch</strong>. Ce test est moins puissant que le test de Student classique, mais il reste plus puissant que le test de Wilcoxon, et surtout, il permet de comparer les moyennes et non les variances.</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} \neq 0\)</span>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard)</code></pre>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.2634, df = 40.372, p-value = 0.0001178
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.381912 -1.207092
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>La seule différence par rapport à la syntaxe du test <span class="math inline">\(t\)</span> de Student paramétrique est la suppression de l’argument <code>var.equal = TRUE</code>. Attention donc, à bien utiliser la syntaxe correcte. Le test du <span class="math inline">\(t\)</span> de Welch ne devrait être réalisé que lorsque la normalité est vérifiée pour les 2 populations, mais pas l’homoscédasticité. Par rapport au test de Student classique, on constate que le nombre de degrés de libertés est très différent, et donc la <span class="math inline">\(p\)</span>-value également. Les bornes de l’intervalle de confiance à 95% de la différence de moyenne sont différentes également puisque leur calcul a été fait en supposant que les 2 populations n’avaient pas même variance.</p>
 </div>
 <div id="exercice-dapplication-2" class="section level3">
 <h3><span class="header-section-number">3.4.4</span> Exercice d’application</h3>
+<p>On s’intéresse à la différence de taille supposée entre hommes et femmes. Le fichier <code>HommesFemmes.xls</code> contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à l’Université de La Rochelle. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d’examiner les données à l’aide de statistiques descriptives et de représentation graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à l’université de La Rochelle ont-il la même taille ?</p>
 </div>
 </div>
 <div id="tests-bilateraux-et-unilateraux" class="section level2">
@@ -987,6 +1141,21 @@ Lizard</code></pre>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-R-tidyverse">
+<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div id="ref-R-readr">
+<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2018. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.</p>
+</div>
+<div id="ref-R-readxl">
+<p>Wickham, Hadley, and Jennifer Bryan. 2018. <em>Readxl: Read Excel Files</em>. <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a>.</p>
+</div>
+<div id="ref-R-skimr">
+<p>McNamara, Amelia, Arino de la RubiaEduardo, Hao Zhu, Shannon Ellis, and Michael Quinn. 2019. <em>Skimr: Compact and Flexible Summaries of Data</em>. <a href="https://CRAN.R-project.org/package=skimr">https://CRAN.R-project.org/package=skimr</a>.</p>
+</div>
+<div id="ref-R-car">
+<p>Fox, John, Sanford Weisberg, and Brad Price. 2018. <em>Car: Companion to Applied Regression</em>. <a href="https://CRAN.R-project.org/package=car">https://CRAN.R-project.org/package=car</a>.</p>
+</div>
 <div id="ref-Hasselquist1999">
 <p>Hasselquist, Dennis, James A. Marsh, Paul W. Sherman, and John C. Wingfield. 1999. “Is Avian Humoral Immunocompetence Suppressed by Testosterone?” <em>Behavioral Ecology and Sociobiology</em> 45 (3): 167–75. <a href="https://doi.org/10.1007/s002650050550">https://doi.org/10.1007/s002650050550</a>.</p>
 </div>

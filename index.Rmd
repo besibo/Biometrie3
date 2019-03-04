@@ -34,13 +34,13 @@ Ce livre contient l'ensemble du matériel (contenus, exemples, exercices...) né
 
 Je considère qu'à ce stade, vous devez être à l'aise dans RStudio pour effectuer les tâches suivantes :
 
-1. Importer des jeux de données dans RStudio
-2. Manipuler des tableaux de données avec `tidyr` pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques
-3. Faire des graphiques exploratoires avec `ggplot2` pour visualiser des données
-4. Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonction `filter()`, `select()`, `arrange()`, `mutate()`, `summarise()` et `group_by()` du package `dplyr`
-5. Utiliser le pipe `%>%` afin d'enchaîner plusieurs commandes
-6. Créer des scripts parlants contenant des commandes et des commentaires utiles
-7. Spécifier/modifier votre répertoire de travail
+1. Importer des jeux de données dans RStudio.
+2. Manipuler des tableaux de données avec `tidyr` [@R-tidyr] pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.
+3. Faire des graphiques exploratoires avec `ggplot2` [@R-ggplot2] pour visualiser des données.
+4. Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonction `filter()`, `select()`, `arrange()`, `mutate()`, `summarise()` et `group_by()` du package `dplyr` [@R-dplyr].
+5. Utiliser le pipe `%>%` afin d'enchaîner plusieurs commandes.
+6. Créer des scripts parlants contenant des commandes et des commentaires utiles.
+7. Spécifier/modifier votre répertoire de travail.
 8. Installer des packages additionnels.
 
 Si vous pensez avoir besoin de rappels sur ces notions, je vous encourrage vivement à consulter [le livre en ligne](https://besibo.github.io/Biometrie2/) dédié aux travaux pratiques de Biométrie 2 pour vous rafraîchir la mémoire.
@@ -55,7 +55,7 @@ L'organisation des TP et TEA de biométrie 3 sera la suivante :
 ```{r package_bibliography, include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2', 'gridExtra', 'skimr', 'bindrcpp'), 'packages.bib')
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2', 'gridExtra', 'skimr', 'bindrcpp', 'tidyr', 'dplyr', 'readr', "car", "readxl"), 'packages.bib')
 ```
 
 
@@ -63,7 +63,7 @@ knitr::write_bib(c(
 options(replace.assign = TRUE, width = 70)
 options(repos = "http://cran.r-project.org/")
 
-list.of.packages <- c("nycflights13", "gapminder", "knitr", "tidyverse", "gridExtra", "devtools", "extrafont", "kableExtra", "skimr", "bindrcpp")
+list.of.packages <- c("nycflights13", "gapminder", "knitr", "tidyverse", "gridExtra", "devtools", "extrafont", "kableExtra", "skimr", "bindrcpp", "car")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages)
 
