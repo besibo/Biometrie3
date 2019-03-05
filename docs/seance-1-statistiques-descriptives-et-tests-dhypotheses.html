@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2019-03-04">
+<meta name="date" content="2019-03-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -213,7 +213,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <h2><span class="header-section-number">3.2</span> Comparaison de la moyenne d’une population à une valeur théorique</h2>
 <div id="Explo" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Exploration préalable des données</h3>
-<p>Avant de se lancer dans les tests d’hypothèses, il est <strong>toujours indispensable</strong> d’examiner les données dont on dispose à l’aide, d’une part de statistiques descriptives numériques, et d’autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d’hypothèses risquer de grossières erreurs.</p>
+<p>Avant de se lancer dans les tests d’hypothèses, il est <strong>toujours indispensable</strong> d’examiner les données dont on dispose à l’aide, d’une part de statistiques descriptives numériques, et d’autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d’hypothèses sans risquer de grossières erreurs.</p>
 <div id="importation-et-examen-visuel" class="section level4">
 <h4><span class="header-section-number">3.2.1.1</span> Importation et examen visuel</h4>
 <p>Commencez par importer les données contenues dans le fichier <code>Temperature.csv</code>. Pour cela, utilisez l’assistant d’importation de RStudio. Si vous ne savez plus comment faire, consultez <a href="https://besibo.github.io/Biometrie2/tidyr.html#importer-des-donnees-depuis-un-tableur">la section 5.3</a> du livre en ligne de Biométrie 2.</p>
@@ -245,7 +245,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <p><span class="math display">\[ºC = \frac{ºF - 32}{1.8}\]</span></p>
 <pre class="sourceCode r"><code class="sourceCode r">Temp_clean &lt;-<span class="st"> </span>Temperature <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>individual) <span class="op">%&gt;%</span><span class="st">      </span><span class="co"># Suppression de la première colonne</span>
-<span class="st">  </span><span class="kw">mutate</span>(                      <span class="co"># Transformation des tempértures en Celsius</span>
+<span class="st">  </span><span class="kw">mutate</span>(                      <span class="co"># Transformation des températures en Celsius</span>
     <span class="dt">temperature =</span> (temperature <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">/</span><span class="st"> </span><span class="fl">1.8</span>
     )
 
@@ -302,13 +302,13 @@ Temp_clean</code></pre>
 <span class="st">  </span><span class="kw">IQR</span>()</code></pre>
 <pre><code>[1] 0.5555556</code></pre>
 <p>On constate ici que l’intervalle inter quartile a une largeur de 0.55 degrés Celsius. Cela signifie que les 50% des températures les plus centrales sont situées dans un intervalle d’environ un demi-degré celsius.</p>
-<p>Enfin, un eautre façon d’obtenir des informations rapidement consiste à utiliser la fonction <code>skim()</code> du package <code>skimr</code> :</p>
+<p>Enfin, une autre façon d’obtenir des informations rapidement consiste à utiliser la fonction <code>skim()</code> du package <code>skimr</code> :</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">skim</span>(Temp_clean)</code></pre>
 <pre><code>Skim summary statistics
  n obs: 25 
  n variables: 1 
 
-── Variable type:numeric ───────────────────────────────────
+── Variable type:numeric ─────────────────
     variable missing complete  n  mean   sd    p0   p25 p50   p75
  temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22
   p100     hist
@@ -598,11 +598,11 @@ Testo_long</code></pre>
  n obs: 13 
  n variables: 3 
 
-── Variable type:factor ────────────────────────────────────
+── Variable type:factor ──────────────────
  variable missing complete  n n_unique             top_counts ordered
        ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
-── Variable type:numeric ───────────────────────────────────
+── Variable type:numeric ─────────────────
  variable missing complete  n mean   sd   p0 p25  p50  p75 p100
     After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
    Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
@@ -618,7 +618,7 @@ Testo_long</code></pre>
  n variables: 3 
  group variables: Traitement 
 
-── Variable type:factor ────────────────────────────────────
+── Variable type:factor ──────────────────
  Traitement variable missing complete  n n_unique
      Before       ID       0       13 13       13
       After       ID       0       13 13       13
@@ -626,7 +626,7 @@ Testo_long</code></pre>
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
-── Variable type:numeric ───────────────────────────────────
+── Variable type:numeric ─────────────────
  Traitement variable missing complete  n mean   sd   p0 p25  p50  p75
      Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88
       After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5   
@@ -922,7 +922,7 @@ Lizard</code></pre>
  n variables: 2 
  group variables: Survival 
 
-── Variable type:numeric ───────────────────────────────────
+── Variable type:numeric ─────────────────
  Survival variable missing complete   n  mean   sd   p0  p25   p50
    killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25
    living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55

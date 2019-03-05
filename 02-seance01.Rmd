@@ -35,7 +35,7 @@ Vous aurez également besoin des jeux de données suivants :
 
 ### Exploration préalable des données{#Explo}
 
-Avant de se lancer dans les tests d'hypothèses, il est **toujours indispensable** d'examiner les données dont on dispose à l'aide, d'une part de statistiques descriptives numériques, et d'autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d'hypothèses risquer de grossières erreurs.
+Avant de se lancer dans les tests d'hypothèses, il est **toujours indispensable** d'examiner les données dont on dispose à l'aide, d'une part de statistiques descriptives numériques, et d'autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d'hypothèses sans risquer de grossières erreurs.
 
 
 #### Importation et examen visuel
@@ -72,7 +72,7 @@ $$ºC = \frac{ºF - 32}{1.8}$$
 ```{r}
 Temp_clean <- Temperature %>% 
   select(-individual) %>%      # Suppression de la première colonne
-  mutate(                      # Transformation des tempértures en Celsius
+  mutate(                      # Transformation des températures en Celsius
     temperature = (temperature - 32) / 1.8
     )
 
@@ -121,7 +121,7 @@ Temp_clean %>%
 ```
  On constate ici que l'intervalle inter quartile a une largeur de 0.55 degrés Celsius. Cela signifie que les 50% des températures les plus centrales sont situées dans un intervalle d'environ un demi-degré celsius.
 
-Enfin, un eautre façon d'obtenir des informations rapidement consiste à utiliser la fonction `skim()` du package `skimr` :
+Enfin, une autre façon d'obtenir des informations rapidement consiste à utiliser la fonction `skim()` du package `skimr` :
 
 ```{r}
 skim(Temp_clean)

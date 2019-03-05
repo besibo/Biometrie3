@@ -129,7 +129,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-03-04}
+    \date{2019-03-05}
 
 \usepackage[french]{babel}
 \usepackage{mathspec}  % \usepackage{fontspec}
@@ -312,7 +312,7 @@ Vous aurez également besoin des jeux de données suivants :
 \hypertarget{Explo}{%
 \subsubsection{Exploration préalable des données}\label{Explo}}
 
-Avant de se lancer dans les tests d'hypothèses, il est \textbf{toujours indispensable} d'examiner les données dont on dispose à l'aide, d'une part de statistiques descriptives numériques, et d'autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d'hypothèses risquer de grossières erreurs.
+Avant de se lancer dans les tests d'hypothèses, il est \textbf{toujours indispensable} d'examiner les données dont on dispose à l'aide, d'une part de statistiques descriptives numériques, et d'autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d'hypothèses sans risquer de grossières erreurs.
 
 \hypertarget{importation-et-examen-visuel}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel}}
@@ -373,7 +373,7 @@ On constate ici 2 choses que nous allons modifier :
 \begin{Highlighting}[]
 \NormalTok{Temp_clean <-}\StringTok{ }\NormalTok{Temperature }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{individual) }\OperatorTok{%>%}\StringTok{      }\CommentTok{# Suppression de la première colonne}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(                      }\CommentTok{# Transformation des tempértures en Celsius}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(                      }\CommentTok{# Transformation des températures en Celsius}
     \DataTypeTok{temperature =}\NormalTok{ (temperature }\OperatorTok{-}\StringTok{ }\DecValTok{32}\NormalTok{) }\OperatorTok{/}\StringTok{ }\FloatTok{1.8}
 \NormalTok{    )}
 
@@ -471,7 +471,7 @@ La seconde fonction utile est la fonction \texttt{IQR()}, comme ``Inter Quartile
 
 On constate ici que l'intervalle inter quartile a une largeur de 0.55 degrés Celsius. Cela signifie que les 50\% des températures les plus centrales sont situées dans un intervalle d'environ un demi-degré celsius.
 
-Enfin, un eautre façon d'obtenir des informations rapidement consiste à utiliser la fonction \texttt{skim()} du package \texttt{skimr} :
+Enfin, une autre façon d'obtenir des informations rapidement consiste à utiliser la fonction \texttt{skim()} du package \texttt{skimr} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -484,7 +484,7 @@ Skim summary statistics
  n obs: 25 
  n variables: 1 
 
--- Variable type:numeric -----------------------------------
+-- Variable type:numeric -----------------
     variable missing complete  n  mean   sd    p0   p25 p50   p75
  temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22
   p100     hist
@@ -996,11 +996,11 @@ Skim summary statistics
  n obs: 13 
  n variables: 3 
 
--- Variable type:factor ------------------------------------
+-- Variable type:factor ------------------
  variable missing complete  n n_unique             top_counts ordered
        ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----------------------------------
+-- Variable type:numeric -----------------
  variable missing complete  n mean   sd   p0 p25  p50  p75 p100
     After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
    Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
@@ -1025,7 +1025,7 @@ Skim summary statistics
  n variables: 3 
  group variables: Traitement 
 
--- Variable type:factor ------------------------------------
+-- Variable type:factor ------------------
  Traitement variable missing complete  n n_unique
      Before       ID       0       13 13       13
       After       ID       0       13 13       13
@@ -1033,7 +1033,7 @@ Skim summary statistics
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----------------------------------
+-- Variable type:numeric -----------------
  Traitement variable missing complete  n mean   sd   p0 p25  p50  p75
      Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88
       After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5   
@@ -1551,7 +1551,7 @@ Skim summary statistics
  n variables: 2 
  group variables: Survival 
 
--- Variable type:numeric -----------------------------------
+-- Variable type:numeric -----------------
  Survival variable missing complete   n  mean   sd   p0  p25   p50
    killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25
    living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55
