@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>3 Séance 1 : statistiques descriptives et tests d’hypothèses | Travaux Pratiques de Biométrie 3</title>
+  <meta name="description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3.">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="3 Séance 1 : statistiques descriptives et tests d’hypothèses | Travaux Pratiques de Biométrie 3" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://besibo.github.io/Biometrie3/" />
+  
+  <meta property="og:description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
+  <meta name="github-repo" content="besibo/Biometrie3" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Séance 1 : statistiques descriptives et tests d’hypothèses | Travaux Pratiques de Biométrie 3" />
+  
+  <meta name="twitter:description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
+  
+
+<meta name="author" content="Benoît Simon-Bouhet">
+
+
+<meta name="date" content="2019-03-11">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="intro.html">
+<link rel="next" href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Biométrie 3</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Préambule</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="seance1.html"><a href="seance1.html"><i class="fa fa-check"></i><b>3</b> Séance 1 : statistiques descriptives et tests d’hypothèses</a><ul>
+<li class="chapter" data-level="3.1" data-path="seance1.html"><a href="seance1.html#packages"><i class="fa fa-check"></i><b>3.1</b> Packages et données</a></li>
+<li class="chapter" data-level="3.2" data-path="seance1.html"><a href="seance1.html#comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique"><i class="fa fa-check"></i><b>3.2</b> Comparaison de la moyenne d’une population à une valeur théorique</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="seance1.html"><a href="seance1.html#Explo"><i class="fa fa-check"></i><b>3.2.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="3.2.2" data-path="seance1.html"><a href="seance1.html#le-test-parametrique"><i class="fa fa-check"></i><b>3.2.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="3.2.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-parametrique"><i class="fa fa-check"></i><b>3.2.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.2.4" data-path="seance1.html"><a href="seance1.html#exercice-dapplication"><i class="fa fa-check"></i><b>3.2.4</b> Exercice d’application</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="seance1.html"><a href="seance1.html#comparaison-de-la-moyenne-de-2-populations-donnees-appariees"><i class="fa fa-check"></i><b>3.3</b> Comparaison de la moyenne de 2 populations : données appariées</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="seance1.html"><a href="seance1.html#Explo2"><i class="fa fa-check"></i><b>3.3.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="3.3.2" data-path="seance1.html"><a href="seance1.html#le-test-parametrique-1"><i class="fa fa-check"></i><b>3.3.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="3.3.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-parametrique-1"><i class="fa fa-check"></i><b>3.3.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.3.4" data-path="seance1.html"><a href="seance1.html#exercice-dapplication-1"><i class="fa fa-check"></i><b>3.3.4</b> Exercice d’application</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="seance1.html"><a href="seance1.html#Indep"><i class="fa fa-check"></i><b>3.4</b> Comparaison de la moyenne de 2 populations : échantillons indépendants</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="seance1.html"><a href="seance1.html#exploration-prealable-des-donnees"><i class="fa fa-check"></i><b>3.4.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="3.4.2" data-path="seance1.html"><a href="seance1.html#le-test-parametrique-2"><i class="fa fa-check"></i><b>3.4.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="3.4.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-parametrique-2"><i class="fa fa-check"></i><b>3.4.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.4.4" data-path="seance1.html"><a href="seance1.html#exercice-dapplication-2"><i class="fa fa-check"></i><b>3.4.4</b> Exercice d’application</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="seance1.html"><a href="seance1.html#tests-bilateraux-et-unilateraux"><i class="fa fa-check"></i><b>3.5</b> Tests bilatéraux et unilatéraux</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="seance1.html"><a href="seance1.html#principes"><i class="fa fa-check"></i><b>3.5.1</b> Principes</a></li>
+<li class="chapter" data-level="3.5.2" data-path="seance1.html"><a href="seance1.html#un-exemple-pas-a-pas"><i class="fa fa-check"></i><b>3.5.2</b> Un exemple pas à pas</a></li>
+<li class="chapter" data-level="3.5.3" data-path="seance1.html"><a href="seance1.html#exercice-dapplication-3"><i class="fa fa-check"></i><b>3.5.3</b> Exercice d’application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html"><i class="fa fa-check"></i><b>4</b> Séance 2 : comparer la moyenne de plus de 2 groupes</a><ul>
+<li class="chapter" data-level="4.1" data-path="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html#packages-et-donnees"><i class="fa fa-check"></i><b>4.1</b> Packages et données</a></li>
+<li class="chapter" data-level="4.2" data-path="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html#lanalyse-de-variance-a-un-facteur"><i class="fa fa-check"></i><b>4.2</b> L’analyse de variance à un facteur</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html#exploration-prealable-des-donnees-1"><i class="fa fa-check"></i><b>4.2.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="4.2.2" data-path="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html#le-test-parametrique-3"><i class="fa fa-check"></i><b>4.2.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="4.2.3" data-path="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html#lalternative-non-parametrique-3"><i class="fa fa-check"></i><b>4.2.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="4.2.4" data-path="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html#exercice-dapplication-4"><i class="fa fa-check"></i><b>4.2.4</b> Exercice d’application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html"><i class="fa fa-check"></i><b>5</b> Séance 3 : corrélations et régressions</a></li>
+<li class="chapter" data-level="6" data-path="seance-4-applications-et-corrections.html"><a href="seance-4-applications-et-corrections.html"><i class="fa fa-check"></i><b>6</b> Séance 4 : applications et corrections</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publié avec bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Travaux Pratiques de Biométrie 3</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="seance1" class="section level1">
+<h1><span class="header-section-number">3</span> Séance 1 : statistiques descriptives et tests d’hypothèses</h1>
+<div id="packages" class="section level2">
+<h2><span class="header-section-number">3.1</span> Packages et données</h2>
+<p>Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d’utiliser des packages spécifiques et d’importer des données depuis des fichiers externes disponibles sur l’ENT.</p>
+<p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du <code>tidyverse</code> <span class="citation">(Wickham <a href="#ref-R-tidyverse">2017</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(Wickham, Hester, and Francois <a href="#ref-R-readr">2018</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(Wickham and Bryan <a href="#ref-R-readxl">2018</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(McNamara et al. <a href="#ref-R-skimr">2019</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(Fox, Weisberg, and Price <a href="#ref-R-car">2018</a>)</span>, qui permet d’effectuer le test de comparaison de variances de Levene :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(readr)
+<span class="kw">library</span>(readxl)
+<span class="kw">library</span>(skimr)
+<span class="kw">library</span>(car)</code></pre>
+<p>Si ces commandes (que vous devez taper dans vos scripts avant de les exécuter dans la console de RStudio) renvoient des messages d’erreur, c’est que les packages que vous essayez de charger en mémoire ne sont pas installés sur votre ordinateur. Il vous faudra alors installer les packages manquants avec la fonction :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;nom_du_package&quot;</span>)</code></pre>
+<p>Comme d’habitude, si tout ça est un peu flou pour vous, relisez <a href="https://besibo.github.io/Biometrie2/bases.html#charger-un-package-en-memoire">la section 2.3</a> du livre de biométrie 2 disponible en ligne.</p>
+<p>Vous aurez également besoin des jeux de données suivants :</p>
+<ul>
+<li><code>Autruches.csv</code></li>
+<li><code>HommesFemmes.xls</code></li>
+<li><code>HornedLizards.csv</code></li>
+<li><code>Temperature.csv</code></li>
+<li><code>Temperature2.csv</code></li>
+<li><code>Testosterone.csv</code></li>
+</ul>
+</div>
+<div id="comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique" class="section level2">
+<h2><span class="header-section-number">3.2</span> Comparaison de la moyenne d’une population à une valeur théorique</h2>
+<div id="Explo" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Exploration préalable des données</h3>
+<p>Avant de se lancer dans les tests d’hypothèses, il est <strong>toujours indispensable</strong> d’examiner les données dont on dispose à l’aide, d’une part de statistiques descriptives numériques, et d’autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d’hypothèses sans risquer de grossières erreurs.</p>
+<div id="importation-et-examen-visuel" class="section level4">
+<h4><span class="header-section-number">3.2.1.1</span> Importation et examen visuel</h4>
+<p>Commencez par importer les données contenues dans le fichier <code>Temperature.csv</code>. Pour cela, utilisez l’assistant d’importation de RStudio. Si vous ne savez plus comment faire, consultez <a href="https://besibo.github.io/Biometrie2/tidyr.html#importer-des-donnees-depuis-un-tableur">la section 5.3</a> du livre en ligne de Biométrie 2.</p>
+<p>Vous stockerez les données dans un objet que vous nommerez <code>Temperature</code>. Après l’importation, taper son nom dans la console de RStudio doit produire le résultat suivant :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Temperature</code></pre>
+<pre><code># A tibble: 25 x 2
+   individual temperature
+        &lt;dbl&gt;       &lt;dbl&gt;
+ 1          1        98.4
+ 2          2        98.6
+ 3          3        97.8
+ 4          4        98.8
+ 5          5        97.9
+ 6          6        99  
+ 7          7        98.2
+ 8          8        98.8
+ 9          9        98.8
+10         10        99  
+# … with 15 more rows</code></pre>
+<p>Ce tableau contient les températures corporelles de 25 adultes en bonne santé choisis au hasard parmi la population américaine. On souhaite examiner la croyance populaire indiquant que la température moyenne d’adultes en bomme santé vaut 37ºC.</p>
+<p>La première chose à faire quand on travaille avec des données inconnues, c’est d’examiner les données brutes. Ici, les données sont importées au format <code>tibble</code>, donc seules les premières lignes sont visibles. Pour visualiser l’ensemble du tableau, utilisez la fonction <code>View()</code> :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(Temperature)</code></pre>
+<p>Cette commande doit ouvrir un nouvel onglet présentant les données dans un tableur simplifié, en lecture seule.</p>
+<p>On constate ici 2 choses que nous allons modifier :</p>
+<ol style="list-style-type: decimal">
+<li>la première colonne, intitulé <code>inidividual</code>, n’est pas véritablement une variable. Cette colonne ne contient qu’un identifiant qui est en fait identique au numéro de ligne. Nous allons donc supprimer cette colonne</li>
+<li>les températures sont exprimées en degrés Fahrenheit, ce qui rend leur lecture difficile pour nous qui sommes habitués à utiliser le système métrique et les degrés Celsius. Nous allons donc convertir les températures en degrés Celsius grâce à la formule suivante :</li>
+</ol>
+<p><span class="math display">\[ºC = \frac{ºF - 32}{1.8}\]</span></p>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean &lt;-<span class="st"> </span>Temperature <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>individual) <span class="op">%&gt;%</span><span class="st">      </span><span class="co"># Suppression de la première colonne</span>
+<span class="st">  </span><span class="kw">mutate</span>(                      <span class="co"># Transformation des températures en Celsius</span>
+    <span class="dt">temperature =</span> (temperature <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">/</span><span class="st"> </span><span class="fl">1.8</span>
+    )
+
+Temp_clean</code></pre>
+<pre><code># A tibble: 25 x 1
+   temperature
+         &lt;dbl&gt;
+ 1        36.9
+ 2        37.0
+ 3        36.6
+ 4        37.1
+ 5        36.6
+ 6        37.2
+ 7        36.8
+ 8        37.1
+ 9        37.1
+10        37.2
+# … with 15 more rows</code></pre>
+<p>Il nous est maintenant possible d’examiner à nouveau les données avec la fonction <code>View()</code>. Avec des valeurs de températures comprises entre 36.3 ºC et 37.8 ºC, il n’y a visiblement pas de données aberrantes.</p>
+<p>C’est toujours la première chose à faire : regarder les données brutes pour repérer :
+- La nature des variables présentes.
+- Les variables inutiles qui pourront être supprimées ou négligées.
+- Les unités des variables utiles, afin de pouvoir les convertir si nécessaire.
+- Les valeurs manquantes ou aberrantes qui demanderont toujours un soin particulier.</p>
+<p>Une fois l’examen préliminaire des données réalisé, on peut passer au calcul des statistiques descriptives.</p>
+</div>
+<div id="statistiques-descriptives" class="section level4">
+<h4><span class="header-section-number">3.2.1.2</span> Statistiques descriptives</h4>
+<p>On s’intéresse ici au calcul de grandeurs statistiques nous apportant des renseignement sur la distribution des valeurs de l’échantillon. Les questions auxquelles on tente de répondre à ce stade sont les suivantes :</p>
+<ul>
+<li>Quelle est la tendance moyenne</li>
+<li>Quelle est la dispersion des données autour de la moyenne</li>
+</ul>
+<p>Pour répondre à ces questions, on peut faire appel à de multiples fonctions. J’en évoquerai ici seulement 3 qui permettent d’obtenir la plupart des informations dont nous avons besoin très simplement :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(Temp_clean)</code></pre>
+<pre><code>  temperature   
+ Min.   :36.33  
+ 1st Qu.:36.67  
+ Median :37.00  
+ Mean   :36.96  
+ 3rd Qu.:37.22  
+ Max.   :37.78  </code></pre>
+<p>Comme son nom l’indique, la fonction <code>summary()</code> renvoie un résumé des données :</p>
+<ul>
+<li>les valeurs extrêmes (minimum et maximum)</li>
+<li>les valeurs “centrales” (moyenne et médiane)</li>
+<li>les valeurs des quartiles (premier et troisième quartiles)</li>
+</ul>
+<p>Ces valeurs seront presques toutes reprises sur le graphique de type “boîte à moustaches” que nous verrons plus bas.</p>
+<p>On constate ici que la moyenne et la médiane sont très proches. La distribution des température doit donc être à peut près symmétrique, avec à peu près autant de valeurs au dessus que de valeurs en dessous de la moyenne.</p>
+<p>La seconde fonction utile est la fonction <code>IQR()</code>, comme “Inter Quartile Range” (ou intervalle inter-quartile). Cette fonction renvoie l’étendue de l’intervalle inter-quartile, c’est à dire la valeur du troisième quartile moins la valeur de premier quartile. Attention, cette fonction a besoin d’un vecteur en guise d’argument, or nos données sont stockées sous forme de <code>tibble</code>. Nous allons donc utiliser la fonction <code>pull()</code> du package <code>dplyr</code> afin de transformer (momentanément) la colonne <code>temperature</code> du tableau <code>Temp_clean</code> en vecteur :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(temperature) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">IQR</span>()</code></pre>
+<pre><code>[1] 0.5555556</code></pre>
+<p>On constate ici que l’intervalle inter quartile a une largeur de 0.55 degrés Celsius. Cela signifie que les 50% des températures les plus centrales sont situées dans un intervalle d’environ un demi-degré celsius.</p>
+<p>Enfin, une autre façon d’obtenir des informations rapidement consiste à utiliser la fonction <code>skim()</code> du package <code>skimr</code> :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">skim</span>(Temp_clean)</code></pre>
+<pre><code>Skim summary statistics
+ n obs: 25 
+ n variables: 1 
+
+── Variable type:numeric ─────
+    variable missing complete  n  mean   sd    p0   p25 p50   p75
+ temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22
+  p100     hist
+ 37.78 ▅▃▁▇▇▂▂▁</code></pre>
+<p>(Attention : si vous lisez ce document au format pdf, vous ne pourrez pas visualiser correctement la totalité des résultats produits par cette fonction. Consultez la version html de ce document, ou tapez la commande dans RStudio).</p>
+<p>Toute comme <code>summary()</code>, la fonction <code>skim()</code> renvoie les valeurs minimales et maximales, les premiers et troisièmes quartiles ainsi que la moyenne et la médiane. Elle nous indique en outre la valeur de l’écart-type de l’échantillon, ainsi que le nombre d’observation et le nombre de données manquantes. Enfin, elle fournit un histogramme très schématique et sans échelle. Cet histogramme nous permet de nous faire une première idée de la distribution des données.</p>
+<p>Outre ces 3 fonctions (<code>summary()</code>, <code>IQR()</code>, et <code>skim()</code>), il est bien sûr possible de calculer toutes ces valeurs manuellement si besoin :</p>
+<ul>
+<li><code>mean()</code> permet de calculer la moyenne</li>
+<li><code>median()</code> permet de calculer la médiane</li>
+<li><code>min()</code> et <code>max()</code> permettent de calculer les valeurs minimales et maximales respectivement</li>
+<li><code>quantile()</code> permet de calculer les quartiles</li>
+<li><code>sd()</code> permet de calculer l’écart-type</li>
+<li><code>var()</code> permet de calculer la variance</li>
+</ul>
+<p>Toutes ces fonctions prennent seulement un vecteur en guise d’argument. Il faut donc procéder comme avec <code>IQR()</code> pour les utiliser. Par exemple, pour calculer la variance, on peut taper :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(temperature) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">var</span>()</code></pre>
+<pre><code>[1] 0.1417901</code></pre>
+<p>ou :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">var</span>(Temp_clean<span class="op">$</span>temperature)</code></pre>
+<pre><code>[1] 0.1417901</code></pre>
+</div>
+<div id="exploration-graphique" class="section level4">
+<h4><span class="header-section-number">3.2.1.3</span> Exploration graphique</h4>
+<p>Ici, il s’agit d’examiner la distribution des données. Pour cela, 3 types de graphiques sont généralement utilisés.</p>
+<ol style="list-style-type: decimal">
+<li>Les nuages de points ou stripcharts :</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> temperature)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="figure/unnamed-chunk-15-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut tenir compte de l’over-plotting. Si vous ne vous rappelez plus de quoi il s’agit, consultez <a href="https://besibo.github.io/DA/viz.html#over-plotting">la section 4.3.4</a> du livre en ligne de Biométrie 2. Globalement, pour visualiser correctement les données, on va jouer soit sur la transparence des points, soit sur l’ajout d’un bruit aléatoire horizontal qui permettra de distinguer plsu facilement les points,m et de repérer les zones où les points sont abondants ou rares :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> temperature)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="dv">0</span>, <span class="dt">width =</span> <span class="fl">0.1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlim</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>)</code></pre>
+<p><img src="figure/unnamed-chunk-16-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>La fonction <code>xlim()</code> permet de spéccifier manuellement les valeurs limites que l’on souhaite pour l’axe des abscisses. Ici, cet axe n’a aucune signification particulière puisque nous n’avons qu’une unique série de données (c’est la raison pour laquelle les points sont centrés sur l’abscisse x = 1). Nous pouvons donc le masquer comme ceci :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> temperature)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="dv">0</span>, <span class="dt">width =</span> <span class="fl">0.1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlim</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">axis.title.x =</span> <span class="kw">element_blank</span>())</code></pre>
+<p><img src="figure/unnamed-chunk-17-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>On constate ici que la répartition des points est assez régulière, avec néanmoins une majorité de points entre 36.8 et 37.3 degrés Celsius.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>L’histogramme :</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> temperature)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">10</span>, <span class="dt">color =</span> <span class="kw">grey</span>(<span class="fl">0.8</span>))</code></pre>
+<p><img src="figure/unnamed-chunk-18-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Si vous ne vous rappelez-plus ce qu’est un histogramme où comment le faire, ou la signification de l’argument <code>bins</code>, relisez <a href="https://besibo.github.io/DA/viz.html#histogram">la section 4.5</a> du livre en ligne de Biométrie 2.</p>
+<p>Notez ici que la forme de cet histogramme est très proche de celle présenté plus tôt pas la fonction <code>skim()</code>. Cet histogramme nous apprend qu’en dehors d’un “trou” autour de la température 36.75 ºC, la distribution des données est proche d’une courbe en cloche. Il y a fort à parier qu’un test de normalité concluerait à la normalité des données de cet échantillon.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Les boîtes à moustaches :</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> temperature)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>)</code></pre>
+<p><img src="figure/unnamed-chunk-19-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>Comme pour le stripchart présenté plus haut, l’axe des abscisses n’a ici aucun sens. Nous n’avons qu’une unique série de données, l’axe des <code>x</code> est donc inutile et nous pouvons donc le retirer :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> temperature)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>())</code></pre>
+<p><img src="figure/unnamed-chunk-20-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>On retrouve sur ce graphique tous les éléments obtenus avec la fonction <code>summary()</code> à l’exception de la moyenne. Assurez-vous que vous êtes bien capables d’identifier tous ces éléments sur le graphique. Assurez-vous aussi que la signification de l’encoche (obtenue avec l’argument <code>notch = TRUE</code>) est bien claire pour vous. Comme toujours, si ce n’est pas le cas, consultez <a href="https://besibo.github.io/DA/viz.html#les-boites-a-moustaches-ou-boxplots">la section dédiée aux boxplots</a> dans le livre en ligne de Biométrie 2.</p>
+<p>Pour conclure, ces 3 types de représentations graphiques (nuages de points ou stripchart, histogrammes et boxplots) sont complémentaires. Ces trois types de représentations graphiques permettent de visualiser la distribution d’une variable numérique. Les nuages de points permettent de voir toutes les données brutes. Les histogrammes résument les données en quelques valeurs : une valeur d’abondance pour chaque classe de taille. Les boxplots résument encore plus les données avec seulement 7 valeurs qui caractérisent la distribution :</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-21"></span>
+<img src="figure/unnamed-chunk-21-1.png" alt="Comparaison de 2 types de représentations graphiques" width="90%" />
+<p class="caption">
+Figure 3.1: Comparaison de 2 types de représentations graphiques
+</p>
+</div>
+<p>À chaque nouvelle analyse statistique, il sera donc important de visualiser les données afin de repérer les éventuels problèmes, et afin d’anticiper sur les résultats que fourniront les tests d’hypothèses ultérieurs. Ici, l’examen de ces graphiques nous permet de dire les choses suivantes :</p>
+<ol style="list-style-type: decimal">
+<li>Il n’y a visiblement pas de données aberrantes</li>
+<li>La distribution des données semble suivre à peu près la loi Normale</li>
+<li>La médiane et son intervalle de confiance à 95% sont centrés sur la valeur 37ºC. Un test devrait donc arriver à la conclusion que la température corporelle des adultes n’est pas significativement différente de 37ºC. Néanmoins, la largeur de l’intervalle de confiance à 95% est assez grande, ce qui indique une incertitude relativement élevée. Une plus grande quantité de données permettrait certainement d’obtenir plus de précision.</li>
+</ol>
+</div>
+</div>
+<div id="le-test-parametrique" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Le test paramétrique</h3>
+<p>Le test permettant de comparer la moyenne d’une population à une valeur théorique, fixée par l’utilisateur, est le <strong>test de Student à un échantillon</strong>. Il s’agit d’un test paramétrique très puissant. Comme tous les tests paramétriques, certaines conditions d’application doivent être vérifiées avant de pouvoir l’appliquer.</p>
+<div id="conditions-dapplication" class="section level4">
+<h4><span class="header-section-number">3.2.2.1</span> Conditions d’application</h4>
+<p>Les conditions d’application du test de Student à un échantillon sont les suivantes :</p>
+<ol style="list-style-type: decimal">
+<li>Les données de l’échantillon sont issues d’un <strong>échantillonnage aléatoire</strong> au sein de la population générale. Cette condition est partagée par toutes les méthodes que nous verrons dans ces TP. En l’absence d’informations sur la façon dont l’échantillonnage a été réalisé, on considère que cette condition est remplie. Il n’y a pas de moyen statistique de le vérifier, cela fait uniquement référence à la stratégie d’échantillonnage et à la rigueur de la procédure mise en œuvre lors de l’acquisition des données.</li>
+<li>La variable étudiée doit suivre une <strong>distribution Normale</strong> dans la population générale. Nous allons vérifier cette condition d’application avec un test de Normalité de Shapiro-Wilk.</li>
+</ol>
+<p>Comme pour tous les tests statistiques que nous allons réaliser lors de ces séances de TP et TEA, nous devons commencer par spécifier les hypothèses nulles et alternatives aoinsi que la valeur du seuil <span class="math inline">\(\alpha\)</span> que nous allons utiliser. Ici, nous utiliserons toujours le seuil <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p>Pour un test de normalité, les hypothèses sont toujours les suivantes :
+- H<span class="math inline">\(_0\)</span> : la variable étudiée suit une distribution Normale dans la population générale.
+- H<span class="math inline">\(_1\)</span> : la variable étudiée ne suit pas une distribution Normale dans la population générale.</p>
+<p>Le test de Shapiro-Wilk se réalise de la façon suivante :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(temperature) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">shapiro.test</span>()</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.97216, p-value = 0.7001</code></pre>
+<p><code>W</code> est la statistique du test. Elle permet à RStudio de calculer la <em>p</em>-value du test. Ici, <span class="math inline">\(p &gt; \alpha\)</span>. On ne peut donc pas rejeter l’hypothèse nulle de noramlité : on ne peut pas exclure que dans la population générale, la température suive bel et bien une distribution Normale. Les conditions d’application du test de Student sont bien vérifiées.</p>
+</div>
+<div id="realisation-du-test-et-interpretation" class="section level4">
+<h4><span class="header-section-number">3.2.2.2</span> Réalisation du test et interprétation</h4>
+<p>Puisque les conditions d’application du test de Student à un échantillon sont vérifiées, nous devons maintenant spécifier les hypothèses nulles et alternatives que nous allons utiliser pour réaliser ce test :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : dans la population générale, la température corporelle moyenne des adultes en bonne santé vaut 37ºC (<span class="math inline">\(\mu = 37\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : dans la population générale, la température corporelle moyenne des adultes en bonne santé est différente de 37ºC (<span class="math inline">\(\mu \neq 37\)</span>).</li>
+</ul>
+<p>On réalise ensuite le test de la façon suivante :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(temperature) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">t.test</span>(<span class="dt">mu =</span> <span class="dv">37</span>)</code></pre>
+<pre><code>
+    One Sample t-test
+
+data:  .
+t = -0.56065, df = 24, p-value = 0.5802
+alternative hypothesis: true mean is not equal to 37
+95 percent confidence interval:
+ 36.80235 37.11321
+sample estimates:
+mean of x 
+ 36.95778 </code></pre>
+<p>Sur la première ligne, R nous confirme que nous avons bien réalisé un test de STudent à un échantillon. La prmière ligne de résutats fournit la valeur du <span class="math inline">\(t\)</span> calculé (ici, -0.56), le nombre de degrés de libertés (ici, <code>df</code> = 24), et la <span class="math inline">\(p\)</span>-value (ici, 0.58, soit une valeur supérieure à <span class="math inline">\(alpha\)</span>). Cette première ligne contient donc tous les résultats du test qu’il conviendrait de rappeler dans un rapport. On devrait ainsi dire :</p>
+<blockquote>
+<p>Au seuil <span class="math inline">\(\alpha\)</span> de 5%, on ne peut pas rejeter l’hypothèse nulle <span class="math inline">\(\mu = 37\)</span> (<span class="math inline">\(t = -0.56\)</span>, ddl = 24, <span class="math inline">\(p = 0.58\)</span>). Les données observées sont donc compatibles avec l’hypothèse selon laquelle la température corporelle moyenne des adultes en bonne santé vaut 37ºC.</p>
+</blockquote>
+<p>C’est de cette manière que vous devriez rapporter les resultats de ce test dans vos comptes-rendus et rapports à partir de maintenant.</p>
+<p>Dans les résultats du test, la ligne suivante (<code>alternative hypothesis: ...</code>) <strong>ne donne pas la conclusion du test</strong>. Il s’agit simplement d’un rappel concernant l’hypothèse alternative qui a été utilisée pour réaliser le test. Ici, l’hypothèse alternative utilisée est une hypothèse bilatérale (<span class="math inline">\(\mu \neq 37\)</span>). Nous verrons plus tard comment spécifier des hypothèse alternatives uni-latérales, même si la plupart du temps, mieux vaut s’abstenir de réaliser de tels tests (à moins bien sûr d’avoir une bonne raison de la faire).</p>
+<p>Les résultats fournis ensuite concernent non plus le test statistique à proprement parler, mais l’estimation. Ici, la moyenne de l’échantillon est fournie. Il s’agit de la meilleure estimation possible de la moyenne de la population : <span class="math inline">\(\bar{x} = \hat{\mu} = 36.96\)</span>. Comme pour toutes les estimations, cette valeur est entachée d’oncertitude liée à la fluctuation d’échantillonnage. L’intervalle de confiance à 95% de cette estimation de moyenne est donc également fourni : <span class="math inline">\([36.80 ; 37.11]\)</span>. Autrement dit, cet intervalle contient les valeurs les plus vraissemblables pour la véritable valeur de moyenne dans la population générale. Cela confirme bien que nous n’avons pas prouvé au sens strict que la moyenne de la population vaut 37ºC. Nous avons en réalité montré que nous ne pouvions pas exclure que la moyenne de la population générale soit de 37ºC. Cette valeur est en effet comprise dans l’intervalle de confiance. On ne peut donc pas l’exclure. Mais beaucoup d’autres valeurs figurent aussi dans cet intervalle. Il est donc tout à fait possible que la moyenne soit en réalité différente de 37ºC. Pour en être sûr, il faudrait probablement un échantillon de plus grande taille afin de limiter l’incertitude.</p>
+</div>
+</div>
+<div id="lalternative-non-parametrique" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> L’alternative non paramétrique</h3>
+<p>Si jamais les conditions d’application du test de Student à un échantillon n’étaient pas remplies, il faudrait alors réaliser son équivalent non paramétrique : le <strong>test de Wilcoxon des rangs signés</strong>. Ce test est moins puissant que son homologue paramétrique. On ne l’effectue donc que lorsque l’on n’a pas le choix :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Temp_clean <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(temperature) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">wilcox.test</span>(<span class="dt">mu =</span> <span class="dv">37</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot
+compute exact p-value with ties</code></pre>
+<pre><code>Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot
+compute exact confidence interval with ties</code></pre>
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  .
+V = 143, p-value = 0.6077
+alternative hypothesis: true location is not equal to 37
+95 percent confidence interval:
+ 36.77780 37.11114
+sample estimates:
+(pseudo)median 
+      36.94446 </code></pre>
+<p>La syntaxe est identique à celle du test de Student à un échantillon à une exception près : l’ajout de l’argument <code>conf.int = TRUE</code> qui permet d’afficher la (pseudo)médiane de l’échantillon et son intervalle de confiance à 95%.</p>
+<p>Les hypothèses nulles et alternatives de ce test sont les mêmes que celles du test de Student à un échantillon. En toute rigueur, on teste l’égalité de la médiane à une valeur théorique, et non l’égalité de la moyenne. Mais dans la pratique, la grande majorité des utilisateurs de ce test font l’amalgame entre moyenne et médiane. Ici, la conclusion correcte devrait être :</p>
+<blockquote>
+<p>Au seuil <span class="math inline">\(\alpha\)</span> de 5%, on ne peut pas rejeter l’hypothèse nulle (test de Wilcoxon des rangs signés, <span class="math inline">\(V\)</span> = 143, <span class="math inline">\(p\)</span> = 0.6077). La médiane de la population (<span class="math inline">\(\widehat{med}\)</span> = 36.94) n’est pas significativement différente de 37ºC (IC 95% : <span class="math inline">\([36.78 ; 37.11]\)</span>).</p>
+</blockquote>
+<p>Si les données ne suivent pas la loi Normale, la médiane est bien la métrique la plus intéressante puisque c’est elle qui nous renseigne sur la tendance centrale des données.</p>
+<p>Enfin, les tests de Wilcoxon renvoient souvent des messages d’avretissement. Il ne s’agit que de ça : des avertissements. Tant que la <span class="math inline">\(p\)</span>-value des tests est éloignée de la valeur seuil <span class="math inline">\(\alpha\)</span>, cela n’a pas d’importance. Quand en revanche la <span class="math inline">\(p\)</span>-value est très proche de <span class="math inline">\(\alpha\)</span>, il faut être très prudent face aux conclusions du test qui peuvent alors être assez “fragiles”.</p>
+<p>(Notez que pour le test de Student à un échantillon comme pour le test de Wilcoxon des rangs signés, les conclusions sont en accord avec nos observations initiales réalisées à partir du boxplot).</p>
+</div>
+<div id="exercice-dapplication" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Exercice d’application</h3>
+<p>Le fichier <code>Temperature2.csv</code> contient les données brutes d’une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d’examiner vos données comme nous l’avons décrit dans la section <a href="seance1.html#Explo">3.2.1</a>, afin de savoir où vous aller, de repérer les éventuelles données manquantes ou aberrantes.</p>
+</div>
+</div>
+<div id="comparaison-de-la-moyenne-de-2-populations-donnees-appariees" class="section level2">
+<h2><span class="header-section-number">3.3</span> Comparaison de la moyenne de 2 populations : données appariées</h2>
+<p>On s’intéresse ici à la comparaison de 2 séries de données dont les observations sont liées 2 à 2. C’est par exemple le cas lorsque l’on fait subir un tratiement à différents sujets et que l’on souhaite comparer les mesures obtenues avant et après le traitement.</p>
+<p>Autrement dit, dans les plans d’expériences appariés, <strong>les deux traitements</strong> ou modalités <strong>sont appliqués à chaque unité d’échantillonnage</strong>.</p>
+<p>Voici quelques exemples de de situations qui devraient être traitées avec des tests sur données appariées :</p>
+<ul>
+<li>Comparaison de la masse de patients avant et après une hospitalisation.</li>
+<li>Comparaison de la diversité de peuplements de poissons dans des lacs avant et après contamination par des métaux lourds.</li>
+<li>Test des effets d’une crème solaire appliquée sur un bras de chaque volontaire alors que l’autre bras ne reçoit qu’un placébo.</li>
+<li>Test des effets du tabagisme dans un échantillon de fumeurs, dont chaque membre est comparé à un non fumeur choisi pour qu’il lui ressemble le plus possible en terme d’âge, de masse, d’origine éthnique et sociale</li>
+<li>Test des effets que les conditions socio-économiques ont sur les préférences alimentaires en comparant des vrais jumaux élevés dans des familles adoptives séparées qui diffèrent en termes de conditions socio-économiques.</li>
+</ul>
+<p>Les 2 derniers exemples montrent que même des individus séparés peuvent constituer une “pare statistique” s’ils partagent un certain nombre de caractéristiques (physiques, environnementales, génétiques, comportementales, etc.) pertinentes pour l’étude.</p>
+<div id="Explo2" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Exploration préalable des données</h3>
+<p>Ici, nous allons nous intéresser au lien qui pourrait exister entre la production de testostérone et l’immunité chez une espèce d’oiseau vivant en Amérique du Nord, <a href="https://fr.wikipedia.org/wiki/Carouge_à_épaulettes">le carouge à épaulettes</a>.</p>
+<p>Chez de nombreuses espèces, les mâles ont plus de chances d’attirer des femelles s’ils produisent des niveaux de testostérone élevés. Est-ce que la forte production de testostérone de certains mâle a un coût, notamment en terme d’immuno-compétence ? Autrement dit, est-ce que produire beaucoup de testostérone au moment de la reproduction (ce qui fournit un avantage sélectif) se traduit par une immunité plus faible par la suite, et donc une plus forte susceptibilité de contracter des maladies (ce qui constitue donc un désavantage sélectif) ?</p>
+<p>Pour étudier cette question, une équipe de chercheurs <span class="citation">(Hasselquist et al. <a href="#ref-Hasselquist1999">1999</a>)</span> a mis en place le dispositif expérimental suivant. Les niveaux de testostérone de 13 carouges à épaulettes mâles ont été artificiellement augmentés par l’implantation chirurgicale d’un microtube perméable contenant de la testostérone. L’immunocompeetence a été mesurée pour chaque oiseau avant et après l’opération chirurgicale. La variable mesurée est la production d’anticorps suite à l’exposition des oiseaux avec un antigène non pathogène mais censé déclencher une réponse immunitaire. Les taux de production d’anticorps sont exprimés en logarithmes de densité optique par minute (<span class="math inline">\(\ln\frac{mOD}{min}\)</span>).</p>
+<div id="importation-et-examen-visuel-1" class="section level4">
+<h4><span class="header-section-number">3.3.1.1</span> Importation et examen visuel</h4>
+<p>Les données se trouvent dans le fichier <code>Testosterone.csv</code>. Importez ces données dans un objet nommé <code>Testo</code> et examinez le tableau obtenu.</p>
+<pre class="sourceCode r"><code class="sourceCode r">Testo</code></pre>
+<pre><code># A tibble: 13 x 5
+   blackbird beforeImplant afterImplant logBeforeImplant
+       &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;
+ 1         1           105           85             4.65
+ 2         2            50           74             3.91
+ 3         3           136          145             4.91
+ 4         4            90           86             4.5 
+ 5         5           122          148             4.8 
+ 6         6           132          148             4.88
+ 7         7           131          150             4.88
+ 8         8           119          142             4.78
+ 9         9           145          151             4.98
+10        10           130          113             4.87
+11        11           116          118             4.75
+12        12           110           99             4.7 
+13        13           138          150             4.93
+# … with 1 more variable: logAfterImplant &lt;dbl&gt;</code></pre>
+<p>Visiblement, il n’y a pas de données manquantes mais certaines variables sont inutiles. En réalité, nous aurons besoin des données sous 2 formats disctincts : un format “large” pour les statistiques descriptives et les tests d’hypothèse, et un format “long” pour les représentations graphiques. Et dans tous les cas, l’identifiant individuel devrait être considéré comme un facteur, et non comme une variable numérique comme c’est le cas actuellement.</p>
+<p>Commençons par créer un tableau “large” pour les statistiques descriptives :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Testo_large &lt;-<span class="st"> </span>Testo <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">blackbird =</span> <span class="kw">factor</span>(blackbird)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="dt">ID =</span> blackbird,
+         <span class="dt">Before =</span> logBeforeImplant,
+         <span class="dt">After =</span> logAfterImplant)
+
+Testo_large</code></pre>
+<pre><code># A tibble: 13 x 3
+   ID    Before After
+   &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1 1       4.65  4.44
+ 2 2       3.91  4.3 
+ 3 3       4.91  4.98
+ 4 4       4.5   4.45
+ 5 5       4.8   5   
+ 6 6       4.88  5   
+ 7 7       4.88  5.01
+ 8 8       4.78  4.96
+ 9 9       4.98  5.02
+10 10      4.87  4.73
+11 11      4.75  4.77
+12 12      4.7   4.6 
+13 13      4.93  5.01</code></pre>
+<p>Il nous faut maintenant transformer ce tableau en format “long” pour les représentations graphiques :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Testo_long &lt;-<span class="st"> </span>Testo_large <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> Traitement, 
+         <span class="dt">value =</span> DO, 
+         Before, After, 
+         <span class="dt">factor_key =</span> <span class="ot">TRUE</span>)
+
+Testo_long</code></pre>
+<pre><code># A tibble: 26 x 3
+   ID    Traitement    DO
+   &lt;fct&gt; &lt;fct&gt;      &lt;dbl&gt;
+ 1 1     Before      4.65
+ 2 2     Before      3.91
+ 3 3     Before      4.91
+ 4 4     Before      4.5 
+ 5 5     Before      4.8 
+ 6 6     Before      4.88
+ 7 7     Before      4.88
+ 8 8     Before      4.78
+ 9 9     Before      4.98
+10 10    Before      4.87
+# … with 16 more rows</code></pre>
+<p>Si vous ne comprenez pas ces commandes, je vous conseille vivement de reprendre <a href="https://besibo.github.io/DA/tidyr.html">les chapitres 5 et 6</a> du livre en ligne de Biométrie 2. Dans l’idéal, depuis les TP de biométrie 2, vous devriez être capables de construire de telles séquences de commandes pour aboutir à un tableau rangé ne contenant que les variables utiles, au format long comme au format court (ou large). Mais évidemment, de telles groupes de commandes se construisent étape par étape, et pas d’un seul coup comme les comande précédentes pourraient le laisser croire.</p>
+<p>Maintenant que nous disposons de ces 2 tableaux, nous pouvons commencer à décrire nos données.</p>
+</div>
+<div id="statistiques-descriptives-1" class="section level4">
+<h4><span class="header-section-number">3.3.1.2</span> Statistiques descriptives</h4>
+<p>Pour décrire simplement les données, nous nous en tiendront ici à l’utilisation des fonctions <code>summary()</code> et <code>skim()</code>.</p>
+<p>Pour la fonction <code>summary()</code>, le plus simple est toujours d’utiliser le tableau au format large :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(Testo_large)</code></pre>
+<pre><code>       ID        Before          After     
+ 1      :1   Min.   :3.910   Min.   :4.30  
+ 2      :1   1st Qu.:4.700   1st Qu.:4.60  
+ 3      :1   Median :4.800   Median :4.96  
+ 4      :1   Mean   :4.734   Mean   :4.79  
+ 5      :1   3rd Qu.:4.880   3rd Qu.:5.00  
+ 6      :1   Max.   :4.980   Max.   :5.02  
+ (Other):7                                 </code></pre>
+<p>On constate ici que pour les 2 traitements, les valeurs des différents indices sont très proches entre les 2 séries de données, avec des valeurs de densité optiques (DO) légèrement supérieures après l’opération chirurgicale (sauf pour le premier quartile).</p>
+<p>Pour la fonction <code>skim()</code> le plus simple est là aussi d’utiliser le tableau large :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">skim</span>(Testo_large)</code></pre>
+<pre><code>Skim summary statistics
+ n obs: 13 
+ n variables: 3 
+
+── Variable type:factor ──────
+ variable missing complete  n n_unique             top_counts ordered
+       ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1   FALSE
+
+── Variable type:numeric ─────
+ variable missing complete  n mean   sd   p0 p25  p50  p75 p100
+    After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
+   Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
+     hist
+ ▁▂▁▁▁▁▁▇
+ ▁▁▁▁▁▂▃▇</code></pre>
+<p>On arrive toutefois aux mêmes résultats avec le tableau long, à condition de grouper les données par traitement (Variable <code>Traitement</code>) avec <code>group_by()</code> :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Testo_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Traitement) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">skim</span>()</code></pre>
+<pre><code>Skim summary statistics
+ n obs: 26 
+ n variables: 3 
+ group variables: Traitement 
+
+── Variable type:factor ──────
+ Traitement variable missing complete  n n_unique
+     Before       ID       0       13 13       13
+      After       ID       0       13 13       13
+             top_counts ordered
+ 1: 1, 2: 1, 3: 1, 4: 1   FALSE
+ 1: 1, 2: 1, 3: 1, 4: 1   FALSE
+
+── Variable type:numeric ─────
+ Traitement variable missing complete  n mean   sd   p0 p25  p50  p75
+     Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88
+      After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5   
+ p100     hist
+ 4.98 ▁▁▁▁▁▂▃▇
+ 5.02 ▁▂▁▁▁▁▁▇</code></pre>
+</div>
+<div id="exploration-graphique-1" class="section level4">
+<h4><span class="header-section-number">3.3.1.3</span> Exploration graphique</h4>
+<p>Ici, c’est le tableau rangé au format long qui sera le plus adapté. Lorsque nous avions une unique série de données, nous avons utilisé 3 types de représentations graphiques pour visualiser les données. Nous allons là aussi réaliser ces 3 graphiques. Toutefois, puisque nous avons maintenant plusieurs séries de données, le format des graphique sera légèrement différent.</p>
+<ol style="list-style-type: decimal">
+<li>Données brutes sous forme de nuage de point (ou de stripchart) :</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">Testo_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Traitement, <span class="dt">y =</span> DO)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="figure/unnamed-chunk-32-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>Comme toujours, on peut réaliser un stripchart pour limiter les problèmes d’over-plotting (qui sont ici quasi-inexistants).</p>
+<pre class="sourceCode r"><code class="sourceCode r">Testo_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Traitement, <span class="dt">y =</span> DO)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="dv">0</span>, <span class="dt">width =</span> <span class="fl">0.25</span>)</code></pre>
+<p><img src="figure/unnamed-chunk-33-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Histogrammes</li>
+</ol>
+<p>Nous allons faire un histogramme pour chaque série de données en utilisant des facettes :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Testo_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> DO)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">10</span>, <span class="dt">color =</span> <span class="kw">grey</span>(<span class="fl">0.8</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Traitement, <span class="dt">ncol =</span> <span class="dv">1</span>)</code></pre>
+<p><img src="figure/unnamed-chunk-34-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Boxplots</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">Testo_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Traitement, <span class="dt">y =</span> DO)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>notch went outside hinges. Try setting notch=FALSE.</code></pre>
+<p><img src="figure/unnamed-chunk-35-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>Ici, l’intervalle de confiance à 95% de la médiane pour la série “After” est tellement large que son extrémité supérieure dépasse la valeur du troisième quartile, la valeur maximale observée, et la limite supérieure de l’axe des ordonnées. Il vaut donc mieux ne pas faire figurer les encoches pour avoir un graphique plus présentable :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Testo_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Traitement, <span class="dt">y =</span> DO)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><img src="figure/unnamed-chunk-36-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>À première vue, ces 3 représentations graphiques semblent montrer que la seconde série de données (après l’opération chirurgicale) présente des valeurs légèrement plus élevées que la première (avant l’opération). Toutefois, il semble que la dispersion des données soit aussi plus importante après l’opération qu’avant, sauf pour un individu outlier qui présente une immuno-compétence très faible avant l’opération.</p>
+<p>Toutes ces représentations graphiques sont certes utiles, mais elles masquent un élément crucial : ce sont les mêmes individus qui sont étudiés avant et après l’opération. Il s’agit de données appariées ! Pour avoir une bonne vision de ce qui se passe, il nous faut faire apparaître ce lien entre les 2 séries de données :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Testo_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Traitement, <span class="dt">y =</span> DO, <span class="dt">group =</span> ID, <span class="dt">color =</span> ID)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.7</span>)</code></pre>
+<p><img src="figure/unnamed-chunk-37-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>Ce graphique nous donne une image très différente de la réalité des données. On constate ici que l’immuno-compétence de certains individus augmente, alors que pour d’autres, elle diminue.</p>
+<p>Une façon d’estimer si les changements d’immuno-compétence sont majoritairement orientés dans un sens ou non est de calculer l’intervalle de confiance à 95% de la différence d’immuno-compétence entre avant et après l’opération.</p>
+</div>
+</div>
+<div id="le-test-parametrique-1" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Le test paramétrique</h3>
+<p>Le test paramétrique permettant de comparer la moyenne sur des séries appariées est là encore un test de Student : le <strong>test de Student sur données appariées</strong> (original…). En réalité, ce test de Student n’est pas un test de comparaison de moyennes à proprement parler. La procédure est en réalité la suivante :</p>
+<ol style="list-style-type: decimal">
+<li>Pour chaque individu, calculer la différence d’immuno-compétence entre les deux temps de l’expérience (DO après - DO avant)</li>
+<li>Puisque nous avons 13 individus, nous aurons 13 valeurs de différences. La moyenne de cette différence sera comparée à la valeur théorique 0. Autrement dit, si les 2 séries ont même moyenne, le moyenne des différences doit être nulle. Sinon, la moyenne des différence doit être différente de zéro.</li>
+</ol>
+<div id="conditions-dapplication-1" class="section level4">
+<h4><span class="header-section-number">3.3.2.1</span> Conditions d’application</h4>
+<p>Les conditions d’application de ce test paramétrique sont presque les mêmes que pour le test de Student à un échantillon :</p>
+<ol style="list-style-type: decimal">
+<li>Les individus sur lesquels portent la comparaison doivent être issus d’un échantillonnage aléatoire. Comme toujours, en l’absence d’indication contraire, on considère que cette condition est vérifiée.</li>
+<li>Les différences par paires entre les 2 modalités du traitement doivent suivre une distribution normale. Ce n’est donc pas les données brutes de chaque série qui doivent suivre une loi normale, mais bien la différence “après” - “avant” calculée pour chaque individu. Commençons donc pas calculer ces différences :</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">Testo_large &lt;-<span class="st"> </span>Testo_large <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Diff =</span> After <span class="op">-</span><span class="st"> </span>Before)
+
+Testo_large</code></pre>
+<pre><code># A tibble: 13 x 4
+   ID    Before After    Diff
+   &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+ 1 1       4.65  4.44 -0.210 
+ 2 2       3.91  4.3   0.390 
+ 3 3       4.91  4.98  0.07  
+ 4 4       4.5   4.45 -0.0500
+ 5 5       4.8   5     0.2   
+ 6 6       4.88  5     0.12  
+ 7 7       4.88  5.01  0.130 
+ 8 8       4.78  4.96  0.180 
+ 9 9       4.98  5.02  0.0400
+10 10      4.87  4.73 -0.140 
+11 11      4.75  4.77  0.0200
+12 12      4.7   4.6  -0.1   
+13 13      4.93  5.01  0.08  </code></pre>
+<p>Il nous faut donc tester la normalité de la nouvelle variable <code>Diff</code>. Commençons par en faire un graphique :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Testo_large <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Diff)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">10</span>, <span class="dt">color =</span> <span class="kw">grey</span>(<span class="fl">0.8</span>))</code></pre>
+<p><img src="figure/unnamed-chunk-39-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Compte tenu du faible nombre d’individus, la forme de l’histogramme n’est pas si éloignée que ça d’une courbe en cloche (notez que ce n’était pas du tout le cas pour les données brutes de chaque série de départ qui ont toutes les deux des distribution non Normales). On le vérifie avec un test de normalité de Shapiro-Wilk :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la différence d’immuno-compétence des individus suit une distribution normale</li>
+<li>H<span class="math inline">\(_1\)</span> : la différence d’immuno-compétence des individus ne suit pas une distribution normale</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">Testo_large <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(Diff) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">shapiro.test</span>()</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.97949, p-value = 0.977</code></pre>
+<blockquote>
+<p>Au seuil <span class="math inline">\(\alpha = 0.05\)</span>, on ne peut pas rejeter l’hypothèse nulle de normalité pour la différence d’immuno-compétence entre après et avant l’intervention chirurgicale (test de Shapiro-Wilk, <span class="math inline">\(W = 0.98\)</span>, <span class="math inline">\(p = 0.977\)</span>).</p>
+</blockquote>
+<p>Les conditions d’application du test paramétrique sont donc réunies.</p>
+</div>
+<div id="realisation-du-test-et-interpretation-1" class="section level4">
+<h4><span class="header-section-number">3.3.2.2</span> Réalisation du test et interprétation</h4>
+<p>Le test de Student sur données appariées peut se faire de 3 façons distinctes. Les 3 méthodes fournissent exactement les mêmes résultats. Quelle que soit la méthode utilisée, les hypothèses nulles et alternatives sont toujours les mêmes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : Le changement moyen de production d’anticorps après la pose chirurgicale de l’implant de testostérone est nul (<span class="math inline">\(\mu_{Diff} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : Le changement moyen de production d’anticorps après la pose chirurgicale de l’implant de testostérone n’est pas nul (<span class="math inline">\(\mu_{Diff} \neq 0\)</span>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Méthode nº1 : avec une formule et le tableau au format long</span>
+<span class="kw">t.test</span>(DO <span class="op">~</span><span class="st"> </span>Traitement, <span class="dt">data =</span> Testo_long, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>
+    Paired t-test
+
+data:  DO by Traitement
+t = -1.2714, df = 12, p-value = 0.2277
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.15238464  0.04007695
+sample estimates:
+mean of the differences 
+            -0.05615385 </code></pre>
+<p>Plusieurs remarques concernant cette première syntaxe :</p>
+<ol style="list-style-type: decimal">
+<li>on utilise le symbole <code>~</code> pour indiquer une formule. On cherche à regarder l’effet du <code>Traitement</code> sur la <code>DO</code> qui traduit l’immuno-compétence. Le <code>~</code> doit se lire “en fonction de”.</li>
+<li>Avec la synatxe utilisant les formules, on doit spécifier l’argument <code>data = Testo_long</code> pour indiquer à RStudio que les variables <code>DO</code> et <code>Traitement</code> sont des colonnes de ce tableau.</li>
+<li>Enfin, il est important d’indiquer <code>paired = TRUE</code> puisque nous réalisons un test de Student sur données appariées. Si on ne mets pas cet argument, on réalise un test de Student sur échantillons indépendants.</li>
+</ol>
+<p>Ici, voilà la conclusion de ce test :</p>
+<blockquote>
+<p>Le test de Student sur données appariées ne permet pas de montrer de changement d’immuno-compétence suite à l’intégration de l’implant chirurgical de testostérone. On ne peut pas rejeter l’hypothèse nulle au seuil <span class="math inline">\(\alpha = 0.05\)</span> (<span class="math inline">\(t = -1.27\)</span>, <span class="math inline">\(ddl = 12\)</span>, <span class="math inline">\(p = 0.223\)</span>). La moyenne des différences de densités optiques observées entre avant et après l’intervention chirurgicale vaut -0.056 (intervalle de confiance à 95% de cette différence : [-0.152 ; 0.040])</p>
+</blockquote>
+<p>Donc visiblement, une forte production de testostérone n’est pas significativement associée à une baisse de l’immuno-compétence.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Méthode nº2 : avec les 2 séries de données et le tableau au format large</span>
+<span class="kw">t.test</span>(Testo_large<span class="op">$</span>Before, Testo_large<span class="op">$</span>After, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>
+    Paired t-test
+
+data:  Testo_large$Before and Testo_large$After
+t = -1.2714, df = 12, p-value = 0.2277
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.15238464  0.04007695
+sample estimates:
+mean of the differences 
+            -0.05615385 </code></pre>
+<p>Cette deuxième syntaxe est différente de la première puisque nous n’utilisons plus le format <code>formule</code>. Ici, on indique le nom des 2 colonnes du tableau <code>Testo_large</code> qui contiennent les 2 séries de données. Puisque nous n’utilisons plus de formule, l’argument <code>data = ...</code> n’existe plus. C’est pourquoi il nous faut taper spécifiquement <code>Testo_large$Before</code> et <code>Testo_large$After</code>, et non pas simplement le nom des colonnes. En revanche, comme pour le test précédent, il est indispensable d’indiquer <code>paired = TRUE</code> pour faire un test de Student sur données appariées.</p>
+<p>Les résultats fournis et leur ointerprétation sont identiques à ceux de la syntaxe précédente.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Méthode nº3 : avec la variable Diff, mu = 0, et le tableau au format large</span>
+<span class="kw">t.test</span>(Testo_large<span class="op">$</span>Diff, <span class="dt">mu =</span> <span class="dv">0</span>)</code></pre>
+<pre><code>
+    One Sample t-test
+
+data:  Testo_large$Diff
+t = 1.2714, df = 12, p-value = 0.2277
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ -0.04007695  0.15238464
+sample estimates:
+ mean of x 
+0.05615385 </code></pre>
+<p>Enfin, comme expliqué plus haut, le test de Student sur données appariées est strictement équivalent à un test de Student à un échantillon pour lequel on compare la moyenne des différences individuelles à 0. Là encore, les résultats produits et leur interprétation sont identiques aux deux tests précédents. La seule différence concerne les signes puisque les deux premiers tests regardaient la différence “Before - After” alors que ce troisième test regarde la différence “After - Before” (que nous avons calculée manuellement).</p>
+<p>À vous donc de choisir la syntaxe qui vous paraît la plus parlante ou celle que vous avez le plus de facilité à retenir.</p>
+</div>
+</div>
+<div id="lalternative-non-parametrique-1" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> L’alternative non paramétrique</h3>
+<p>Comme pour le test de Student à un échantillon, lorsque les conditions d’application du test de Student sur données appariées ne sont pas vérifiées (c’est à dire lorsque la différence de moyenne entre les deux séries ne suit pas une loi Normale), il faut utiliser un test non paramétrique équivalent.</p>
+<p>Il s’agit là encore du <strong>test de Wilcoxon des rangs signés</strong> qui s’intéresse aux médianes. Les hypothèses nulles et alternatives sont les suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : Le changement <strong>médian</strong> de production d’anticorps après la pose chirurgicale de l’implant de testostérone est nul (<span class="math inline">\(med_{Diff} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : Le changement <strong>médian</strong> de production d’anticorps après la pose chirurgicale de l’implant de testostérone n’est pas nul (<span class="math inline">\(med_{Diff} \neq 0\)</span>).</li>
+</ul>
+<p>Comme pour le test de Student, 3 syntaxes sont possibles et strictement équivalentes. Il est important de ne pas oublier l’argument <code>paired = TRUE</code> pour les 2 premières syntaxes afin de s’assurer que l’on réalise bien un test sur données appariées. Enfin, l’argument <code>conf.int = TRUE</code> doit être ajouté pour les 3 syntaxes afin que la (pseudo-) médiane et son intervalle de confiance à 95% soient calculés et affichés.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wilcox.test</span>(DO <span class="op">~</span><span class="st"> </span>Traitement, <span class="dt">data =</span> Testo_long, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>
+    Wilcoxon signed rank test
+
+data:  DO by Traitement
+V = 30, p-value = 0.3054
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -0.145  0.040
+sample estimates:
+(pseudo)median 
+        -0.055 </code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wilcox.test</span>(Testo_large<span class="op">$</span>Before, Testo_large<span class="op">$</span>After, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>
+    Wilcoxon signed rank test
+
+data:  Testo_large$Before and Testo_large$After
+V = 30, p-value = 0.3054
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -0.145  0.040
+sample estimates:
+(pseudo)median 
+        -0.055 </code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wilcox.test</span>(Testo_large<span class="op">$</span>Diff, <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>
+    Wilcoxon signed rank test
+
+data:  Testo_large$Diff
+V = 61, p-value = 0.3054
+alternative hypothesis: true location is not equal to 0
+95 percent confidence interval:
+ -0.040  0.145
+sample estimates:
+(pseudo)median 
+         0.055 </code></pre>
+<p>Ici, la conclusion de ce test est :</p>
+<blockquote>
+<p>Le test de Wilcoxon des rangs signés n’a pas permis de montrer de changement d’immuno-compétence suite à l’intégration de l’implant chirurgical de testostérone. On ne peut pas rejeter l’hypothèse nulle au seuil <span class="math inline">\(\alpha = 0.05\)</span> (<span class="math inline">\(V = 61\)</span>, <span class="math inline">\(p = 0.305\)</span>). La médiane des différences de densités optiques observées entre après et avant l’intervention chirurgicale vaut 0.055 (intervalle de confiance à 95% de cette différence : [-0.040 ; 0.145]).</p>
+</blockquote>
+</div>
+<div id="exercice-dapplication-1" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> Exercice d’application</h3>
+<p>Les autruches vivent dans des environnements chauds, et elles sont fréquemment exposées au soleil durant de longues périodes. Dans des environnements similaires, les mammifères ont des mécanismes physiologiques leur permettant de réduire la température de leur cerveau par rapport à celle de leur corps. Un équipe de chercheurs <span class="citation">(Fuller et al. <a href="#ref-Fuller2003">2003</a>)</span> a testé si les autruches pouvaient faire de même. La température du corps et du cerveau de 37 autruches a été enregistrée par une journée chaude typique. Les résultats, exprimés en degrés Celsius, figurent dans le fichier <code>Autruches.csv</code>.</p>
+<p>Importez ces données et faites-en l’analyse pour savoir s’il existe une différence de température moyenne entre le corps et le cerveau des autruches. Comparez ces résultats avec les prédictions faites pour les mammifères dans un environnement similaire. Comme toujours, vous commencerez par faire une analyse descriptive des données, sous forme numérique et graphique, avant de vous lancer dans les tests d’hypothèses.</p>
+</div>
+</div>
+<div id="Indep" class="section level2">
+<h2><span class="header-section-number">3.4</span> Comparaison de la moyenne de 2 populations : échantillons indépendants</h2>
+<p>On s’intéresse maintenant aux méthodes permettant de comparer la moyenne de deux groupes ou de deux traitements dans la cas d’échantillons indépendants. Dans ce type de design expérimentaux, les les deux traitements sont appliqués à des échantillons indépendants issus de 2 populations.</p>
+<div id="exploration-prealable-des-donnees" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Exploration préalable des données</h3>
+<p>Chez <a href="https://fr.wikipedia.org/wiki/Phrynosoma_mcallii">le lézard cornu <em>Phrynosoma mcallii</em></a>, une frange de piquants entoure la tête. Une équipe d’herpétologues <span class="citation">(Young, Brodie, and Brodie <a href="#ref-Young2004">2004</a>)</span> a étudié la question suivante : des piquants plus longs autour de la tête protègent-ils le lézard cornu de son prédateur naturel, <a href="https://fr.wikipedia.org/wiki/Pie-grièche_migratrice">la pie grièche migratrice <em>Lanius ludovicianus</em></a> ? Ce prédateur a en effet une particularité : il accroche ses proies mortes à des barbelés ou des branches pour les consommer plus tard. Les chercheurs ont donc mesuré la longueur des cornes de 30 lézards retrouvés morts et accrochés dans des arbres par la pie grièche migratrice. Et en parallèle, ils ont mesuré les cornes de 154 individus vivants et en bonne santé choisis au hasard dans la population.</p>
+<div id="importation-et-examen-visuel-2" class="section level4">
+<h4><span class="header-section-number">3.4.1.1</span> Importation et examen visuel</h4>
+<p>Les données de cette étude sont stockées dans le fichier <code>HornedLizards.csv</code>. Importez ces données dans un objet nommé <code>Lizard</code> et examinez le tableau obtenu.</p>
+<pre class="sourceCode r"><code class="sourceCode r">Lizard</code></pre>
+<pre><code># A tibble: 185 x 2
+   squamosalHornLength Survival
+                 &lt;dbl&gt; &lt;chr&gt;   
+ 1                25.2 living  
+ 2                26.9 living  
+ 3                26.6 living  
+ 4                25.6 living  
+ 5                25.7 living  
+ 6                25.9 living  
+ 7                27.3 living  
+ 8                25.1 living  
+ 9                30.3 living  
+10                25.6 living  
+# … with 175 more rows</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(Lizard)</code></pre>
+<p>On constate ici 3 choses :</p>
+<ol style="list-style-type: decimal">
+<li>la variable <code>Survival</code> devrait être un facteur.</li>
+<li>le nom de la première colonne (<code>squamosalHornLength</code>) est bien trop long</li>
+<li>pour un animal vivant, la mesure de longueur des cornes est manquante. Il nous faut donc retirer cet individu.</li>
+</ol>
+<p>Nous pouvons facilement réaliser les 3 modifications d’un coup :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Lizard &lt;-<span class="st"> </span>Lizard <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Survival =</span> <span class="kw">factor</span>(Survival)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">Horn_len =</span> squamosalHornLength) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Horn_len))
+
+Lizard</code></pre>
+<pre><code># A tibble: 184 x 2
+   Horn_len Survival
+      &lt;dbl&gt; &lt;fct&gt;   
+ 1     25.2 living  
+ 2     26.9 living  
+ 3     26.6 living  
+ 4     25.6 living  
+ 5     25.7 living  
+ 6     25.9 living  
+ 7     27.3 living  
+ 8     25.1 living  
+ 9     30.3 living  
+10     25.6 living  
+# … with 174 more rows</code></pre>
+</div>
+<div id="statistiques-descriptives-2" class="section level4">
+<h4><span class="header-section-number">3.4.1.2</span> Statistiques descriptives</h4>
+<p>Comme dans la partie précédente sur les données appariées, les statistiques descriptives doivent être réalisées pour chaque groupe d’individus. Ici, le plus simple est d’utiliser la fonction <code>skim()</code> sur les données groupées par niveau du facteur <code>Survival</code> (avec la fonction <code>group_by()</code>) :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Lizard <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Survival) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">skim</span>()</code></pre>
+<pre><code>Skim summary statistics
+ n obs: 184 
+ n variables: 2 
+ group variables: Survival 
+
+── Variable type:numeric ─────
+ Survival variable missing complete   n  mean   sd   p0  p25   p50
+   killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25
+   living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55
+  p75 p100     hist
+ 23.8 26.7 ▂▁▂▂▇▇▆▂
+ 26   30.3 ▁▁▁▃▅▇▅▁</code></pre>
+<p>On constate ici que les tailles d’échantillons sont très différentes. C’est normal compte tenu de la difficulté de repérer des individus morts dans la nature, et ce n’est pas gênant pour nos analyses puisque la taille des deux échantillons reste élevée.</p>
+<p>On constate également que si les écarts-types des 2 groupes sont proches, les moyennes et médianes sont plus élévées dans le groupe des individus vivants que dans celui des individus morts (c’est le cas également des quartiles 1 et 3).</p>
+</div>
+<div id="exploration-graphique-2" class="section level4">
+<h4><span class="header-section-number">3.4.1.3</span> Exploration graphique</h4>
+<p>Comme toujours, nous pouvons réaliser 3 types de graphiques pour en apprendre plus sur la distribution des donnees dans les deux groupes. En revanche, sur le graphique de type “nuage de points”, il est ici impossible de relier les points 2 à deux. Non seulement cela n’aurait aucun sens puisque les 2 échantillons sont indépendants, mais en outre, nous ne disposons pas du même nombre d’individus dans les 2 échantillons.</p>
+<ol style="list-style-type: decimal">
+<li>Stripchart</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">Lizard <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Survival, <span class="dt">y =</span> Horn_len)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="dv">0</span>, <span class="dt">width =</span> <span class="fl">0.2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</code></pre>
+<p><img src="figure/unnamed-chunk-50-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>Ce premier graphique permet de visualiser très clairement les différences de tailles d’échantillons entre les deux groupes. Il permet également de voir que l’étendue des longueurs de cornes est plus importante dans le groupe des individus vivants que dans celui des individus morts.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Histogrammes</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">Lizard <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Horn_len)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>, <span class="dt">color =</span> <span class="kw">grey</span>(<span class="fl">0.8</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Survival, <span class="dt">ncol =</span> <span class="dv">1</span>, <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>)</code></pre>
+<p><img src="figure/unnamed-chunk-51-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Notez ici l’utilisation de l’argument <code>scales = &quot;free_y&quot;</code> dans la fonction <code>facet_wrap()</code>. Cet argument permet de ne pas imposer la même échalle pour l’axe des ordonnée des 2 graphiques. Ce choix est ici pertinent puisque les effectifs des 2 groupes sont très différents. Faîtes un essai sans cet argument pour voir la différence.</p>
+<p>Cette visualisation nous montre que les données doivent suivre à peu près une distribution Normale dans les 2 groupes, et que globalement la longueur des cornes semble légèrement plus élevée dans le groupe des vivants (avec un mode autour de 25-26 mm) que dans le groupes des morts (avec un mode autour de 23-24 mm).</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Boxplots</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">Lizard <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Survival, <span class="dt">y =</span> Horn_len)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>)</code></pre>
+<p><img src="figure/unnamed-chunk-52-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>Nous visualisons ici encore plus clairement que sur les histogrammes le fait que les longueurs de cornes des individus vivants sont légèrement plus longues que celles des individus morts. D’ailleurs, puisque les intervalles de confiance à 95% des médianes des 2 groupes (les encoches) ne se chevauchent pas, un test de comparaison des moyennes devrait logiquement conclure à une différence significative en faveur des individus vivants. On peut également noter que la largeur de l’encoche pour les individus morts est plus importante que celle des vivants. Cela traduit une incertitude plus grande autour de la médiane estimée dans le groupe des individus morts. C’est tout à fait logique compte tenu des effectifs modestes dans ce groupe.</p>
+</div>
+</div>
+<div id="le-test-parametrique-2" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Le test paramétrique</h3>
+<p>Le test paramétrique le plus puissant que nous puissions faire pour comparer la moyenne de 2 populations est le test de Student. Ce test étant paramétrique, nous devons nous assurer que ses conditions d’application sont vérifiées avant de pouvoir le réaliser.</p>
+<div id="conditions-dapplication-2" class="section level4">
+<h4><span class="header-section-number">3.4.2.1</span> Conditions d’application</h4>
+<p>Les conditions d’application de ce test sont au nombre de 3 :</p>
+<ol style="list-style-type: decimal">
+<li>Chacun des deux échantillons est issu d’un échantillonnage aléatoire de la population générale. Comme toujours, en l’absence d’indication contraire, on considère que cette condition est toujours vérifiée.</li>
+<li>La variable numérique étudiée est distribuée normalement dans les deux populations. Il nous faudra donc faire deux test de Shapiro-Wilk, un pour chaque échantillon.</li>
+<li>L’écart-type (et la variance) de la variable numérique est la même dans les deux populations. C’est ce que l’on appelle l’homoscédasticité.</li>
+</ol>
+<p>En réalité, le test du <span class="math inline">\(t\)</span> de Student sur deux échantillons indépendants est assez robuste face au non respect de cette troisième condition d’application. Cela signifie que si cette troisième condition d’application n’est pas strictement vérifiée, les résultats du tests peuvent malgré tout rester valides. Lorsque les 2 échantillons comparés ont des tailles supérieures ou égales à 30, ce test fonctionne bien même si l’écart-type d’un groupe est jusqu’à 3 fois supérieur ou inférieur à l’écart-type du second groupe, à condition que la taille des 2 échantillons soit proche (ce qui n’est pas le cas ici !). En revanche, s’il les écart-types diffèrent de plus d’un facteur 3, ou si les tailles d’échantillons sont très différentes, le test du <span class="math inline">\(t\)</span> de Student ne devrait pas être utilisé. De même, si la taille des échantillons est inférieure à 30 et que les variances ne sont pas homogènes, ce test ne devrait pas être réalisé. En conclusion, les résultats du test du <span class="math inline">\(t\)</span> de Student à deux échantillons indépendants peuvent rester valides si la troisième condition d’homscédasticité est violée, mais dans certains cas seulement.</p>
+<p>Le test du <span class="math inline">\(t\)</span> de Student sur deux échantillons indépendants est également assez robuste face à des écarts mineurs à la distribution Normale, tant que la forme des deux distributions comparées reste similaire. En outre, la robustesse de ce test augmente avec la taille des échantillons.</p>
+<p>Ici, nous allons donc commencer par vérifier la normalité de chacun des 2 échantillons en réalisant 2 tests de Shapiro-Wilk. Si ces tests confirment que la taille des cornes suit une distribution Normale dans la population générale, nous comparerons alors la variance des 2 populations (nous verrons 3 méthodes pour cela). Les statistiques descriptives réalisées plus haut nous ont montré que les écarts-types des 2 échantillons sont proches, mais que les tailles d’échantillons sont très différentes. L’homoscédasticité doit donc être vérifiée pour que nous ayons le droit de faire le test de Student.</p>
+<p><strong>1. Normalité des données</strong></p>
+<p>Nous commençons donc par tester la Normalité des 2 populations dont sont issus les échantillons. Pour les individus morts les hypothèses sont les suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la taille des cornes suit une distribution Normale dans la population des lézards cornus morts.</li>
+<li>H<span class="math inline">\(_1\)</span> : la taille des cornes ne suit pas une distribution Normale dans la population des lézards cornus morts.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">Lizard <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Survival <span class="op">==</span><span class="st"> &quot;killed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(Horn_len) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">shapiro.test</span>()</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.93452, p-value = 0.06482</code></pre>
+<blockquote>
+<p>La <span class="math inline">\(p\)</span>-value est supérieure à <span class="math inline">\(\alpha = 0.05\)</span>, donc on ne peut pas rejeter l’hypothèse nulle de Normalité pour la taille des cornes de la population des lézards cornus morts (test de Shapiro-Wilk, <span class="math inline">\(W = 0.93\)</span>, <span class="math inline">\(p = 0.065\)</span>).</p>
+</blockquote>
+<p>Pour les individus vivants :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la taille des cornes suit une distribution Normale dans la population des lézards cornus vivants.</li>
+<li>H<span class="math inline">\(_1\)</span> : la taille des cornes ne suit pas une distribution Normale dans la population des lézards cornus vivants.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">Lizard <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Survival <span class="op">==</span><span class="st"> &quot;living&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">pull</span>(Horn_len) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">shapiro.test</span>()</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.96055, p-value = 0.0002234</code></pre>
+<blockquote>
+<p>La <span class="math inline">\(p\)</span>-value est inférieure à <span class="math inline">\(\alpha = 0.05\)</span>, donc on rejette l’hypothèse nulle de Normalité pour la taille des cornes de la population des lézards cornus vivants (test de Shapiro-Wilk, <span class="math inline">\(W = 0.96\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>).</p>
+</blockquote>
+<p>Si l’on examine l’histogramme des 2 échantillons, on constate toutefois que la forme des distributions des 2 séries de données est très proche. Pour les 2 échantillons, la distribution est en effet unimodale, avec une asymétrie gauche assez marquée (une longue queue de distribution du côté gauche). La forme des distributions étant similaire (on parle bien de la forme des histogrammes et non de la position du pic), et les histogrammes étant proches de la forme typique d’une courbe en cloche, le test de Student restera valide.</p>
+<p><strong>2. Homogénéité des variances</strong></p>
+<p>Le test le plus simple pour comparer la variance de 2 échantillons est le test <span class="math inline">\(F\)</span> :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la variance des 2 populations est égale, leur ratio vaut 1 (<span class="math inline">\(\frac{\sigma^2_{killed}}{\sigma^2_{living}} = 1\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la variance des 2 populations est différente, leur ratio ne vaut pas 1 (<span class="math inline">\(\frac{\sigma^2_{killed}}{\sigma^2_{living}} \neq 1\)</span>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">var.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard)</code></pre>
+<pre><code>
+    F test to compare two variances
+
+data:  Horn_len by Survival
+F = 1.0607, num df = 29, denom df = 153, p-value = 0.7859
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.6339331 1.9831398
+sample estimates:
+ratio of variances 
+          1.060711 </code></pre>
+<blockquote>
+<p>Ici, le ratio des variances (la variance des individus morts divisée par la variance des individus vivants) est très proche de 1 (<span class="math inline">\(F = 1.06\)</span>, IC 95% : [0.63 ; 1.98]). Le test <span class="math inline">\(F\)</span> nous montre qu’il est impossible de rejeter H<span class="math inline">\(_0\)</span> : au seuil <span class="math inline">\(\alpha = 0.05\)</span>, le ratio des variances n’est pas significativement différent de 1 (ddl = 29 et 153, <span class="math inline">\(p = 0.79\)</span>), les variances sont homogènes.</p>
+</blockquote>
+<p>Le test de Bartlett est un autre test qui permet de comparer la variance de plusieurs populations. Lorsque le nombe de populations est égal à 2 (comme ici), ce test est absolument équivalent au test <span class="math inline">\(F\)</span> ci-dessus.</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : Toutes les populations ont même variance (<span class="math inline">\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : Au moins une population a une variance différente des autres.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bartlett.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard)</code></pre>
+<pre><code>
+    Bartlett test of homogeneity of variances
+
+data:  Horn_len by Survival
+Bartlett&#39;s K-squared = 0.042411, df = 1, p-value = 0.8368</code></pre>
+<p>Enfin, le test de Levene devrait être préféré la plupart du temps. Comme le test de Bartlett, il permet de comparer la variance de plusieurs populations, mais il est plus robuste vis à vis de la non-normalité des données.</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : Toutes les populations ont même variance (<span class="math inline">\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : Au moins une population a une variance différente des autres.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Le test de Leven fait partie du package car. Il doit être chargé en mémoire</span>
+<span class="co"># library(car)</span>
+<span class="kw">leveneTest</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard)</code></pre>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
+       Df F value Pr(&gt;F)
+group   1  0.0035  0.953
+      182               </code></pre>
+<p>Ici encore, les conclusions sont les mêmes :</p>
+<blockquote>
+<p>Il est impossible de rejeter l’hypothèse nulle d’homogénéité des variances au seuil <span class="math inline">\(\alpha = 0.05\)</span> (test de Levene, <span class="math inline">\(F\)</span> = 0.004, ddl = 1, <span class="math inline">\(p = 0.953\)</span>).</p>
+</blockquote>
+</div>
+<div id="realisation-du-test-et-interpretation-2" class="section level4">
+<h4><span class="header-section-number">3.4.2.2</span> Réalisation du test et interprétation</h4>
+<p>Puisque la taille des cornes du lézard cornu suit approximativement la même distribution “presque Normale” dans les 2 ppulations (lézards morts et vivants) et que ces 2 ppulations ont des variances homogènes, on peut réaliser le test du <span class="math inline">\(t\)</span> de Student sur deux échantillons indépendants.</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} \neq 0\)</span>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 2.27e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.335402 -1.253602
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>Notez bien la syntaxe :</p>
+<ul>
+<li>nous utilisons ici la syntaxe du type “formule” faisant appel au symbole <code>~</code> (Longueur des cornes en fonction de la Survie) et à l’argument <code>data =</code>.</li>
+<li>l’argument <code>paired = TRUE</code> a disparu puisque nous avons ici deux échantillons indépendants</li>
+<li>l’argument <code>var.equal = TRUE</code> doit obligatoirement être spécifié : nous nous sommes assuré que l’homogénéité des variances était vérifiée. Il faut donc l’indiquer à R afin que le test de Student classique soit réalisé. Si on omet de le spécifier, c’est un autre test qui est réalisé (voir plus bas).</li>
+</ul>
+<blockquote>
+<p>Au seuil <span class="math inline">\(\alpha\)</span> de 5%, on rejette l’hypothèse nulle d’égalité des moyennes de la longueur des cornes entre lézards vivants et morts (test <span class="math inline">\(t\)</span> de Student sur deux échantillons indépendant, <span class="math inline">\(t = -4.35\)</span>, ddl = 182, <span class="math inline">\(p &lt; 0.001\)</span>). Les lézards morts ont en moyenne des cornes plus courtes (<span class="math inline">\(\hat{\mu}_{killed} = 21.99\)</span> millimètres) que les lézards vivants (<span class="math inline">\(\hat{\mu}_{living} = 24.28\)</span> millimètres). La gamme des valeurs les plus probables pour la différence de moyenne entre les deux populations est fournie par l’intervalle de confiance à 95% de la différence de moyennes : [-3.34 ; -1.25].</p>
+</blockquote>
+<p>Ce test confirme donc bien l’impression des chercheurs : les lézards principalement pris pour cibles par les pies grièches migratrices ont des cornes en moyenne plus courtes que les lézards de la population générale. Avoir des cornes plus longues protège donc les lézards de la prédation, du moins dans une certaine mesure.</p>
+</div>
+</div>
+<div id="lalternative-non-parametrique-2" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> L’alternative non paramétrique</h3>
+<p>Si les conditions d’application du test de Student ne sont pas vérifiées, nous devons utiliser un équivalent non paramétrique. C’est le cas du <strong>test de Wilcoxon sur la somme des rangs</strong> (également appelé test de Mann-Whitney). Comme pour tous les tests de Wilcoxon, la comparaison porte alors non plus sur les moyennes mais sur les médianes.</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la médiane des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(med_{killed}-med_{living} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la médiane des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(med_{killed}-med_{living}\neq 0\)</span>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wilcox.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard, <span class="dt">conf.int =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  Horn_len by Survival
+W = 1181.5, p-value = 2.366e-05
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -3.200076 -1.300067
+sample estimates:
+difference in location 
+             -2.200031 </code></pre>
+<p>L’argument <code>var.equal = TRUE</code> n’existe pas pour ce test puisque c’est justement un test non paramétrique qui ne requiert pas l’homogénéité des variances. En revanche, comme pour tous les autres test de Wilcoxon que nous avons réalisés dans ce TP, l’argument <code>conf.int = TRUE</code> permet d’afficher les estimateurs pertinents, ici, la différence de médiane entre les 2 populations et l’intervalle de confiance à 95% de cette différence de médiane.</p>
+<p>La conclusion est ici la même que pour le test de Student : puisque la <span class="math inline">\(p\)</span>-value est très inférieure à <span class="math inline">\(\alpha\)</span>, on rejette l’hypothèse nulle : les médianes sont bel et bien différentes.</p>
+<p>Enfin, dans le cas où la variable étudiée suit la loi Normale dans les deux populations mais qu’elle n’a pas la même variance dans les deux populations, il est toujours possible de réaliser un test de Wilcoxon, mais il est souvent préférable de réaliser un test de Student modifié : le <strong>test de approché du <span class="math inline">\(t\)</span> de Welch</strong>. Ce test est moins puissant que le test de Student classique, mais il reste plus puissant que le test de Wilcoxon, et surtout, il permet de comparer les moyennes et non les variances.</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} \neq 0\)</span>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard)</code></pre>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.2634, df = 40.372, p-value = 0.0001178
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.381912 -1.207092
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>La seule différence par rapport à la syntaxe du test <span class="math inline">\(t\)</span> de Student paramétrique est la suppression de l’argument <code>var.equal = TRUE</code>. Attention donc, à bien utiliser la syntaxe correcte. Le test du <span class="math inline">\(t\)</span> de Welch ne devrait être réalisé que lorsque la normalité est vérifiée pour les 2 populations, mais pas l’homoscédasticité. Par rapport au test de Student classique, on constate que le nombre de degrés de libertés est très différent, et donc la <span class="math inline">\(p\)</span>-value également. Les bornes de l’intervalle de confiance à 95% de la différence de moyenne sont différentes également puisque leur calcul a été fait en supposant que les 2 populations n’avaient pas même variance.</p>
+</div>
+<div id="exercice-dapplication-2" class="section level3">
+<h3><span class="header-section-number">3.4.4</span> Exercice d’application</h3>
+<p>On s’intéresse à la différence de taille supposée entre hommes et femmes. Le fichier <code>HommesFemmes.xls</code> contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à l’Université de La Rochelle. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d’examiner les données à l’aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à l’université de La Rochelle ont-il la même taille ?</p>
+</div>
+</div>
+<div id="tests-bilateraux-et-unilateraux" class="section level2">
+<h2><span class="header-section-number">3.5</span> Tests bilatéraux et unilatéraux</h2>
+<div id="principes" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Principes</h3>
+<p>Jusqu’à maintenant, tous les tests que nous avons réalisés sont des tests bitaléraux. Pour chaque test, l’hypothèse nulle est imposée. En revanche, pour certains tests, l’hypothèse alternative est à choisir (et à spécifier) par l’utilisateur parmi 3 possibilités :</p>
+<ul>
+<li>1 hypothèse bilatérale. C’est celle qui est utilisée par défaut si l’utilisateur ne précise rien.</li>
+<li>2 hypothèses unilatérales possibles, qui doivent être spécifiées explicitement par l’utilisateur.</li>
+</ul>
+<p>Les tests unilatéraux peuvent concerner tous les tests pour lesquels les hypothèses sont de la forme suivante :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la valeur d’un paramètre de la population est égale à <span class="math inline">\(k\)</span> (<span class="math inline">\(k\)</span> peut être une valeur fixe, arbitraire, choisie par l’utilisateur, ou la valeur d’un paramètre d’une autre populations)</li>
+<li>H<span class="math inline">\(_1\)</span> : la valeur d’un paramètre de la population <strong>n’est pas égale à</strong> <span class="math inline">\(k\)</span>.</li>
+</ul>
+<p>En réalité, si nous remplaçons l’hypothèse H<span class="math inline">\(_1\)</span> par :</p>
+<ul>
+<li>H<span class="math inline">\(_1\)</span> : la valeur d’un paramètre de la population <strong>est supérieure à</strong> <span class="math inline">\(k\)</span>.</li>
+</ul>
+<p>ou par :</p>
+<ul>
+<li>H<span class="math inline">\(_1\)</span> : la valeur d’un paramètre de la population <strong>est inférieure à</strong> <span class="math inline">\(k\)</span>.</li>
+</ul>
+<p>nous réalisons un test unilatéral.</p>
+<p>Dans R, la syntaxe permettant de spécifier l’hypothèse alternative que nous souhaitons utiliser est toujours la même. Il faut préciser, au moment de faire le test l’argument suivant :</p>
+<ul>
+<li><code>alternative = &quot;two.sided&quot;</code> : pour faire un test bilatéral. Si on ne le fait pas explicitement, c’est de toutes façons cette valeur qui est utilisée par défaut.</li>
+<li><code>alternative = &quot;greater&quot;</code> : pour choisir l’hypothèse unilatérale <code>&gt;</code></li>
+<li><code>alternative = &quot;less&quot;</code> : pour choisir l’hypothèse unilatérale <code>&lt;</code></li>
+</ul>
+<p>Attention, le choix d’utiliser “greater” ou “less” dépend de l’ordre dans lequel les échantillons sont spécifiés. Cette synatxe est valable pour tous les tests de Student vus jusqu’ici (un échantillon, deux échantillons appariés, deux échantillons indépendants) et pour leurs alternatives non paramétriques (test de Wilcoxon des rangs signés, test de Wilcoxon de la somme des rangs, test du <span class="math inline">\(t\)</span> de Welch).</p>
+<p><strong>Attention</strong> : comme indiqué en TD, l’utilisation de tests unilatéraux doit être réservée exclusibvement aux situations pour lesquelles le choix de l’hypothèse unilatérale est possible à justifier par un mécanisme quelconque (biologique, physiologique, comportemental, écologique, génétique, etc.). Observer que l’un des échantillons a une moyenne plus grande ou plus faible qu’un autre lors de la phase des statstiques descriptives des données n’est pas du tout une raison suffisante. Il faut pouvoir justifier le choix de l’hypothèse alternative par une explication valable. Reprenons l’un des exemples examinés précédemment pour mieux comprendre comment tout cela fonctionne.</p>
+</div>
+<div id="un-exemple-pas-a-pas" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Un exemple pas à pas</h3>
+<p>Reprenons l’exemple des lézards cornus. L’étude a été réalisée parce que les chercheurs supposaient que la longueur des cornes des lézards était susceptible de leur fournir une protection face à la prédation. Autrement dit, les chercheurs supposaient que des cornes plus kongues devaient fournir une meilleure protection vis à vis de la prédation. Ainsi, les lézards morts devaient avoir des cornes moins longues en moyenne que les les lézards vivants, simplement parce que proter des cornes courtes expose plus simplement les individus à la prédation. Nous avons donc une bonne raison “écologique” de considérer un test unilatéral.</p>
+<p>Lorsque nous avons examiné cette question, nous avons fait le test du <span class="math inline">\(t\)</span> de Student sur échantillons indépendants de la façon suivante :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 2.27e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.335402 -1.253602
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>Comme l’indiquent les résultats fournis, l’hypothèse alternative utilisée pour faire le test est “La vraie différence de moyenne n’est pas égale à 0”. Autrement dit, nous avons fait un test bilatéral avec les hypothèses suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} \neq 0\)</span>).</li>
+</ul>
+<p>Ce test est donc rigoureusement équivalent à celui-ci :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, 
+       <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>,
+       <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</code></pre>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 2.27e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.335402 -1.253602
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>Ici, nous souhaitons en fait réaliser un <strong>test unilatéral</strong> avec les hypothèses suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne de longueur des cornes de la population des lézards morts est égale à celle des lézards vivants. Leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne de longueur des cornes de la population des lézards morts est <strong>inférieure</strong> à celle des lézards vivants. Leur différence est inférieure à 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} &lt; 0\)</span>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, 
+       <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>,
+       <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</code></pre>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 1.135e-05
+alternative hypothesis: true difference in means is less than 0
+95 percent confidence interval:
+      -Inf -1.422321
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>Puisque la <span class="math inline">\(p\)</span>-value de ce test est inferieure à <span class="math inline">\(\alpha = 0.05\)</span>, on rejette l’hypothèse nulle de l’égalité des moyennes. On valide donc l’hypothèse alternative : les lézards cornus morts ont en moyenne des cornes plus courtes que les lézards vivants. Cette différence de longueur de cornes est en faveur des lézars vivants et avut très probablement au moins <span class="math inline">\(1.4\)</span> millimètres (c’est l’intervalle de confiance à 95% de la différence de moyennes qui nous le dit).</p>
+<p>Dernière chose importante : il ne faut pas se tromper dans le choix de l’hypothèse alternative. En effet, nous aurions pu tenter de tester exactement la même chose en formulant les hypothèses suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>vivants</strong> est égale à celle des lézards <strong>morts</strong>. Leur différence vaut 0 (<span class="math inline">\(\mu_{living}-\mu_{killed} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>vivants</strong> est <strong>supérieure</strong> à celle des lézards <strong>morts</strong>. Leur différence est <strong>supérieure</strong> à 0 (<span class="math inline">\(\mu_{living}-\mu_{killed} &gt; 0\)</span>).</li>
+</ul>
+<p>Ce test est normalement exactement le même que précédemment. Toutefois, si on essaie de le réaliser, on rencontre un problème :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, 
+       <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>,
+       <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</code></pre>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 1
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ -3.166684       Inf
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>Ici, la <span class="math inline">\(p\)</span>-value est très supérieure à <span class="math inline">\(\alpha\)</span> puisqu’elle vaut 1. Une <span class="math inline">\(p\)</span>-value de 1 devrait toujours attirer votre attention. La conclusion devrait donc être que l’on ne peut pas rejeter H<span class="math inline">\(_0\)</span> : les lézards morts et vivants ont en moyenne des cornes de même longueur. Nous savons pourtant que c’est faux.</p>
+<p>Le problème est ici liè à l’ordre des catégories “vivant” ou “mort” dans le facteur <code>Survival</code> du tableau <code>Lizard</code>. Les dernières lignes des tests que nous venons de faire indique la moyenne de chaque groupe, mais le groupe “killed” apparaît toujours avant le groupe “living”. C’est l’ordre des nibveaux dans le facteur <code>Survival</code> qui doit dicter la syntaxe appropriée :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Lizard<span class="op">$</span>Survival</code></pre>
+<pre><code>  [1] living living living living living living living living living
+ [10] living living living living living living living living living
+ [19] living living living living living living living living living
+ [28] living living living living living living living living living
+ [37] living living living living living living living living living
+ [46] living living living living living living living living living
+ [55] living living living living living living living living living
+ [64] living living living living living living living living living
+ [73] living living living living living living living living living
+ [82] living living living living living living living living living
+ [91] living living living living living living living living living
+[100] living living living living living living living living living
+[109] living living living living living living living living living
+[118] living living living living living living living living living
+[127] living living living living living living living living living
+[136] living living living living living living living living living
+[145] living living living living living living living living living
+[154] living killed killed killed killed killed killed killed killed
+[163] killed killed killed killed killed killed killed killed killed
+[172] killed killed killed killed killed killed killed killed killed
+[181] killed killed killed killed
+Levels: killed living</code></pre>
+<p>Par défaut, dans R, les niveaux d’un facteur sont classés par ordre alphabétique sauf si on spécifie manuellement un ordre différent. Ici, le niveau “killed” est donc le premier niveau du facteur, et “living” le second. Lorsque l’on réalise un test de Student avec ces données (ou un test de Wilcoxon d’ailleurs), la différence de moyenne qui est examinée par le test est donc “moyenne des <code>killed</code> - moyenne des <code>living</code>”. Lorsque nous avons tapé ceci :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, 
+       <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>,
+       <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</code></pre>
+<p>nous avons en réalité posé les hypothèses suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>morts</strong> est égale à celle des lézards <strong>vivants</strong>. Leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>morts</strong> est <strong>supérieure</strong> à celle des lézards <strong>vivants</strong>. Leur différence est <strong>supérieure</strong> à 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} &gt; 0\)</span>).</li>
+</ul>
+<p>Ce test est donc erronné, ce qui explique qu’il nous renvoie un résultat faux et une <span class="math inline">\(p\)</span>-value de 1. Ici, puisque l’ordre des catégories est “killed” d’abord et “living” ensuite, la seule façon correct de faire un test unilatéral qui a du sens est donc celle que nous avons réalisé en premier :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Horn_len <span class="op">~</span><span class="st"> </span>Survival, 
+       <span class="dt">data =</span> Lizard, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>,
+       <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>)</code></pre>
+</div>
+<div id="exercice-dapplication-3" class="section level3">
+<h3><span class="header-section-number">3.5.3</span> Exercice d’application</h3>
+<p>Reprenez chaque exemple et exercice de cet séance de TP et identifiez les situations où un test unilatéral aurait du sens. Si vous en trouvez, faîte ce test et assurez-vous que les hypothèses choisies sont bien celles qui sont utilisées lors du test.</p>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-tidyverse">
+<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div id="ref-R-readr">
+<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2018. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.</p>
+</div>
+<div id="ref-R-readxl">
+<p>Wickham, Hadley, and Jennifer Bryan. 2018. <em>Readxl: Read Excel Files</em>. <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a>.</p>
+</div>
+<div id="ref-R-skimr">
+<p>McNamara, Amelia, Arino de la RubiaEduardo, Hao Zhu, Shannon Ellis, and Michael Quinn. 2019. <em>Skimr: Compact and Flexible Summaries of Data</em>. <a href="https://CRAN.R-project.org/package=skimr">https://CRAN.R-project.org/package=skimr</a>.</p>
+</div>
+<div id="ref-R-car">
+<p>Fox, John, Sanford Weisberg, and Brad Price. 2018. <em>Car: Companion to Applied Regression</em>. <a href="https://CRAN.R-project.org/package=car">https://CRAN.R-project.org/package=car</a>.</p>
+</div>
+<div id="ref-Hasselquist1999">
+<p>Hasselquist, Dennis, James A. Marsh, Paul W. Sherman, and John C. Wingfield. 1999. “Is Avian Humoral Immunocompetence Suppressed by Testosterone?” <em>Behavioral Ecology and Sociobiology</em> 45 (3): 167–75. <a href="https://doi.org/10.1007/s002650050550">https://doi.org/10.1007/s002650050550</a>.</p>
+</div>
+<div id="ref-Fuller2003">
+<p>Fuller, Andrea, Peter R. Kamerman, Shane K. Maloney, Graham Mitchell, and Duncan Mitchell. 2003. “Variability in Brain and Arterial Blood Temperatures in Free-Ranging Ostriches in Their Natural Habitat.” <em>Journal of Experimental Biology</em> 206 (7): 1171–81. <a href="https://doi.org/10.1242/jeb.00230">https://doi.org/10.1242/jeb.00230</a>.</p>
+</div>
+<div id="ref-Young2004">
+<p>Young, Kevin V., Edmund D. Brodie, and Edmund D. Brodie. 2004. “How the Horned Lizard Got Its Horns.” <em>Science</em> 304 (5667): 65–65. <a href="https://doi.org/10.1126/science.1094790">https://doi.org/10.1126/science.1094790</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Biometrie3.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

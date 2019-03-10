@@ -1,7 +1,7 @@
-# Séance 1 : statistiques descriptives et tests d'hypothèses
+# Séance 1 : statistiques descriptives et tests d'hypothèses {#seance1}
 
 
-## Packages et données
+## Packages et données {#packages}
 
 Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes disponibles sur l'ENT.
 
@@ -585,7 +585,7 @@ Enfin, comme expliqué plus haut, le test de Student sur données appariées est
 À vous donc de choisir la syntaxe qui vous paraît la plus parlante ou celle que vous avez le plus de facilité à retenir.
 
 
-### Le test non paramétrique
+### L'alternative non paramétrique
 
 Comme pour le test de Student à un échantillon, lorsque les conditions d'application du test de Student sur données appariées ne sont pas vérifiées (c'est à dire lorsque la différence de moyenne entre les deux séries ne suit pas une loi Normale), il faut utiliser un test non paramétrique équivalent.
 
@@ -614,7 +614,7 @@ Les autruches vivent dans des environnements chauds, et elles sont fréquemment 
 Importez ces données et faites-en l'analyse pour savoir s'il existe une différence de température moyenne entre le corps et le cerveau des autruches. Comparez ces résultats avec les prédictions faites pour les mammifères dans un environnement similaire. Comme toujours, vous commencerez par faire une analyse descriptive des données, sous forme numérique et graphique, avant de vous lancer dans les tests d'hypothèses.
 
 
-## Comparaison de la moyenne de 2 populations : échantillons indépendants
+## Comparaison de la moyenne de 2 populations : échantillons indépendants {#Indep}
 
 On s'intéresse maintenant aux méthodes permettant de comparer la moyenne de deux groupes ou de deux traitements dans la cas d'échantillons indépendants. Dans ce type de design expérimentaux, les les deux traitements sont appliqués à des échantillons indépendants issus de 2 populations.
 
@@ -813,7 +813,7 @@ Notez bien la syntaxe :
 
 Ce test confirme donc bien l'impression des chercheurs : les lézards principalement pris pour cibles par les pies grièches migratrices ont des cornes en moyenne plus courtes que les lézards de la population générale. Avoir des cornes plus longues protège donc les lézards de la prédation, du moins dans une certaine mesure.
 
-### Le test non paramétrique
+### L'alternative non paramétrique
 
 Si les conditions d'application du test de Student ne sont pas vérifiées, nous devons utiliser un équivalent non paramétrique. C'est le cas du **test de Wilcoxon sur la somme des rangs** (également appelé test de Mann-Whitney). Comme pour tous les tests de Wilcoxon, la comparaison porte alors non plus sur les moyennes mais sur les médianes.
 
