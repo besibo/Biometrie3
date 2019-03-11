@@ -15,12 +15,20 @@ library(car)
 library(broom)
 ```
 
+Enfin, nous aurons besoin du package `DescTools` [@R-DescTools] afin de réaliser un test spécifique de comparaisons multiples. N'oubliez pas de l'installer si nécessaire, avant de le charger en mémoire :
+
+```{r, warning=FALSE, message=FALSE}
+library(DescTools)
+```
+
+
 Ces commandes (que vous devez taper dans vos scripts avant de les exécuter dans la console de RStudio) ne devraient pas renvoyer de messages d'erreur puisque vous avez dû les installer pour reproduire les exemples et réaliser les exercices de la séance 1. Si vous rencontrez des problèmes, merci de consulter la section \@ref(packages) de cet ouvrage, ainsi que [la section 2.3](https://besibo.github.io/Biometrie2/bases.html#charger-un-package-en-memoire) du livre de biométrie 2 disponible en ligne.
 
 
 Vous aurez également besoin des jeux de données suivants :
 
 - `Light.csv`
+- `Insectes.csv`
 
 
 ## L'analyse de variance à un facteur
@@ -238,7 +246,7 @@ Lorsqu'une ANOVA montre que tous les groupes n'ont pas la même moyenne, il faut
 
 Ici, puisque pour chaque test, un risque de 5% de rejeter à tort l'hypothèse nulle est commis, réaliser 3 tests ferait monter le risque de s'être trompé quelque part à 15%. C'est la raison pour laquelle des tests spéficiques existent. Nous en verrons 2 : le test de comparaisons multiples de Student et le test de Tukey (ou "Honestly Significant Difference Test"). Pour ces tests, des précautions sont prises qui garantissent que le risque $\alpha$ global est maîtrisé et qu'il reste fixé à 5%.
 
-Le test de comparaisons multioles de Student est réalisé avec la fonction `pairwise.t.test()`. En réalité, 3 test de Student seront réalisés. Les $p$-value des tests seront simplement modifiées afin que globalement, le risque $\alpha$ n'augmente pas. Pour chaque test réalisee, les hypothèses nulles et alternatives sont les mêmes que celles décrites à la section \@ref(Indep) :
+Le test de comparaisons multiples de Student est réalisé avec la fonction `pairwise.t.test()`. En réalité, 3 test de Student seront réalisés. Les $p$-value des tests seront simplement modifiées afin que globalement, le risque $\alpha$ n'augmente pas. Pour chaque test réalisee, les hypothèses nulles et alternatives sont les mêmes que celles décrites à la section \@ref(Indep) :
 
 - H$_0$ : la moyenne des deux populations est égale ($\mu_1 = \mu_2$, ou $\mu_1 - \mu_2$ = 0).
 - H$_1$ : la moyenne des deux populations est différente ($\mu_1 \neq \mu_2$ ou $\mu_1 - \mu_2 \neq 0$).
@@ -298,17 +306,99 @@ Nous avons donc bien montré ici que la re-synchronisation de l'horloge interne 
 
 ### L'alternative non paramétrique
 
+Dans la suite de cette section, nous faisons l'hypothèse, bien que ça ne soit pas le cas, que les conditions d'application de l'ANOVA ne sont pas vérifiées pour notre jeu de données.
 
-#### Réalisation du test et interprétation
+#### Réalisation du tests et interprétation
 
+Si les conditions d'application de l'ANOVA ne sont pas remplies, il est nécessaire d'utiliser un test non-paramétrique afin de comparer la moyenne de plus de deux groupes à la fois. La particularité de l'ANOVA est sa **robustesse** vis-à-vis d'un viol modéré de ses coditions d'application. La robustesse est la capacité d'un test à fournir des résultats qui restent valides même si toutes ses conditions d'application ne sont pas remplies. L'ANOVA étant particulièrement robuste, ses résultats resteront valides dans les situations suivantes :
+
+- Non Normalité modérée des résidus. Si les résidus ne suivent pas parfaitement une loi Normale mais qu'ils sont néanmoins grossièrement distribués selon une courbe en cloche, les résultats de l'ANOVA resteront vrais, surtout si les effectifs sont importants.
+- Non homogénéité des résidus. Si les résidus ne sont pas homogènes dans tous les groupes, les résultats de l'ANOVA resteront vrais tant que les échantillons seront grands, approximativement de la même taille dans tous les groupes, et à condition que les écarts de variances entre les groupes ne dépassent pas un facteur 10.
+
+Dans tous les autres cas de non respect des conditions de l'ANOVA, par exemple, si la variance des résidus n'est pas homogène et que les groupes sont de petite taille ou de taille différente, ou si les variances diffèrent de plus d'un facteur 10, ou si les résidus s'écartent fortement de la Normalité, il faudra alors faire un test non paramétrique.
+
+L'alternative non paramétrique à l'ANOVA à un facteur est le test de la somme des rangs de **Kruskal-Wallis** dont la syntaxe dans R est similaire à celle de l'ANOVA. Comme d'habitude, l'hypothèse nulle concerne l'absence d'effet du facteur étudié :
+
+- H$_0$ : le type de traitement appliqué n'a pas d'effet sur le décalage de phase. Les médianes sont égales dans tous les groupes (med$_\textrm{control} = $med$_\textrm{knee} =$ med$_\textrm{eyes}$).
+- H$_1$ : le type de traitement appliqué a un d'effet sur le décalage de phase. Les médianes ne sont pas toutes égales, au moins l'une d'entre elles diffère des autres.
+
+```{r}
+kruskal.test(shift ~ treatment, data = Light)
+```
+
+Ici, la $p$-value est inférieure à $\alpha$, on rejette donc H$_0$ : toutes les meedianes ne sont pas égales. Comme avec l'ANOVA, il nous faut maintenant déterminer quelles médianes sont différentes et quelle est la magnitude de cette (ou de ces) différence(s). Pour cela, nous devons réaliser un test de comparaisons multiples.
 
 #### Tests Post-Hoc
 
+Comme pour les tests post-hoc de l'ANOVA, nous allons voir ici 2 tests de comparaisons multiples non paramétriques. Le premier est l'équivalent du test de comparaisons multiples de Student : le test de cd comparaisons multiples de la somme des rangs de Wilcoxon. Le principe est absolument le même que pour le test de comparaisons multiples de Student : toutes les comparaisons 2 à 2 sont effectuées au moyen d'un test de la somme des rangs de Wilcoxon. Les $p$-values de ces tests sont corrigées afin de garantir que le risque d'erreur $\alpha$ global soit maintenu constant en dépit de l'augmentation du nombre de tests réalisé. Pour chaque test réalisé, les hypothèses sont les suivantes :
 
-### Exercice d'application
+- H$_0$ : la médiane des deux populations est égale.
+- H$_1$ : la médiane des deux populations est différente.
+
+```{r}
+# Réalisation du test
+post_hoc3 <- pairwise.wilcox.test(Light$shift, Light$treatment)
+
+# Affichage des résultats
+post_hoc3
+
+# Utilisation de la fonction `tidy` pour afficher les résultats dans un tibble
+tidy(post_hoc3)
+```
+
+Ici, la $p$-value du premier test est supérieure à $\alpha = 0.05$. Il n'y a dons pas de différence entre les médianes du groupe `control` et du groupe `knee`. Le traitement lumineux appliqué dans le creux poplité n'a donc aucun effet sur le décalage de phase.
+
+La $p$-value du second test est en revanche inférieure à $\alpha$. On rejette l'hypothèse nulle pour ce test ce qui confirme que le traitement lumineux appliqué au niveau des yeux a un effet sur le décalage de phase. Reste toutefois à quantifier l'importance de ce décalage de phase par rapport au groupe `control`.
+
+Enfin, la $p$-value du troisième test est supérieure (tout juste !) à $\alpha$. La conclusion logique est donc qu'il n'y a pas de différence significative entre les médianes des groupes `knee` et `control`. On sait que ce n'est pas le cas puisque nous avons montré plus haut (avec les tests paramétriques), que la différence de moyenne entre ces deux populations était significative. Nous avons ici l'illustration parfaite de la faible puissance des tests non paramétriques : leur capacité à détecter un effet lorsqu'il y en a réellement un est plus faible que celle des tests paramétriques. En outre, les procédures de comparaisons multiples sont très conservatives, et font mécaniquement baisser la puissance des tests pour maintenir constante l'erreur $\alpha$. Je ne peux donc que vous inciter à la prudence lorsque vous interprétez les résultats d'un test de comparaions multiples (*a fortiori* un test non paramétrique) pour lequel la $p$-value obtenue est très proche du seuil $\alpha$.
+
+Comme pour son homologue paramétrique, le test de comparaisons multiples de Wilcoxon nous permet de prendre une décision par rapport à H$_0$, mais il ne nous dit rien de la magnitude des effets mesurés. Pour les connaître, il nous faut réaliser le test de Dunn :
+
+```{r}
+# Réalisation du test
+post_hoc4 <- DunnTest(shift ~ treatment, data = Light)
+
+# Affichage des résultats
+post_hoc4
+```
+
+Avec ces résultats, on progresse un peu car outre les $p$-values pour chaque ocmpariaons, le test nous fournit une estimation de la différence des rangs moyens. Malheureusement, ces estimations sont souvent difficiles à interpréter (par exemple, quelle est l'unité utilisée ?) et aucun intervalle de confiance n'est fourni. On constate néanmoins que le test de Dunn donne ici des résultats comparables à ceux fournis par les tests paramétriques : le groupe `eyes` est significativement différent des deux autres. Pour obtenir les intevalles de confiance dont nous avons besoin, nous n'avons pas d'autre choix que des les calculer à l'aide du test de Wilcoxon classique, en réalisant manuellement les tests dont nous avons besoin. Ici, le test à proprement parler ne nous intéresse pas. La seule chose pertinente est la différence de (pseudo-) médiane estimée et son intervalle de confiance :
+
+```{r}
+# Comparaisons entre les groupes `knee` et `eyes` (dans cet ordre)
+Light %>% 
+  filter(treatment %in% c("knee", "eyes")) %>% 
+  wilcox.test(shift ~ treatment, data = ., conf.int = TRUE) %>% 
+  tidy()
+```
 
 
+Pour le décalage de phase de ces 2 groupes, la différence de médiane estimée vaut donc de 1.19, avec un intervalle de confiance à 95% de $[0.3 ; 2.21]$. Toutes les valeurs comprises dans cet intervalle de confiance sont strictement positives. Il y a donc très peu de chances pour que la différence de médiane entre ces deux groupes soit nulle. Le test de Dunn ci-dessus, montrant une différence significative entre ces groupes, est donc confirmé.
 
 
+### Exercices d'application
 
+#### *Cardamine pensylvanica*
+
+En biologie de la conservation, l'existance d'un lien entre la capacité de dispersion des organismes et le maintien durable des populations dans le temps est étudié de près, notamment dans le contexte de fragmentation des habitats que nous connaissons en raison de l'anthropisation des milieux.
+Cette question a été étudiée par 2 chercheurs [@Molofsky2005] chez *Cardamine pensylvanica*, une [plante annuelle d'Amérique du Nord](https://en.wikipedia.org/wiki/Cardamine_pensylvanica) qui produit des graines qui sont dispersées de façon explosive. Quatre traitements ont été utilisés pour modifier expérimentalement la dispersion des graines. La distance entre populations contigües a été définie comme suit :
+
+- Traitement 1 : `continu`. Les plants sont conservés au contact les uns des autres.
+- Traitement 2 : `medium`. Les plants sont séparés de 23.2 centimètres.
+- Tratiement 3 : `long`. Les plants sont séparés de 49.5 centimètres.
+- Traitement 4 : `isole`. Les plants sont séparés par des panneaux de bois empêchant la dispersion des graines.
+
+Ces traitements ont été assignés au hasard à des populations de plantes, et 4 réplicats ont été faits pour chacun d'entre eux. Les résultats de l'expérience de présentés ci-dessous. Il s'agit du nombre de générations durant lesquelles les plantes ont persisté :
+
+- `continu` : 9, 13, 13, 16
+- `medium` : 14, 12, 16, 16
+- `long` : 13, 9, 10, 11
+- `isole` : 13, 8, 8, 8
+
+Saisissez ces données dans R et faites-en l'analyse. Vous tenterez de déterminer si l'éloignement entre les populations de plantes a un impact sur leur capacité de survie. COmme tojours, avant de vos lancer dans les tests, vous prendrez le temps de décrire les données avec des statistiques descriptives et des représentations graphiques.
+
+
+#### Insecticides
+
+L'efficacité de 6 insecticides nommés A, B, C, D, E et F a été testée sur 6 parcelles agricoles. Dans chaque parcelle, un insecticide choisi aléatoirement dans la liste a été appliqué. Deux semaine plus tard, 12 plants ont été collectés dans chaque parcelle agricole et le nombre d'insectes toujours vivants sur chacun d'entre eux a été compté. Les résultats sont présentés dans le fichier `Insectes.csv`. Importez ces données dans R et faites-en l'analyse. Tous les insecticides ont-ils la même efficacité ? Si la réponse est non, quels sont les insecticides les plus (ou les moins) efficaces.
 

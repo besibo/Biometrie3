@@ -2220,6 +2220,14 @@ Les packages dont vous aurez besoin pour cette séance, et que vous devez donc c
 \end{Highlighting}
 \end{Shaded}
 
+Enfin, nous aurons besoin du package \texttt{DescTools} \citep{R-DescTools} afin de réaliser un test spécifique de comparaisons multiples. N'oubliez pas de l'installer si nécessaire, avant de le charger en mémoire :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(DescTools)}
+\end{Highlighting}
+\end{Shaded}
+
 Ces commandes (que vous devez taper dans vos scripts avant de les exécuter dans la console de RStudio) ne devraient pas renvoyer de messages d'erreur puisque vous avez dû les installer pour reproduire les exemples et réaliser les exercices de la séance 1. Si vous rencontrez des problèmes, merci de consulter la section \ref{packages} de cet ouvrage, ainsi que \href{https://besibo.github.io/Biometrie2/bases.html\#charger-un-package-en-memoire}{la section 2.3} du livre de biométrie 2 disponible en ligne.
 
 Vous aurez également besoin des jeux de données suivants :
@@ -2228,6 +2236,8 @@ Vous aurez également besoin des jeux de données suivants :
 \tightlist
 \item
   \texttt{Light.csv}
+\item
+  \texttt{Insectes.csv}
 \end{itemize}
 
 \hypertarget{lanalyse-de-variance-a-un-facteur}{%
@@ -2431,7 +2441,7 @@ notch went outside hinges. Try setting notch=FALSE.
 notch went outside hinges. Try setting notch=FALSE.
 \end{verbatim}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-75-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-76-1} \end{center}
 
 Puisqu'il y a peu de données, les intervalles de confiance à 95\% sont très larges. Ils dépassent d'ailleurs presque systématiquement les quartiles. Il vaudait donc mieux représenter cette figure sans ces intervalles de confiance. Toutefois, avant de les retirer, on peut constater ici que les IC 95\% se chevauchent complètement pour les séries \texttt{control} et \texttt{knee}. En revanche, il n'y a aucun chevauchement de l'IC 95\% du groupe \texttt{eyes} avec les 2 autres groupes. On s'attend donc à trouver une différence de moyenne significative entre le groupe \texttt{eyes} d'une part, et les groupes \texttt{control} et \texttt{knee} d'autre part, mais pas de différence de moyenne entre les groupes \texttt{control} et \texttt{knee}.
 
@@ -2449,7 +2459,7 @@ Puisqu'il y a peu de données, les intervalles de confiance à 95\% sont très l
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-76-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-77-1} \end{center}
 
 On constate ici visuellement que les 3 séries ont une étendue à peu près similaire, et que le groupe \texttt{eyes} semble se distinguer des 2 autres par des valeurs plus faibles. Enfin, les boîtes contenant 50\% des valeurs centrales (donc l'étendue des valeurs entre les premiers et troisièmes quartiles) recouvrent le 0 pour les 2 groupes \texttt{control} et \texttt{knee}, mais par pour \texttt{eyes}.
 
@@ -2542,7 +2552,7 @@ L'homogénéité des résidus signifie que les résidus doivent avoir à peu pr�
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-79-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-80-1} \end{center}
 
 Ici, les résidus sont considérés comme homogènes car nous avons à peu près autant de résidus positifs que négatifs et que la ligne rouge est très proche du 0. L'étalement des résidus est à peu près le même de la gauche à la droite du graphique. On pourrait donc faire entrer les résidus dans une boite rectangulaire horizontale centrée sur le 0 et de la même largeur d'un bout à l'autre du graphique. Une autre façon de visualiser ces résidus est d'utiliser le graphique suivant :
 
@@ -2552,7 +2562,7 @@ Ici, les résidus sont considérés comme homogènes car nous avons à peu près
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-80-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-81-1} \end{center}
 
 Sur ce graphique, ce qui compte principalement, c'est la droite en rouge. Elle est ici presque horizontale, ce qui montre que les résidus de tous les groupes (un groupe à gauche et 2 à droite) ont à peu près même moyenne.
 
@@ -2589,7 +2599,7 @@ Reste à vérifier la normalité des résidus. Là encore, on peut faire cela gr
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-82-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-83-1} \end{center}
 
 Sur un graphique quantile-quantile comme celui-là, on considère que les observations sont distribuées normalement si les points sont bien alignés sur la droite. Ici, la plupart des points sont très proches de la droite, ce qui laisse penser que les résidus suivent bien la loi Normale. On peut en avoir la confirmation avec le test suivant :
 
@@ -2649,7 +2659,7 @@ Lorsqu'une ANOVA montre que tous les groupes n'ont pas la même moyenne, il faut
 
 Ici, puisque pour chaque test, un risque de 5\% de rejeter à tort l'hypothèse nulle est commis, réaliser 3 tests ferait monter le risque de s'être trompé quelque part à 15\%. C'est la raison pour laquelle des tests spéficiques existent. Nous en verrons 2 : le test de comparaisons multiples de Student et le test de Tukey (ou ``Honestly Significant Difference Test''). Pour ces tests, des précautions sont prises qui garantissent que le risque \(\alpha\) global est maîtrisé et qu'il reste fixé à 5\%.
 
-Le test de comparaisons multioles de Student est réalisé avec la fonction \texttt{pairwise.t.test()}. En réalité, 3 test de Student seront réalisés. Les \(p\)-value des tests seront simplement modifiées afin que globalement, le risque \(\alpha\) n'augmente pas. Pour chaque test réalisee, les hypothèses nulles et alternatives sont les mêmes que celles décrites à la section \ref{Indep} :
+Le test de comparaisons multiples de Student est réalisé avec la fonction \texttt{pairwise.t.test()}. En réalité, 3 test de Student seront réalisés. Les \(p\)-value des tests seront simplement modifiées afin que globalement, le risque \(\alpha\) n'augmente pas. Pour chaque test réalisee, les hypothèses nulles et alternatives sont les mêmes que celles décrites à la section \ref{Indep} :
 
 \begin{itemize}
 \tightlist
@@ -2763,21 +2773,201 @@ En utilisant le tableau ci-dessus, nous pouvons synthétiser graphiquement ces r
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-88-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-89-1} \end{center}
 
 Nous avons donc bien montré ici que la re-synchronisation de l'horloge interne n'est possible que par le biais de l'exposition des yeux à la lumière, et non du creux poplité.
 
 \hypertarget{lalternative-non-parametrique-3}{%
 \subsubsection{L'alternative non paramétrique}\label{lalternative-non-parametrique-3}}
 
-\hypertarget{realisation-du-test-et-interpretation-4}{%
-\paragraph{Réalisation du test et interprétation}\label{realisation-du-test-et-interpretation-4}}
+Dans la suite de cette section, nous faisons l'hypothèse, bien que ça ne soit pas le cas, que les conditions d'application de l'ANOVA ne sont pas vérifiées pour notre jeu de données.
+
+\hypertarget{realisation-du-tests-et-interpretation}{%
+\paragraph{Réalisation du tests et interprétation}\label{realisation-du-tests-et-interpretation}}
+
+Si les conditions d'application de l'ANOVA ne sont pas remplies, il est nécessaire d'utiliser un test non-paramétrique afin de comparer la moyenne de plus de deux groupes à la fois. La particularité de l'ANOVA est sa \textbf{robustesse} vis-à-vis d'un viol modéré de ses coditions d'application. La robustesse est la capacité d'un test à fournir des résultats qui restent valides même si toutes ses conditions d'application ne sont pas remplies. L'ANOVA étant particulièrement robuste, ses résultats resteront valides dans les situations suivantes :
+
+\begin{itemize}
+\tightlist
+\item
+  Non Normalité modérée des résidus. Si les résidus ne suivent pas parfaitement une loi Normale mais qu'ils sont néanmoins grossièrement distribués selon une courbe en cloche, les résultats de l'ANOVA resteront vrais, surtout si les effectifs sont importants.
+\item
+  Non homogénéité des résidus. Si les résidus ne sont pas homogènes dans tous les groupes, les résultats de l'ANOVA resteront vrais tant que les échantillons seront grands, approximativement de la même taille dans tous les groupes, et à condition que les écarts de variances entre les groupes ne dépassent pas un facteur 10.
+\end{itemize}
+
+Dans tous les autres cas de non respect des conditions de l'ANOVA, par exemple, si la variance des résidus n'est pas homogène et que les groupes sont de petite taille ou de taille différente, ou si les variances diffèrent de plus d'un facteur 10, ou si les résidus s'écartent fortement de la Normalité, il faudra alors faire un test non paramétrique.
+
+L'alternative non paramétrique à l'ANOVA à un facteur est le test de la somme des rangs de \textbf{Kruskal-Wallis} dont la syntaxe dans R est similaire à celle de l'ANOVA. Comme d'habitude, l'hypothèse nulle concerne l'absence d'effet du facteur étudié :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : le type de traitement appliqué n'a pas d'effet sur le décalage de phase. Les médianes sont égales dans tous les groupes (med\$\_\textrm{control} = \(med\)\_\textrm{knee} =\$ med\(_\textrm{eyes}\)).
+\item
+  H\(_1\) : le type de traitement appliqué a un d'effet sur le décalage de phase. Les médianes ne sont pas toutes égales, au moins l'une d'entre elles diffère des autres.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kruskal.test}\NormalTok{(shift }\OperatorTok{~}\StringTok{ }\NormalTok{treatment, }\DataTypeTok{data =}\NormalTok{ Light)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Kruskal-Wallis rank sum test
+
+data:  shift by treatment
+Kruskal-Wallis chi-squared = 9.4231, df = 2, p-value =
+0.008991
+\end{verbatim}
+
+Ici, la \(p\)-value est inférieure à \(\alpha\), on rejette donc H\(_0\) : toutes les meedianes ne sont pas égales. Comme avec l'ANOVA, il nous faut maintenant déterminer quelles médianes sont différentes et quelle est la magnitude de cette (ou de ces) différence(s). Pour cela, nous devons réaliser un test de comparaisons multiples.
 
 \hypertarget{tests-post-hoc-1}{%
 \paragraph{Tests Post-Hoc}\label{tests-post-hoc-1}}
 
-\hypertarget{exercice-dapplication-4}{%
-\subsubsection{Exercice d'application}\label{exercice-dapplication-4}}
+Comme pour les tests post-hoc de l'ANOVA, nous allons voir ici 2 tests de comparaisons multiples non paramétriques. Le premier est l'équivalent du test de comparaisons multiples de Student : le test de cd comparaisons multiples de la somme des rangs de Wilcoxon. Le principe est absolument le même que pour le test de comparaisons multiples de Student : toutes les comparaisons 2 à 2 sont effectuées au moyen d'un test de la somme des rangs de Wilcoxon. Les \(p\)-values de ces tests sont corrigées afin de garantir que le risque d'erreur \(\alpha\) global soit maintenu constant en dépit de l'augmentation du nombre de tests réalisé. Pour chaque test réalisé, les hypothèses sont les suivantes :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la médiane des deux populations est égale.
+\item
+  H\(_1\) : la médiane des deux populations est différente.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Réalisation du test}
+\NormalTok{post_hoc3 <-}\StringTok{ }\KeywordTok{pairwise.wilcox.test}\NormalTok{(Light}\OperatorTok{$}\NormalTok{shift, Light}\OperatorTok{$}\NormalTok{treatment)}
+
+\CommentTok{# Affichage des résultats}
+\NormalTok{post_hoc3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Pairwise comparisons using Wilcoxon rank sum test 
+
+data:  Light$shift and Light$treatment 
+
+     control knee  
+knee 0.9551  -     
+eyes 0.0037  0.0524
+
+P value adjustment method: holm 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Utilisation de la fonction `tidy` pour afficher les résultats dans un tibble}
+\KeywordTok{tidy}\NormalTok{(post_hoc3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 3 x 3
+  group1 group2  p.value
+  <chr>  <chr>     <dbl>
+1 knee   control 0.955  
+2 eyes   control 0.00373
+3 eyes   knee    0.0524 
+\end{verbatim}
+
+Ici, la \(p\)-value du premier test est supérieure à \(\alpha = 0.05\). Il n'y a dons pas de différence entre les médianes du groupe \texttt{control} et du groupe \texttt{knee}. Le traitement lumineux appliqué dans le creux poplité n'a donc aucun effet sur le décalage de phase.
+
+La \(p\)-value du second test est en revanche inférieure à \(\alpha\). On rejette l'hypothèse nulle pour ce test ce qui confirme que le traitement lumineux appliqué au niveau des yeux a un effet sur le décalage de phase. Reste toutefois à quantifier l'importance de ce décalage de phase par rapport au groupe \texttt{control}.
+
+Enfin, la \(p\)-value du troisième test est supérieure (tout juste !) à \(\alpha\). La conclusion logique est donc qu'il n'y a pas de différence significative entre les médianes des groupes \texttt{knee} et \texttt{control}. On sait que ce n'est pas le cas puisque nous avons montré plus haut (avec les tests paramétriques), que la différence de moyenne entre ces deux populations était significative. Nous avons ici l'illustration parfaite de la faible puissance des tests non paramétriques : leur capacité à détecter un effet lorsqu'il y en a réellement un est plus faible que celle des tests paramétriques. En outre, les procédures de comparaisons multiples sont très conservatives, et font mécaniquement baisser la puissance des tests pour maintenir constante l'erreur \(\alpha\). Je ne peux donc que vous inciter à la prudence lorsque vous interprétez les résultats d'un test de comparaions multiples (\emph{a fortiori} un test non paramétrique) pour lequel la \(p\)-value obtenue est très proche du seuil \(\alpha\).
+
+Comme pour son homologue paramétrique, le test de comparaisons multiples de Wilcoxon nous permet de prendre une décision par rapport à H\(_0\), mais il ne nous dit rien de la magnitude des effets mesurés. Pour les connaître, il nous faut réaliser le test de Dunn :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Réalisation du test}
+\NormalTok{post_hoc4 <-}\StringTok{ }\KeywordTok{DunnTest}\NormalTok{(shift }\OperatorTok{~}\StringTok{ }\NormalTok{treatment, }\DataTypeTok{data =}\NormalTok{ Light)}
+
+\CommentTok{# Affichage des résultats}
+\NormalTok{post_hoc4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+ Dunn's test of multiple comparisons using rank sums : holm  
+
+             mean.rank.diff   pval    
+knee-control     -0.4821429 0.8859    
+eyes-control     -9.3392857 0.0164 *  
+eyes-knee        -8.8571429 0.0214 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+Avec ces résultats, on progresse un peu car outre les \(p\)-values pour chaque ocmpariaons, le test nous fournit une estimation de la différence des rangs moyens. Malheureusement, ces estimations sont souvent difficiles à interpréter (par exemple, quelle est l'unité utilisée ?) et aucun intervalle de confiance n'est fourni. On constate néanmoins que le test de Dunn donne ici des résultats comparables à ceux fournis par les tests paramétriques : le groupe \texttt{eyes} est significativement différent des deux autres. Pour obtenir les intevalles de confiance dont nous avons besoin, nous n'avons pas d'autre choix que des les calculer à l'aide du test de Wilcoxon classique, en réalisant manuellement les tests dont nous avons besoin. Ici, le test à proprement parler ne nous intéresse pas. La seule chose pertinente est la différence de (pseudo-) médiane estimée et son intervalle de confiance :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Comparaisons entre les groupes `knee` et `eyes` (dans cet ordre)}
+\NormalTok{Light }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(treatment }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"knee"}\NormalTok{, }\StringTok{"eyes"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{wilcox.test}\NormalTok{(shift }\OperatorTok{~}\StringTok{ }\NormalTok{treatment, }\DataTypeTok{data =}\NormalTok{ ., }\DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1 x 7
+  estimate statistic p.value conf.low conf.high method     alternative
+     <dbl>     <dbl>   <dbl>    <dbl>     <dbl> <chr>      <chr>      
+1     1.19        42  0.0262    0.300      2.21 Wilcoxon ~ two.sided  
+\end{verbatim}
+
+Pour le décalage de phase de ces 2 groupes, la différence de médiane estimée vaut donc de 1.19, avec un intervalle de confiance à 95\% de \([0.3 ; 2.21]\). Toutes les valeurs comprises dans cet intervalle de confiance sont strictement positives. Il y a donc très peu de chances pour que la différence de médiane entre ces deux groupes soit nulle. Le test de Dunn ci-dessus, montrant une différence significative entre ces groupes, est donc confirmé.
+
+\hypertarget{exercices-dapplication}{%
+\subsubsection{Exercices d'application}\label{exercices-dapplication}}
+
+\hypertarget{cardamine-pensylvanica}{%
+\paragraph{\texorpdfstring{\emph{Cardamine pensylvanica}}{Cardamine pensylvanica}}\label{cardamine-pensylvanica}}
+
+En biologie de la conservation, l'existance d'un lien entre la capacité de dispersion des organismes et le maintien durable des populations dans le temps est étudié de près, notamment dans le contexte de fragmentation des habitats que nous connaissons en raison de l'anthropisation des milieux.
+Cette question a été étudiée par 2 chercheurs \citep{Molofsky2005} chez \emph{Cardamine pensylvanica}, une \href{https://en.wikipedia.org/wiki/Cardamine_pensylvanica}{plante annuelle d'Amérique du Nord} qui produit des graines qui sont dispersées de façon explosive. Quatre traitements ont été utilisés pour modifier expérimentalement la dispersion des graines. La distance entre populations contigües a été définie comme suit :
+
+\begin{itemize}
+\tightlist
+\item
+  Traitement 1 : \texttt{continu}. Les plants sont conservés au contact les uns des autres.
+\item
+  Traitement 2 : \texttt{medium}. Les plants sont séparés de 23.2 centimètres.
+\item
+  Tratiement 3 : \texttt{long}. Les plants sont séparés de 49.5 centimètres.
+\item
+  Traitement 4 : \texttt{isole}. Les plants sont séparés par des panneaux de bois empêchant la dispersion des graines.
+\end{itemize}
+
+Ces traitements ont été assignés au hasard à des populations de plantes, et 4 réplicats ont été faits pour chacun d'entre eux. Les résultats de l'expérience de présentés ci-dessous. Il s'agit du nombre de générations durant lesquelles les plantes ont persisté :
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{continu} : 9, 13, 13, 16
+\item
+  \texttt{medium} : 14, 12, 16, 16
+\item
+  \texttt{long} : 13, 9, 10, 11
+\item
+  \texttt{isole} : 13, 8, 8, 8
+\end{itemize}
+
+Saisissez ces données dans R et faites-en l'analyse. Vous tenterez de déterminer si l'éloignement entre les populations de plantes a un impact sur leur capacité de survie. COmme tojours, avant de vos lancer dans les tests, vous prendrez le temps de décrire les données avec des statistiques descriptives et des représentations graphiques.
+
+\hypertarget{insecticides}{%
+\paragraph{Insecticides}\label{insecticides}}
+
+L'efficacité de 6 insecticides nommés A, B, C, D, E et F a été testée sur 6 parcelles agricoles. Dans chaque parcelle, un insecticide choisi aléatoirement dans la liste a été appliqué. Deux semaine plus tard, 12 plants ont été collectés dans chaque parcelle agricole et le nombre d'insectes toujours vivants sur chacun d'entre eux a été compté. Les résultats sont présentés dans le fichier \texttt{Insectes.csv}. Importez ces données dans R et faites-en l'analyse. Tous les insecticides ont-ils la même efficacité ? Si la réponse est non, quels sont les insecticides les plus (ou les moins) efficaces.
 
 \hypertarget{seance-3-correlations-et-regressions}{%
 \section{Séance 3 : corrélations et régressions}\label{seance-3-correlations-et-regressions}}
