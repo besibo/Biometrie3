@@ -25,14 +25,14 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2019-03-11">
+<meta name="date" content="2019-04-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="seance-4-applications-et-corrections.html">
+<link rel="prev" href="seance-3-correlations-et-regressions.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -170,8 +170,21 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="4.2.4" data-path="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html#exercices-dapplication"><i class="fa fa-check"></i><b>4.2.4</b> Exercices d’application</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html"><i class="fa fa-check"></i><b>5</b> Séance 3 : corrélations et régressions</a></li>
-<li class="chapter" data-level="6" data-path="seance-4-applications-et-corrections.html"><a href="seance-4-applications-et-corrections.html"><i class="fa fa-check"></i><b>6</b> Séance 4 : applications et corrections</a></li>
+<li class="chapter" data-level="5" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html"><i class="fa fa-check"></i><b>5</b> Séance 3 : corrélations et régressions</a><ul>
+<li class="chapter" data-level="5.1" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#packages-et-donnees-1"><i class="fa fa-check"></i><b>5.1</b> Packages et données</a></li>
+<li class="chapter" data-level="5.2" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#correlation"><i class="fa fa-check"></i><b>5.2</b> Corrélation</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#principe"><i class="fa fa-check"></i><b>5.2.1</b> Principe</a></li>
+<li class="chapter" data-level="5.2.2" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#exploration-prealable-des-donnees-2"><i class="fa fa-check"></i><b>5.2.2</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="5.2.3" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#le-test-parametrique-4"><i class="fa fa-check"></i><b>5.2.3</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="5.2.4" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#lalternative-non-parametrique-4"><i class="fa fa-check"></i><b>5.2.4</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="5.2.5" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#exercices"><i class="fa fa-check"></i><b>5.2.5</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#regression-lineaire"><i class="fa fa-check"></i><b>5.3</b> Régression linéaire</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#exploration-prealable-des-donnees-3"><i class="fa fa-check"></i><b>5.3.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="5.3.2" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#le-test-parametrique-5"><i class="fa fa-check"></i><b>5.3.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="5.3.3" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#lalternative-non-parametrique-5"><i class="fa fa-check"></i><b>5.3.3</b> L’alternative non paramétrique</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publié avec bookdown</a></li>
@@ -213,10 +226,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Ken Aho, Andri Signorell. Includes R source code and/or documentation previously published by: Andreas Alfons, Nanina Anderegg, Tomas Aragon, Antti Arppe, Adrian Baddeley, Kamil Barton, et al. 2019. <em>DescTools: Tools for Descriptive Statistics</em>. <a href="https://CRAN.R-project.org/package=DescTools">https://CRAN.R-project.org/package=DescTools</a>.</p>
 </div>
 <div>
+<p>Liberg, Olof, Henrik Andrén, Hans-Christian Pedersen, Håkan Sand, Sejberg, Petter Wabakken, Mikael Åkesson, and Staffan Bensch. 2005. “Severe Inbreeding Depression in a Wild Wolf Canis Lupus Population.” <em>Biology Letters</em> 1 (1): 17–20. <a href="https://doi.org/10.1098/rsbl.2004.0266">https://doi.org/10.1098/rsbl.2004.0266</a>.</p>
+</div>
+<div>
 <p>McNamara, Amelia, Arino de la RubiaEduardo, Hao Zhu, Shannon Ellis, and Michael Quinn. 2019. <em>Skimr: Compact and Flexible Summaries of Data</em>. <a href="https://CRAN.R-project.org/package=skimr">https://CRAN.R-project.org/package=skimr</a>.</p>
 </div>
 <div>
 <p>Molofsky, Jane, and Jean-Baptiste Ferdy. 2005. “Extinction Dynamics in Experimental Metapopulations.” <em>Proceedings of the National Academy of Sciences</em> 102 (10): 3726–31. <a href="https://doi.org/10.1073/pnas.0404576102">https://doi.org/10.1073/pnas.0404576102</a>.</p>
+</div>
+<div>
+<p>Müller, Martina S., Elaine T. Porter, Jacquelyn K. Grace, Jill A. Awkerman, Kevin T. Birchler, Alex R. Gunderson, Eric G. Schneider, Mark A. Westbrock, and David J. Anderson. 2011. “Maltreated Nestlings Exhibit Correlated Maltreatment as Adults: Evidence of a ‘Cycle of Violence’ in Nazca Boobies ( <em>Sula</em> <em>Granti</em> ).” <em>The Auk</em> 128 (4): 615–19. <a href="https://doi.org/10.1525/auk.2011.11008">https://doi.org/10.1525/auk.2011.11008</a>.</p>
 </div>
 <div>
 <p>Robinson, David, and Alex Hayes. 2018. <em>Broom: Convert Statistical Analysis Objects into Tidy Tibbles</em>. <a href="https://CRAN.R-project.org/package=broom">https://CRAN.R-project.org/package=broom</a>.</p>
@@ -231,13 +250,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, and Kara Woo. 2018. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
 </div>
 <div>
-<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2018. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
 </div>
 <div>
 <p>Wickham, Hadley, and Lionel Henry. 2018. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.</p>
 </div>
 <div>
 <p>Wickham, Hadley, Jim Hester, and Romain Francois. 2018. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.</p>
+</div>
+<div>
+<p>Wiseman, Richard, and Peter Lamont. 1996. “Unravelling the Indian Rope-Trick.” <em>Nature</em> 383 (6597): 212. <a href="https://doi.org/10.1038/383212a0">https://doi.org/10.1038/383212a0</a>.</p>
 </div>
 <div>
 <p>Wright, Kenneth P., and Charles A. Czeisler. 2002. “Absence of Circadian Phase Resetting in Response to Bright Light Behind the Knees.” <em>Science</em> 297 (5581): 571–71. <a href="https://doi.org/10.1126/science.1071697">https://doi.org/10.1126/science.1071697</a>.</p>
@@ -252,7 +274,7 @@ code span.wa { color: #bf0303; } /* Warning */
           </div>
         </div>
       </div>
-<a href="seance-4-applications-et-corrections.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="seance-3-correlations-et-regressions.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

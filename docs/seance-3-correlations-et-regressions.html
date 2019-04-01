@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2019-03-11">
+<meta name="date" content="2019-04-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html">
-<link rel="next" href="seance-4-applications-et-corrections.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -170,8 +170,21 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="4.2.4" data-path="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html#exercices-dapplication"><i class="fa fa-check"></i><b>4.2.4</b> Exercices d’application</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html"><i class="fa fa-check"></i><b>5</b> Séance 3 : corrélations et régressions</a></li>
-<li class="chapter" data-level="6" data-path="seance-4-applications-et-corrections.html"><a href="seance-4-applications-et-corrections.html"><i class="fa fa-check"></i><b>6</b> Séance 4 : applications et corrections</a></li>
+<li class="chapter" data-level="5" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html"><i class="fa fa-check"></i><b>5</b> Séance 3 : corrélations et régressions</a><ul>
+<li class="chapter" data-level="5.1" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#packages-et-donnees-1"><i class="fa fa-check"></i><b>5.1</b> Packages et données</a></li>
+<li class="chapter" data-level="5.2" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#correlation"><i class="fa fa-check"></i><b>5.2</b> Corrélation</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#principe"><i class="fa fa-check"></i><b>5.2.1</b> Principe</a></li>
+<li class="chapter" data-level="5.2.2" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#exploration-prealable-des-donnees-2"><i class="fa fa-check"></i><b>5.2.2</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="5.2.3" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#le-test-parametrique-4"><i class="fa fa-check"></i><b>5.2.3</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="5.2.4" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#lalternative-non-parametrique-4"><i class="fa fa-check"></i><b>5.2.4</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="5.2.5" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#exercices"><i class="fa fa-check"></i><b>5.2.5</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#regression-lineaire"><i class="fa fa-check"></i><b>5.3</b> Régression linéaire</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#exploration-prealable-des-donnees-3"><i class="fa fa-check"></i><b>5.3.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="5.3.2" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#le-test-parametrique-5"><i class="fa fa-check"></i><b>5.3.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="5.3.3" data-path="seance-3-correlations-et-regressions.html"><a href="seance-3-correlations-et-regressions.html#lalternative-non-parametrique-5"><i class="fa fa-check"></i><b>5.3.3</b> L’alternative non paramétrique</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publié avec bookdown</a></li>
@@ -195,7 +208,314 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="seance-3-correlations-et-regressions" class="section level1">
 <h1><span class="header-section-number">5</span> Séance 3 : corrélations et régressions</h1>
+<div id="packages-et-donnees-1" class="section level2">
+<h2><span class="header-section-number">5.1</span> Packages et données</h2>
+<p>Comme dans tous les chapitres de cet ouvrage, nous aurons besoin ici du <code>tidyverse</code> et du package <code>skimr</code>. Noubliez pas de les charger en mémoire avant d’aller plus loin.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(skimr)</code></pre>
+<p>Vous aurez également besoin du jeu de données intitulé suivants disponibles sur l’ENT :</p>
+<ul>
+<li><code>birds.csv</code></li>
+<li><code>loups.csv</code></li>
+<li><code>ropetrick.csv</code></li>
+</ul>
+</div>
+<div id="correlation" class="section level2">
+<h2><span class="header-section-number">5.2</span> Corrélation</h2>
+<div id="principe" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Principe</h3>
+<p>Lorsque des variables numériques sont associées ont dit qu’elles sont <strong>corrélées</strong>. Par exemple, la taille du cerveau la taille du corps sont corrélées positivement parmi les espèces de mammifères. Les espèces de grande taille ont tendance à avoir un cerveau plus grand et les petites espèces ont tendance à avoir un cerveau plus petit.<br />
+Le coefficient de corrélation est la quantité qui décrit la force et la direction de l’association entre deux variables numériques mesurées sur un échantillon de sujets ou d’unités d’observation. La corrélation reflète la quantité de dispersion dans un nuage de points entre deux variables. Contrairement à la régression linéaire, la corrélation n’ajuste aucune droite à des données et ne permet donc pas de mesurer à quel point le changement d’une variable entraîne un changement rapide ou lent de l’autre variable.</p>
+<p>Ainsi, sur la figure ci-dessous, le coefficient de corrélation entre <code>X</code> et <code>Y</code> est le même pour les deux graphiques : il vaut 1.</p>
+<p><img src="figure/unnamed-chunk-95-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Ici, le coefficient de corrélation (noté <span class="math inline">\(r\)</span>) vaut 1 dans les deux cas, car tous les points sont alignés sur une droite. La pente de la droite n’influence en rien la valeur corrélation. En revanche, la dispersion des points autour d’une droite parfaite a une influence :</p>
+<p><img src="figure/unnamed-chunk-96-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Plus la dispersion autour d’une droite parfaite sera grande, plus la corrélation sera faible. C’est la raison pour laquelle lorsque l’on parle de “corrélation”, on sous-entend généralement <strong>corrélation linéaire</strong>. Ainsi, 2 variables peuvent avoir une relation très forte, mais un coefficient de corrélation nul, si leur relation n’est pas linéaire :</p>
+<p><img src="figure/unnamed-chunk-97-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>L’exploration graphique de vos données devrait donc toujours être une priorité. Calculer un coefficient de corrélation nul ou très faible ne signifie par pour autant une absence de relation entre les 2 variables numériques étudiées. Cela peut signifier une relation non linéaire. La solution la plus simple pour distinguer une relation telle que celle du graphique précédent, et une absence de relation telle que celle présentée dans le graphique ci-dessous, est l’examen visuel des données :</p>
+<p><img src="figure/unnamed-chunk-98-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>En bref, le coefficient de corrélation <span class="math inline">\(r\)</span> est compris entre -1 et +1 :</p>
+<ul>
+<li>une forte valeur absolue (<span class="math inline">\(r\)</span> proche de -1 ou +1), indique une relation presque linéaire</li>
+<li>une faible valeur absolue indique soit une absence de relation, soit une relation non linéaire (la visualisation graphique permet généralement d’en savoir plus)</li>
+<li>une valeur positive indique qu’une augmentation de la première variable est associée à une augmentation de la seconde variable</li>
+<li>une valeur négative indique qu’une augmentation de la première variable est associée à une diminution de la seconde variable.</li>
+</ul>
+<p>Dans la suite de ce chapitre, nous allons voir comment calculer le coefficient de corrélation entre 2 variables numériques, et puisque nous travaillons avec des <strong>échantillons</strong>, ce calcul sera nécessairement entaché d’<strong>incertitude</strong>. Tout comme la moyenne ou la variance d’un échantillon, la corrélation est un paramètre des populations dont nous ne pourrons qu’estimer la valeur. Toute estimation de corrélation devra donc être encadrée par un intervalle d’incertitude, généralement, il s’agit de l’intervalle de confiance à 95% de la corrélation. Enfin, outre l’estimation de la valeur de la corrélation et de son incertitude, nous pourrons aussi faire des tests d’hypothèses au sujet des corrélations que nous estimerons.</p>
+</div>
+<div id="exploration-prealable-des-donnees-2" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Exploration préalable des données</h3>
+<div id="importation-et-examen-visuel-4" class="section level4">
+<h4><span class="header-section-number">5.2.2.1</span> Importation et examen visuel</h4>
+<p>Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d’autres espèces animales, chez qui cette relation pourrait-être étudiée plus facilement ? <span class="citation">Müller et al. (<a href="#ref-muller2011">2011</a>)</span> ont étudié cette possibilité chez le Fou de Grant (<em>Sula granti</em>), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d’autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d’une bague d’identification individuelle. Ces 24 individus ont ensuite été suivis à l’âge adulte, lorsqu’ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier <code>Birds.csv</code>. Importez ces données dans <code>R</code> dans un objet noté <code>Birds</code>.</p>
+<pre><code>Parsed with column specification:
+cols(
+  nVisitsNestling = col_double(),
+  futureBehavior = col_double()
+)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">Birds</code></pre>
+<pre><code># A tibble: 24 x 2
+   nVisitsNestling futureBehavior
+             &lt;dbl&gt;          &lt;dbl&gt;
+ 1               1          -0.8 
+ 2               7          -0.92
+ 3              15          -0.8 
+ 4               4          -0.46
+ 5              11          -0.47
+ 6              14          -0.46
+ 7              23          -0.23
+ 8              14          -0.16
+ 9               9          -0.23
+10               5          -0.23
+# … with 14 more rows</code></pre>
+<p>La première colonne de ce tableau indique, pour chaque individu suivi, le nombre de visites reçues au nid de la part d’adultes agressifs. La seconde colonne indique, pour ces même individus, le nombre de visites agressives effectuées à des nids d’autres poussins. Ce nombre n’est pas dans la même unité que la première variable puisqu’il a été corrigé par d’autres variables d’intérêt pour les chercheurs.</p>
+<p>Il manque à ce tableau une variable indiquant le code des individus. Elle n’est pas indispensable, mais la rajouter est une bonne habitude à prendre pour toujours travailler avec des “données rangées” :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Birds &lt;-<span class="st"> </span>Birds <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ID =</span> <span class="kw">factor</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">24</span>))
+Birds</code></pre>
+<pre><code># A tibble: 24 x 3
+   nVisitsNestling futureBehavior ID   
+             &lt;dbl&gt;          &lt;dbl&gt; &lt;fct&gt;
+ 1               1          -0.8  1    
+ 2               7          -0.92 2    
+ 3              15          -0.8  3    
+ 4               4          -0.46 4    
+ 5              11          -0.47 5    
+ 6              14          -0.46 6    
+ 7              23          -0.23 7    
+ 8              14          -0.16 8    
+ 9               9          -0.23 9    
+10               5          -0.23 10   
+# … with 14 more rows</code></pre>
+</div>
+<div id="statistiques-descriptives-4" class="section level4">
+<h4><span class="header-section-number">5.2.2.2</span> Statistiques descriptives</h4>
+<p>Comme toujours, la première chose à faire est d’examiner quelques statistiques descriptives pour se faire une idée de la forme des données et pour repérer les éventuelles données manquantes ou aberrantes.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">skim</span>(Birds)</code></pre>
+<pre><code>Skim summary statistics
+ n obs: 24 
+ n variables: 3 
 
+── Variable type:factor ──────
+ variable missing complete  n n_unique             top_counts ordered
+       ID       0       24 24       24 1: 1, 2: 1, 3: 1, 4: 1   FALSE
+
+── Variable type:numeric ─────
+        variable missing complete  n  mean   sd    p0   p25  p50
+  futureBehavior       0       24 24 -0.12 0.37 -0.92 -0.29 -0.1
+ nVisitsNestling       0       24 24 13.12 7.21  1     8.75 13  
+   p75  p100     hist
+  0.18  0.39 ▅▁▅▁▇▅▇▇
+ 15.75 31    ▃▃▆▇▁▅▁▁</code></pre>
+<p>Outre le facteur <code>ID</code> que nous venons de créer, nous disposons donc de 2 variables numériques qui ne contiennent pas de données manquantes.
+1. La variable <code>nVisitsNestling</code>, qui indique le nombre de visites agressives reçues par les individus suivis lorsqu’ils étaient de jeunes poussins, varie de 1 à 31, pour une moyenne de 13.12, une médiane proche (13) mais un écart-type important.
+2. La variable <code>futureBehavior</code> varie de -0.92 à 0.39, avec une moyenne et une médiane proche de 0 (-0.12 et -0.1 respectivement).</p>
+<p>À ce stade, il est possible de calculer le coefficient de corrélation linéaire entre les 2 variables :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Birds <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(nVisitsNestling, futureBehavior) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">cor</span>()</code></pre>
+<pre><code>                nVisitsNestling futureBehavior
+nVisitsNestling       1.0000000      0.5337225
+futureBehavior        0.5337225      1.0000000</code></pre>
+<p>Le résultat est obtenu sous la forme d’une matrice symétrique :
+- Sur la diagonale, les corrélation valent 1 (le coefficient d’une variable avec elle-même vaut toujours 1).
+- En dehors de la diagonale, on trouve le coefficient de corrélation linéaire entre les 2 variables d’intérêt. Ici, il est positif et vaut 0.533, ce qui est une valeur relativement élevée dans le domaine de la biologie ou de l’écologie.</p>
+</div>
+<div id="exploration-graphique-4" class="section level4">
+<h4><span class="header-section-number">5.2.2.3</span> Exploration graphique</h4>
+<p>Afin de savoir si la valeur moyenne de <span class="math inline">\(r\)</span> calculée précédemment reflète une relation linéaire mais moyenne, ou une relation qui n’est pas vraiment linéaire, nous devons faire un buage de points :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Birds <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nVisitsNestling, <span class="dt">y =</span> futureBehavior)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre de visites reçues par le poussin&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;Comportement futur&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<p><img src="figure/unnamed-chunk-103-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>On constate ici que la corrélation moyenne obtenue plus haut est due au fait que les points sont assez dispersés, et non au fait que la relation n’est pas linéaire. On peut donc dire que la relation, si elle existe, n’est pas parfaite. Un test d’hypothèse devrait nous permettre de déterminer si la corrélation linéaire observée ici est significativement différente de 0 ou non</p>
+</div>
+</div>
+<div id="le-test-parametrique-4" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> Le test paramétrique</h3>
+<p>Comme pour la plupart des grandeurs calculées à partir d’un échantillon, la corrélation <span class="math inline">\(r\)</span> n’est qu’un estimateur de la corrélation qui existe réellement entre ces deux variables dans la population générale. Dans la population générale, la corrélation linéaire est généralement notée <span class="math inline">\(\rho\)</span>. Son estimateur, <span class="math inline">\(r\)</span> est donc souvent noté <span class="math inline">\(\hat{\rho}\)</span>.</p>
+<p>Les test d’hypothèse que nous allons faire maintenant permet de vérifier si le coefficient de corrélation <span class="math inline">\(\rho\)</span> dans la population générale est différent de 0 ou non. Les hypothèses de ce test sont les suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : le coefficient de corrélation entre les deux variables étudiées vaut 0 dans la population générale (<span class="math inline">\(\rho = 0\)</span>)</li>
+<li>H<span class="math inline">\(_1\)</span> : le coefficient de corrélation entre les deux variables étudiées est différent de 0 dans la population générale (<span class="math inline">\(\rho \neq 0\)</span>)</li>
+</ul>
+<p>Ce test est réalisé dans <code>R</code> grâce à la fonction <code>cor.test()</code>.</p>
+<div id="resultats-du-test-et-interpretation" class="section level4">
+<h4><span class="header-section-number">5.2.3.1</span> Résultats du test et interprétation</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor.test</span>(Birds<span class="op">$</span>nVisitsNestling, Birds<span class="op">$</span>futureBehavior)</code></pre>
+<pre><code>
+    Pearson&#39;s product-moment correlation
+
+data:  Birds$nVisitsNestling and Birds$futureBehavior
+t = 2.9603, df = 22, p-value = 0.007229
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.1660840 0.7710999
+sample estimates:
+      cor 
+0.5337225 </code></pre>
+<p>Le test réalisé ici est le <strong>test de corrélation de Pearson</strong>. Il s’agit d’un test paramétrique dont les conditions d’application sont expliquées plus bas. Comme pour tous les tests examiné jusqu’ici, les premières lignes des résultats fournissent toutes les informations utiles au sujet du test. Ici, on peut dire :</p>
+<blockquote>
+<p>Au seuil <span class="math inline">\(\alpha = 0.05\)</span>, le test de corrélation de Pearson a permis de rejeter l’hypothèse nulle selon laquelle la corrélation entre le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants (<span class="math inline">\(t = 2.96\)</span>, <span class="math inline">\(ddl = 22\)</span>, <span class="math inline">\(p = 0.007\)</span>).</p>
+</blockquote>
+<p>Ce test prouve donc que <span class="math inline">\(\rho\)</span> est statistiquement différent de 0. La valeur de 0.53 observée ici n’est pas due au hasard de l’échantillonnage.</p>
+<p>Comme toujours, les résultats du test que nous avons réalisé ne nous disent rien de la valeur de la corrélation estimée, ni de son incertitude. Il nous faut pour cela examiner les autres lignes fournies par <code>R</code> lorsque nous faisons ce test et qui relèvent de l’estimation (voir section suivante).</p>
+<p>Dernière chose concernant ce test : nous avons fait ici un test bilatéral comme nous le rappelle cette ligne des résultats :</p>
+<p><code>alternative hypothesis: true correlation is not equal to 0</code></p>
+<p>Comme pour les tests de comparaisons de moyennes, il est possible de réaliser un test unilatéral, à condition que cela ait un sens, à condition que nous soyons en mesure d’expliquer le choix de notre hypothèse alternative. La syntaxe est la même que pour les tests de Student ou de Wilcoxon : on utilise l’argument <code>alternative = &quot;less&quot;</code> ou <code>alternative = &quot;greater&quot;</code> au moment de faire le test, selon l’hypothèse que l’on souhaite tester.</p>
+<p>Ici, si les hypothèses que nous souhaitons tester sont les suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : le coefficient de corrélation entre les deux variables étudiées vaut 0 dans la population générale (<span class="math inline">\(\rho = 0\)</span>)</li>
+<li>H<span class="math inline">\(_1\)</span> : le coefficient de corrélation entre les deux variables étudiées est positif dans la population générale (<span class="math inline">\(\rho &gt; 0\)</span>)</li>
+</ul>
+<p>On utilise la syntaxe suivante :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor.test</span>(Birds<span class="op">$</span>nVisitsNestling, Birds<span class="op">$</span>futureBehavior,
+         <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</code></pre>
+<pre><code>
+    Pearson&#39;s product-moment correlation
+
+data:  Birds$nVisitsNestling and Birds$futureBehavior
+t = 2.9603, df = 22, p-value = 0.003615
+alternative hypothesis: true correlation is greater than 0
+95 percent confidence interval:
+ 0.2320921 1.0000000
+sample estimates:
+      cor 
+0.5337225 </code></pre>
+<p>Comme pour les autres test unilatéraux, le choix d’une hypothèse alternative aberrante se traduit par une <span class="math inline">\(p-\)</span>value très forte, généralement égale à (ou très proche de) 1.</p>
+</div>
+<div id="estimation-et-intervalle-de-confiance" class="section level4">
+<h4><span class="header-section-number">5.2.3.2</span> Estimation et intervalle de confiance</h4>
+<p>Revenons à notre test bilatéral. La section “estimation” des résultats de ce test nous indique que la meilleure estimation du coefficient de corrélation lineeaire de Pearson dans la population générale vaut <span class="math inline">\(\hat{\rho} = 0.533\)</span>. C’est la valeur que nous avions calculé à la main avec la fonction <code>cor()</code>.</p>
+<p>L’intervalle de confiance à 95% de cette valeur estimée est également fourni. La conclusion de cette procédure pourrait donc être formulée de la façon suivante :</p>
+<blockquote>
+<p>Au seuil <span class="math inline">\(\alpha = 0.05\)</span>, le test de corrélation de Pearson a permis de rejeter l’hypothèse nulle selon laquelle la corrélation entre le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants (<span class="math inline">\(t = 2.96\)</span>, <span class="math inline">\(ddl = 22\)</span>, <span class="math inline">\(p = 0.007\)</span>). La meilleure estimation de ce coefficient de corrélation dans la population générale vaut <span class="math inline">\(\hat{\rho} = 0.533\)</span>. La vraie valeur dans la population générale a de bonnes chances de se trouver dans l’inervalle [0.17 ; 0.77] (intervalle de confiance à 95%).</p>
+</blockquote>
+</div>
+<div id="conditions-dapplication-4" class="section level4">
+<h4><span class="header-section-number">5.2.3.3</span> Conditions d’application</h4>
+<p>Ce test est un test paramétrique. Pour avoir le droit de le réaliser, il nous faut donc vérifier les conditions d’application suivantes :</p>
+<ol style="list-style-type: decimal">
+<li>Les individus doivent être <em>indépendants</em> les uns des autres</li>
+<li>Les mesures effectuées doivent suivre une <strong>distribution Normale bivariée</strong></li>
+</ol>
+<p>Sauf si on a de bonnes raisons de penser le contraire, on considère généalement que si l’échantillonnage a été fait de façon aléatoire, l’indépendance des observations est garantie. La condition de “distribution Normale bivariée” des données est en revanche nouvelle. Elle suppose essentiellement que les 3 critères suivants soient vérifiés :</p>
+<ol style="list-style-type: decimal">
+<li>La relation entre les 2 variables doit être linéaire. C’est que nous tentons de vérifier visuellement en réalisant un nuage de points des données.</li>
+<li>Sur un graphique représentant une variable en fonction de l’autre, le nuage de points doit avoir une forme circulaire ou elliptique. Là encore, une représentation graphique nous permet d’apprécier cette condition.</li>
+<li>Les 2 variables étudiées doivent suivre une distribution Normale dans la population générale. Avant de faire ce test, il nous faut donc vérifier la Normalité des données pour chacune des 2 variables séparément, à l’aide, par exemple, d’un test de Shapiro-Wilk.</li>
+</ol>
+<p>Pour résumer, l’examen du nuage de points permet de vérifier les 2 premières conditions et 2 tests de Shapiro permettent de vérifier la troisième. Pour l’examen du nuage de points, les conditions ne seront pas remplies dans les situations suivantes (voir les exemples du graphique ci-dessous) :</p>
+<ul>
+<li>Le nuage de points a une forme d’entonnoir ou de nœud papillon</li>
+<li>Des ouliers sont présents (quelques points fortement éloignés du reste des observations)</li>
+<li>Une relation non linéaire entre les deux variables.</li>
+</ul>
+<p><img src="figure/unnamed-chunk-106-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>ENfin, si l’une, l’autre ou les deux séries de données ne suivent pas la loi Normale, il faudra faire un test non paramétrique.</p>
+</div>
+</div>
+<div id="lalternative-non-parametrique-4" class="section level3">
+<h3><span class="header-section-number">5.2.4</span> L’alternative non paramétrique</h3>
+<p>Quand les conditions d’application du test de corrélation de Pearson ne sont pas remplies, il faut faire un test équivalent non paramétrique. Le test utilisé le plus fréquemment dans cette situation est le test du <span class="math inline">\(\rho\)</span> de Spearman. On l’effectue comme le test de Pearson en précisant simplement un argument supplémentaire : <code>method = &quot;spearman&quot;</code> (sans maujscule) :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor.test</span>(Birds<span class="op">$</span>nVisitsNestling, Birds<span class="op">$</span>futureBehavior,
+         <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</code></pre>
+<pre><code>Warning in cor.test.default(Birds$nVisitsNestling,
+Birds$futureBehavior, : Cannot compute exact p-value with ties</code></pre>
+<pre><code>
+    Spearman&#39;s rank correlation rho
+
+data:  Birds$nVisitsNestling and Birds$futureBehavior
+S = 1213.5, p-value = 0.01976
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+     rho 
+0.472374 </code></pre>
+<p>Les test de Spearman est au test de Pearson ce que le test de Wilcoxon est au test de Student. Il travaille non pas sur les données brutes (ici, les mesures des scientifiques), mais sur des données modifiées, en l’occurence, sur les rangs des données. La première conséquence évidente est une perte de puissance notable par rapport au test de Pearson. Cette perte de puissance peut être ici observée par le biais de la <span class="math inline">\(p-\)</span>value plus faible que pour le test précédent. Cela indique que même si la conclusion est la même, on rejette ici l’hypothèse nulle avec moins de confiance que pour le test de Peasron.</p>
+<p>Le <span class="math inline">\(\rho\)</span> de Spearman est équivalent au <span class="math inline">\(r\)</span> de Pearson calculé sur les rangs des données. Lorsque plusieurs valeurs observées sont égales, plusieurs valeurs ont le même rang, ce qui cause l’apparition du message d’avertissement suivant :</p>
+<p><code>Impossible de calculer la p-value exacte avec des ex-aequos</code></p>
+<p>Ce message est sans conséquence tant que la <span class="math inline">\(p-\)</span>value du test de Spearman est éloignée du seuil <span class="math inline">\(\alpha\)</span>. Mais quans <span class="math inline">\(p \approx \alpha\)</span>, il faut être particulièrement prudent quant à l’interprétation qui est faite des résultats.</p>
+<p>Enfin, comme pour le test de Pearson, il est possible de réaliser un test de Spearman unilatéral en utilisant l’argument <code>alternative = &quot;less&quot;</code> ou <code>alternative = &quot;greater&quot;</code>. Les précautions à prendre pour utiliser ce genre de test sont toujours les mêmes.</p>
+</div>
+<div id="exercices" class="section level3">
+<h3><span class="header-section-number">5.2.5</span> Exercices</h3>
+<div id="canis-lupus" class="section level4">
+<h4><span class="header-section-number">5.2.5.1</span> <em>Canis lupus</em></h4>
+<p>En 1970, le loup <em>canis lupus</em> a été éradiqué en Norvège et en Suède. Autour de 1980, un couple de loups, originaire d’une population plus à l’Est, a fondé une nouvelle population en Suède. En l’espace de 20 ans, cette population comptait approximativement 100 loups. Il y a toutefois fort à craindre qu’une population fondée par un si petit nombre d’individus souffre de consanguinité. <span class="citation">Liberg et al. (<a href="#ref-liberg2005">2005</a>)</span> ont compilé les informations sur la reproduction dans cette population entre 1983 et 2002, et ils ont pu reconstruire le pédigrée des individus la composant. Ils ont ainsi été en mesure de déterminer avec précision le coefficient individuel de consanguinité dans 24 portées de louveteaux.
+Pour mémoire, le coefficient individuel de consanguinité vaut 0 si ses parents ne sont pas apparentés, 0.25 si ses parents sont frères et sœurs issus de grands-parents non apparentés, et plus de 0.25 si les associations consanguines se répètent depuis plusieurs générations.</p>
+<p>On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de <span class="citation">Liberg et al. (<a href="#ref-liberg2005">2005</a>)</span> sont disponibles dans le fichier <code>loups.csv</code>. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l’ordre des étapes suivies jusqu’ici. En particulier, vous prendrez soin de :
+- vérifier la qualité des données
+- mettre les données dans un format approprié si besoin
+- réaliser une exploration statistique puis visuelle des données
+- vérifier les conditions d’application d’un test paramétrique
+- faire le test approprié en posant les hypothèses nulles et alternatives judicieuses
+- répondre à la question posée en intégrant tous les éléments utiles.</p>
+</div>
+<div id="les-miracles-de-la-memoire" class="section level4">
+<h4><span class="header-section-number">5.2.5.2</span> Les miracles de la mémoire</h4>
+<p>À quel point les souvenirs d’évènements miraculeux sont-il fiables ? Une façon d’étudier cette question est de comparer différents récits de tours de magie extraordinaires. Parmis les tours les plus célèbres, on trouve celui de la corde du fakir. Dans l’une de ces versions, un magicien jette l’extrémité une corde d’apparence normale en l’air et cette corde devient rigide. Un garçon grimpe à la corde et finit par disparaître en huat de la scène. Le magicien lui demande de répondre mais n’obtient pas de réponse. Il attrape alors un couoteau, grimpe à son tour, et le garçon, découpé en morceaux, tombe du ciel dans un panier posé par terre. Le magicien redescent de la corde et aide le garçon vivant, en un seul morceau et non blessé, à sortir du panier.</p>
+<p><span class="citation">Wiseman and Lamont (<a href="#ref-wiseman1996">1996</a>)</span> ont retrouvé 21 récits écrits de ce tour par des personnes ayant elles-mêmes assisté à ce tour. Ils ont attribué un score à chaque description selon le caractère plus ou moins impressionnant de la description. Par exemple, un score de 1 était attribué si le récit faisait état que “le garçon grimpe à la corde, puis il en redescend”. Les récits les plus impressionnants se sont vus attribués la note de 5 (“le garçon grimpe, disparaît, est découpé en morceaux et réapparait en chair et en os devant le public”).
+Pour chaque récit, les chercheurs ont également enregistré le nombre d’années écoulées entre le moment où le témoin a assisté au tour de magie, et le moment où il a consigné son récit par écrit.</p>
+<p>Y a-t’il un lien entre le caractère impressionnant (“impressiveness”) d’un souvenir et le temps écoulé jusqu’à l’écriture de sa description (“years”) ? Si oui, cela pourrait indiquer une tendance de la mémoire humaine à exagérer et à perdre en précision avec le temps.</p>
+<p>Les données de <span class="citation">Wiseman and Lamont (<a href="#ref-wiseman1996">1996</a>)</span> sont disponibles dans le fichier <code>ropetrick.csv</code>. Importez ces données et analysez-les en respectant les consignes de l’exercice précédent.</p>
+</div>
+</div>
+</div>
+<div id="regression-lineaire" class="section level2">
+<h2><span class="header-section-number">5.3</span> Régression linéaire</h2>
+<div id="exploration-prealable-des-donnees-3" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Exploration préalable des données</h3>
+<div id="importation-et-examen-visuel-5" class="section level4">
+<h4><span class="header-section-number">5.3.1.1</span> Importation et examen visuel</h4>
+</div>
+<div id="statistiques-descriptives-5" class="section level4">
+<h4><span class="header-section-number">5.3.1.2</span> Statistiques descriptives</h4>
+</div>
+<div id="exploration-graphique-5" class="section level4">
+<h4><span class="header-section-number">5.3.1.3</span> Exploration graphique</h4>
+</div>
+</div>
+<div id="le-test-parametrique-5" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> Le test paramétrique</h3>
+<div id="resultats-du-test-et-interpretation-1" class="section level4">
+<h4><span class="header-section-number">5.3.2.1</span> Résultats du test et interprétation</h4>
+</div>
+<div id="conditions-dapplication-5" class="section level4">
+<h4><span class="header-section-number">5.3.2.2</span> Conditions d’application</h4>
+</div>
+<div id="intervalle-de-confiance-de-la-regression" class="section level4">
+<h4><span class="header-section-number">5.3.2.3</span> Intervalle de confiance de la régression</h4>
+</div>
+<div id="intervalle-de-prediction-de-la-regression" class="section level4">
+<h4><span class="header-section-number">5.3.2.4</span> Intervalle de prédiction de la régression</h4>
+</div>
+</div>
+<div id="lalternative-non-parametrique-5" class="section level3">
+<h3><span class="header-section-number">5.3.3</span> L’alternative non paramétrique</h3>
+<div id="transformation-des-donnees" class="section level4">
+<h4><span class="header-section-number">5.3.3.1</span> Transformation des données</h4>
+</div>
+<div id="autres-methodes" class="section level4">
+<h4><span class="header-section-number">5.3.3.2</span> Autres méthodes</h4>
+
+</div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-muller2011">
+<p>Müller, Martina S., Elaine T. Porter, Jacquelyn K. Grace, Jill A. Awkerman, Kevin T. Birchler, Alex R. Gunderson, Eric G. Schneider, Mark A. Westbrock, and David J. Anderson. 2011. “Maltreated Nestlings Exhibit Correlated Maltreatment as Adults: Evidence of a ‘Cycle of Violence’ in Nazca Boobies ( <em>Sula</em> <em>Granti</em> ).” <em>The Auk</em> 128 (4): 615–19. <a href="https://doi.org/10.1525/auk.2011.11008">https://doi.org/10.1525/auk.2011.11008</a>.</p>
+</div>
+<div id="ref-liberg2005">
+<p>Liberg, Olof, Henrik Andrén, Hans-Christian Pedersen, Håkan Sand, Sejberg, Petter Wabakken, Mikael Åkesson, and Staffan Bensch. 2005. “Severe Inbreeding Depression in a Wild Wolf Canis Lupus Population.” <em>Biology Letters</em> 1 (1): 17–20. <a href="https://doi.org/10.1098/rsbl.2004.0266">https://doi.org/10.1098/rsbl.2004.0266</a>.</p>
+</div>
+<div id="ref-wiseman1996">
+<p>Wiseman, Richard, and Peter Lamont. 1996. “Unravelling the Indian Rope-Trick.” <em>Nature</em> 383 (6597): 212. <a href="https://doi.org/10.1038/383212a0">https://doi.org/10.1038/383212a0</a>.</p>
+</div>
 </div>
             </section>
 
@@ -203,7 +523,7 @@ code span.wa { color: #bf0303; } /* Warning */
         </div>
       </div>
 <a href="seance-2-comparer-la-moyenne-de-plus-de-2-groupes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="seance-4-applications-et-corrections.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

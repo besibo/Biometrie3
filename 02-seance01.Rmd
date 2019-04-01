@@ -962,4 +962,4 @@ t.test(Horn_len ~ Survival,
 
 ### Exercice d'application
 
-Reprenez chaque exemple et exercice de cet séance de TP et identifiez les situations où un test unilatéral aurait du sens. Si vous en trouvez, faîte ce test et assurez-vous que les hypothèses choisies sont bien celles qui sont utilisées lors du test.
+Reprenez chaque exemple et exercice de cet séance de TP et identifiez les situations où un test unilatéral aurait du sens. Si vous en trouvez, faites ce test et assurez-vous que les hypothèses choisies sont bien celles qui sont utilisées lors du test.
