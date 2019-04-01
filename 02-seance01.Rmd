@@ -1,4 +1,4 @@
-# Séance 1 : statistiques descriptives et tests d'hypothèses {#seance1}
+# Séances 1 et 2 : statistiques descriptives et tests d'hypothèses {#seance1}
 
 
 ## Packages et données {#packages}

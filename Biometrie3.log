@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  1 APR 2019 21:34
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  2 APR 2019 01:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1770,16 +1770,93 @@ File: figure/unnamed-chunk-103-1.pdf Graphic file (type pdf)
 [70] [71] [72] [73]
 File: figure/unnamed-chunk-106-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-106-1.pdf>
-[74] [75] [76] (./Biometrie3.bbl [77] [78])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3436.
+[74] [75] [76]
+File: images/genetics.jpg Graphic file (type bmp)
+<images/genetics.jpg>
+[77] [78]
+Missing character: There is no ▅ in font [lmmono10-regular]:!
+Missing character: There is no ▇ in font [lmmono10-regular]:!
+Missing character: There is no ▃ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▇ in font [lmmono10-regular]:!
+Missing character: There is no ▃ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▃ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▅ in font [lmmono10-regular]:!
+Missing character: There is no ▇ in font [lmmono10-regular]:!
+Missing character: There is no ▅ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▂ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▂ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▂ in font [lmmono10-regular]:!
+Missing character: There is no ▅ in font [lmmono10-regular]:!
+Missing character: There is no ▆ in font [lmmono10-regular]:!
+Missing character: There is no ▇ in font [lmmono10-regular]:!
+Missing character: There is no ▅ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▂ in font [lmmono10-regular]:!
+Missing character: There is no ▅ in font [lmmono10-regular]:!
+Missing character: There is no ▇ in font [lmmono10-regular]:!
+Missing character: There is no ▃ in font [lmmono10-regular]:!
+Missing character: There is no ▆ in font [lmmono10-regular]:!
+Missing character: There is no ▃ in font [lmmono10-regular]:!
+Missing character: There is no ▂ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
 [79]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3436.
+Missing character: There is no ▂ in font [lmmono10-regular]:!
+Missing character: There is no ▇ in font [lmmono10-regular]:!
+Missing character: There is no ▇ in font [lmmono10-regular]:!
+Missing character: There is no ▆ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▃ in font [lmmono10-regular]:!
+Missing character: There is no ▂ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▇ in font [lmmono10-regular]:!
+Missing character: There is no ▆ in font [lmmono10-regular]:!
+Missing character: There is no ▅ in font [lmmono10-regular]:!
+Missing character: There is no ▂ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+Missing character: There is no ▁ in font [lmmono10-regular]:!
+File: figure/unnamed-chunk-113-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-113-1.pdf>
+[80]
+File: figure/unnamed-chunk-114-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-114-1.pdf>
+[81]
+File: figure/unnamed-chunk-116-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-116-1.pdf>
+File: figure/unnamed-chunk-117-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-117-1.pdf>
+[82] [83] [84]
+File: figure/unnamed-chunk-121-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-121-1.pdf>
+[85]
+File: figure/unnamed-chunk-122-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-122-1.pdf>
+[86] [87] (./Biometrie3.bbl [88] [89])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3773.
+[90]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3773.
 (./Biometrie3.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3436.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3436.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3773.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3773.
 
 Package rerunfilecheck Info: File `Biometrie3.out' has not changed.
-(rerunfilecheck)             Checksum: 66F10ED4615A3549F6B00D07D11093E2.
+(rerunfilecheck)             Checksum: 20D2037AA1CA2ADFBBB47624CF66DFF3.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1789,12 +1866,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 ### semi simple group (level 1) entered at line 146 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 26073 strings out of 492970
- 480787 string characters out of 6133937
- 636832 words of memory out of 5000000
- 29753 multiletter control sequences out of 15000+600000
+ 26111 strings out of 492970
+ 481814 string characters out of 6133937
+ 641290 words of memory out of 5000000
+ 29782 multiletter control sequences out of 15000+600000
  543079 words of font info for 63 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 60i,7n,118p,10451b,1434s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,7n,118p,10451b,1438s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Biometrie3.pdf (79 pages).
+Output written on Biometrie3.pdf (90 pages).

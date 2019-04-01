@@ -1,4 +1,4 @@
-# Séance 2 : comparer la moyenne de plus de 2 groupes
+# Séance 3 : comparer la moyenne de plus de 2 groupes
 
 
 ## Packages et données
@@ -173,7 +173,7 @@ summary(res)
 
 Pour le facteur étudié, on obtient le nombre de degrés de libertés (`Df`), la somme des carrés (`Sum Sq`), les carrés moyens (`Mean Sq`), la statistique du test (`F`) et la $p$-value (`Pr(>F)`). Ici, la $p$-value est inférieure à $\alpha$, donc on rejette H$_0$. Au moins l'une des moyennes est différente des autres.
 
-#### Conditions d'application
+#### Conditions d'application {#CAANOVA}
 
 Les résultats de l'ANOVA ne seront valides que si les conditions d'application sont vérifiées. Comme indiqué plus haut, ces conditions d'applications doivent être vérifiées sur les résidus de l'ANOVA, donc nécessairement **après** avoir réalisé l'analyse. Les résidus de l'ANOVA représentent l'écart entre chaque observation et la moyenne de son groupe. Les résidus doivent :
 

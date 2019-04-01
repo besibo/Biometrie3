@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>4 Séance 3 : comparer la moyenne de plus de 2 groupes | Travaux Pratiques de Biométrie 3</title>
+  <meta name="description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3.">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="4 Séance 3 : comparer la moyenne de plus de 2 groupes | Travaux Pratiques de Biométrie 3" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://besibo.github.io/Biometrie3/" />
+  
+  <meta property="og:description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
+  <meta name="github-repo" content="besibo/Biometrie3" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Séance 3 : comparer la moyenne de plus de 2 groupes | Travaux Pratiques de Biométrie 3" />
+  
+  <meta name="twitter:description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
+  
+
+<meta name="author" content="Benoît Simon-Bouhet">
+
+
+<meta name="date" content="2019-04-02">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="seance1.html">
+<link rel="next" href="seance-4-correlations-et-regressions.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Biométrie 3</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Préambule</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="seance1.html"><a href="seance1.html"><i class="fa fa-check"></i><b>3</b> Séances 1 et 2 : statistiques descriptives et tests d’hypothèses</a><ul>
+<li class="chapter" data-level="3.1" data-path="seance1.html"><a href="seance1.html#packages"><i class="fa fa-check"></i><b>3.1</b> Packages et données</a></li>
+<li class="chapter" data-level="3.2" data-path="seance1.html"><a href="seance1.html#comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique"><i class="fa fa-check"></i><b>3.2</b> Comparaison de la moyenne d’une population à une valeur théorique</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="seance1.html"><a href="seance1.html#Explo"><i class="fa fa-check"></i><b>3.2.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="3.2.2" data-path="seance1.html"><a href="seance1.html#le-test-parametrique"><i class="fa fa-check"></i><b>3.2.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="3.2.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-parametrique"><i class="fa fa-check"></i><b>3.2.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.2.4" data-path="seance1.html"><a href="seance1.html#exercice-dapplication"><i class="fa fa-check"></i><b>3.2.4</b> Exercice d’application</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="seance1.html"><a href="seance1.html#comparaison-de-la-moyenne-de-2-populations-donnees-appariees"><i class="fa fa-check"></i><b>3.3</b> Comparaison de la moyenne de 2 populations : données appariées</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="seance1.html"><a href="seance1.html#Explo2"><i class="fa fa-check"></i><b>3.3.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="3.3.2" data-path="seance1.html"><a href="seance1.html#le-test-parametrique-1"><i class="fa fa-check"></i><b>3.3.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="3.3.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-parametrique-1"><i class="fa fa-check"></i><b>3.3.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.3.4" data-path="seance1.html"><a href="seance1.html#exercice-dapplication-1"><i class="fa fa-check"></i><b>3.3.4</b> Exercice d’application</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="seance1.html"><a href="seance1.html#Indep"><i class="fa fa-check"></i><b>3.4</b> Comparaison de la moyenne de 2 populations : échantillons indépendants</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="seance1.html"><a href="seance1.html#exploration-prealable-des-donnees"><i class="fa fa-check"></i><b>3.4.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="3.4.2" data-path="seance1.html"><a href="seance1.html#le-test-parametrique-2"><i class="fa fa-check"></i><b>3.4.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="3.4.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-parametrique-2"><i class="fa fa-check"></i><b>3.4.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.4.4" data-path="seance1.html"><a href="seance1.html#exercice-dapplication-2"><i class="fa fa-check"></i><b>3.4.4</b> Exercice d’application</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="seance1.html"><a href="seance1.html#tests-bilateraux-et-unilateraux"><i class="fa fa-check"></i><b>3.5</b> Tests bilatéraux et unilatéraux</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="seance1.html"><a href="seance1.html#principes"><i class="fa fa-check"></i><b>3.5.1</b> Principes</a></li>
+<li class="chapter" data-level="3.5.2" data-path="seance1.html"><a href="seance1.html#un-exemple-pas-a-pas"><i class="fa fa-check"></i><b>3.5.2</b> Un exemple pas à pas</a></li>
+<li class="chapter" data-level="3.5.3" data-path="seance1.html"><a href="seance1.html#exercice-dapplication-3"><i class="fa fa-check"></i><b>3.5.3</b> Exercice d’application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><i class="fa fa-check"></i><b>4</b> Séance 3 : comparer la moyenne de plus de 2 groupes</a><ul>
+<li class="chapter" data-level="4.1" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#packages-et-donnees"><i class="fa fa-check"></i><b>4.1</b> Packages et données</a></li>
+<li class="chapter" data-level="4.2" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#lanalyse-de-variance-a-un-facteur"><i class="fa fa-check"></i><b>4.2</b> L’analyse de variance à un facteur</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#exploration-prealable-des-donnees-1"><i class="fa fa-check"></i><b>4.2.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="4.2.2" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#le-test-parametrique-3"><i class="fa fa-check"></i><b>4.2.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="4.2.3" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#lalternative-non-parametrique-3"><i class="fa fa-check"></i><b>4.2.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="4.2.4" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#exercices-dapplication"><i class="fa fa-check"></i><b>4.2.4</b> Exercices d’application</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html"><i class="fa fa-check"></i><b>5</b> Séance 4 : corrélations et régressions</a><ul>
+<li class="chapter" data-level="5.1" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#packages-et-donnees-1"><i class="fa fa-check"></i><b>5.1</b> Packages et données</a></li>
+<li class="chapter" data-level="5.2" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#correlation"><i class="fa fa-check"></i><b>5.2</b> Corrélation</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#principe"><i class="fa fa-check"></i><b>5.2.1</b> Principe</a></li>
+<li class="chapter" data-level="5.2.2" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#exploration-prealable-des-donnees-2"><i class="fa fa-check"></i><b>5.2.2</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="5.2.3" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#le-test-parametrique-4"><i class="fa fa-check"></i><b>5.2.3</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="5.2.4" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#lalternative-non-parametrique-4"><i class="fa fa-check"></i><b>5.2.4</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="5.2.5" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#exercices"><i class="fa fa-check"></i><b>5.2.5</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#regression-lineaire"><i class="fa fa-check"></i><b>5.3</b> Régression linéaire</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#exploration-prealable-des-donnees-3"><i class="fa fa-check"></i><b>5.3.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="5.3.2" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#le-test-parametrique-5"><i class="fa fa-check"></i><b>5.3.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="5.3.3" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#lalternative-non-parametrique-5"><i class="fa fa-check"></i><b>5.3.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="5.3.4" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#exercices-1"><i class="fa fa-check"></i><b>5.3.4</b> Exercices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publié avec bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Travaux Pratiques de Biométrie 3</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="seance-3-comparer-la-moyenne-de-plus-de-2-groupes" class="section level1">
+<h1><span class="header-section-number">4</span> Séance 3 : comparer la moyenne de plus de 2 groupes</h1>
+<div id="packages-et-donnees" class="section level2">
+<h2><span class="header-section-number">4.1</span> Packages et données</h2>
+<p>Avant toute chose, merci de relire l’introduction (section <a href="intro.html#intro">2</a>) de ce document, et de suivre toutes les étapes qui y sont décrites (création d’un nouveau sous-dossier nommé <code>TP_2</code> dans votre dossier <code>Biometrie3</code>, changement du répertoire de travail et création d’un nouveau script).</p>
+<p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du <code>tidyverse</code> <span class="citation">(Wickham, <a href="#ref-R-tidyverse">2017</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(Wickham, Hester, et al., <a href="#ref-R-readr">2018</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(Wickham &amp; Bryan, <a href="#ref-R-readxl">2018</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(McNamara et al., <a href="#ref-R-skimr">2019</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(Fox et al., <a href="#ref-R-car">2018</a>)</span>, qui permet d’effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package <code>broom</code> <span class="citation">(Robinson &amp; Hayes, <a href="#ref-R-broom">2018</a>)</span>, qui fait partie du <code>tydiverse</code> mais qu’il faut charger explicitement. La fonction <code>tidy()</code> de ce package nous permettra de “ranger” correctement les résultats de tests dans un <code>tibble</code> :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(readr)
+<span class="kw">library</span>(readxl)
+<span class="kw">library</span>(skimr)
+<span class="kw">library</span>(car)
+<span class="kw">library</span>(broom)</code></pre>
+<p>Enfin, nous aurons besoin du package <code>DescTools</code> <span class="citation">(Ken Aho et al., <a href="#ref-R-DescTools">2019</a>)</span> afin de réaliser un test spécifique de comparaisons multiples. N’oubliez pas de l’installer si nécessaire, avant de le charger en mémoire :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DescTools)</code></pre>
+<p>Ces commandes (que vous devez taper dans vos scripts avant de les exécuter dans la console de RStudio) ne devraient pas renvoyer de messages d’erreur puisque vous avez dû les installer pour reproduire les exemples et réaliser les exercices de la séance 1. Si vous rencontrez des problèmes, merci de consulter la section <a href="seance1.html#packages">3.1</a> de cet ouvrage, ainsi que <a href="https://besibo.github.io/Biometrie2/bases.html#charger-un-package-en-memoire">la section 2.3</a> du livre de biométrie 2 disponible en ligne.</p>
+<p>Vous aurez également besoin des jeux de données suivants :</p>
+<ul>
+<li><code>Light.csv</code></li>
+<li><code>Insectes.csv</code></li>
+</ul>
+</div>
+<div id="lanalyse-de-variance-a-un-facteur" class="section level2">
+<h2><span class="header-section-number">4.2</span> L’analyse de variance à un facteur</h2>
+<div id="exploration-prealable-des-donnees-1" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Exploration préalable des données</h3>
+<p>Voyager dans un pays éloigné peut faire souffrir de décallage horaire. Habituellement, la resynchronisation de l’horloge interne circadienne dans le nouveau fuseau horaire est réalisée grâce à la perception de la lumière
+par les yeux. Ce changement progressif du rythme de notre horloge interne est appelé “décalage de phase”. Ce phénomène a été étudié par 2 chercheurs en 1998 <span class="citation">(Campbell &amp; Murphy, <a href="#ref-Campbell1998">1998</a>)</span>, qui ont montré que ce décallage de phase pouvait également être obtenu en exposant des sujets à la lumière, non pas au niveau de leurs yeux, mais au niveau de leur <a href="https://fr.wikipedia.org/wiki/Fosse_poplitée">fosse (ou creux) poplitée</a>, c’est-à-dire, derrière les genoux.<br />
+Cette découverte a été vivement critiquée par certains, et saluée comme une découverte majeure par d’autres. Toutefois, certains aspects du design expérimental de l’étude de 1998 ont été mis en doute en 2002 : il semble en effet que lors de l’exposition du creux poplité, les yeux de certains patients ont été également exposés à de faibles intensités lumineuses. Pour vérifier les trouvailles de Campbell et Murphy, Wright et Czeisler <span class="citation">(Wright &amp; Czeisler, <a href="#ref-Wright2002">2002</a>)</span> ont ré-examiné ce phénomène. La nouvelle expérience a évalué les rythmes circadiens en mesurant les cycles quotidiens de production de mélatonine chez 22 participants placés au hasard dans 3 groupes. Les patients étaient réveillés en pleine nuit et exposés :</p>
+<ol style="list-style-type: decimal">
+<li>soit à 3 heures de lumière appliquée exclusivement derrière leurs genoux (groupe <code>knee</code>)</li>
+<li>soit à 3 heure de lumière appliquée exclusivement à leurs yeux (groupe <code>eyes</code>)</li>
+<li>soit à 3 heures d’obscurité totale (groupe <code>control</code>).</li>
+</ol>
+<p>Le décalage de phase du cycle de production de mélatonine était mesuré 48h plus tard. Des chiffres négatifs indiquent un retard de production de mélatonine. C’est l’effet théorique attendu du traitement lumineux administré. Un décalage de phase positif indique une production de mélatonine plus précoce. Une absence de changement se traduit par un décalege de phase de 0.</p>
+<div id="importation-et-examen-visuel-3" class="section level4">
+<h4><span class="header-section-number">4.2.1.1</span> Importation et examen visuel</h4>
+<p>Les données brutes de cette étude sont fournies dans le fichier <code>Light.csv</code>. Importez ces données dans RStudio et examinez les données brutes grâce à la fonction <code>View()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">Light</code></pre>
+<pre><code># A tibble: 22 x 2
+   treatment shift
+   &lt;chr&gt;     &lt;dbl&gt;
+ 1 control    0.53
+ 2 control    0.36
+ 3 control    0.2 
+ 4 control   -0.37
+ 5 control   -0.6 
+ 6 control   -0.64
+ 7 control   -0.68
+ 8 control   -1.27
+ 9 knee       0.73
+10 knee       0.31
+# … with 12 more rows</code></pre>
+<p>Le tableau obtenu est-il au format long ou au format court/large ? Pourquoi un tableau au format suivant n’aurait-il pas de sens ?</p>
+<pre><code># A tibble: 8 x 3
+  control   eyes    knee
+    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1    0.53  -0.78   0.73 
+2    0.36  -0.86   0.31 
+3    0.2   -1.35   0.03 
+4   -0.37  -1.48  -0.290
+5   -0.6   -1.52  -0.56 
+6   -0.64  -2.04  -0.96 
+7   -0.68  -2.83  -1.61 
+8   -1.27  NA     NA    </code></pre>
+<p>Lorsque l’on réalise une analyse de variance, puisque les effectifs ne sont pas nécessairement identiques dans tous les groupes (c’est ce qu’on appelle un design déséquilibré, ou “unbalanced design”), présenter les tableaux au format long est indispensable. Par ailleurs, notez que les ANOVAs réalisées sur des “balanced design” (ou designs équilibrés, pour lesquels tous les groupes sont de même taille), sont beaucoup plus puissantes que les ANOVAs réalisées sur des “unbalanced designs”.</p>
+<p>Ici, le tableau de données est très simple (et de petite taille). Il n’y a pas de données manquantes et aucune création de nouvelle variable n’est nécessaire. La seule modification que nous devrion faire est de transformer la variable <code>treatment</code> en facteur :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Light &lt;-<span class="st"> </span>Light <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> <span class="kw">factor</span>(treatment))</code></pre>
+<p>Comme toujours, les niveaux du facteur sont automatiquement classés par ordre alphabétique :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(Light<span class="op">$</span>treatment)</code></pre>
+<pre><code>[1] &quot;control&quot; &quot;eyes&quot;    &quot;knee&quot;   </code></pre>
+<p>Pour les statistiques descriptives et les graphiques qui viendront après, nous souhaitons indiquer l’ordre suivant : <code>control</code>, puis <code>knee</code>, puis <code>eyes</code> :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Light &lt;-<span class="st"> </span>Light <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> <span class="kw">fct_relevel</span>(treatment, <span class="st">&quot;control&quot;</span>, <span class="st">&quot;knee&quot;</span>, <span class="st">&quot;eyes&quot;</span>))
+
+Light</code></pre>
+<pre><code># A tibble: 22 x 2
+   treatment shift
+   &lt;fct&gt;     &lt;dbl&gt;
+ 1 control    0.53
+ 2 control    0.36
+ 3 control    0.2 
+ 4 control   -0.37
+ 5 control   -0.6 
+ 6 control   -0.64
+ 7 control   -0.68
+ 8 control   -1.27
+ 9 knee       0.73
+10 knee       0.31
+# … with 12 more rows</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">Light<span class="op">$</span>treatment</code></pre>
+<pre><code> [1] control control control control control control control control
+ [9] knee    knee    knee    knee    knee    knee    knee    eyes   
+[17] eyes    eyes    eyes    eyes    eyes    eyes   
+Levels: control knee eyes</code></pre>
+<p>Attention à bien respecter la casse (le respect des majuscules/minuscules est toujours aussi important dans R).</p>
+</div>
+<div id="statistiques-descriptives-3" class="section level4">
+<h4><span class="header-section-number">4.2.1.2</span> Statistiques descriptives</h4>
+<p>Comme toujours, et maintenant que nos données sont au bon format, il est nécessaire d’examiner quelques statistiques descriptives pour chaque catégorie étudiée. Le plus simple est ici d’utiliser la fonction <code>skim</code> du package <code>skimr</code> :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Light <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(treatment) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">skim</span>()</code></pre>
+<pre><code>Skim summary statistics
+ n obs: 22 
+ n variables: 2 
+ group variables: treatment 
+
+── Variable type:numeric ─────
+ treatment variable missing complete n  mean   sd    p0   p25   p50
+   control    shift       0        8 8 -0.31 0.62 -1.27 -0.65 -0.48
+      knee    shift       0        7 7 -0.34 0.79 -1.61 -0.76 -0.29
+      eyes    shift       0        7 7 -1.55 0.71 -2.83 -1.78 -1.48
+   p75  p100     hist
+  0.24  0.53 ▂▁▇▂▁▁▂▅
+  0.17  0.73 ▇▁▇▇▇▇▇▇
+ -1.1  -0.78 ▂▁▁▂▁▇▁▅</code></pre>
+<p>Nous avons ici la confirmation que le design expérimental n’est pas équilibré, puisque le groupe <code>control</code> compte un individu de plus. Il semble que le groupe <code>eyes</code> se comporte un peu différemment des autres groupes. En effet, pour les groupes <code>control</code> et <code>knee</code>, les valeurs observées sont très proches :</p>
+<ul>
+<li>les moyennes et les médianes sont négatives mais proches de 0.</li>
+<li>les valeurs observées sont négatives pour certaines, et positives pour d’autres (la colonne <code>p0</code> contient les minimas et la colonne <code>p100</code> contient les maximas).</li>
+</ul>
+<p>En revanche, pour le groupe <code>eyes</code>, les décalages de phase observés sont tous négatifs (maxima, présenté dans la colonne <code>p100</code> vaut -0.78) et la moyenne est près de 5 fois plus faible que pour les 2 autres groupes.</p>
+<p>Les écart-types semblent en revanche très proches dans les 3 groupes (entre 0.6 et 0.8).</p>
+<p>Enfin, les histogrammes présentés pour chaque groupe semblent très éloignés d’une distribution Normale. C’est logique compte tenu des faibles effectifs dans chaque groupe. Et nous verrons plus tard que cela n’a aucune importance puisque les conditions d’application de l’ANOVA protent sur les résidus de l’ANOVA, et pas sur les données brutes.</p>
+<p>Il semble donc que seul le groupe <code>eyes</code> soit véritablement différent du groupe témoin. Pour le vérifier, nous allons d’abord faire quelques représentations graphiques, puis nous ferons un test d’hypothèses.</p>
+</div>
+<div id="exploration-graphique-3" class="section level4">
+<h4><span class="header-section-number">4.2.1.3</span> Exploration graphique</h4>
+<p>Comme toujours, il nest indispensable de regarder à quoi ressemblent les données brutes sur un ou des graphiques. Les statistiques descriptives ne racontent en effet pas toujours toute l’histoire. Ici, nous allons superposer les données brutes sous forme de nuage de oint, aux boites à moustaches :</p>
+<pre class="sourceCode r"><code class="sourceCode r">Light <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> treatment, <span class="dt">y =</span> shift)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.2</span>)</code></pre>
+<pre><code>notch went outside hinges. Try setting notch=FALSE.
+notch went outside hinges. Try setting notch=FALSE.
+notch went outside hinges. Try setting notch=FALSE.</code></pre>
+<p><img src="figure/unnamed-chunk-76-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Puisqu’il y a peu de données, les intervalles de confiance à 95% sont très larges. Ils dépassent d’ailleurs presque systématiquement les quartiles. Il vaudait donc mieux représenter cette figure sans ces intervalles de confiance. Toutefois, avant de les retirer, on peut constater ici que les IC 95% se chevauchent complètement pour les séries <code>control</code> et <code>knee</code>. En revanche, il n’y a aucun chevauchement de l’IC 95% du groupe <code>eyes</code> avec les 2 autres groupes. On s’attend donc à trouver une différence de moyenne significative entre le groupe <code>eyes</code> d’une part, et les groupes <code>control</code> et <code>knee</code> d’autre part, mais pas de différence de moyenne entre les groupes <code>control</code> et <code>knee</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">Light <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> treatment, <span class="dt">y =</span> shift, <span class="dt">fill =</span> treatment)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_brewer</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;Décalage de phase&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</code></pre>
+<p><img src="figure/unnamed-chunk-77-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>On constate ici visuellement que les 3 séries ont une étendue à peu près similaire, et que le groupe <code>eyes</code> semble se distinguer des 2 autres par des valeurs plus faibles. Enfin, les boîtes contenant 50% des valeurs centrales (donc l’étendue des valeurs entre les premiers et troisièmes quartiles) recouvrent le 0 pour les 2 groupes <code>control</code> et <code>knee</code>, mais par pour <code>eyes</code>.</p>
+</div>
+</div>
+<div id="le-test-parametrique-3" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Le test paramétrique</h3>
+<p>Le test paramétrique permettant de comparer la moyenne de plusieurs populations en une seule étape est l’<strong>analyse de variance à un facteur</strong>. Contrairement aux tests que nous avons vus jusqu’à maintenant, les conditions d’applications de ce test ne seront vérifiées qu’<strong>après</strong> avoir réalisé l’analyse. En effet, les conditions d’application de l’ANOVA ne se vérifient pas sur les données brutes mais sur les résidus de l’ANOVA. C’est d’ailleurs ce que l’on appelle l’<strong>analyse des résidus</strong>, ou diagnostique de l’ANOVA.</p>
+<div id="realisation-du-test-et-interpretation-3" class="section level4">
+<h4><span class="header-section-number">4.2.2.1</span> Réalisation du test et interprétation</h4>
+<p>Dans R, l’analyse de variance se fait grâce à la fonction <code>aov()</code> (comme “Analysis Of Variance”). La syntaxe est la même que pour un certain nombre de tests déjà vus dans la section <a href="seance1.html#seance1">3</a> : il faut fournir une formule à la fonction. On place la variable numérique expliquée à gauche du <code>~</code>, et à droite, la variable qualitative explicative (le facteur).</p>
+<p>Contrairement aux autres tests réalisés jusqu’ici, les résultats du test devront être sauvegardés dans un objet. Outre les résultats du test, cet objet contiendra également tous les éléments permettant de vérifier si les conditions d’application de l’ANOVA sont réunies ou non.</p>
+<p>Les hypothèses testées sont les suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : les moyennes de toutes les populations sont égales (<span class="math inline">\(\mu_{\textrm{control}} = \mu_{\textrm{knee}} = \mu_{\textrm{eyes}}\)</span>)</li>
+<li>H<span class="math inline">\(_1\)</span> : toutes les moyennes ne sont pas égales. Au moins l’une d’entre elles diffère des autres.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Réalisation de l&#39;ANOVA 1 facteur</span>
+res &lt;-<span class="st"> </span><span class="kw">aov</span>(shift <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> Light)
+
+<span class="co"># Affichage des résultats</span>
+res</code></pre>
+<pre><code>Call:
+   aov(formula = shift ~ treatment, data = Light)
+
+Terms:
+                treatment Residuals
+Sum of Squares   7.224492  9.415345
+Deg. of Freedom         2        19
+
+Residual standard error: 0.7039492
+Estimated effects may be unbalanced</code></pre>
+<p>L’affichage des résultats bruts ne nous apprend que peu de choses. En revanche, la fonction <code>summary()</code> donne la réponse du test :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(res)</code></pre>
+<pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+treatment    2  7.224   3.612   7.289 0.00447 **
+Residuals   19  9.415   0.496                   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Pour le facteur étudié, on obtient le nombre de degrés de libertés (<code>Df</code>), la somme des carrés (<code>Sum Sq</code>), les carrés moyens (<code>Mean Sq</code>), la statistique du test (<code>F</code>) et la <span class="math inline">\(p\)</span>-value (<code>Pr(&gt;F)</code>). Ici, la <span class="math inline">\(p\)</span>-value est inférieure à <span class="math inline">\(\alpha\)</span>, donc on rejette H<span class="math inline">\(_0\)</span>. Au moins l’une des moyennes est différente des autres.</p>
+</div>
+<div id="CAANOVA" class="section level4">
+<h4><span class="header-section-number">4.2.2.2</span> Conditions d’application</h4>
+<p>Les résultats de l’ANOVA ne seront valides que si les conditions d’application sont vérifiées. Comme indiqué plus haut, ces conditions d’applications doivent être vérifiées sur les résidus de l’ANOVA, donc nécessairement <strong>après</strong> avoir réalisé l’analyse. Les résidus de l’ANOVA représentent l’écart entre chaque observation et la moyenne de son groupe. Les résidus doivent :</p>
+<ol style="list-style-type: decimal">
+<li>être indépendants</li>
+<li>être homogènes</li>
+<li>être distribués Normalement.</li>
+</ol>
+<p>L’indépendance des résidus signifie que connaître la valeur d’un résidu ne permet pas de prédire la valeur d’un autre résidu. Si les données ont été collectées correctement (échantillonnage aléatoire simple, indépendance des observations), on considère généralement que cette condition est vérifiée. Les 2 autres conditions d’application se vérifient soit graphiquement, soit avec un test d’hypothèse.</p>
+<p>L’homogénéité des résidus signifie que les résidus doivent avoir à peu près la même variance pour chacun des groupes comparés. On peut vérifier que cette condition d’application est vérifiée grâce à ce graphique :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res, <span class="dt">which =</span> <span class="dv">1</span>)</code></pre>
+<p><img src="figure/unnamed-chunk-80-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Ici, les résidus sont considérés comme homogènes car nous avons à peu près autant de résidus positifs que négatifs et que la ligne rouge est très proche du 0. L’étalement des résidus est à peu près le même de la gauche à la droite du graphique. On pourrait donc faire entrer les résidus dans une boite rectangulaire horizontale centrée sur le 0 et de la même largeur d’un bout à l’autre du graphique. Une autre façon de visualiser ces résidus est d’utiliser le graphique suivant :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res, <span class="dt">which =</span> <span class="dv">3</span>)</code></pre>
+<p><img src="figure/unnamed-chunk-81-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Sur ce graphique, ce qui compte principalement, c’est la droite en rouge. Elle est ici presque horizontale, ce qui montre que les résidus de tous les groupes (un groupe à gauche et 2 à droite) ont à peu près même moyenne.</p>
+<p>Cette condition d’homogénéité des résidus entre les groupes peut également être vérifiée grâce au test de Levene. Pour ce test, les hypothèses seront les suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : les résidus sont homogènes (<em>i.e.</em> identiques dans tous les groupes).</li>
+<li>H<span class="math inline">\(_1\)</span> : les résidus ne sont pas homogènes (<em>i.e.</em> au moins un groupe présente des résidus dont la variance est différente des autres).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">leveneTest</span>(res<span class="op">$</span>residuals <span class="op">~</span><span class="st"> </span>Light<span class="op">$</span>treatment)</code></pre>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
+      Df F value Pr(&gt;F)
+group  2  0.1586 0.8545
+      19               </code></pre>
+<p>Ici, puisque <span class="math inline">\(p &gt; \alpha\)</span>, on ne peut pas rejeter l’hypothèse nulle. Les résidus sont donc bien homogènes.</p>
+<p>Reste à vérifier la normalité des résidus. Là encore, on peut faire cela graphiquement ou avecun test de Shapiro-Wilk :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res, <span class="dt">which =</span> <span class="dv">2</span>)</code></pre>
+<p><img src="figure/unnamed-chunk-83-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Sur un graphique quantile-quantile comme celui-là, on considère que les observations sont distribuées normalement si les points sont bien alignés sur la droite. Ici, la plupart des points sont très proches de la droite, ce qui laisse penser que les résidus suivent bien la loi Normale. On peut en avoir la confirmation avec le test suivant :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shapiro.test</span>(res<span class="op">$</span>residuals)</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  res$residuals
+W = 0.95893, p-value = 0.468</code></pre>
+<p>Comme pour tous les tests de Shapiro-Wilk, l’hypothèse nulle est la normalité des observations. Ici, puisque <span class="math inline">\(p &gt; \alpha\)</span>, on ne peut pas rejeter H<span class="math inline">\(_0\)</span>. Les résidus suivent donc bien la loi Normale.</p>
+<p>Toutes les conditions d’application de l’ANOVA sont donc vérifiées. Nous avions donc bien le droit de la réaliser et ses résultats sont valides. On pourrait rédiger les résultats de cette analyse ainsi :</p>
+<blockquote>
+<p>Une analyse de variance montre que la moyenne des 3 groupes n’est pas identique (<span class="math inline">\(F = 7.289\)</span>, <span class="math inline">\(p = 0.004\)</span>). Un test de Levene a permis de vérifier la condition d’homogénéité de la variance des résidus (<span class="math inline">\(F = 0.189\)</span>, <span class="math inline">\(p = 0.855), et un test de Shapiro-Wilk a confirmé la Normalité des résidus (\)</span>W = 0.959$, <span class="math inline">\(p = 0.468\)</span>).</p>
+</blockquote>
+<p>Deux questions restent toutefois en suspens :</p>
+<ol style="list-style-type: decimal">
+<li>Entre quels groupes les moyennes sont-elles différentes ?</li>
+<li>Quelle est la magnitude de ces différences ?</li>
+</ol>
+<p>Pour répondre à ces 2 questions, il nous faut réaliser des tests <em>a posteriori</em> ou tests post-hoc.</p>
+</div>
+<div id="tests-post-hoc" class="section level4">
+<h4><span class="header-section-number">4.2.2.3</span> Tests Post-Hoc</h4>
+<p>Lorsqu’une ANOVA montre que tous les groupes n’ont pas la même moyenne, il faut en théorie effectuer toutes les comparaisons de moyennes deux à deux. Le problème est que lorsque l’on effectue des comparaisons multiples, les erreurs <span class="math inline">\(\alpha\)</span> (probabilité de rejeter à tort H<span class="math inline">\(_0\)</span>) de tous les tests s’ajoutent. Ainsi :</p>
+<ul>
+<li>pour comparer 3 groupes 2 à 2, nous avons besoin de 3 tests.</li>
+<li>Pour comparer 4 groupes 2 à 2, nous avons besoin de 6 tests.</li>
+<li>pour comparer 5 groupes 2 à 2, nous avons besoin de 10 tests.</li>
+<li>pour comparer 6 groupes 2 à 2, nous avons besoin de 15 tests.</li>
+<li>pour comparer n groupes 2 à 2, nous avons besoin de <span class="math inline">\(\frac{n(n-1)}{2}\)</span> tests.</li>
+</ul>
+<p>Ici, puisque pour chaque test, un risque de 5% de rejeter à tort l’hypothèse nulle est commis, réaliser 3 tests ferait monter le risque de s’être trompé quelque part à 15%. C’est la raison pour laquelle des tests spéficiques existent. Nous en verrons 2 : le test de comparaisons multiples de Student et le test de Tukey (ou “Honestly Significant Difference Test”). Pour ces tests, des précautions sont prises qui garantissent que le risque <span class="math inline">\(\alpha\)</span> global est maîtrisé et qu’il reste fixé à 5%.</p>
+<p>Le test de comparaisons multiples de Student est réalisé avec la fonction <code>pairwise.t.test()</code>. En réalité, 3 test de Student seront réalisés. Les <span class="math inline">\(p\)</span>-value des tests seront simplement modifiées afin que globalement, le risque <span class="math inline">\(\alpha\)</span> n’augmente pas. Pour chaque test réalisee, les hypothèses nulles et alternatives sont les mêmes que celles décrites à la section <a href="seance1.html#Indep">3.4</a> :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la moyenne des deux populations est égale (<span class="math inline">\(\mu_1 = \mu_2\)</span>, ou <span class="math inline">\(\mu_1 - \mu_2\)</span> = 0).</li>
+<li>H<span class="math inline">\(_1\)</span> : la moyenne des deux populations est différente (<span class="math inline">\(\mu_1 \neq \mu_2\)</span> ou <span class="math inline">\(\mu_1 - \mu_2 \neq 0\)</span>).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Réalisation du test</span>
+post_hoc1 &lt;-<span class="st"> </span><span class="kw">pairwise.t.test</span>(Light<span class="op">$</span>shift, Light<span class="op">$</span>treatment)
+
+<span class="co"># affichage des résultats</span>
+post_hoc1</code></pre>
+<pre><code>
+    Pairwise comparisons using t tests with pooled SD 
+
+data:  Light$shift and Light$treatment 
+
+     control knee  
+knee 0.9418  -     
+eyes 0.0088  0.0088
+
+P value adjustment method: holm </code></pre>
+<p>Seules les <span class="math inline">\(p\)</span>-value de chaque test sont fournies sous la forme d’une matrice diagonale. On constate ainsi qu’une seule <span class="math inline">\(p\)</span> value est supérieure à <span class="math inline">\(\alpha = 0.05\)</span> : celle du test comparant les moyennes des groupes <code>knee</code> et <code>control</code>. Une autre façon de visualiser ces résultats consiste à utiliser la fonction <code>tidy</code> du package <code>broom</code> que nous avons mis en mémoire un peu plus tôt. Les résultats seront les mêmes. Ils seront simplement rangés dans un <code>tibble</code> :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tidy</span>(post_hoc1)</code></pre>
+<pre><code># A tibble: 3 x 3
+  group1 group2  p.value
+  &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
+1 knee   control 0.942  
+2 eyes   control 0.00879
+3 eyes   knee    0.00880</code></pre>
+<p>Nous avons donc la confirmation que les moyennes des groupes <code>knee</code> et <code>control</code> ne sont pas significativement différentes l’une de l’autre. En revanche, la moyenne du groupe <code>eyes</code> est différente de celle des 2 autres groupes (<span class="math inline">\(p = 0.009\)</span> pour les 2 tests).</p>
+<p>Nous avons donc appris des choses nouvelles, mais nous ne savons toujours pas quelle est la magnitude de la différence détectée entre le groupe <code>eyes</code> et les 2 autres. Le test de Tukey HSD nous permet de réponder à cette question :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Réalisation du test de Tukey HSD</span>
+post_hoc2 &lt;-<span class="st"> </span><span class="kw">TukeyHSD</span>(res)
+
+<span class="co"># Affichage des résultats</span>
+post_hoc2</code></pre>
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = shift ~ treatment, data = Light)
+
+$treatment
+                    diff        lwr        upr     p adj
+knee-control -0.02696429 -0.9525222  0.8985936 0.9969851
+eyes-control -1.24267857 -2.1682364 -0.3171207 0.0078656
+eyes-knee    -1.21571429 -2.1716263 -0.2598022 0.0116776</code></pre>
+<p>Cette fois, nous obtenons à la fois la <span class="math inline">\(p\)</span>-value des comparaisons 2 à 2, mais nous obtenons aussi l’estimation des différences de moyennes ainsi que l’intervalle de confiance à 95% de ces différences. Là encore, l’utilisation de la fonction <code>tidy</code> peut rendre les résultats plus lisibles (ou en tous cas, plus faciles à manipuler) :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tidy</span>(post_hoc2)</code></pre>
+<pre><code># A tibble: 3 x 6
+  term      comparison   estimate conf.low conf.high adj.p.value
+  &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1 treatment knee-control  -0.0270   -0.953     0.899     0.997  
+2 treatment eyes-control  -1.24     -2.17     -0.317     0.00787
+3 treatment eyes-knee     -1.22     -2.17     -0.260     0.0117 </code></pre>
+<p>La première ligne de ce tableau nous confirme une absence de différence de moyenne significative entre les groupes <code>knee</code> et <code>control</code>. La différence de moyenne estimée pour ces deux catégories (<span class="math inline">\(\hat{\mu}_{\textrm{knee}} - \hat{\mu}_{\textrm{control}}\)</span>) vaut <span class="math inline">\(-0.027\)</span>, avec un intervalle de confiance à 95% pour cette différence qui vaut <span class="math inline">\([-0.95 ; 0.90]\)</span>. Cet intervalle, qui rassemble les valeurs les plus probables pour cette différence de moyenne, contient la valeur 0, ce qui confirme qu’il n’y a aucune raison de penser qu’une différence réelle existe. Le faible écart de moyennes observé entre ces 2 groupes est très vraisemblablement le fruit du hasard.</p>
+<p>En revanche, les lignes 2 et 3 de ce tableau montrent des différences significatives (<span class="math inline">\(p = 0.008\)</span> et <span class="math inline">\(p = 0.012\)</span> pour les comparaisons <code>eyes</code>/<code>control</code> et <code>eyes</code>/<code>knee</code> respectivement). Les différences sont négatives, de l’ordre de -1.2 pour les 2 comparaisons, ce qui traduit des valeurs plus faibles pour <code>eyes</code> que pour les 2 autres groupes. Pour ces 2 comparaisons, les intervalles de confiance à 95% des différences ne contiennent pas le 0, mais exclusivement des valeurs négatives.</p>
+<p>En utilisant le tableau ci-dessus, nous pouvons synthétiser graphiquement ces résultats :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tidy</span>(post_hoc2) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> comparison, <span class="dt">y =</span> estimate)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> conf.low, <span class="dt">ymax =</span> conf.high)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Comparaison&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;Différence de moyennes (et IC 95%)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
+<p><img src="figure/unnamed-chunk-89-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Nous avons donc bien montré ici que la re-synchronisation de l’horloge interne n’est possible que par le biais de l’exposition des yeux à la lumière, et non du creux poplité.</p>
+</div>
+</div>
+<div id="lalternative-non-parametrique-3" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> L’alternative non paramétrique</h3>
+<p>Dans la suite de cette section, nous faisons l’hypothèse, bien que ça ne soit pas le cas, que les conditions d’application de l’ANOVA ne sont pas vérifiées pour notre jeu de données.</p>
+<div id="realisation-du-tests-et-interpretation" class="section level4">
+<h4><span class="header-section-number">4.2.3.1</span> Réalisation du tests et interprétation</h4>
+<p>Si les conditions d’application de l’ANOVA ne sont pas remplies, il est nécessaire d’utiliser un test non-paramétrique afin de comparer la moyenne de plus de deux groupes à la fois. La particularité de l’ANOVA est sa <strong>robustesse</strong> vis-à-vis d’un viol modéré de ses coditions d’application. La robustesse est la capacité d’un test à fournir des résultats qui restent valides même si toutes ses conditions d’application ne sont pas remplies. L’ANOVA étant particulièrement robuste, ses résultats resteront valides dans les situations suivantes :</p>
+<ul>
+<li>Non Normalité modérée des résidus. Si les résidus ne suivent pas parfaitement une loi Normale mais qu’ils sont néanmoins grossièrement distribués selon une courbe en cloche, les résultats de l’ANOVA resteront vrais, surtout si les effectifs sont importants.</li>
+<li>Non homogénéité des résidus. Si les résidus ne sont pas homogènes dans tous les groupes, les résultats de l’ANOVA resteront vrais tant que les échantillons seront grands, approximativement de la même taille dans tous les groupes, et à condition que les écarts de variances entre les groupes ne dépassent pas un facteur 10.</li>
+</ul>
+<p>Dans tous les autres cas de non respect des conditions de l’ANOVA, par exemple, si la variance des résidus n’est pas homogène et que les groupes sont de petite taille ou de taille différente, ou si les variances diffèrent de plus d’un facteur 10, ou si les résidus s’écartent fortement de la Normalité, il faudra alors faire un test non paramétrique.</p>
+<p>L’alternative non paramétrique à l’ANOVA à un facteur est le test de la somme des rangs de <strong>Kruskal-Wallis</strong> dont la syntaxe dans R est similaire à celle de l’ANOVA. Comme d’habitude, l’hypothèse nulle concerne l’absence d’effet du facteur étudié :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : le type de traitement appliqué n’a pas d’effet sur le décalage de phase. Les médianes sont égales dans tous les groupes (med$_ = <span class="math inline">\(med\)</span>_ =$ med<span class="math inline">\(_\textrm{eyes}\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : le type de traitement appliqué a un d’effet sur le décalage de phase. Les médianes ne sont pas toutes égales, au moins l’une d’entre elles diffère des autres.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kruskal.test</span>(shift <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> Light)</code></pre>
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  shift by treatment
+Kruskal-Wallis chi-squared = 9.4231, df = 2, p-value =
+0.008991</code></pre>
+<p>Ici, la <span class="math inline">\(p\)</span>-value est inférieure à <span class="math inline">\(\alpha\)</span>, on rejette donc H<span class="math inline">\(_0\)</span> : toutes les meedianes ne sont pas égales. Comme avec l’ANOVA, il nous faut maintenant déterminer quelles médianes sont différentes et quelle est la magnitude de cette (ou de ces) différence(s). Pour cela, nous devons réaliser un test de comparaisons multiples.</p>
+</div>
+<div id="tests-post-hoc-1" class="section level4">
+<h4><span class="header-section-number">4.2.3.2</span> Tests Post-Hoc</h4>
+<p>Comme pour les tests post-hoc de l’ANOVA, nous allons voir ici 2 tests de comparaisons multiples non paramétriques. Le premier est l’équivalent du test de comparaisons multiples de Student : le test de cd comparaisons multiples de la somme des rangs de Wilcoxon. Le principe est absolument le même que pour le test de comparaisons multiples de Student : toutes les comparaisons 2 à 2 sont effectuées au moyen d’un test de la somme des rangs de Wilcoxon. Les <span class="math inline">\(p\)</span>-values de ces tests sont corrigées afin de garantir que le risque d’erreur <span class="math inline">\(\alpha\)</span> global soit maintenu constant en dépit de l’augmentation du nombre de tests réalisé. Pour chaque test réalisé, les hypothèses sont les suivantes :</p>
+<ul>
+<li>H<span class="math inline">\(_0\)</span> : la médiane des deux populations est égale.</li>
+<li>H<span class="math inline">\(_1\)</span> : la médiane des deux populations est différente.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Réalisation du test</span>
+post_hoc3 &lt;-<span class="st"> </span><span class="kw">pairwise.wilcox.test</span>(Light<span class="op">$</span>shift, Light<span class="op">$</span>treatment)
+
+<span class="co"># Affichage des résultats</span>
+post_hoc3</code></pre>
+<pre><code>
+    Pairwise comparisons using Wilcoxon rank sum test 
+
+data:  Light$shift and Light$treatment 
+
+     control knee  
+knee 0.9551  -     
+eyes 0.0037  0.0524
+
+P value adjustment method: holm </code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Utilisation de la fonction `tidy` pour afficher les résultats dans un tibble</span>
+<span class="kw">tidy</span>(post_hoc3)</code></pre>
+<pre><code># A tibble: 3 x 3
+  group1 group2  p.value
+  &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
+1 knee   control 0.955  
+2 eyes   control 0.00373
+3 eyes   knee    0.0524 </code></pre>
+<p>Ici, la <span class="math inline">\(p\)</span>-value du premier test est supérieure à <span class="math inline">\(\alpha = 0.05\)</span>. Il n’y a dons pas de différence entre les médianes du groupe <code>control</code> et du groupe <code>knee</code>. Le traitement lumineux appliqué dans le creux poplité n’a donc aucun effet sur le décalage de phase.</p>
+<p>La <span class="math inline">\(p\)</span>-value du second test est en revanche inférieure à <span class="math inline">\(\alpha\)</span>. On rejette l’hypothèse nulle pour ce test ce qui confirme que le traitement lumineux appliqué au niveau des yeux a un effet sur le décalage de phase. Reste toutefois à quantifier l’importance de ce décalage de phase par rapport au groupe <code>control</code>.</p>
+<p>Enfin, la <span class="math inline">\(p\)</span>-value du troisième test est supérieure (tout juste !) à <span class="math inline">\(\alpha\)</span>. La conclusion logique est donc qu’il n’y a pas de différence significative entre les médianes des groupes <code>knee</code> et <code>control</code>. On sait que ce n’est pas le cas puisque nous avons montré plus haut (avec les tests paramétriques), que la différence de moyenne entre ces deux populations était significative. Nous avons ici l’illustration parfaite de la faible puissance des tests non paramétriques : leur capacité à détecter un effet lorsqu’il y en a réellement un est plus faible que celle des tests paramétriques. En outre, les procédures de comparaisons multiples sont très conservatives, et font mécaniquement baisser la puissance des tests pour maintenir constante l’erreur <span class="math inline">\(\alpha\)</span>. Je ne peux donc que vous inciter à la prudence lorsque vous interprétez les résultats d’un test de comparaions multiples (<em>a fortiori</em> un test non paramétrique) pour lequel la <span class="math inline">\(p\)</span>-value obtenue est très proche du seuil <span class="math inline">\(\alpha\)</span>.</p>
+<p>Comme pour son homologue paramétrique, le test de comparaisons multiples de Wilcoxon nous permet de prendre une décision par rapport à H<span class="math inline">\(_0\)</span>, mais il ne nous dit rien de la magnitude des effets mesurés. Pour les connaître, il nous faut réaliser le test de Dunn :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Réalisation du test</span>
+post_hoc4 &lt;-<span class="st"> </span><span class="kw">DunnTest</span>(shift <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> Light)
+
+<span class="co"># Affichage des résultats</span>
+post_hoc4</code></pre>
+<pre><code>
+ Dunn&#39;s test of multiple comparisons using rank sums : holm  
+
+             mean.rank.diff   pval    
+knee-control     -0.4821429 0.8859    
+eyes-control     -9.3392857 0.0164 *  
+eyes-knee        -8.8571429 0.0214 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Avec ces résultats, on progresse un peu car outre les <span class="math inline">\(p\)</span>-values pour chaque ocmpariaons, le test nous fournit une estimation de la différence des rangs moyens. Malheureusement, ces estimations sont souvent difficiles à interpréter (par exemple, quelle est l’unité utilisée ?) et aucun intervalle de confiance n’est fourni. On constate néanmoins que le test de Dunn donne ici des résultats comparables à ceux fournis par les tests paramétriques : le groupe <code>eyes</code> est significativement différent des deux autres. Pour obtenir les intevalles de confiance dont nous avons besoin, nous n’avons pas d’autre choix que des les calculer à l’aide du test de Wilcoxon classique, en réalisant manuellement les tests dont nous avons besoin. Ici, le test à proprement parler ne nous intéresse pas. La seule chose pertinente est la différence de (pseudo-) médiane estimée et son intervalle de confiance :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Comparaisons entre les groupes `knee` et `eyes` (dans cet ordre)</span>
+Light <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;knee&quot;</span>, <span class="st">&quot;eyes&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">wilcox.test</span>(shift <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> ., <span class="dt">conf.int =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">tidy</span>()</code></pre>
+<pre><code># A tibble: 1 x 7
+  estimate statistic p.value conf.low conf.high method     alternative
+     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
+1     1.19        42  0.0262    0.300      2.21 Wilcoxon … two.sided  </code></pre>
+<p>Pour le décalage de phase de ces 2 groupes, la différence de médiane estimée vaut donc de 1.19, avec un intervalle de confiance à 95% de <span class="math inline">\([0.3 ; 2.21]\)</span>. Toutes les valeurs comprises dans cet intervalle de confiance sont strictement positives. Il y a donc très peu de chances pour que la différence de médiane entre ces deux groupes soit nulle. Le test de Dunn ci-dessus, montrant une différence significative entre ces groupes, est donc confirmé.</p>
+</div>
+</div>
+<div id="exercices-dapplication" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> Exercices d’application</h3>
+<div id="cardamine-pensylvanica" class="section level4">
+<h4><span class="header-section-number">4.2.4.1</span> <em>Cardamine pensylvanica</em></h4>
+<p>En biologie de la conservation, l’existance d’un lien entre la capacité de dispersion des organismes et le maintien durable des populations dans le temps est étudié de près, notamment dans le contexte de fragmentation des habitats que nous connaissons en raison de l’anthropisation des milieux.
+Cette question a été étudiée par 2 chercheurs <span class="citation">(Molofsky &amp; Ferdy, <a href="#ref-Molofsky2005">2005</a>)</span> chez <em>Cardamine pensylvanica</em>, une <a href="https://en.wikipedia.org/wiki/Cardamine_pensylvanica">plante annuelle d’Amérique du Nord</a> qui produit des graines qui sont dispersées de façon explosive. Quatre traitements ont été utilisés pour modifier expérimentalement la dispersion des graines. La distance entre populations contigües a été définie comme suit :</p>
+<ul>
+<li>Traitement 1 : <code>continu</code>. Les plants sont conservés au contact les uns des autres.</li>
+<li>Traitement 2 : <code>medium</code>. Les plants sont séparés de 23.2 centimètres.</li>
+<li>Tratiement 3 : <code>long</code>. Les plants sont séparés de 49.5 centimètres.</li>
+<li>Traitement 4 : <code>isole</code>. Les plants sont séparés par des panneaux de bois empêchant la dispersion des graines.</li>
+</ul>
+<p>Ces traitements ont été assignés au hasard à des populations de plantes, et 4 réplicats ont été faits pour chacun d’entre eux. Les résultats de l’expérience de présentés ci-dessous. Il s’agit du nombre de générations durant lesquelles les plantes ont persisté :</p>
+<ul>
+<li><code>continu</code> : 9, 13, 13, 16</li>
+<li><code>medium</code> : 14, 12, 16, 16</li>
+<li><code>long</code> : 13, 9, 10, 11</li>
+<li><code>isole</code> : 13, 8, 8, 8</li>
+</ul>
+<p>Saisissez ces données dans R et faites-en l’analyse. Vous tenterez de déterminer si l’éloignement entre les populations de plantes a un impact sur leur capacité de survie. COmme tojours, avant de vos lancer dans les tests, vous prendrez le temps de décrire les données avec des statistiques descriptives et des représentations graphiques.</p>
+</div>
+<div id="insecticides" class="section level4">
+<h4><span class="header-section-number">4.2.4.2</span> Insecticides</h4>
+<p>L’efficacité de 6 insecticides nommés A, B, C, D, E et F a été testée sur 6 parcelles agricoles. Dans chaque parcelle, un insecticide choisi aléatoirement dans la liste a été appliqué. Deux semaine plus tard, 12 plants ont été collectés dans chaque parcelle agricole et le nombre d’insectes toujours vivants sur chacun d’entre eux a été compté. Les résultats sont présentés dans le fichier <code>Insectes.csv</code>. Importez ces données dans R et faites-en l’analyse. Tous les insecticides ont-ils la même efficacité ? Si la réponse est non, quels sont les insecticides les plus (ou les moins) efficaces.</p>
+
+</div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-tidyverse">
+<p><span class="smallcaps">Wickham H</span>. (2017). <em>Tidyverse: Easily install and load the ’tidyverse’</em>. Retrieved from <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a></p>
+</div>
+<div id="ref-R-readr">
+<p><span class="smallcaps">Wickham H, Hester J, &amp; Francois R</span>. (2018). <em>Readr: Read rectangular text data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a></p>
+</div>
+<div id="ref-R-readxl">
+<p><span class="smallcaps">Wickham H, &amp; Bryan J</span>. (2018). <em>Readxl: Read excel files</em>. Retrieved from <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a></p>
+</div>
+<div id="ref-R-skimr">
+<p><span class="smallcaps">McNamara A, Arino de la Rubia E, Zhu H, Ellis S, &amp; Quinn M</span>. (2019). <em>Skimr: Compact and flexible summaries of data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=skimr">https://CRAN.R-project.org/package=skimr</a></p>
+</div>
+<div id="ref-R-car">
+<p><span class="smallcaps">Fox J, Weisberg S, &amp; Price B</span>. (2018). <em>Car: Companion to applied regression</em>. Retrieved from <a href="https://CRAN.R-project.org/package=car">https://CRAN.R-project.org/package=car</a></p>
+</div>
+<div id="ref-R-broom">
+<p><span class="smallcaps">Robinson D, &amp; Hayes A</span>. (2018). <em>Broom: Convert statistical analysis objects into tidy tibbles</em>. Retrieved from <a href="https://CRAN.R-project.org/package=broom">https://CRAN.R-project.org/package=broom</a></p>
+</div>
+<div id="ref-R-DescTools">
+<p><span class="smallcaps">Ken Aho ASIR source code and/or documentation previously published by: Alfons A, Anderegg N, Aragon T, Arppe A, Baddeley A, … Zeileis A</span>. (2019). <em>DescTools: Tools for descriptive statistics</em>. Retrieved from <a href="https://CRAN.R-project.org/package=DescTools">https://CRAN.R-project.org/package=DescTools</a></p>
+</div>
+<div id="ref-Campbell1998">
+<p><span class="smallcaps">Campbell SS, &amp; Murphy PJ</span>. (1998). Extraocular circadian phototransduction in humans. <em>Science</em>, <strong>279</strong>(5349), 396–399. <a href="https://doi.org/10.1126/science.279.5349.396">https://doi.org/10.1126/science.279.5349.396</a></p>
+</div>
+<div id="ref-Wright2002">
+<p><span class="smallcaps">Wright KP, &amp; Czeisler CA</span>. (2002). Absence of circadian phase resetting in response to bright light behind the knees. <em>Science</em>, <strong>297</strong>(5581), 571–571. <a href="https://doi.org/10.1126/science.1071697">https://doi.org/10.1126/science.1071697</a></p>
+</div>
+<div id="ref-Molofsky2005">
+<p><span class="smallcaps">Molofsky J, &amp; Ferdy J-B</span>. (2005). Extinction dynamics in experimental metapopulations. <em>Proceedings of the National Academy of Sciences</em>, <strong>102</strong>(10), 3726–3731. <a href="https://doi.org/10.1073/pnas.0404576102">https://doi.org/10.1073/pnas.0404576102</a></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="seance1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="seance-4-correlations-et-regressions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Biometrie3.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

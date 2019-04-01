@@ -1,4 +1,4 @@
-# Séance 3 : corrélations et régressions
+# Séance 4 : corrélations et régressions
 
 ## Packages et données
 
@@ -9,11 +9,13 @@ library(tidyverse)
 library(skimr)
 ```
 
-Vous aurez également besoin du jeu de données intitulé suivants disponibles sur l'ENT :
+Vous aurez également besoin des jeux de données suivants disponibles sur l'ENT :
 
 - `birds.csv`
 - `loups.csv`
 - `ropetrick.csv`
+- `plantbiomass.csv`
+- `hockey.csv`
 
 
 ## Corrélation
@@ -102,11 +104,11 @@ Dans la suite de ce chapitre, nous allons voir comment calculer le coefficient d
 
 #### Importation et examen visuel
 
-Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d'autres espèces animales, chez qui cette relation pourrait-être étudiée plus facilement ? @muller2011 ont étudié cette possibilité chez le Fou de Grant (*Sula granti*), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d'autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d'une bague d'identification individuelle. Ces 24 individus ont ensuite été suivis à l'âge adulte, lorsqu'ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier `Birds.csv`. Importez ces données dans `R` dans un objet noté `Birds`.
+Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d'autres espèces animales, chez qui cette relation pourrait-être étudiée plus facilement ? @muller2011 ont étudié cette possibilité chez le Fou de Grant (*Sula granti*), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d'autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d'une bague d'identification individuelle. Ces 24 individus ont ensuite été suivis à l'âge adulte, lorsqu'ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier `birds.csv`. Importez ces données dans `R` dans un objet noté `Birds`.
 
-```{r echo = -1}
-Birds <- read_csv("data/Birds.csv")
-Birds
+```{r echo = -1, message = FALSE, warning = FALSE}
+birds <- read_csv("data/birds.csv")
+birds
 ```
 
 La première colonne de ce tableau indique, pour chaque individu suivi, le nombre de visites reçues au nid de la part d'adultes agressifs. La seconde colonne indique, pour ces même individus, le nombre de visites agressives effectuées à des nids d'autres poussins. Ce nombre n'est pas dans la même unité que la première variable puisqu'il a été corrigé par d'autres variables d'intérêt pour les chercheurs.
@@ -114,9 +116,9 @@ La première colonne de ce tableau indique, pour chaque individu suivi, le nombr
 Il manque à ce tableau une variable indiquant le code des individus. Elle n'est pas indispensable, mais la rajouter est une bonne habitude à prendre pour toujours travailler avec des "données rangées" :
 
 ```{r}
-Birds <- Birds %>% 
+birds <- birds %>% 
   mutate(ID = factor(1:24))
-Birds
+birds
 ```
 
 #### Statistiques descriptives
@@ -124,7 +126,7 @@ Birds
 Comme toujours, la première chose à faire est d'examiner quelques statistiques descriptives pour se faire une idée de la forme des données et pour repérer les éventuelles données manquantes ou aberrantes.
 
 ```{r}
-skim(Birds)
+skim(birds)
 ```
 
 Outre le facteur `ID` que nous venons de créer, nous disposons donc de 2 variables numériques qui ne contiennent pas de données manquantes. 
@@ -134,7 +136,7 @@ Outre le facteur `ID` que nous venons de créer, nous disposons donc de 2 variab
 À ce stade, il est possible de calculer le coefficient de corrélation linéaire entre les 2 variables :
 
 ```{r}
-Birds %>% 
+birds %>% 
   select(nVisitsNestling, futureBehavior) %>% 
   cor()
 ```
@@ -148,7 +150,7 @@ Le résultat est obtenu sous la forme d'une matrice symétrique :
 Afin de savoir si la valeur moyenne de $r$ calculée précédemment reflète une relation linéaire mais moyenne, ou une relation qui n'est pas vraiment linéaire, nous devons faire un buage de points :
 
 ```{r}
-Birds %>% 
+birds %>% 
   ggplot(aes(x = nVisitsNestling, y = futureBehavior)) +
   geom_point() +
   labs(x = "Nombre de visites reçues par le poussin",
@@ -172,7 +174,7 @@ Ce test est réalisé dans `R` grâce à la fonction `cor.test()`.
 #### Résultats du test et interprétation
 
 ```{r}
-cor.test(Birds$nVisitsNestling, Birds$futureBehavior)
+cor.test(birds$nVisitsNestling, birds$futureBehavior)
 ```
 
 Le test réalisé ici est le **test de corrélation de Pearson**. Il s'agit d'un test paramétrique dont les conditions d'application sont expliquées plus bas. Comme pour tous les tests examiné jusqu'ici, les premières lignes des résultats fournissent toutes les informations utiles au sujet du test. Ici, on peut dire :
@@ -197,7 +199,7 @@ Ici, si les hypothèses que nous souhaitons tester sont les suivantes :
 On utilise la syntaxe suivante :
 
 ```{r}
-cor.test(Birds$nVisitsNestling, Birds$futureBehavior,
+cor.test(birds$nVisitsNestling, birds$futureBehavior,
          alternative = "greater")
 ```
 
@@ -268,14 +270,14 @@ p6 <- ex5 %>%
 grid.arrange(p4, p5, p6, ncol = 2)
 ```
 
-ENfin, si l'une, l'autre ou les deux séries de données ne suivent pas la loi Normale, il faudra faire un test non paramétrique.
+Enfin, si l'une, l'autre ou les deux séries de données ne suivent pas la loi Normale, il faudra faire un test non paramétrique.
 
 ### L'alternative non paramétrique
 
 Quand les conditions d'application du test de corrélation de Pearson ne sont pas remplies, il faut faire un test équivalent non paramétrique. Le test utilisé le plus fréquemment dans cette situation est le test du $\rho$ de Spearman. On l'effectue comme le test de Pearson en précisant simplement un argument supplémentaire : `method = "spearman"` (sans maujscule) :
 
 ```{r}
-cor.test(Birds$nVisitsNestling, Birds$futureBehavior,
+cor.test(birds$nVisitsNestling, birds$futureBehavior,
          method = "spearman")
 ```
 
@@ -357,27 +359,215 @@ cor.test(loups$inbreedCoef, loups$nPups,
 
 ## Régression linéaire
 
+La régression est une méthode utilisée pour prédire les valeurs d'une variable numérique à partir des valeurs d'une seconde variable. Par exemple, le nuage de ooints de la figure ci-dessous montre comment la diversitee génétique dans une population humaine locale peut être prédite par sa distance de dispersion depuis l'Est africain en ajustant une droite aux données [d'après @whitlock2015]. L'homme moderne est apparu en Afrique et nos ancêtres ont perdu un peu de diversité génétique à chaque étape de leur colonisation de nouveaux territoires.
+
+![](images/genetics.jpg)
+
+COntrairement à la corrélation, ici, on n'examine pas seulement une éventuelle liaison : on suppose qu'une variable peut-être (en partie) expliquée par une autre. Nous aurons donc à distinguer les variables expliquées (ou dépendantes) qui figureront sur l'axe des y et seront nos variables prédites, et les variables explicatives (ou indépendantes) qui figureront sur l'axe des abscisses et seront les prédicteurs.
+
+Une façon de distinguer corrélation et régression consiste à dire que "corrélation n'est pas causalité". Si on compare un nombre de variables suffisamment important, on finira toujours par en trouver qui seront corrélées. Cela ne veut pas dire pour autant qu'il existe un lien de cause à effet entre l'une et l'autre. Pour vous en convaincre, examinez [cette page](http://www.tylervigen.com/spurious-correlations). Lorsque l'on s'intéresse à la régression linéaire, on essaie de prédire ou d'expliquer. En d'autres termes, on considère que les variations de la variabkle explicative sont au moins en partie la cause des variations de la variable expliquée.
+
+Lorsque l'on s'intéresse à la régression linéaire, on considère que la relation qui lie les deux variables est linéaire, et on souhaite quantifier l'intensité de la relation. Nous allons examiner maintenant comment faire ça dans `R`.
+
 ### Exploration préalable des données
 
-#### Importation et examen visuel
+Les activités humaines réduisent le nombre d'espèces dans un grand nombre d'écosystèmes à la surface du globe. Est-ce que cette diminution du nombre d'espèces affecte le fonctionnement de base des écosystèmes ? Où est-ce qu'au contraire, les espèces végétales sont majoritairement interchangeables, les fonctions des espèces disparues pouvants être assurées par les espèces toujours présentes ?
 
-#### Statistiques descriptives
+Pour tenter de répondre à cette question, @tilman2006 ont ensemencé 161 parcelle de 9 mètres sur 9 mètres dans la réserve de Cedar Creek (Minesota, USA). Ils ont utilisé un nombre d'espèces variables typiques des prairies et ont mesuré la production de biomasse de chaque parcelle pendant 10 ans. Des lots de 1, 2, 4, 8 ou 16 plantes pluriannuelles (choisies au hasard parmi une liste de 18 espèces possibles) ont été assignés au hasard dans chacune des 161 parcelles. À l'issue des 10 années d'étude, les chercheurs ont mesuré un indice de stabilité de la biomasse en divisant la moyenne des biomasses sur 10 ans, par l'écart-type de ces mêmes biomasses.
 
-#### Exploration graphique
+Les données de cette expérience sont disponible dans le fichier `plantbiomass.csv`.
+
+#### Importation, examen visuel et statistiques descriptives
+
+Comme toujours, on importe les données et on commence par un examen visuel afin de détecter les éventuels problèmes et pour savoir où l'on va.
+
+```{r}
+plant <- read_csv("data/plantbiomass.csv")
+plant
+```
+
+Ce premier examen nous montre que nous disposons bien de 161 observations pour 2 variables : le nombre d'espèces présentes dans la parcelle pendant 10 ans, et l'indice de stabilité de la biomasse de chaque parcelle.
+
+```{r}
+skim(plant)
+```
+
+Ce premier examen nous montre que nous n'avons aucune données manquantes et que l'indice de stabilité a une distribution asymétrique (asymétrie droite) et qu'il varie d'un peu plus de 1 à près de 16. Pour en apprendre un peu plus, nous avons intérêt à examiner les données en groupes :
+```{r}
+plant %>% 
+  group_by(nSpecies) %>% 
+  skim()
+```
+
+Cette fois,  on obtient des informations pour chaque valeur de nombre d'espèce par parcelle. On constate par exemple que les moyennes de l'indice de stabilité de la biomasse augmentent très peu entre les catégories 1, 2 et 4 espèces par parcelle, mais que l'augmentation semble plus fort pour 8 et 16 espèces par parcelle. Tous les écarts-types semblent très proches, sauf peut-être pour la catégorie 16 espèces.
+
+Une visualisation des données est toujours indispensable :
+```{r}
+plant %>% 
+  ggplot(aes(x = nSpecies, y = biomassStability)) +
+  geom_point(alpha = 0.3) +
+  labs(x = "Nombre d'espèces par parcelle",
+       y = "Indice de stabilité de la biomasse") +
+  theme_bw()
+```
+
+Ce graphique nous apprend plusieurs choses :
+
+1. Contrairement à la plupart des méthodes statistiques vues jusqu'ici, il n'est pas nécessaire que les données des variables soient distribuées selon une loi Normale. Ici, nous avons des données qui sont tout sauf normales pour la variable expliquée puisque nous avons seulement les entiers 1, 2, 4, 8 et 16. Un histogramme ou une courbe de densité montre que la distribution de cette variable est très loin de la Normalité :
+
+```{r}
+plant %>% 
+  ggplot(aes(x = nSpecies)) +
+  geom_density(fill = "steelblue") +
+  labs(x = "Nombre d'espèces par parcelle") +
+  theme_bw()
+```
+Cela n'est pas du tout problématique : comme pour l'ANOVA, les conditions d'application porteront sur les **résidus de la régression**, pas sur les variables elles-mêmes.
+2. Afin de limiter la sur-dispersion de la variable expliquée, notamment pour la catégorie `16` plantes par parcelle, nous allons transformer l'indice de stabilité en logarithme (attention, la fonction `log()` permet de calculer des logarithmes népériens ou logarithmes naturels) :
+```{r}
+plant <- plant %>% 
+  mutate(log_biomass = log(biomassStability))
+plant
+```
+
+```{r}
+plant %>% 
+  ggplot(aes(x = nSpecies, y = log_biomass)) +
+  geom_point(alpha = 0.3) +
+  labs(x = "Nombre d'espèces par parcelle",
+       y = "Transformation log\n de l'indice de stabilité de la biomasse") +
+  theme_bw()
+```
+
+On peut visualiser dès maintenant la droite de régression linéaire qui permet de lier ces deux variables grâce à la fonction `geom_smooth(method = "lm", se = FALSE`)` :
+
+```{r}
+plant %>% 
+  ggplot(aes(x = nSpecies, y = log_biomass)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Nombre d'espèces par parcelle",
+       y = "Transformation log\n de l'indice de stabilité de la biomasse") +
+  theme_bw()
+```
+
+À supposer que nous ayons le droit d'effectuer une régression linéaire (ce qu'il faudra vérifier avec les conditions d'application, **après** avoir fait la régression), la pente devrait être positive.
 
 ### Le test paramétrique
 
+À une exception près, la procédure de régression linéaire est en tout points identique à l'analyse de variance. Quand on fait une ANOVA, la variable expliquée est numérique est la variable explicative est catégorielle (c'est un facteur). Quand on fait une régression linéaire, les 2 variables sont numériques. Pour le reste, tout est identique : on exprime la variable expliquée en fonction de la variable explicative et on vérifie après coup, grâce aux résidus, si nous avions le droit ou non de faire l'analyse.
+
+Pour faire une régression linéaire dans `R`, on utilise la fonction `lm()` (comme **l**inear **m**odel). Et comme pour l'ANOVA, les résultats de l'analyse doivent être stockés dans un objet puisque cet obket contiendra tous les éléments utiles pour vérifier les conditions d'application :
+
+```{r}
+reg1 <- lm(log_biomass ~ nSpecies, data = plant)
+```
+
+Faire une régression linéaire avec cette commande revient à effectuer en même temps 2 tests d'hypothèses indépendants : le premier concerne l'ordonnée à l'origine de la droite de régression et le secon concerne la pente de la droite de régression. Les hypothèses de ces tests sont les suivantes :
+
+**Pour l'ordonnée à l'origine** ("intercept" en anglais) :
+
+- H$_0$ : l'ordonnée à l'origine de la droite de régression vaut 0 dans la population générale
+- H$_1$ : l'ordonnée à l'origine de la droite de régression est différente de 0 dans la population générale
+
+**Pour la pente** ("slope" en anglais) :
+
+- H$_0$ : la pente de la droite de régression vaut 0 dans la population générale
+- H$_1$ : la pente de la droite de régression est différente de 0 dans la population générale
+
 #### Résultats du test et interprétation
 
-#### Conditions d'application
+Comme pour l'ANOVA, on affiche les résultats de ces tests à l'aide de la fonction `summary()`
+```{r}
+summary(reg1)
+```
+
+Dans la forme, ces résultats sont très proches de ceux de l'ANOVA. La rubrique `Residuals` donne des informations sommaires sur les résidus. Ces informations sont utiles puisque les résidus serviront à vérifier les rconditions d'application de la régression. À ce stade, on regarde surtout si la médiane des résidus est proche de 0 et si les résidus sont à peu près symétriques (les premier et troisième quartiles ont à peu près la même valeur absolue, idem pour le minimum et le maximum).
+
+Le tableau `Coefficients` est celui qui nous intéresse le plus puisqu'il nous fournit, outre la réponse aux 2 tests, les estimations pour l'ordonnée à l'origine et la pente de la droite de régression. Ici, l'ordonnée à l'origine (intercept) est estimée à 1.198 (rappelez-vous que cette valeur fait référence au logarithme de la stabilité de la biomasse) et la pente à 0.033 (quand le nombre d'espèce augmente d'une unité, le logarithme de l'indice de stabilité de la biomasse augmente de 0.033 unités). Les $p-$values de chacun des 2 tests sont fournies dans la dernière colonne et sont ici très inférieure à $\alpha$ : on rejette donc les 2 hypothèses nulles. En particulier, puisque l'hypothèse nulle est rejetée pour le test qui concerne le pente de la droite, on peut considérer que le nombre de plantes dans les parcelles influence bel et bien l'indice de stabilité de la biomasse. Autrement dit, le nombre de plantes dans les parcelles, permet, dans une certaine mesure, de prédire la valeur de l'indice de stabilité de la biomasse.
+
+La relation n'est pas parfaite : le nombre de plantes dans chaque parcelle ne permet de prédire l'indice de stabilitee de la biomasse que dans une mesure assez faible. C'est le `Adjusted R-squared` qui nous indique quelle est la "qualité" de prédiction du modèle. Ici, il vaut 0.22. Cela signifie que 22% des variations de l'indice de stabilité de la biomasse sont prédits par le nombre de plantes dans les parcelles. Une autre façon de présenter les choses consiste à dire que 78% des variations de l'indice de stabilité de biomasse sont expliqués par d'autres facteurs que le nombre d'espèces par parcelles. Le $R^2$ (à en pas confondre avec le coefficient de corrélation $r$) renseigne donc sur la qualité de l'ajustement des données à la droite de régression. Il nous indique ici que le pouvoir prédictif de notre modèle linéaire est assez faible. Il est néanmoins significatif, ce qui indique que notre variable explicative joue bel et bien un rôle non négligeable dans les variations de la variable expliquée.
 
 #### Intervalle de confiance de la régression
 
-#### Intervalle de prédiction de la régression
+La pente et l'ordonnée à l'origine de la droite de régression ont été obtenues à partir des données d'un échantillon (ici, 161 parcelles). Il s'agit donc d'estimations des pentes et ordonnées à l'origine de la relation plus générale qui concerne la population globale. Comme toute estimation, les pentes et ordonnées à l'origine de la droite de régression sont donc entâchées d'incertitudes. Nous pouvons quantifier cette incertitude grâce au calcul des intervalle de confiance à 95% de ces 2 paramètres :
+
+```{r}
+confint(reg1)
+```
+
+Ces résultats nous indiquent que les valeurs d'ordonnées à l'origine les plus probables dans la population générale son vraisemblablement comprises entre 1.117 et 1.280. De même, les valeurs de pentes les plus probables dans la population générale sont vraisemblablement situées dans l'intervalle [0.023 ; 0.043].
+
+Il est possible de visualiser cette incertitude grâce à la fonction `geom_smooth()` utilisée plus tôt :
+
+```{r}
+plant %>% 
+  ggplot(aes(x = nSpecies, y = log_biomass)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(x = "Nombre d'espèces par parcelle",
+       y = "Transformation log\n de l'indice de stabilité de la biomasse") +
+  theme_bw()
+```
+
+Cette intervalle d'incertitude correspond à l'incertitude de la moyenne de la variable expliquée pour une valeur donnée de la variable explicative. Ainsi, apr exemple, si le nombre d'espèces d'une parcelle est égal à 8, alors, la régression et son incertitude associée nous dit que le logarithme de l'lindice de stabilité de la biomasse vaudra **en moyenne** environ 1.46, avec un intervalle de confiance de [1.40 ; 1.51]
+
+#### Conditions d'application
+
+Les conditions d'application de la régression sont les mêmes que celles de l'ANOVA. Je vous renvoie donc au chapitre \@ref(@CAANOVA) pour savoir quelles sont ces conditions d'application et comment les vérifier. J'insiste bien sur le fait que les conditions d'application sont absolument identiques à celles de l'ANOVA. Si je fais ici l'économie de la description, vous ne devez **jamais faire l'économie** de la vérification des conditions d'application.
+
+```{r}
+par(mfrow = c(2, 2))
+plot(reg1)
+par(mfrow = c(1, 1))
+```
+
+C'est seulement après avoir réalisé, examiné et commenté ces graphiques que vous serez en mesure de dire si oui ou non vous aviez le droit de faire la régression linéaire, et donc d'en interpréter les résultats.
 
 ### L'alternative non paramétrique
 
-#### Transformation des données
+Lorsque les conditions d'application de la régression linéaire ne sont pas vérifiées, on a principalement deux options :
 
-#### Autres méthodes
+1. On essaie de transformer les données afin que les résidus de la régression se comportent mieux. Cela signifie tester différents types de transformations, ce qui peut être chronophage pour un résultat pas toujours garanti.
+2. On utilise d'autre types de modèles de régression, en particulier les modèles de régressions linéaires généralisées (GLM), qui s'accommodent très bien de résidus non normaux  et/ou non homogènes. Mais il s'agit là d'une toute autre classe de méthodes qui ne sont pas au programme de la licence.
+
+### Exercices
+
+#### Le quartet d'Asncombe
+
+Exécutez la commande suivante (il vous faudra peut-être presser la touche `Entrée` dans la console) pour produire les 4 graphiques d'Anscombe :
+
+```{r, eval = FALSE}
+example(anscombe)
+```
+
+Examinez attentivement les nombreux résultats produits par cette commande dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 4 jeux de données, 2 variables numériques sont mises en relation. Les variables `x1`, `x2`, `x3` et `x4` ont toutes même moyenne et même variance. Les variables `y1`, `y2`, `y3` et `y4` ont toutes même moyenne et même variance. Les coefficients de corrélation entre `x1` et `y1`, `x2` et `y2`, `x3` et `y3`, `x4` et `y4` sont tous les mêmes. Enfin, les ordonnées à l'origine et les pentes de ces 4 droites de régression linéaires sont identiques Pourtant, seule la première régression linéaire est valide. Pourquoi ?
+
+#### In your face
+
+Les hommes ont en moyenne un ratio "largeur du visage sur longueur du visage" supérieur à celui des femmes. Cela reflète des niveaux d'expression de la testostérone différents entre homme et femmes au moment de la puberté. On sait aussi que les niveaux de testosteronne permettent de prédire, dans une certaine mesure, l'agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire les agression (ou tout au moins l'agressivité) ?
+
+Pour tester cela, @carre2008 ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d'abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier `hockey.csv`.
+
+Importez, examinez et analysez ces données pour répondre à la question posée.
+
+```{r, include = FALSE}
+hockey <- read_csv("data/hockey.csv")
+
+skim(hockey)
+
+hockey %>% 
+  ggplot(aes(x = FaceWidthHeightRatio, y = PenaltyMinutes)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+reg2 <- lm(PenaltyMinutes ~ FaceWidthHeightRatio, data = hockey)
+summary(reg2)
+confint(reg2)
+
+par(mfrow = c(2,2))
+plot(reg2)
+par(mfrow = c(1,1))
+```
+
 
