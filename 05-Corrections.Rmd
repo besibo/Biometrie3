@@ -1,0 +1,118 @@
+# Correction des exercices du chapitre 5
+
+## Corrélation
+
+### *Canis lupus*
+
+Comme toujours, on commence par importer et examiner les données brutes :
+
+```{r}
+library(tidyverse)
+library(skimr)
+loups <- read_csv("data/loups.csv")
+loups
+```
+Nous disposons ici de 24 observations (24 portées de louveteaux) et 2 variables : le coefficient de consanguinité des louveteaux de chaque portée, et le nombre de louveteaux de chaque portée ayant survécu à leur premier hiver.
+
+On fait ensuite appel à la fonction `skim()` du package `skimr` afin d'en apprendre plus sur nos variables :
+
+```{r}
+skim(loups)
+```
+
+On constate qu'il n'y a pas de données manquantes et les histogrammes laissent penser qu'il n'y a pas non plus de valeurs aberrantes. On constate également quand dans chaque portée, au moins un louveteau a survécu à son premier hiver. Un examen graphique des données devrait nous permettre de mieux voir quelle est la structure des données :
+
+```{r}
+loups %>% 
+  ggplot(aes(x = inbreedCoef, y = nPups)) +
+  geom_point()
+```
+
+Comme on pouvait s'y attendre, on constate une relation plutôt négative entre les 2 variables étudiées : lorsque le coefficient de consanguinité dans une portée est élevé le nombre de jeunes qui parviennent à survivre à leur premier hiver est faible. C'est tout à fait logique compte tenu de ce que l'on sait de la consanguinité : elle augmente la proportion du génome qui sera homozygote et favorise donc l'apparition de tares génétiques qui sont très majoritairement codées par des allèles récessifs (ces allèles ne s'expriment qu'à l'état homozygote). Le coefficient de corrélation linéaire entre ces deux variables devrait donc être négatif. Nous souhaitons maintenant le calculer, estimer son intervalle de confiance, et tester si ce coefficient est significativement différent de 0 ou non.
+
+Pour cela, il nous faut commencer par verifier les conditions d'application. La relation entre les deux variables a l'air à peu près linéaire et le nuage de points a une forme à peu près elliptique. Les 2 premières conditions permettant de garantir une distribution Normale Bivariée des données sont donc vérifiées. Il nous faut maintenant tester la normalité des 2 variables étudier dans la population générale. Nous allons donc faire 2 tests dont les hypothèses nulles et alternatives sont les suivantes :
+
+_ H$_0$ : les données sont distribuées selon une loi Normale dans la population générale
+_ H$_1$ : les données ne sont pas distribuées selon une loi Normale dans la population générale
+
+```{r}
+loups %>% 
+  pull(inbreedCoef) %>% 
+  shapiro.test
+
+loups %>% 
+  pull(nPups) %>% 
+  shapiro.test
+```
+Pour les 2 tests de Normalité de Shapiro-Wilk, la $p-$ value est supérieure au seuil $\alpha = 0.05$. On ne peut donc pas rejeter l'hypothèse nulle de Normalité pour nos deux variables (pour la consanguinité, $W = 0.93$, $p = 0.11$, et pour le nombre de jeunes ayant survécu à leur premier hiver, $W = 0.92$, $p = 0.05$).
+
+Toutes les conditions d'application du test de corrélation de Pearson sont donc réunies.
+
+_ H$_0$ : dans la population générale, le coefficient de corrélation entre les deux variables est égal à 0 ($\rho = 0$)
+_ H$_1$ : dans la population générale, le coefficient de corrélation entre les deux variables est différent de 0 ($\rho \neq 0$)
+
+```{r}
+cor.test(loups$inbreedCoef, loups$nPups)
+```
+
+Au seuil $\alpha$ de 5%, le test de corrélation de Pearson rejette l'hypothèse nulle d'indépendance entre les 2 variables dans la population générale ($t = -3.59$, $ddl = 22$, $p = 0.002$). Le coefficient de corrélation est donc significativement différent de 0 dans la population. Sa meilleure estimation vaut $\hat{\rho} = -0.61$, avec un intervalle de confiance à 95% couvrant les valeurs comprises entre -0.81 et -0.27. Le coefficient de consanguinité des portées de louveteaux est donc bien relié (négativement) au nombre de jeunes capables de survivre à leur premier hiver.
+
+NB. : j'insiste ici sur le fait que nous n'avons pas regardé de relation de cause à effet. Nous nous sommes contenté d'établir un lien (négatif et significatif) entre ces 2 variables. Pour aller plus loin, on pourrait faire une régression linéaire pour tenter de caractériser l'équation d'une éventuelle droite de régression, mesurer la qualité de l'ajustement grâce au $R^2$ ajusté, et ainsi être en mesure de prédire une variable grâce à l'autre.
+
+### Les miracles de la mémoire
+
+On suit exactement la même démarche que pour l'exercice précédent, je vais donc être plus succinct dans ma correction.
+
+```{r include=FALSE}
+# Importation des données
+rope <- read_csv("data/ropetrick.csv")
+
+# visualisation des données brutes
+rope
+
+# Statistiques descriptives
+skim(rope)
+```
+
+L'examen préliminaire des donnés montre que nous disposons de 21 observations pour 2 variables. Aucune donnée manquante ni aberrante ne semble présente. Le temps écoulé entre l'observation du tour de magie et son récit écrit est très variable puisqu'il est cmopris entre 2 et 50 ans, avec un écart-type de 15 ans.
+```{r}
+table(rope$impressiveness)
+```
+
+Globalement, la catégorie 4 est la plus fortement représentée pour la variable "caractère impressionant" du tour de magie.
+
+```{r}
+# Représentation graphique
+rope %>% 
+  ggplot(aes(x = years, y = impressiveness)) +
+  geom_point()
+
+# Test de Normalité de la première variable
+rope %>% 
+  pull(years) %>% 
+  shapiro.test
+
+# Test de Normalité de la seconde variable
+rope %>% 
+  pull(impressiveness) %>% 
+  shapiro.test
+```
+
+L'examen visuel et les tests de Shapiro montrent que si une relation linéaire semble bel et bien présente entre les 2 variables, les conditions d'application du test de corrélation de Pearson ne sont pas réunies. Le nuage de points n'a en effet pas une forme circulaire ou elliptique, mais plutôt une forme d'entonnoir, et le test de Shapiro-Wilk pour la variable `impressiveness` confirme que cette variable ne suit pas une distribution normale dans la population générale. Il nous faut donc effectuer un test non paramétrique ed Spearman.
+
+```{r}
+cor.test(rope$years, rope$impressiveness, 
+         method = "spearman")
+```
+
+Le test confirme de Spearman confirme la présence d'une relation significative entre les deux variables ($S = 332.12$, $p < 0.001$). Au seuil $\alpha = 0.05$, on rejette donc l'hypothèse nulle d'indépendance entre les deux variables. Le coefficient de corrélation de Spearman est positif et estimé à 0.78.
+
+
+## Régression linéaire
+
+### Le quartet d'Asncombe
+
+
+### In your face
+
+

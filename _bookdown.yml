@@ -1,6 +1,7 @@
 book_filename: "Biometrie3"
 delete_merged_file: true
 output_dir: docs
+rmd_files: ["index.Rmd", "01-intro.Rmd", "02-seance01.Rmd", "03-seance02.Rmd", "04-seance03.Rmd","06-references.Rmd"]
 language:
   ui:
     chapter_name: ""
