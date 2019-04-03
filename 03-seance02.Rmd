@@ -225,7 +225,7 @@ Comme pour tous les tests de Shapiro-Wilk, l'hypothèse nulle est la normalité 
 
 Toutes les conditions d'application de l'ANOVA sont donc vérifiées. Nous avions donc bien le droit de la réaliser et ses résultats sont valides. On pourrait rédiger les résultats de cette analyse ainsi :
 
-> Une analyse de variance montre que la moyenne des 3 groupes n'est pas identique ($F = 7.289$, $p = 0.004$). Un test de Levene a permis de vérifier la condition d'homogénéité de la variance des résidus ($F = 0.189$, $p = 0.855), et un test de Shapiro-Wilk a confirmé la Normalité des résidus ($W = 0.959$, $p = 0.468$).
+> Une analyse de variance montre que la moyenne des 3 groupes n'est pas identique ($F = 7.289$, $p = 0.004$). Un test de Levene a permis de vérifier la condition d'homogénéité de la variance des résidus ($F = 0.189$, $p = 0.855$), et un test de Shapiro-Wilk a confirmé la Normalité des résidus ($W = 0.959$, $p = 0.468$).
 
 Deux questions restent toutefois en suspens : 
 
@@ -395,7 +395,7 @@ Ces traitements ont été assignés au hasard à des populations de plantes, et 
 - `long` : 13, 9, 10, 11
 - `isole` : 13, 8, 8, 8
 
-Saisissez ces données dans R et faites-en l'analyse. Vous tenterez de déterminer si l'éloignement entre les populations de plantes a un impact sur leur capacité de survie. Comme tojours, avant de vos lancer dans les tests, vous prendrez le temps de décrire les données avec des statistiques descriptives et des représentations graphiques.
+Saisissez ces données dans R et faites-en l'analyse. Vous tenterez de déterminer si l'éloignement entre les populations de plantes a un impact sur leur capacité de survie. Comme toujours, avant de vos lancer dans les tests, vous prendrez le temps de décrire les données avec des statistiques descriptives et des représentations graphiques.
 
 
 #### Insecticides

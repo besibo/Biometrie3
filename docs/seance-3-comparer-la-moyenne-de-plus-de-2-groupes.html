@@ -315,7 +315,7 @@ Levels: control knee eyes</code></pre>
  n variables: 2 
  group variables: treatment 
 
-── Variable type:numeric ────────────────────────────────
+── Variable type:numeric ─────
  treatment variable missing complete n  mean   sd    p0   p25   p50
    control    shift       0        8 8 -0.31 0.62 -1.27 -0.65 -0.48
       knee    shift       0        7 7 -0.34 0.79 -1.61 -0.76 -0.29
@@ -435,7 +435,7 @@ W = 0.95893, p-value = 0.468</code></pre>
 <p>Comme pour tous les tests de Shapiro-Wilk, l’hypothèse nulle est la normalité des observations. Ici, puisque <span class="math inline">\(p &gt; \alpha\)</span>, on ne peut pas rejeter H<span class="math inline">\(_0\)</span>. Les résidus suivent donc bien la loi Normale.</p>
 <p>Toutes les conditions d’application de l’ANOVA sont donc vérifiées. Nous avions donc bien le droit de la réaliser et ses résultats sont valides. On pourrait rédiger les résultats de cette analyse ainsi :</p>
 <blockquote>
-<p>Une analyse de variance montre que la moyenne des 3 groupes n’est pas identique (<span class="math inline">\(F = 7.289\)</span>, <span class="math inline">\(p = 0.004\)</span>). Un test de Levene a permis de vérifier la condition d’homogénéité de la variance des résidus (<span class="math inline">\(F = 0.189\)</span>, <span class="math inline">\(p = 0.855), et un test de Shapiro-Wilk a confirmé la Normalité des résidus (\)</span>W = 0.959$, <span class="math inline">\(p = 0.468\)</span>).</p>
+<p>Une analyse de variance montre que la moyenne des 3 groupes n’est pas identique (<span class="math inline">\(F = 7.289\)</span>, <span class="math inline">\(p = 0.004\)</span>). Un test de Levene a permis de vérifier la condition d’homogénéité de la variance des résidus (<span class="math inline">\(F = 0.189\)</span>, <span class="math inline">\(p = 0.855\)</span>), et un test de Shapiro-Wilk a confirmé la Normalité des résidus (<span class="math inline">\(W = 0.959\)</span>, <span class="math inline">\(p = 0.468\)</span>).</p>
 </blockquote>
 <p>Deux questions restent toutefois en suspens :</p>
 <ol style="list-style-type: decimal">
@@ -629,7 +629,7 @@ Cette question a été étudiée par 2 chercheurs <span class="citation">(Molofs
 <li><code>long</code> : 13, 9, 10, 11</li>
 <li><code>isole</code> : 13, 8, 8, 8</li>
 </ul>
-<p>Saisissez ces données dans R et faites-en l’analyse. Vous tenterez de déterminer si l’éloignement entre les populations de plantes a un impact sur leur capacité de survie. Comme tojours, avant de vos lancer dans les tests, vous prendrez le temps de décrire les données avec des statistiques descriptives et des représentations graphiques.</p>
+<p>Saisissez ces données dans R et faites-en l’analyse. Vous tenterez de déterminer si l’éloignement entre les populations de plantes a un impact sur leur capacité de survie. Comme toujours, avant de vos lancer dans les tests, vous prendrez le temps de décrire les données avec des statistiques descriptives et des représentations graphiques.</p>
 </div>
 <div id="insecticides" class="section level4">
 <h4><span class="header-section-number">4.2.4.2</span> Insecticides</h4>

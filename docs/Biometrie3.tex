@@ -484,7 +484,7 @@ Skim summary statistics
  n obs: 25 
  n variables: 1 
 
--- Variable type:numeric --------------------------------
+-- Variable type:numeric -----
     variable missing complete  n  mean   sd    p0   p25 p50   p75
  temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22
   p100     hist
@@ -996,11 +996,11 @@ Skim summary statistics
  n obs: 13 
  n variables: 3 
 
--- Variable type:factor ---------------------------------
+-- Variable type:factor ------
  variable missing complete  n n_unique             top_counts ordered
        ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric --------------------------------
+-- Variable type:numeric -----
  variable missing complete  n mean   sd   p0 p25  p50  p75 p100
     After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
    Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
@@ -1025,7 +1025,7 @@ Skim summary statistics
  n variables: 3 
  group variables: Traitement 
 
--- Variable type:factor ---------------------------------
+-- Variable type:factor ------
  Traitement variable missing complete  n n_unique
      Before       ID       0       13 13       13
       After       ID       0       13 13       13
@@ -1033,7 +1033,7 @@ Skim summary statistics
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric --------------------------------
+-- Variable type:numeric -----
  Traitement variable missing complete  n mean   sd   p0 p25  p50  p75
      Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88
       After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5   
@@ -1551,7 +1551,7 @@ Skim summary statistics
  n variables: 2 
  group variables: Survival 
 
--- Variable type:numeric --------------------------------
+-- Variable type:numeric -----
  Survival variable missing complete   n  mean   sd   p0  p25   p50
    killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25
    living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55
@@ -2392,7 +2392,7 @@ Skim summary statistics
  n variables: 2 
  group variables: treatment 
 
--- Variable type:numeric --------------------------------
+-- Variable type:numeric -----
  treatment variable missing complete n  mean   sd    p0   p25   p50
    control    shift       0        8 8 -0.31 0.62 -1.27 -0.65 -0.48
       knee    shift       0        7 7 -0.34 0.79 -1.61 -0.76 -0.29
@@ -2622,7 +2622,7 @@ Comme pour tous les tests de Shapiro-Wilk, l'hypothèse nulle est la normalité 
 Toutes les conditions d'application de l'ANOVA sont donc vérifiées. Nous avions donc bien le droit de la réaliser et ses résultats sont valides. On pourrait rédiger les résultats de cette analyse ainsi :
 
 \begin{quote}
-Une analyse de variance montre que la moyenne des 3 groupes n'est pas identique (\(F = 7.289\), \(p = 0.004\)). Un test de Levene a permis de vérifier la condition d'homogénéité de la variance des résidus (\(F = 0.189\), \(p = 0.855), et un test de Shapiro-Wilk a confirmé la Normalité des résidus (\)W = 0.959\$, \(p = 0.468\)).
+Une analyse de variance montre que la moyenne des 3 groupes n'est pas identique (\(F = 7.289\), \(p = 0.004\)). Un test de Levene a permis de vérifier la condition d'homogénéité de la variance des résidus (\(F = 0.189\), \(p = 0.855\)), et un test de Shapiro-Wilk a confirmé la Normalité des résidus (\(W = 0.959\), \(p = 0.468\)).
 \end{quote}
 
 Deux questions restent toutefois en suspens :
@@ -2962,7 +2962,7 @@ Ces traitements ont été assignés au hasard à des populations de plantes, et 
   \texttt{isole} : 13, 8, 8, 8
 \end{itemize}
 
-Saisissez ces données dans R et faites-en l'analyse. Vous tenterez de déterminer si l'éloignement entre les populations de plantes a un impact sur leur capacité de survie. Comme tojours, avant de vos lancer dans les tests, vous prendrez le temps de décrire les données avec des statistiques descriptives et des représentations graphiques.
+Saisissez ces données dans R et faites-en l'analyse. Vous tenterez de déterminer si l'éloignement entre les populations de plantes a un impact sur leur capacité de survie. Comme toujours, avant de vos lancer dans les tests, vous prendrez le temps de décrire les données avec des statistiques descriptives et des représentations graphiques.
 
 \hypertarget{insecticides}{%
 \paragraph{Insecticides}\label{insecticides}}
@@ -3117,11 +3117,11 @@ Skim summary statistics
  n obs: 24 
  n variables: 3 
 
--- Variable type:factor ---------------------------------
+-- Variable type:factor ------
  variable missing complete  n n_unique             top_counts ordered
        ID       0       24 24       24 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric --------------------------------
+-- Variable type:numeric -----
         variable missing complete  n  mean   sd    p0   p25  p50
   futureBehavior       0       24 24 -0.12 0.37 -0.92 -0.29 -0.1
  nVisitsNestling       0       24 24 13.12 7.21  1     8.75 13  
@@ -3464,7 +3464,7 @@ Skim summary statistics
  n obs: 161 
  n variables: 2 
 
--- Variable type:numeric --------------------------------
+-- Variable type:numeric -----
          variable missing complete   n mean   sd   p0  p25 p50 p75
  biomassStability       0      161 161 4.42 1.95 1.34 3.07   4 5.2
          nSpecies       0      161 161 6.32 5.64 1    2      4 8  
@@ -3489,7 +3489,7 @@ Skim summary statistics
  n variables: 2 
  group variables: nSpecies 
 
--- Variable type:numeric --------------------------------
+-- Variable type:numeric -----
  nSpecies         variable missing complete  n mean   sd   p0  p25
         1 biomassStability       0       33 33 3.63 1.54 2.07 2.41
         2 biomassStability       0       34 34 3.83 1.35 1.34 2.97

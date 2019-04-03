@@ -112,6 +112,16 @@ Le test de Spearman confirme la présence d'une relation significative entre les
 
 ### Le quartet d'Anscombe
 
+Seule la première régression linéaire est valide (en haut à gauche) car pour les 3 autres situations, les conditions d'application de la régression ne sont pas vérifiées. Pour le prouver, il faudrait faire l'analyse des résidus de ces 4 régressions. Toutefois, on peut dire les choses suivantes :
+
+1. La relation entre `x2` et `y2` est parabolique et non linéaire. Faire une régression linéaire ici n'a pas de sens. L'analyse des résidus montrerait qu'ils ne sont pas homogènes, avec des résidus systématiquement négatifs pour les faibles et les fortes valeur de `x2`, mais strictement positifs pour les valeurs intermédiaires de `x2`
+2. La relation entre `x3` et `y3` est une relation linéaire parfaite puisque tous les points sont alignés sauf sur une droite sauf un. Ce point a un impact trop fort sur les résultats de la régression puisqu'il "tire" artificiellement la droite vers le haut, et augmente ainsi la valeur de sa pente et diminue son ordonnée à l'origine. Ce point serait identifié comme un point ayant un leverage trop fort lors de l'analyse des résidus, sur le dernier graphique produit ()
+3. La relation entre `x4` et `y4` est déterminée en totalité par le points le plus à droite. Sans cette unique valeur, il n'y aurait pas de relation entre les deux variables puisque pour une unique valeur de `x4`, on obtient une grande variété de valeurs possibles pour `y4`, ce qui montre que les variables sont en réalité indépendantes. L'outlier détermine donc à lui tout seul la pente de la droite de régression. L'analyse des résidus de cette régression montrerait, sur le dernier graphique, que ce point a un "leverage" beaucoup trop important et qu'il faut donc le retirer de l'analyse pour espérer avoir des résultats corrects.
+
+```{r, results = FALSE, message = FALSE, echo = FALSE}
+example(anscombe)
+```
+
 
 ### In your face
 
