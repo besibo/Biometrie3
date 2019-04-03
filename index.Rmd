@@ -63,7 +63,7 @@ knitr::write_bib(c(
 options(replace.assign = TRUE, width = 70)
 options(repos = "http://cran.r-project.org/")
 
-list.of.packages <- c("callr", "nycflights13", "gapminder", "knitr", "tidyverse", "gridExtra", "devtools", "extrafont", "kableExtra", "skimr", "bindrcpp", "car", "DescTools", "bookdown")
+list.of.packages <- c("readxl", "nycflights13", "gapminder", "knitr", "tidyverse", "gridExtra", "devtools", "extrafont", "kableExtra", "skimr", "bindrcpp", "car", "DescTools", "bookdown")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages)
 
@@ -71,9 +71,9 @@ library(devtools)
 library(knitr)
 library(tidyverse)
 
-if( !("EDAWR" %in% installed.packages()[,"Package"]) ) {
-  install_github("rstudio/EDAWR")
-}
+# if( !("EDAWR" %in% installed.packages()[,"Package"]) ) {
+#   install_github("rstudio/EDAWR")
+# }
 
 opts_chunk$set(fig.path = 'figure/', cache.path = 'cache/', tidy = FALSE,
                fig.align = 'center', out.width = '90%', fig.asp = 0.618,
