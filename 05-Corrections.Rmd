@@ -105,12 +105,12 @@ cor.test(rope$years, rope$impressiveness,
          method = "spearman")
 ```
 
-Le test confirme de Spearman confirme la présence d'une relation significative entre les deux variables ($S = 332.12$, $p < 0.001$). Au seuil $\alpha = 0.05$, on rejette donc l'hypothèse nulle d'indépendance entre les deux variables. Le coefficient de corrélation de Spearman est positif et estimé à 0.78.
+Le test de Spearman confirme la présence d'une relation significative entre les deux variables ($S = 332.12$, $p < 0.001$). Au seuil $\alpha = 0.05$, on rejette donc l'hypothèse nulle d'indépendance entre les deux variables. Le coefficient de corrélation de Spearman est positif et estimé à 0.78.
 
 
 ## Régression linéaire
 
-### Le quartet d'Asncombe
+### Le quartet d'Anscombe
 
 
 ### In your face

@@ -533,7 +533,7 @@ Lorsque les conditions d'application de la régression linéaire ne sont pas vé
 
 ### Exercices
 
-#### Le quartet d'Asncombe
+#### Le quartet d'Anscombe
 
 Exécutez la commande suivante (il vous faudra peut-être presser la touche `Entrée` dans la console) pour produire les 4 graphiques d'Anscombe :
 
