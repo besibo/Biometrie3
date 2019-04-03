@@ -514,7 +514,7 @@ Cette intervalle d'incertitude correspond à l'incertitude de la moyenne de la v
 
 #### Conditions d'application
 
-Les conditions d'application de la régression sont les mêmes que celles de l'ANOVA. Je vous renvoie donc au chapitre \@ref(@CAANOVA) pour savoir quelles sont ces conditions d'application et comment les vérifier. J'insiste bien sur le fait que les conditions d'application sont absolument identiques à celles de l'ANOVA. Si je fais ici l'économie de la description, vous ne devez **jamais faire l'économie** de la vérification des conditions d'application.
+Les conditions d'application de la régression sont les mêmes que celles de l'ANOVA. Je vous renvoie donc au chapitre \@ref(CAANOVA) pour savoir quelles sont ces conditions d'application et comment les vérifier. J'insiste bien sur le fait que les conditions d'application sont absolument identiques à celles de l'ANOVA. Si je fais ici l'économie de la description, vous ne devez **jamais faire l'économie** de la vérification des conditions d'application.
 
 ```{r}
 par(mfrow = c(2, 2))

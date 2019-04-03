@@ -484,7 +484,7 @@ Skim summary statistics
  n obs: 25 
  n variables: 1 
 
--- Variable type:numeric -----------------------------------------
+-- Variable type:numeric -----
     variable missing complete  n  mean   sd    p0   p25 p50   p75
  temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22
   p100     hist
@@ -996,11 +996,11 @@ Skim summary statistics
  n obs: 13 
  n variables: 3 
 
--- Variable type:factor ------------------------------------------
+-- Variable type:factor ------
  variable missing complete  n n_unique             top_counts ordered
        ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----------------------------------------
+-- Variable type:numeric -----
  variable missing complete  n mean   sd   p0 p25  p50  p75 p100
     After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
    Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
@@ -1025,7 +1025,7 @@ Skim summary statistics
  n variables: 3 
  group variables: Traitement 
 
--- Variable type:factor ------------------------------------------
+-- Variable type:factor ------
  Traitement variable missing complete  n n_unique
      Before       ID       0       13 13       13
       After       ID       0       13 13       13
@@ -1033,7 +1033,7 @@ Skim summary statistics
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----------------------------------------
+-- Variable type:numeric -----
  Traitement variable missing complete  n mean   sd   p0 p25  p50  p75
      Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88
       After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5   
@@ -1551,7 +1551,7 @@ Skim summary statistics
  n variables: 2 
  group variables: Survival 
 
--- Variable type:numeric -----------------------------------------
+-- Variable type:numeric -----
  Survival variable missing complete   n  mean   sd   p0  p25   p50
    killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25
    living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55
@@ -2392,7 +2392,7 @@ Skim summary statistics
  n variables: 2 
  group variables: treatment 
 
--- Variable type:numeric -----------------------------------------
+-- Variable type:numeric -----
  treatment variable missing complete n  mean   sd    p0   p25   p50
    control    shift       0        8 8 -0.31 0.62 -1.27 -0.65 -0.48
       knee    shift       0        7 7 -0.34 0.79 -1.61 -0.76 -0.29
@@ -3047,7 +3047,7 @@ Dans la suite de ce chapitre, nous allons voir comment calculer le coefficient d
 \hypertarget{importation-et-examen-visuel-4}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-4}}
 
-Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d'autres espèces animales, chez qui cette relation pourrait-être étudiée plus facilement ? \citet{muller2011} ont étudié cette possibilité chez le Fou de Grant (\emph{Sula granti}), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d'autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d'une bague d'identification individuelle. Ces 24 individus ont ensuite été suivis à l'âge adulte, lorsqu'ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier \texttt{birds.csv}. Importez ces données dans \texttt{R} dans un objet noté \texttt{Birds}.
+Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d'autres espèces animales, chez qui cette relation pourrait-être étudiée plus facilement ? \citet{muller2011} ont étudié cette possibilité chez le Fou de Grant (\emph{Sula granti}), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d'autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d'une bague d'identification individuelle. Ces 24 individus ont ensuite été suivis à l'âge adulte, lorsqu'ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier \texttt{birds.csv}. Importez ces données dans \texttt{R} dans un objet noté \texttt{birds}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3117,11 +3117,11 @@ Skim summary statistics
  n obs: 24 
  n variables: 3 
 
--- Variable type:factor ------------------------------------------
+-- Variable type:factor ------
  variable missing complete  n n_unique             top_counts ordered
        ID       0       24 24       24 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----------------------------------------
+-- Variable type:numeric -----
         variable missing complete  n  mean   sd    p0   p25  p50
   futureBehavior       0       24 24 -0.12 0.37 -0.92 -0.29 -0.1
  nVisitsNestling       0       24 24 13.12 7.21  1     8.75 13  
@@ -3464,7 +3464,7 @@ Skim summary statistics
  n obs: 161 
  n variables: 2 
 
--- Variable type:numeric -----------------------------------------
+-- Variable type:numeric -----
          variable missing complete   n mean   sd   p0  p25 p50 p75
  biomassStability       0      161 161 4.42 1.95 1.34 3.07   4 5.2
          nSpecies       0      161 161 6.32 5.64 1    2      4 8  
@@ -3489,7 +3489,7 @@ Skim summary statistics
  n variables: 2 
  group variables: nSpecies 
 
--- Variable type:numeric -----------------------------------------
+-- Variable type:numeric -----
  nSpecies         variable missing complete  n mean   sd   p0  p25
         1 biomassStability       0       33 33 3.63 1.54 2.07 2.41
         2 biomassStability       0       34 34 3.83 1.35 1.34 2.97
@@ -3714,7 +3714,7 @@ Cette intervalle d'incertitude correspond à l'incertitude de la moyenne de la v
 \hypertarget{conditions-dapplication-4}{%
 \paragraph{Conditions d'application}\label{conditions-dapplication-4}}
 
-Les conditions d'application de la régression sont les mêmes que celles de l'ANOVA. Je vous renvoie donc au chapitre @ref(@CAANOVA) pour savoir quelles sont ces conditions d'application et comment les vérifier. J'insiste bien sur le fait que les conditions d'application sont absolument identiques à celles de l'ANOVA. Si je fais ici l'économie de la description, vous ne devez \textbf{jamais faire l'économie} de la vérification des conditions d'application.
+Les conditions d'application de la régression sont les mêmes que celles de l'ANOVA. Je vous renvoie donc au chapitre \ref{CAANOVA} pour savoir quelles sont ces conditions d'application et comment les vérifier. J'insiste bien sur le fait que les conditions d'application sont absolument identiques à celles de l'ANOVA. Si je fais ici l'économie de la description, vous ne devez \textbf{jamais faire l'économie} de la vérification des conditions d'application.
 
 \begin{Shaded}
 \begin{Highlighting}[]

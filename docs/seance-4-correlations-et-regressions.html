@@ -250,7 +250,7 @@ Le coefficient de corrélation est la quantité qui décrit la force et la direc
 <h3><span class="header-section-number">5.2.2</span> Exploration préalable des données</h3>
 <div id="importation-et-examen-visuel-4" class="section level4">
 <h4><span class="header-section-number">5.2.2.1</span> Importation et examen visuel</h4>
-<p>Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d’autres espèces animales, chez qui cette relation pourrait-être étudiée plus facilement ? <span class="citation">Müller et al. (<a href="#ref-muller2011">2011</a>)</span> ont étudié cette possibilité chez le Fou de Grant (<em>Sula granti</em>), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d’autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d’une bague d’identification individuelle. Ces 24 individus ont ensuite été suivis à l’âge adulte, lorsqu’ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier <code>birds.csv</code>. Importez ces données dans <code>R</code> dans un objet noté <code>Birds</code>.</p>
+<p>Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d’autres espèces animales, chez qui cette relation pourrait-être étudiée plus facilement ? <span class="citation">Müller et al. (<a href="#ref-muller2011">2011</a>)</span> ont étudié cette possibilité chez le Fou de Grant (<em>Sula granti</em>), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d’autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d’une bague d’identification individuelle. Ces 24 individus ont ensuite été suivis à l’âge adulte, lorsqu’ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier <code>birds.csv</code>. Importez ces données dans <code>R</code> dans un objet noté <code>birds</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">birds</code></pre>
 <pre><code># A tibble: 24 x 2
    nVisitsNestling futureBehavior
@@ -294,11 +294,11 @@ birds</code></pre>
  n obs: 24 
  n variables: 3 
 
-── Variable type:factor ──────────────────────────────────────────
+── Variable type:factor ──────
  variable missing complete  n n_unique             top_counts ordered
        ID       0       24 24       24 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
-── Variable type:numeric ─────────────────────────────────────────
+── Variable type:numeric ─────
         variable missing complete  n  mean   sd    p0   p25  p50
   futureBehavior       0       24 24 -0.12 0.37 -0.92 -0.29 -0.1
  nVisitsNestling       0       24 24 13.12 7.21  1     8.75 13  
@@ -504,7 +504,7 @@ cols(
  n obs: 161 
  n variables: 2 
 
-── Variable type:numeric ─────────────────────────────────────────
+── Variable type:numeric ─────
          variable missing complete   n mean   sd   p0  p25 p50 p75
  biomassStability       0      161 161 4.42 1.95 1.34 3.07   4 5.2
          nSpecies       0      161 161 6.32 5.64 1    2      4 8  
@@ -520,7 +520,7 @@ cols(
  n variables: 2 
  group variables: nSpecies 
 
-── Variable type:numeric ─────────────────────────────────────────
+── Variable type:numeric ─────
  nSpecies         variable missing complete  n mean   sd   p0  p25
         1 biomassStability       0       33 33 3.63 1.54 2.07 2.41
         2 biomassStability       0       34 34 3.83 1.35 1.34 2.97
@@ -653,7 +653,7 @@ nSpecies    0.02328063 0.04257117</code></pre>
 </div>
 <div id="conditions-dapplication-4" class="section level4">
 <h4><span class="header-section-number">5.3.2.3</span> Conditions d’application</h4>
-<p>Les conditions d’application de la régression sont les mêmes que celles de l’ANOVA. Je vous renvoie donc au chapitre @ref(@CAANOVA) pour savoir quelles sont ces conditions d’application et comment les vérifier. J’insiste bien sur le fait que les conditions d’application sont absolument identiques à celles de l’ANOVA. Si je fais ici l’économie de la description, vous ne devez <strong>jamais faire l’économie</strong> de la vérification des conditions d’application.</p>
+<p>Les conditions d’application de la régression sont les mêmes que celles de l’ANOVA. Je vous renvoie donc au chapitre <a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#CAANOVA">4.2.2.2</a> pour savoir quelles sont ces conditions d’application et comment les vérifier. J’insiste bien sur le fait que les conditions d’application sont absolument identiques à celles de l’ANOVA. Si je fais ici l’économie de la description, vous ne devez <strong>jamais faire l’économie</strong> de la vérification des conditions d’application.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))
 <span class="kw">plot</span>(reg1)
 <span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</code></pre>
