@@ -484,7 +484,7 @@ Skim summary statistics
  n obs: 25 
  n variables: 1 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------------
     variable missing complete  n  mean   sd    p0   p25 p50   p75
  temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22
   p100     hist
@@ -996,11 +996,11 @@ Skim summary statistics
  n obs: 13 
  n variables: 3 
 
--- Variable type:factor ------
+-- Variable type:factor ------------------------------------------
  variable missing complete  n n_unique             top_counts ordered
        ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------------
  variable missing complete  n mean   sd   p0 p25  p50  p75 p100
     After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
    Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
@@ -1025,7 +1025,7 @@ Skim summary statistics
  n variables: 3 
  group variables: Traitement 
 
--- Variable type:factor ------
+-- Variable type:factor ------------------------------------------
  Traitement variable missing complete  n n_unique
      Before       ID       0       13 13       13
       After       ID       0       13 13       13
@@ -1033,7 +1033,7 @@ Skim summary statistics
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------------
  Traitement variable missing complete  n mean   sd   p0 p25  p50  p75
      Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88
       After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5   
@@ -1551,7 +1551,7 @@ Skim summary statistics
  n variables: 2 
  group variables: Survival 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------------
  Survival variable missing complete   n  mean   sd   p0  p25   p50
    killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25
    living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55
@@ -2392,7 +2392,7 @@ Skim summary statistics
  n variables: 2 
  group variables: treatment 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------------
  treatment variable missing complete n  mean   sd    p0   p25   p50
    control    shift       0        8 8 -0.31 0.62 -1.27 -0.65 -0.48
       knee    shift       0        7 7 -0.34 0.79 -1.61 -0.76 -0.29
@@ -3117,11 +3117,11 @@ Skim summary statistics
  n obs: 24 
  n variables: 3 
 
--- Variable type:factor ------
+-- Variable type:factor ------------------------------------------
  variable missing complete  n n_unique             top_counts ordered
        ID       0       24 24       24 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------------
         variable missing complete  n  mean   sd    p0   p25  p50
   futureBehavior       0       24 24 -0.12 0.37 -0.92 -0.29 -0.1
  nVisitsNestling       0       24 24 13.12 7.21  1     8.75 13  
@@ -3394,7 +3394,7 @@ La régression est une méthode utilisée pour prédire les valeurs d'une variab
 
 \includegraphics{images/genetics.jpg}
 
-COntrairement à la corrélation, ici, on n'examine pas seulement une éventuelle liaison : on suppose qu'une variable peut-être (en partie) expliquée par une autre. Nous aurons donc à distinguer les variables expliquées (ou dépendantes) qui figureront sur l'axe des y et seront nos variables prédites, et les variables explicatives (ou indépendantes) qui figureront sur l'axe des abscisses et seront les prédicteurs.
+Contrairement à la corrélation, ici, on n'examine pas seulement une éventuelle liaison : on suppose qu'une variable peut-être (en partie) expliquée par une autre. Nous aurons donc à distinguer les variables expliquées (ou dépendantes) qui figureront sur l'axe des y et seront nos variables prédites, et les variables explicatives (ou indépendantes) qui figureront sur l'axe des abscisses et seront les prédicteurs.
 
 Une façon de distinguer corrélation et régression consiste à dire que ``corrélation n'est pas causalité''. Si on compare un nombre de variables suffisamment important, on finira toujours par en trouver qui seront corrélées. Cela ne veut pas dire pour autant qu'il existe un lien de cause à effet entre l'une et l'autre. Pour vous en convaincre, examinez \href{http://www.tylervigen.com/spurious-correlations}{cette page}. Lorsque l'on s'intéresse à la régression linéaire, on essaie de prédire ou d'expliquer. En d'autres termes, on considère que les variations de la variabkle explicative sont au moins en partie la cause des variations de la variable expliquée.
 
@@ -3464,7 +3464,7 @@ Skim summary statistics
  n obs: 161 
  n variables: 2 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------------
          variable missing complete   n mean   sd   p0  p25 p50 p75
  biomassStability       0      161 161 4.42 1.95 1.34 3.07   4 5.2
          nSpecies       0      161 161 6.32 5.64 1    2      4 8  
@@ -3489,7 +3489,7 @@ Skim summary statistics
  n variables: 2 
  group variables: nSpecies 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------------
  nSpecies         variable missing complete  n mean   sd   p0  p25
         1 biomassStability       0       33 33 3.63 1.54 2.07 2.41
         2 biomassStability       0       34 34 3.83 1.35 1.34 2.97
@@ -3761,7 +3761,7 @@ Examinez attentivement les nombreux résultats produits par cette commande dans 
 \hypertarget{in-your-face}{%
 \paragraph{In your face}\label{in-your-face}}
 
-Les hommes ont en moyenne un ratio ``largeur du visage sur longueur du visage'' supérieur à celui des femmes. Cela reflète des niveaux d'expression de la testostérone différents entre homme et femmes au moment de la puberté. On sait aussi que les niveaux de testosteronne permettent de prédire, dans une certaine mesure, l'agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire les agression (ou tout au moins l'agressivité) ?
+Les hommes ont en moyenne un ratio ``largeur du visage sur longueur du visage'' supérieur à celui des femmes. Cela reflète des niveaux d'expression de la testostérone différents entre homme et femmes au moment de la puberté. On sait aussi que les niveaux de testosteronne permettent de prédire, dans une certaine mesure, l'agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire les agressions (ou tout au moins l'agressivité) ?
 
 Pour tester cela, \citet{carre2008} ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d'abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier \texttt{hockey.csv}.
 

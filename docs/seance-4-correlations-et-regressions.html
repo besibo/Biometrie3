@@ -294,11 +294,11 @@ birds</code></pre>
  n obs: 24 
  n variables: 3 
 
-── Variable type:factor ──────
+── Variable type:factor ──────────────────────────────────────────
  variable missing complete  n n_unique             top_counts ordered
        ID       0       24 24       24 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
-── Variable type:numeric ─────
+── Variable type:numeric ─────────────────────────────────────────
         variable missing complete  n  mean   sd    p0   p25  p50
   futureBehavior       0       24 24 -0.12 0.37 -0.92 -0.29 -0.1
  nVisitsNestling       0       24 24 13.12 7.21  1     8.75 13  
@@ -466,7 +466,7 @@ Pour chaque récit, les chercheurs ont également enregistré le nombre d’ann�
 <h2><span class="header-section-number">5.3</span> Régression linéaire</h2>
 <p>La régression est une méthode utilisée pour prédire les valeurs d’une variable numérique à partir des valeurs d’une seconde variable. Par exemple, le nuage de ooints de la figure ci-dessous montre comment la diversitee génétique dans une population humaine locale peut être prédite par sa distance de dispersion depuis l’Est africain en ajustant une droite aux données <span class="citation">(d’après Whitlock &amp; Schluter, <a href="#ref-whitlock2015">2015</a>)</span>. L’homme moderne est apparu en Afrique et nos ancêtres ont perdu un peu de diversité génétique à chaque étape de leur colonisation de nouveaux territoires.</p>
 <p><img src="images/genetics.jpg" /></p>
-<p>COntrairement à la corrélation, ici, on n’examine pas seulement une éventuelle liaison : on suppose qu’une variable peut-être (en partie) expliquée par une autre. Nous aurons donc à distinguer les variables expliquées (ou dépendantes) qui figureront sur l’axe des y et seront nos variables prédites, et les variables explicatives (ou indépendantes) qui figureront sur l’axe des abscisses et seront les prédicteurs.</p>
+<p>Contrairement à la corrélation, ici, on n’examine pas seulement une éventuelle liaison : on suppose qu’une variable peut-être (en partie) expliquée par une autre. Nous aurons donc à distinguer les variables expliquées (ou dépendantes) qui figureront sur l’axe des y et seront nos variables prédites, et les variables explicatives (ou indépendantes) qui figureront sur l’axe des abscisses et seront les prédicteurs.</p>
 <p>Une façon de distinguer corrélation et régression consiste à dire que “corrélation n’est pas causalité”. Si on compare un nombre de variables suffisamment important, on finira toujours par en trouver qui seront corrélées. Cela ne veut pas dire pour autant qu’il existe un lien de cause à effet entre l’une et l’autre. Pour vous en convaincre, examinez <a href="http://www.tylervigen.com/spurious-correlations">cette page</a>. Lorsque l’on s’intéresse à la régression linéaire, on essaie de prédire ou d’expliquer. En d’autres termes, on considère que les variations de la variabkle explicative sont au moins en partie la cause des variations de la variable expliquée.</p>
 <p>Lorsque l’on s’intéresse à la régression linéaire, on considère que la relation qui lie les deux variables est linéaire, et on souhaite quantifier l’intensité de la relation. Nous allons examiner maintenant comment faire ça dans <code>R</code>.</p>
 <div id="exploration-prealable-des-donnees-3" class="section level3">
@@ -504,7 +504,7 @@ cols(
  n obs: 161 
  n variables: 2 
 
-── Variable type:numeric ─────
+── Variable type:numeric ─────────────────────────────────────────
          variable missing complete   n mean   sd   p0  p25 p50 p75
  biomassStability       0      161 161 4.42 1.95 1.34 3.07   4 5.2
          nSpecies       0      161 161 6.32 5.64 1    2      4 8  
@@ -520,7 +520,7 @@ cols(
  n variables: 2 
  group variables: nSpecies 
 
-── Variable type:numeric ─────
+── Variable type:numeric ─────────────────────────────────────────
  nSpecies         variable missing complete  n mean   sd   p0  p25
         1 biomassStability       0       33 33 3.63 1.54 2.07 2.41
         2 biomassStability       0       34 34 3.83 1.35 1.34 2.97
@@ -679,7 +679,7 @@ nSpecies    0.02328063 0.04257117</code></pre>
 </div>
 <div id="in-your-face" class="section level4">
 <h4><span class="header-section-number">5.3.4.2</span> In your face</h4>
-<p>Les hommes ont en moyenne un ratio “largeur du visage sur longueur du visage” supérieur à celui des femmes. Cela reflète des niveaux d’expression de la testostérone différents entre homme et femmes au moment de la puberté. On sait aussi que les niveaux de testosteronne permettent de prédire, dans une certaine mesure, l’agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire les agression (ou tout au moins l’agressivité) ?</p>
+<p>Les hommes ont en moyenne un ratio “largeur du visage sur longueur du visage” supérieur à celui des femmes. Cela reflète des niveaux d’expression de la testostérone différents entre homme et femmes au moment de la puberté. On sait aussi que les niveaux de testosteronne permettent de prédire, dans une certaine mesure, l’agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire les agressions (ou tout au moins l’agressivité) ?</p>
 <p>Pour tester cela, <span class="citation">Carré &amp; McCormick (<a href="#ref-carre2008">2008</a>)</span> ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d’abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier <code>hockey.csv</code>.</p>
 <p>Importez, examinez et analysez ces données pour répondre à la question posée.</p>
 
