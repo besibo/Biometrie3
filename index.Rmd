@@ -16,7 +16,7 @@ output:
       toc:
         collapse: subsection
   bookdown::pdf_book:
-    citation_package: natbib
+    keep_tex: yes
 url: 'https\://besibo.github.io/Biometrie3/'
 github-repo: "besibo/Biometrie3"
 bibliography: [book.bib, packages.bib]

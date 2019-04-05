@@ -208,14 +208,14 @@ leveneTest(res$residuals ~ Light$treatment)
 
 Ici, puisque $p > \alpha$, on ne peut pas rejeter l'hypothèse nulle. Les résidus sont donc bien homogènes.
 
-Reste à vérifier la normalité des résidus. Là encore, on peut faire cela graphiquement ou avecun test de Shapiro-Wilk :
+Reste à vérifier la normalité des résidus. Là encore, on peut faire cela graphiquement ou avec un test de Shapiro-Wilk :
 
 ```{r}
 plot(res, which = 2)
 ```
 
 
-Sur un graphique quantile-quantile comme celui-là, on considère que les observations sont distribuées normalement si les points sont bien alignés sur la droite. Ici, la plupart des points sont très proches de la droite, ce qui laisse penser que les résidus suivent bien la loi Normale. On peut en avoir la confirmation avec le test suivant :
+Sur un graphique quantile-quantile comme celui-là, on considère que les observations sont distribuées Normalement si les points sont bien alignés sur la droite. Ici, la plupart des points sont très proches de la droite, ce qui laisse penser que les résidus suivent bien la loi Normale. On peut en avoir la confirmation avec le test suivant :
 
 ```{r}
 shapiro.test(res$residuals)
@@ -246,7 +246,7 @@ Lorsqu'une ANOVA montre que tous les groupes n'ont pas la même moyenne, il faut
 
 Ici, puisque pour chaque test, un risque de 5% de rejeter à tort l'hypothèse nulle est commis, réaliser 3 tests ferait monter le risque de s'être trompé quelque part à 15%. C'est la raison pour laquelle des tests spéficiques existent. Nous en verrons 2 : le test de comparaisons multiples de Student et le test de Tukey (ou "Honestly Significant Difference Test"). Pour ces tests, des précautions sont prises qui garantissent que le risque $\alpha$ global est maîtrisé et qu'il reste fixé à 5%.
 
-Le test de comparaisons multiples de Student est réalisé avec la fonction `pairwise.t.test()`. En réalité, 3 test de Student seront réalisés. Les $p$-value des tests seront simplement modifiées afin que globalement, le risque $\alpha$ n'augmente pas. Pour chaque test réalisee, les hypothèses nulles et alternatives sont les mêmes que celles décrites à la section \@ref(Indep) :
+Le test de comparaisons multiples de Student est réalisé avec la fonction `pairwise.t.test()`. En réalité, 3 test de Student seront réalisés. Les $p$-value des tests seront simplement modifiées afin que globalement, le risque $\alpha$ n'augmente pas. Pour chaque test réalisé, les hypothèses nulles et alternatives sont les mêmes que celles décrites à la section \@ref(Indep) :
 
 - H$_0$ : la moyenne des deux populations est égale ($\mu_1 = \mu_2$, ou $\mu_1 - \mu_2$ = 0).
 - H$_1$ : la moyenne des deux populations est différente ($\mu_1 \neq \mu_2$ ou $\mu_1 - \mu_2 \neq 0$).

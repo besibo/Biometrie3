@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2019-04-03">
+<meta name="date" content="2019-04-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -422,10 +422,10 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 group  2  0.1586 0.8545
       19               </code></pre>
 <p>Ici, puisque <span class="math inline">\(p &gt; \alpha\)</span>, on ne peut pas rejeter l’hypothèse nulle. Les résidus sont donc bien homogènes.</p>
-<p>Reste à vérifier la normalité des résidus. Là encore, on peut faire cela graphiquement ou avecun test de Shapiro-Wilk :</p>
+<p>Reste à vérifier la normalité des résidus. Là encore, on peut faire cela graphiquement ou avec un test de Shapiro-Wilk :</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(res, <span class="dt">which =</span> <span class="dv">2</span>)</code></pre>
 <p><img src="figure/unnamed-chunk-83-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>Sur un graphique quantile-quantile comme celui-là, on considère que les observations sont distribuées normalement si les points sont bien alignés sur la droite. Ici, la plupart des points sont très proches de la droite, ce qui laisse penser que les résidus suivent bien la loi Normale. On peut en avoir la confirmation avec le test suivant :</p>
+<p>Sur un graphique quantile-quantile comme celui-là, on considère que les observations sont distribuées Normalement si les points sont bien alignés sur la droite. Ici, la plupart des points sont très proches de la droite, ce qui laisse penser que les résidus suivent bien la loi Normale. On peut en avoir la confirmation avec le test suivant :</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shapiro.test</span>(res<span class="op">$</span>residuals)</code></pre>
 <pre><code>
     Shapiro-Wilk normality test
@@ -455,7 +455,7 @@ W = 0.95893, p-value = 0.468</code></pre>
 <li>pour comparer n groupes 2 à 2, nous avons besoin de <span class="math inline">\(\frac{n(n-1)}{2}\)</span> tests.</li>
 </ul>
 <p>Ici, puisque pour chaque test, un risque de 5% de rejeter à tort l’hypothèse nulle est commis, réaliser 3 tests ferait monter le risque de s’être trompé quelque part à 15%. C’est la raison pour laquelle des tests spéficiques existent. Nous en verrons 2 : le test de comparaisons multiples de Student et le test de Tukey (ou “Honestly Significant Difference Test”). Pour ces tests, des précautions sont prises qui garantissent que le risque <span class="math inline">\(\alpha\)</span> global est maîtrisé et qu’il reste fixé à 5%.</p>
-<p>Le test de comparaisons multiples de Student est réalisé avec la fonction <code>pairwise.t.test()</code>. En réalité, 3 test de Student seront réalisés. Les <span class="math inline">\(p\)</span>-value des tests seront simplement modifiées afin que globalement, le risque <span class="math inline">\(\alpha\)</span> n’augmente pas. Pour chaque test réalisee, les hypothèses nulles et alternatives sont les mêmes que celles décrites à la section <a href="seance1.html#Indep">3.4</a> :</p>
+<p>Le test de comparaisons multiples de Student est réalisé avec la fonction <code>pairwise.t.test()</code>. En réalité, 3 test de Student seront réalisés. Les <span class="math inline">\(p\)</span>-value des tests seront simplement modifiées afin que globalement, le risque <span class="math inline">\(\alpha\)</span> n’augmente pas. Pour chaque test réalisé, les hypothèses nulles et alternatives sont les mêmes que celles décrites à la section <a href="seance1.html#Indep">3.4</a> :</p>
 <ul>
 <li>H<span class="math inline">\(_0\)</span> : la moyenne des deux populations est égale (<span class="math inline">\(\mu_1 = \mu_2\)</span>, ou <span class="math inline">\(\mu_1 - \mu_2\)</span> = 0).</li>
 <li>H<span class="math inline">\(_1\)</span> : la moyenne des deux populations est différente (<span class="math inline">\(\mu_1 \neq \mu_2\)</span> ou <span class="math inline">\(\mu_1 - \mu_2 \neq 0\)</span>).</li>
