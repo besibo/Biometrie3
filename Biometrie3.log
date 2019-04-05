@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  5 APR 2019 11:55
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  5 APR 2019 16:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -878,15 +878,192 @@ LaTeX Info: Redefining \degres on input line 757.
 \leftmarginFB=\skip64
 \parindentFFN=\dimen181
 \FBfnindent=\skip65
-)) (/usr/local/texlive/2018/texmf-dist/tex/latex/carlisle/scalefnt.sty) (/usr/l
-ocal/texlive/2018/texmf-dist/tex/latex/setspace/setspace.sty
+)) (/usr/local/texlive/2018/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+.................................................
+. fontspec info: "set-scale"
+. 
+. ArcherPro-Medium scale = 1.011737820712579.
+.................................................
+\g__fontspec_family_ArcherPro-Medium_int=\count302
+.................................................
+. fontspec info: "set-scale"
+. 
+. ArcherPro-Medium scale = 1.011737820712579.
+.................................................
+.................................................
+. fontspec info: "set-scale"
+. 
+. ArcherPro-Medium scale = 1.011737820712579.
+.................................................
+.................................................
+. fontspec info: "set-scale"
+. 
+. ArcherPro-Medium/B scale = 0.9840166104623617.
+.................................................
+.................................................
+. fontspec info: "set-scale"
+. 
+. ArcherPro-Medium/B scale = 0.9840166104623617.
+.................................................
+.................................................
+. fontspec info: "set-scale"
+. 
+. ArcherPro-MediumItalic scale = 1.011737820712579.
+.................................................
+.................................................
+. fontspec info: "set-scale"
+. 
+. ArcherPro-MediumItalic/B scale = 0.9840166104623617.
+.................................................
+.................................................
+. fontspec info: "defining-font"
+. 
+. Font family 'ArcherPro-Medium(0)' created for font 'ArcherPro-Medium' with
+. options [Ligatures=TeX,Scale=MatchLowercase,Ligatures=TeX,Ligatures =
+. TeX,ItalicFont={ArcherPro-MediumItalic}].
+.  
+.  This font family consists of the following NFSS series/shapes:
+.  
+. - 'normal' (m/n) with NFSS spec.:
+. <->s*[1.011737820712579]"ArcherPro-Medium/OT:script=latn;language=DFLT;mappin
+g=tex-text;"
+. - 'small caps'  (m/sc) with NFSS spec.:
+. <->s*[1.011737820712579]"ArcherPro-Medium/OT:script=latn;language=DFLT;+smcp;
+mapping=tex-text;"
+. - 'bold' (bx/n) with NFSS spec.:
+. <->s*[0.9840166104623617]"ArcherPro-Medium/B/OT:script=latn;language=DFLT;map
+ping=tex-text;"
+. - 'bold small caps'  (bx/sc) with NFSS spec.:
+. <->s*[0.9840166104623617]"ArcherPro-Medium/B/OT:script=latn;language=DFLT;+sm
+cp;mapping=tex-text;"
+. - 'italic' (m/it) with NFSS spec.:
+. <->s*[1.011737820712579]"ArcherPro-MediumItalic/OT:script=latn;language=DFLT;
+mapping=tex-text;"
+. - 'italic small caps'  (m/itsc) with NFSS spec.: 
+. - 'bold italic' (bx/it) with NFSS spec.:
+. <->s*[0.9840166104623617]"ArcherPro-MediumItalic/B/OT:script=latn;language=DF
+LT;mapping=tex-text;"
+. - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
+.................................................
+LaTeX Info: Redefining \rmfamily on input line 136.
+LaTeX Font Info:    Font shape `TU/ArcherPro-Medium(0)/m/n' will be
+(Font)              scaled to size 10.11734pt on input line 136.
+.................................................
+. fontspec info: "set-scale"
+. 
+. ArcherPro-Medium scale = 1.011734238832594.
+.................................................
+\symDigits:m:n=\mathgroup6
+.................................................
+. fontspec info: "set-scale"
+. 
+. ArcherPro-Medium scale = 1.011734238832594.
+.................................................
+\symLatin:m:n=\mathgroup7
+\symLatin:m:it=\mathgroup8
+.................................................
+. fontspec info: "set-scale"
+. 
+. ArcherPro-Medium scale = 1.011734238832594.
+.................................................
+\symGreek:m:n=\mathgroup9
+\symGreek:m:it=\mathgroup10
+.................................................
+. fontspec info: "set-scale"
+. 
+. ArcherPro-Medium scale = 1.011734238832594.
+.................................................
+LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 136.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  TU/ArcherPro-Medium(0)/m/n --> TU/ArcherPro-Medium(0)/b
+x/n on input line 136.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 136.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/lmr/m/it --> TU/ArcherPro-Medium(0)/m/it on input l
+ine 136.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/lmr/bx/it --> TU/ArcherPro-Medium(0)/m/it on input 
+line 136.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 136.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/lmr/bx/n --> TU/ArcherPro-Medium(0)/bx/n on input l
+ine 136.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/lmr/bx/n --> TU/ArcherPro-Medium(0)/bx/n on input l
+ine 136.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  TU/ArcherPro-Medium(0)/m/it --> TU/ArcherPro-Medium(0)/
+bx/it on input line 136.
+\symOperators:m:n=\mathgroup11
+.................................................
+. fontspec info: "set-scale"
+. 
+. FiraCode-Regular scale = 0.8178327904451683.
+.................................................
+\g__fontspec_family_FiraCode-Regular_int=\count303
+.................................................
+. fontspec info: "no-font-shape"
+. 
+. Could not resolve font "FiraCode-Regular/I" (it probably doesn't exist).
+.................................................
+.................................................
+. fontspec info: "set-scale"
+. 
+. FiraCode-Regular scale = 0.8178327904451683.
+.................................................
+.................................................
+. fontspec info: "set-scale"
+. 
+. FiraCode-Regular/B scale = 0.8116731226795711.
+.................................................
+.................................................
+. fontspec info: "set-scale"
+. 
+. FiraCode-Regular/BI scale = 0.8116731226795711.
+.................................................
+.................................................
+. fontspec info: "defining-font"
+. 
+. Font family 'FiraCode-Regular(0)' created for font 'FiraCode-Regular' with
+. options
+. [Ligatures=TeX,Scale=MatchLowercase,WordSpace={1,0,0},HyphenChar=None,Punctua
+tionSpace=WordSpace,Scale=0.85].
+.  
+.  This font family consists of the following NFSS series/shapes:
+.  
+. - 'normal' (m/n) with NFSS spec.:
+. <->s*[0.85]"FiraCode-Regular/OT:script=latn;language=DFLT;mapping=tex-text;"
+. - 'small caps'  (m/sc) with NFSS spec.: 
+. and font adjustment code:
+. \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font =0\fontdimen 3\font
+. \fontdimen 4\font =0\fontdimen 4\font \fontdimen 7\font =0\fontdimen 2\font
+. \tex_hyphenchar:D \font =-1\scan_stop: 
+. - 'bold' (bx/n) with NFSS spec.:
+. <->s*[0.85]"FiraCode-Regular/B/OT:script=latn;language=DFLT;mapping=tex-text;
+"
+. - 'bold small caps'  (bx/sc) with NFSS spec.: 
+. and font adjustment code:
+. \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font =0\fontdimen 3\font
+. \fontdimen 4\font =0\fontdimen 4\font \fontdimen 7\font =0\fontdimen 2\font
+. \tex_hyphenchar:D \font =-1\scan_stop: 
+. - 'bold italic' (bx/it) with NFSS spec.:
+. <->s*[0.85]"FiraCode-Regular/BI/OT:script=latn;language=DFLT;mapping=tex-text
+;"
+. - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
+. and font adjustment code:
+. \fontdimen 2\font =1\fontdimen 2\font \fontdimen 3\font =0\fontdimen 3\font
+. \fontdimen 4\font =0\fontdimen 4\font \fontdimen 7\font =0\fontdimen 2\font
+. \tex_hyphenchar:D \font =-1\scan_stop: 
+.................................................
+LaTeX Info: Redefining \ttfamily on input line 137.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/rotating.sty
 Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\c@r@tfl@t=\count302
+\c@r@tfl@t=\count304
 \rotFPtop=\skip66
 \rotFPbot=\skip67
 \rot@float@box=\box49
@@ -909,7 +1086,7 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \caption@parindent=\dimen187
 \caption@hangindent=\dimen188
 )
-\c@ContinuedFloat=\count303
+\c@ContinuedFloat=\count305
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/caption/ltcaption.sty
@@ -927,14 +1104,14 @@ Package caption Info: rotating package is loaded.
 \hvBelowCaptionSkip=\skip72
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2018/04/01 v1.8r multicolumn formatting (FMi)
-\c@tracingmulticols=\count304
+\c@tracingmulticols=\count306
 \mult@box=\box53
 \multicol@leftmargin=\dimen189
-\c@unbalance=\count305
-\c@collectmore=\count306
-\doublecol@number=\count307
-\multicoltolerance=\count308
-\multicolpretolerance=\count309
+\c@unbalance=\count307
+\c@collectmore=\count308
+\doublecol@number=\count309
+\multicoltolerance=\count310
+\multicolpretolerance=\count311
 \full@width=\dimen190
 \page@free=\dimen191
 \premulticols=\dimen192
@@ -965,14 +1142,14 @@ Package: multicol 2018/04/01 v1.8r multicolumn formatting (FMi)
 \@tempa=\box74
 \@tempa=\box75
 \@tempa=\box76
-\c@columnbadness=\count310
-\c@finalcolumnbadness=\count311
+\c@columnbadness=\count312
+\c@finalcolumnbadness=\count313
 \last@try=\dimen195
 \multicolovershoot=\dimen196
 \multicolundershoot=\dimen197
 \mult@nat@firstbox=\box77
 \colbreak@box=\box78
-\mc@col@check@num=\count312
+\mc@col@check@num=\count314
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enitkv@toks@=\toks27
@@ -980,7 +1157,7 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@outerparindent=\dimen198
 \enit@toks=\toks28
 \enit@inbox=\box79
-\enitdp@description=\count313
+\enitdp@description=\count315
 )
 .................................................
 . fontspec info: "no-scripts"
@@ -990,28 +1167,28 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 .................................................
 . fontspec info: "set-scale"
 . 
-. FuturaLT-Book scale = 0.908856898315883.
+. FuturaLT-Book scale = 0.9088536806677265.
 .................................................
-\g__fontspec_family_FuturaLT-Book_int=\count314
-.................................................
-. fontspec info: "set-scale"
-. 
-. FuturaLT-Book scale = 0.908856898315883.
-.................................................
+\g__fontspec_family_FuturaLT-Book_int=\count316
 .................................................
 . fontspec info: "set-scale"
 . 
-. FuturaLT-Book/B scale = 0.8303568541334109.
+. FuturaLT-Book scale = 0.9088536806677265.
 .................................................
 .................................................
 . fontspec info: "set-scale"
 . 
-. FuturaLT-Book/I scale = 0.908856898315883.
+. FuturaLT-Book/B scale = 0.8303539144008678.
 .................................................
 .................................................
 . fontspec info: "set-scale"
 . 
-. FuturaLT-Book/BI scale = 0.8303568541334109.
+. FuturaLT-Book/I scale = 0.9088536806677265.
+.................................................
+.................................................
+. fontspec info: "set-scale"
+. 
+. FuturaLT-Book/BI scale = 0.8303539144008678.
 .................................................
 .................................................
 . fontspec info: "defining-font"
@@ -1022,21 +1199,21 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 .  This font family consists of the following NFSS series/shapes:
 .  
 . - 'normal' (m/n) with NFSS spec.:
-. <->s*[0.908856898315883]"FuturaLT-Book/AAT:mapping=tex-text;"
+. <->s*[0.9088536806677265]"FuturaLT-Book/AAT:mapping=tex-text;"
 . - 'small caps'  (m/sc) with NFSS spec.: 
 . - 'bold' (bx/n) with NFSS spec.:
-. <->s*[0.8303568541334109]"FuturaLT-Book/B/AAT:mapping=tex-text;"
+. <->s*[0.8303539144008678]"FuturaLT-Book/B/AAT:mapping=tex-text;"
 . - 'bold small caps'  (bx/sc) with NFSS spec.: 
 . - 'italic' (m/it) with NFSS spec.:
-. <->s*[0.908856898315883]"FuturaLT-Book/I/AAT:mapping=tex-text;"
+. <->s*[0.9088536806677265]"FuturaLT-Book/I/AAT:mapping=tex-text;"
 . - 'italic small caps'  (m/itsc) with NFSS spec.: 
 . - 'bold italic' (bx/it) with NFSS spec.:
-. <->s*[0.8303568541334109]"FuturaLT-Book/BI/AAT:mapping=tex-text;"
+. <->s*[0.8303539144008678]"FuturaLT-Book/BI/AAT:mapping=tex-text;"
 . - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
 .................................................
-LaTeX Info: Redefining \rmfamily on input line 143.
+LaTeX Info: Redefining \rmfamily on input line 146.
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/n' will be
-(Font)              scaled to size 9.0886pt on input line 143.
+(Font)              scaled to size 9.0886pt on input line 146.
 .................................................
 . fontspec info: "no-scripts"
 . 
@@ -1047,7 +1224,13 @@ LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/n' will be
 . 
 . FuturaLT-Book scale = 0.9088601159640395.
 .................................................
-\symDigits:m:n=\mathgroup6
+LaTeX Font Info:    Redeclaring symbol font `Digits:m:n' on input line 146.
+LaTeX Font Info:    Overwriting symbol font `Digits:m:n' in version `normal'
+(Font)                  TU/ArcherPro-Medium(0)/m/n --> TU/FuturaLT-Book(0)/m/n 
+on input line 146.
+LaTeX Font Info:    Overwriting symbol font `Digits:m:n' in version `bold'
+(Font)                  TU/ArcherPro-Medium(0)/m/n --> TU/FuturaLT-Book(0)/m/n 
+on input line 146.
 .................................................
 . fontspec info: "no-scripts"
 . 
@@ -1058,8 +1241,20 @@ LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/n' will be
 . 
 . FuturaLT-Book scale = 0.9088601159640395.
 .................................................
-\symLatin:m:n=\mathgroup7
-\symLatin:m:it=\mathgroup8
+LaTeX Font Info:    Redeclaring symbol font `Latin:m:n' on input line 146.
+LaTeX Font Info:    Overwriting symbol font `Latin:m:n' in version `normal'
+(Font)                  TU/ArcherPro-Medium(0)/m/n --> TU/FuturaLT-Book(0)/m/n 
+on input line 146.
+LaTeX Font Info:    Overwriting symbol font `Latin:m:n' in version `bold'
+(Font)                  TU/ArcherPro-Medium(0)/m/n --> TU/FuturaLT-Book(0)/m/n 
+on input line 146.
+LaTeX Font Info:    Redeclaring symbol font `Latin:m:it' on input line 146.
+LaTeX Font Info:    Overwriting symbol font `Latin:m:it' in version `normal'
+(Font)                  TU/ArcherPro-Medium(0)/m/it --> TU/FuturaLT-Book(0)/m/i
+t on input line 146.
+LaTeX Font Info:    Overwriting symbol font `Latin:m:it' in version `bold'
+(Font)                  TU/ArcherPro-Medium(0)/m/it --> TU/FuturaLT-Book(0)/m/i
+t on input line 146.
 .................................................
 . fontspec info: "no-scripts"
 . 
@@ -1070,8 +1265,20 @@ LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/n' will be
 . 
 . FuturaLT-Book scale = 0.9088601159640395.
 .................................................
-\symGreek:m:n=\mathgroup9
-\symGreek:m:it=\mathgroup10
+LaTeX Font Info:    Redeclaring symbol font `Greek:m:n' on input line 146.
+LaTeX Font Info:    Overwriting symbol font `Greek:m:n' in version `normal'
+(Font)                  TU/ArcherPro-Medium(0)/m/n --> TU/FuturaLT-Book(0)/m/n 
+on input line 146.
+LaTeX Font Info:    Overwriting symbol font `Greek:m:n' in version `bold'
+(Font)                  TU/ArcherPro-Medium(0)/m/n --> TU/FuturaLT-Book(0)/m/n 
+on input line 146.
+LaTeX Font Info:    Redeclaring symbol font `Greek:m:it' on input line 146.
+LaTeX Font Info:    Overwriting symbol font `Greek:m:it' in version `normal'
+(Font)                  TU/ArcherPro-Medium(0)/m/it --> TU/FuturaLT-Book(0)/m/i
+t on input line 146.
+LaTeX Font Info:    Overwriting symbol font `Greek:m:it' in version `bold'
+(Font)                  TU/ArcherPro-Medium(0)/m/it --> TU/FuturaLT-Book(0)/m/i
+t on input line 146.
 .................................................
 . fontspec info: "no-scripts"
 . 
@@ -1082,28 +1289,41 @@ LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/n' will be
 . 
 . FuturaLT-Book scale = 0.9088601159640395.
 .................................................
-LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 143.
+LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 146.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  TU/ArcherPro-Medium(0)/m/n --> TU/FuturaLT-Book(0)/m/n 
+on input line 146.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  TU/ArcherPro-Medium(0)/bx/n --> TU/FuturaLT-Book(0)/m/n
+ on input line 146.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
 (Font)                  TU/FuturaLT-Book(0)/m/n --> TU/FuturaLT-Book(0)/bx/n on
- input line 143.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 143.
+ input line 146.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 146.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> TU/FuturaLT-Book(0)/m/it on input line
- 143.
+(Font)                  TU/ArcherPro-Medium(0)/m/it --> TU/FuturaLT-Book(0)/m/i
+t on input line 146.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/lmr/bx/it --> TU/FuturaLT-Book(0)/m/it on input lin
-e 143.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 143.
+(Font)                  TU/ArcherPro-Medium(0)/bx/it --> TU/FuturaLT-Book(0)/m/
+it on input line 146.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 146.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> TU/FuturaLT-Book(0)/bx/n on input line
- 143.
+(Font)                  TU/ArcherPro-Medium(0)/bx/n --> TU/FuturaLT-Book(0)/bx/
+n on input line 146.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/lmr/bx/n --> TU/FuturaLT-Book(0)/bx/n on input line
- 143.
+(Font)                  TU/ArcherPro-Medium(0)/bx/n --> TU/FuturaLT-Book(0)/bx/
+n on input line 146.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  TU/FuturaLT-Book(0)/m/it --> TU/FuturaLT-Book(0)/bx/it 
-on input line 143.
-\symOperators:m:n=\mathgroup11
+on input line 146.
+LaTeX Font Info:    Redeclaring symbol font `Operators:m:n' on input line 146.
+LaTeX Font Info:    Overwriting symbol font `Operators:m:n' in version `normal'
+
+(Font)                  TU/ArcherPro-Medium(0)/m/n --> TU/FuturaLT-Book(0)/m/n 
+on input line 146.
+LaTeX Font Info:    Overwriting symbol font `Operators:m:n' in version `bold'
+(Font)                  TU/ArcherPro-Medium(0)/m/n --> TU/FuturaLT-Book(0)/m/n 
+on input line 146.
 
 LaTeX Warning: Unused global option(s):
     [a4paperpaper].
@@ -1111,32 +1331,32 @@ LaTeX Warning: Unused global option(s):
 (./Biometrie3.aux)
 \openout1 = `Biometrie3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 146.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 146.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 149.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 149.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Info: Redefining \microtypecontext on input line 146.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Info: Redefining \microtypecontext on input line 149.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: No adjustment of tracking.
@@ -1466,41 +1686,41 @@ Package microtype Warning: Unknown slot number of character
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box80
-Package hyperref Info: Link coloring ON on input line 146.
+Package hyperref Info: Link coloring ON on input line 149.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count315
+\c@section@level=\count317
 )
-LaTeX Info: Redefining \ref on input line 146.
-LaTeX Info: Redefining \pageref on input line 146.
-LaTeX Info: Redefining \nameref on input line 146.
+LaTeX Info: Redefining \ref on input line 149.
+LaTeX Info: Redefining \pageref on input line 149.
+LaTeX Info: Redefining \nameref on input line 149.
 (./Biometrie3.out) (./Biometrie3.out)
 \@outlinefile=\write4
 \openout4 = `Biometrie3.out'.
 
-LaTeX Info: Redefining \dots on input line 146.
+LaTeX Info: Redefining \dots on input line 149.
 Package french.ldf Info: Setting StandardItemizeEnv=true for
 (french.ldf)             compatibility with enumitem package,
-(french.ldf)             reported on input line 146.
+(french.ldf)             reported on input line 149.
 Package french.ldf Info: Setting StandardEnumerateEnv=true for
 (french.ldf)             compatibility with enumitem package,
-(french.ldf)             reported on input line 146.
-LaTeX Info: Redefining \up on input line 146.
+(french.ldf)             reported on input line 149.
+LaTeX Info: Redefining \up on input line 149.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/n' will be
-(Font)              scaled to size 18.84973pt on input line 147.
+(Font)              scaled to size 18.84973pt on input line 150.
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/n' will be
-(Font)              scaled to size 10.90631pt on input line 147.
+(Font)              scaled to size 10.90631pt on input line 150.
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/it' will be
-(Font)              scaled to size 10.90631pt on input line 147.
+(Font)              scaled to size 10.90631pt on input line 150.
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/n' will be
-(Font)              scaled to size 13.08755pt on input line 152.
+(Font)              scaled to size 13.08755pt on input line 155.
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/bx/n' will be
-(Font)              scaled to size 11.95706pt on input line 152.
+(Font)              scaled to size 11.95706pt on input line 155.
 (./Biometrie3.toc
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/bx/n' will be
 (Font)              scaled to size 8.30353pt on input line 2.
@@ -1556,27 +1776,19 @@ LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/it' will be
 \tf@toc=\write5
 \openout5 = `Biometrie3.toc'.
 
+LaTeX Font Info:    Font shape `TU/FiraCode-Regular(0)/m/n' will be
+(Font)              scaled to size 8.50006pt on input line 160.
 [1
 
-]
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 219.
-[2]
+] [2]
+LaTeX Font Info:    Font shape `TU/FiraCode-Regular(0)/bx/n' will be
+(Font)              scaled to size 8.50006pt on input line 222.
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/bx/n' will be
-(Font)              scaled to size 9.96423pt on input line 263.
+(Font)              scaled to size 9.96423pt on input line 266.
 [3] [4]
 Missing character: There is no º in font lmmi10!
 Missing character: There is no º in font lmmi10!
-[5] [6] [7]
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▃ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-[8]
+[5] [6] [7] [8]
 File: figure/unnamed-chunk-15-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-15-1.pdf>
 File: figure/unnamed-chunk-16-1.pdf Graphic file (type pdf)
@@ -1589,54 +1801,20 @@ File: figure/unnamed-chunk-18-1.pdf Graphic file (type pdf)
 [10]
 File: figure/unnamed-chunk-19-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-19-1.pdf>
+[11]
 File: figure/unnamed-chunk-20-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-20-1.pdf>
-[11]
 File: figure/unnamed-chunk-21-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-21-1.pdf>
 
 LaTeX Font Warning: Font shape `TU/FuturaLT-Book(0)/m/sc' undefined
-(Font)              using `TU/FuturaLT-Book(0)/m/n' instead on input line 657.
+(Font)              using `TU/FuturaLT-Book(0)/m/n' instead on input line 660.
 
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/sc' will be
-(Font)              scaled to size 9.0886pt on input line 657.
-[12] [13] [14] [15] [16] [17] [18] [19]
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▃ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-[20]
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▃ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
+(Font)              scaled to size 9.0886pt on input line 660.
+[12] [13] [14] [15] [16] [17] [18] [19] [20] [21]
 File: figure/unnamed-chunk-32-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-32-1.pdf>
-[21]
 File: figure/unnamed-chunk-33-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-33-1.pdf>
 File: figure/unnamed-chunk-34-1.pdf Graphic file (type pdf)
@@ -1649,85 +1827,39 @@ File: figure/unnamed-chunk-36-1.pdf Graphic file (type pdf)
 [23]
 File: figure/unnamed-chunk-37-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-37-1.pdf>
-[24]
+[24] [25]
 File: figure/unnamed-chunk-39-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-39-1.pdf>
-[25] [26] [27] [28] [29] [30] [31] [32]
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▆ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▃ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
+[26] [27] [28] [29] [30] [31] [32]
 File: figure/unnamed-chunk-50-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-50-1.pdf>
 [33]
 File: figure/unnamed-chunk-51-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-51-1.pdf>
+[34]
 File: figure/unnamed-chunk-52-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-52-1.pdf>
-[34] [35] [36] [37] [38] [39] [40]
-Overfull \hbox (2.0947pt too wide) in paragraph at lines 1939--1940
-[]\TU/FuturaLT-Book(0)/m/sc/10 On s’intéresse à la différence de taille supposé
-e entre hommes et femmes. Le fichier \TU/lmtt/m/n/10 HommesFemmes.xls
- []
-
-[41] [42] [43] [44] [45] [46] [47] [48] [49]
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-[50]
+[35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50]
 File: figure/unnamed-chunk-76-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-76-1.pdf>
 [51]
 File: figure/unnamed-chunk-77-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-77-1.pdf>
-[52] [53]
+[52] [53] [54]
 File: figure/unnamed-chunk-80-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-80-1.pdf>
-[54]
 File: figure/unnamed-chunk-81-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-81-1.pdf>
+[55]
 File: figure/unnamed-chunk-83-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-83-1.pdf>
-[55] [56] [57] [58]
+[56] [57] [58] [59]
 File: figure/unnamed-chunk-89-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-89-1.pdf>
-[59] [60] [61] [62]
+[60] [61] [62] [63]
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/bx/it' will be
-(Font)              scaled to size 8.30353pt on input line 2932.
-[63] [64]
+(Font)              scaled to size 8.30353pt on input line 2935.
+[64]
 File: figure/unnamed-chunk-95-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-95-1.pdf>
 [65]
@@ -1739,22 +1871,6 @@ File: figure/unnamed-chunk-97-1.pdf Graphic file (type pdf)
 File: figure/unnamed-chunk-98-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-98-1.pdf>
 [67] [68] [69]
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▃ in font [lmmono10-regular]:!
-Missing character: There is no ▃ in font [lmmono10-regular]:!
-Missing character: There is no ▆ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
 File: figure/unnamed-chunk-103-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-103-1.pdf>
 [70] [71] [72] [73]
@@ -1763,64 +1879,7 @@ File: figure/unnamed-chunk-106-1.pdf Graphic file (type pdf)
 [74] [75] [76]
 File: images/genetics.jpg Graphic file (type bmp)
 <images/genetics.jpg>
-[77] [78]
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▃ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▃ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▃ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▆ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▃ in font [lmmono10-regular]:!
-Missing character: There is no ▆ in font [lmmono10-regular]:!
-Missing character: There is no ▃ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-[79]
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▆ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▃ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▇ in font [lmmono10-regular]:!
-Missing character: There is no ▆ in font [lmmono10-regular]:!
-Missing character: There is no ▅ in font [lmmono10-regular]:!
-Missing character: There is no ▂ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
-Missing character: There is no ▁ in font [lmmono10-regular]:!
+[77] [78] [79]
 File: figure/unnamed-chunk-113-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-113-1.pdf>
 [80]
@@ -1838,49 +1897,69 @@ File: figure/unnamed-chunk-121-1.pdf Graphic file (type pdf)
 File: figure/unnamed-chunk-122-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-122-1.pdf>
 [86] [87] [88]
-Underfull \hbox (badness 1515) in paragraph at lines 3793--3795
+File: figure/unnamed-chunk-127-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-127-1.pdf>
+[89] [90] [91] [92]
+File: figure/unnamed-chunk-132-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-132-1.pdf>
+[93]
+File: figure/unnamed-chunk-134-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-134-1.pdf>
+[94]
+File: figure/unnamed-chunk-138-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-138-1.pdf>
+[95] [96]
+File: figure/unnamed-chunk-141-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-141-1.pdf>
+[97]
+File: figure/unnamed-chunk-142-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-142-1.pdf>
+File: figure/unnamed-chunk-143-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-143-1.pdf>
+[98] [99]
+Underfull \hbox (badness 1515) in paragraph at lines 4230--4232
 \TU/FuturaLT-Book(0)/m/it/10 of the National Academy of Sciences\TU/FuturaLT-Bo
 ok(0)/m/sc/10 , \TU/FuturaLT-Book(0)/bx/n/10 102\TU/FuturaLT-Book(0)/m/sc/10 (1
 0), 3726–3731. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
  [][][][] []
  []
 
-
-Underfull \hbox (badness 1817) in paragraph at lines 3814--3816
+[100]
+Underfull \hbox (badness 1817) in paragraph at lines 4251--4253
 [][]\TU/FuturaLT-Book(0)/m/sc/10 Wickham H, Chang W, Henry L, Pedersen TL, Taka
 hashi K, Wilke C, & Woo K. (2018).
  []
 
 
-Underfull \hbox (badness 1383) in paragraph at lines 3814--3816
+Underfull \hbox (badness 1383) in paragraph at lines 4251--4253
 \TU/FuturaLT-Book(0)/m/it/10 Ggplot2 : Create elegant data visualisations using
  the grammar of graphics\TU/FuturaLT-Book(0)/m/sc/10 . Retrieved from
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3836.
-[89]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3836.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4273.
+[101]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4273.
 (./Biometrie3.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3836.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3836.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 4273.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4273.
 
 Package rerunfilecheck Info: File `Biometrie3.out' has not changed.
-(rerunfilecheck)             Checksum: 20D2037AA1CA2ADFBBB47624CF66DFF3.
+(rerunfilecheck)             Checksum: 4CCC528AEBC59A38733527902FF4D6A9.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 144 (\begingroup)
+### semi simple group (level 1) entered at line 147 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25727 strings out of 492970
- 476920 string characters out of 6133937
- 630152 words of memory out of 5000000
- 29405 multiletter control sequences out of 15000+600000
- 543079 words of font info for 63 fonts, out of 8000000 for 9000
+ 25815 strings out of 492970
+ 480419 string characters out of 6133937
+ 631875 words of memory out of 5000000
+ 29466 multiletter control sequences out of 15000+600000
+ 543151 words of font info for 72 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 60i,7n,118p,10451b,1398s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,7n,118p,10451b,1396s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Biometrie3.pdf (89 pages).
+Output written on Biometrie3.pdf (101 pages).

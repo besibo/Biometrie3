@@ -205,7 +205,8 @@ hockey %>%
 La pente de la droite de régression est  bien plus faible. Et une nouvelle régression linéaire sans le point problématique arrive à une conclusion opposée à celle obtenue précédemment :
 
 ```{r}
-reg3 <- lm(PenaltyMinutes ~ FaceWidthHeightRatio, data = hockey %>% filter(FaceWidthHeightRatio<2))
+reg3 <- lm(PenaltyMinutes ~ FaceWidthHeightRatio, 
+           data = hockey %>% filter(FaceWidthHeightRatio<2))
 summary(reg3)
 ```
 
