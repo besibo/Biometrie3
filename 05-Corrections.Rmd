@@ -30,10 +30,10 @@ loups %>%
 
 Comme on pouvait s'y attendre, on constate une relation plutôt négative entre les 2 variables étudiées : lorsque le coefficient de consanguinité dans une portée est élevé le nombre de jeunes qui parviennent à survivre à leur premier hiver est faible. C'est tout à fait logique compte tenu de ce que l'on sait de la consanguinité : elle augmente la proportion du génome qui sera homozygote et favorise donc l'apparition de tares génétiques qui sont très majoritairement codées par des allèles récessifs (ces allèles ne s'expriment qu'à l'état homozygote). Le coefficient de corrélation linéaire entre ces deux variables devrait donc être négatif. Nous souhaitons maintenant le calculer, estimer son intervalle de confiance, et tester si ce coefficient est significativement différent de 0 ou non.
 
-Pour cela, il nous faut commencer par verifier les conditions d'application. La relation entre les deux variables a l'air à peu près linéaire et le nuage de points a une forme à peu près elliptique. Les 2 premières conditions permettant de garantir une distribution Normale Bivariée des données sont donc vérifiées. Il nous faut maintenant tester la normalité des 2 variables étudier dans la population générale. Nous allons donc faire 2 tests dont les hypothèses nulles et alternatives sont les suivantes :
+Pour cela, il nous faut commencer par verifier les conditions d'application. La relation entre les deux variables a l'air à peu près linéaire et le nuage de points a une forme à peu près elliptique. Les 2 premières conditions permettant de garantir une distribution Normale Bivariée des données sont donc vérifiées. Il nous faut maintenant tester la normalité des 2 variables étudiées dans la population générale. Nous allons donc faire 2 tests dont les hypothèses nulles et alternatives sont les suivantes :
 
-_ H$_0$ : les données sont distribuées selon une loi Normale dans la population générale
-_ H$_1$ : les données ne sont pas distribuées selon une loi Normale dans la population générale
+- H$_0$ : les données sont distribuées selon une loi Normale dans la population générale
+- H$_1$ : les données ne sont pas distribuées selon une loi Normale dans la population générale
 
 ```{r}
 loups %>% 
@@ -48,8 +48,8 @@ Pour les 2 tests de Normalité de Shapiro-Wilk, la $p-$ value est supérieure au
 
 Toutes les conditions d'application du test de corrélation de Pearson sont donc réunies.
 
-_ H$_0$ : dans la population générale, le coefficient de corrélation entre les deux variables est égal à 0 ($\rho = 0$)
-_ H$_1$ : dans la population générale, le coefficient de corrélation entre les deux variables est différent de 0 ($\rho \neq 0$)
+- H$_0$ : dans la population générale, le coefficient de corrélation entre les deux variables est égal à 0 ($\rho = 0$)
+- H$_1$ : dans la population générale, le coefficient de corrélation entre les deux variables est différent de 0 ($\rho \neq 0$)
 
 ```{r}
 cor.test(loups$inbreedCoef, loups$nPups)
