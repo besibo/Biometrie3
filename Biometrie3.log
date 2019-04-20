@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  5 APR 2019 16:24
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  20 APR 2019 12:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1917,7 +1917,7 @@ File: figure/unnamed-chunk-142-1.pdf Graphic file (type pdf)
 File: figure/unnamed-chunk-143-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-143-1.pdf>
 [98] [99]
-Underfull \hbox (badness 1515) in paragraph at lines 4230--4232
+Underfull \hbox (badness 1515) in paragraph at lines 4240--4242
 \TU/FuturaLT-Book(0)/m/it/10 of the National Academy of Sciences\TU/FuturaLT-Bo
 ok(0)/m/sc/10 , \TU/FuturaLT-Book(0)/bx/n/10 102\TU/FuturaLT-Book(0)/m/sc/10 (1
 0), 3726–3731. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
@@ -1925,23 +1925,23 @@ ok(0)/m/sc/10 , \TU/FuturaLT-Book(0)/bx/n/10 102\TU/FuturaLT-Book(0)/m/sc/10 (1
  []
 
 [100]
-Underfull \hbox (badness 1817) in paragraph at lines 4251--4253
+Underfull \hbox (badness 1817) in paragraph at lines 4261--4263
 [][]\TU/FuturaLT-Book(0)/m/sc/10 Wickham H, Chang W, Henry L, Pedersen TL, Taka
 hashi K, Wilke C, & Woo K. (2018).
  []
 
 
-Underfull \hbox (badness 1383) in paragraph at lines 4251--4253
+Underfull \hbox (badness 1383) in paragraph at lines 4261--4263
 \TU/FuturaLT-Book(0)/m/it/10 Ggplot2 : Create elegant data visualisations using
  the grammar of graphics\TU/FuturaLT-Book(0)/m/sc/10 . Retrieved from
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4273.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4283.
 [101]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 4273.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4283.
 (./Biometrie3.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 4273.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4273.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 4283.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4283.
 
 Package rerunfilecheck Info: File `Biometrie3.out' has not changed.
 (rerunfilecheck)             Checksum: 4CCC528AEBC59A38733527902FF4D6A9.

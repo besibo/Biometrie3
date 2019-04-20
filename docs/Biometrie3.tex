@@ -127,7 +127,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-04-05}
+    \date{2019-04-20}
 
 \usepackage[french]{babel}
 \usepackage{mathspec}  % \usepackage{fontspec}
@@ -485,7 +485,7 @@ Skim summary statistics
  n obs: 25 
  n variables: 1 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
     variable missing complete  n  mean   sd    p0   p25 p50   p75
  temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22
   p100     hist
@@ -997,11 +997,11 @@ Skim summary statistics
  n obs: 13 
  n variables: 3 
 
--- Variable type:factor ------
+-- Variable type:factor ------------------------------------
  variable missing complete  n n_unique             top_counts ordered
        ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
  variable missing complete  n mean   sd   p0 p25  p50  p75 p100
     After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
    Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
@@ -1026,7 +1026,7 @@ Skim summary statistics
  n variables: 3 
  group variables: Traitement 
 
--- Variable type:factor ------
+-- Variable type:factor ------------------------------------
  Traitement variable missing complete  n n_unique
      Before       ID       0       13 13       13
       After       ID       0       13 13       13
@@ -1034,7 +1034,7 @@ Skim summary statistics
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
  1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
  Traitement variable missing complete  n mean   sd   p0 p25  p50  p75
      Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88
       After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5   
@@ -1552,7 +1552,7 @@ Skim summary statistics
  n variables: 2 
  group variables: Survival 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
  Survival variable missing complete   n  mean   sd   p0  p25   p50
    killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25
    living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55
@@ -2393,7 +2393,7 @@ Skim summary statistics
  n variables: 2 
  group variables: treatment 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
  treatment variable missing complete n  mean   sd    p0   p25   p50
    control    shift       0        8 8 -0.31 0.62 -1.27 -0.65 -0.48
       knee    shift       0        7 7 -0.34 0.79 -1.61 -0.76 -0.29
@@ -3118,11 +3118,11 @@ Skim summary statistics
  n obs: 24 
  n variables: 3 
 
--- Variable type:factor ------
+-- Variable type:factor ------------------------------------
  variable missing complete  n n_unique             top_counts ordered
        ID       0       24 24       24 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
         variable missing complete  n  mean   sd    p0   p25  p50
   futureBehavior       0       24 24 -0.12 0.37 -0.92 -0.29 -0.1
  nVisitsNestling       0       24 24 13.12 7.21  1     8.75 13  
@@ -3465,7 +3465,7 @@ Skim summary statistics
  n obs: 161 
  n variables: 2 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
          variable missing complete   n mean   sd   p0  p25 p50 p75
  biomassStability       0      161 161 4.42 1.95 1.34 3.07   4 5.2
          nSpecies       0      161 161 6.32 5.64 1    2      4 8  
@@ -3490,7 +3490,7 @@ Skim summary statistics
  n variables: 2 
  group variables: nSpecies 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
  nSpecies         variable missing complete  n mean   sd   p0  p25
         1 biomassStability       0       33 33 3.63 1.54 2.07 2.41
         2 biomassStability       0       34 34 3.83 1.35 1.34 2.97
@@ -3833,7 +3833,7 @@ Skim summary statistics
  n obs: 24 
  n variables: 2 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
     variable missing complete  n mean   sd p0  p25  p50  p75 p100
  inbreedCoef       0       24 24 0.23 0.1   0 0.19 0.24 0.3   0.4
        nPups       0       24 24 3.96 1.88  1 3    3    5.25  8  
@@ -3856,10 +3856,15 @@ On constate qu'il n'y a pas de données manquantes et les histogrammes laissent 
 
 Comme on pouvait s'y attendre, on constate une relation plutôt négative entre les 2 variables étudiées : lorsque le coefficient de consanguinité dans une portée est élevé le nombre de jeunes qui parviennent à survivre à leur premier hiver est faible. C'est tout à fait logique compte tenu de ce que l'on sait de la consanguinité : elle augmente la proportion du génome qui sera homozygote et favorise donc l'apparition de tares génétiques qui sont très majoritairement codées par des allèles récessifs (ces allèles ne s'expriment qu'à l'état homozygote). Le coefficient de corrélation linéaire entre ces deux variables devrait donc être négatif. Nous souhaitons maintenant le calculer, estimer son intervalle de confiance, et tester si ce coefficient est significativement différent de 0 ou non.
 
-Pour cela, il nous faut commencer par verifier les conditions d'application. La relation entre les deux variables a l'air à peu près linéaire et le nuage de points a une forme à peu près elliptique. Les 2 premières conditions permettant de garantir une distribution Normale Bivariée des données sont donc vérifiées. Il nous faut maintenant tester la normalité des 2 variables étudier dans la population générale. Nous allons donc faire 2 tests dont les hypothèses nulles et alternatives sont les suivantes :
+Pour cela, il nous faut commencer par verifier les conditions d'application. La relation entre les deux variables a l'air à peu près linéaire et le nuage de points a une forme à peu près elliptique. Les 2 premières conditions permettant de garantir une distribution Normale Bivariée des données sont donc vérifiées. Il nous faut maintenant tester la normalité des 2 variables étudiées dans la population générale. Nous allons donc faire 2 tests dont les hypothèses nulles et alternatives sont les suivantes :
 
-\_ H\(_0\) : les données sont distribuées selon une loi Normale dans la population générale
-\_ H\(_1\) : les données ne sont pas distribuées selon une loi Normale dans la population générale
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : les données sont distribuées selon une loi Normale dans la population générale
+\item
+  H\(_1\) : les données ne sont pas distribuées selon une loi Normale dans la population générale
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3897,8 +3902,13 @@ Pour les 2 tests de Normalité de Shapiro-Wilk, la \(p-\) value est supérieure 
 
 Toutes les conditions d'application du test de corrélation de Pearson sont donc réunies.
 
-\_ H\(_0\) : dans la population générale, le coefficient de corrélation entre les deux variables est égal à 0 (\(\rho = 0\))
-\_ H\(_1\) : dans la population générale, le coefficient de corrélation entre les deux variables est différent de 0 (\(\rho \neq 0\))
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : dans la population générale, le coefficient de corrélation entre les deux variables est égal à 0 (\(\rho = 0\))
+\item
+  H\(_1\) : dans la population générale, le coefficient de corrélation entre les deux variables est différent de 0 (\(\rho \neq 0\))
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4053,7 +4063,7 @@ Skim summary statistics
  n obs: 21 
  n variables: 2 
 
--- Variable type:numeric -----
+-- Variable type:numeric -----------------------------------
              variable missing complete  n mean   sd   p0  p25  p50
  FaceWidthHeightRatio       0       21 21 1.81 0.12 1.59 1.74 1.79
        PenaltyMinutes       0       21 21 1.28 0.71 0.14 0.85 1.23
