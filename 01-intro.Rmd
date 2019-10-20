@@ -14,7 +14,7 @@ setwd("C:/.........../Biometrie3/TP_X")
 ```{r, eval = FALSE}
 list.files()
 ```
-La liste des fichiers contenus dans votre répertoire de travail (donc le nom des fichiers que vous avez téléchargé sur l'ENT) devrait apparaître dans la console. Si ce n'est pas le cas, recommencez depuis le début. Vous pouvez également vérifier à tout moment si le répertoire de travail utilisé par RStudio est bien celui que vous pensez en tapant :
+La liste des fichiers contenus dans votre répertoire de travail (donc le nom des fichiers que vous avez téléchargés sur l'ENT) devrait apparaître dans la console. Si ce n'est pas le cas, recommencez depuis le début. Vous pouvez également vérifier à tout moment si le répertoire de travail utilisé par RStudio est bien celui que vous pensez en tapant :
 ```{r, eval = FALSE}
 getwd()
 ```

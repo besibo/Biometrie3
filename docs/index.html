@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Travaux Pratiques de Biométrie 3</title>
-  <meta name="description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Travaux Pratiques de Biométrie 3" />
   <meta property="og:type" content="book" />
@@ -22,18 +21,18 @@
   <meta name="twitter:description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
   
 
-<meta name="author" content="Benoît Simon-Bouhet">
+<meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2019-04-20">
+<meta name="date" content="2019-10-20" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 
-<link rel="next" href="intro.html">
+<link rel="next" href="intro.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -56,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -137,63 +138,53 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
 <li class="chapter" data-level="3" data-path="seance1.html"><a href="seance1.html"><i class="fa fa-check"></i><b>3</b> Séances 1 et 2 : statistiques descriptives et tests d’hypothèses</a><ul>
 <li class="chapter" data-level="3.1" data-path="seance1.html"><a href="seance1.html#packages"><i class="fa fa-check"></i><b>3.1</b> Packages et données</a></li>
-<li class="chapter" data-level="3.2" data-path="seance1.html"><a href="seance1.html#comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique"><i class="fa fa-check"></i><b>3.2</b> Comparaison de la moyenne d’une population à une valeur théorique</a><ul>
+<li class="chapter" data-level="3.2" data-path="seance1.html"><a href="seance1.html#comparaison-de-la-moyenne-dune-population-à-une-valeur-théorique"><i class="fa fa-check"></i><b>3.2</b> Comparaison de la moyenne d’une population à une valeur théorique</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="seance1.html"><a href="seance1.html#Explo"><i class="fa fa-check"></i><b>3.2.1</b> Exploration préalable des données</a></li>
-<li class="chapter" data-level="3.2.2" data-path="seance1.html"><a href="seance1.html#le-test-parametrique"><i class="fa fa-check"></i><b>3.2.2</b> Le test paramétrique</a></li>
-<li class="chapter" data-level="3.2.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-parametrique"><i class="fa fa-check"></i><b>3.2.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.2.2" data-path="seance1.html"><a href="seance1.html#le-test-paramétrique"><i class="fa fa-check"></i><b>3.2.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="3.2.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-paramétrique"><i class="fa fa-check"></i><b>3.2.3</b> L’alternative non paramétrique</a></li>
 <li class="chapter" data-level="3.2.4" data-path="seance1.html"><a href="seance1.html#exercice-dapplication"><i class="fa fa-check"></i><b>3.2.4</b> Exercice d’application</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="seance1.html"><a href="seance1.html#comparaison-de-la-moyenne-de-2-populations-donnees-appariees"><i class="fa fa-check"></i><b>3.3</b> Comparaison de la moyenne de 2 populations : données appariées</a><ul>
+<li class="chapter" data-level="3.3" data-path="seance1.html"><a href="seance1.html#comparaison-de-la-moyenne-de-2-populations-données-appariées"><i class="fa fa-check"></i><b>3.3</b> Comparaison de la moyenne de 2 populations : données appariées</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="seance1.html"><a href="seance1.html#Explo2"><i class="fa fa-check"></i><b>3.3.1</b> Exploration préalable des données</a></li>
-<li class="chapter" data-level="3.3.2" data-path="seance1.html"><a href="seance1.html#le-test-parametrique-1"><i class="fa fa-check"></i><b>3.3.2</b> Le test paramétrique</a></li>
-<li class="chapter" data-level="3.3.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-parametrique-1"><i class="fa fa-check"></i><b>3.3.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.3.2" data-path="seance1.html"><a href="seance1.html#le-test-paramétrique-1"><i class="fa fa-check"></i><b>3.3.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="3.3.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-paramétrique-1"><i class="fa fa-check"></i><b>3.3.3</b> L’alternative non paramétrique</a></li>
 <li class="chapter" data-level="3.3.4" data-path="seance1.html"><a href="seance1.html#exercice-dapplication-1"><i class="fa fa-check"></i><b>3.3.4</b> Exercice d’application</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="seance1.html"><a href="seance1.html#Indep"><i class="fa fa-check"></i><b>3.4</b> Comparaison de la moyenne de 2 populations : échantillons indépendants</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="seance1.html"><a href="seance1.html#exploration-prealable-des-donnees"><i class="fa fa-check"></i><b>3.4.1</b> Exploration préalable des données</a></li>
-<li class="chapter" data-level="3.4.2" data-path="seance1.html"><a href="seance1.html#le-test-parametrique-2"><i class="fa fa-check"></i><b>3.4.2</b> Le test paramétrique</a></li>
-<li class="chapter" data-level="3.4.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-parametrique-2"><i class="fa fa-check"></i><b>3.4.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.4.1" data-path="seance1.html"><a href="seance1.html#exploration-préalable-des-données"><i class="fa fa-check"></i><b>3.4.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="3.4.2" data-path="seance1.html"><a href="seance1.html#le-test-paramétrique-2"><i class="fa fa-check"></i><b>3.4.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="3.4.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-paramétrique-2"><i class="fa fa-check"></i><b>3.4.3</b> L’alternative non paramétrique</a></li>
 <li class="chapter" data-level="3.4.4" data-path="seance1.html"><a href="seance1.html#exercice-dapplication-2"><i class="fa fa-check"></i><b>3.4.4</b> Exercice d’application</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="seance1.html"><a href="seance1.html#tests-bilateraux-et-unilateraux"><i class="fa fa-check"></i><b>3.5</b> Tests bilatéraux et unilatéraux</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="seance1.html"><a href="seance1.html#principes"><i class="fa fa-check"></i><b>3.5.1</b> Principes</a></li>
-<li class="chapter" data-level="3.5.2" data-path="seance1.html"><a href="seance1.html#un-exemple-pas-a-pas"><i class="fa fa-check"></i><b>3.5.2</b> Un exemple pas à pas</a></li>
+<li class="chapter" data-level="3.5" data-path="seance1.html"><a href="seance1.html#tests-bilatéraux-et-unilatéraux"><i class="fa fa-check"></i><b>3.5</b> Tests bilatéraux et unilatéraux</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="seance1.html"><a href="seance1.html#principe"><i class="fa fa-check"></i><b>3.5.1</b> Principe</a></li>
+<li class="chapter" data-level="3.5.2" data-path="seance1.html"><a href="seance1.html#un-exemple-pas-à-pas"><i class="fa fa-check"></i><b>3.5.2</b> Un exemple pas à pas</a></li>
 <li class="chapter" data-level="3.5.3" data-path="seance1.html"><a href="seance1.html#exercice-dapplication-3"><i class="fa fa-check"></i><b>3.5.3</b> Exercice d’application</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><i class="fa fa-check"></i><b>4</b> Séance 3 : comparer la moyenne de plus de 2 groupes</a><ul>
-<li class="chapter" data-level="4.1" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#packages-et-donnees"><i class="fa fa-check"></i><b>4.1</b> Packages et données</a></li>
-<li class="chapter" data-level="4.2" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#lanalyse-de-variance-a-un-facteur"><i class="fa fa-check"></i><b>4.2</b> L’analyse de variance à un facteur</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#exploration-prealable-des-donnees-1"><i class="fa fa-check"></i><b>4.2.1</b> Exploration préalable des données</a></li>
-<li class="chapter" data-level="4.2.2" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#le-test-parametrique-3"><i class="fa fa-check"></i><b>4.2.2</b> Le test paramétrique</a></li>
-<li class="chapter" data-level="4.2.3" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#lalternative-non-parametrique-3"><i class="fa fa-check"></i><b>4.2.3</b> L’alternative non paramétrique</a></li>
-<li class="chapter" data-level="4.2.4" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#exercices-dapplication"><i class="fa fa-check"></i><b>4.2.4</b> Exercices d’application</a></li>
+<li class="chapter" data-level="4" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><i class="fa fa-check"></i><b>4</b> Séance 3 : comparer la moyenne de plus de 2 groupes</a><ul>
+<li class="chapter" data-level="4.1" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#packages-et-données"><i class="fa fa-check"></i><b>4.1</b> Packages et données</a></li>
+<li class="chapter" data-level="4.2" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#lanalyse-de-variance-à-un-facteur"><i class="fa fa-check"></i><b>4.2</b> L’analyse de variance à un facteur</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#exploration-préalable-des-données-1"><i class="fa fa-check"></i><b>4.2.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="4.2.2" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#le-test-paramétrique-3"><i class="fa fa-check"></i><b>4.2.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="4.2.3" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#lalternative-non-paramétrique-3"><i class="fa fa-check"></i><b>4.2.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="4.2.4" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#exercices-dapplication"><i class="fa fa-check"></i><b>4.2.4</b> Exercices d’application</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html"><i class="fa fa-check"></i><b>5</b> Séance 4 : corrélations et régressions</a><ul>
-<li class="chapter" data-level="5.1" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#packages-et-donnees-1"><i class="fa fa-check"></i><b>5.1</b> Packages et données</a></li>
-<li class="chapter" data-level="5.2" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#correlation"><i class="fa fa-check"></i><b>5.2</b> Corrélation</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#principe"><i class="fa fa-check"></i><b>5.2.1</b> Principe</a></li>
-<li class="chapter" data-level="5.2.2" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#exploration-prealable-des-donnees-2"><i class="fa fa-check"></i><b>5.2.2</b> Exploration préalable des données</a></li>
-<li class="chapter" data-level="5.2.3" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#le-test-parametrique-4"><i class="fa fa-check"></i><b>5.2.3</b> Le test paramétrique</a></li>
-<li class="chapter" data-level="5.2.4" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#lalternative-non-parametrique-4"><i class="fa fa-check"></i><b>5.2.4</b> L’alternative non paramétrique</a></li>
-<li class="chapter" data-level="5.2.5" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#exercices"><i class="fa fa-check"></i><b>5.2.5</b> Exercices</a></li>
+<li class="chapter" data-level="5" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html"><i class="fa fa-check"></i><b>5</b> Séance 4 : corrélations et régressions</a><ul>
+<li class="chapter" data-level="5.1" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#packages-et-données-1"><i class="fa fa-check"></i><b>5.1</b> Packages et données</a></li>
+<li class="chapter" data-level="5.2" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#corrélation"><i class="fa fa-check"></i><b>5.2</b> Corrélation</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#principe-1"><i class="fa fa-check"></i><b>5.2.1</b> Principe</a></li>
+<li class="chapter" data-level="5.2.2" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#exploration-préalable-des-données-2"><i class="fa fa-check"></i><b>5.2.2</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="5.2.3" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#le-test-paramétrique-4"><i class="fa fa-check"></i><b>5.2.3</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="5.2.4" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#lalternative-non-paramétrique-4"><i class="fa fa-check"></i><b>5.2.4</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="5.2.5" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#exercices"><i class="fa fa-check"></i><b>5.2.5</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#regression-lineaire"><i class="fa fa-check"></i><b>5.3</b> Régression linéaire</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#exploration-prealable-des-donnees-3"><i class="fa fa-check"></i><b>5.3.1</b> Exploration préalable des données</a></li>
-<li class="chapter" data-level="5.3.2" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#le-test-parametrique-5"><i class="fa fa-check"></i><b>5.3.2</b> Le test paramétrique</a></li>
-<li class="chapter" data-level="5.3.3" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#lalternative-non-parametrique-5"><i class="fa fa-check"></i><b>5.3.3</b> L’alternative non paramétrique</a></li>
-<li class="chapter" data-level="5.3.4" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#exercices-1"><i class="fa fa-check"></i><b>5.3.4</b> Exercices</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html"><i class="fa fa-check"></i><b>6</b> Correction des exercices du chapitre 5</a><ul>
-<li class="chapter" data-level="6.1" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#correlation-1"><i class="fa fa-check"></i><b>6.1</b> Corrélation</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#canis-lupus-1"><i class="fa fa-check"></i><b>6.1.1</b> <em>Canis lupus</em></a></li>
-<li class="chapter" data-level="6.1.2" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#les-miracles-de-la-memoire-1"><i class="fa fa-check"></i><b>6.1.2</b> Les miracles de la mémoire</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#regression-lineaire-1"><i class="fa fa-check"></i><b>6.2</b> Régression linéaire</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#le-quartet-danscombe-1"><i class="fa fa-check"></i><b>6.2.1</b> Le quartet d’Anscombe</a></li>
-<li class="chapter" data-level="6.2.2" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#in-your-face-1"><i class="fa fa-check"></i><b>6.2.2</b> In your face</a></li>
+<li class="chapter" data-level="5.3" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#régression-linéaire"><i class="fa fa-check"></i><b>5.3</b> Régression linéaire</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#exploration-préalable-des-données-3"><i class="fa fa-check"></i><b>5.3.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="5.3.2" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#le-test-paramétrique-5"><i class="fa fa-check"></i><b>5.3.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="5.3.3" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#lalternative-non-paramétrique-5"><i class="fa fa-check"></i><b>5.3.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="5.3.4" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#exercices-1"><i class="fa fa-check"></i><b>5.3.4</b> Exercices</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -220,16 +211,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="header">
 <h1 class="title">Travaux Pratiques de Biométrie 3</h1>
 <p class="author"><em>Benoît Simon-Bouhet</em></p>
-<p class="date"><em>2019-04-20</em></p>
+<p class="date"><em>2019-10-20</em></p>
 </div>
-<div id="preambule" class="section level1">
+<div id="préambule" class="section level1">
 <h1><span class="header-section-number">1</span> Préambule</h1>
-<p>Ce livre contient l’ensemble du matériel (contenus, exemples, exercices…) nécessaire à la réalisation des travaux pratiques et TEA de biométrie 3. Ces travaux pratiques ont un seul objectif principal : vous permettre de mettre en œuvre, dans <code>RStudio</code> les méthodes statistiques découvertes en cours magistral et en TD de biométrie 2 (au semestre précédent) et en biométrie 3 depuis début janvier.</p>
+<p>Ce livre contient l’ensemble du matériel (contenus, exemples, exercices…) nécessaire à la réalisation des travaux pratiques et TEA de biométrie 3. Ces travaux pratiques ont un seul objectif principal : vous permettre de mettre en œuvre, dans <code>RStudio</code>, les méthodes statistiques découvertes en cours magistral et en TD de biométrie 2 (au semestre précédent) et en biométrie 3 depuis début janvier.</p>
 <p>Je considère qu’à ce stade, vous devez être à l’aise dans RStudio pour effectuer les tâches suivantes :</p>
 <ol style="list-style-type: decimal">
 <li>Importer des jeux de données dans RStudio.</li>
-<li>Manipuler des tableaux de données avec <code>tidyr</code> <span class="citation">(Wickham &amp; Henry, <a href="#ref-R-tidyr">2018</a>)</span> pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.</li>
-<li>Faire des graphiques exploratoires avec <code>ggplot2</code> <span class="citation">(Wickham, Chang, et al., <a href="#ref-R-ggplot2">2018</a>)</span> pour visualiser des données.</li>
+<li>Manipuler des tableaux de données avec <code>tidyr</code> <span class="citation">(Wickham &amp; Henry, <a href="#ref-R-tidyr">2019</a>)</span> pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.</li>
+<li>Faire des graphiques exploratoires avec <code>ggplot2</code> <span class="citation">(Wickham, Chang, et al., <a href="#ref-R-ggplot2">2019</a>)</span> pour visualiser des données.</li>
 <li>Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonction <code>filter()</code>, <code>select()</code>, <code>arrange()</code>, <code>mutate()</code>, <code>summarise()</code> et <code>group_by()</code> du package <code>dplyr</code> <span class="citation">(Wickham, François, et al., <a href="#ref-R-dplyr">2019</a>)</span>.</li>
 <li>Utiliser le pipe <code>%&gt;%</code> afin d’enchaîner plusieurs commandes.</li>
 <li>Créer des scripts parlants contenant des commandes et des commentaires utiles.</li>
@@ -250,14 +241,14 @@ code span.wa { color: #bf0303; } /* Warning */
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-R-tidyr">
-<p><span class="smallcaps">Wickham H, &amp; Henry L</span>. (2018). <em>Tidyr: Easily tidy data with ’spread()’ and ’gather()’ functions</em>. Retrieved from <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a></p>
-</div>
 <div id="ref-R-ggplot2">
-<p><span class="smallcaps">Wickham H, Chang W, Henry L, Pedersen TL, Takahashi K, Wilke C, &amp; Woo K</span>. (2018). <em>Ggplot2: Create elegant data visualisations using the grammar of graphics</em>. Retrieved from <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a></p>
+<p><span class="smallcaps">Wickham H, Chang W, Henry L, Pedersen TL, Takahashi K, Wilke C, … Yutani H</span>. (2019). <em>Ggplot2: Create elegant data visualisations using the grammar of graphics</em>. Retrieved from <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a></p>
 </div>
 <div id="ref-R-dplyr">
 <p><span class="smallcaps">Wickham H, François R, Henry L, &amp; Müller K</span>. (2019). <em>Dplyr: A grammar of data manipulation</em>. Retrieved from <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a></p>
+</div>
+<div id="ref-R-tidyr">
+<p><span class="smallcaps">Wickham H, &amp; Henry L</span>. (2019). <em>Tidyr: Tidy messy data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a></p>
 </div>
 </div>
             </section>
@@ -271,11 +262,13 @@ code span.wa { color: #bf0303; } /* Warning */
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -315,8 +308,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

@@ -30,7 +30,7 @@ description: "Ce livre est un document permettant de réaliser des analyses stat
 
 # Préambule
 
-Ce livre contient l'ensemble du matériel (contenus, exemples, exercices...) nécessaire à la réalisation des travaux pratiques et TEA de biométrie 3. Ces travaux pratiques ont un seul objectif principal : vous permettre de mettre en œuvre, dans `RStudio` les méthodes statistiques découvertes en cours magistral et en TD de biométrie 2 (au semestre précédent) et en biométrie 3 depuis début janvier.
+Ce livre contient l'ensemble du matériel (contenus, exemples, exercices...) nécessaire à la réalisation des travaux pratiques et TEA de biométrie 3. Ces travaux pratiques ont un seul objectif principal : vous permettre de mettre en œuvre, dans `RStudio`, les méthodes statistiques découvertes en cours magistral et en TD de biométrie 2 (au semestre précédent) et en biométrie 3 depuis début janvier.
 
 Je considère qu'à ce stade, vous devez être à l'aise dans RStudio pour effectuer les tâches suivantes :
 
@@ -60,7 +60,7 @@ knitr::write_bib(c(
 
 
 ```{r setup, include=FALSE, cache=FALSE, results=FALSE, message=FALSE}
-options(replace.assign = TRUE, width = 70)
+options(replace.assign = TRUE, width = 80)
 options(repos = "http://cran.r-project.org/")
 
 list.of.packages <- c("readxl", "nycflights13", "gapminder", "knitr", "tidyverse", "gridExtra", "devtools", "extrafont", "kableExtra", "skimr", "bindrcpp", "car", "DescTools", "bookdown")

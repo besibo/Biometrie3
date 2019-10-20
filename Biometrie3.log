@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  20 APR 2019 12:40
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  20 OCT 2019 12:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1780,15 +1780,22 @@ LaTeX Font Info:    Font shape `TU/FiraCode-Regular(0)/m/n' will be
 (Font)              scaled to size 8.50006pt on input line 160.
 [1
 
-] [2]
+]
 LaTeX Font Info:    Font shape `TU/FiraCode-Regular(0)/bx/n' will be
 (Font)              scaled to size 8.50006pt on input line 222.
+[2]
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/bx/n' will be
 (Font)              scaled to size 9.96423pt on input line 266.
 [3] [4]
 Missing character: There is no º in font lmmi10!
 Missing character: There is no º in font lmmi10!
-[5] [6] [7] [8]
+[5] [6] [7]
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 501--501
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
+--------------------------------------------------[] 
+ []
+
+[8]
 File: figure/unnamed-chunk-15-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-15-1.pdf>
 File: figure/unnamed-chunk-16-1.pdf Graphic file (type pdf)
@@ -1801,150 +1808,208 @@ File: figure/unnamed-chunk-18-1.pdf Graphic file (type pdf)
 [10]
 File: figure/unnamed-chunk-19-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-19-1.pdf>
-[11]
 File: figure/unnamed-chunk-20-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-20-1.pdf>
-File: figure/unnamed-chunk-21-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-21-1.pdf>
+[11]
+File: figure/compdistr-1.pdf Graphic file (type pdf)
+<use figure/compdistr-1.pdf>
 
 LaTeX Font Warning: Font shape `TU/FuturaLT-Book(0)/m/sc' undefined
-(Font)              using `TU/FuturaLT-Book(0)/m/n' instead on input line 660.
+(Font)              using `TU/FuturaLT-Book(0)/m/n' instead on input line 666.
 
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/sc' will be
-(Font)              scaled to size 9.0886pt on input line 660.
-[12] [13] [14] [15] [16] [17] [18] [19] [20] [21]
+(Font)              scaled to size 9.0886pt on input line 666.
+[12] [13] [14] [15] [16] [17] [18] [19]
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 1019--1019
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:factor ----------------------
+--------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 1019--1019
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
+--------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 1052--1052
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:factor ----------------------
+--------------------------------------------------[] 
+ []
+
+[20]
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 1052--1052
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
+--------------------------------------------------[] 
+ []
+
+File: figure/unnamed-chunk-31-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-31-1.pdf>
+[21]
 File: figure/unnamed-chunk-32-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-32-1.pdf>
 File: figure/unnamed-chunk-33-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-33-1.pdf>
+[22]
 File: figure/unnamed-chunk-34-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-34-1.pdf>
-[22]
 File: figure/unnamed-chunk-35-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-35-1.pdf>
+[23]
 File: figure/unnamed-chunk-36-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-36-1.pdf>
-[23]
-File: figure/unnamed-chunk-37-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-37-1.pdf>
-[24] [25]
-File: figure/unnamed-chunk-39-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-39-1.pdf>
-[26] [27] [28] [29] [30] [31] [32]
+[24]
+File: figure/unnamed-chunk-38-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-38-1.pdf>
+[25] [26] [27] [28] [29] [30] [31]
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 1571--1571
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
+--------------------------------------------------[] 
+ []
+
+[32]
+File: figure/unnamed-chunk-49-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-49-1.pdf>
+[33]
 File: figure/unnamed-chunk-50-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-50-1.pdf>
-[33]
 File: figure/unnamed-chunk-51-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-51-1.pdf>
-[34]
-File: figure/unnamed-chunk-52-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-52-1.pdf>
-[35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50]
+[34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49]
+
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 2412--2412
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
+--------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (2.00356pt too wide) in paragraph at lines 2412--2412
+[] \TU/FiraCode-Regular(0)/m/n/10 treatment variable missing complete n  mean  
+ sd    p0   p25   p50   p75  p100[] 
+ []
+
+
+Overfull \hbox (2.00356pt too wide) in paragraph at lines 2412--2412
+[]   \TU/FiraCode-Regular(0)/m/n/10 control    shift       0        8 8 -0.31 0
+.62 -1.27 -0.65 -0.48  0.24  0.53[] 
+ []
+
+
+Overfull \hbox (2.00356pt too wide) in paragraph at lines 2412--2412
+[]      \TU/FiraCode-Regular(0)/m/n/10 knee    shift       0        7 7 -0.34 0
+.79 -1.61 -0.76 -0.29  0.17  0.73[] 
+ []
+
+
+Overfull \hbox (2.00356pt too wide) in paragraph at lines 2412--2412
+[]      \TU/FiraCode-Regular(0)/m/n/10 eyes    shift       0        7 7 -1.55 0
+.71 -2.83 -1.78 -1.48 -1.1  -0.78[] 
+ []
+
+[50]
+File: figure/unnamed-chunk-75-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-75-1.pdf>
+[51]
 File: figure/unnamed-chunk-76-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-76-1.pdf>
-[51]
-File: figure/unnamed-chunk-77-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-77-1.pdf>
-[52] [53] [54]
+[52] [53]
+File: figure/unnamed-chunk-79-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-79-1.pdf>
+[54]
 File: figure/unnamed-chunk-80-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-80-1.pdf>
-File: figure/unnamed-chunk-81-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-81-1.pdf>
-[55]
-File: figure/unnamed-chunk-83-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-83-1.pdf>
-[56] [57] [58] [59]
-File: figure/unnamed-chunk-89-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-89-1.pdf>
-[60] [61] [62] [63]
+File: figure/unnamed-chunk-82-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-82-1.pdf>
+[55] [56] [57] [58]
+File: figure/unnamed-chunk-88-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-88-1.pdf>
+[59] [60] [61] [62]
+Overfull \hbox (7.10359pt too wide) in paragraph at lines 2933--2933
+[]  \TU/FiraCode-Regular(0)/m/n/10 estimate statistic p.value conf.low conf.hig
+h method               alternative[] 
+ []
+
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/bx/it' will be
-(Font)              scaled to size 8.30353pt on input line 2935.
-[64]
+(Font)              scaled to size 8.30353pt on input line 2941.
+[63] [64]
+File: figure/unnamed-chunk-94-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-94-1.pdf>
+[65]
 File: figure/unnamed-chunk-95-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-95-1.pdf>
-[65]
 File: figure/unnamed-chunk-96-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-96-1.pdf>
+[66]
 File: figure/unnamed-chunk-97-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-97-1.pdf>
-[66]
-File: figure/unnamed-chunk-98-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-98-1.pdf>
-[67] [68] [69]
-File: figure/unnamed-chunk-103-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-103-1.pdf>
+[67] [68]
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 3138--3138
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:factor ----------------------
+--------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 3138--3138
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
+--------------------------------------------------[] 
+ []
+
+[69]
+File: figure/unnamed-chunk-102-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-102-1.pdf>
 [70] [71] [72] [73]
-File: figure/unnamed-chunk-106-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-106-1.pdf>
+File: figure/unnamed-chunk-105-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-105-1.pdf>
 [74] [75] [76]
 File: images/genetics.jpg Graphic file (type bmp)
 <images/genetics.jpg>
-[77] [78] [79]
+[77] [78]
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 3494--3494
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
+--------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 3525--3525
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
+--------------------------------------------------[] 
+ []
+
+[79]
+File: figure/unnamed-chunk-112-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-112-1.pdf>
+[80]
 File: figure/unnamed-chunk-113-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-113-1.pdf>
-[80]
-File: figure/unnamed-chunk-114-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-114-1.pdf>
 [81]
+File: figure/unnamed-chunk-115-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-115-1.pdf>
 File: figure/unnamed-chunk-116-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-116-1.pdf>
-File: figure/unnamed-chunk-117-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-117-1.pdf>
 [82] [83] [84]
+File: figure/unnamed-chunk-120-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-120-1.pdf>
+[85]
 File: figure/unnamed-chunk-121-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-121-1.pdf>
-[85]
-File: figure/unnamed-chunk-122-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-122-1.pdf>
-[86] [87] [88]
-File: figure/unnamed-chunk-127-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-127-1.pdf>
-[89] [90] [91] [92]
-File: figure/unnamed-chunk-132-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-132-1.pdf>
-[93]
-File: figure/unnamed-chunk-134-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-134-1.pdf>
-[94]
-File: figure/unnamed-chunk-138-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-138-1.pdf>
-[95] [96]
-File: figure/unnamed-chunk-141-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-141-1.pdf>
-[97]
-File: figure/unnamed-chunk-142-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-142-1.pdf>
-File: figure/unnamed-chunk-143-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-143-1.pdf>
-[98] [99]
-Underfull \hbox (badness 1515) in paragraph at lines 4240--4242
+[86] [87]
+Underfull \hbox (badness 1515) in paragraph at lines 3812--3814
 \TU/FuturaLT-Book(0)/m/it/10 of the National Academy of Sciences\TU/FuturaLT-Bo
 ok(0)/m/sc/10 , \TU/FuturaLT-Book(0)/bx/n/10 102\TU/FuturaLT-Book(0)/m/sc/10 (1
 0), 3726–3731. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
  [][][][] []
  []
 
-[100]
-Underfull \hbox (badness 1817) in paragraph at lines 4261--4263
-[][]\TU/FuturaLT-Book(0)/m/sc/10 Wickham H, Chang W, Henry L, Pedersen TL, Taka
-hashi K, Wilke C, & Woo K. (2018).
- []
-
-
-Underfull \hbox (badness 1383) in paragraph at lines 4261--4263
-\TU/FuturaLT-Book(0)/m/it/10 Ggplot2 : Create elegant data visualisations using
- the grammar of graphics\TU/FuturaLT-Book(0)/m/sc/10 . Retrieved from
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4283.
-[101]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 4283.
+[88]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3858.
+[89]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3858.
 (./Biometrie3.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 4283.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4283.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3858.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3858.
 
 Package rerunfilecheck Info: File `Biometrie3.out' has not changed.
-(rerunfilecheck)             Checksum: 4CCC528AEBC59A38733527902FF4D6A9.
+(rerunfilecheck)             Checksum: 20D2037AA1CA2ADFBBB47624CF66DFF3.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1954,12 +2019,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 ### semi simple group (level 1) entered at line 147 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25815 strings out of 492970
- 480419 string characters out of 6133937
- 631875 words of memory out of 5000000
- 29466 multiletter control sequences out of 15000+600000
+ 25779 strings out of 492970
+ 479379 string characters out of 6133937
+ 631215 words of memory out of 5000000
+ 29437 multiletter control sequences out of 15000+600000
  543151 words of font info for 72 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 60i,7n,118p,10451b,1396s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,7n,118p,10451b,1398s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Biometrie3.pdf (101 pages).
+Output written on Biometrie3.pdf (89 pages).

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Séance 3 : comparer la moyenne de plus de 2 groupes | Travaux Pratiques de Biométrie 3</title>
-  <meta name="description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Séance 3 : comparer la moyenne de plus de 2 groupes | Travaux Pratiques de Biométrie 3" />
   <meta property="og:type" content="book" />
@@ -22,14 +21,14 @@
   <meta name="twitter:description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
   
 
-<meta name="author" content="Benoît Simon-Bouhet">
+<meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2019-04-20">
+<meta name="date" content="2019-07-16" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="seance1.html">
@@ -222,14 +221,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="packages-et-donnees" class="section level2">
 <h2><span class="header-section-number">4.1</span> Packages et données</h2>
 <p>Avant toute chose, merci de relire l’introduction (section <a href="intro.html#intro">2</a>) de ce document, et de suivre toutes les étapes qui y sont décrites (création d’un nouveau sous-dossier nommé <code>TP_2</code> dans votre dossier <code>Biometrie3</code>, changement du répertoire de travail et création d’un nouveau script).</p>
-<p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du <code>tidyverse</code> <span class="citation">(Wickham, <a href="#ref-R-tidyverse">2017</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(Wickham, Hester, et al., <a href="#ref-R-readr">2018</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(Wickham &amp; Bryan, <a href="#ref-R-readxl">2019</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(McNamara et al., <a href="#ref-R-skimr">2019</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(Fox et al., <a href="#ref-R-car">2018</a>)</span>, qui permet d’effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package <code>broom</code> <span class="citation">(Robinson &amp; Hayes, <a href="#ref-R-broom">2018</a>)</span>, qui fait partie du <code>tydiverse</code> mais qu’il faut charger explicitement. La fonction <code>tidy()</code> de ce package nous permettra de “ranger” correctement les résultats de tests dans un <code>tibble</code> :</p>
+<p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du <code>tidyverse</code> <span class="citation">(Wickham, <a href="#ref-R-tidyverse">2017</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(Wickham et al., <a href="#ref-R-readr">2018</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(Wickham &amp; Bryan, <a href="#ref-R-readxl">2019</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(<span class="citeproc-not-found" data-reference-id="R-skimr"><strong>???</strong></span>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(<span class="citeproc-not-found" data-reference-id="R-car"><strong>???</strong></span>)</span>, qui permet d’effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package <code>broom</code> <span class="citation">(Robinson &amp; Hayes, <a href="#ref-R-broom">2019</a>)</span>, qui fait partie du <code>tydiverse</code> mais qu’il faut charger explicitement. La fonction <code>tidy()</code> de ce package nous permettra de “ranger” correctement les résultats de tests dans un <code>tibble</code> :</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(readr)
 <span class="kw">library</span>(readxl)
 <span class="kw">library</span>(skimr)
 <span class="kw">library</span>(car)
 <span class="kw">library</span>(broom)</code></pre>
-<p>Enfin, nous aurons besoin du package <code>DescTools</code> <span class="citation">(Ken Aho et al., <a href="#ref-R-DescTools">2019</a>)</span> afin de réaliser un test spécifique de comparaisons multiples. N’oubliez pas de l’installer si nécessaire, avant de le charger en mémoire :</p>
+<p>Enfin, nous aurons besoin du package <code>DescTools</code> <span class="citation">(<span class="citeproc-not-found" data-reference-id="R-DescTools"><strong>???</strong></span>)</span> afin de réaliser un test spécifique de comparaisons multiples. N’oubliez pas de l’installer si nécessaire, avant de le charger en mémoire :</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DescTools)</code></pre>
 <p>Ces commandes (que vous devez taper dans vos scripts avant de les exécuter dans la console de RStudio) ne devraient pas renvoyer de messages d’erreur puisque vous avez dû les installer pour reproduire les exemples et réaliser les exercices de la séance 1. Si vous rencontrez des problèmes, merci de consulter la section <a href="seance1.html#packages">3.1</a> de cet ouvrage, ainsi que <a href="https://besibo.github.io/Biometrie2/bases.html#charger-un-package-en-memoire">la section 2.3</a> du livre de biométrie 2 disponible en ligne.</p>
 <p>Vous aurez également besoin des jeux de données suivants :</p>
@@ -271,16 +270,16 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
 # … with 12 more rows</code></pre>
 <p>Le tableau obtenu est-il au format long ou au format court/large ? Pourquoi un tableau au format suivant n’aurait-il pas de sens ?</p>
 <pre><code># A tibble: 8 x 3
-  control   eyes    knee
-    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-1    0.53  -0.78   0.73 
-2    0.36  -0.86   0.31 
-3    0.2   -1.35   0.03 
-4   -0.37  -1.48  -0.290
-5   -0.6   -1.52  -0.56 
-6   -0.64  -2.04  -0.96 
-7   -0.68  -2.83  -1.61 
-8   -1.27  NA     NA    </code></pre>
+  control  eyes   knee
+    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1    0.53 -0.78  0.73 
+2    0.36 -0.86  0.31 
+3    0.2  -1.35  0.03 
+4   -0.37 -1.48 -0.290
+5   -0.6  -1.52 -0.56 
+6   -0.64 -2.04 -0.96 
+7   -0.68 -2.83 -1.61 
+8   -1.27 NA    NA    </code></pre>
 <p>Lorsque l’on réalise une analyse de variance, puisque les effectifs ne sont pas nécessairement identiques dans tous les groupes (c’est ce qu’on appelle un design déséquilibré, ou “unbalanced design”), présenter les tableaux au format long est indispensable. Par ailleurs, notez que les ANOVAs réalisées sur des “balanced design” (ou designs équilibrés, pour lesquels tous les groupes sont de même taille), sont beaucoup plus puissantes que les ANOVAs réalisées sur des “unbalanced designs”.</p>
 <p>Ici, le tableau de données est très simple (et de petite taille). Il n’y a pas de données manquantes et aucune création de nouvelle variable n’est nécessaire. La seule modification que nous devrion faire est de transformer la variable <code>treatment</code> en facteur :</p>
 <pre class="sourceCode r"><code class="sourceCode r">Light &lt;-<span class="st"> </span>Light <span class="op">%&gt;%</span><span class="st"> </span>
@@ -325,7 +324,7 @@ Levels: control knee eyes</code></pre>
  n variables: 2 
  group variables: treatment 
 
-── Variable type:numeric ───────────────────────────────────
+── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────
  treatment variable missing complete n  mean   sd    p0   p25   p50
    control    shift       0        8 8 -0.31 0.62 -1.27 -0.65 -0.48
       knee    shift       0        7 7 -0.34 0.79 -1.61 -0.76 -0.29
@@ -651,35 +650,26 @@ Cette question a été étudiée par 2 chercheurs <span class="citation">(Molofs
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-Campbell1998">
+<p><span class="smallcaps">Campbell SS, &amp; Murphy PJ</span>. (1998). Extraocular circadian phototransduction in humans. <em>Science</em>, <strong>279</strong>(5349), 396–399. <a href="https://doi.org/10.1126/science.279.5349.396">https://doi.org/10.1126/science.279.5349.396</a></p>
+</div>
+<div id="ref-Molofsky2005">
+<p><span class="smallcaps">Molofsky J, &amp; Ferdy J-B</span>. (2005). Extinction dynamics in experimental metapopulations. <em>Proceedings of the National Academy of Sciences</em>, <strong>102</strong>(10), 3726–3731. <a href="https://doi.org/10.1073/pnas.0404576102">https://doi.org/10.1073/pnas.0404576102</a></p>
+</div>
+<div id="ref-R-broom">
+<p><span class="smallcaps">Robinson D, &amp; Hayes A</span>. (2019). <em>Broom: Convert statistical analysis objects into tidy tibbles</em>. Retrieved from <a href="https://CRAN.R-project.org/package=broom">https://CRAN.R-project.org/package=broom</a></p>
+</div>
 <div id="ref-R-tidyverse">
 <p><span class="smallcaps">Wickham H</span>. (2017). <em>Tidyverse: Easily install and load the ’tidyverse’</em>. Retrieved from <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a></p>
-</div>
-<div id="ref-R-readr">
-<p><span class="smallcaps">Wickham H, Hester J, &amp; Francois R</span>. (2018). <em>Readr: Read rectangular text data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a></p>
 </div>
 <div id="ref-R-readxl">
 <p><span class="smallcaps">Wickham H, &amp; Bryan J</span>. (2019). <em>Readxl: Read excel files</em>. Retrieved from <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a></p>
 </div>
-<div id="ref-R-skimr">
-<p><span class="smallcaps">McNamara A, Arino de la Rubia E, Zhu H, Ellis S, &amp; Quinn M</span>. (2019). <em>Skimr: Compact and flexible summaries of data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=skimr">https://CRAN.R-project.org/package=skimr</a></p>
-</div>
-<div id="ref-R-car">
-<p><span class="smallcaps">Fox J, Weisberg S, &amp; Price B</span>. (2018). <em>Car: Companion to applied regression</em>. Retrieved from <a href="https://CRAN.R-project.org/package=car">https://CRAN.R-project.org/package=car</a></p>
-</div>
-<div id="ref-R-broom">
-<p><span class="smallcaps">Robinson D, &amp; Hayes A</span>. (2018). <em>Broom: Convert statistical analysis objects into tidy tibbles</em>. Retrieved from <a href="https://CRAN.R-project.org/package=broom">https://CRAN.R-project.org/package=broom</a></p>
-</div>
-<div id="ref-R-DescTools">
-<p><span class="smallcaps">Ken Aho ASIR source code and/or documentation previously published by: Alfons A, Anderegg N, Aragon T, Arppe A, Baddeley A, … Zeileis A</span>. (2019). <em>DescTools: Tools for descriptive statistics</em>. Retrieved from <a href="https://CRAN.R-project.org/package=DescTools">https://CRAN.R-project.org/package=DescTools</a></p>
-</div>
-<div id="ref-Campbell1998">
-<p><span class="smallcaps">Campbell SS, &amp; Murphy PJ</span>. (1998). Extraocular circadian phototransduction in humans. <em>Science</em>, <strong>279</strong>(5349), 396–399. <a href="https://doi.org/10.1126/science.279.5349.396">https://doi.org/10.1126/science.279.5349.396</a></p>
+<div id="ref-R-readr">
+<p><span class="smallcaps">Wickham H, Hester J, &amp; Francois R</span>. (2018). <em>Readr: Read rectangular text data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a></p>
 </div>
 <div id="ref-Wright2002">
 <p><span class="smallcaps">Wright KP, &amp; Czeisler CA</span>. (2002). Absence of circadian phase resetting in response to bright light behind the knees. <em>Science</em>, <strong>297</strong>(5581), 571–571. <a href="https://doi.org/10.1126/science.1071697">https://doi.org/10.1126/science.1071697</a></p>
-</div>
-<div id="ref-Molofsky2005">
-<p><span class="smallcaps">Molofsky J, &amp; Ferdy J-B</span>. (2005). Extinction dynamics in experimental metapopulations. <em>Proceedings of the National Academy of Sciences</em>, <strong>102</strong>(10), 3726–3731. <a href="https://doi.org/10.1073/pnas.0404576102">https://doi.org/10.1073/pnas.0404576102</a></p>
 </div>
 </div>
             </section>

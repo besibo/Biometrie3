@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Séance 4 : corrélations et régressions | Travaux Pratiques de Biométrie 3</title>
-  <meta name="description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Séance 4 : corrélations et régressions | Travaux Pratiques de Biométrie 3" />
   <meta property="og:type" content="book" />
@@ -22,14 +21,14 @@
   <meta name="twitter:description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
   
 
-<meta name="author" content="Benoît Simon-Bouhet">
+<meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2019-04-20">
+<meta name="date" content="2019-07-16" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html">
@@ -304,11 +303,11 @@ birds</code></pre>
  n obs: 24 
  n variables: 3 
 
-── Variable type:factor ────────────────────────────────────
+── Variable type:factor ────────────────────────────────────────────────────────────────────────────────────────────
  variable missing complete  n n_unique             top_counts ordered
        ID       0       24 24       24 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
-── Variable type:numeric ───────────────────────────────────
+── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────
         variable missing complete  n  mean   sd    p0   p25  p50
   futureBehavior       0       24 24 -0.12 0.37 -0.92 -0.29 -0.1
  nVisitsNestling       0       24 24 13.12 7.21  1     8.75 13  
@@ -514,7 +513,7 @@ cols(
  n obs: 161 
  n variables: 2 
 
-── Variable type:numeric ───────────────────────────────────
+── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────
          variable missing complete   n mean   sd   p0  p25 p50 p75
  biomassStability       0      161 161 4.42 1.95 1.34 3.07   4 5.2
          nSpecies       0      161 161 6.32 5.64 1    2      4 8  
@@ -530,7 +529,7 @@ cols(
  n variables: 2 
  group variables: nSpecies 
 
-── Variable type:numeric ───────────────────────────────────
+── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────
  nSpecies         variable missing complete  n mean   sd   p0  p25
         1 biomassStability       0       33 33 3.63 1.54 2.07 2.41
         2 biomassStability       0       34 34 3.83 1.35 1.34 2.97
@@ -699,23 +698,23 @@ nSpecies    0.02328063 0.04257117</code></pre>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-muller2011">
-<p><span class="smallcaps">Müller MS, Porter ET, Grace JK, Awkerman JA, Birchler KT, Gunderson AR, … Anderson DJ</span>. (2011). Maltreated nestlings exhibit correlated maltreatment as adults: Evidence of a “cycle of violence” in Nazca Boobies ( <em>Sula</em> <em>Granti</em> ). <em>The Auk</em>, <strong>128</strong>(4), 615–619. <a href="https://doi.org/10.1525/auk.2011.11008">https://doi.org/10.1525/auk.2011.11008</a></p>
+<div id="ref-carre2008">
+<p><span class="smallcaps">Carré JM, &amp; McCormick CM</span>. (2008). In your face: Facial metrics predict aggressive behaviour in the laboratory and in varsity and professional hockey players. <em>Proceedings of the Royal Society B: Biological Sciences</em>, <strong>275</strong>(1651), 2651–2656. <a href="https://doi.org/10.1098/rspb.2008.0873">https://doi.org/10.1098/rspb.2008.0873</a></p>
 </div>
 <div id="ref-liberg2005">
 <p><span class="smallcaps">Liberg O, Andrén H, Pedersen H-C, Sand H, Sejberg, Wabakken P, … Bensch S</span>. (2005). Severe inbreeding depression in a wild wolf Canis lupus population. <em>Biology Letters</em>, <strong>1</strong>(1), 17–20. <a href="https://doi.org/10.1098/rsbl.2004.0266">https://doi.org/10.1098/rsbl.2004.0266</a></p>
 </div>
-<div id="ref-wiseman1996">
-<p><span class="smallcaps">Wiseman R, &amp; Lamont P</span>. (1996). Unravelling the Indian rope-trick. <em>Nature</em>, <strong>383</strong>(6597), 212. <a href="https://doi.org/10.1038/383212a0">https://doi.org/10.1038/383212a0</a></p>
-</div>
-<div id="ref-whitlock2015">
-<p><span class="smallcaps">Whitlock M, &amp; Schluter D</span>. (2015). <em>The analysis of biological data</em> (Second edition). Greenwood Village, Colorado: Roberts and Company Publishers.</p>
+<div id="ref-muller2011">
+<p><span class="smallcaps">Müller MS, Porter ET, Grace JK, Awkerman JA, Birchler KT, Gunderson AR, … Anderson DJ</span>. (2011). Maltreated nestlings exhibit correlated maltreatment as adults: Evidence of a “cycle of violence” in Nazca Boobies ( <em>Sula</em> <em>Granti</em> ). <em>The Auk</em>, <strong>128</strong>(4), 615–619. <a href="https://doi.org/10.1525/auk.2011.11008">https://doi.org/10.1525/auk.2011.11008</a></p>
 </div>
 <div id="ref-tilman2006">
 <p><span class="smallcaps">Tilman D, Reich PB, &amp; Knops JMH</span>. (2006). Biodiversity and ecosystem stability in a decade-long grassland experiment. <em>Nature</em>, <strong>441</strong>(7093), 629. <a href="https://doi.org/10.1038/nature04742">https://doi.org/10.1038/nature04742</a></p>
 </div>
-<div id="ref-carre2008">
-<p><span class="smallcaps">Carré JM, &amp; McCormick CM</span>. (2008). In your face: Facial metrics predict aggressive behaviour in the laboratory and in varsity and professional hockey players. <em>Proceedings of the Royal Society B: Biological Sciences</em>, <strong>275</strong>(1651), 2651–2656. <a href="https://doi.org/10.1098/rspb.2008.0873">https://doi.org/10.1098/rspb.2008.0873</a></p>
+<div id="ref-whitlock2015">
+<p><span class="smallcaps">Whitlock M, &amp; Schluter D</span>. (2015). <em>The analysis of biological data</em> (Second edition). Greenwood Village, Colorado: Roberts and Company Publishers.</p>
+</div>
+<div id="ref-wiseman1996">
+<p><span class="smallcaps">Wiseman R, &amp; Lamont P</span>. (1996). Unravelling the Indian rope-trick. <em>Nature</em>, <strong>383</strong>(6597), 212. <a href="https://doi.org/10.1038/383212a0">https://doi.org/10.1038/383212a0</a></p>
 </div>
 </div>
             </section>

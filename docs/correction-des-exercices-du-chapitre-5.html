@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Correction des exercices du chapitre 5 | Travaux Pratiques de Biométrie 3</title>
-  <meta name="description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Correction des exercices du chapitre 5 | Travaux Pratiques de Biométrie 3" />
   <meta property="og:type" content="book" />
@@ -22,18 +21,18 @@
   <meta name="twitter:description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
   
 
-<meta name="author" content="Benoît Simon-Bouhet">
+<meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2019-04-20">
+<meta name="date" content="2019-10-19" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="seance-4-correlations-et-regressions.html">
-<link rel="next" href="references.html">
+<link rel="prev" href="séance-4-corrélations-et-régressions.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -56,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -137,61 +138,61 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
 <li class="chapter" data-level="3" data-path="seance1.html"><a href="seance1.html"><i class="fa fa-check"></i><b>3</b> Séances 1 et 2 : statistiques descriptives et tests d’hypothèses</a><ul>
 <li class="chapter" data-level="3.1" data-path="seance1.html"><a href="seance1.html#packages"><i class="fa fa-check"></i><b>3.1</b> Packages et données</a></li>
-<li class="chapter" data-level="3.2" data-path="seance1.html"><a href="seance1.html#comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique"><i class="fa fa-check"></i><b>3.2</b> Comparaison de la moyenne d’une population à une valeur théorique</a><ul>
+<li class="chapter" data-level="3.2" data-path="seance1.html"><a href="seance1.html#comparaison-de-la-moyenne-dune-population-à-une-valeur-théorique"><i class="fa fa-check"></i><b>3.2</b> Comparaison de la moyenne d’une population à une valeur théorique</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="seance1.html"><a href="seance1.html#Explo"><i class="fa fa-check"></i><b>3.2.1</b> Exploration préalable des données</a></li>
-<li class="chapter" data-level="3.2.2" data-path="seance1.html"><a href="seance1.html#le-test-parametrique"><i class="fa fa-check"></i><b>3.2.2</b> Le test paramétrique</a></li>
-<li class="chapter" data-level="3.2.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-parametrique"><i class="fa fa-check"></i><b>3.2.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.2.2" data-path="seance1.html"><a href="seance1.html#le-test-paramétrique"><i class="fa fa-check"></i><b>3.2.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="3.2.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-paramétrique"><i class="fa fa-check"></i><b>3.2.3</b> L’alternative non paramétrique</a></li>
 <li class="chapter" data-level="3.2.4" data-path="seance1.html"><a href="seance1.html#exercice-dapplication"><i class="fa fa-check"></i><b>3.2.4</b> Exercice d’application</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="seance1.html"><a href="seance1.html#comparaison-de-la-moyenne-de-2-populations-donnees-appariees"><i class="fa fa-check"></i><b>3.3</b> Comparaison de la moyenne de 2 populations : données appariées</a><ul>
+<li class="chapter" data-level="3.3" data-path="seance1.html"><a href="seance1.html#comparaison-de-la-moyenne-de-2-populations-données-appariées"><i class="fa fa-check"></i><b>3.3</b> Comparaison de la moyenne de 2 populations : données appariées</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="seance1.html"><a href="seance1.html#Explo2"><i class="fa fa-check"></i><b>3.3.1</b> Exploration préalable des données</a></li>
-<li class="chapter" data-level="3.3.2" data-path="seance1.html"><a href="seance1.html#le-test-parametrique-1"><i class="fa fa-check"></i><b>3.3.2</b> Le test paramétrique</a></li>
-<li class="chapter" data-level="3.3.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-parametrique-1"><i class="fa fa-check"></i><b>3.3.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.3.2" data-path="seance1.html"><a href="seance1.html#le-test-paramétrique-1"><i class="fa fa-check"></i><b>3.3.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="3.3.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-paramétrique-1"><i class="fa fa-check"></i><b>3.3.3</b> L’alternative non paramétrique</a></li>
 <li class="chapter" data-level="3.3.4" data-path="seance1.html"><a href="seance1.html#exercice-dapplication-1"><i class="fa fa-check"></i><b>3.3.4</b> Exercice d’application</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="seance1.html"><a href="seance1.html#Indep"><i class="fa fa-check"></i><b>3.4</b> Comparaison de la moyenne de 2 populations : échantillons indépendants</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="seance1.html"><a href="seance1.html#exploration-prealable-des-donnees"><i class="fa fa-check"></i><b>3.4.1</b> Exploration préalable des données</a></li>
-<li class="chapter" data-level="3.4.2" data-path="seance1.html"><a href="seance1.html#le-test-parametrique-2"><i class="fa fa-check"></i><b>3.4.2</b> Le test paramétrique</a></li>
-<li class="chapter" data-level="3.4.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-parametrique-2"><i class="fa fa-check"></i><b>3.4.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="3.4.1" data-path="seance1.html"><a href="seance1.html#exploration-préalable-des-données"><i class="fa fa-check"></i><b>3.4.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="3.4.2" data-path="seance1.html"><a href="seance1.html#le-test-paramétrique-2"><i class="fa fa-check"></i><b>3.4.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="3.4.3" data-path="seance1.html"><a href="seance1.html#lalternative-non-paramétrique-2"><i class="fa fa-check"></i><b>3.4.3</b> L’alternative non paramétrique</a></li>
 <li class="chapter" data-level="3.4.4" data-path="seance1.html"><a href="seance1.html#exercice-dapplication-2"><i class="fa fa-check"></i><b>3.4.4</b> Exercice d’application</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="seance1.html"><a href="seance1.html#tests-bilateraux-et-unilateraux"><i class="fa fa-check"></i><b>3.5</b> Tests bilatéraux et unilatéraux</a><ul>
+<li class="chapter" data-level="3.5" data-path="seance1.html"><a href="seance1.html#tests-bilatéraux-et-unilatéraux"><i class="fa fa-check"></i><b>3.5</b> Tests bilatéraux et unilatéraux</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="seance1.html"><a href="seance1.html#principes"><i class="fa fa-check"></i><b>3.5.1</b> Principes</a></li>
-<li class="chapter" data-level="3.5.2" data-path="seance1.html"><a href="seance1.html#un-exemple-pas-a-pas"><i class="fa fa-check"></i><b>3.5.2</b> Un exemple pas à pas</a></li>
+<li class="chapter" data-level="3.5.2" data-path="seance1.html"><a href="seance1.html#un-exemple-pas-à-pas"><i class="fa fa-check"></i><b>3.5.2</b> Un exemple pas à pas</a></li>
 <li class="chapter" data-level="3.5.3" data-path="seance1.html"><a href="seance1.html#exercice-dapplication-3"><i class="fa fa-check"></i><b>3.5.3</b> Exercice d’application</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><i class="fa fa-check"></i><b>4</b> Séance 3 : comparer la moyenne de plus de 2 groupes</a><ul>
-<li class="chapter" data-level="4.1" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#packages-et-donnees"><i class="fa fa-check"></i><b>4.1</b> Packages et données</a></li>
-<li class="chapter" data-level="4.2" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#lanalyse-de-variance-a-un-facteur"><i class="fa fa-check"></i><b>4.2</b> L’analyse de variance à un facteur</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#exploration-prealable-des-donnees-1"><i class="fa fa-check"></i><b>4.2.1</b> Exploration préalable des données</a></li>
-<li class="chapter" data-level="4.2.2" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#le-test-parametrique-3"><i class="fa fa-check"></i><b>4.2.2</b> Le test paramétrique</a></li>
-<li class="chapter" data-level="4.2.3" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#lalternative-non-parametrique-3"><i class="fa fa-check"></i><b>4.2.3</b> L’alternative non paramétrique</a></li>
-<li class="chapter" data-level="4.2.4" data-path="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="seance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#exercices-dapplication"><i class="fa fa-check"></i><b>4.2.4</b> Exercices d’application</a></li>
+<li class="chapter" data-level="4" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><i class="fa fa-check"></i><b>4</b> Séance 3 : comparer la moyenne de plus de 2 groupes</a><ul>
+<li class="chapter" data-level="4.1" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#packages-et-données"><i class="fa fa-check"></i><b>4.1</b> Packages et données</a></li>
+<li class="chapter" data-level="4.2" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#lanalyse-de-variance-à-un-facteur"><i class="fa fa-check"></i><b>4.2</b> L’analyse de variance à un facteur</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#exploration-préalable-des-données-1"><i class="fa fa-check"></i><b>4.2.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="4.2.2" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#le-test-paramétrique-3"><i class="fa fa-check"></i><b>4.2.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="4.2.3" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#lalternative-non-paramétrique-3"><i class="fa fa-check"></i><b>4.2.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="4.2.4" data-path="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#exercices-dapplication"><i class="fa fa-check"></i><b>4.2.4</b> Exercices d’application</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html"><i class="fa fa-check"></i><b>5</b> Séance 4 : corrélations et régressions</a><ul>
-<li class="chapter" data-level="5.1" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#packages-et-donnees-1"><i class="fa fa-check"></i><b>5.1</b> Packages et données</a></li>
-<li class="chapter" data-level="5.2" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#correlation"><i class="fa fa-check"></i><b>5.2</b> Corrélation</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#principe"><i class="fa fa-check"></i><b>5.2.1</b> Principe</a></li>
-<li class="chapter" data-level="5.2.2" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#exploration-prealable-des-donnees-2"><i class="fa fa-check"></i><b>5.2.2</b> Exploration préalable des données</a></li>
-<li class="chapter" data-level="5.2.3" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#le-test-parametrique-4"><i class="fa fa-check"></i><b>5.2.3</b> Le test paramétrique</a></li>
-<li class="chapter" data-level="5.2.4" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#lalternative-non-parametrique-4"><i class="fa fa-check"></i><b>5.2.4</b> L’alternative non paramétrique</a></li>
-<li class="chapter" data-level="5.2.5" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#exercices"><i class="fa fa-check"></i><b>5.2.5</b> Exercices</a></li>
+<li class="chapter" data-level="5" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html"><i class="fa fa-check"></i><b>5</b> Séance 4 : corrélations et régressions</a><ul>
+<li class="chapter" data-level="5.1" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#packages-et-données-1"><i class="fa fa-check"></i><b>5.1</b> Packages et données</a></li>
+<li class="chapter" data-level="5.2" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#corrélation"><i class="fa fa-check"></i><b>5.2</b> Corrélation</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#principe"><i class="fa fa-check"></i><b>5.2.1</b> Principe</a></li>
+<li class="chapter" data-level="5.2.2" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#exploration-préalable-des-données-2"><i class="fa fa-check"></i><b>5.2.2</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="5.2.3" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#le-test-paramétrique-4"><i class="fa fa-check"></i><b>5.2.3</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="5.2.4" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#lalternative-non-paramétrique-4"><i class="fa fa-check"></i><b>5.2.4</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="5.2.5" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#exercices"><i class="fa fa-check"></i><b>5.2.5</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#regression-lineaire"><i class="fa fa-check"></i><b>5.3</b> Régression linéaire</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#exploration-prealable-des-donnees-3"><i class="fa fa-check"></i><b>5.3.1</b> Exploration préalable des données</a></li>
-<li class="chapter" data-level="5.3.2" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#le-test-parametrique-5"><i class="fa fa-check"></i><b>5.3.2</b> Le test paramétrique</a></li>
-<li class="chapter" data-level="5.3.3" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#lalternative-non-parametrique-5"><i class="fa fa-check"></i><b>5.3.3</b> L’alternative non paramétrique</a></li>
-<li class="chapter" data-level="5.3.4" data-path="seance-4-correlations-et-regressions.html"><a href="seance-4-correlations-et-regressions.html#exercices-1"><i class="fa fa-check"></i><b>5.3.4</b> Exercices</a></li>
+<li class="chapter" data-level="5.3" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#régression-linéaire"><i class="fa fa-check"></i><b>5.3</b> Régression linéaire</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#exploration-préalable-des-données-3"><i class="fa fa-check"></i><b>5.3.1</b> Exploration préalable des données</a></li>
+<li class="chapter" data-level="5.3.2" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#le-test-paramétrique-5"><i class="fa fa-check"></i><b>5.3.2</b> Le test paramétrique</a></li>
+<li class="chapter" data-level="5.3.3" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#lalternative-non-paramétrique-5"><i class="fa fa-check"></i><b>5.3.3</b> L’alternative non paramétrique</a></li>
+<li class="chapter" data-level="5.3.4" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#exercices-1"><i class="fa fa-check"></i><b>5.3.4</b> Exercices</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html"><i class="fa fa-check"></i><b>6</b> Correction des exercices du chapitre 5</a><ul>
-<li class="chapter" data-level="6.1" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#correlation-1"><i class="fa fa-check"></i><b>6.1</b> Corrélation</a><ul>
+<li class="chapter" data-level="6.1" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#corrélation-1"><i class="fa fa-check"></i><b>6.1</b> Corrélation</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#canis-lupus-1"><i class="fa fa-check"></i><b>6.1.1</b> <em>Canis lupus</em></a></li>
-<li class="chapter" data-level="6.1.2" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#les-miracles-de-la-memoire-1"><i class="fa fa-check"></i><b>6.1.2</b> Les miracles de la mémoire</a></li>
+<li class="chapter" data-level="6.1.2" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#les-miracles-de-la-mémoire-1"><i class="fa fa-check"></i><b>6.1.2</b> Les miracles de la mémoire</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#regression-lineaire-1"><i class="fa fa-check"></i><b>6.2</b> Régression linéaire</a><ul>
+<li class="chapter" data-level="6.2" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#régression-linéaire-1"><i class="fa fa-check"></i><b>6.2</b> Régression linéaire</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#le-quartet-danscombe-1"><i class="fa fa-check"></i><b>6.2.1</b> Le quartet d’Anscombe</a></li>
 <li class="chapter" data-level="6.2.2" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#in-your-face-1"><i class="fa fa-check"></i><b>6.2.2</b> In your face</a></li>
 </ul></li>
@@ -219,20 +220,20 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="correction-des-exercices-du-chapitre-5" class="section level1">
 <h1><span class="header-section-number">6</span> Correction des exercices du chapitre 5</h1>
-<div id="correlation-1" class="section level2">
+<div id="corrélation-1" class="section level2">
 <h2><span class="header-section-number">6.1</span> Corrélation</h2>
 <div id="canis-lupus-1" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> <em>Canis lupus</em></h3>
 <p>Comme toujours, on commence par importer et examiner les données brutes :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(skimr)
-loups &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/loups.csv&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb195-2" title="2"><span class="kw">library</span>(skimr)</a>
+<a class="sourceLine" id="cb195-3" title="3">loups &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/loups.csv&quot;</span>)</a></code></pre></div>
 <pre><code>Parsed with column specification:
 cols(
   inbreedCoef = col_double(),
   nPups = col_double()
 )</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">loups</code></pre>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1">loups</a></code></pre></div>
 <pre><code># A tibble: 24 x 2
    inbreedCoef nPups
          &lt;dbl&gt; &lt;dbl&gt;
@@ -249,12 +250,12 @@ cols(
 # … with 14 more rows</code></pre>
 <p>Nous disposons ici de 24 observations (24 portées de louveteaux) et 2 variables : le coefficient de consanguinité des louveteaux de chaque portée, et le nombre de louveteaux de chaque portée ayant survécu à leur premier hiver.</p>
 <p>On fait ensuite appel à la fonction <code>skim()</code> du package <code>skimr</code> afin d’en apprendre plus sur nos variables :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">skim</span>(loups)</code></pre>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="kw">skim</span>(loups)</a></code></pre></div>
 <pre><code>Skim summary statistics
  n obs: 24 
  n variables: 2 
 
-── Variable type:numeric ───────────────────────────────────
+── Variable type:numeric ───────────────────────────────────────────────────────────────────────
     variable missing complete  n mean   sd p0  p25  p50  p75 p100
  inbreedCoef       0       24 24 0.23 0.1   0 0.19 0.24 0.3   0.4
        nPups       0       24 24 3.96 1.88  1 3    3    5.25  8  
@@ -262,27 +263,27 @@ cols(
  ▂▁▃▃▇▅▁▃
  ▁▃▇▃▂▃▂▁</code></pre>
 <p>On constate qu’il n’y a pas de données manquantes et les histogrammes laissent penser qu’il n’y a pas non plus de valeurs aberrantes. On constate également quand dans chaque portée, au moins un louveteau a survécu à son premier hiver. Un examen graphique des données devrait nous permettre de mieux voir quelle est la structure des données :</p>
-<pre class="sourceCode r"><code class="sourceCode r">loups <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> inbreedCoef, <span class="dt">y =</span> nPups)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="figure/unnamed-chunk-127-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1">loups <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb201-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> inbreedCoef, <span class="dt">y =</span> nPups)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb201-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="figure/unnamed-chunk-126-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Comme on pouvait s’y attendre, on constate une relation plutôt négative entre les 2 variables étudiées : lorsque le coefficient de consanguinité dans une portée est élevé le nombre de jeunes qui parviennent à survivre à leur premier hiver est faible. C’est tout à fait logique compte tenu de ce que l’on sait de la consanguinité : elle augmente la proportion du génome qui sera homozygote et favorise donc l’apparition de tares génétiques qui sont très majoritairement codées par des allèles récessifs (ces allèles ne s’expriment qu’à l’état homozygote). Le coefficient de corrélation linéaire entre ces deux variables devrait donc être négatif. Nous souhaitons maintenant le calculer, estimer son intervalle de confiance, et tester si ce coefficient est significativement différent de 0 ou non.</p>
 <p>Pour cela, il nous faut commencer par verifier les conditions d’application. La relation entre les deux variables a l’air à peu près linéaire et le nuage de points a une forme à peu près elliptique. Les 2 premières conditions permettant de garantir une distribution Normale Bivariée des données sont donc vérifiées. Il nous faut maintenant tester la normalité des 2 variables étudiées dans la population générale. Nous allons donc faire 2 tests dont les hypothèses nulles et alternatives sont les suivantes :</p>
 <ul>
 <li>H<span class="math inline">\(_0\)</span> : les données sont distribuées selon une loi Normale dans la population générale</li>
 <li>H<span class="math inline">\(_1\)</span> : les données ne sont pas distribuées selon une loi Normale dans la population générale</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">loups <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">pull</span>(inbreedCoef) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>shapiro.test</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1">loups <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb202-2" title="2"><span class="st">  </span><span class="kw">pull</span>(inbreedCoef) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb202-3" title="3"><span class="st">  </span>shapiro.test</a></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  .
 W = 0.93212, p-value = 0.1087</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">loups <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">pull</span>(nPups) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>shapiro.test</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1">loups <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb204-2" title="2"><span class="st">  </span><span class="kw">pull</span>(nPups) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb204-3" title="3"><span class="st">  </span>shapiro.test</a></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
@@ -294,7 +295,7 @@ W = 0.91711, p-value = 0.05043</code></pre>
 <li>H<span class="math inline">\(_0\)</span> : dans la population générale, le coefficient de corrélation entre les deux variables est égal à 0 (<span class="math inline">\(\rho = 0\)</span>)</li>
 <li>H<span class="math inline">\(_1\)</span> : dans la population générale, le coefficient de corrélation entre les deux variables est différent de 0 (<span class="math inline">\(\rho \neq 0\)</span>)</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor.test</span>(loups<span class="op">$</span>inbreedCoef, loups<span class="op">$</span>nPups)</code></pre>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="kw">cor.test</span>(loups<span class="op">$</span>inbreedCoef, loups<span class="op">$</span>nPups)</a></code></pre></div>
 <pre><code>
     Pearson&#39;s product-moment correlation
 
@@ -309,42 +310,42 @@ sample estimates:
 <p>Au seuil <span class="math inline">\(\alpha\)</span> de 5%, le test de corrélation de Pearson rejette l’hypothèse nulle d’indépendance entre les 2 variables dans la population générale (<span class="math inline">\(t = -3.59\)</span>, <span class="math inline">\(ddl = 22\)</span>, <span class="math inline">\(p = 0.002\)</span>). Le coefficient de corrélation est donc significativement différent de 0 dans la population. Sa meilleure estimation vaut <span class="math inline">\(\hat{\rho} = -0.61\)</span>, avec un intervalle de confiance à 95% couvrant les valeurs comprises entre -0.81 et -0.27. Le coefficient de consanguinité des portées de louveteaux est donc bien relié (négativement) au nombre de jeunes capables de survivre à leur premier hiver.</p>
 <p>NB. : j’insiste ici sur le fait que nous n’avons pas regardé de relation de cause à effet. Nous nous sommes contenté d’établir un lien (négatif et significatif) entre ces 2 variables. Pour aller plus loin, on pourrait faire une régression linéaire pour tenter de caractériser l’équation d’une éventuelle droite de régression, mesurer la qualité de l’ajustement grâce au <span class="math inline">\(R^2\)</span> ajusté, et ainsi être en mesure de prédire une variable grâce à l’autre.</p>
 </div>
-<div id="les-miracles-de-la-memoire-1" class="section level3">
+<div id="les-miracles-de-la-mémoire-1" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> Les miracles de la mémoire</h3>
 <p>On suit exactement la même démarche que pour l’exercice précédent, je vais donc être plus succinct dans ma correction.</p>
 <p>L’examen préliminaire des donnés montre que nous disposons de 21 observations pour 2 variables. Aucune donnée manquante ni aberrante ne semble présente. Le temps écoulé entre l’observation du tour de magie et son récit écrit est très variable puisqu’il est cmopris entre 2 et 50 ans, avec un écart-type de 15 ans.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(rope<span class="op">$</span>impressiveness)</code></pre>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">table</span>(rope<span class="op">$</span>impressiveness)</a></code></pre></div>
 <pre><code>
  1  2  3  4  5 
  3  3  1 10  4 </code></pre>
 <p>Globalement, la catégorie 4 est la plus fortement représentée pour la variable “caractère impressionant” du tour de magie.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Représentation graphique</span>
-rope <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> years, <span class="dt">y =</span> impressiveness)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()
-
-<span class="co"># Test de Normalité de la première variable</span>
-rope <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">pull</span>(years) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>shapiro.test</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="co"># Représentation graphique</span></a>
+<a class="sourceLine" id="cb210-2" title="2">rope <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb210-3" title="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> years, <span class="dt">y =</span> impressiveness)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb210-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb210-5" title="5"></a>
+<a class="sourceLine" id="cb210-6" title="6"><span class="co"># Test de Normalité de la première variable</span></a>
+<a class="sourceLine" id="cb210-7" title="7">rope <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb210-8" title="8"><span class="st">  </span><span class="kw">pull</span>(years) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb210-9" title="9"><span class="st">  </span>shapiro.test</a></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  .
 W = 0.94557, p-value = 0.2802</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test de Normalité de la seconde variable</span>
-rope <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">pull</span>(impressiveness) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>shapiro.test</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1"><span class="co"># Test de Normalité de la seconde variable</span></a>
+<a class="sourceLine" id="cb212-2" title="2">rope <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb212-3" title="3"><span class="st">  </span><span class="kw">pull</span>(impressiveness) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb212-4" title="4"><span class="st">  </span>shapiro.test</a></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  .
 W = 0.82319, p-value = 0.001517</code></pre>
-<p><img src="figure/unnamed-chunk-132-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-131-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>L’examen visuel et les tests de Shapiro montrent que si une relation linéaire semble bel et bien présente entre les 2 variables, les conditions d’application du test de corrélation de Pearson ne sont pas réunies. Le nuage de points n’a en effet pas une forme circulaire ou elliptique, mais plutôt une forme d’entonnoir, et le test de Shapiro-Wilk pour la variable <code>impressiveness</code> confirme que cette variable ne suit pas une distribution normale dans la population générale. Il nous faut donc effectuer un test non paramétrique ed Spearman.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor.test</span>(rope<span class="op">$</span>years, rope<span class="op">$</span>impressiveness, 
-         <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1"><span class="kw">cor.test</span>(rope<span class="op">$</span>years, rope<span class="op">$</span>impressiveness, </a>
+<a class="sourceLine" id="cb214-2" title="2">         <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
 <pre><code>Warning in cor.test.default(rope$years, rope$impressiveness, method =
 &quot;spearman&quot;): Cannot compute exact p-value with ties</code></pre>
 <pre><code>
@@ -359,7 +360,7 @@ sample estimates:
 <p>Le test de Spearman confirme la présence d’une relation significative entre les deux variables (<span class="math inline">\(S = 332.12\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>). Au seuil <span class="math inline">\(\alpha = 0.05\)</span>, on rejette donc l’hypothèse nulle d’indépendance entre les deux variables. Le coefficient de corrélation de Spearman est positif et estimé à 0.78.</p>
 </div>
 </div>
-<div id="regression-lineaire-1" class="section level2">
+<div id="régression-linéaire-1" class="section level2">
 <h2><span class="header-section-number">6.2</span> Régression linéaire</h2>
 <div id="le-quartet-danscombe-1" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Le quartet d’Anscombe</h3>
@@ -369,18 +370,18 @@ sample estimates:
 <li>La relation entre <code>x3</code> et <code>y3</code> est une relation linéaire parfaite puisque tous les points sont alignés sauf sur une droite sauf un. Ce point a un impact trop fort sur les résultats de la régression puisqu’il “tire” artificiellement la droite vers le haut, et augmente ainsi la valeur de sa pente et diminue son ordonnée à l’origine. Ce point serait identifié comme un point ayant un “leverage” (ou influence) trop fort lors de l’analyse des résidus.</li>
 <li>La relation entre <code>x4</code> et <code>y4</code> est déterminée en totalité par le points le plus à droite. Sans cette unique valeur, il n’y aurait pas de relation entre les deux variables puisque pour une unique valeur de <code>x4</code>, on obtient une grande variété de valeurs possibles pour <code>y4</code>, ce qui montre que les variables sont en réalité indépendantes. L’outlier détermine donc à lui tout seul la pente de la droite de régression. L’analyse des résidus de cette régression montrerait, sur le dernier graphique, que ce point a un “leverage” beaucoup trop important et qu’il faut donc le retirer de l’analyse pour espérer avoir des résultats corrects.</li>
 </ol>
-<p><img src="figure/unnamed-chunk-134-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-133-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="in-your-face-1" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> In your face</h3>
 <p>Comme toujours, on commence par importer et examiner les données brutes</p>
 <p>Nous disposons bien de 21 observation pour 2 variables numériques : le ratio largeur / longueur du visage, et le nombre moyen de minutes de pénalité de chacun des 21 joueurs de hockey suivis.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">skim</span>(hockey)</code></pre>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1"><span class="kw">skim</span>(hockey)</a></code></pre></div>
 <pre><code>Skim summary statistics
  n obs: 21 
  n variables: 2 
 
-── Variable type:numeric ───────────────────────────────────
+── Variable type:numeric ───────────────────────────────────────────────────────────────────────
              variable missing complete  n mean   sd   p0  p25  p50
  FaceWidthHeightRatio       0       21 21 1.81 0.12 1.59 1.74 1.79
        PenaltyMinutes       0       21 21 1.28 0.71 0.14 0.85 1.23
@@ -388,14 +389,14 @@ sample estimates:
  1.87 2.07 ▂▁▇▇▂▂▂▁
  1.57 2.95 ▅▁▅▇▂▂▁▁</code></pre>
 <p>Les statsistique descriptives n’indiquent aucune données manquantes, et les minimas et maximas des deux variables ne semblent pas indiquer la présence de valeurs aberrantes. Pour se faire une meilleure idée des données, on en fait une représentation graphique, sous la forme d’un nuage de points puisque nous cherchons à mettre en évidence une éventuelle relation entre ces deux variables numériques :</p>
-<pre class="sourceCode r"><code class="sourceCode r">hockey <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> FaceWidthHeightRatio, <span class="dt">y =</span> PenaltyMinutes)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre>
-<p><img src="figure/unnamed-chunk-138-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" title="1">hockey <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb219-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> FaceWidthHeightRatio, <span class="dt">y =</span> PenaltyMinutes)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb219-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb219-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="figure/unnamed-chunk-137-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>On confirme l’absence d’outlier et on observe ici une relation <em>a priori</em> positive entre les 2 variables. Plus le ratio largeur du visage sur longueur du visage est important (donc plus le joueur de hockey a un visage large), plus le nombre moyen de temps de pénalité augmente. Une régression linéaire est nécessaire pour quantifier précisément cette relation et évaluer la qualité de l’ajustement du modèle linéaire aux données observées.</p>
-<pre class="sourceCode r"><code class="sourceCode r">reg2 &lt;-<span class="st"> </span><span class="kw">lm</span>(PenaltyMinutes <span class="op">~</span><span class="st"> </span>FaceWidthHeightRatio, <span class="dt">data =</span> hockey)
-<span class="kw">summary</span>(reg2)</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1">reg2 &lt;-<span class="st"> </span><span class="kw">lm</span>(PenaltyMinutes <span class="op">~</span><span class="st"> </span>FaceWidthHeightRatio, <span class="dt">data =</span> hockey)</a>
+<a class="sourceLine" id="cb220-2" title="2"><span class="kw">summary</span>(reg2)</a></code></pre></div>
 <pre><code>
 Call:
 lm(formula = PenaltyMinutes ~ FaceWidthHeightRatio, data = hockey)
@@ -415,39 +416,39 @@ Residual standard error: 0.6129 on 19 degrees of freedom
 Multiple R-squared:  0.2882,    Adjusted R-squared:  0.2508 
 F-statistic: 7.694 on 1 and 19 DF,  p-value: 0.0121</code></pre>
 <p>Pour les deux tests d’hypothèses réalisés ici, on rejette l’hypothèse nulle au seuil <span class="math inline">\(\alpha = 0.05\)</span>. Ainsi, l’ordonnée à l’origine est significativement différente de 0 (<span class="math inline">\(b = -4.51\)</span>, <span class="math inline">\(t = -2.157\)</span>, <span class="math inline">\(p = 0.044\)</span>) et la pente est positive et significativement différente de 0 (<span class="math inline">\(a = 3.19\)</span>, <span class="math inline">\(t = 2.774\)</span>, <span class="math inline">\(p = 0.012\)</span>). Les intervalles de confiance à 95% de ces estimations sont données ci-dessous :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(reg2)</code></pre>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1"><span class="kw">confint</span>(reg2)</a></code></pre></div>
 <pre><code>                          2.5 %     97.5 %
 (Intercept)          -8.8758898 -0.1331171
 FaceWidthHeightRatio  0.7826085  5.5953569</code></pre>
 <p>Dans la population générale, la pente de la droite permettant de lier les 2 variables étudiées a donc de bonnes chances de se trouver dans l’intervalle [0.78 ; 5.60]. Cet intervalle est très large et indique une forte incertitude.</p>
 <p>Vérifions maintenant que nous avions le droit d’effectuer cette régression linéaire :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))
-<span class="kw">plot</span>(reg2)
-<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre>
-<p><img src="figure/unnamed-chunk-141-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb224-2" title="2"><span class="kw">plot</span>(reg2)</a>
+<a class="sourceLine" id="cb224-3" title="3"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a></code></pre></div>
+<p><img src="figure/unnamed-chunk-140-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Le premier graphique (et le troisième en bas à gauche) montre que les résidus sont à peu près homogènes. Le second (en haut à droite) confirme la Normalité des résidus. Puisque les conditions d’application de la régression sont remplies, les résultats énoncés plus haut sont valides.
 Toutefois, le graphique en bas à droite indique qu’un point a probablement une influence trop forte sur les données : le point 21 se trouve au-delà de la ligne rouge poitillée qui indique une distance de Cook de 0.5. Il s’agit de la dernière observation du tableau de données. Nous avons donc deux options :
 1. considérer que ce point est tout à fait normal et que nous n’avons aucune raison de l’exclure de l’analyse. Alors, les résultats énoncés plus haut restent totalement valides.
 2. considérer que ce point est anormal (il faudrait savoir en détail comment les mesures ont été faites, et mieux connaître les données, les joueurs…) et le retirer du tableau de données. Il faut alors refaire l’analyse. Si on retire ce point, il faut avoir une bonne raison pour cela.</p>
 <p>Si on ne retire pas le point problématique, voilà ce que nous pouvons dire au final.</p>
-<pre class="sourceCode r"><code class="sourceCode r">hockey <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> FaceWidthHeightRatio, <span class="dt">y =</span> PenaltyMinutes)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</code></pre>
-<p><img src="figure/unnamed-chunk-142-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" title="1">hockey <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb225-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> FaceWidthHeightRatio, <span class="dt">y =</span> PenaltyMinutes)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb225-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb225-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="figure/unnamed-chunk-141-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>L’intervalle de confiance de la régression est représenté sur ce graphique. On constate qu’il est malgré tout assez large, ce qui reflète l’incertitude importante associée à la relation que nous venons de mettre en évidence. Le <span class="math inline">\(R^2\)</span> ajusté de la régression vaut 0.25 (voir plus haut), ce qui montre bien que le ratio largeur/longueur du visage joue finalement un rôle assez modeste quand on cherche à expliquer le comportement agressif.</p>
 <p>Si maintenant, on décide de retirer le point identifié dans l’analyse des résidus comme ayant une influence problématique (celui pour lequel la valeur dépasse 2 sur l’axe des <code>x</code>), les résultats de la régression sont fortement modifiés :</p>
-<pre class="sourceCode r"><code class="sourceCode r">hockey <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(FaceWidthHeightRatio<span class="op">&lt;</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> FaceWidthHeightRatio, <span class="dt">y =</span> PenaltyMinutes)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="dv">3</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</code></pre>
-<p><img src="figure/unnamed-chunk-143-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1">hockey <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb226-2" title="2"><span class="st">  </span><span class="kw">filter</span>(FaceWidthHeightRatio<span class="op">&lt;</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb226-3" title="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> FaceWidthHeightRatio, <span class="dt">y =</span> PenaltyMinutes)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb226-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb226-5" title="5"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb226-6" title="6"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="figure/unnamed-chunk-142-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>La pente de la droite de régression est bien plus faible. Et une nouvelle régression linéaire sans le point problématique arrive à une conclusion opposée à celle obtenue précédemment :</p>
-<pre class="sourceCode r"><code class="sourceCode r">reg3 &lt;-<span class="st"> </span><span class="kw">lm</span>(PenaltyMinutes <span class="op">~</span><span class="st"> </span>FaceWidthHeightRatio, 
-           <span class="dt">data =</span> hockey <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(FaceWidthHeightRatio<span class="op">&lt;</span><span class="dv">2</span>))
-<span class="kw">summary</span>(reg3)</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1">reg3 &lt;-<span class="st"> </span><span class="kw">lm</span>(PenaltyMinutes <span class="op">~</span><span class="st"> </span>FaceWidthHeightRatio, </a>
+<a class="sourceLine" id="cb227-2" title="2">           <span class="dt">data =</span> hockey <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(FaceWidthHeightRatio<span class="op">&lt;</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb227-3" title="3"><span class="kw">summary</span>(reg3)</a></code></pre></div>
 <pre><code>
 Call:
 lm(formula = PenaltyMinutes ~ FaceWidthHeightRatio, data = hockey %&gt;% 
@@ -476,17 +477,19 @@ F-statistic: 2.827 on 1 and 18 DF,  p-value: 0.11</code></pre>
           </div>
         </div>
       </div>
-<a href="seance-4-correlations-et-regressions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="séance-4-corrélations-et-régressions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -526,8 +529,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

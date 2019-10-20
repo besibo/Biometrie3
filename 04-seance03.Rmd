@@ -22,7 +22,7 @@ Vous aurez également besoin des jeux de données suivants disponibles sur l'ENT
 
 ### Principe
 
-Lorsque des variables numériques sont associées ont dit qu'elles sont **corrélées**. Par exemple, la taille du cerveau la taille du corps sont corrélées positivement parmi les espèces de mammifères. Les espèces de grande taille ont tendance à avoir un cerveau plus grand et les petites espèces ont tendance à avoir un cerveau plus petit.  
+Lorsque des variables numériques sont associées ont dit qu'elles sont **corrélées**. Par exemple, la taille du cerveau et la taille du corps sont corrélées positivement parmi les espèces de mammifères. Les espèces de grande taille ont tendance à avoir un cerveau plus grand et les petites espèces ont tendance à avoir un cerveau plus petit.  
 Le coefficient de corrélation est la quantité qui décrit la force et la direction de l'association entre deux variables numériques mesurées sur un échantillon de sujets ou d'unités d'observation. La corrélation reflète la quantité de dispersion dans un nuage de points entre deux variables.  Contrairement à la régression linéaire, la corrélation n'ajuste aucune droite à des données et ne permet donc pas de mesurer à quel point le changement d'une variable entraîne un changement rapide ou lent de l'autre variable.
 
 Ainsi, sur la figure ci-dessous, le coefficient de corrélation entre `X` et `Y` est le même pour les deux  graphiques : il vaut 1.
@@ -130,6 +130,7 @@ skim(birds)
 ```
 
 Outre le facteur `ID` que nous venons de créer, nous disposons donc de 2 variables numériques qui ne contiennent pas de données manquantes. 
+
 1. La variable `nVisitsNestling`, qui indique le nombre de visites agressives reçues par les individus suivis lorsqu'ils étaient de jeunes poussins, varie de 1 à 31, pour une moyenne de 13.12, une médiane proche (13) mais un écart-type important.
 2. La variable `futureBehavior` varie de -0.92 à 0.39, avec une moyenne et une médiane proche de 0 (-0.12 et -0.1 respectivement).
 
@@ -142,12 +143,13 @@ birds %>%
 ```
 
 Le résultat est obtenu sous la forme d'une matrice symétrique : 
-- Sur la diagonale, les corrélation valent 1 (le coefficient d'une variable avec elle-même vaut toujours 1).
+
+- Sur la diagonale, les corrélations valent 1 (le coefficient de corrélation d'une variable avec elle-même vaut toujours 1).
 - En dehors de la diagonale, on trouve le coefficient de corrélation linéaire entre les 2 variables d'intérêt. Ici, il est positif et vaut 0.533, ce qui est une valeur relativement élevée dans le domaine de la biologie ou de l'écologie.
 
 #### Exploration graphique
 
-Afin de savoir si la valeur moyenne de $r$ calculée précédemment reflète une relation linéaire mais moyenne, ou une relation qui n'est pas vraiment linéaire, nous devons faire un buage de points :
+Afin de savoir si la valeur moyenne de $r$ calculée précédemment reflète une relation linéaire mais moyenne, ou une relation qui n'est pas vraiment linéaire, nous devons faire un nuage de points :
 
 ```{r}
 birds %>% 
@@ -164,7 +166,7 @@ On constate ici que la corrélation moyenne obtenue plus haut est due au fait qu
 
 Comme pour la plupart des grandeurs calculées à partir d'un échantillon, la corrélation $r$ n'est qu'un estimateur de la corrélation qui existe réellement entre ces deux variables dans la population générale. Dans la population générale, la corrélation linéaire est généralement notée $\rho$. Son estimateur, $r$ est donc souvent noté $\hat{\rho}$.
 
-Les test d'hypothèse que nous allons faire maintenant permet de vérifier si le coefficient de corrélation $\rho$ dans la population générale est différent de 0 ou non. Les hypothèses de ce test sont les suivantes :
+Le test d'hypothèses que nous allons faire maintenant permet de vérifier si le coefficient de corrélation $\rho$ dans la population générale est différent de 0 ou non. Les hypothèses de ce test sont les suivantes :
 
 - H$_0$ : le coefficient de corrélation entre les deux variables étudiées vaut 0 dans la population générale ($\rho = 0$)
 - H$_1$ : le coefficient de corrélation entre les deux variables étudiées est différent de 0 dans la population générale ($\rho \neq 0$)
@@ -177,7 +179,7 @@ Ce test est réalisé dans `R` grâce à la fonction `cor.test()`.
 cor.test(birds$nVisitsNestling, birds$futureBehavior)
 ```
 
-Le test réalisé ici est le **test de corrélation de Pearson**. Il s'agit d'un test paramétrique dont les conditions d'application sont expliquées plus bas. Comme pour tous les tests examiné jusqu'ici, les premières lignes des résultats fournissent toutes les informations utiles au sujet du test. Ici, on peut dire :
+Le test réalisé ici est le **test de corrélation de Pearson**. Il s'agit d'un test paramétrique dont les conditions d'application sont expliquées plus bas. Comme pour tous les tests examinés jusqu'ici, les premières lignes des résultats fournissent toutes les informations utiles au sujet du test. Ici, on peut dire :
 
 > Au seuil $\alpha = 0.05$, le test de corrélation de Pearson a permis de rejeter l'hypothèse nulle selon laquelle la corrélation entre le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants ($t = 2.96$, $ddl = 22$, $p = 0.007$).
 

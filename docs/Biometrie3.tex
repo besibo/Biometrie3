@@ -111,7 +111,7 @@
 \usepackage{titling}
 
 % Create subtitle command for use in maketitle
-\newcommand{\subtitle}[1]{
+\providecommand{\subtitle}[1]{
   \posttitle{
     \begin{center}\large#1\end{center}
     }
@@ -127,7 +127,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-04-20}
+    \date{2019-10-20}
 
 \usepackage[french]{babel}
 \usepackage{mathspec}  % \usepackage{fontspec}
@@ -154,10 +154,10 @@
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
-\hypertarget{preambule}{%
-\section{Préambule}\label{preambule}}
+\hypertarget{pruxe9ambule}{%
+\section{Préambule}\label{pruxe9ambule}}
 
-Ce livre contient l'ensemble du matériel (contenus, exemples, exercices\ldots{}) nécessaire à la réalisation des travaux pratiques et TEA de biométrie 3. Ces travaux pratiques ont un seul objectif principal : vous permettre de mettre en œuvre, dans \texttt{RStudio} les méthodes statistiques découvertes en cours magistral et en TD de biométrie 2 (au semestre précédent) et en biométrie 3 depuis début janvier.
+Ce livre contient l'ensemble du matériel (contenus, exemples, exercices\ldots{}) nécessaire à la réalisation des travaux pratiques et TEA de biométrie 3. Ces travaux pratiques ont un seul objectif principal : vous permettre de mettre en œuvre, dans \texttt{RStudio}, les méthodes statistiques découvertes en cours magistral et en TD de biométrie 2 (au semestre précédent) et en biométrie 3 depuis début janvier.
 
 Je considère qu'à ce stade, vous devez être à l'aise dans RStudio pour effectuer les tâches suivantes :
 
@@ -167,9 +167,9 @@ Je considère qu'à ce stade, vous devez être à l'aise dans RStudio pour effec
 \item
   Importer des jeux de données dans RStudio.
 \item
-  Manipuler des tableaux de données avec \texttt{tidyr} (Wickham \& Henry, \protect\hyperlink{ref-R-tidyr}{2018}) pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.
+  Manipuler des tableaux de données avec \texttt{tidyr} (Wickham \& Henry, \protect\hyperlink{ref-R-tidyr}{2019}) pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.
 \item
-  Faire des graphiques exploratoires avec \texttt{ggplot2} (Wickham, Chang, et al., \protect\hyperlink{ref-R-ggplot2}{2018}) pour visualiser des données.
+  Faire des graphiques exploratoires avec \texttt{ggplot2} (Wickham, Chang, et al., \protect\hyperlink{ref-R-ggplot2}{2019}) pour visualiser des données.
 \item
   Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonction \texttt{filter()}, \texttt{select()}, \texttt{arrange()}, \texttt{mutate()}, \texttt{summarise()} et \texttt{group\_by()} du package \texttt{dplyr} (Wickham, François, et al., \protect\hyperlink{ref-R-dplyr}{2019}).
 \item
@@ -237,7 +237,7 @@ Au début de chaque nouvelle séance de TP, vous devrez ensuite effectuer les op
 \end{Highlighting}
 \end{Shaded}
 
-La liste des fichiers contenus dans votre répertoire de travail (donc le nom des fichiers que vous avez téléchargé sur l'ENT) devrait apparaître dans la console. Si ce n'est pas le cas, recommencez depuis le début. Vous pouvez également vérifier à tout moment si le répertoire de travail utilisé par RStudio est bien celui que vous pensez en tapant :
+La liste des fichiers contenus dans votre répertoire de travail (donc le nom des fichiers que vous avez téléchargés sur l'ENT) devrait apparaître dans la console. Si ce n'est pas le cas, recommencez depuis le début. Vous pouvez également vérifier à tout moment si le répertoire de travail utilisé par RStudio est bien celui que vous pensez en tapant :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -267,7 +267,7 @@ Si vous suivez rigoureusement ces étapes, vous devriez être dans la situation 
 
 Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes disponibles sur l'ENT.
 
-Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2017}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham, Hester, et al., \protect\hyperlink{ref-R-readr}{2018}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (McNamara et al., \protect\hyperlink{ref-R-skimr}{2019}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2018}), qui permet d'effectuer le test de comparaison de variances de Levene :
+Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2017}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham et al., \protect\hyperlink{ref-R-readr}{2018}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Quinn et al., \protect\hyperlink{ref-R-skimr}{2019}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2019}), qui permet d'effectuer le test de comparaison des variances de Levene :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -307,8 +307,8 @@ Vous aurez également besoin des jeux de données suivants :
   \texttt{Testosterone.csv}
 \end{itemize}
 
-\hypertarget{comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique}{%
-\subsection{Comparaison de la moyenne d'une population à une valeur théorique}\label{comparaison-de-la-moyenne-dune-population-a-une-valeur-theorique}}
+\hypertarget{comparaison-de-la-moyenne-dune-population-uxe0-une-valeur-thuxe9orique}{%
+\subsection{Comparaison de la moyenne d'une population à une valeur théorique}\label{comparaison-de-la-moyenne-dune-population-uxe0-une-valeur-thuxe9orique}}
 
 \hypertarget{Explo}{%
 \subsubsection{Exploration préalable des données}\label{Explo}}
@@ -345,7 +345,7 @@ Vous stockerez les données dans un objet que vous nommerez \texttt{Temperature}
 # ... with 15 more rows
 \end{verbatim}
 
-Ce tableau contient les températures corporelles de 25 adultes en bonne santé choisis au hasard parmi la population américaine. On souhaite examiner la croyance populaire indiquant que la température moyenne d'adultes en bomme santé vaut 37ºC.
+Ce tableau contient les températures corporelles de 25 adultes en bonne santé choisis au hasard parmi la population américaine. On souhaite examiner la croyance populaire indiquant que la température moyenne d'adultes en bonne santé vaut 37ºC.
 
 La première chose à faire quand on travaille avec des données inconnues, c'est d'examiner les données brutes. Ici, les données sont importées au format \texttt{tibble}, donc seules les premières lignes sont visibles. Pour visualiser l'ensemble du tableau, utilisez la fonction \texttt{View()} :
 
@@ -363,7 +363,7 @@ On constate ici 2 choses que nous allons modifier :
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  la première colonne, intitulé \texttt{inidividual}, n'est pas véritablement une variable. Cette colonne ne contient qu'un identifiant qui est en fait identique au numéro de ligne. Nous allons donc supprimer cette colonne
+  la première colonne, intitulé \texttt{individual}, n'est pas véritablement une variable. Cette colonne ne contient qu'un identifiant qui est en fait identique au numéro de ligne. Nous allons donc supprimer cette colonne
 \item
   les températures sont exprimées en degrés Fahrenheit, ce qui rend leur lecture difficile pour nous qui sommes habitués à utiliser le système métrique et les degrés Celsius. Nous allons donc convertir les températures en degrés Celsius grâce à la formule suivante :
 \end{enumerate}
@@ -402,24 +402,32 @@ On constate ici 2 choses que nous allons modifier :
 Il nous est maintenant possible d'examiner à nouveau les données avec la fonction \texttt{View()}. Avec des valeurs de températures comprises entre 36.3 ºC et 37.8 ºC, il n'y a visiblement pas de données aberrantes.
 
 C'est toujours la première chose à faire : regarder les données brutes pour repérer :
-- La nature des variables présentes.
-- Les variables inutiles qui pourront être supprimées ou négligées.
-- Les unités des variables utiles, afin de pouvoir les convertir si nécessaire.
-- Les valeurs manquantes ou aberrantes qui demanderont toujours un soin particulier.
+
+\begin{itemize}
+\tightlist
+\item
+  La nature des variables présentes.
+\item
+  Les variables inutiles qui pourront être supprimées ou négligées.
+\item
+  Les unités des variables utiles, afin de pouvoir les convertir si nécessaire.
+\item
+  Les valeurs manquantes ou aberrantes qui demanderont toujours une attention particulière.
+\end{itemize}
 
 Une fois l'examen préliminaire des données réalisé, on peut passer au calcul des statistiques descriptives.
 
 \hypertarget{statistiques-descriptives}{%
 \paragraph{Statistiques descriptives}\label{statistiques-descriptives}}
 
-On s'intéresse ici au calcul de grandeurs statistiques nous apportant des renseignement sur la distribution des valeurs de l'échantillon. Les questions auxquelles on tente de répondre à ce stade sont les suivantes :
+On s'intéresse ici au calcul de grandeurs statistiques nous apportant des renseignements sur la distribution des valeurs de l'échantillon. Les questions auxquelles on tente de répondre à ce stade sont les suivantes :
 
 \begin{itemize}
 \tightlist
 \item
-  Quelle est la tendance moyenne
+  Quelle est la tendance moyenne.
 \item
-  Quelle est la dispersion des données autour de la moyenne
+  Quelle est la dispersion des données autour de la moyenne.
 \end{itemize}
 
 Pour répondre à ces questions, on peut faire appel à de multiples fonctions. J'en évoquerai ici seulement 3 qui permettent d'obtenir la plupart des informations dont nous avons besoin très simplement :
@@ -454,7 +462,7 @@ Comme son nom l'indique, la fonction \texttt{summary()} renvoie un résumé des 
 
 Ces valeurs seront presques toutes reprises sur le graphique de type ``boîte à moustaches'' que nous verrons plus bas.
 
-On constate ici que la moyenne et la médiane sont très proches. La distribution des température doit donc être à peut près symmétrique, avec à peu près autant de valeurs au dessus que de valeurs en dessous de la moyenne.
+On constate ici que la moyenne et la médiane sont très proches. La distribution des températures doit donc être à peut près symmétrique, avec à peu près autant de valeurs au-dessus que de valeurs en dessous de la moyenne.
 
 La seconde fonction utile est la fonction \texttt{IQR()}, comme ``Inter Quartile Range'' (ou intervalle inter-quartile). Cette fonction renvoie l'étendue de l'intervalle inter-quartile, c'est à dire la valeur du troisième quartile moins la valeur de premier quartile. Attention, cette fonction a besoin d'un vecteur en guise d'argument, or nos données sont stockées sous forme de \texttt{tibble}. Nous allons donc utiliser la fonction \texttt{pull()} du package \texttt{dplyr} afin de transformer (momentanément) la colonne \texttt{temperature} du tableau \texttt{Temp\_clean} en vecteur :
 
@@ -485,33 +493,31 @@ Skim summary statistics
  n obs: 25 
  n variables: 1 
 
--- Variable type:numeric -----------------------------------
-    variable missing complete  n  mean   sd    p0   p25 p50   p75
- temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22
-  p100     hist
- 37.78 ▅▃▁▇▇▂▂▁
+-- Variable type:numeric -----------------------------------------------------------------------
+    variable missing complete  n  mean   sd    p0   p25 p50   p75  p100
+ temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22 37.78
+     hist
+ ▅▃▁▇▇▂▂▁
 \end{verbatim}
 
-(Attention : si vous lisez ce document au format pdf, vous ne pourrez pas visualiser correctement la totalité des résultats produits par cette fonction. Consultez la version html de ce document, ou tapez la commande dans RStudio).
-
-Toute comme \texttt{summary()}, la fonction \texttt{skim()} renvoie les valeurs minimales et maximales, les premiers et troisièmes quartiles ainsi que la moyenne et la médiane. Elle nous indique en outre la valeur de l'écart-type de l'échantillon, ainsi que le nombre d'observation et le nombre de données manquantes. Enfin, elle fournit un histogramme très schématique et sans échelle. Cet histogramme nous permet de nous faire une première idée de la distribution des données.
+Toute comme \texttt{summary()}, la fonction \texttt{skim()} renvoie les valeurs minimales et maximales, les premiers et troisièmes quartiles ainsi que la moyenne et la médiane. Elle nous indique en outre la valeur de l'écart-type de l'échantillon, ainsi que le nombre d'observations et le nombre de données manquantes. Enfin, elle fournit un histogramme très schématique et sans échelle. Cet histogramme nous permet de nous faire une première idée de la distribution des données.
 
 Outre ces 3 fonctions (\texttt{summary()}, \texttt{IQR()}, et \texttt{skim()}), il est bien sûr possible de calculer toutes ces valeurs manuellement si besoin :
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{mean()} permet de calculer la moyenne
+  \texttt{mean()} permet de calculer la moyenne.
 \item
-  \texttt{median()} permet de calculer la médiane
+  \texttt{median()} permet de calculer la médiane.
 \item
-  \texttt{min()} et \texttt{max()} permettent de calculer les valeurs minimales et maximales respectivement
+  \texttt{min()} et \texttt{max()} permettent de calculer les valeurs minimales et maximales respectivement.
 \item
-  \texttt{quantile()} permet de calculer les quartiles
+  \texttt{quantile()} permet de calculer les quartiles.
 \item
-  \texttt{sd()} permet de calculer l'écart-type
+  \texttt{sd()} permet de calculer l'écart-type.
 \item
-  \texttt{var()} permet de calculer la variance
+  \texttt{var()} permet de calculer la variance.
 \end{itemize}
 
 Toutes ces fonctions prennent seulement un vecteur en guise d'argument. Il faut donc procéder comme avec \texttt{IQR()} pour les utiliser. Par exemple, pour calculer la variance, on peut taper :
@@ -562,7 +568,7 @@ Ici, il s'agit d'examiner la distribution des données. Pour cela, 3 types de gr
 
 \begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-15-1} \end{center}
 
-Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut tenir compte de l'over-plotting. Si vous ne vous rappelez plus de quoi il s'agit, consultez \href{https://besibo.github.io/DA/viz.html\#over-plotting}{la section 4.3.4} du livre en ligne de Biométrie 2. Globalement, pour visualiser correctement les données, on va jouer soit sur la transparence des points, soit sur l'ajout d'un bruit aléatoire horizontal qui permettra de distinguer plsu facilement les points,m et de repérer les zones où les points sont abondants ou rares :
+Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut tenir compte de l'over-plotting. Si vous ne vous rappelez plus de quoi il s'agit, consultez \href{https://besibo.github.io/DA/viz.html\#over-plotting}{la section 4.3.4} du livre en ligne de Biométrie 2. Globalement, pour visualiser correctement les données, on va jouer soit sur la transparence des points, soit sur l'ajout d'un bruit aléatoire horizontal qui permettra de distinguer plus facilement les points et de repérer les zones où les points sont abondants ou rares :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -613,7 +619,7 @@ On constate ici que la répartition des points est assez régulière, avec néan
 
 Si vous ne vous rappelez-plus ce qu'est un histogramme où comment le faire, ou la signification de l'argument \texttt{bins}, relisez \href{https://besibo.github.io/DA/viz.html\#histogram}{la section 4.5} du livre en ligne de Biométrie 2.
 
-Notez ici que la forme de cet histogramme est très proche de celle présenté plus tôt pas la fonction \texttt{skim()}. Cet histogramme nous apprend qu'en dehors d'un ``trou'' autour de la température 36.75 ºC, la distribution des données est proche d'une courbe en cloche. Il y a fort à parier qu'un test de normalité concluerait à la normalité des données de cet échantillon.
+Notez ici que la forme de cet histogramme est très proche de celle présenté plus tôt par la fonction \texttt{skim()}. Cet histogramme nous apprend qu'en dehors d'un ``trou'' autour de la température 36.75 ºC, la distribution des données est proche d'une courbe en cloche. Il y a fort à parier qu'un test de normalité concluerait à la normalité des données de cet échantillon.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -649,32 +655,32 @@ Comme pour le stripchart présenté plus haut, l'axe des abscisses n'a ici aucun
 
 On retrouve sur ce graphique tous les éléments obtenus avec la fonction \texttt{summary()} à l'exception de la moyenne. Assurez-vous que vous êtes bien capables d'identifier tous ces éléments sur le graphique. Assurez-vous aussi que la signification de l'encoche (obtenue avec l'argument \texttt{notch\ =\ TRUE}) est bien claire pour vous. Comme toujours, si ce n'est pas le cas, consultez \href{https://besibo.github.io/DA/viz.html\#les-boites-a-moustaches-ou-boxplots}{la section dédiée aux boxplots} dans le livre en ligne de Biométrie 2.
 
-Pour conclure, ces 3 types de représentations graphiques (nuages de points ou stripchart, histogrammes et boxplots) sont complémentaires. Ces trois types de représentations graphiques permettent de visualiser la distribution d'une variable numérique. Les nuages de points permettent de voir toutes les données brutes. Les histogrammes résument les données en quelques valeurs : une valeur d'abondance pour chaque classe de taille. Les boxplots résument encore plus les données avec seulement 7 valeurs qui caractérisent la distribution :
+Pour conclure, ces 3 types de représentations graphiques (nuages de points ou stripchart, histogrammes et boxplots) sont complémentaires. Ces trois types de représentations graphiques permettent de visualiser la distribution d'une variable numérique. Les nuages de points permettent de voir toutes les données brutes. Les histogrammes résument les données en quelques valeurs : une valeur d'abondance pour chaque classe de taille. Les boxplots résument encore plus les données avec seulement 7 valeurs qui caractérisent la distribution (voir figure \ref{fig:compdistr} ci-dessous).
 
 \begin{figure}[htpb]
 
-{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-21-1} 
+{\centering \includegraphics[width=0.9\linewidth]{figure/compdistr-1} 
 
 }
 
-\caption{Comparaison de 2 types de représentations graphiques}\label{fig:unnamed-chunk-21}
+\caption{Comparaison de 2 types de représentations graphiques}\label{fig:compdistr}
 \end{figure}
 
-À chaque nouvelle analyse statistique, il sera donc important de visualiser les données afin de repérer les éventuels problèmes, et afin d'anticiper sur les résultats que fourniront les tests d'hypothèses ultérieurs. Ici, l'examen de ces graphiques nous permet de dire les choses suivantes :
+À chaque nouvelle analyse statistique, il sera donc important de visualiser les données afin de repérer les éventuels problèmes et afin d'anticiper sur les résultats que fourniront les tests d'hypothèses ultérieurs. Ici, l'examen de ces graphiques nous permet de dire les choses suivantes :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Il n'y a visiblement pas de données aberrantes
+  Il n'y a visiblement pas de données aberrantes.
 \item
-  La distribution des données semble suivre à peu près la loi Normale
+  La distribution des données semble suivre à peu près la loi Normale.
 \item
   La médiane et son intervalle de confiance à 95\% sont centrés sur la valeur 37ºC. Un test devrait donc arriver à la conclusion que la température corporelle des adultes n'est pas significativement différente de 37ºC. Néanmoins, la largeur de l'intervalle de confiance à 95\% est assez grande, ce qui indique une incertitude relativement élevée. Une plus grande quantité de données permettrait certainement d'obtenir plus de précision.
 \end{enumerate}
 
-\hypertarget{le-test-parametrique}{%
-\subsubsection{Le test paramétrique}\label{le-test-parametrique}}
+\hypertarget{le-test-paramuxe9trique}{%
+\subsubsection{Le test paramétrique}\label{le-test-paramuxe9trique}}
 
 Le test permettant de comparer la moyenne d'une population à une valeur théorique, fixée par l'utilisateur, est le \textbf{test de Student à un échantillon}. Il s'agit d'un test paramétrique très puissant. Comme tous les tests paramétriques, certaines conditions d'application doivent être vérifiées avant de pouvoir l'appliquer.
 
@@ -689,14 +695,20 @@ Les conditions d'application du test de Student à un échantillon sont les suiv
 \item
   Les données de l'échantillon sont issues d'un \textbf{échantillonnage aléatoire} au sein de la population générale. Cette condition est partagée par toutes les méthodes que nous verrons dans ces TP. En l'absence d'informations sur la façon dont l'échantillonnage a été réalisé, on considère que cette condition est remplie. Il n'y a pas de moyen statistique de le vérifier, cela fait uniquement référence à la stratégie d'échantillonnage et à la rigueur de la procédure mise en œuvre lors de l'acquisition des données.
 \item
-  La variable étudiée doit suivre une \textbf{distribution Normale} dans la population générale. Nous allons vérifier cette condition d'application avec un test de Normalité de Shapiro-Wilk.
+  La variable étudiée doit suivre une \textbf{distribution Normale} dans la population générale. Nous allons vérifier cette condition d'application avec un test de normalité de Shapiro-Wilk.
 \end{enumerate}
 
-Comme pour tous les tests statistiques que nous allons réaliser lors de ces séances de TP et TEA, nous devons commencer par spécifier les hypothèses nulles et alternatives aoinsi que la valeur du seuil \(\alpha\) que nous allons utiliser. Ici, nous utiliserons toujours le seuil \(\alpha = 0.05\).
+Comme pour tous les tests statistiques que nous allons réaliser lors de ces séances de TP et TEA, nous devons commencer par spécifier les hypothèses nulles et alternatives ainsi que la valeur du seuil \(\alpha\) que nous allons utiliser. Ici, nous utiliserons toujours le seuil \(\alpha = 0.05\).
 
 Pour un test de normalité, les hypothèses sont toujours les suivantes :
-- H\(_0\) : la variable étudiée suit une distribution Normale dans la population générale.
-- H\(_1\) : la variable étudiée ne suit pas une distribution Normale dans la population générale.
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : la variable étudiée suit une distribution Normale dans la population générale.
+\item
+  H\(_1\) : la variable étudiée ne suit pas une distribution Normale dans la population générale.
+\end{itemize}
 
 Le test de Shapiro-Wilk se réalise de la façon suivante :
 
@@ -716,10 +728,10 @@ data:  .
 W = 0.97216, p-value = 0.7001
 \end{verbatim}
 
-\texttt{W} est la statistique du test. Elle permet à RStudio de calculer la \emph{p}-value du test. Ici, \(p > \alpha\). On ne peut donc pas rejeter l'hypothèse nulle de noramlité : on ne peut pas exclure que dans la population générale, la température suive bel et bien une distribution Normale. Les conditions d'application du test de Student sont bien vérifiées.
+\texttt{W} est la statistique du test. Elle permet à RStudio de calculer la \emph{p}-value du test. Ici, \(p > \alpha\). On ne peut donc pas rejeter l'hypothèse nulle de normalité : on ne peut pas exclure que dans la population générale, la température suive bel et bien une distribution Normale. Les conditions d'application du test de Student sont bien vérifiées.
 
-\hypertarget{realisation-du-test-et-interpretation}{%
-\paragraph{Réalisation du test et interprétation}\label{realisation-du-test-et-interpretation}}
+\hypertarget{ruxe9alisation-du-test-et-interpruxe9tation}{%
+\paragraph{Réalisation du test et interprétation}\label{ruxe9alisation-du-test-et-interpruxe9tation}}
 
 Puisque les conditions d'application du test de Student à un échantillon sont vérifiées, nous devons maintenant spécifier les hypothèses nulles et alternatives que nous allons utiliser pour réaliser ce test :
 
@@ -755,7 +767,7 @@ mean of x
  36.95778 
 \end{verbatim}
 
-Sur la première ligne, R nous confirme que nous avons bien réalisé un test de STudent à un échantillon. La prmière ligne de résutats fournit la valeur du \(t\) calculé (ici, -0.56), le nombre de degrés de libertés (ici, \texttt{df} = 24), et la \(p\)-value (ici, 0.58, soit une valeur supérieure à \(alpha\)). Cette première ligne contient donc tous les résultats du test qu'il conviendrait de rappeler dans un rapport. On devrait ainsi dire :
+Sur la première ligne, R nous confirme que nous avons bien réalisé un test de Student à un échantillon. La première ligne de résultats fournit la valeur du \(t\) calculé (ici, -0.56), le nombre de degrés de libertés (ici, \texttt{df} = 24), et la \(p\)-value (ici, 0.58, soit une valeur supérieure à \(\alpha\)). Cette première ligne contient donc tous les résultats du test qu'il conviendrait de rappeler dans un rapport. On devrait ainsi dire :
 
 \begin{quote}
 Au seuil \(\alpha\) de 5\%, on ne peut pas rejeter l'hypothèse nulle \(\mu = 37\) (\(t = -0.56\), ddl = 24, \(p = 0.58\)). Les données observées sont donc compatibles avec l'hypothèse selon laquelle la température corporelle moyenne des adultes en bonne santé vaut 37ºC.
@@ -763,12 +775,12 @@ Au seuil \(\alpha\) de 5\%, on ne peut pas rejeter l'hypothèse nulle \(\mu = 37
 
 C'est de cette manière que vous devriez rapporter les resultats de ce test dans vos comptes-rendus et rapports à partir de maintenant.
 
-Dans les résultats du test, la ligne suivante (\texttt{alternative\ hypothesis:\ ...}) \textbf{ne donne pas la conclusion du test}. Il s'agit simplement d'un rappel concernant l'hypothèse alternative qui a été utilisée pour réaliser le test. Ici, l'hypothèse alternative utilisée est une hypothèse bilatérale (\(\mu \neq 37\)). Nous verrons plus tard comment spécifier des hypothèse alternatives uni-latérales, même si la plupart du temps, mieux vaut s'abstenir de réaliser de tels tests (à moins bien sûr d'avoir une bonne raison de la faire).
+Dans les résultats du test, la ligne suivante (\texttt{alternative\ hypothesis:\ ...}) \textbf{ne donne pas la conclusion du test}. Il s'agit simplement d'un rappel concernant l'hypothèse alternative qui a été utilisée pour réaliser le test. Ici, l'hypothèse alternative utilisée est une hypothèse bilatérale (\(\mu \neq 37\)). Nous verrons plus tard comment spécifier des hypothèses alternatives uni-latérales, même si la plupart du temps, mieux vaut s'abstenir de réaliser de tels tests (à moins bien sûr d'avoir une bonne raison de le faire).
 
-Les résultats fournis ensuite concernent non plus le test statistique à proprement parler, mais l'estimation. Ici, la moyenne de l'échantillon est fournie. Il s'agit de la meilleure estimation possible de la moyenne de la population : \(\bar{x} = \hat{\mu} = 36.96\). Comme pour toutes les estimations, cette valeur est entachée d'oncertitude liée à la fluctuation d'échantillonnage. L'intervalle de confiance à 95\% de cette estimation de moyenne est donc également fourni : \([36.80 ; 37.11]\). Autrement dit, cet intervalle contient les valeurs les plus vraissemblables pour la véritable valeur de moyenne dans la population générale. Cela confirme bien que nous n'avons pas prouvé au sens strict que la moyenne de la population vaut 37ºC. Nous avons en réalité montré que nous ne pouvions pas exclure que la moyenne de la population générale soit de 37ºC. Cette valeur est en effet comprise dans l'intervalle de confiance. On ne peut donc pas l'exclure. Mais beaucoup d'autres valeurs figurent aussi dans cet intervalle. Il est donc tout à fait possible que la moyenne soit en réalité différente de 37ºC. Pour en être sûr, il faudrait probablement un échantillon de plus grande taille afin de limiter l'incertitude.
+Les résultats fournis ensuite concernent, non plus le test statistique à proprement parler, mais l'estimation. Ici, la moyenne de l'échantillon est fournie. Il s'agit de la meilleure estimation possible de la moyenne de la population : \(\bar{x} = \hat{\mu} = 36.96\). Comme pour toutes les estimations, cette valeur est entachée d'incertitude liée à la fluctuation d'échantillonnage. L'intervalle de confiance à 95\% de cette estimation de moyenne est donc également fourni : \([36.80 ; 37.11]\). Autrement dit, cet intervalle contient les valeurs les plus vraissemblables pour la véritable valeur de moyenne dans la population générale. Cela confirme bien que nous n'avons pas prouvé au sens strict que la moyenne de la population vaut 37ºC. Nous avons en réalité montré que nous ne pouvions pas exclure que la moyenne de la population générale soit de 37ºC. Cette valeur est en effet comprise dans l'intervalle de confiance. On ne peut donc pas l'exclure : nos données sont compatibles avec cette hypothèse. Mais beaucoup d'autres valeurs figurent aussi dans cet intervalle. Il est donc tout à fait possible que la moyenne soit en réalité différente de 37ºC. Pour en être sûr, il faudrait probablement un échantillon de plus grande taille afin de limiter l'incertitude.
 
-\hypertarget{lalternative-non-parametrique}{%
-\subsubsection{L'alternative non paramétrique}\label{lalternative-non-parametrique}}
+\hypertarget{lalternative-non-paramuxe9trique}{%
+\subsubsection{L'alternative non paramétrique}\label{lalternative-non-paramuxe9trique}}
 
 Si jamais les conditions d'application du test de Student à un échantillon n'étaient pas remplies, il faudrait alors réaliser son équivalent non paramétrique : le \textbf{test de Wilcoxon des rangs signés}. Ce test est moins puissant que son homologue paramétrique. On ne l'effectue donc que lorsque l'on n'a pas le choix :
 
@@ -781,13 +793,13 @@ Si jamais les conditions d'application du test de Student à un échantillon n'�
 \end{Shaded}
 
 \begin{verbatim}
-Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot
-compute exact p-value with ties
+Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot compute
+exact p-value with ties
 \end{verbatim}
 
 \begin{verbatim}
-Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot
-compute exact confidence interval with ties
+Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot compute
+exact confidence interval with ties
 \end{verbatim}
 
 \begin{verbatim}
@@ -821,16 +833,16 @@ Enfin, les tests de Wilcoxon renvoient souvent des messages d'avretissement. Il 
 \hypertarget{exercice-dapplication}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication}}
 
-Le fichier \texttt{Temperature2.csv} contient les données brutes d'une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d'examiner vos données comme nous l'avons décrit dans la section \ref{Explo}, afin de savoir où vous aller, de repérer les éventuelles données manquantes ou aberrantes.
+Le fichier \texttt{Temperature2.csv} contient les données brutes d'une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d'examiner vos données comme nous l'avons décrit dans la section \ref{Explo}, afin de savoir où vous allez, de repérer les éventuelles données manquantes ou aberrantes.
 
-\hypertarget{comparaison-de-la-moyenne-de-2-populations-donnees-appariees}{%
-\subsection{Comparaison de la moyenne de 2 populations : données appariées}\label{comparaison-de-la-moyenne-de-2-populations-donnees-appariees}}
+\hypertarget{comparaison-de-la-moyenne-de-2-populations-donnuxe9es-appariuxe9es}{%
+\subsection{Comparaison de la moyenne de 2 populations : données appariées}\label{comparaison-de-la-moyenne-de-2-populations-donnuxe9es-appariuxe9es}}
 
 On s'intéresse ici à la comparaison de 2 séries de données dont les observations sont liées 2 à 2. C'est par exemple le cas lorsque l'on fait subir un tratiement à différents sujets et que l'on souhaite comparer les mesures obtenues avant et après le traitement.
 
 Autrement dit, dans les plans d'expériences appariés, \textbf{les deux traitements} ou modalités \textbf{sont appliqués à chaque unité d'échantillonnage}.
 
-Voici quelques exemples de de situations qui devraient être traitées avec des tests sur données appariées :
+Voici quelques exemples de situations qui devraient être traitées avec des tests sur données appariées :
 
 \begin{itemize}
 \tightlist
@@ -846,7 +858,7 @@ Voici quelques exemples de de situations qui devraient être traitées avec des 
   Test des effets que les conditions socio-économiques ont sur les préférences alimentaires en comparant des vrais jumaux élevés dans des familles adoptives séparées qui diffèrent en termes de conditions socio-économiques.
 \end{itemize}
 
-Les 2 derniers exemples montrent que même des individus séparés peuvent constituer une ``pare statistique'' s'ils partagent un certain nombre de caractéristiques (physiques, environnementales, génétiques, comportementales, etc.) pertinentes pour l'étude.
+Les 2 derniers exemples montrent que même des individus séparés peuvent constituer une ``paire statistique'' s'ils partagent un certain nombre de caractéristiques (physiques, environnementales, génétiques, comportementales, etc.) pertinentes pour l'étude.
 
 \hypertarget{Explo2}{%
 \subsubsection{Exploration préalable des données}\label{Explo2}}
@@ -855,7 +867,7 @@ Ici, nous allons nous intéresser au lien qui pourrait exister entre la producti
 
 Chez de nombreuses espèces, les mâles ont plus de chances d'attirer des femelles s'ils produisent des niveaux de testostérone élevés. Est-ce que la forte production de testostérone de certains mâle a un coût, notamment en terme d'immuno-compétence ? Autrement dit, est-ce que produire beaucoup de testostérone au moment de la reproduction (ce qui fournit un avantage sélectif) se traduit par une immunité plus faible par la suite, et donc une plus forte susceptibilité de contracter des maladies (ce qui constitue donc un désavantage sélectif) ?
 
-Pour étudier cette question, une équipe de chercheurs (Hasselquist et al., \protect\hyperlink{ref-Hasselquist1999}{1999}) a mis en place le dispositif expérimental suivant. Les niveaux de testostérone de 13 carouges à épaulettes mâles ont été artificiellement augmentés par l'implantation chirurgicale d'un microtube perméable contenant de la testostérone. L'immunocompeetence a été mesurée pour chaque oiseau avant et après l'opération chirurgicale. La variable mesurée est la production d'anticorps suite à l'exposition des oiseaux avec un antigène non pathogène mais censé déclencher une réponse immunitaire. Les taux de production d'anticorps sont exprimés en logarithmes de densité optique par minute (\(\ln\frac{mOD}{min}\)).
+Pour étudier cette question, une équipe de chercheurs (Hasselquist et al., \protect\hyperlink{ref-Hasselquist1999}{1999}) a mis en place le dispositif expérimental suivant. Les niveaux de testostérone de 13 carouges à épaulettes mâles ont été artificiellement augmentés par l'implantation chirurgicale d'un microtube perméable contenant de la testostérone. L'immunocompeetence a été mesurée pour chaque oiseau avant et après l'opération chirurgicale. La variable mesurée est la production d'anticorps suite à l'exposition des oiseaux avec un antigène non pathogène mais censé déclencher une réponse immunitaire. Les taux de production d'anticorps sont exprimés en logarithmes de densité optique par minute \(\left(\ln\frac{mOD}{min}\right)\).
 
 \hypertarget{importation-et-examen-visuel-1}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-1}}
@@ -870,25 +882,24 @@ Les données se trouvent dans le fichier \texttt{Testosterone.csv}. Importez ces
 
 \begin{verbatim}
 # A tibble: 13 x 5
-   blackbird beforeImplant afterImplant logBeforeImplant
-       <dbl>         <dbl>        <dbl>            <dbl>
- 1         1           105           85             4.65
- 2         2            50           74             3.91
- 3         3           136          145             4.91
- 4         4            90           86             4.5 
- 5         5           122          148             4.8 
- 6         6           132          148             4.88
- 7         7           131          150             4.88
- 8         8           119          142             4.78
- 9         9           145          151             4.98
-10        10           130          113             4.87
-11        11           116          118             4.75
-12        12           110           99             4.7 
-13        13           138          150             4.93
-# ... with 1 more variable: logAfterImplant <dbl>
+   blackbird beforeImplant afterImplant logBeforeImplant logAfterImplant
+       <dbl>         <dbl>        <dbl>            <dbl>           <dbl>
+ 1         1           105           85             4.65            4.44
+ 2         2            50           74             3.91            4.3 
+ 3         3           136          145             4.91            4.98
+ 4         4            90           86             4.5             4.45
+ 5         5           122          148             4.8             5   
+ 6         6           132          148             4.88            5   
+ 7         7           131          150             4.88            5.01
+ 8         8           119          142             4.78            4.96
+ 9         9           145          151             4.98            5.02
+10        10           130          113             4.87            4.73
+11        11           116          118             4.75            4.77
+12        12           110           99             4.7             4.6 
+13        13           138          150             4.93            5.01
 \end{verbatim}
 
-Visiblement, il n'y a pas de données manquantes mais certaines variables sont inutiles. En réalité, nous aurons besoin des données sous 2 formats disctincts : un format ``large'' pour les statistiques descriptives et les tests d'hypothèse, et un format ``long'' pour les représentations graphiques. Et dans tous les cas, l'identifiant individuel devrait être considéré comme un facteur, et non comme une variable numérique comme c'est le cas actuellement.
+Visiblement, il n'y a pas de données manquantes mais certaines variables sont inutiles. En réalité, nous aurons besoin des données sous 2 formats disctincts : un format ``large'' pour les statistiques descriptives et les tests d'hypothèses, et un format ``long'' pour les représentations graphiques. Et dans tous les cas, l'identifiant individuel devrait être considéré comme un facteur, et non comme une variable numérique comme c'est le cas actuellement.
 
 Commençons par créer un tableau ``large'' pour les statistiques descriptives :
 
@@ -997,20 +1008,17 @@ Skim summary statistics
  n obs: 13 
  n variables: 3 
 
--- Variable type:factor ------------------------------------
+-- Variable type:factor ------------------------------------------------------------------------
  variable missing complete  n n_unique             top_counts ordered
        ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----------------------------------
- variable missing complete  n mean   sd   p0 p25  p50  p75 p100
-    After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
-   Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
-     hist
- ▁▂▁▁▁▁▁▇
- ▁▁▁▁▁▂▃▇
+-- Variable type:numeric -----------------------------------------------------------------------
+ variable missing complete  n mean   sd   p0 p25  p50  p75 p100     hist
+    After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02 ▁▂▁▁▁▁▁▇
+   Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98 ▁▁▁▁▁▂▃▇
 \end{verbatim}
 
-On arrive toutefois aux mêmes résultats avec le tableau long, à condition de grouper les données par traitement (Variable \texttt{Traitement}) avec \texttt{group\_by()} :
+On arrive toutefois aux mêmes résultats avec le tableau long, à condition de grouper les données par traitement (variable \texttt{Traitement}) avec \texttt{group\_by()} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1026,33 +1034,33 @@ Skim summary statistics
  n variables: 3 
  group variables: Traitement 
 
--- Variable type:factor ------------------------------------
- Traitement variable missing complete  n n_unique
-     Before       ID       0       13 13       13
-      After       ID       0       13 13       13
-             top_counts ordered
- 1: 1, 2: 1, 3: 1, 4: 1   FALSE
- 1: 1, 2: 1, 3: 1, 4: 1   FALSE
+-- Variable type:factor ------------------------------------------------------------------------
+ Traitement variable missing complete  n n_unique             top_counts
+     Before       ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1
+      After       ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1
+ ordered
+   FALSE
+   FALSE
 
--- Variable type:numeric -----------------------------------
- Traitement variable missing complete  n mean   sd   p0 p25  p50  p75
-     Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88
-      After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5   
- p100     hist
- 4.98 ▁▁▁▁▁▂▃▇
- 5.02 ▁▂▁▁▁▁▁▇
+-- Variable type:numeric -----------------------------------------------------------------------
+ Traitement variable missing complete  n mean   sd   p0 p25  p50  p75 p100
+     Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
+      After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
+     hist
+ ▁▁▁▁▁▂▃▇
+ ▁▂▁▁▁▁▁▇
 \end{verbatim}
 
 \hypertarget{exploration-graphique-1}{%
 \paragraph{Exploration graphique}\label{exploration-graphique-1}}
 
-Ici, c'est le tableau rangé au format long qui sera le plus adapté. Lorsque nous avions une unique série de données, nous avons utilisé 3 types de représentations graphiques pour visualiser les données. Nous allons là aussi réaliser ces 3 graphiques. Toutefois, puisque nous avons maintenant plusieurs séries de données, le format des graphique sera légèrement différent.
+Ici, c'est le tableau rangé au format long qui sera le plus adapté. Lorsque nous avions une unique série de données, nous avons utilisé 3 types de représentations graphiques pour visualiser les données. Nous allons là aussi réaliser ces 3 graphiques. Toutefois, puisque nous avons maintenant plusieurs séries de données, le format des graphiques sera légèrement différent.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Données brutes sous forme de nuage de point (ou de stripchart) :
+  Données brutes sous forme de nuage de points (ou de stripchart) :
 \end{enumerate}
 
 \begin{Shaded}
@@ -1063,7 +1071,7 @@ Ici, c'est le tableau rangé au format long qui sera le plus adapté. Lorsque no
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-32-1} \end{center}
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-31-1} \end{center}
 
 Comme toujours, on peut réaliser un stripchart pour limiter les problèmes d'over-plotting (qui sont ici quasi-inexistants).
 
@@ -1075,7 +1083,7 @@ Comme toujours, on peut réaliser un stripchart pour limiter les problèmes d'ov
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-33-1} \end{center}
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-32-1} \end{center}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1096,7 +1104,7 @@ Nous allons faire un histogramme pour chaque série de données en utilisant des
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-34-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-33-1} \end{center}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1118,7 +1126,7 @@ Nous allons faire un histogramme pour chaque série de données en utilisant des
 notch went outside hinges. Try setting notch=FALSE.
 \end{verbatim}
 
-\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-35-1} \end{center}
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-34-1} \end{center}
 
 Ici, l'intervalle de confiance à 95\% de la médiane pour la série ``After'' est tellement large que son extrémité supérieure dépasse la valeur du troisième quartile, la valeur maximale observée, et la limite supérieure de l'axe des ordonnées. Il vaut donc mieux ne pas faire figurer les encoches pour avoir un graphique plus présentable :
 
@@ -1130,7 +1138,7 @@ Ici, l'intervalle de confiance à 95\% de la médiane pour la série ``After'' e
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-36-1} \end{center}
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-35-1} \end{center}
 
 À première vue, ces 3 représentations graphiques semblent montrer que la seconde série de données (après l'opération chirurgicale) présente des valeurs légèrement plus élevées que la première (avant l'opération). Toutefois, il semble que la dispersion des données soit aussi plus importante après l'opération qu'avant, sauf pour un individu outlier qui présente une immuno-compétence très faible avant l'opération.
 
@@ -1145,16 +1153,16 @@ Toutes ces représentations graphiques sont certes utiles, mais elles masquent u
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-37-1} \end{center}
+\begin{center}\includegraphics[width=0.33\linewidth]{figure/unnamed-chunk-36-1} \end{center}
 
 Ce graphique nous donne une image très différente de la réalité des données. On constate ici que l'immuno-compétence de certains individus augmente, alors que pour d'autres, elle diminue.
 
 Une façon d'estimer si les changements d'immuno-compétence sont majoritairement orientés dans un sens ou non est de calculer l'intervalle de confiance à 95\% de la différence d'immuno-compétence entre avant et après l'opération.
 
-\hypertarget{le-test-parametrique-1}{%
-\subsubsection{Le test paramétrique}\label{le-test-parametrique-1}}
+\hypertarget{le-test-paramuxe9trique-1}{%
+\subsubsection{Le test paramétrique}\label{le-test-paramuxe9trique-1}}
 
-Le test paramétrique permettant de comparer la moyenne sur des séries appariées est là encore un test de Student : le \textbf{test de Student sur données appariées} (original\ldots{}). En réalité, ce test de Student n'est pas un test de comparaison de moyennes à proprement parler. La procédure est en réalité la suivante :
+Le test paramétrique permettant de comparer la moyenne sur des séries appariées est là encore un test de Student : le \textbf{test de Student sur données appariées} (étonnant non ?\ldots{}). En réalité, ce test de Student n'est pas un test de comparaison de moyennes à proprement parler. La procédure est en fait la suivante :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1162,7 +1170,7 @@ Le test paramétrique permettant de comparer la moyenne sur des séries apparié
 \item
   Pour chaque individu, calculer la différence d'immuno-compétence entre les deux temps de l'expérience (DO après - DO avant)
 \item
-  Puisque nous avons 13 individus, nous aurons 13 valeurs de différences. La moyenne de cette différence sera comparée à la valeur théorique 0. Autrement dit, si les 2 séries ont même moyenne, le moyenne des différences doit être nulle. Sinon, la moyenne des différence doit être différente de zéro.
+  Puisque nous avons 13 individus, nous aurons 13 valeurs de différences. La moyenne de cette différence sera comparée à la valeur théorique 0. Autrement dit, si les 2 séries ont même moyenne, le moyenne des différences doit être nulle. Sinon, la moyenne des différences doit être différente de zéro.
 \end{enumerate}
 
 \hypertarget{conditions-dapplication-1}{%
@@ -1176,7 +1184,7 @@ Les conditions d'application de ce test paramétrique sont presque les mêmes qu
 \item
   Les individus sur lesquels portent la comparaison doivent être issus d'un échantillonnage aléatoire. Comme toujours, en l'absence d'indication contraire, on considère que cette condition est vérifiée.
 \item
-  Les différences par paires entre les 2 modalités du traitement doivent suivre une distribution normale. Ce n'est donc pas les données brutes de chaque série qui doivent suivre une loi normale, mais bien la différence ``après'' - ``avant'' calculée pour chaque individu. Commençons donc pas calculer ces différences :
+  Les différences par paires entre les 2 modalités du traitement doivent suivre une distribution Normale. Ce n'est donc pas les données brutes de chaque série qui doivent suivre une loi Normale, mais bien la différence ``après'' - ``avant'' calculée pour chaque individu. Commençons donc par calculer ces différences :
 \end{enumerate}
 
 \begin{Shaded}
@@ -1217,16 +1225,16 @@ Il nous faut donc tester la normalité de la nouvelle variable \texttt{Diff}. Co
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-39-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-38-1} \end{center}
 
-Compte tenu du faible nombre d'individus, la forme de l'histogramme n'est pas si éloignée que ça d'une courbe en cloche (notez que ce n'était pas du tout le cas pour les données brutes de chaque série de départ qui ont toutes les deux des distribution non Normales). On le vérifie avec un test de normalité de Shapiro-Wilk :
+Compte tenu du faible nombre d'individus, la forme de l'histogramme n'est pas si éloignée que ça d'une courbe en cloche (notez que ce n'était pas du tout le cas pour les données brutes de chaque série de départ qui ont toutes les deux des distributions non Normales). On le vérifie avec un test de normalité de Shapiro-Wilk :
 
 \begin{itemize}
 \tightlist
 \item
-  H\(_0\) : la différence d'immuno-compétence des individus suit une distribution normale
+  H\(_0\) : la différence d'immuno-compétence des individus suit une distribution Normale.
 \item
-  H\(_1\) : la différence d'immuno-compétence des individus ne suit pas une distribution normale
+  H\(_1\) : la différence d'immuno-compétence des individus ne suit pas une distribution Normale.
 \end{itemize}
 
 \begin{Shaded}
@@ -1251,17 +1259,17 @@ Au seuil \(\alpha = 0.05\), on ne peut pas rejeter l'hypothèse nulle de normali
 
 Les conditions d'application du test paramétrique sont donc réunies.
 
-\hypertarget{realisation-du-test-et-interpretation-1}{%
-\paragraph{Réalisation du test et interprétation}\label{realisation-du-test-et-interpretation-1}}
+\hypertarget{ruxe9alisation-du-test-et-interpruxe9tation-1}{%
+\paragraph{Réalisation du test et interprétation}\label{ruxe9alisation-du-test-et-interpruxe9tation-1}}
 
 Le test de Student sur données appariées peut se faire de 3 façons distinctes. Les 3 méthodes fournissent exactement les mêmes résultats. Quelle que soit la méthode utilisée, les hypothèses nulles et alternatives sont toujours les mêmes :
 
 \begin{itemize}
 \tightlist
 \item
-  H\(_0\) : Le changement moyen de production d'anticorps après la pose chirurgicale de l'implant de testostérone est nul (\(\mu_{Diff} = 0\)).
+  H\(_0\) : le changement moyen de production d'anticorps après la pose chirurgicale de l'implant de testostérone est nul (\(\mu_{Diff} = 0\)).
 \item
-  H\(_1\) : Le changement moyen de production d'anticorps après la pose chirurgicale de l'implant de testostérone n'est pas nul (\(\mu_{Diff} \neq 0\)).
+  H\(_1\) : le changement moyen de production d'anticorps après la pose chirurgicale de l'implant de testostérone n'est pas nul (\(\mu_{Diff} \neq 0\)).
 \end{itemize}
 
 \begin{Shaded}
@@ -1291,9 +1299,9 @@ Plusieurs remarques concernant cette première syntaxe :
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  on utilise le symbole \texttt{\textasciitilde{}} pour indiquer une formule. On cherche à regarder l'effet du \texttt{Traitement} sur la \texttt{DO} qui traduit l'immuno-compétence. Le \texttt{\textasciitilde{}} doit se lire ``en fonction de''.
+  On utilise le symbole ``\texttt{\textasciitilde{}}'' pour indiquer une formule. On cherche à regarder l'effet du \texttt{Traitement} sur la \texttt{DO} qui traduit l'immuno-compétence. Le ``\texttt{\textasciitilde{}}'' se lit : ``en fonction de''.
 \item
-  Avec la synatxe utilisant les formules, on doit spécifier l'argument \texttt{data\ =\ Testo\_long} pour indiquer à RStudio que les variables \texttt{DO} et \texttt{Traitement} sont des colonnes de ce tableau.
+  Avec la syntaxe utilisant les formules, on doit spécifier l'argument \texttt{data\ =\ Testo\_long} pour indiquer à RStudio que les variables \texttt{DO} et \texttt{Traitement} sont des colonnes de ce tableau.
 \item
   Enfin, il est important d'indiquer \texttt{paired\ =\ TRUE} puisque nous réalisons un test de Student sur données appariées. Si on ne mets pas cet argument, on réalise un test de Student sur échantillons indépendants.
 \end{enumerate}
@@ -1327,9 +1335,9 @@ mean of the differences
             -0.05615385 
 \end{verbatim}
 
-Cette deuxième syntaxe est différente de la première puisque nous n'utilisons plus le format \texttt{formule}. Ici, on indique le nom des 2 colonnes du tableau \texttt{Testo\_large} qui contiennent les 2 séries de données. Puisque nous n'utilisons plus de formule, l'argument \texttt{data\ =\ ...} n'existe plus. C'est pourquoi il nous faut taper spécifiquement \texttt{Testo\_large\$Before} et \texttt{Testo\_large\$After}, et non pas simplement le nom des colonnes. En revanche, comme pour le test précédent, il est indispensable d'indiquer \texttt{paired\ =\ TRUE} pour faire un test de Student sur données appariées.
+Cette deuxième syntaxe est différente de la première puisque nous n'utilisons plus le format \texttt{formule}. Ici, on indique le nom des 2 colonnes du tableau \texttt{Testo\_large} qui contiennent les 2 séries de données. Puisque nous n'utilisons plus de formule, l'argument ``\texttt{data\ =\ ...}'' n'existe plus. C'est pourquoi il nous faut taper spécifiquement ``\texttt{Testo\_large\$Before}'' et ``\texttt{Testo\_large\$After}'', et non pas simplement le nom des colonnes. En revanche, comme pour le test précédent, il est indispensable d'indiquer ``\texttt{paired\ =\ TRUE}'' pour faire un test de Student sur données appariées.
 
-Les résultats fournis et leur ointerprétation sont identiques à ceux de la syntaxe précédente.
+Les résultats fournis et leur interprétation sont identiques à ceux de la syntaxe précédente.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1356,19 +1364,19 @@ Enfin, comme expliqué plus haut, le test de Student sur données appariées est
 
 À vous donc de choisir la syntaxe qui vous paraît la plus parlante ou celle que vous avez le plus de facilité à retenir.
 
-\hypertarget{lalternative-non-parametrique-1}{%
-\subsubsection{L'alternative non paramétrique}\label{lalternative-non-parametrique-1}}
+\hypertarget{lalternative-non-paramuxe9trique-1}{%
+\subsubsection{L'alternative non paramétrique}\label{lalternative-non-paramuxe9trique-1}}
 
-Comme pour le test de Student à un échantillon, lorsque les conditions d'application du test de Student sur données appariées ne sont pas vérifiées (c'est à dire lorsque la différence de moyenne entre les deux séries ne suit pas une loi Normale), il faut utiliser un test non paramétrique équivalent.
+Comme pour le test de Student à un échantillon, lorsque les conditions d'application du test de Student sur données appariées ne sont pas vérifiées (c'est à dire lorsque la différence entre les données appariées des deux séries ne suit pas une loi Normale), il faut utiliser un test non paramétrique équivalent.
 
 Il s'agit là encore du \textbf{test de Wilcoxon des rangs signés} qui s'intéresse aux médianes. Les hypothèses nulles et alternatives sont les suivantes :
 
 \begin{itemize}
 \tightlist
 \item
-  H\(_0\) : Le changement \textbf{médian} de production d'anticorps après la pose chirurgicale de l'implant de testostérone est nul (\(med_{Diff} = 0\)).
+  H\(_0\) : le changement \textbf{médian} de production d'anticorps après la pose chirurgicale de l'implant de testostérone est nul (\(med_{Diff} = 0\)).
 \item
-  H\(_1\) : Le changement \textbf{médian} de production d'anticorps après la pose chirurgicale de l'implant de testostérone n'est pas nul (\(med_{Diff} \neq 0\)).
+  H\(_1\) : le changement \textbf{médian} de production d'anticorps après la pose chirurgicale de l'implant de testostérone n'est pas nul (\(med_{Diff} \neq 0\)).
 \end{itemize}
 
 Comme pour le test de Student, 3 syntaxes sont possibles et strictement équivalentes. Il est important de ne pas oublier l'argument \texttt{paired\ =\ TRUE} pour les 2 premières syntaxes afin de s'assurer que l'on réalise bien un test sur données appariées. Enfin, l'argument \texttt{conf.int\ =\ TRUE} doit être ajouté pour les 3 syntaxes afin que la (pseudo-) médiane et son intervalle de confiance à 95\% soient calculés et affichés.
@@ -1395,7 +1403,8 @@ sample estimates:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{wilcox.test}\NormalTok{(Testo_large}\OperatorTok{$}\NormalTok{Before, Testo_large}\OperatorTok{$}\NormalTok{After, }\DataTypeTok{paired =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{wilcox.test}\NormalTok{(Testo_large}\OperatorTok{$}\NormalTok{Before, Testo_large}\OperatorTok{$}\NormalTok{After, }\DataTypeTok{paired =} \OtherTok{TRUE}\NormalTok{, }
+            \DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1442,7 +1451,7 @@ Le test de Wilcoxon des rangs signés n'a pas permis de montrer de changement d'
 \hypertarget{exercice-dapplication-1}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication-1}}
 
-Les autruches vivent dans des environnements chauds, et elles sont fréquemment exposées au soleil durant de longues périodes. Dans des environnements similaires, les mammifères ont des mécanismes physiologiques leur permettant de réduire la température de leur cerveau par rapport à celle de leur corps. Un équipe de chercheurs (Fuller et al., \protect\hyperlink{ref-Fuller2003}{2003}) a testé si les autruches pouvaient faire de même. La température du corps et du cerveau de 37 autruches a été enregistrée par une journée chaude typique. Les résultats, exprimés en degrés Celsius, figurent dans le fichier \texttt{Autruches.csv}.
+Les autruches vivent dans des environnements chauds et elles sont donc fréquemment exposées au soleil durant de longues périodes. Dans des environnements similaires, les mammifères ont des mécanismes physiologiques leur permettant de réduire la température de leur cerveau par rapport à celle de leur corps. Une équipe de chercheurs (Fuller et al., \protect\hyperlink{ref-Fuller2003}{2003}) a testé si les autruches pouvaient faire de même. La température du corps et du cerveau de 37 autruches a été enregistrée par une journée chaude typique. Les résultats, exprimés en degrés Celsius, figurent dans le fichier \texttt{Autruches.csv}.
 
 Importez ces données et faites-en l'analyse pour savoir s'il existe une différence de température moyenne entre le corps et le cerveau des autruches. Comparez ces résultats avec les prédictions faites pour les mammifères dans un environnement similaire. Comme toujours, vous commencerez par faire une analyse descriptive des données, sous forme numérique et graphique, avant de vous lancer dans les tests d'hypothèses.
 
@@ -1451,8 +1460,8 @@ Importez ces données et faites-en l'analyse pour savoir s'il existe une différ
 
 On s'intéresse maintenant aux méthodes permettant de comparer la moyenne de deux groupes ou de deux traitements dans la cas d'échantillons indépendants. Dans ce type de design expérimentaux, les les deux traitements sont appliqués à des échantillons indépendants issus de 2 populations.
 
-\hypertarget{exploration-prealable-des-donnees}{%
-\subsubsection{Exploration préalable des données}\label{exploration-prealable-des-donnees}}
+\hypertarget{exploration-pruxe9alable-des-donnuxe9es}{%
+\subsubsection{Exploration préalable des données}\label{exploration-pruxe9alable-des-donnuxe9es}}
 
 Chez \href{https://fr.wikipedia.org/wiki/Phrynosoma_mcallii}{le lézard cornu \emph{Phrynosoma mcallii}}, une frange de piquants entoure la tête. Une équipe d'herpétologues (Young et al., \protect\hyperlink{ref-Young2004}{2004}) a étudié la question suivante : des piquants plus longs autour de la tête protègent-ils le lézard cornu de son prédateur naturel, \href{https://fr.wikipedia.org/wiki/Pie-grièche_migratrice}{la pie grièche migratrice \emph{Lanius ludovicianus}} ? Ce prédateur a en effet une particularité : il accroche ses proies mortes à des barbelés ou des branches pour les consommer plus tard. Les chercheurs ont donc mesuré la longueur des cornes de 30 lézards retrouvés morts et accrochés dans des arbres par la pie grièche migratrice. Et en parallèle, ils ont mesuré les cornes de 154 individus vivants et en bonne santé choisis au hasard dans la population.
 
@@ -1552,13 +1561,13 @@ Skim summary statistics
  n variables: 2 
  group variables: Survival 
 
--- Variable type:numeric -----------------------------------
- Survival variable missing complete   n  mean   sd   p0  p25   p50
-   killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25
-   living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55
-  p75 p100     hist
- 23.8 26.7 ▂▁▂▂▇▇▆▂
- 26   30.3 ▁▁▁▃▅▇▅▁
+-- Variable type:numeric -----------------------------------------------------------------------
+ Survival variable missing complete   n  mean   sd   p0  p25   p50  p75 p100
+   killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25 23.8 26.7
+   living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55 26   30.3
+     hist
+ ▂▁▂▂▇▇▆▂
+ ▁▁▁▃▅▇▅▁
 \end{verbatim}
 
 On constate ici que les tailles d'échantillons sont très différentes. C'est normal compte tenu de la difficulté de repérer des individus morts dans la nature, et ce n'est pas gênant pour nos analyses puisque la taille des deux échantillons reste élevée.
@@ -1568,7 +1577,7 @@ On constate également que si les écarts-types des 2 groupes sont proches, les 
 \hypertarget{exploration-graphique-2}{%
 \paragraph{Exploration graphique}\label{exploration-graphique-2}}
 
-Comme toujours, nous pouvons réaliser 3 types de graphiques pour en apprendre plus sur la distribution des donnees dans les deux groupes. En revanche, sur le graphique de type ``nuage de points'', il est ici impossible de relier les points 2 à deux. Non seulement cela n'aurait aucun sens puisque les 2 échantillons sont indépendants, mais en outre, nous ne disposons pas du même nombre d'individus dans les 2 échantillons.
+Comme toujours, nous pouvons réaliser 3 types de graphiques pour en apprendre plus sur la distribution des données dans les deux groupes. En revanche, sur le graphique de type ``nuage de points'', il est ici impossible de relier les points deux à deux. Non seulement cela n'aurait aucun sens puisque les échantillons sont indépendants, mais en outre, nous ne disposons pas du même nombre d'individus dans les 2 échantillons.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1585,7 +1594,7 @@ Comme toujours, nous pouvons réaliser 3 types de graphiques pour en apprendre p
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-50-1} \end{center}
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-49-1} \end{center}
 
 Ce premier graphique permet de visualiser très clairement les différences de tailles d'échantillons entre les deux groupes. Il permet également de voir que l'étendue des longueurs de cornes est plus importante dans le groupe des individus vivants que dans celui des individus morts.
 
@@ -1606,9 +1615,9 @@ Ce premier graphique permet de visualiser très clairement les différences de t
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-51-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-50-1} \end{center}
 
-Notez ici l'utilisation de l'argument \texttt{scales\ =\ "free\_y"} dans la fonction \texttt{facet\_wrap()}. Cet argument permet de ne pas imposer la même échalle pour l'axe des ordonnée des 2 graphiques. Ce choix est ici pertinent puisque les effectifs des 2 groupes sont très différents. Faîtes un essai sans cet argument pour voir la différence.
+Notez ici l'utilisation de l'argument \texttt{scales\ =\ "free\_y"} dans la fonction \texttt{facet\_wrap()}. Cet argument permet de ne pas imposer la même échelle pour l'axe des ordonnées des 2 graphiques. Ce choix est ici pertinent puisque les effectifs des 2 groupes sont très différents. Faîtes un essai sans cet argument pour voir la différence.
 
 Cette visualisation nous montre que les données doivent suivre à peu près une distribution Normale dans les 2 groupes, et que globalement la longueur des cornes semble légèrement plus élevée dans le groupe des vivants (avec un mode autour de 25-26 mm) que dans le groupes des morts (avec un mode autour de 23-24 mm).
 
@@ -1628,12 +1637,12 @@ Cette visualisation nous montre que les données doivent suivre à peu près une
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-52-1} \end{center}
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-51-1} \end{center}
 
 Nous visualisons ici encore plus clairement que sur les histogrammes le fait que les longueurs de cornes des individus vivants sont légèrement plus longues que celles des individus morts. D'ailleurs, puisque les intervalles de confiance à 95\% des médianes des 2 groupes (les encoches) ne se chevauchent pas, un test de comparaison des moyennes devrait logiquement conclure à une différence significative en faveur des individus vivants. On peut également noter que la largeur de l'encoche pour les individus morts est plus importante que celle des vivants. Cela traduit une incertitude plus grande autour de la médiane estimée dans le groupe des individus morts. C'est tout à fait logique compte tenu des effectifs modestes dans ce groupe.
 
-\hypertarget{le-test-parametrique-2}{%
-\subsubsection{Le test paramétrique}\label{le-test-parametrique-2}}
+\hypertarget{le-test-paramuxe9trique-2}{%
+\subsubsection{Le test paramétrique}\label{le-test-paramuxe9trique-2}}
 
 Le test paramétrique le plus puissant que nous puissions faire pour comparer la moyenne de 2 populations est le test de Student. Ce test étant paramétrique, nous devons nous assurer que ses conditions d'application sont vérifiées avant de pouvoir le réaliser.
 
@@ -1653,7 +1662,7 @@ Les conditions d'application de ce test sont au nombre de 3 :
   L'écart-type (et la variance) de la variable numérique est la même dans les deux populations. C'est ce que l'on appelle l'homoscédasticité.
 \end{enumerate}
 
-En réalité, le test du \(t\) de Student sur deux échantillons indépendants est assez robuste face au non respect de cette troisième condition d'application. Cela signifie que si cette troisième condition d'application n'est pas strictement vérifiée, les résultats du tests peuvent malgré tout rester valides. Lorsque les 2 échantillons comparés ont des tailles supérieures ou égales à 30, ce test fonctionne bien même si l'écart-type d'un groupe est jusqu'à 3 fois supérieur ou inférieur à l'écart-type du second groupe, à condition que la taille des 2 échantillons soit proche (ce qui n'est pas le cas ici !). En revanche, s'il les écart-types diffèrent de plus d'un facteur 3, ou si les tailles d'échantillons sont très différentes, le test du \(t\) de Student ne devrait pas être utilisé. De même, si la taille des échantillons est inférieure à 30 et que les variances ne sont pas homogènes, ce test ne devrait pas être réalisé. En conclusion, les résultats du test du \(t\) de Student à deux échantillons indépendants peuvent rester valides si la troisième condition d'homscédasticité est violée, mais dans certains cas seulement.
+En réalité, le test du \(t\) de Student sur deux échantillons indépendants est assez robuste face au non respect de cette troisième condition d'application. Cela signifie que si cette troisième condition d'application n'est pas strictement vérifiée, les résultats du tests peuvent malgré tout rester valides. Lorsque les 2 échantillons comparés ont des tailles supérieures ou égales à 30, ce test fonctionne bien même si l'écart-type d'un groupe est jusqu'à 3 fois supérieur ou inférieur à l'écart-type du second groupe, à condition que la taille des 2 échantillons soit proche (ce qui n'est pas le cas ici !). En revanche, s'il les écart-types diffèrent de plus d'un facteur 3, ou si les tailles d'échantillons sont très différentes, le test du \(t\) de Student ne devrait pas être utilisé. De même, si la taille des échantillons est inférieure à 30 et que les variances ne sont pas homogènes, ce test ne devrait pas être réalisé. En conclusion, les résultats du test du \(t\) de Student à deux échantillons indépendants peuvent rester valides si la troisième condition d'homoscédasticité est violée, mais dans certains cas seulement.
 
 Le test du \(t\) de Student sur deux échantillons indépendants est également assez robuste face à des écarts mineurs à la distribution Normale, tant que la forme des deux distributions comparées reste similaire. En outre, la robustesse de ce test augmente avec la taille des échantillons.
 
@@ -1689,7 +1698,7 @@ W = 0.93452, p-value = 0.06482
 \end{verbatim}
 
 \begin{quote}
-La \(p\)-value est supérieure à \(\alpha = 0.05\), donc on ne peut pas rejeter l'hypothèse nulle de Normalité pour la taille des cornes de la population des lézards cornus morts (test de Shapiro-Wilk, \(W = 0.93\), \(p = 0.065\)).
+La \(p\)-value est supérieure à \(\alpha = 0.05\), donc on ne peut pas rejeter l'hypothèse nulle de normalité pour la taille des cornes de la population des lézards cornus morts (test de Shapiro-Wilk, \(W = 0.93\), \(p = 0.065\)).
 \end{quote}
 
 Pour les individus vivants :
@@ -1720,10 +1729,10 @@ W = 0.96055, p-value = 0.0002234
 \end{verbatim}
 
 \begin{quote}
-La \(p\)-value est inférieure à \(\alpha = 0.05\), donc on rejette l'hypothèse nulle de Normalité pour la taille des cornes de la population des lézards cornus vivants (test de Shapiro-Wilk, \(W = 0.96\), \(p < 0.001\)).
+La \(p\)-value est inférieure à \(\alpha = 0.05\), donc on rejette l'hypothèse nulle de normalité pour la taille des cornes de la population des lézards cornus vivants (test de Shapiro-Wilk, \(W = 0.96\), \(p < 0.001\)).
 \end{quote}
 
-Si l'on examine l'histogramme des 2 échantillons, on constate toutefois que la forme des distributions des 2 séries de données est très proche. Pour les 2 échantillons, la distribution est en effet unimodale, avec une asymétrie gauche assez marquée (une longue queue de distribution du côté gauche). La forme des distributions étant similaire (on parle bien de la forme des histogrammes et non de la position du pic), et les histogrammes étant proches de la forme typique d'une courbe en cloche, le test de Student restera valide.
+Si l'on examine l'histogramme des 2 échantillons, on constate toutefois que la forme des distributions des 2 séries de données est très proche. Pour les 2 échantillons, la distribution est en effet unimodale, avec une asymétrie gauche assez marquée (une longue queue de distribution du côté gauche). La forme des distributions étant similaire (on parle bien de la forme des histogrammes et non de la position du pic), et les histogrammes étant proches de la forme typique d'une courbe en cloche, le test de Student devrait rester valide. En toute rigueur, il faudrait cependant préférer son alternative non paramétrique.
 
 \textbf{2. Homogénéité des variances}
 
@@ -1732,9 +1741,9 @@ Le test le plus simple pour comparer la variance de 2 échantillons est le test 
 \begin{itemize}
 \tightlist
 \item
-  H\(_0\) : la variance des 2 populations est égale, leur ratio vaut 1 (\(\frac{\sigma^2_{killed}}{\sigma^2_{living}} = 1\)).
+  H\(_0\) : la variance des 2 populations est égale, leur ratio vaut 1 \(\left(\frac{\sigma^2_{killed}}{\sigma^2_{living}} = 1\right)\).
 \item
-  H\(_1\) : la variance des 2 populations est différente, leur ratio ne vaut pas 1 (\(\frac{\sigma^2_{killed}}{\sigma^2_{living}} \neq 1\)).
+  H\(_1\) : la variance des 2 populations est différente, leur ratio ne vaut pas 1 \(\left(\frac{\sigma^2_{killed}}{\sigma^2_{living}} \neq 1\right)\).
 \end{itemize}
 
 \begin{Shaded}
@@ -1761,14 +1770,14 @@ ratio of variances
 Ici, le ratio des variances (la variance des individus morts divisée par la variance des individus vivants) est très proche de 1 (\(F = 1.06\), IC 95\% : {[}0.63 ; 1.98{]}). Le test \(F\) nous montre qu'il est impossible de rejeter H\(_0\) : au seuil \(\alpha = 0.05\), le ratio des variances n'est pas significativement différent de 1 (ddl = 29 et 153, \(p = 0.79\)), les variances sont homogènes.
 \end{quote}
 
-Le test de Bartlett est un autre test qui permet de comparer la variance de plusieurs populations. Lorsque le nombe de populations est égal à 2 (comme ici), ce test est absolument équivalent au test \(F\) ci-dessus.
+Le test de Bartlett est un autre test qui permet de comparer la variance de plusieurs populations (2 ou plus). Lorsque le nombre de populations est égal à 2 (comme ici), ce test est absolument équivalent au test \(F\) ci-dessus.
 
 \begin{itemize}
 \tightlist
 \item
-  H\(_0\) : Toutes les populations ont même variance (\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)).
+  H\(_0\) : toutes les populations ont même variance (\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)).
 \item
-  H\(_1\) : Au moins une population a une variance différente des autres.
+  H\(_1\) : au moins une population a une variance différente des autres.
 \end{itemize}
 
 \begin{Shaded}
@@ -1790,14 +1799,14 @@ Enfin, le test de Levene devrait être préféré la plupart du temps. Comme le 
 \begin{itemize}
 \tightlist
 \item
-  H\(_0\) : Toutes les populations ont même variance (\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)).
+  H\(_0\) : toutes les populations ont même variance (\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)).
 \item
-  H\(_1\) : Au moins une population a une variance différente des autres.
+  H\(_1\) : au moins une population a une variance différente des autres.
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Le test de Leven fait partie du package car. Il doit être chargé en mémoire}
+\CommentTok{# Le test de Levene fait partie du package car. Il doit être chargé en mémoire}
 \CommentTok{# library(car)}
 \KeywordTok{leveneTest}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard)}
 \end{Highlighting}
@@ -1816,10 +1825,10 @@ Ici encore, les conclusions sont les mêmes :
 Il est impossible de rejeter l'hypothèse nulle d'homogénéité des variances au seuil \(\alpha = 0.05\) (test de Levene, \(F\) = 0.004, ddl = 1, \(p = 0.953\)).
 \end{quote}
 
-\hypertarget{realisation-du-test-et-interpretation-2}{%
-\paragraph{Réalisation du test et interprétation}\label{realisation-du-test-et-interpretation-2}}
+\hypertarget{ruxe9alisation-du-test-et-interpruxe9tation-2}{%
+\paragraph{Réalisation du test et interprétation}\label{ruxe9alisation-du-test-et-interpruxe9tation-2}}
 
-Puisque la taille des cornes du lézard cornu suit approximativement la même distribution ``presque Normale'' dans les 2 ppulations (lézards morts et vivants) et que ces 2 ppulations ont des variances homogènes, on peut réaliser le test du \(t\) de Student sur deux échantillons indépendants.
+Puisque la taille des cornes du lézard cornu suit approximativement la même distribution ``presque Normale'' dans les 2 populations (lézards morts et vivants) et que ces 2 populations ont des variances homogènes, on peut réaliser le test du \(t\) de Student sur deux échantillons indépendants.
 
 \begin{itemize}
 \tightlist
@@ -1854,11 +1863,11 @@ Notez bien la syntaxe :
 \begin{itemize}
 \tightlist
 \item
-  nous utilisons ici la syntaxe du type ``formule'' faisant appel au symbole \texttt{\textasciitilde{}} (Longueur des cornes en fonction de la Survie) et à l'argument \texttt{data\ =}.
+  Nous utilisons ici la syntaxe du type ``formule'' faisant appel au symbole ``\texttt{\textasciitilde{}}'' (Longueur des cornes en fonction de la Survie) et à l'argument ``\texttt{data\ =}''.
 \item
-  l'argument \texttt{paired\ =\ TRUE} a disparu puisque nous avons ici deux échantillons indépendants
+  L'argument ``\texttt{paired\ =\ TRUE}'' a disparu puisque nous avons ici deux échantillons indépendants
 \item
-  l'argument \texttt{var.equal\ =\ TRUE} doit obligatoirement être spécifié : nous nous sommes assuré que l'homogénéité des variances était vérifiée. Il faut donc l'indiquer à R afin que le test de Student classique soit réalisé. Si on omet de le spécifier, c'est un autre test qui est réalisé (voir plus bas).
+  L'argument ``\texttt{var.equal\ =\ TRUE}'' doit obligatoirement être spécifié : nous nous sommes assuré que l'homogénéité des variances était vérifiée. Il faut donc l'indiquer à R afin que le test de Student classique soit réalisé. Si on omet de le spécifier, c'est un autre test qui est réalisé (voir plus bas).
 \end{itemize}
 
 \begin{quote}
@@ -1867,8 +1876,8 @@ Au seuil \(\alpha\) de 5\%, on rejette l'hypothèse nulle d'égalité des moyenn
 
 Ce test confirme donc bien l'impression des chercheurs : les lézards principalement pris pour cibles par les pies grièches migratrices ont des cornes en moyenne plus courtes que les lézards de la population générale. Avoir des cornes plus longues protège donc les lézards de la prédation, du moins dans une certaine mesure.
 
-\hypertarget{lalternative-non-parametrique-2}{%
-\subsubsection{L'alternative non paramétrique}\label{lalternative-non-parametrique-2}}
+\hypertarget{lalternative-non-paramuxe9trique-2}{%
+\subsubsection{L'alternative non paramétrique}\label{lalternative-non-paramuxe9trique-2}}
 
 Si les conditions d'application du test de Student ne sont pas vérifiées, nous devons utiliser un équivalent non paramétrique. C'est le cas du \textbf{test de Wilcoxon sur la somme des rangs} (également appelé test de Mann-Whitney). Comme pour tous les tests de Wilcoxon, la comparaison porte alors non plus sur les moyennes mais sur les médianes.
 
@@ -1900,11 +1909,11 @@ difference in location
              -2.200031 
 \end{verbatim}
 
-L'argument \texttt{var.equal\ =\ TRUE} n'existe pas pour ce test puisque c'est justement un test non paramétrique qui ne requiert pas l'homogénéité des variances. En revanche, comme pour tous les autres test de Wilcoxon que nous avons réalisés dans ce TP, l'argument \texttt{conf.int\ =\ TRUE} permet d'afficher les estimateurs pertinents, ici, la différence de médiane entre les 2 populations et l'intervalle de confiance à 95\% de cette différence de médiane.
+L'argument \texttt{var.equal\ =\ TRUE} n'existe pas pour ce test puisque c'est justement un test non paramétrique qui ne requiert pas l'homogénéité des variances. En revanche, comme pour tous les autres tests de Wilcoxon que nous avons réalisés dans ce TP, l'argument \texttt{conf.int\ =\ TRUE} permet d'afficher les estimateurs pertinents, ici, la différence de médiane entre les 2 populations et l'intervalle de confiance à 95\% de cette différence de médiane.
 
 La conclusion est ici la même que pour le test de Student : puisque la \(p\)-value est très inférieure à \(\alpha\), on rejette l'hypothèse nulle : les médianes sont bel et bien différentes.
 
-Enfin, dans le cas où la variable étudiée suit la loi Normale dans les deux populations mais qu'elle n'a pas la même variance dans les deux populations, il est toujours possible de réaliser un test de Wilcoxon, mais il est souvent préférable de réaliser un test de Student modifié : le \textbf{test de approché du \(t\) de Welch}. Ce test est moins puissant que le test de Student classique, mais il reste plus puissant que le test de Wilcoxon, et surtout, il permet de comparer les moyennes et non les variances.
+Enfin, dans le cas où la variable étudiée suit la loi Normale dans les deux populations mais qu'elle n'a pas la même variance dans les deux populations, il est toujours possible de réaliser un test de Wilcoxon, mais il est souvent préférable de réaliser un test de Student modifié : le \textbf{test approché du \(t\) de Welch}. Ce test est moins puissant que le test de Student classique, mais il reste plus puissant que le test de Wilcoxon, et surtout, il permet de comparer les moyennes et non les médianes
 
 \begin{itemize}
 \tightlist
@@ -1939,13 +1948,13 @@ La seule différence par rapport à la syntaxe du test \(t\) de Student paramét
 \hypertarget{exercice-dapplication-2}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication-2}}
 
-On s'intéresse à la différence de taille supposée entre hommes et femmes. Le fichier \texttt{HommesFemmes.xls} contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à l'Université de La Rochelle. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à l'université de La Rochelle ont-il la même taille ?
+On s'intéresse à la différence de taille supposée entre hommes et femmes. Le fichier \texttt{HommesFemmes.xls} contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à La Rochelle Université. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à La Rochelle Université ont-il la même taille ?
 
-\hypertarget{tests-bilateraux-et-unilateraux}{%
-\subsection{Tests bilatéraux et unilatéraux}\label{tests-bilateraux-et-unilateraux}}
+\hypertarget{tests-bilatuxe9raux-et-unilatuxe9raux}{%
+\subsection{Tests bilatéraux et unilatéraux}\label{tests-bilatuxe9raux-et-unilatuxe9raux}}
 
-\hypertarget{principes}{%
-\subsubsection{Principes}\label{principes}}
+\hypertarget{principe}{%
+\subsubsection{Principe}\label{principe}}
 
 Jusqu'à maintenant, tous les tests que nous avons réalisés sont des tests bitaléraux. Pour chaque test, l'hypothèse nulle est imposée. En revanche, pour certains tests, l'hypothèse alternative est à choisir (et à spécifier) par l'utilisateur parmi 3 possibilités :
 
@@ -1962,7 +1971,7 @@ Les tests unilatéraux peuvent concerner tous les tests pour lesquels les hypoth
 \begin{itemize}
 \tightlist
 \item
-  H\(_0\) : la valeur d'un paramètre de la population est égale à \(k\) (\(k\) peut être une valeur fixe, arbitraire, choisie par l'utilisateur, ou la valeur d'un paramètre d'une autre populations)
+  H\(_0\) : la valeur d'un paramètre de la population est égale à \(k\) (\(k\) peut être une valeur fixe, arbitraire, choisie par l'utilisateur, ou la valeur d'un paramètre d'une autre populations).
 \item
   H\(_1\) : la valeur d'un paramètre de la population \textbf{n'est pas égale à} \(k\).
 \end{itemize}
@@ -1992,19 +2001,19 @@ Dans R, la syntaxe permettant de spécifier l'hypothèse alternative que nous so
 \item
   \texttt{alternative\ =\ "two.sided"} : pour faire un test bilatéral. Si on ne le fait pas explicitement, c'est de toutes façons cette valeur qui est utilisée par défaut.
 \item
-  \texttt{alternative\ =\ "greater"} : pour choisir l'hypothèse unilatérale \texttt{\textgreater{}}
+  \texttt{alternative\ =\ "greater"} : pour choisir l'hypothèse unilatérale ``\texttt{\textgreater{}}''.
 \item
-  \texttt{alternative\ =\ "less"} : pour choisir l'hypothèse unilatérale \texttt{\textless{}}
+  \texttt{alternative\ =\ "less"} : pour choisir l'hypothèse unilatérale ``\texttt{\textless{}}''.
 \end{itemize}
 
-Attention, le choix d'utiliser ``greater'' ou ``less'' dépend de l'ordre dans lequel les échantillons sont spécifiés. Cette synatxe est valable pour tous les tests de Student vus jusqu'ici (un échantillon, deux échantillons appariés, deux échantillons indépendants) et pour leurs alternatives non paramétriques (test de Wilcoxon des rangs signés, test de Wilcoxon de la somme des rangs, test du \(t\) de Welch).
+Attention : le choix d'utiliser ``greater'' ou ``less'' dépend donc de l'ordre dans lequel les échantillons sont spécifiés. Cette synatxe est valable pour tous les tests de Student vus jusqu'ici (un échantillon, deux échantillons appariés, deux échantillons indépendants) et pour leurs alternatives non paramétriques (test de Wilcoxon des rangs signés, test de Wilcoxon de la somme des rangs, test du \(t\) de Welch).
 
-\textbf{Attention} : comme indiqué en TD, l'utilisation de tests unilatéraux doit être réservée exclusibvement aux situations pour lesquelles le choix de l'hypothèse unilatérale est possible à justifier par un mécanisme quelconque (biologique, physiologique, comportemental, écologique, génétique, etc.). Observer que l'un des échantillons a une moyenne plus grande ou plus faible qu'un autre lors de la phase des statstiques descriptives des données n'est pas du tout une raison suffisante. Il faut pouvoir justifier le choix de l'hypothèse alternative par une explication valable. Reprenons l'un des exemples examinés précédemment pour mieux comprendre comment tout cela fonctionne.
+\textbf{Attention} : comme indiqué en TD, l'utilisation de tests unilatéraux doit être réservée exclusivement aux situations pour lesquelles le choix de l'hypothèse unilatérale est possible à justifier par un mécanisme quelconque (biologique, physiologique, comportemental, écologique, génétique, etc.). Observer que l'un des échantillons a une moyenne plus grande ou plus faible qu'un autre lors de la phase des statstiques descriptives des données n'est pas du tout une raison suffisante. Il faut pouvoir justifier le choix de l'hypothèse alternative par une explication valable. Reprenons l'un des exemples examinés précédemment pour mieux comprendre comment tout cela fonctionne.
 
-\hypertarget{un-exemple-pas-a-pas}{%
-\subsubsection{Un exemple pas à pas}\label{un-exemple-pas-a-pas}}
+\hypertarget{un-exemple-pas-uxe0-pas}{%
+\subsubsection{Un exemple pas à pas}\label{un-exemple-pas-uxe0-pas}}
 
-Reprenons l'exemple des lézards cornus. L'étude a été réalisée parce que les chercheurs supposaient que la longueur des cornes des lézards était susceptible de leur fournir une protection face à la prédation. Autrement dit, les chercheurs supposaient que des cornes plus kongues devaient fournir une meilleure protection vis à vis de la prédation. Ainsi, les lézards morts devaient avoir des cornes moins longues en moyenne que les les lézards vivants, simplement parce que proter des cornes courtes expose plus simplement les individus à la prédation. Nous avons donc une bonne raison ``écologique'' de considérer un test unilatéral.
+Reprenons l'exemple des lézards cornus. L'étude a été réalisée parce que les chercheurs supposaient que la longueur des cornes des lézards était susceptible de leur fournir une protection face à la prédation. Autrement dit, les chercheurs supposaient que des cornes \emph{plus longues} devaient fournir une meilleure protection vis à vis de la prédation. Ainsi, les lézards morts devaient avoir des cornes moins longues en moyenne que les les lézards vivants, simplement parce que porter des cornes courtes expose plus fortement les individus à la prédation. Nous avons donc une bonne raison ``écologique'' de considérer un test unilatéral (la susceptibilité face à la prédation).
 
 Lorsque nous avons examiné cette question, nous avons fait le test du \(t\) de Student sur échantillons indépendants de la façon suivante :
 
@@ -2028,7 +2037,7 @@ mean in group killed mean in group living
             21.98667             24.28117 
 \end{verbatim}
 
-Comme l'indiquent les résultats fournis, l'hypothèse alternative utilisée pour faire le test est ``La vraie différence de moyenne n'est pas égale à 0''. Autrement dit, nous avons fait un test bilatéral avec les hypothèses suivantes :
+Comme l'indiquent les résultats fournis, l'hypothèse alternative utilisée pour faire le test est : ``La vraie différence de moyenne n'est pas égale à 0''. Autrement dit, nous avons fait un test bilatéral avec les hypothèses suivantes :
 
 \begin{itemize}
 \tightlist
@@ -2094,7 +2103,7 @@ mean in group killed mean in group living
             21.98667             24.28117 
 \end{verbatim}
 
-Puisque la \(p\)-value de ce test est inferieure à \(\alpha = 0.05\), on rejette l'hypothèse nulle de l'égalité des moyennes. On valide donc l'hypothèse alternative : les lézards cornus morts ont en moyenne des cornes plus courtes que les lézards vivants. Cette différence de longueur de cornes est en faveur des lézars vivants et avut très probablement au moins \(1.4\) millimètres (c'est l'intervalle de confiance à 95\% de la différence de moyennes qui nous le dit).
+Puisque la \(p\)-value de ce test est inferieure à \(\alpha = 0.05\), on rejette l'hypothèse nulle de l'égalité des moyennes. On valide donc l'hypothèse alternative : les lézards cornus morts ont en moyenne des cornes plus courtes que les lézards vivants. Cette différence de longueur de cornes est en faveur des lézards vivants et vaut très probablement au moins \(1.4\) millimètres (c'est l'intervalle de confiance à 95\% de la différence de moyennes qui nous le dit).
 
 Dernière chose importante : il ne faut pas se tromper dans le choix de l'hypothèse alternative. En effet, nous aurions pu tenter de tester exactement la même chose en formulant les hypothèses suivantes :
 
@@ -2132,7 +2141,7 @@ mean in group killed mean in group living
 
 Ici, la \(p\)-value est très supérieure à \(\alpha\) puisqu'elle vaut 1. Une \(p\)-value de 1 devrait toujours attirer votre attention. La conclusion devrait donc être que l'on ne peut pas rejeter H\(_0\) : les lézards morts et vivants ont en moyenne des cornes de même longueur. Nous savons pourtant que c'est faux.
 
-Le problème est ici liè à l'ordre des catégories ``vivant'' ou ``mort'' dans le facteur \texttt{Survival} du tableau \texttt{Lizard}. Les dernières lignes des tests que nous venons de faire indique la moyenne de chaque groupe, mais le groupe ``killed'' apparaît toujours avant le groupe ``living''. C'est l'ordre des nibveaux dans le facteur \texttt{Survival} qui doit dicter la syntaxe appropriée :
+Le problème est ici liè à l'ordre des catégories ``vivant'' ou ``mort'' dans le facteur \texttt{Survival} du tableau \texttt{Lizard}. Les dernières lignes des tests que nous venons de faire indiquent la moyenne de chaque groupe, mais le groupe ``killed'' apparaît toujours avant le groupe ``living''. C'est l'ordre des niveaux dans le facteur \texttt{Survival} qui doit dicter la syntaxe appropriée :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2141,26 +2150,24 @@ Le problème est ici liè à l'ordre des catégories ``vivant'' ou ``mort'' dans
 \end{Shaded}
 
 \begin{verbatim}
-  [1] living living living living living living living living living
- [10] living living living living living living living living living
- [19] living living living living living living living living living
- [28] living living living living living living living living living
- [37] living living living living living living living living living
- [46] living living living living living living living living living
- [55] living living living living living living living living living
- [64] living living living living living living living living living
- [73] living living living living living living living living living
- [82] living living living living living living living living living
- [91] living living living living living living living living living
-[100] living living living living living living living living living
-[109] living living living living living living living living living
-[118] living living living living living living living living living
-[127] living living living living living living living living living
-[136] living living living living living living living living living
-[145] living living living living living living living living living
-[154] living killed killed killed killed killed killed killed killed
-[163] killed killed killed killed killed killed killed killed killed
-[172] killed killed killed killed killed killed killed killed killed
+  [1] living living living living living living living living living living
+ [11] living living living living living living living living living living
+ [21] living living living living living living living living living living
+ [31] living living living living living living living living living living
+ [41] living living living living living living living living living living
+ [51] living living living living living living living living living living
+ [61] living living living living living living living living living living
+ [71] living living living living living living living living living living
+ [81] living living living living living living living living living living
+ [91] living living living living living living living living living living
+[101] living living living living living living living living living living
+[111] living living living living living living living living living living
+[121] living living living living living living living living living living
+[131] living living living living living living living living living living
+[141] living living living living living living living living living living
+[151] living living living living killed killed killed killed killed killed
+[161] killed killed killed killed killed killed killed killed killed killed
+[171] killed killed killed killed killed killed killed killed killed killed
 [181] killed killed killed killed
 Levels: killed living
 \end{verbatim}
@@ -2185,7 +2192,7 @@ nous avons en réalité posé les hypothèses suivantes :
   H\(_1\) : la moyenne de longueur des cornes de la population des lézards \textbf{morts} est \textbf{supérieure} à celle des lézards \textbf{vivants}. Leur différence est \textbf{supérieure} à 0 (\(\mu_{killed}-\mu_{living} > 0\)).
 \end{itemize}
 
-Ce test est donc erronné, ce qui explique qu'il nous renvoie un résultat faux et une \(p\)-value de 1. Ici, puisque l'ordre des catégories est ``killed'' d'abord et ``living'' ensuite, la seule façon correct de faire un test unilatéral qui a du sens est donc celle que nous avons réalisé en premier :
+Ce test est donc erronné, ce qui explique qu'il nous renvoie un résultat faux et une \(p\)-value de 1. Ici, puisque l'ordre des catégories est ``killed'' d'abord et ``living'' ensuite, la seule façon correcte de faire un test unilatéral qui a du sens est donc celle que nous avons réalisée en premier :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2198,17 +2205,17 @@ Ce test est donc erronné, ce qui explique qu'il nous renvoie un résultat faux 
 \hypertarget{exercice-dapplication-3}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication-3}}
 
-Reprenez chaque exemple et exercice de cet séance de TP et identifiez les situations où un test unilatéral aurait du sens. Si vous en trouvez, faites ce test et assurez-vous que les hypothèses choisies sont bien celles qui sont utilisées lors du test.
+Reprenez chaque exemple et exercice de cette séance de TP et identifiez les situations où un test unilatéral aurait du sens. Si vous en trouvez, faites ce test et assurez-vous que les hypothèses choisies sont bien celles qui sont utilisées lors du test.
 
-\hypertarget{seance-3-comparer-la-moyenne-de-plus-de-2-groupes}{%
-\section{Séance 3 : comparer la moyenne de plus de 2 groupes}\label{seance-3-comparer-la-moyenne-de-plus-de-2-groupes}}
+\hypertarget{suxe9ance-3-comparer-la-moyenne-de-plus-de-2-groupes}{%
+\section{Séance 3 : comparer la moyenne de plus de 2 groupes}\label{suxe9ance-3-comparer-la-moyenne-de-plus-de-2-groupes}}
 
-\hypertarget{packages-et-donnees}{%
-\subsection{Packages et données}\label{packages-et-donnees}}
+\hypertarget{packages-et-donnuxe9es}{%
+\subsection{Packages et données}\label{packages-et-donnuxe9es}}
 
 Avant toute chose, merci de relire l'introduction (section \ref{intro}) de ce document, et de suivre toutes les étapes qui y sont décrites (création d'un nouveau sous-dossier nommé \texttt{TP\_2} dans votre dossier \texttt{Biometrie3}, changement du répertoire de travail et création d'un nouveau script).
 
-Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2017}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham, Hester, et al., \protect\hyperlink{ref-R-readr}{2018}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (McNamara et al., \protect\hyperlink{ref-R-skimr}{2019}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2018}), qui permet d'effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package \texttt{broom} (Robinson \& Hayes, \protect\hyperlink{ref-R-broom}{2018}), qui fait partie du \texttt{tydiverse} mais qu'il faut charger explicitement. La fonction \texttt{tidy()} de ce package nous permettra de ``ranger'' correctement les résultats de tests dans un \texttt{tibble} :
+Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2017}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham et al., \protect\hyperlink{ref-R-readr}{2018}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Quinn et al., \protect\hyperlink{ref-R-skimr}{2019}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2019}), qui permet d'effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package \texttt{broom} (Robinson \& Hayes, \protect\hyperlink{ref-R-broom}{2019}), qui fait partie du \texttt{tydiverse} mais qu'il faut charger explicitement. La fonction \texttt{tidy()} de ce package nous permettra de ``ranger'' correctement les résultats de tests dans un \texttt{tibble} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2241,11 +2248,11 @@ Vous aurez également besoin des jeux de données suivants :
   \texttt{Insectes.csv}
 \end{itemize}
 
-\hypertarget{lanalyse-de-variance-a-un-facteur}{%
-\subsection{L'analyse de variance à un facteur}\label{lanalyse-de-variance-a-un-facteur}}
+\hypertarget{lanalyse-de-variance-uxe0-un-facteur}{%
+\subsection{L'analyse de variance à un facteur}\label{lanalyse-de-variance-uxe0-un-facteur}}
 
-\hypertarget{exploration-prealable-des-donnees-1}{%
-\subsubsection{Exploration préalable des données}\label{exploration-prealable-des-donnees-1}}
+\hypertarget{exploration-pruxe9alable-des-donnuxe9es-1}{%
+\subsubsection{Exploration préalable des données}\label{exploration-pruxe9alable-des-donnuxe9es-1}}
 
 Voyager dans un pays éloigné peut faire souffrir de décallage horaire. Habituellement, la resynchronisation de l'horloge interne circadienne dans le nouveau fuseau horaire est réalisée grâce à la perception de la lumière
 par les yeux. Ce changement progressif du rythme de notre horloge interne est appelé ``décalage de phase''. Ce phénomène a été étudié par 2 chercheurs en 1998 (Campbell \& Murphy, \protect\hyperlink{ref-Campbell1998}{1998}), qui ont montré que ce décallage de phase pouvait également être obtenu en exposant des sujets à la lumière, non pas au niveau de leurs yeux, mais au niveau de leur \href{https://fr.wikipedia.org/wiki/Fosse_poplitée}{fosse (ou creux) poplitée}, c'est-à-dire, derrière les genoux.\\
@@ -2296,16 +2303,16 @@ Le tableau obtenu est-il au format long ou au format court/large ? Pourquoi un t
 
 \begin{verbatim}
 # A tibble: 8 x 3
-  control   eyes    knee
-    <dbl>  <dbl>   <dbl>
-1    0.53  -0.78   0.73 
-2    0.36  -0.86   0.31 
-3    0.2   -1.35   0.03 
-4   -0.37  -1.48  -0.290
-5   -0.6   -1.52  -0.56 
-6   -0.64  -2.04  -0.96 
-7   -0.68  -2.83  -1.61 
-8   -1.27  NA     NA    
+  control  eyes   knee
+    <dbl> <dbl>  <dbl>
+1    0.53 -0.78  0.73 
+2    0.36 -0.86  0.31 
+3    0.2  -1.35  0.03 
+4   -0.37 -1.48 -0.290
+5   -0.6  -1.52 -0.56 
+6   -0.64 -2.04 -0.96 
+7   -0.68 -2.83 -1.61 
+8   -1.27 NA    NA    
 \end{verbatim}
 
 Lorsque l'on réalise une analyse de variance, puisque les effectifs ne sont pas nécessairement identiques dans tous les groupes (c'est ce qu'on appelle un design déséquilibré, ou ``unbalanced design''), présenter les tableaux au format long est indispensable. Par ailleurs, notez que les ANOVAs réalisées sur des ``balanced design'' (ou designs équilibrés, pour lesquels tous les groupes sont de même taille), sont beaucoup plus puissantes que les ANOVAs réalisées sur des ``unbalanced designs''.
@@ -2366,9 +2373,9 @@ Pour les statistiques descriptives et les graphiques qui viendront après, nous 
 \end{Shaded}
 
 \begin{verbatim}
- [1] control control control control control control control control
- [9] knee    knee    knee    knee    knee    knee    knee    eyes   
-[17] eyes    eyes    eyes    eyes    eyes    eyes   
+ [1] control control control control control control control control knee   
+[10] knee    knee    knee    knee    knee    knee    eyes    eyes    eyes   
+[19] eyes    eyes    eyes    eyes   
 Levels: control knee eyes
 \end{verbatim}
 
@@ -2393,15 +2400,15 @@ Skim summary statistics
  n variables: 2 
  group variables: treatment 
 
--- Variable type:numeric -----------------------------------
- treatment variable missing complete n  mean   sd    p0   p25   p50
-   control    shift       0        8 8 -0.31 0.62 -1.27 -0.65 -0.48
-      knee    shift       0        7 7 -0.34 0.79 -1.61 -0.76 -0.29
-      eyes    shift       0        7 7 -1.55 0.71 -2.83 -1.78 -1.48
-   p75  p100     hist
-  0.24  0.53 ▂▁▇▂▁▁▂▅
-  0.17  0.73 ▇▁▇▇▇▇▇▇
- -1.1  -0.78 ▂▁▁▂▁▇▁▅
+-- Variable type:numeric -----------------------------------------------------------------------
+ treatment variable missing complete n  mean   sd    p0   p25   p50   p75  p100
+   control    shift       0        8 8 -0.31 0.62 -1.27 -0.65 -0.48  0.24  0.53
+      knee    shift       0        7 7 -0.34 0.79 -1.61 -0.76 -0.29  0.17  0.73
+      eyes    shift       0        7 7 -1.55 0.71 -2.83 -1.78 -1.48 -1.1  -0.78
+     hist
+ ▂▁▇▂▁▁▂▅
+ ▇▁▇▇▇▇▇▇
+ ▂▁▁▂▁▇▁▅
 \end{verbatim}
 
 Nous avons ici la confirmation que le design expérimental n'est pas équilibré, puisque le groupe \texttt{control} compte un individu de plus. Il semble que le groupe \texttt{eyes} se comporte un peu différemment des autres groupes. En effet, pour les groupes \texttt{control} et \texttt{knee}, les valeurs observées sont très proches :
@@ -2442,7 +2449,7 @@ notch went outside hinges. Try setting notch=FALSE.
 notch went outside hinges. Try setting notch=FALSE.
 \end{verbatim}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-76-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-75-1} \end{center}
 
 Puisqu'il y a peu de données, les intervalles de confiance à 95\% sont très larges. Ils dépassent d'ailleurs presque systématiquement les quartiles. Il vaudait donc mieux représenter cette figure sans ces intervalles de confiance. Toutefois, avant de les retirer, on peut constater ici que les IC 95\% se chevauchent complètement pour les séries \texttt{control} et \texttt{knee}. En revanche, il n'y a aucun chevauchement de l'IC 95\% du groupe \texttt{eyes} avec les 2 autres groupes. On s'attend donc à trouver une différence de moyenne significative entre le groupe \texttt{eyes} d'une part, et les groupes \texttt{control} et \texttt{knee} d'autre part, mais pas de différence de moyenne entre les groupes \texttt{control} et \texttt{knee}.
 
@@ -2460,17 +2467,17 @@ Puisqu'il y a peu de données, les intervalles de confiance à 95\% sont très l
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-77-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-76-1} \end{center}
 
 On constate ici visuellement que les 3 séries ont une étendue à peu près similaire, et que le groupe \texttt{eyes} semble se distinguer des 2 autres par des valeurs plus faibles. Enfin, les boîtes contenant 50\% des valeurs centrales (donc l'étendue des valeurs entre les premiers et troisièmes quartiles) recouvrent le 0 pour les 2 groupes \texttt{control} et \texttt{knee}, mais par pour \texttt{eyes}.
 
-\hypertarget{le-test-parametrique-3}{%
-\subsubsection{Le test paramétrique}\label{le-test-parametrique-3}}
+\hypertarget{le-test-paramuxe9trique-3}{%
+\subsubsection{Le test paramétrique}\label{le-test-paramuxe9trique-3}}
 
 Le test paramétrique permettant de comparer la moyenne de plusieurs populations en une seule étape est l'\textbf{analyse de variance à un facteur}. Contrairement aux tests que nous avons vus jusqu'à maintenant, les conditions d'applications de ce test ne seront vérifiées qu'\textbf{après} avoir réalisé l'analyse. En effet, les conditions d'application de l'ANOVA ne se vérifient pas sur les données brutes mais sur les résidus de l'ANOVA. C'est d'ailleurs ce que l'on appelle l'\textbf{analyse des résidus}, ou diagnostique de l'ANOVA.
 
-\hypertarget{realisation-du-test-et-interpretation-3}{%
-\paragraph{Réalisation du test et interprétation}\label{realisation-du-test-et-interpretation-3}}
+\hypertarget{ruxe9alisation-du-test-et-interpruxe9tation-3}{%
+\paragraph{Réalisation du test et interprétation}\label{ruxe9alisation-du-test-et-interpruxe9tation-3}}
 
 Dans R, l'analyse de variance se fait grâce à la fonction \texttt{aov()} (comme ``Analysis Of Variance''). La syntaxe est la même que pour un certain nombre de tests déjà vus dans la section \ref{seance1} : il faut fournir une formule à la fonction. On place la variable numérique expliquée à gauche du \texttt{\textasciitilde{}}, et à droite, la variable qualitative explicative (le facteur).
 
@@ -2553,7 +2560,7 @@ L'homogénéité des résidus signifie que les résidus doivent avoir à peu pr�
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-80-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-79-1} \end{center}
 
 Ici, les résidus sont considérés comme homogènes car nous avons à peu près autant de résidus positifs que négatifs et que la ligne rouge est très proche du 0. L'étalement des résidus est à peu près le même de la gauche à la droite du graphique. On pourrait donc faire entrer les résidus dans une boite rectangulaire horizontale centrée sur le 0 et de la même largeur d'un bout à l'autre du graphique. Une autre façon de visualiser ces résidus est d'utiliser le graphique suivant :
 
@@ -2563,7 +2570,7 @@ Ici, les résidus sont considérés comme homogènes car nous avons à peu près
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-81-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-80-1} \end{center}
 
 Sur ce graphique, ce qui compte principalement, c'est la droite en rouge. Elle est ici presque horizontale, ce qui montre que les résidus de tous les groupes (un groupe à gauche et 2 à droite) ont à peu près même moyenne.
 
@@ -2600,7 +2607,7 @@ Reste à vérifier la normalité des résidus. Là encore, on peut faire cela gr
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-83-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-82-1} \end{center}
 
 Sur un graphique quantile-quantile comme celui-là, on considère que les observations sont distribuées Normalement si les points sont bien alignés sur la droite. Ici, la plupart des points sont très proches de la droite, ce qui laisse penser que les résidus suivent bien la loi Normale. On peut en avoir la confirmation avec le test suivant :
 
@@ -2774,17 +2781,17 @@ En utilisant le tableau ci-dessus, nous pouvons synthétiser graphiquement ces r
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-89-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-88-1} \end{center}
 
 Nous avons donc bien montré ici que la re-synchronisation de l'horloge interne n'est possible que par le biais de l'exposition des yeux à la lumière, et non du creux poplité.
 
-\hypertarget{lalternative-non-parametrique-3}{%
-\subsubsection{L'alternative non paramétrique}\label{lalternative-non-parametrique-3}}
+\hypertarget{lalternative-non-paramuxe9trique-3}{%
+\subsubsection{L'alternative non paramétrique}\label{lalternative-non-paramuxe9trique-3}}
 
 Dans la suite de cette section, nous faisons l'hypothèse, bien que ça ne soit pas le cas, que les conditions d'application de l'ANOVA ne sont pas vérifiées pour notre jeu de données.
 
-\hypertarget{realisation-du-tests-et-interpretation}{%
-\paragraph{Réalisation du tests et interprétation}\label{realisation-du-tests-et-interpretation}}
+\hypertarget{ruxe9alisation-du-tests-et-interpruxe9tation}{%
+\paragraph{Réalisation du tests et interprétation}\label{ruxe9alisation-du-tests-et-interpruxe9tation}}
 
 Si les conditions d'application de l'ANOVA ne sont pas remplies, il est nécessaire d'utiliser un test non-paramétrique afin de comparer la moyenne de plus de deux groupes à la fois. La particularité de l'ANOVA est sa \textbf{robustesse} vis-à-vis d'un viol modéré de ses coditions d'application. La robustesse est la capacité d'un test à fournir des résultats qui restent valides même si toutes ses conditions d'application ne sont pas remplies. L'ANOVA étant particulièrement robuste, ses résultats resteront valides dans les situations suivantes :
 
@@ -2819,8 +2826,7 @@ L'alternative non paramétrique à l'ANOVA à un facteur est le test de la somme
     Kruskal-Wallis rank sum test
 
 data:  shift by treatment
-Kruskal-Wallis chi-squared = 9.4231, df = 2, p-value =
-0.008991
+Kruskal-Wallis chi-squared = 9.4231, df = 2, p-value = 0.008991
 \end{verbatim}
 
 Ici, la \(p\)-value est inférieure à \(\alpha\), on rejette donc H\(_0\) : toutes les meedianes ne sont pas égales. Comme avec l'ANOVA, il nous faut maintenant déterminer quelles médianes sont différentes et quelle est la magnitude de cette (ou de ces) différence(s). Pour cela, nous devons réaliser un test de comparaisons multiples.
@@ -2921,9 +2927,9 @@ Avec ces résultats, on progresse un peu car outre les \(p\)-values pour chaque 
 
 \begin{verbatim}
 # A tibble: 1 x 7
-  estimate statistic p.value conf.low conf.high method     alternative
-     <dbl>     <dbl>   <dbl>    <dbl>     <dbl> <chr>      <chr>      
-1     1.19        42  0.0262    0.300      2.21 Wilcoxon ~ two.sided  
+  estimate statistic p.value conf.low conf.high method               alternative
+     <dbl>     <dbl>   <dbl>    <dbl>     <dbl> <chr>                <chr>      
+1     1.19        42  0.0262    0.300      2.21 Wilcoxon rank sum t~ two.sided  
 \end{verbatim}
 
 Pour le décalage de phase de ces 2 groupes, la différence de médiane estimée vaut donc de 1.19, avec un intervalle de confiance à 95\% de \([0.3 ; 2.21]\). Toutes les valeurs comprises dans cet intervalle de confiance sont strictement positives. Il y a donc très peu de chances pour que la différence de médiane entre ces deux groupes soit nulle. Le test de Dunn ci-dessus, montrant une différence significative entre ces groupes, est donc confirmé.
@@ -2970,11 +2976,11 @@ Saisissez ces données dans R et faites-en l'analyse. Vous tenterez de détermin
 
 L'efficacité de 6 insecticides nommés A, B, C, D, E et F a été testée sur 6 parcelles agricoles. Dans chaque parcelle, un insecticide choisi aléatoirement dans la liste a été appliqué. Deux semaine plus tard, 12 plants ont été collectés dans chaque parcelle agricole et le nombre d'insectes toujours vivants sur chacun d'entre eux a été compté. Les résultats sont présentés dans le fichier \texttt{Insectes.csv}. Importez ces données dans R et faites-en l'analyse. Tous les insecticides ont-ils la même efficacité ? Si la réponse est non, quels sont les insecticides les plus (ou les moins) efficaces.
 
-\hypertarget{seance-4-correlations-et-regressions}{%
-\section{Séance 4 : corrélations et régressions}\label{seance-4-correlations-et-regressions}}
+\hypertarget{suxe9ance-4-corruxe9lations-et-ruxe9gressions}{%
+\section{Séance 4 : corrélations et régressions}\label{suxe9ance-4-corruxe9lations-et-ruxe9gressions}}
 
-\hypertarget{packages-et-donnees-1}{%
-\subsection{Packages et données}\label{packages-et-donnees-1}}
+\hypertarget{packages-et-donnuxe9es-1}{%
+\subsection{Packages et données}\label{packages-et-donnuxe9es-1}}
 
 Comme dans tous les chapitres de cet ouvrage, nous aurons besoin ici du \texttt{tidyverse} et du package \texttt{skimr}. Noubliez pas de les charger en mémoire avant d'aller plus loin.
 
@@ -3001,30 +3007,30 @@ Vous aurez également besoin des jeux de données suivants disponibles sur l'ENT
   \texttt{hockey.csv}
 \end{itemize}
 
-\hypertarget{correlation}{%
-\subsection{Corrélation}\label{correlation}}
+\hypertarget{corruxe9lation}{%
+\subsection{Corrélation}\label{corruxe9lation}}
 
-\hypertarget{principe}{%
-\subsubsection{Principe}\label{principe}}
+\hypertarget{principe-1}{%
+\subsubsection{Principe}\label{principe-1}}
 
-Lorsque des variables numériques sont associées ont dit qu'elles sont \textbf{corrélées}. Par exemple, la taille du cerveau la taille du corps sont corrélées positivement parmi les espèces de mammifères. Les espèces de grande taille ont tendance à avoir un cerveau plus grand et les petites espèces ont tendance à avoir un cerveau plus petit.\\
+Lorsque des variables numériques sont associées ont dit qu'elles sont \textbf{corrélées}. Par exemple, la taille du cerveau et la taille du corps sont corrélées positivement parmi les espèces de mammifères. Les espèces de grande taille ont tendance à avoir un cerveau plus grand et les petites espèces ont tendance à avoir un cerveau plus petit.\\
 Le coefficient de corrélation est la quantité qui décrit la force et la direction de l'association entre deux variables numériques mesurées sur un échantillon de sujets ou d'unités d'observation. La corrélation reflète la quantité de dispersion dans un nuage de points entre deux variables. Contrairement à la régression linéaire, la corrélation n'ajuste aucune droite à des données et ne permet donc pas de mesurer à quel point le changement d'une variable entraîne un changement rapide ou lent de l'autre variable.
 
 Ainsi, sur la figure ci-dessous, le coefficient de corrélation entre \texttt{X} et \texttt{Y} est le même pour les deux graphiques : il vaut 1.
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-95-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-94-1} \end{center}
 
 Ici, le coefficient de corrélation (noté \(r\)) vaut 1 dans les deux cas, car tous les points sont alignés sur une droite. La pente de la droite n'influence en rien la valeur corrélation. En revanche, la dispersion des points autour d'une droite parfaite a une influence :
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-96-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-95-1} \end{center}
 
 Plus la dispersion autour d'une droite parfaite sera grande, plus la corrélation sera faible. C'est la raison pour laquelle lorsque l'on parle de ``corrélation'', on sous-entend généralement \textbf{corrélation linéaire}. Ainsi, 2 variables peuvent avoir une relation très forte, mais un coefficient de corrélation nul, si leur relation n'est pas linéaire :
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-97-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-96-1} \end{center}
 
 L'exploration graphique de vos données devrait donc toujours être une priorité. Calculer un coefficient de corrélation nul ou très faible ne signifie par pour autant une absence de relation entre les 2 variables numériques étudiées. Cela peut signifier une relation non linéaire. La solution la plus simple pour distinguer une relation telle que celle du graphique précédent, et une absence de relation telle que celle présentée dans le graphique ci-dessous, est l'examen visuel des données :
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-98-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-97-1} \end{center}
 
 En bref, le coefficient de corrélation \(r\) est compris entre -1 et +1 :
 
@@ -3042,8 +3048,8 @@ En bref, le coefficient de corrélation \(r\) est compris entre -1 et +1 :
 
 Dans la suite de ce chapitre, nous allons voir comment calculer le coefficient de corrélation entre 2 variables numériques, et puisque nous travaillons avec des \textbf{échantillons}, ce calcul sera nécessairement entaché d'\textbf{incertitude}. Tout comme la moyenne ou la variance d'un échantillon, la corrélation est un paramètre des populations dont nous ne pourrons qu'estimer la valeur. Toute estimation de corrélation devra donc être encadrée par un intervalle d'incertitude, généralement, il s'agit de l'intervalle de confiance à 95\% de la corrélation. Enfin, outre l'estimation de la valeur de la corrélation et de son incertitude, nous pourrons aussi faire des tests d'hypothèses au sujet des corrélations que nous estimerons.
 
-\hypertarget{exploration-prealable-des-donnees-2}{%
-\subsubsection{Exploration préalable des données}\label{exploration-prealable-des-donnees-2}}
+\hypertarget{exploration-pruxe9alable-des-donnuxe9es-2}{%
+\subsubsection{Exploration préalable des données}\label{exploration-pruxe9alable-des-donnuxe9es-2}}
 
 \hypertarget{importation-et-examen-visuel-4}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-4}}
@@ -3118,22 +3124,29 @@ Skim summary statistics
  n obs: 24 
  n variables: 3 
 
--- Variable type:factor ------------------------------------
+-- Variable type:factor ------------------------------------------------------------------------
  variable missing complete  n n_unique             top_counts ordered
        ID       0       24 24       24 1: 1, 2: 1, 3: 1, 4: 1   FALSE
 
--- Variable type:numeric -----------------------------------
-        variable missing complete  n  mean   sd    p0   p25  p50
-  futureBehavior       0       24 24 -0.12 0.37 -0.92 -0.29 -0.1
- nVisitsNestling       0       24 24 13.12 7.21  1     8.75 13  
-   p75  p100     hist
-  0.18  0.39 ▅▁▅▁▇▅▇▇
- 15.75 31    ▃▃▆▇▁▅▁▁
+-- Variable type:numeric -----------------------------------------------------------------------
+        variable missing complete  n  mean   sd    p0   p25  p50   p75  p100
+  futureBehavior       0       24 24 -0.12 0.37 -0.92 -0.29 -0.1  0.18  0.39
+ nVisitsNestling       0       24 24 13.12 7.21  1     8.75 13   15.75 31   
+     hist
+ ▅▁▅▁▇▅▇▇
+ ▃▃▆▇▁▅▁▁
 \end{verbatim}
 
 Outre le facteur \texttt{ID} que nous venons de créer, nous disposons donc de 2 variables numériques qui ne contiennent pas de données manquantes.
-1. La variable \texttt{nVisitsNestling}, qui indique le nombre de visites agressives reçues par les individus suivis lorsqu'ils étaient de jeunes poussins, varie de 1 à 31, pour une moyenne de 13.12, une médiane proche (13) mais un écart-type important.
-2. La variable \texttt{futureBehavior} varie de -0.92 à 0.39, avec une moyenne et une médiane proche de 0 (-0.12 et -0.1 respectivement).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  La variable \texttt{nVisitsNestling}, qui indique le nombre de visites agressives reçues par les individus suivis lorsqu'ils étaient de jeunes poussins, varie de 1 à 31, pour une moyenne de 13.12, une médiane proche (13) mais un écart-type important.
+\item
+  La variable \texttt{futureBehavior} varie de -0.92 à 0.39, avec une moyenne et une médiane proche de 0 (-0.12 et -0.1 respectivement).
+\end{enumerate}
 
 À ce stade, il est possible de calculer le coefficient de corrélation linéaire entre les 2 variables :
 
@@ -3152,13 +3165,19 @@ futureBehavior        0.5337225      1.0000000
 \end{verbatim}
 
 Le résultat est obtenu sous la forme d'une matrice symétrique :
-- Sur la diagonale, les corrélation valent 1 (le coefficient d'une variable avec elle-même vaut toujours 1).
-- En dehors de la diagonale, on trouve le coefficient de corrélation linéaire entre les 2 variables d'intérêt. Ici, il est positif et vaut 0.533, ce qui est une valeur relativement élevée dans le domaine de la biologie ou de l'écologie.
+
+\begin{itemize}
+\tightlist
+\item
+  Sur la diagonale, les corrélations valent 1 (le coefficient de corrélation d'une variable avec elle-même vaut toujours 1).
+\item
+  En dehors de la diagonale, on trouve le coefficient de corrélation linéaire entre les 2 variables d'intérêt. Ici, il est positif et vaut 0.533, ce qui est une valeur relativement élevée dans le domaine de la biologie ou de l'écologie.
+\end{itemize}
 
 \hypertarget{exploration-graphique-4}{%
 \paragraph{Exploration graphique}\label{exploration-graphique-4}}
 
-Afin de savoir si la valeur moyenne de \(r\) calculée précédemment reflète une relation linéaire mais moyenne, ou une relation qui n'est pas vraiment linéaire, nous devons faire un buage de points :
+Afin de savoir si la valeur moyenne de \(r\) calculée précédemment reflète une relation linéaire mais moyenne, ou une relation qui n'est pas vraiment linéaire, nous devons faire un nuage de points :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3171,16 +3190,16 @@ Afin de savoir si la valeur moyenne de \(r\) calculée précédemment reflète u
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-103-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-102-1} \end{center}
 
 On constate ici que la corrélation moyenne obtenue plus haut est due au fait que les points sont assez dispersés, et non au fait que la relation n'est pas linéaire. On peut donc dire que la relation, si elle existe, n'est pas parfaite. Un test d'hypothèse devrait nous permettre de déterminer si la corrélation linéaire observée ici est significativement différente de 0 ou non
 
-\hypertarget{le-test-parametrique-4}{%
-\subsubsection{Le test paramétrique}\label{le-test-parametrique-4}}
+\hypertarget{le-test-paramuxe9trique-4}{%
+\subsubsection{Le test paramétrique}\label{le-test-paramuxe9trique-4}}
 
 Comme pour la plupart des grandeurs calculées à partir d'un échantillon, la corrélation \(r\) n'est qu'un estimateur de la corrélation qui existe réellement entre ces deux variables dans la population générale. Dans la population générale, la corrélation linéaire est généralement notée \(\rho\). Son estimateur, \(r\) est donc souvent noté \(\hat{\rho}\).
 
-Les test d'hypothèse que nous allons faire maintenant permet de vérifier si le coefficient de corrélation \(\rho\) dans la population générale est différent de 0 ou non. Les hypothèses de ce test sont les suivantes :
+Le test d'hypothèses que nous allons faire maintenant permet de vérifier si le coefficient de corrélation \(\rho\) dans la population générale est différent de 0 ou non. Les hypothèses de ce test sont les suivantes :
 
 \begin{itemize}
 \tightlist
@@ -3192,8 +3211,8 @@ Les test d'hypothèse que nous allons faire maintenant permet de vérifier si le
 
 Ce test est réalisé dans \texttt{R} grâce à la fonction \texttt{cor.test()}.
 
-\hypertarget{resultats-du-test-et-interpretation}{%
-\paragraph{Résultats du test et interprétation}\label{resultats-du-test-et-interpretation}}
+\hypertarget{ruxe9sultats-du-test-et-interpruxe9tation}{%
+\paragraph{Résultats du test et interprétation}\label{ruxe9sultats-du-test-et-interpruxe9tation}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3215,7 +3234,7 @@ sample estimates:
 0.5337225 
 \end{verbatim}
 
-Le test réalisé ici est le \textbf{test de corrélation de Pearson}. Il s'agit d'un test paramétrique dont les conditions d'application sont expliquées plus bas. Comme pour tous les tests examiné jusqu'ici, les premières lignes des résultats fournissent toutes les informations utiles au sujet du test. Ici, on peut dire :
+Le test réalisé ici est le \textbf{test de corrélation de Pearson}. Il s'agit d'un test paramétrique dont les conditions d'application sont expliquées plus bas. Comme pour tous les tests examinés jusqu'ici, les premières lignes des résultats fournissent toutes les informations utiles au sujet du test. Ici, on peut dire :
 
 \begin{quote}
 Au seuil \(\alpha = 0.05\), le test de corrélation de Pearson a permis de rejeter l'hypothèse nulle selon laquelle la corrélation entre le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants (\(t = 2.96\), \(ddl = 22\), \(p = 0.007\)).
@@ -3316,12 +3335,12 @@ Pour résumer, l'examen du nuage de points permet de vérifier les 2 premières 
   Une relation non linéaire entre les deux variables.
 \end{itemize}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-106-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-105-1} \end{center}
 
 Enfin, si l'une, l'autre ou les deux séries de données ne suivent pas la loi Normale, il faudra faire un test non paramétrique.
 
-\hypertarget{lalternative-non-parametrique-4}{%
-\subsubsection{L'alternative non paramétrique}\label{lalternative-non-parametrique-4}}
+\hypertarget{lalternative-non-paramuxe9trique-4}{%
+\subsubsection{L'alternative non paramétrique}\label{lalternative-non-paramuxe9trique-4}}
 
 Quand les conditions d'application du test de corrélation de Pearson ne sont pas remplies, il faut faire un test équivalent non paramétrique. Le test utilisé le plus fréquemment dans cette situation est le test du \(\rho\) de Spearman. On l'effectue comme le test de Pearson en précisant simplement un argument supplémentaire : \texttt{method\ =\ "spearman"} (sans maujscule) :
 
@@ -3333,8 +3352,8 @@ Quand les conditions d'application du test de corrélation de Pearson ne sont pa
 \end{Shaded}
 
 \begin{verbatim}
-Warning in cor.test.default(birds$nVisitsNestling,
-birds$futureBehavior, : Cannot compute exact p-value with ties
+Warning in cor.test.default(birds$nVisitsNestling, birds$futureBehavior, :
+Cannot compute exact p-value with ties
 \end{verbatim}
 
 \begin{verbatim}
@@ -3376,8 +3395,8 @@ On souhaite déterminer si le coefficient de consanguinité est associé à la p
 - faire le test approprié en posant les hypothèses nulles et alternatives judicieuses
 - répondre à la question posée en intégrant tous les éléments utiles.
 
-\hypertarget{les-miracles-de-la-memoire}{%
-\paragraph{Les miracles de la mémoire}\label{les-miracles-de-la-memoire}}
+\hypertarget{les-miracles-de-la-muxe9moire}{%
+\paragraph{Les miracles de la mémoire}\label{les-miracles-de-la-muxe9moire}}
 
 À quel point les souvenirs d'évènements miraculeux sont-il fiables ? Une façon d'étudier cette question est de comparer différents récits de tours de magie extraordinaires. Parmis les tours les plus célèbres, on trouve celui de la corde du fakir. Dans l'une de ces versions, un magicien jette l'extrémité une corde d'apparence normale en l'air et cette corde devient rigide. Un garçon grimpe à la corde et finit par disparaître en huat de la scène. Le magicien lui demande de répondre mais n'obtient pas de réponse. Il attrape alors un couoteau, grimpe à son tour, et le garçon, découpé en morceaux, tombe du ciel dans un panier posé par terre. Le magicien redescent de la corde et aide le garçon vivant, en un seul morceau et non blessé, à sortir du panier.
 
@@ -3388,8 +3407,8 @@ Y a-t'il un lien entre le caractère impressionnant (``impressiveness'') d'un so
 
 Les données de Wiseman \& Lamont (\protect\hyperlink{ref-wiseman1996}{1996}) sont disponibles dans le fichier \texttt{ropetrick.csv}. Importez ces données et analysez-les en respectant les consignes de l'exercice précédent.
 
-\hypertarget{regression-lineaire}{%
-\subsection{Régression linéaire}\label{regression-lineaire}}
+\hypertarget{ruxe9gression-linuxe9aire}{%
+\subsection{Régression linéaire}\label{ruxe9gression-linuxe9aire}}
 
 La régression est une méthode utilisée pour prédire les valeurs d'une variable numérique à partir des valeurs d'une seconde variable. Par exemple, le nuage de ooints de la figure ci-dessous montre comment la diversitee génétique dans une population humaine locale peut être prédite par sa distance de dispersion depuis l'Est africain en ajustant une droite aux données (d'après Whitlock \& Schluter, \protect\hyperlink{ref-whitlock2015}{2015}). L'homme moderne est apparu en Afrique et nos ancêtres ont perdu un peu de diversité génétique à chaque étape de leur colonisation de nouveaux territoires.
 
@@ -3401,8 +3420,8 @@ Une façon de distinguer corrélation et régression consiste à dire que ``corr
 
 Lorsque l'on s'intéresse à la régression linéaire, on considère que la relation qui lie les deux variables est linéaire, et on souhaite quantifier l'intensité de la relation. Nous allons examiner maintenant comment faire ça dans \texttt{R}.
 
-\hypertarget{exploration-prealable-des-donnees-3}{%
-\subsubsection{Exploration préalable des données}\label{exploration-prealable-des-donnees-3}}
+\hypertarget{exploration-pruxe9alable-des-donnuxe9es-3}{%
+\subsubsection{Exploration préalable des données}\label{exploration-pruxe9alable-des-donnuxe9es-3}}
 
 Les activités humaines réduisent le nombre d'espèces dans un grand nombre d'écosystèmes à la surface du globe. Est-ce que cette diminution du nombre d'espèces affecte le fonctionnement de base des écosystèmes ? Où est-ce qu'au contraire, les espèces végétales sont majoritairement interchangeables, les fonctions des espèces disparues pouvants être assurées par les espèces toujours présentes ?
 
@@ -3465,13 +3484,13 @@ Skim summary statistics
  n obs: 161 
  n variables: 2 
 
--- Variable type:numeric -----------------------------------
-         variable missing complete   n mean   sd   p0  p25 p50 p75
- biomassStability       0      161 161 4.42 1.95 1.34 3.07   4 5.2
-         nSpecies       0      161 161 6.32 5.64 1    2      4 8  
-  p100     hist
- 15.76 ▅▇▃▁▁▁▁▁
- 16    ▇▃▁▃▁▁▁▅
+-- Variable type:numeric -----------------------------------------------------------------------
+         variable missing complete   n mean   sd   p0  p25 p50 p75  p100
+ biomassStability       0      161 161 4.42 1.95 1.34 3.07   4 5.2 15.76
+         nSpecies       0      161 161 6.32 5.64 1    2      4 8   16   
+     hist
+ ▅▇▃▁▁▁▁▁
+ ▇▃▁▃▁▁▁▅
 \end{verbatim}
 
 Ce premier examen nous montre que nous n'avons aucune données manquantes et que l'indice de stabilité a une distribution asymétrique (asymétrie droite) et qu'il varie d'un peu plus de 1 à près de 16. Pour en apprendre un peu plus, nous avons intérêt à examiner les données en groupes :
@@ -3490,19 +3509,19 @@ Skim summary statistics
  n variables: 2 
  group variables: nSpecies 
 
--- Variable type:numeric -----------------------------------
- nSpecies         variable missing complete  n mean   sd   p0  p25
-        1 biomassStability       0       33 33 3.63 1.54 2.07 2.41
-        2 biomassStability       0       34 34 3.83 1.35 1.34 2.97
-        4 biomassStability       0       29 29 3.88 1.24 2.13 3   
-        8 biomassStability       0       30 30 4.62 1.19 2.53 3.75
-       16 biomassStability       0       35 35 6.03 2.73 2.93 4.03
-  p50  p75  p100     hist
- 3.01 4.4   7.47 ▇▅▁▂▁▁▂▁
- 3.73 4.51  7.41 ▂▅▆▇▅▁▁▂
- 3.86 4.54  7.41 ▅▇▃▆▃▂▁▁
- 4.4  5.03  7.74 ▂▇▇▆▁▃▂▁
- 5.27 7.07 15.76 ▇▆▅▂▁▁▁▁
+-- Variable type:numeric -----------------------------------------------------------------------
+ nSpecies         variable missing complete  n mean   sd   p0  p25  p50  p75
+        1 biomassStability       0       33 33 3.63 1.54 2.07 2.41 3.01 4.4 
+        2 biomassStability       0       34 34 3.83 1.35 1.34 2.97 3.73 4.51
+        4 biomassStability       0       29 29 3.88 1.24 2.13 3    3.86 4.54
+        8 biomassStability       0       30 30 4.62 1.19 2.53 3.75 4.4  5.03
+       16 biomassStability       0       35 35 6.03 2.73 2.93 4.03 5.27 7.07
+  p100     hist
+  7.47 ▇▅▁▂▁▁▂▁
+  7.41 ▂▅▆▇▅▁▁▂
+  7.41 ▅▇▃▆▃▂▁▁
+  7.74 ▂▇▇▆▁▃▂▁
+ 15.76 ▇▆▅▂▁▁▁▁
 \end{verbatim}
 
 Cette fois, on obtient des informations pour chaque valeur de nombre d'espèce par parcelle. On constate par exemple que les moyennes de l'indice de stabilité de la biomasse augmentent très peu entre les catégories 1, 2 et 4 espèces par parcelle, mais que l'augmentation semble plus fort pour 8 et 16 espèces par parcelle. Tous les écarts-types semblent très proches, sauf peut-être pour la catégorie 16 espèces.
@@ -3520,7 +3539,7 @@ Une visualisation des données est toujours indispensable :
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-113-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-112-1} \end{center}
 
 Ce graphique nous apprend plusieurs choses :
 
@@ -3541,7 +3560,7 @@ Ce graphique nous apprend plusieurs choses :
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-114-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-113-1} \end{center}
 
 Cela n'est pas du tout problématique : comme pour l'ANOVA, les conditions d'application porteront sur les \textbf{résidus de la régression}, pas sur les variables elles-mêmes.
 2. Afin de limiter la sur-dispersion de la variable expliquée, notamment pour la catégorie \texttt{16} plantes par parcelle, nous allons transformer l'indice de stabilité en logarithme (attention, la fonction \texttt{log()} permet de calculer des logarithmes népériens ou logarithmes naturels) :
@@ -3582,7 +3601,7 @@ Cela n'est pas du tout problématique : comme pour l'ANOVA, les conditions d'app
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-116-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-115-1} \end{center}
 
 On peut visualiser dès maintenant la droite de régression linéaire qui permet de lier ces deux variables grâce à la fonction \texttt{geom\_smooth(method\ =\ "lm",\ se\ =\ FALSE})` :
 
@@ -3598,12 +3617,12 @@ On peut visualiser dès maintenant la droite de régression linéaire qui permet
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-117-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-116-1} \end{center}
 
 À supposer que nous ayons le droit d'effectuer une régression linéaire (ce qu'il faudra vérifier avec les conditions d'application, \textbf{après} avoir fait la régression), la pente devrait être positive.
 
-\hypertarget{le-test-parametrique-5}{%
-\subsubsection{Le test paramétrique}\label{le-test-parametrique-5}}
+\hypertarget{le-test-paramuxe9trique-5}{%
+\subsubsection{Le test paramétrique}\label{le-test-paramuxe9trique-5}}
 
 À une exception près, la procédure de régression linéaire est en tout points identique à l'analyse de variance. Quand on fait une ANOVA, la variable expliquée est numérique est la variable explicative est catégorielle (c'est un facteur). Quand on fait une régression linéaire, les 2 variables sont numériques. Pour le reste, tout est identique : on exprime la variable expliquée en fonction de la variable explicative et on vérifie après coup, grâce aux résidus, si nous avions le droit ou non de faire l'analyse.
 
@@ -3637,8 +3656,8 @@ Faire une régression linéaire avec cette commande revient à effectuer en mêm
   H\(_1\) : la pente de la droite de régression est différente de 0 dans la population générale
 \end{itemize}
 
-\hypertarget{resultats-du-test-et-interpretation-1}{%
-\paragraph{Résultats du test et interprétation}\label{resultats-du-test-et-interpretation-1}}
+\hypertarget{ruxe9sultats-du-test-et-interpruxe9tation-1}{%
+\paragraph{Résultats du test et interprétation}\label{ruxe9sultats-du-test-et-interpruxe9tation-1}}
 
 Comme pour l'ANOVA, on affiche les résultats de ces tests à l'aide de la fonction \texttt{summary()}
 
@@ -3675,8 +3694,8 @@ Le tableau \texttt{Coefficients} est celui qui nous intéresse le plus puisqu'il
 
 La relation n'est pas parfaite : le nombre de plantes dans chaque parcelle ne permet de prédire l'indice de stabilitee de la biomasse que dans une mesure assez faible. C'est le \texttt{Adjusted\ R-squared} qui nous indique quelle est la ``qualité'' de prédiction du modèle. Ici, il vaut 0.22. Cela signifie que 22\% des variations de l'indice de stabilité de la biomasse sont prédits par le nombre de plantes dans les parcelles. Une autre façon de présenter les choses consiste à dire que 78\% des variations de l'indice de stabilité de biomasse sont expliqués par d'autres facteurs que le nombre d'espèces par parcelles. Le \(R^2\) (à en pas confondre avec le coefficient de corrélation \(r\)) renseigne donc sur la qualité de l'ajustement des données à la droite de régression. Il nous indique ici que le pouvoir prédictif de notre modèle linéaire est assez faible. Il est néanmoins significatif, ce qui indique que notre variable explicative joue bel et bien un rôle non négligeable dans les variations de la variable expliquée.
 
-\hypertarget{intervalle-de-confiance-de-la-regression}{%
-\paragraph{Intervalle de confiance de la régression}\label{intervalle-de-confiance-de-la-regression}}
+\hypertarget{intervalle-de-confiance-de-la-ruxe9gression}{%
+\paragraph{Intervalle de confiance de la régression}\label{intervalle-de-confiance-de-la-ruxe9gression}}
 
 La pente et l'ordonnée à l'origine de la droite de régression ont été obtenues à partir des données d'un échantillon (ici, 161 parcelles). Il s'agit donc d'estimations des pentes et ordonnées à l'origine de la relation plus générale qui concerne la population globale. Comme toute estimation, les pentes et ordonnées à l'origine de la droite de régression sont donc entâchées d'incertitudes. Nous pouvons quantifier cette incertitude grâce au calcul des intervalle de confiance à 95\% de ces 2 paramètres :
 
@@ -3708,7 +3727,7 @@ Il est possible de visualiser cette incertitude grâce à la fonction \texttt{ge
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-121-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-120-1} \end{center}
 
 Cette intervalle d'incertitude correspond à l'incertitude de la moyenne de la variable expliquée pour une valeur donnée de la variable explicative. Ainsi, apr exemple, si le nombre d'espèces d'une parcelle est égal à 8, alors, la régression et son incertitude associée nous dit que le logarithme de l'lindice de stabilité de la biomasse vaudra \textbf{en moyenne} environ 1.46, avec un intervalle de confiance de {[}1.40 ; 1.51{]}
 
@@ -3725,12 +3744,12 @@ Les conditions d'application de la régression sont les mêmes que celles de l'A
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-122-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-121-1} \end{center}
 
 C'est seulement après avoir réalisé, examiné et commenté ces graphiques que vous serez en mesure de dire si oui ou non vous aviez le droit de faire la régression linéaire, et donc d'en interpréter les résultats.
 
-\hypertarget{lalternative-non-parametrique-5}{%
-\subsubsection{L'alternative non paramétrique}\label{lalternative-non-parametrique-5}}
+\hypertarget{lalternative-non-paramuxe9trique-5}{%
+\subsubsection{L'alternative non paramétrique}\label{lalternative-non-paramuxe9trique-5}}
 
 Lorsque les conditions d'application de la régression linéaire ne sont pas vérifiées, on a principalement deux options :
 
@@ -3768,450 +3787,6 @@ Pour tester cela, Carré \& McCormick (\protect\hyperlink{ref-carre2008}{2008}) 
 
 Importez, examinez et analysez ces données pour répondre à la question posée.
 
-\hypertarget{correction-des-exercices-du-chapitre-5}{%
-\section{Correction des exercices du chapitre 5}\label{correction-des-exercices-du-chapitre-5}}
-
-\hypertarget{correlation-1}{%
-\subsection{Corrélation}\label{correlation-1}}
-
-\hypertarget{canis-lupus-1}{%
-\subsubsection{\texorpdfstring{\emph{Canis lupus}}{Canis lupus}}\label{canis-lupus-1}}
-
-Comme toujours, on commence par importer et examiner les données brutes :
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(skimr)}
-\NormalTok{loups <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/loups.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Parsed with column specification:
-cols(
-  inbreedCoef = col_double(),
-  nPups = col_double()
-)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{loups}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-# A tibble: 24 x 2
-   inbreedCoef nPups
-         <dbl> <dbl>
- 1        0        6
- 2        0        6
- 3        0.13     7
- 4        0.13     5
- 5        0.13     4
- 6        0.19     8
- 7        0.19     7
- 8        0.19     4
- 9        0.25     6
-10        0.24     3
-# ... with 14 more rows
-\end{verbatim}
-
-Nous disposons ici de 24 observations (24 portées de louveteaux) et 2 variables : le coefficient de consanguinité des louveteaux de chaque portée, et le nombre de louveteaux de chaque portée ayant survécu à leur premier hiver.
-
-On fait ensuite appel à la fonction \texttt{skim()} du package \texttt{skimr} afin d'en apprendre plus sur nos variables :
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{skim}\NormalTok{(loups)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Skim summary statistics
- n obs: 24 
- n variables: 2 
-
--- Variable type:numeric -----------------------------------
-    variable missing complete  n mean   sd p0  p25  p50  p75 p100
- inbreedCoef       0       24 24 0.23 0.1   0 0.19 0.24 0.3   0.4
-       nPups       0       24 24 3.96 1.88  1 3    3    5.25  8  
-     hist
- ▂▁▃▃▇▅▁▃
- ▁▃▇▃▂▃▂▁
-\end{verbatim}
-
-On constate qu'il n'y a pas de données manquantes et les histogrammes laissent penser qu'il n'y a pas non plus de valeurs aberrantes. On constate également quand dans chaque portée, au moins un louveteau a survécu à son premier hiver. Un examen graphique des données devrait nous permettre de mieux voir quelle est la structure des données :
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{loups }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ inbreedCoef, }\DataTypeTok{y =}\NormalTok{ nPups)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-127-1} \end{center}
-
-Comme on pouvait s'y attendre, on constate une relation plutôt négative entre les 2 variables étudiées : lorsque le coefficient de consanguinité dans une portée est élevé le nombre de jeunes qui parviennent à survivre à leur premier hiver est faible. C'est tout à fait logique compte tenu de ce que l'on sait de la consanguinité : elle augmente la proportion du génome qui sera homozygote et favorise donc l'apparition de tares génétiques qui sont très majoritairement codées par des allèles récessifs (ces allèles ne s'expriment qu'à l'état homozygote). Le coefficient de corrélation linéaire entre ces deux variables devrait donc être négatif. Nous souhaitons maintenant le calculer, estimer son intervalle de confiance, et tester si ce coefficient est significativement différent de 0 ou non.
-
-Pour cela, il nous faut commencer par verifier les conditions d'application. La relation entre les deux variables a l'air à peu près linéaire et le nuage de points a une forme à peu près elliptique. Les 2 premières conditions permettant de garantir une distribution Normale Bivariée des données sont donc vérifiées. Il nous faut maintenant tester la normalité des 2 variables étudiées dans la population générale. Nous allons donc faire 2 tests dont les hypothèses nulles et alternatives sont les suivantes :
-
-\begin{itemize}
-\tightlist
-\item
-  H\(_0\) : les données sont distribuées selon une loi Normale dans la population générale
-\item
-  H\(_1\) : les données ne sont pas distribuées selon une loi Normale dans la population générale
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{loups }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pull}\NormalTok{(inbreedCoef) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{shapiro.test}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-    Shapiro-Wilk normality test
-
-data:  .
-W = 0.93212, p-value = 0.1087
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{loups }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pull}\NormalTok{(nPups) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{shapiro.test}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-    Shapiro-Wilk normality test
-
-data:  .
-W = 0.91711, p-value = 0.05043
-\end{verbatim}
-
-Pour les 2 tests de Normalité de Shapiro-Wilk, la \(p-\) value est supérieure au seuil \(\alpha = 0.05\). On ne peut donc pas rejeter l'hypothèse nulle de Normalité pour nos deux variables (pour la consanguinité, \(W = 0.93\), \(p = 0.11\), et pour le nombre de jeunes ayant survécu à leur premier hiver, \(W = 0.92\), \(p = 0.05\)).
-
-Toutes les conditions d'application du test de corrélation de Pearson sont donc réunies.
-
-\begin{itemize}
-\tightlist
-\item
-  H\(_0\) : dans la population générale, le coefficient de corrélation entre les deux variables est égal à 0 (\(\rho = 0\))
-\item
-  H\(_1\) : dans la population générale, le coefficient de corrélation entre les deux variables est différent de 0 (\(\rho \neq 0\))
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{cor.test}\NormalTok{(loups}\OperatorTok{$}\NormalTok{inbreedCoef, loups}\OperatorTok{$}\NormalTok{nPups)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-    Pearson's product-moment correlation
-
-data:  loups$inbreedCoef and loups$nPups
-t = -3.5893, df = 22, p-value = 0.001633
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.8120418 -0.2706791
-sample estimates:
-       cor 
--0.6077184 
-\end{verbatim}
-
-Au seuil \(\alpha\) de 5\%, le test de corrélation de Pearson rejette l'hypothèse nulle d'indépendance entre les 2 variables dans la population générale (\(t = -3.59\), \(ddl = 22\), \(p = 0.002\)). Le coefficient de corrélation est donc significativement différent de 0 dans la population. Sa meilleure estimation vaut \(\hat{\rho} = -0.61\), avec un intervalle de confiance à 95\% couvrant les valeurs comprises entre -0.81 et -0.27. Le coefficient de consanguinité des portées de louveteaux est donc bien relié (négativement) au nombre de jeunes capables de survivre à leur premier hiver.
-
-NB. : j'insiste ici sur le fait que nous n'avons pas regardé de relation de cause à effet. Nous nous sommes contenté d'établir un lien (négatif et significatif) entre ces 2 variables. Pour aller plus loin, on pourrait faire une régression linéaire pour tenter de caractériser l'équation d'une éventuelle droite de régression, mesurer la qualité de l'ajustement grâce au \(R^2\) ajusté, et ainsi être en mesure de prédire une variable grâce à l'autre.
-
-\hypertarget{les-miracles-de-la-memoire-1}{%
-\subsubsection{Les miracles de la mémoire}\label{les-miracles-de-la-memoire-1}}
-
-On suit exactement la même démarche que pour l'exercice précédent, je vais donc être plus succinct dans ma correction.
-
-L'examen préliminaire des donnés montre que nous disposons de 21 observations pour 2 variables. Aucune donnée manquante ni aberrante ne semble présente. Le temps écoulé entre l'observation du tour de magie et son récit écrit est très variable puisqu'il est cmopris entre 2 et 50 ans, avec un écart-type de 15 ans.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(rope}\OperatorTok{$}\NormalTok{impressiveness)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
- 1  2  3  4  5 
- 3  3  1 10  4 
-\end{verbatim}
-
-Globalement, la catégorie 4 est la plus fortement représentée pour la variable ``caractère impressionant'' du tour de magie.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Représentation graphique}
-\NormalTok{rope }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ years, }\DataTypeTok{y =}\NormalTok{ impressiveness)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
-
-\CommentTok{# Test de Normalité de la première variable}
-\NormalTok{rope }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pull}\NormalTok{(years) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{shapiro.test}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-    Shapiro-Wilk normality test
-
-data:  .
-W = 0.94557, p-value = 0.2802
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Test de Normalité de la seconde variable}
-\NormalTok{rope }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pull}\NormalTok{(impressiveness) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{shapiro.test}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-    Shapiro-Wilk normality test
-
-data:  .
-W = 0.82319, p-value = 0.001517
-\end{verbatim}
-
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-132-1} \end{center}
-
-L'examen visuel et les tests de Shapiro montrent que si une relation linéaire semble bel et bien présente entre les 2 variables, les conditions d'application du test de corrélation de Pearson ne sont pas réunies. Le nuage de points n'a en effet pas une forme circulaire ou elliptique, mais plutôt une forme d'entonnoir, et le test de Shapiro-Wilk pour la variable \texttt{impressiveness} confirme que cette variable ne suit pas une distribution normale dans la population générale. Il nous faut donc effectuer un test non paramétrique ed Spearman.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{cor.test}\NormalTok{(rope}\OperatorTok{$}\NormalTok{years, rope}\OperatorTok{$}\NormalTok{impressiveness, }
-         \DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Warning in cor.test.default(rope$years, rope$impressiveness, method =
-"spearman"): Cannot compute exact p-value with ties
-\end{verbatim}
-
-\begin{verbatim}
-
-    Spearman's rank correlation rho
-
-data:  rope$years and rope$impressiveness
-S = 332.12, p-value = 2.571e-05
-alternative hypothesis: true rho is not equal to 0
-sample estimates:
-      rho 
-0.7843363 
-\end{verbatim}
-
-Le test de Spearman confirme la présence d'une relation significative entre les deux variables (\(S = 332.12\), \(p < 0.001\)). Au seuil \(\alpha = 0.05\), on rejette donc l'hypothèse nulle d'indépendance entre les deux variables. Le coefficient de corrélation de Spearman est positif et estimé à 0.78.
-
-\hypertarget{regression-lineaire-1}{%
-\subsection{Régression linéaire}\label{regression-lineaire-1}}
-
-\hypertarget{le-quartet-danscombe-1}{%
-\subsubsection{Le quartet d'Anscombe}\label{le-quartet-danscombe-1}}
-
-Seule la première régression linéaire est valide (en haut à gauche) car pour les 3 autres situations, les conditions d'application de la régression ne sont pas vérifiées. Pour le prouver, il faudrait faire l'analyse des résidus de ces 4 régressions. Toutefois, on peut dire les choses suivantes :
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  La relation entre \texttt{x2} et \texttt{y2} est parabolique et non linéaire. Faire une régression linéaire ici n'a pas de sens. L'analyse des résidus montrerait qu'ils ne sont pas homogènes, avec des résidus systématiquement négatifs pour les faibles et les fortes valeur de \texttt{x2}, mais strictement positifs pour les valeurs intermédiaires de \texttt{x2}
-\item
-  La relation entre \texttt{x3} et \texttt{y3} est une relation linéaire parfaite puisque tous les points sont alignés sauf sur une droite sauf un. Ce point a un impact trop fort sur les résultats de la régression puisqu'il ``tire'' artificiellement la droite vers le haut, et augmente ainsi la valeur de sa pente et diminue son ordonnée à l'origine. Ce point serait identifié comme un point ayant un ``leverage'' (ou influence) trop fort lors de l'analyse des résidus.
-\item
-  La relation entre \texttt{x4} et \texttt{y4} est déterminée en totalité par le points le plus à droite. Sans cette unique valeur, il n'y aurait pas de relation entre les deux variables puisque pour une unique valeur de \texttt{x4}, on obtient une grande variété de valeurs possibles pour \texttt{y4}, ce qui montre que les variables sont en réalité indépendantes. L'outlier détermine donc à lui tout seul la pente de la droite de régression. L'analyse des résidus de cette régression montrerait, sur le dernier graphique, que ce point a un ``leverage'' beaucoup trop important et qu'il faut donc le retirer de l'analyse pour espérer avoir des résultats corrects.
-\end{enumerate}
-
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-134-1} \end{center}
-
-\hypertarget{in-your-face-1}{%
-\subsubsection{In your face}\label{in-your-face-1}}
-
-Comme toujours, on commence par importer et examiner les données brutes
-
-Nous disposons bien de 21 observation pour 2 variables numériques : le ratio largeur / longueur du visage, et le nombre moyen de minutes de pénalité de chacun des 21 joueurs de hockey suivis.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{skim}\NormalTok{(hockey)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Skim summary statistics
- n obs: 21 
- n variables: 2 
-
--- Variable type:numeric -----------------------------------
-             variable missing complete  n mean   sd   p0  p25  p50
- FaceWidthHeightRatio       0       21 21 1.81 0.12 1.59 1.74 1.79
-       PenaltyMinutes       0       21 21 1.28 0.71 0.14 0.85 1.23
-  p75 p100     hist
- 1.87 2.07 ▂▁▇▇▂▂▂▁
- 1.57 2.95 ▅▁▅▇▂▂▁▁
-\end{verbatim}
-
-Les statsistique descriptives n'indiquent aucune données manquantes, et les minimas et maximas des deux variables ne semblent pas indiquer la présence de valeurs aberrantes. Pour se faire une meilleure idée des données, on en fait une représentation graphique, sous la forme d'un nuage de points puisque nous cherchons à mettre en évidence une éventuelle relation entre ces deux variables numériques :
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{hockey }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ FaceWidthHeightRatio, }\DataTypeTok{y =}\NormalTok{ PenaltyMinutes)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-138-1} \end{center}
-
-On confirme l'absence d'outlier et on observe ici une relation \emph{a priori} positive entre les 2 variables. Plus le ratio largeur du visage sur longueur du visage est important (donc plus le joueur de hockey a un visage large), plus le nombre moyen de temps de pénalité augmente. Une régression linéaire est nécessaire pour quantifier précisément cette relation et évaluer la qualité de l'ajustement du modèle linéaire aux données observées.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{reg2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(PenaltyMinutes }\OperatorTok{~}\StringTok{ }\NormalTok{FaceWidthHeightRatio, }\DataTypeTok{data =}\NormalTok{ hockey)}
-\KeywordTok{summary}\NormalTok{(reg2)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-Call:
-lm(formula = PenaltyMinutes ~ FaceWidthHeightRatio, data = hockey)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--0.9338 -0.3883 -0.1260  0.3381  1.0711 
-
-Coefficients:
-                     Estimate Std. Error t value Pr(>|t|)  
-(Intercept)            -4.505      2.089  -2.157   0.0440 *
-FaceWidthHeightRatio    3.189      1.150   2.774   0.0121 *
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.6129 on 19 degrees of freedom
-Multiple R-squared:  0.2882,    Adjusted R-squared:  0.2508 
-F-statistic: 7.694 on 1 and 19 DF,  p-value: 0.0121
-\end{verbatim}
-
-Pour les deux tests d'hypothèses réalisés ici, on rejette l'hypothèse nulle au seuil \(\alpha = 0.05\). Ainsi, l'ordonnée à l'origine est significativement différente de 0 (\(b = -4.51\), \(t = -2.157\), \(p = 0.044\)) et la pente est positive et significativement différente de 0 (\(a = 3.19\), \(t = 2.774\), \(p = 0.012\)). Les intervalles de confiance à 95\% de ces estimations sont données ci-dessous :
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{confint}\NormalTok{(reg2)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-                          2.5 %     97.5 %
-(Intercept)          -8.8758898 -0.1331171
-FaceWidthHeightRatio  0.7826085  5.5953569
-\end{verbatim}
-
-Dans la population générale, la pente de la droite permettant de lier les 2 variables étudiées a donc de bonnes chances de se trouver dans l'intervalle {[}0.78 ; 5.60{]}. Cet intervalle est très large et indique une forte incertitude.
-
-Vérifions maintenant que nous avions le droit d'effectuer cette régression linéaire :
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(reg2)}
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-141-1} \end{center}
-
-Le premier graphique (et le troisième en bas à gauche) montre que les résidus sont à peu près homogènes. Le second (en haut à droite) confirme la Normalité des résidus. Puisque les conditions d'application de la régression sont remplies, les résultats énoncés plus haut sont valides.
-Toutefois, le graphique en bas à droite indique qu'un point a probablement une influence trop forte sur les données : le point 21 se trouve au-delà de la ligne rouge poitillée qui indique une distance de Cook de 0.5. Il s'agit de la dernière observation du tableau de données. Nous avons donc deux options :
-1. considérer que ce point est tout à fait normal et que nous n'avons aucune raison de l'exclure de l'analyse. Alors, les résultats énoncés plus haut restent totalement valides.
-2. considérer que ce point est anormal (il faudrait savoir en détail comment les mesures ont été faites, et mieux connaître les données, les joueurs\ldots{}) et le retirer du tableau de données. Il faut alors refaire l'analyse. Si on retire ce point, il faut avoir une bonne raison pour cela.
-
-Si on ne retire pas le point problématique, voilà ce que nous pouvons dire au final.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{hockey }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ FaceWidthHeightRatio, }\DataTypeTok{y =}\NormalTok{ PenaltyMinutes)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{se =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-142-1} \end{center}
-
-L'intervalle de confiance de la régression est représenté sur ce graphique. On constate qu'il est malgré tout assez large, ce qui reflète l'incertitude importante associée à la relation que nous venons de mettre en évidence. Le \(R^2\) ajusté de la régression vaut 0.25 (voir plus haut), ce qui montre bien que le ratio largeur/longueur du visage joue finalement un rôle assez modeste quand on cherche à expliquer le comportement agressif.
-
-Si maintenant, on décide de retirer le point identifié dans l'analyse des résidus comme ayant une influence problématique (celui pour lequel la valeur dépasse 2 sur l'axe des \texttt{x}), les résultats de la régression sont fortement modifiés :
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{hockey }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(FaceWidthHeightRatio}\OperatorTok{<}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ FaceWidthHeightRatio, }\DataTypeTok{y =}\NormalTok{ PenaltyMinutes)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{se =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-143-1} \end{center}
-
-La pente de la droite de régression est bien plus faible. Et une nouvelle régression linéaire sans le point problématique arrive à une conclusion opposée à celle obtenue précédemment :
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{reg3 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(PenaltyMinutes }\OperatorTok{~}\StringTok{ }\NormalTok{FaceWidthHeightRatio, }
-           \DataTypeTok{data =}\NormalTok{ hockey }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(FaceWidthHeightRatio}\OperatorTok{<}\DecValTok{2}\NormalTok{))}
-\KeywordTok{summary}\NormalTok{(reg3)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-
-Call:
-lm(formula = PenaltyMinutes ~ FaceWidthHeightRatio, data = hockey %>% 
-    filter(FaceWidthHeightRatio < 2))
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.90184 -0.33403 -0.04149  0.35600  1.18885 
-
-Coefficients:
-                     Estimate Std. Error t value Pr(>|t|)
-(Intercept)            -2.616      2.270  -1.153    0.264
-FaceWidthHeightRatio    2.116      1.259   1.681    0.110
-
-Residual standard error: 0.5834 on 18 degrees of freedom
-Multiple R-squared:  0.1357,    Adjusted R-squared:  0.08771 
-F-statistic: 2.827 on 1 and 18 DF,  p-value: 0.11
-\end{verbatim}
-
-On constate ici que la pente (et l'ordonnées à l'origine) de la droite de régression ne sont plus significativement différentes de 0 et que la qualité de l'ajustement est très faible (\(R^2\) = 0.088), ce qui traduit le fait que la variable explicative ne permet de prédire que 8,8\% de la variable expliquée. La \(p-\)value globale de la régression (0.11) nous confirme que ces deux variables ne sont pas significativement reliée.
-
-Nous voyons bien ici que le point problématique a une très forte influence sur les résultats de la régression. Mais cela ne suffit pas à justifier que nous le retirions des données. Il faut une raison objective pour cela et le fait que le retirer change les résultats n'en est pas une. Si nous n'avons pas de raison de penser que ce point a été obtenu différemment des autres, si nous n'avons pas de raison de penser qu'une erreur a été comise quelque part, il nous faut conserver le point problématique, et simplement être très prudent quant à nos conclusions.
-
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-Campbell1998}{}%
 \textsc{Campbell SS, \& Murphy PJ}. (1998). Extraocular circadian phototransduction in humans. \emph{Science}, \textbf{279}(5349), 396--399. \url{https://doi.org/10.1126/science.279.5349.396}
@@ -4220,7 +3795,7 @@ Nous voyons bien ici que le point problématique a une très forte influence sur
 \textsc{Carré JM, \& McCormick CM}. (2008). In your face: Facial metrics predict aggressive behaviour in the laboratory and in varsity and professional hockey players. \emph{Proceedings of the Royal Society B: Biological Sciences}, \textbf{275}(1651), 2651--2656. \url{https://doi.org/10.1098/rspb.2008.0873}
 
 \leavevmode\hypertarget{ref-R-car}{}%
-\textsc{Fox J, Weisberg S, \& Price B}. (2018). \emph{Car: Companion to applied regression}. Retrieved from \url{https://CRAN.R-project.org/package=car}
+\textsc{Fox J, Weisberg S, \& Price B}. (2019). \emph{Car: Companion to applied regression}. Retrieved from \url{https://CRAN.R-project.org/package=car}
 
 \leavevmode\hypertarget{ref-Fuller2003}{}%
 \textsc{Fuller A, Kamerman PR, Maloney SK, Mitchell G, \& Mitchell D}. (2003). Variability in brain and arterial blood temperatures in free-ranging ostriches in their natural habitat. \emph{Journal of Experimental Biology}, \textbf{206}(7), 1171--1181. \url{https://doi.org/10.1242/jeb.00230}
@@ -4234,17 +3809,17 @@ Nous voyons bien ici que le point problématique a une très forte influence sur
 \leavevmode\hypertarget{ref-liberg2005}{}%
 \textsc{Liberg O, Andrén H, Pedersen H-C, Sand H, Sejberg, Wabakken P, \ldots{} Bensch S}. (2005). Severe inbreeding depression in a wild wolf Canis lupus population. \emph{Biology Letters}, \textbf{1}(1), 17--20. \url{https://doi.org/10.1098/rsbl.2004.0266}
 
-\leavevmode\hypertarget{ref-R-skimr}{}%
-\textsc{McNamara A, Arino de la Rubia E, Zhu H, Ellis S, \& Quinn M}. (2019). \emph{Skimr: Compact and flexible summaries of data}. Retrieved from \url{https://CRAN.R-project.org/package=skimr}
-
 \leavevmode\hypertarget{ref-Molofsky2005}{}%
 \textsc{Molofsky J, \& Ferdy J-B}. (2005). Extinction dynamics in experimental metapopulations. \emph{Proceedings of the National Academy of Sciences}, \textbf{102}(10), 3726--3731. \url{https://doi.org/10.1073/pnas.0404576102}
 
 \leavevmode\hypertarget{ref-muller2011}{}%
 \textsc{Müller MS, Porter ET, Grace JK, Awkerman JA, Birchler KT, Gunderson AR, \ldots{} Anderson DJ}. (2011). Maltreated nestlings exhibit correlated maltreatment as adults: Evidence of a ``cycle of violence'' in Nazca Boobies ( \emph{Sula} \emph{Granti} ). \emph{The Auk}, \textbf{128}(4), 615--619. \url{https://doi.org/10.1525/auk.2011.11008}
 
+\leavevmode\hypertarget{ref-R-skimr}{}%
+\textsc{Quinn M, McNamara A, Arino de la Rubia E, Zhu H, \& Ellis S}. (2019). \emph{Skimr: Compact and flexible summaries of data}. Retrieved from \url{https://CRAN.R-project.org/package=skimr}
+
 \leavevmode\hypertarget{ref-R-broom}{}%
-\textsc{Robinson D, \& Hayes A}. (2018). \emph{Broom: Convert statistical analysis objects into tidy tibbles}. Retrieved from \url{https://CRAN.R-project.org/package=broom}
+\textsc{Robinson D, \& Hayes A}. (2019). \emph{Broom: Convert statistical analysis objects into tidy tibbles}. Retrieved from \url{https://CRAN.R-project.org/package=broom}
 
 \leavevmode\hypertarget{ref-tilman2006}{}%
 \textsc{Tilman D, Reich PB, \& Knops JMH}. (2006). Biodiversity and ecosystem stability in a decade-long grassland experiment. \emph{Nature}, \textbf{441}(7093), 629. \url{https://doi.org/10.1038/nature04742}
@@ -4259,13 +3834,13 @@ Nous voyons bien ici que le point problématique a une très forte influence sur
 \textsc{Wickham H, \& Bryan J}. (2019). \emph{Readxl: Read excel files}. Retrieved from \url{https://CRAN.R-project.org/package=readxl}
 
 \leavevmode\hypertarget{ref-R-ggplot2}{}%
-\textsc{Wickham H, Chang W, Henry L, Pedersen TL, Takahashi K, Wilke C, \& Woo K}. (2018). \emph{Ggplot2: Create elegant data visualisations using the grammar of graphics}. Retrieved from \url{https://CRAN.R-project.org/package=ggplot2}
+\textsc{Wickham H, Chang W, Henry L, Pedersen TL, Takahashi K, Wilke C, \ldots{} Yutani H}. (2019). \emph{Ggplot2: Create elegant data visualisations using the grammar of graphics}. Retrieved from \url{https://CRAN.R-project.org/package=ggplot2}
 
 \leavevmode\hypertarget{ref-R-dplyr}{}%
 \textsc{Wickham H, François R, Henry L, \& Müller K}. (2019). \emph{Dplyr: A grammar of data manipulation}. Retrieved from \url{https://CRAN.R-project.org/package=dplyr}
 
 \leavevmode\hypertarget{ref-R-tidyr}{}%
-\textsc{Wickham H, \& Henry L}. (2018). \emph{Tidyr: Easily tidy data with 'spread()' and 'gather()' functions}. Retrieved from \url{https://CRAN.R-project.org/package=tidyr}
+\textsc{Wickham H, \& Henry L}. (2019). \emph{Tidyr: Tidy messy data}. Retrieved from \url{https://CRAN.R-project.org/package=tidyr}
 
 \leavevmode\hypertarget{ref-R-readr}{}%
 \textsc{Wickham H, Hester J, \& Francois R}. (2018). \emph{Readr: Read rectangular text data}. Retrieved from \url{https://CRAN.R-project.org/package=readr}
