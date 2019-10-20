@@ -212,7 +212,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <h1><span class="header-section-number">3</span> Séances 1 et 2 : statistiques descriptives et tests d’hypothèses</h1>
 <div id="packages" class="section level2">
 <h2><span class="header-section-number">3.1</span> Packages et données</h2>
-<p>Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d’utiliser des packages spécifiques et d’importer des données depuis des fichiers externes disponibles sur l’ENT.</p>
+<p>Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d’utiliser des packages spécifiques et d’importer des données depuis des fichiers externes disponibles sur l’ENT (ou directement depuis ce document).</p>
 <p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du <code>tidyverse</code> <span class="citation">(Wickham, <a href="#ref-R-tidyverse">2017</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(Wickham et al., <a href="#ref-R-readr">2018</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(Wickham &amp; Bryan, <a href="#ref-R-readxl">2019</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(Quinn et al., <a href="#ref-R-skimr">2019</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(Fox et al., <a href="#ref-R-car">2019</a>)</span>, qui permet d’effectuer le test de comparaison des variances de Levene :</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">library</span>(tidyverse)</a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw">library</span>(readr)</a>
@@ -224,12 +224,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Comme d’habitude, si tout ça est un peu flou pour vous, relisez <a href="https://besibo.github.io/Biometrie2/bases.html#charger-un-package-en-memoire">la section 2.3</a> du livre de biométrie 2 disponible en ligne.</p>
 <p>Vous aurez également besoin des jeux de données suivants :</p>
 <ul>
-<li><code>Autruches.csv</code></li>
-<li><code>HommesFemmes.xls</code></li>
-<li><code>HornedLizards.csv</code></li>
-<li><code>Temperature.csv</code></li>
-<li><code>Temperature2.csv</code></li>
-<li><code>Testosterone.csv</code></li>
+<li><a href="https://besibo.github.io/Biometrie3/data/Autruches.csv"><code>Autruches.csv</code></a></li>
+<li><a href="https://besibo.github.io/Biometrie3/data/HommesFemmes.xls"><code>HommesFemmes.xls</code></a></li>
+<li><a href="https://besibo.github.io/Biometrie3/data/HornedLizards.csv"><code>HornedLizards.csv</code></a></li>
+<li><a href="https://besibo.github.io/Biometrie3/data/Temperature.csv"><code>Temperature.csv</code></a></li>
+<li><a href="https://besibo.github.io/Biometrie3/data/Temperature2.csv"><code>Temperature2.csv</code></a></li>
+<li><a href="https://besibo.github.io/Biometrie3/data/Testosterone.csv"><code>Testosterone.csv</code></a></li>
 </ul>
 </div>
 <div id="comparaison-de-la-moyenne-dune-population-à-une-valeur-théorique" class="section level2">
@@ -239,7 +239,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Avant de se lancer dans les tests d’hypothèses, il est <strong>toujours indispensable</strong> d’examiner les données dont on dispose à l’aide, d’une part de statistiques descriptives numériques, et d’autres part, de graphiques exploratoires. Nous allons voir dans cette section quels indices statistiques il peut être utile de calculer et quelles représentations graphiques il peut être utile de réaliser afin de pouvoir se lancer dans des tests d’hypothèses sans risquer de grossières erreurs.</p>
 <div id="importation-et-examen-visuel" class="section level4">
 <h4><span class="header-section-number">3.2.1.1</span> Importation et examen visuel</h4>
-<p>Commencez par importer les données contenues dans le fichier <code>Temperature.csv</code>. Pour cela, utilisez l’assistant d’importation de RStudio. Si vous ne savez plus comment faire, consultez <a href="https://besibo.github.io/Biometrie2/tidyr.html#importer-des-donnees-depuis-un-tableur">la section 5.3</a> du livre en ligne de Biométrie 2.</p>
+<p>Commencez par importer les données contenues dans <a href="https://besibo.github.io/Biometrie3/data/Temperature.csv">le fichier <code>Temperature.csv</code></a>. Pour cela, utilisez l’assistant d’importation de RStudio. Si vous ne savez plus comment faire, consultez <a href="https://besibo.github.io/Biometrie2/tidyr.html#importer-des-donnees-depuis-un-tableur">la section 5.3</a> du livre en ligne de Biométrie 2.</p>
 <p>Vous stockerez les données dans un objet que vous nommerez <code>Temperature</code>. Après l’importation, taper son nom dans la console de RStudio doit produire le résultat suivant :</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">Temperature</a></code></pre></div>
 <pre><code># A tibble: 25 x 2
@@ -512,7 +512,7 @@ sample estimates:
 </div>
 <div id="exercice-dapplication" class="section level3">
 <h3><span class="header-section-number">3.2.4</span> Exercice d’application</h3>
-<p>Le fichier <code>Temperature2.csv</code> contient les données brutes d’une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d’examiner vos données comme nous l’avons décrit dans la section <a href="seance1.html#Explo">3.2.1</a>, afin de savoir où vous allez, de repérer les éventuelles données manquantes ou aberrantes.</p>
+<p><a href="https://besibo.github.io/Biometrie3/data/Temperature2.csv">Le fichier <code>Temperature2.csv</code></a> contient les données brutes d’une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d’examiner vos données comme nous l’avons décrit dans la section <a href="seance1.html#Explo">3.2.1</a>, afin de savoir où vous allez, de repérer les éventuelles données manquantes ou aberrantes.</p>
 </div>
 </div>
 <div id="comparaison-de-la-moyenne-de-2-populations-données-appariées" class="section level2">
@@ -535,7 +535,7 @@ sample estimates:
 <p>Pour étudier cette question, une équipe de chercheurs <span class="citation">(Hasselquist et al., <a href="#ref-Hasselquist1999">1999</a>)</span> a mis en place le dispositif expérimental suivant. Les niveaux de testostérone de 13 carouges à épaulettes mâles ont été artificiellement augmentés par l’implantation chirurgicale d’un microtube perméable contenant de la testostérone. L’immunocompeetence a été mesurée pour chaque oiseau avant et après l’opération chirurgicale. La variable mesurée est la production d’anticorps suite à l’exposition des oiseaux avec un antigène non pathogène mais censé déclencher une réponse immunitaire. Les taux de production d’anticorps sont exprimés en logarithmes de densité optique par minute <span class="math inline">\(\left(\ln\frac{mOD}{min}\right)\)</span>.</p>
 <div id="importation-et-examen-visuel-1" class="section level4">
 <h4><span class="header-section-number">3.3.1.1</span> Importation et examen visuel</h4>
-<p>Les données se trouvent dans le fichier <code>Testosterone.csv</code>. Importez ces données dans un objet nommé <code>Testo</code> et examinez le tableau obtenu.</p>
+<p>Les données se trouvent dans <a href="https://besibo.github.io/Biometrie3/data/Testosterone.csv">le fichier <code>Testosterone.csv</code></a>. Importez ces données dans un objet nommé <code>Testo</code> et examinez le tableau obtenu.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">Testo</a></code></pre></div>
 <pre><code># A tibble: 13 x 5
    blackbird beforeImplant afterImplant logBeforeImplant logAfterImplant
@@ -877,7 +877,7 @@ sample estimates:
 </div>
 <div id="exercice-dapplication-1" class="section level3">
 <h3><span class="header-section-number">3.3.4</span> Exercice d’application</h3>
-<p>Les autruches vivent dans des environnements chauds et elles sont donc fréquemment exposées au soleil durant de longues périodes. Dans des environnements similaires, les mammifères ont des mécanismes physiologiques leur permettant de réduire la température de leur cerveau par rapport à celle de leur corps. Une équipe de chercheurs <span class="citation">(Fuller et al., <a href="#ref-Fuller2003">2003</a>)</span> a testé si les autruches pouvaient faire de même. La température du corps et du cerveau de 37 autruches a été enregistrée par une journée chaude typique. Les résultats, exprimés en degrés Celsius, figurent dans le fichier <code>Autruches.csv</code>.</p>
+<p>Les autruches vivent dans des environnements chauds et elles sont donc fréquemment exposées au soleil durant de longues périodes. Dans des environnements similaires, les mammifères ont des mécanismes physiologiques leur permettant de réduire la température de leur cerveau par rapport à celle de leur corps. Une équipe de chercheurs <span class="citation">(Fuller et al., <a href="#ref-Fuller2003">2003</a>)</span> a testé si les autruches pouvaient faire de même. La température du corps et du cerveau de 37 autruches a été enregistrée par une journée chaude typique. Les résultats, exprimés en degrés Celsius, figurent dans <a href="https://besibo.github.io/Biometrie3/data/Autruches.csv">le fichier <code>Autruches.csv</code></a>.</p>
 <p>Importez ces données et faites-en l’analyse pour savoir s’il existe une différence de température moyenne entre le corps et le cerveau des autruches. Comparez ces résultats avec les prédictions faites pour les mammifères dans un environnement similaire. Comme toujours, vous commencerez par faire une analyse descriptive des données, sous forme numérique et graphique, avant de vous lancer dans les tests d’hypothèses.</p>
 </div>
 </div>
@@ -889,7 +889,7 @@ sample estimates:
 <p>Chez <a href="https://fr.wikipedia.org/wiki/Phrynosoma_mcallii">le lézard cornu <em>Phrynosoma mcallii</em></a>, une frange de piquants entoure la tête. Une équipe d’herpétologues <span class="citation">(Young et al., <a href="#ref-Young2004">2004</a>)</span> a étudié la question suivante : des piquants plus longs autour de la tête protègent-ils le lézard cornu de son prédateur naturel, <a href="https://fr.wikipedia.org/wiki/Pie-grièche_migratrice">la pie grièche migratrice <em>Lanius ludovicianus</em></a> ? Ce prédateur a en effet une particularité : il accroche ses proies mortes à des barbelés ou des branches pour les consommer plus tard. Les chercheurs ont donc mesuré la longueur des cornes de 30 lézards retrouvés morts et accrochés dans des arbres par la pie grièche migratrice. Et en parallèle, ils ont mesuré les cornes de 154 individus vivants et en bonne santé choisis au hasard dans la population.</p>
 <div id="importation-et-examen-visuel-2" class="section level4">
 <h4><span class="header-section-number">3.4.1.1</span> Importation et examen visuel</h4>
-<p>Les données de cette étude sont stockées dans le fichier <code>HornedLizards.csv</code>. Importez ces données dans un objet nommé <code>Lizard</code> et examinez le tableau obtenu.</p>
+<p>Les données de cette étude sont stockées dans <a href="https://besibo.github.io/Biometrie3/data/HornedLizards.csv">le fichier <code>HornedLizards.csv</code></a>. Importez ces données dans un objet nommé <code>Lizard</code> et examinez le tableau obtenu.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">Lizard</a></code></pre></div>
 <pre><code># A tibble: 185 x 2
    squamosalHornLength Survival
@@ -1158,7 +1158,7 @@ mean in group killed mean in group living
 </div>
 <div id="exercice-dapplication-2" class="section level3">
 <h3><span class="header-section-number">3.4.4</span> Exercice d’application</h3>
-<p>On s’intéresse à la différence de taille supposée entre hommes et femmes. Le fichier <code>HommesFemmes.xls</code> contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à La Rochelle Université. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d’examiner les données à l’aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à La Rochelle Université ont-il la même taille ?</p>
+<p>On s’intéresse à la différence de taille supposée entre hommes et femmes. <a href="https://besibo.github.io/Biometrie3/data/HommesFemmes.xls">Le fichier <code>HommesFemmes.xls</code></a> contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à La Rochelle Université. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d’examiner les données à l’aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à La Rochelle Université ont-il la même taille ?</p>
 </div>
 </div>
 <div id="tests-bilatéraux-et-unilatéraux" class="section level2">

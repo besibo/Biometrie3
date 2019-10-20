@@ -265,7 +265,7 @@ Si vous suivez rigoureusement ces étapes, vous devriez être dans la situation 
 \hypertarget{packages}{%
 \subsection{Packages et données}\label{packages}}
 
-Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes disponibles sur l'ENT.
+Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes disponibles sur l'ENT (ou directement depuis ce document).
 
 Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2017}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham et al., \protect\hyperlink{ref-R-readr}{2018}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Quinn et al., \protect\hyperlink{ref-R-skimr}{2019}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2019}), qui permet d'effectuer le test de comparaison des variances de Levene :
 
@@ -294,17 +294,17 @@ Vous aurez également besoin des jeux de données suivants :
 \begin{itemize}
 \tightlist
 \item
-  \texttt{Autruches.csv}
+  \href{https://besibo.github.io/Biometrie3/data/Autruches.csv}{\texttt{Autruches.csv}}
 \item
-  \texttt{HommesFemmes.xls}
+  \href{https://besibo.github.io/Biometrie3/data/HommesFemmes.xls}{\texttt{HommesFemmes.xls}}
 \item
-  \texttt{HornedLizards.csv}
+  \href{https://besibo.github.io/Biometrie3/data/HornedLizards.csv}{\texttt{HornedLizards.csv}}
 \item
-  \texttt{Temperature.csv}
+  \href{https://besibo.github.io/Biometrie3/data/Temperature.csv}{\texttt{Temperature.csv}}
 \item
-  \texttt{Temperature2.csv}
+  \href{https://besibo.github.io/Biometrie3/data/Temperature2.csv}{\texttt{Temperature2.csv}}
 \item
-  \texttt{Testosterone.csv}
+  \href{https://besibo.github.io/Biometrie3/data/Testosterone.csv}{\texttt{Testosterone.csv}}
 \end{itemize}
 
 \hypertarget{comparaison-de-la-moyenne-dune-population-uxe0-une-valeur-thuxe9orique}{%
@@ -318,7 +318,7 @@ Avant de se lancer dans les tests d'hypothèses, il est \textbf{toujours indispe
 \hypertarget{importation-et-examen-visuel}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel}}
 
-Commencez par importer les données contenues dans le fichier \texttt{Temperature.csv}. Pour cela, utilisez l'assistant d'importation de RStudio. Si vous ne savez plus comment faire, consultez \href{https://besibo.github.io/Biometrie2/tidyr.html\#importer-des-donnees-depuis-un-tableur}{la section 5.3} du livre en ligne de Biométrie 2.
+Commencez par importer les données contenues dans \href{https://besibo.github.io/Biometrie3/data/Temperature.csv}{le fichier \texttt{Temperature.csv}}. Pour cela, utilisez l'assistant d'importation de RStudio. Si vous ne savez plus comment faire, consultez \href{https://besibo.github.io/Biometrie2/tidyr.html\#importer-des-donnees-depuis-un-tableur}{la section 5.3} du livre en ligne de Biométrie 2.
 
 Vous stockerez les données dans un objet que vous nommerez \texttt{Temperature}. Après l'importation, taper son nom dans la console de RStudio doit produire le résultat suivant :
 
@@ -833,7 +833,7 @@ Enfin, les tests de Wilcoxon renvoient souvent des messages d'avretissement. Il 
 \hypertarget{exercice-dapplication}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication}}
 
-Le fichier \texttt{Temperature2.csv} contient les données brutes d'une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d'examiner vos données comme nous l'avons décrit dans la section \ref{Explo}, afin de savoir où vous allez, de repérer les éventuelles données manquantes ou aberrantes.
+\href{https://besibo.github.io/Biometrie3/data/Temperature2.csv}{Le fichier \texttt{Temperature2.csv}} contient les données brutes d'une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d'examiner vos données comme nous l'avons décrit dans la section \ref{Explo}, afin de savoir où vous allez, de repérer les éventuelles données manquantes ou aberrantes.
 
 \hypertarget{comparaison-de-la-moyenne-de-2-populations-donnuxe9es-appariuxe9es}{%
 \subsection{Comparaison de la moyenne de 2 populations : données appariées}\label{comparaison-de-la-moyenne-de-2-populations-donnuxe9es-appariuxe9es}}
@@ -872,7 +872,7 @@ Pour étudier cette question, une équipe de chercheurs (Hasselquist et al., \pr
 \hypertarget{importation-et-examen-visuel-1}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-1}}
 
-Les données se trouvent dans le fichier \texttt{Testosterone.csv}. Importez ces données dans un objet nommé \texttt{Testo} et examinez le tableau obtenu.
+Les données se trouvent dans \href{https://besibo.github.io/Biometrie3/data/Testosterone.csv}{le fichier \texttt{Testosterone.csv}}. Importez ces données dans un objet nommé \texttt{Testo} et examinez le tableau obtenu.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1451,7 +1451,7 @@ Le test de Wilcoxon des rangs signés n'a pas permis de montrer de changement d'
 \hypertarget{exercice-dapplication-1}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication-1}}
 
-Les autruches vivent dans des environnements chauds et elles sont donc fréquemment exposées au soleil durant de longues périodes. Dans des environnements similaires, les mammifères ont des mécanismes physiologiques leur permettant de réduire la température de leur cerveau par rapport à celle de leur corps. Une équipe de chercheurs (Fuller et al., \protect\hyperlink{ref-Fuller2003}{2003}) a testé si les autruches pouvaient faire de même. La température du corps et du cerveau de 37 autruches a été enregistrée par une journée chaude typique. Les résultats, exprimés en degrés Celsius, figurent dans le fichier \texttt{Autruches.csv}.
+Les autruches vivent dans des environnements chauds et elles sont donc fréquemment exposées au soleil durant de longues périodes. Dans des environnements similaires, les mammifères ont des mécanismes physiologiques leur permettant de réduire la température de leur cerveau par rapport à celle de leur corps. Une équipe de chercheurs (Fuller et al., \protect\hyperlink{ref-Fuller2003}{2003}) a testé si les autruches pouvaient faire de même. La température du corps et du cerveau de 37 autruches a été enregistrée par une journée chaude typique. Les résultats, exprimés en degrés Celsius, figurent dans \href{https://besibo.github.io/Biometrie3/data/Autruches.csv}{le fichier \texttt{Autruches.csv}}.
 
 Importez ces données et faites-en l'analyse pour savoir s'il existe une différence de température moyenne entre le corps et le cerveau des autruches. Comparez ces résultats avec les prédictions faites pour les mammifères dans un environnement similaire. Comme toujours, vous commencerez par faire une analyse descriptive des données, sous forme numérique et graphique, avant de vous lancer dans les tests d'hypothèses.
 
@@ -1468,7 +1468,7 @@ Chez \href{https://fr.wikipedia.org/wiki/Phrynosoma_mcallii}{le lézard cornu \e
 \hypertarget{importation-et-examen-visuel-2}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-2}}
 
-Les données de cette étude sont stockées dans le fichier \texttt{HornedLizards.csv}. Importez ces données dans un objet nommé \texttt{Lizard} et examinez le tableau obtenu.
+Les données de cette étude sont stockées dans \href{https://besibo.github.io/Biometrie3/data/HornedLizards.csv}{le fichier \texttt{HornedLizards.csv}}. Importez ces données dans un objet nommé \texttt{Lizard} et examinez le tableau obtenu.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1948,7 +1948,7 @@ La seule différence par rapport à la syntaxe du test \(t\) de Student paramét
 \hypertarget{exercice-dapplication-2}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication-2}}
 
-On s'intéresse à la différence de taille supposée entre hommes et femmes. Le fichier \texttt{HommesFemmes.xls} contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à La Rochelle Université. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à La Rochelle Université ont-il la même taille ?
+On s'intéresse à la différence de taille supposée entre hommes et femmes. \href{https://besibo.github.io/Biometrie3/data/HommesFemmes.xls}{Le fichier \texttt{HommesFemmes.xls}} contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à La Rochelle Université. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à La Rochelle Université ont-il la même taille ?
 
 \hypertarget{tests-bilatuxe9raux-et-unilatuxe9raux}{%
 \subsection{Tests bilatéraux et unilatéraux}\label{tests-bilatuxe9raux-et-unilatuxe9raux}}
