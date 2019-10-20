@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  20 OCT 2019 13:26
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  20 OCT 2019 17:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1920,80 +1920,81 @@ File: figure/unnamed-chunk-80-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-80-1.pdf>
 File: figure/unnamed-chunk-82-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-82-1.pdf>
-[55] [56] [57] [58]
-File: figure/unnamed-chunk-88-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-88-1.pdf>
+[55] [56]
+LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/bx/it' will be
+(Font)              scaled to size 8.30353pt on input line 2660.
+[57] [58]
+File: figure/unnamed-chunk-89-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-89-1.pdf>
 [59] [60] [61] [62]
-Overfull \hbox (7.10359pt too wide) in paragraph at lines 2933--2933
+Overfull \hbox (7.10359pt too wide) in paragraph at lines 2943--2943
 []  \TU/FiraCode-Regular(0)/m/n/10 estimate statistic p.value conf.low conf.hig
 h method               alternative[] 
  []
 
-LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/bx/it' will be
-(Font)              scaled to size 8.30353pt on input line 2941.
 [63] [64]
-File: figure/unnamed-chunk-94-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-94-1.pdf>
-[65]
 File: figure/unnamed-chunk-95-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-95-1.pdf>
+[65]
 File: figure/unnamed-chunk-96-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-96-1.pdf>
-[66]
 File: figure/unnamed-chunk-97-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-97-1.pdf>
+[66]
+File: figure/unnamed-chunk-98-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-98-1.pdf>
 [67] [68]
-Overfull \hbox (88.70418pt too wide) in paragraph at lines 3138--3138
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 3147--3147
 []\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:factor ----------------------
 --------------------------------------------------[] 
  []
 
 
-Overfull \hbox (88.70418pt too wide) in paragraph at lines 3138--3138
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 3147--3147
 []\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
 --------------------------------------------------[] 
  []
 
 [69]
-File: figure/unnamed-chunk-102-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-102-1.pdf>
+File: figure/unnamed-chunk-103-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-103-1.pdf>
 [70] [71] [72] [73]
-File: figure/unnamed-chunk-105-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-105-1.pdf>
+File: figure/unnamed-chunk-106-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-106-1.pdf>
 [74] [75] [76]
 File: images/genetics.jpg Graphic file (type bmp)
 <images/genetics.jpg>
 [77] [78]
-Overfull \hbox (88.70418pt too wide) in paragraph at lines 3494--3494
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 3503--3503
 []\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
 --------------------------------------------------[] 
  []
 
 
-Overfull \hbox (88.70418pt too wide) in paragraph at lines 3525--3525
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 3534--3534
 []\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
 --------------------------------------------------[] 
  []
 
 [79]
-File: figure/unnamed-chunk-112-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-112-1.pdf>
-[80]
 File: figure/unnamed-chunk-113-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-113-1.pdf>
+[80]
+File: figure/unnamed-chunk-114-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-114-1.pdf>
 [81]
-File: figure/unnamed-chunk-115-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-115-1.pdf>
 File: figure/unnamed-chunk-116-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-116-1.pdf>
+File: figure/unnamed-chunk-117-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-117-1.pdf>
 [82] [83] [84]
-File: figure/unnamed-chunk-120-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-120-1.pdf>
-[85]
 File: figure/unnamed-chunk-121-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-121-1.pdf>
+[85]
+File: figure/unnamed-chunk-122-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-122-1.pdf>
 [86] [87]
-Underfull \hbox (badness 1515) in paragraph at lines 3812--3814
+Underfull \hbox (badness 1515) in paragraph at lines 3821--3823
 \TU/FuturaLT-Book(0)/m/it/10 of the National Academy of Sciences\TU/FuturaLT-Bo
 ok(0)/m/sc/10 , \TU/FuturaLT-Book(0)/bx/n/10 102\TU/FuturaLT-Book(0)/m/sc/10 (1
 0), 3726–3731. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
@@ -2001,12 +2002,12 @@ ok(0)/m/sc/10 , \TU/FuturaLT-Book(0)/bx/n/10 102\TU/FuturaLT-Book(0)/m/sc/10 (1
  []
 
 [88]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3858.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3867.
 [89]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3858.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3867.
 (./Biometrie3.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3858.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3858.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3867.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3867.
 
 Package rerunfilecheck Info: File `Biometrie3.out' has not changed.
 (rerunfilecheck)             Checksum: 20D2037AA1CA2ADFBBB47624CF66DFF3.
@@ -2021,7 +2022,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  25779 strings out of 492970
  479379 string characters out of 6133937
- 632215 words of memory out of 5000000
+ 631259 words of memory out of 5000000
  29437 multiletter control sequences out of 15000+600000
  543151 words of font info for 72 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
