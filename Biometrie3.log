@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  20 OCT 2019 17:51
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  21 OCT 2019 12:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1780,10 +1780,9 @@ LaTeX Font Info:    Font shape `TU/FiraCode-Regular(0)/m/n' will be
 (Font)              scaled to size 8.50006pt on input line 160.
 [1
 
-]
+] [2]
 LaTeX Font Info:    Font shape `TU/FiraCode-Regular(0)/bx/n' will be
 (Font)              scaled to size 8.50006pt on input line 222.
-[2]
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/bx/n' will be
 (Font)              scaled to size 9.96423pt on input line 266.
 [3] [4]
@@ -1965,13 +1964,13 @@ File: figure/unnamed-chunk-106-1.pdf Graphic file (type pdf)
 File: images/genetics.jpg Graphic file (type bmp)
 <images/genetics.jpg>
 [77] [78]
-Overfull \hbox (88.70418pt too wide) in paragraph at lines 3503--3503
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 3513--3513
 []\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
 --------------------------------------------------[] 
  []
 
 
-Overfull \hbox (88.70418pt too wide) in paragraph at lines 3534--3534
+Overfull \hbox (88.70418pt too wide) in paragraph at lines 3544--3544
 []\TU/FiraCode-Regular(0)/m/n/10 -- Variable type:numeric ---------------------
 --------------------------------------------------[] 
  []
@@ -1993,24 +1992,24 @@ File: figure/unnamed-chunk-121-1.pdf Graphic file (type pdf)
 [85]
 File: figure/unnamed-chunk-122-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-122-1.pdf>
-[86] [87]
-Underfull \hbox (badness 1515) in paragraph at lines 3821--3823
+[86] [87] [88]
+Underfull \hbox (badness 1515) in paragraph at lines 3841--3843
 \TU/FuturaLT-Book(0)/m/it/10 of the National Academy of Sciences\TU/FuturaLT-Bo
 ok(0)/m/sc/10 , \TU/FuturaLT-Book(0)/bx/n/10 102\TU/FuturaLT-Book(0)/m/sc/10 (1
 0), 3726–3731. [][]$[][][][][] [] [] [] [][][] [] [][][] [] [][] [] [][][][] []
  [][][][] []
  []
 
-[88]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3867.
 [89]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3867.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3887.
+[90]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3887.
 (./Biometrie3.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3867.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3867.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3887.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3887.
 
 Package rerunfilecheck Info: File `Biometrie3.out' has not changed.
-(rerunfilecheck)             Checksum: 20D2037AA1CA2ADFBBB47624CF66DFF3.
+(rerunfilecheck)             Checksum: 1555A91DAF7626894985E2C8FB983D9D.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -2020,12 +2019,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 ### semi simple group (level 1) entered at line 147 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25779 strings out of 492970
- 479379 string characters out of 6133937
- 631259 words of memory out of 5000000
- 29437 multiletter control sequences out of 15000+600000
+ 25780 strings out of 492970
+ 479394 string characters out of 6133937
+ 632365 words of memory out of 5000000
+ 29438 multiletter control sequences out of 15000+600000
  543151 words of font info for 72 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  60i,7n,118p,10451b,1398s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Biometrie3.pdf (89 pages).
+Output written on Biometrie3.pdf (90 pages).

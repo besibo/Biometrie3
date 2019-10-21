@@ -127,7 +127,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-10-20}
+    \date{2019-10-21}
 
 \usepackage[french]{babel}
 \usepackage{mathspec}  % \usepackage{fontspec}
@@ -3000,20 +3000,20 @@ Comme dans tous les chapitres de cet ouvrage, nous aurons besoin ici du \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-Vous aurez également besoin des jeux de données suivants disponibles sur l'ENT :
+Vous aurez également besoin des jeux de données suivants, disponibles sur l'ENT ou directement téléchargeables depuis ce document :
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{birds.csv}
+  \href{https://besibo.github.io/Biometrie3/data/birds.csv}{\texttt{birds.csv}}
 \item
-  \texttt{loups.csv}
+  \href{https://besibo.github.io/Biometrie3/data/loups.csv}{\texttt{loups.csv}}
 \item
-  \texttt{ropetrick.csv}
+  \href{https://besibo.github.io/Biometrie3/data/ropetrick.csv}{\texttt{ropetrick.csv}}
 \item
-  \texttt{plantbiomass.csv}
+  \href{https://besibo.github.io/Biometrie3/data/plantbiomass.csv}{\texttt{plantbiomass.csv}}
 \item
-  \texttt{hockey.csv}
+  \href{https://besibo.github.io/Biometrie3/data/hockey.csv}{\texttt{hockey.csv}}
 \end{itemize}
 
 \hypertarget{corruxe9lation}{%
@@ -3029,7 +3029,7 @@ Ainsi, sur la figure ci-dessous, le coefficient de corrélation entre \texttt{X}
 
 \begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-95-1} \end{center}
 
-Ici, le coefficient de corrélation (noté \(r\)) vaut 1 dans les deux cas, car tous les points sont alignés sur une droite. La pente de la droite n'influence en rien la valeur corrélation. En revanche, la dispersion des points autour d'une droite parfaite a une influence :
+Ici, le coefficient de corrélation (noté \(r\)) vaut 1 dans les deux cas, car tous les points sont alignés sur une droite. La pente de la droite n'influence en rien la valeur de corrélation. En revanche, la dispersion des points autour d'une droite parfaite a une influence :
 
 \begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-96-1} \end{center}
 
@@ -3046,13 +3046,13 @@ En bref, le coefficient de corrélation \(r\) est compris entre -1 et +1 :
 \begin{itemize}
 \tightlist
 \item
-  une forte valeur absolue (\(r\) proche de -1 ou +1), indique une relation presque linéaire
+  Une forte valeur absolue (\(r\) proche de -1 ou +1), indique une relation presque linéaire.
 \item
-  une faible valeur absolue indique soit une absence de relation, soit une relation non linéaire (la visualisation graphique permet généralement d'en savoir plus)
+  Une faible valeur absolue indique soit une absence de relation, soit une relation non linéaire (la visualisation graphique permet généralement d'en savoir plus).
 \item
-  une valeur positive indique qu'une augmentation de la première variable est associée à une augmentation de la seconde variable
+  Une valeur positive indique qu'une augmentation de la première variable est associée à une augmentation de la seconde variable.
 \item
-  une valeur négative indique qu'une augmentation de la première variable est associée à une diminution de la seconde variable.
+  Une valeur négative indique qu'une augmentation de la première variable est associée à une diminution de la seconde variable.
 \end{itemize}
 
 Dans la suite de ce chapitre, nous allons voir comment calculer le coefficient de corrélation entre 2 variables numériques, et puisque nous travaillons avec des \textbf{échantillons}, ce calcul sera nécessairement entaché d'\textbf{incertitude}. Tout comme la moyenne ou la variance d'un échantillon, la corrélation est un paramètre des populations dont nous ne pourrons qu'estimer la valeur. Toute estimation de corrélation devra donc être encadrée par un intervalle d'incertitude, généralement, il s'agit de l'intervalle de confiance à 95\% de la corrélation. Enfin, outre l'estimation de la valeur de la corrélation et de son incertitude, nous pourrons aussi faire des tests d'hypothèses au sujet des corrélations que nous estimerons.
@@ -3063,7 +3063,7 @@ Dans la suite de ce chapitre, nous allons voir comment calculer le coefficient d
 \hypertarget{importation-et-examen-visuel-4}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-4}}
 
-Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d'autres espèces animales, chez qui cette relation pourrait-être étudiée plus facilement ? Müller et al. (\protect\hyperlink{ref-muller2011}{2011}) ont étudié cette possibilité chez le Fou de Grant (\emph{Sula granti}), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d'autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d'une bague d'identification individuelle. Ces 24 individus ont ensuite été suivis à l'âge adulte, lorsqu'ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier \texttt{birds.csv}. Importez ces données dans \texttt{R} dans un objet noté \texttt{birds}.
+Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d'autres espèces animales, chez qui cette relation pourrait être étudiée plus facilement ? Müller et al. (\protect\hyperlink{ref-muller2011}{2011}) ont étudié cette possibilité chez le fou de Grant (\emph{Sula granti}), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d'autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d'une bague d'identification individuelle. Ces 24 individus ont ensuite été suivis à l'âge adulte, lorsqu'ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier \href{https://besibo.github.io/Biometrie3/data/birds.csv}{\texttt{birds.csv}}. Importez ces données dans \texttt{R} dans un objet noté \texttt{birds}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3088,7 +3088,7 @@ Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent �
 # ... with 14 more rows
 \end{verbatim}
 
-La première colonne de ce tableau indique, pour chaque individu suivi, le nombre de visites reçues au nid de la part d'adultes agressifs. La seconde colonne indique, pour ces même individus, le nombre de visites agressives effectuées à des nids d'autres poussins. Ce nombre n'est pas dans la même unité que la première variable puisqu'il a été corrigé par d'autres variables d'intérêt pour les chercheurs.
+La première colonne de ce tableau indique, pour chaque individu suivi, le nombre de visites reçues au nid de la part d'adultes agressifs lorsqu'ils étaient poussins. La seconde colonne indique, pour ces mêmes individus devenus adultes, le nombre de visites agressives effectuées à des nids d'autres poussins. Ce nombre n'est pas dans la même unité que la première variable car il a été corrigé par d'autres variables d'intérêt pour les chercheurs.
 
 Il manque à ce tableau une variable indiquant le code des individus. Elle n'est pas indispensable, mais la rajouter est une bonne habitude à prendre pour toujours travailler avec des ``données rangées'' :
 
@@ -3180,7 +3180,7 @@ Le résultat est obtenu sous la forme d'une matrice symétrique :
 \item
   Sur la diagonale, les corrélations valent 1 (le coefficient de corrélation d'une variable avec elle-même vaut toujours 1).
 \item
-  En dehors de la diagonale, on trouve le coefficient de corrélation linéaire entre les 2 variables d'intérêt. Ici, il est positif et vaut 0.533, ce qui est une valeur relativement élevée dans le domaine de la biologie ou de l'écologie.
+  En dehors de la diagonale, on trouve le coefficient de corrélation linéaire entre les 2 variables d'intérêt. Ici, il est positif et vaut 0.534, ce qui est une valeur relativement élevée dans le domaine de la biologie ou de l'écologie.
 \end{itemize}
 
 \hypertarget{exploration-graphique-4}{%
@@ -3201,7 +3201,7 @@ Afin de savoir si la valeur moyenne de \(r\) calculée précédemment reflète u
 
 \begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-103-1} \end{center}
 
-On constate ici que la corrélation moyenne obtenue plus haut est due au fait que les points sont assez dispersés, et non au fait que la relation n'est pas linéaire. On peut donc dire que la relation, si elle existe, n'est pas parfaite. Un test d'hypothèse devrait nous permettre de déterminer si la corrélation linéaire observée ici est significativement différente de 0 ou non
+On constate ici que la corrélation moyenne obtenue plus haut est due au fait que les points sont assez dispersés, et non au fait que la relation n'est pas linéaire. On peut donc dire que la relation, si elle existe, n'est pas parfaite. Le comportement des individus devenus adultes semble donc en partie lié au nombre de visites agessives qu'ils ont reçues étant jeunes, mais ce n'est certainement pas le seul facteur influençant leur comportement. Un test d'hypothèses devrait nous permettre de déterminer si la corrélation linéaire observée ici est significativement différente de 0 ou non.
 
 \hypertarget{le-test-paramuxe9trique-4}{%
 \subsubsection{Le test paramétrique}\label{le-test-paramuxe9trique-4}}
@@ -3213,9 +3213,9 @@ Le test d'hypothèses que nous allons faire maintenant permet de vérifier si le
 \begin{itemize}
 \tightlist
 \item
-  H\(_0\) : le coefficient de corrélation entre les deux variables étudiées vaut 0 dans la population générale (\(\rho = 0\))
+  H\(_0\) : le coefficient de corrélation entre les deux variables étudiées vaut 0 dans la population générale (\(\rho = 0\)).
 \item
-  H\(_1\) : le coefficient de corrélation entre les deux variables étudiées est différent de 0 dans la population générale (\(\rho \neq 0\))
+  H\(_1\) : le coefficient de corrélation entre les deux variables étudiées est différent de 0 dans la population générale (\(\rho \neq 0\)).
 \end{itemize}
 
 Ce test est réalisé dans \texttt{R} grâce à la fonction \texttt{cor.test()}.
@@ -3253,7 +3253,7 @@ Ce test prouve donc que \(\rho\) est statistiquement différent de 0. La valeur 
 
 Comme toujours, les résultats du test que nous avons réalisé ne nous disent rien de la valeur de la corrélation estimée, ni de son incertitude. Il nous faut pour cela examiner les autres lignes fournies par \texttt{R} lorsque nous faisons ce test et qui relèvent de l'estimation (voir section suivante).
 
-Dernière chose concernant ce test : nous avons fait ici un test bilatéral comme nous le rappelle cette ligne des résultats :
+Dernière chose concernant ce test, nous avons fait ici un test bilatéral comme nous le rappelle cette ligne des résultats :
 
 \texttt{alternative\ hypothesis:\ true\ correlation\ is\ not\ equal\ to\ 0}
 
@@ -3297,7 +3297,7 @@ Comme pour les autres test unilatéraux, le choix d'une hypothèse alternative a
 \hypertarget{estimation-et-intervalle-de-confiance}{%
 \paragraph{Estimation et intervalle de confiance}\label{estimation-et-intervalle-de-confiance}}
 
-Revenons à notre test bilatéral. La section ``estimation'' des résultats de ce test nous indique que la meilleure estimation du coefficient de corrélation lineeaire de Pearson dans la population générale vaut \(\hat{\rho} = 0.533\). C'est la valeur que nous avions calculé à la main avec la fonction \texttt{cor()}.
+Revenons à notre test bilatéral. La section ``estimation'' des résultats de ce test nous indique que la meilleure estimation du coefficient de corrélation linéaire de Pearson dans la population générale vaut \(\hat{\rho} = 0.533\). C'est la valeur que nous avions calculé à la main avec la fonction \texttt{cor()}.
 
 L'intervalle de confiance à 95\% de cette valeur estimée est également fourni. La conclusion de cette procédure pourrait donc être formulée de la façon suivante :
 
@@ -3314,12 +3314,12 @@ Ce test est un test paramétrique. Pour avoir le droit de le réaliser, il nous 
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Les individus doivent être \emph{indépendants} les uns des autres
+  Les individus doivent être indépendants les uns des autres
 \item
   Les mesures effectuées doivent suivre une \textbf{distribution Normale bivariée}
 \end{enumerate}
 
-Sauf si on a de bonnes raisons de penser le contraire, on considère généalement que si l'échantillonnage a été fait de façon aléatoire, l'indépendance des observations est garantie. La condition de ``distribution Normale bivariée'' des données est en revanche nouvelle. Elle suppose essentiellement que les 3 critères suivants soient vérifiés :
+Sauf si on a de bonnes raisons de penser le contraire, on considère généralement que si l'échantillonnage a été fait de façon aléatoire, l'indépendance des observations est garantie. La condition de ``distribution Normale bivariée'' des données est en revanche nouvelle. Elle suppose essentiellement que les 3 critères suivants soient vérifiés :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3337,11 +3337,11 @@ Pour résumer, l'examen du nuage de points permet de vérifier les 2 premières 
 \begin{itemize}
 \tightlist
 \item
-  Le nuage de points a une forme d'entonnoir ou de nœud papillon
+  Le nuage de points a une forme d'entonnoir ou de nœud papillon.
 \item
-  Des ouliers sont présents (quelques points fortement éloignés du reste des observations)
+  Des ouliers sont présents (quelques points fortement éloignés du reste des observations).
 \item
-  Une relation non linéaire entre les deux variables.
+  Une relation non linéaire existe entre les deux variables.
 \end{itemize}
 
 \begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-106-1} \end{center}
@@ -3377,13 +3377,13 @@ sample estimates:
 0.472374 
 \end{verbatim}
 
-Les test de Spearman est au test de Pearson ce que le test de Wilcoxon est au test de Student. Il travaille non pas sur les données brutes (ici, les mesures des scientifiques), mais sur des données modifiées, en l'occurence, sur les rangs des données. La première conséquence évidente est une perte de puissance notable par rapport au test de Pearson. Cette perte de puissance peut être ici observée par le biais de la \(p-\)value plus faible que pour le test précédent. Cela indique que même si la conclusion est la même, on rejette ici l'hypothèse nulle avec moins de confiance que pour le test de Peasron.
+Le test de Spearman est au test de Pearson ce que le test de Wilcoxon est au test de Student. Il travaille non pas sur les données brutes (ici, les mesures des scientifiques), mais sur des données modifiées, en l'occurence, sur les rangs des données. La première conséquence évidente est une perte de puissance notable par rapport au test de Pearson. Cette perte de puissance peut être ici observée par le biais de la \(p-\)value plus élevée (donc moins significative) que pour le test précédent. Cela indique que même si la conclusion est la même, on rejette ici l'hypothèse nulle avec moins de confiance que pour le test de Pearson.
 
 Le \(\rho\) de Spearman est équivalent au \(r\) de Pearson calculé sur les rangs des données. Lorsque plusieurs valeurs observées sont égales, plusieurs valeurs ont le même rang, ce qui cause l'apparition du message d'avertissement suivant :
 
 \texttt{Impossible\ de\ calculer\ la\ p-value\ exacte\ avec\ des\ ex-aequos}
 
-Ce message est sans conséquence tant que la \(p-\)value du test de Spearman est éloignée du seuil \(\alpha\). Mais quans \(p \approx \alpha\), il faut être particulièrement prudent quant à l'interprétation qui est faite des résultats.
+Ce message est sans conséquence tant que la \(p-\)value du test de Spearman est éloignée du seuil \(\alpha\) (ce qui est le cas ici). Mais quand \(p \approx \alpha\), il faut être particulièrement prudent quant à l'interprétation qui est faite des résultats.
 
 Enfin, comme pour le test de Pearson, il est possible de réaliser un test de Spearman unilatéral en utilisant l'argument \texttt{alternative\ =\ "less"} ou \texttt{alternative\ =\ "greater"}. Les précautions à prendre pour utiliser ce genre de test sont toujours les mêmes.
 
@@ -3396,47 +3396,57 @@ Enfin, comme pour le test de Pearson, il est possible de réaliser un test de Sp
 En 1970, le loup \emph{canis lupus} a été éradiqué en Norvège et en Suède. Autour de 1980, un couple de loups, originaire d'une population plus à l'Est, a fondé une nouvelle population en Suède. En l'espace de 20 ans, cette population comptait approximativement 100 loups. Il y a toutefois fort à craindre qu'une population fondée par un si petit nombre d'individus souffre de consanguinité. Liberg et al. (\protect\hyperlink{ref-liberg2005}{2005}) ont compilé les informations sur la reproduction dans cette population entre 1983 et 2002, et ils ont pu reconstruire le pédigrée des individus la composant. Ils ont ainsi été en mesure de déterminer avec précision le coefficient individuel de consanguinité dans 24 portées de louveteaux.
 Pour mémoire, le coefficient individuel de consanguinité vaut 0 si ses parents ne sont pas apparentés, 0.25 si ses parents sont frères et sœurs issus de grands-parents non apparentés, et plus de 0.25 si les associations consanguines se répètent depuis plusieurs générations.
 
-On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de Liberg et al. (\protect\hyperlink{ref-liberg2005}{2005}) sont disponibles dans le fichier \texttt{loups.csv}. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l'ordre des étapes suivies jusqu'ici. En particulier, vous prendrez soin de :
-- vérifier la qualité des données
-- mettre les données dans un format approprié si besoin
-- réaliser une exploration statistique puis visuelle des données
-- vérifier les conditions d'application d'un test paramétrique
-- faire le test approprié en posant les hypothèses nulles et alternatives judicieuses
-- répondre à la question posée en intégrant tous les éléments utiles.
+On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de Liberg et al. (\protect\hyperlink{ref-liberg2005}{2005}) sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/loups.csv}{\texttt{loups.csv}}. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l'ordre des étapes décrites plus haut. En particulier, vous prendrez soin de :
+
+\begin{itemize}
+\tightlist
+\item
+  Vérifier la qualité des données.
+\item
+  Mettre les données dans un format approprié si besoin.
+\item
+  Réaliser une exploration statistique puis visuelle des données.
+\item
+  Vérifier les conditions d'application d'un test paramétrique.
+\item
+  Faire le test approprié en posant les hypothèses nulles et alternatives judicieuses.
+\item
+  Répondre à la question posée en intégrant tous les éléments utiles.
+\end{itemize}
 
 \hypertarget{les-miracles-de-la-muxe9moire}{%
 \paragraph{Les miracles de la mémoire}\label{les-miracles-de-la-muxe9moire}}
 
-À quel point les souvenirs d'évènements miraculeux sont-il fiables ? Une façon d'étudier cette question est de comparer différents récits de tours de magie extraordinaires. Parmis les tours les plus célèbres, on trouve celui de la corde du fakir. Dans l'une de ces versions, un magicien jette l'extrémité une corde d'apparence normale en l'air et cette corde devient rigide. Un garçon grimpe à la corde et finit par disparaître en huat de la scène. Le magicien lui demande de répondre mais n'obtient pas de réponse. Il attrape alors un couoteau, grimpe à son tour, et le garçon, découpé en morceaux, tombe du ciel dans un panier posé par terre. Le magicien redescent de la corde et aide le garçon vivant, en un seul morceau et non blessé, à sortir du panier.
+À quel point les souvenirs d'évènements miraculeux sont-il fiables ? Une façon d'étudier cette question est de comparer différents récits de tours de magie extraordinaires. Parmis les tours les plus célèbres, on trouve celui de la corde du fakir. Dans l'une de ces versions, un magicien jette l'extrémité une corde d'apparence normale en l'air et cette corde devient rigide. Un garçon grimpe à la corde et finit par disparaître en haut de la scène. Le magicien lui demande de répondre mais n'obtient pas de réponse. Il attrape alors un couteau, grimpe à son tour, et le garçon, découpé en morceaux, tombe du ciel dans un panier posé par terre. Le magicien redescent de la corde et aide le garçon vivant, en un seul morceau et non blessé, à sortir du panier.
 
-Wiseman \& Lamont (\protect\hyperlink{ref-wiseman1996}{1996}) ont retrouvé 21 récits écrits de ce tour par des personnes ayant elles-mêmes assisté à ce tour. Ils ont attribué un score à chaque description selon le caractère plus ou moins impressionnant de la description. Par exemple, un score de 1 était attribué si le récit faisait état que ``le garçon grimpe à la corde, puis il en redescend''. Les récits les plus impressionnants se sont vus attribués la note de 5 (``le garçon grimpe, disparaît, est découpé en morceaux et réapparait en chair et en os devant le public'').
+Wiseman \& Lamont (\protect\hyperlink{ref-wiseman1996}{1996}) ont retrouvé 21 récits écrits de ce tour par des personnes ayant elles-mêmes assisté à ce tour. Ils ont attribué un score à chaque description selon le caractère plus ou moins impressionnant de la description. Par exemple, un score de 1 était attribué si le récit faisait état que ``le garçon grimpe à la corde, puis il en redescend''. Les récits les plus impressionnants se sont vus attribuer la note de 5 (``le garçon grimpe, disparaît, est découpé en morceaux et réapparaît en chair et en os devant le public'').
 Pour chaque récit, les chercheurs ont également enregistré le nombre d'années écoulées entre le moment où le témoin a assisté au tour de magie, et le moment où il a consigné son récit par écrit.
 
-Y a-t'il un lien entre le caractère impressionnant (``impressiveness'') d'un souvenir et le temps écoulé jusqu'à l'écriture de sa description (``years'') ? Si oui, cela pourrait indiquer une tendance de la mémoire humaine à exagérer et à perdre en précision avec le temps.
+Y a-t'il un lien entre le caractère impressionnant (``\texttt{impressiveness}'') d'un souvenir et le temps écoulé jusqu'à l'écriture de sa description (``\texttt{years}'') ? Si oui, cela pourrait indiquer une tendance de la mémoire humaine à exagérer et à perdre en précision avec le temps.
 
-Les données de Wiseman \& Lamont (\protect\hyperlink{ref-wiseman1996}{1996}) sont disponibles dans le fichier \texttt{ropetrick.csv}. Importez ces données et analysez-les en respectant les consignes de l'exercice précédent.
+Les données de Wiseman \& Lamont (\protect\hyperlink{ref-wiseman1996}{1996}) sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/ropetrick.csv}{\texttt{ropetrick.csv}}. Importez ces données et analysez-les en respectant les consignes de l'exercice précédent.
 
 \hypertarget{ruxe9gression-linuxe9aire}{%
 \subsection{Régression linéaire}\label{ruxe9gression-linuxe9aire}}
 
-La régression est une méthode utilisée pour prédire les valeurs d'une variable numérique à partir des valeurs d'une seconde variable. Par exemple, le nuage de ooints de la figure ci-dessous montre comment la diversitee génétique dans une population humaine locale peut être prédite par sa distance de dispersion depuis l'Est africain en ajustant une droite aux données (d'après Whitlock \& Schluter, \protect\hyperlink{ref-whitlock2015}{2015}). L'homme moderne est apparu en Afrique et nos ancêtres ont perdu un peu de diversité génétique à chaque étape de leur colonisation de nouveaux territoires.
+La régression est une méthode utilisée pour prédire les valeurs d'une variable numérique à partir des valeurs d'une seconde variable. Par exemple, le nuage de points de la figure ci-dessous montre comment la diversité génétique dans une population humaine locale peut être prédite par sa distance de dispersion depuis l'Est africain en ajustant une droite aux données (d'après Whitlock \& Schluter, \protect\hyperlink{ref-whitlock2015}{2015}). L'homme moderne est apparu en Afrique et nos ancêtres ont perdu un peu de diversité génétique à chaque étape de leur colonisation de nouveaux territoires.
 
 \includegraphics{images/genetics.jpg}
 
 Contrairement à la corrélation, ici, on n'examine pas seulement une éventuelle liaison : on suppose qu'une variable peut-être (en partie) expliquée par une autre. Nous aurons donc à distinguer les variables expliquées (ou dépendantes) qui figureront sur l'axe des y et seront nos variables prédites, et les variables explicatives (ou indépendantes) qui figureront sur l'axe des abscisses et seront les prédicteurs.
 
-Une façon de distinguer corrélation et régression consiste à dire que ``corrélation n'est pas causalité''. Si on compare un nombre de variables suffisamment important, on finira toujours par en trouver qui seront corrélées. Cela ne veut pas dire pour autant qu'il existe un lien de cause à effet entre l'une et l'autre. Pour vous en convaincre, examinez \href{http://www.tylervigen.com/spurious-correlations}{cette page}. Lorsque l'on s'intéresse à la régression linéaire, on essaie de prédire ou d'expliquer. En d'autres termes, on considère que les variations de la variabkle explicative sont au moins en partie la cause des variations de la variable expliquée.
+Une façon de distinguer corrélation et régression consiste à dire que ``corrélation n'est pas causalité''. Si on compare un nombre de variables suffisamment important, on finira toujours par en trouver qui seront corrélées. Cela ne veut pas dire pour autant qu'il existe un lien de cause à effet entre l'une et l'autre. Pour vous en convaincre, examinez \href{http://www.tylervigen.com/spurious-correlations}{cette page}. Lorsque l'on s'intéresse à la régression linéaire, on essaie au contraire de prédire ou d'expliquer. En d'autres termes, on considère que les variations de la variable explicative sont au moins en partie la cause des variations de la variable expliquée.
 
-Lorsque l'on s'intéresse à la régression linéaire, on considère que la relation qui lie les deux variables est linéaire, et on souhaite quantifier l'intensité de la relation. Nous allons examiner maintenant comment faire ça dans \texttt{R}.
+Lorsque l'on s'intéresse à la régression linéaire, on considère que la relation qui lie les deux variables est linéaire, et on souhaite \textbf{quantifier l'intensité de la relation}. Nous allons examiner maintenant comment faire ça dans \texttt{R}.
 
 \hypertarget{exploration-pruxe9alable-des-donnuxe9es-3}{%
 \subsubsection{Exploration préalable des données}\label{exploration-pruxe9alable-des-donnuxe9es-3}}
 
 Les activités humaines réduisent le nombre d'espèces dans un grand nombre d'écosystèmes à la surface du globe. Est-ce que cette diminution du nombre d'espèces affecte le fonctionnement de base des écosystèmes ? Où est-ce qu'au contraire, les espèces végétales sont majoritairement interchangeables, les fonctions des espèces disparues pouvants être assurées par les espèces toujours présentes ?
 
-Pour tenter de répondre à cette question, Tilman et al. (\protect\hyperlink{ref-tilman2006}{2006}) ont ensemencé 161 parcelle de 9 mètres sur 9 mètres dans la réserve de Cedar Creek (Minesota, USA). Ils ont utilisé un nombre d'espèces variables typiques des prairies et ont mesuré la production de biomasse de chaque parcelle pendant 10 ans. Des lots de 1, 2, 4, 8 ou 16 plantes pluriannuelles (choisies au hasard parmi une liste de 18 espèces possibles) ont été assignés au hasard dans chacune des 161 parcelles. À l'issue des 10 années d'étude, les chercheurs ont mesuré un indice de stabilité de la biomasse en divisant la moyenne des biomasses sur 10 ans, par l'écart-type de ces mêmes biomasses.
+Pour tenter de répondre à cette question, Tilman et al. (\protect\hyperlink{ref-tilman2006}{2006}) ont ensemencé 161 parcelles de 9 mètres sur 9 mètres dans la réserve de Cedar Creek (Minesota, USA). Ils ont utilisé un nombre variable d'espèces typiques des prairies et ont mesuré la production de biomasse de chaque parcelle pendant 10 ans. Des lots de 1, 2, 4, 8 ou 16 plantes pluriannuelles (choisies au hasard parmi une liste de 18 espèces possibles) ont été assignés au hasard dans chacune des 161 parcelles. À l'issue des 10 années d'étude, les chercheurs ont mesuré un indice de stabilité de la biomasse en divisant la moyenne des biomasses sur 10 ans, par l'écart-type de ces mêmes biomasses.
 
-Les données de cette expérience sont disponible dans le fichier \texttt{plantbiomass.csv}.
+Les données de cette expérience sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/plantbiomass.csv}{\texttt{plantbiomass.csv}}.
 
 \hypertarget{importation-examen-visuel-et-statistiques-descriptives}{%
 \paragraph{Importation, examen visuel et statistiques descriptives}\label{importation-examen-visuel-et-statistiques-descriptives}}
@@ -3533,7 +3543,7 @@ Skim summary statistics
  15.76 ▇▆▅▂▁▁▁▁
 \end{verbatim}
 
-Cette fois, on obtient des informations pour chaque valeur de nombre d'espèce par parcelle. On constate par exemple que les moyennes de l'indice de stabilité de la biomasse augmentent très peu entre les catégories 1, 2 et 4 espèces par parcelle, mais que l'augmentation semble plus fort pour 8 et 16 espèces par parcelle. Tous les écarts-types semblent très proches, sauf peut-être pour la catégorie 16 espèces.
+Cette fois, on obtient des informations pour chaque valeur de nombre d'espèce par parcelle. On constate par exemple que les moyennes de l'indice de stabilité de la biomasse augmentent très peu entre les catégories 1, 2 et 4 espèces par parcelle, mais que l'augmentation semble plus forte pour 8 et 16 espèces par parcelle. Tous les écarts-types semblent très proches, sauf peut-être pour la catégorie 16 espèces.
 
 Une visualisation des données est toujours indispensable :
 
@@ -3556,14 +3566,14 @@ Ce graphique nous apprend plusieurs choses :
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Contrairement à la plupart des méthodes statistiques vues jusqu'ici, il n'est pas nécessaire que les données des variables soient distribuées selon une loi Normale. Ici, nous avons des données qui sont tout sauf normales pour la variable expliquée puisque nous avons seulement les entiers 1, 2, 4, 8 et 16. Un histogramme ou une courbe de densité montre que la distribution de cette variable est très loin de la Normalité :
+  Contrairement à la plupart des méthodes statistiques vues jusqu'ici, il n'est pas nécessaire que les données des variables soient distribuées selon une loi Normale. Ici, nous avons des données qui sont tout sauf normales pour la variable explicative puisque nous avons seulement les entiers 1, 2, 4, 8 et 16. Un histogramme ou une courbe de densité montre que la distribution de cette variable est très loin de la Normalité :
 \end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{plant }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ nSpecies)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"steelblue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"steelblue"}\NormalTok{, }\DataTypeTok{adjust =} \FloatTok{0.2}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Nombre d'espèces par parcelle"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
 \end{Highlighting}
@@ -3572,7 +3582,14 @@ Ce graphique nous apprend plusieurs choses :
 \begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-114-1} \end{center}
 
 Cela n'est pas du tout problématique : comme pour l'ANOVA, les conditions d'application porteront sur les \textbf{résidus de la régression}, pas sur les variables elles-mêmes.
-2. Afin de limiter la sur-dispersion de la variable expliquée, notamment pour la catégorie \texttt{16} plantes par parcelle, nous allons transformer l'indice de stabilité en logarithme (attention, la fonction \texttt{log()} permet de calculer des logarithmes népériens ou logarithmes naturels) :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Afin de limiter la sur-dispersion de la variable expliquée, notamment pour la catégorie \texttt{16} plantes par parcelle, nous allons transformer l'indice de stabilité en logarithme (attention, la fonction \texttt{log()} permet de calculer des logarithmes népériens ou logarithmes naturels) :
+\end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3633,9 +3650,9 @@ On peut visualiser dès maintenant la droite de régression linéaire qui permet
 \hypertarget{le-test-paramuxe9trique-5}{%
 \subsubsection{Le test paramétrique}\label{le-test-paramuxe9trique-5}}
 
-À une exception près, la procédure de régression linéaire est en tout points identique à l'analyse de variance. Quand on fait une ANOVA, la variable expliquée est numérique est la variable explicative est catégorielle (c'est un facteur). Quand on fait une régression linéaire, les 2 variables sont numériques. Pour le reste, tout est identique : on exprime la variable expliquée en fonction de la variable explicative et on vérifie après coup, grâce aux résidus, si nous avions le droit ou non de faire l'analyse.
+À une exception près, la procédure de régression linéaire est en tous points identique à l'analyse de variance. Quand on fait une ANOVA, la variable expliquée est numérique et la variable explicative est catégorielle (c'est un facteur). Quand on fait une régression linéaire, les 2 variables sont numériques. Pour le reste, tout est identique : on exprime la variable expliquée en fonction de la variable explicative et on vérifie après coup, grâce aux résidus, si nous avions le droit ou non de faire l'analyse.
 
-Pour faire une régression linéaire dans \texttt{R}, on utilise la fonction \texttt{lm()} (comme \textbf{l}inear \textbf{m}odel). Et comme pour l'ANOVA, les résultats de l'analyse doivent être stockés dans un objet puisque cet obket contiendra tous les éléments utiles pour vérifier les conditions d'application :
+Pour faire une régression linéaire dans \texttt{R}, on utilise la fonction \texttt{lm()} (comme \textbf{l}inear \textbf{m}odel). Et comme pour l'ANOVA, les résultats de l'analyse doivent être stockés dans un objet puisque cet objet contiendra tous les éléments utiles pour vérifier les conditions d'application :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3643,26 +3660,26 @@ Pour faire une régression linéaire dans \texttt{R}, on utilise la fonction \te
 \end{Highlighting}
 \end{Shaded}
 
-Faire une régression linéaire avec cette commande revient à effectuer en même temps 2 tests d'hypothèses indépendants : le premier concerne l'ordonnée à l'origine de la droite de régression et le secon concerne la pente de la droite de régression. Les hypothèses de ces tests sont les suivantes :
+Faire une régression linéaire avec cette commande revient à effectuer en même temps 2 tests d'hypothèses indépendants : le premier concerne l'ordonnée à l'origine de la droite de régression et le second concerne la pente de la droite de régression. Les hypothèses de ces tests sont les suivantes :
 
-\textbf{Pour l'ordonnée à l'origine} (``intercept'' en anglais) :
+\emph{Pour l'ordonnée à l'origine} (``intercept'' en anglais) :
 
 \begin{itemize}
 \tightlist
 \item
-  H\(_0\) : l'ordonnée à l'origine de la droite de régression vaut 0 dans la population générale
+  H\(_0\) : l'ordonnée à l'origine de la droite de régression vaut 0 dans la population générale.
 \item
-  H\(_1\) : l'ordonnée à l'origine de la droite de régression est différente de 0 dans la population générale
+  H\(_1\) : l'ordonnée à l'origine de la droite de régression est différente de 0 dans la population générale.
 \end{itemize}
 
-\textbf{Pour la pente} (``slope'' en anglais) :
+\emph{Pour la pente} (``slope'' en anglais) :
 
 \begin{itemize}
 \tightlist
 \item
-  H\(_0\) : la pente de la droite de régression vaut 0 dans la population générale
+  H\(_0\) : la pente de la droite de régression vaut 0 dans la population générale.
 \item
-  H\(_1\) : la pente de la droite de régression est différente de 0 dans la population générale
+  H\(_1\) : la pente de la droite de régression est différente de 0 dans la population. générale
 \end{itemize}
 
 \hypertarget{ruxe9sultats-du-test-et-interpruxe9tation-1}{%
@@ -3697,16 +3714,16 @@ Multiple R-squared:  0.2223,    Adjusted R-squared:  0.2174
 F-statistic: 45.45 on 1 and 159 DF,  p-value: 2.733e-10
 \end{verbatim}
 
-Dans la forme, ces résultats sont très proches de ceux de l'ANOVA. La rubrique \texttt{Residuals} donne des informations sommaires sur les résidus. Ces informations sont utiles puisque les résidus serviront à vérifier les rconditions d'application de la régression. À ce stade, on regarde surtout si la médiane des résidus est proche de 0 et si les résidus sont à peu près symétriques (les premier et troisième quartiles ont à peu près la même valeur absolue, idem pour le minimum et le maximum).
+Dans la forme, ces résultats sont très proches de ceux de l'ANOVA. La rubrique \texttt{Residuals} donne des informations sommaires sur les résidus. Ces informations sont utiles puisque les résidus serviront à vérifier les conditions d'application de la régression. À ce stade, on regarde surtout si la médiane des résidus est proche de 0 et si les résidus sont à peu près symétriques (les premier et troisième quartiles ont à peu près la même valeur absolue, idem pour le minimum et le maximum).
 
-Le tableau \texttt{Coefficients} est celui qui nous intéresse le plus puisqu'il nous fournit, outre la réponse aux 2 tests, les estimations pour l'ordonnée à l'origine et la pente de la droite de régression. Ici, l'ordonnée à l'origine (intercept) est estimée à 1.198 (rappelez-vous que cette valeur fait référence au logarithme de la stabilité de la biomasse) et la pente à 0.033 (quand le nombre d'espèce augmente d'une unité, le logarithme de l'indice de stabilité de la biomasse augmente de 0.033 unités). Les \(p-\)values de chacun des 2 tests sont fournies dans la dernière colonne et sont ici très inférieure à \(\alpha\) : on rejette donc les 2 hypothèses nulles. En particulier, puisque l'hypothèse nulle est rejetée pour le test qui concerne le pente de la droite, on peut considérer que le nombre de plantes dans les parcelles influence bel et bien l'indice de stabilité de la biomasse. Autrement dit, le nombre de plantes dans les parcelles, permet, dans une certaine mesure, de prédire la valeur de l'indice de stabilité de la biomasse.
+Le tableau \texttt{Coefficients} est celui qui nous intéresse le plus puisqu'il nous fournit, outre la réponse aux 2 tests, les estimations pour l'ordonnée à l'origine et la pente de la droite de régression. Ici, l'ordonnée à l'origine (intercept) est estimée à 1.198 (rappelez-vous que cette valeur fait référence au logarithme de la stabilité de la biomasse) et la pente à 0.033 (quand le nombre d'espèces augmente d'une unité, le logarithme de l'indice de stabilité de la biomasse augmente de 0.033 unités). Les \(p-\)values de chacun des 2 tests sont fournies dans la dernière colonne et sont ici très inférieures à \(\alpha\) : on rejette donc les 2 hypothèses nulles. En particulier, puisque l'hypothèse nulle est rejetée pour le test qui concerne la pente de la droite, on peut considérer que le nombre de plantes dans les parcelles influence bel et bien l'indice de stabilité de la biomasse. Autrement dit, le nombre de plantes dans les parcelles, permet, dans une certaine mesure, de prédire la valeur de l'indice de stabilité de la biomasse.
 
-La relation n'est pas parfaite : le nombre de plantes dans chaque parcelle ne permet de prédire l'indice de stabilitee de la biomasse que dans une mesure assez faible. C'est le \texttt{Adjusted\ R-squared} qui nous indique quelle est la ``qualité'' de prédiction du modèle. Ici, il vaut 0.22. Cela signifie que 22\% des variations de l'indice de stabilité de la biomasse sont prédits par le nombre de plantes dans les parcelles. Une autre façon de présenter les choses consiste à dire que 78\% des variations de l'indice de stabilité de biomasse sont expliqués par d'autres facteurs que le nombre d'espèces par parcelles. Le \(R^2\) (à en pas confondre avec le coefficient de corrélation \(r\)) renseigne donc sur la qualité de l'ajustement des données à la droite de régression. Il nous indique ici que le pouvoir prédictif de notre modèle linéaire est assez faible. Il est néanmoins significatif, ce qui indique que notre variable explicative joue bel et bien un rôle non négligeable dans les variations de la variable expliquée.
+La relation n'est pas parfaite : le nombre de plantes dans chaque parcelle ne permet de prédire l'indice de stabilité de la biomasse que dans une mesure assez faible. C'est le \texttt{Adjusted\ R-squared} qui nous indique quelle est la ``qualité'' de prédiction du modèle. Ici, il vaut 0.22. Cela signifie que 22\% des variations de l'indice de stabilité de la biomasse sont prédits par le nombre de plantes dans les parcelles. Une autre façon de présenter les choses consiste à dire que 78\% des variations de l'indice de stabilité de biomasse sont expliqués par d'autres facteurs que le nombre d'espèces par parcelle. Le \(R^2\) (à en pas confondre avec le coefficient de corrélation \(r\)) renseigne donc sur la qualité de l'ajustement des données à la droite de régression. Il nous indique ici que le pouvoir prédictif de notre modèle linéaire est assez faible. Il est néanmoins significatif, ce qui indique que notre variable explicative joue bel et bien un rôle non négligeable dans les variations de la variable expliquée.
 
 \hypertarget{intervalle-de-confiance-de-la-ruxe9gression}{%
 \paragraph{Intervalle de confiance de la régression}\label{intervalle-de-confiance-de-la-ruxe9gression}}
 
-La pente et l'ordonnée à l'origine de la droite de régression ont été obtenues à partir des données d'un échantillon (ici, 161 parcelles). Il s'agit donc d'estimations des pentes et ordonnées à l'origine de la relation plus générale qui concerne la population globale. Comme toute estimation, les pentes et ordonnées à l'origine de la droite de régression sont donc entâchées d'incertitudes. Nous pouvons quantifier cette incertitude grâce au calcul des intervalle de confiance à 95\% de ces 2 paramètres :
+La pente et l'ordonnée à l'origine de la droite de régression ont été obtenues à partir des données d'un échantillon (ici, 161 parcelles). Il s'agit donc d'estimations des pentes et ordonnées à l'origine de la relation plus générale qui concerne la population globale. Comme toute estimation, les pentes et ordonnées à l'origine de la droite de régression sont donc entâchées d'incertitudes. Nous pouvons quantifier ces incertitudes grâce au calcul des intervalles de confiance à 95\% de ces 2 paramètres :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3720,7 +3737,7 @@ La pente et l'ordonnée à l'origine de la droite de régression ont été obten
 nSpecies    0.02328063 0.04257117
 \end{verbatim}
 
-Ces résultats nous indiquent que les valeurs d'ordonnées à l'origine les plus probables dans la population générale son vraisemblablement comprises entre 1.117 et 1.280. De même, les valeurs de pentes les plus probables dans la population générale sont vraisemblablement situées dans l'intervalle {[}0.023 ; 0.043{]}.
+Ces résultats nous indiquent que les valeurs d'ordonnées à l'origine les plus probables dans la population générale sont vraisemblablement comprises entre 1.117 et 1.280. De même, les valeurs de pentes les plus probables dans la population générale sont vraisemblablement situées dans l'intervalle {[}0.023 ; 0.043{]}.
 
 Il est possible de visualiser cette incertitude grâce à la fonction \texttt{geom\_smooth()} utilisée plus tôt :
 
@@ -3738,7 +3755,7 @@ Il est possible de visualiser cette incertitude grâce à la fonction \texttt{ge
 
 \begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-121-1} \end{center}
 
-Cette intervalle d'incertitude correspond à l'incertitude de la moyenne de la variable expliquée pour une valeur donnée de la variable explicative. Ainsi, apr exemple, si le nombre d'espèces d'une parcelle est égal à 8, alors, la régression et son incertitude associée nous dit que le logarithme de l'lindice de stabilité de la biomasse vaudra \textbf{en moyenne} environ 1.46, avec un intervalle de confiance de {[}1.40 ; 1.51{]}
+Cet intervalle d'incertitude correspond à l'incertitude de la moyenne de la variable expliquée pour une valeur donnée de la variable explicative. Ainsi, par exemple, si le nombre d'espèces d'une parcelle est égal à 8, alors, la régression et son incertitude associée nous dit que le logarithme de l'indice de stabilité de la biomasse vaudra \textbf{en moyenne} environ 1.46, avec un intervalle de confiance de {[}1.40 ; 1.51{]}
 
 \hypertarget{conditions-dapplication-4}{%
 \paragraph{Conditions d'application}\label{conditions-dapplication-4}}
@@ -3785,16 +3802,19 @@ Exécutez la commande suivante (il vous faudra peut-être presser la touche \tex
 \end{Highlighting}
 \end{Shaded}
 
-Examinez attentivement les nombreux résultats produits par cette commande dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 4 jeux de données, 2 variables numériques sont mises en relation. Les variables \texttt{x1}, \texttt{x2}, \texttt{x3} et \texttt{x4} ont toutes même moyenne et même variance. Les variables \texttt{y1}, \texttt{y2}, \texttt{y3} et \texttt{y4} ont toutes même moyenne et même variance. Les coefficients de corrélation entre \texttt{x1} et \texttt{y1}, \texttt{x2} et \texttt{y2}, \texttt{x3} et \texttt{y3}, \texttt{x4} et \texttt{y4} sont tous les mêmes. Enfin, les ordonnées à l'origine et les pentes de ces 4 droites de régression linéaires sont identiques Pourtant, seule la première régression linéaire est valide. Pourquoi ?
+Examinez attentivement les nombreux résultats produits par cette commande dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 4 jeux de données, 2 variables numériques sont mises en relation. Les variables \texttt{x1}, \texttt{x2}, \texttt{x3} et \texttt{x4} ont toutes la même moyenne et la même variance. Les variables \texttt{y1}, \texttt{y2}, \texttt{y3} et \texttt{y4} ont toutes la même moyenne et la même variance. Les coefficients de corrélation entre \texttt{x1} et \texttt{y1}, \texttt{x2} et \texttt{y2}, \texttt{x3} et \texttt{y3}, \texttt{x4} et \texttt{y4} sont tous les mêmes. Enfin, les ordonnées à l'origine et les pentes de ces 4 droites de régression linéaires sont identiques. Pourtant, seule la première régression linéaire est valide. Pourquoi ?
 
 \hypertarget{in-your-face}{%
 \paragraph{In your face}\label{in-your-face}}
 
-Les hommes ont en moyenne un ratio ``largeur du visage sur longueur du visage'' supérieur à celui des femmes. Cela reflète des niveaux d'expression de la testostérone différents entre homme et femmes au moment de la puberté. On sait aussi que les niveaux de testosteronne permettent de prédire, dans une certaine mesure, l'agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire les agressions (ou tout au moins l'agressivité) ?
+Les hommes ont en moyenne un ratio ``largeur du visage sur longueur du visage'' supérieur à celui des femmes. Cela reflète des niveaux d'expression de la testostérone différents entre hommes et femmes au moment de la puberté. On sait aussi que les niveaux de testosterone permettent de prédire, dans une certaine mesure, l'agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire l'agressivité ?
 
-Pour tester cela, Carré \& McCormick (\protect\hyperlink{ref-carre2008}{2008}) ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d'abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier \texttt{hockey.csv}.
+Pour tester cela, Carré \& McCormick (\protect\hyperlink{ref-carre2008}{2008}) ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d'abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier \href{https://besibo.github.io/Biometrie3/data/hockey.csv}{\texttt{hockey.csv}}.
 
 Importez, examinez et analysez ces données pour répondre à la question posée.
+
+\hypertarget{bibliographie}{%
+\section{Bibliographie}\label{bibliographie}}
 
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-Campbell1998}{}%

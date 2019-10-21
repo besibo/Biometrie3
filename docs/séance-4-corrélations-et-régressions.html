@@ -24,7 +24,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2019-10-20" />
+<meta name="date" content="2019-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="bibliographie.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -187,6 +187,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.3.4" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#exercices-1"><i class="fa fa-check"></i><b>5.3.4</b> Exercices</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="bibliographie.html"><a href="bibliographie.html"><i class="fa fa-check"></i><b>6</b> Bibliographie</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publié avec bookdown</a></li>
@@ -215,13 +216,13 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Comme dans tous les chapitres de cet ouvrage, nous aurons besoin ici du <code>tidyverse</code> et du package <code>skimr</code>. Noubliez pas de les charger en mémoire avant d’aller plus loin.</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1"><span class="kw">library</span>(tidyverse)</a>
 <a class="sourceLine" id="cb157-2" title="2"><span class="kw">library</span>(skimr)</a></code></pre></div>
-<p>Vous aurez également besoin des jeux de données suivants disponibles sur l’ENT :</p>
+<p>Vous aurez également besoin des jeux de données suivants, disponibles sur l’ENT ou directement téléchargeables depuis ce document :</p>
 <ul>
-<li><code>birds.csv</code></li>
-<li><code>loups.csv</code></li>
-<li><code>ropetrick.csv</code></li>
-<li><code>plantbiomass.csv</code></li>
-<li><code>hockey.csv</code></li>
+<li><a href="https://besibo.github.io/Biometrie3/data/birds.csv"><code>birds.csv</code></a></li>
+<li><a href="https://besibo.github.io/Biometrie3/data/loups.csv"><code>loups.csv</code></a></li>
+<li><a href="https://besibo.github.io/Biometrie3/data/ropetrick.csv"><code>ropetrick.csv</code></a></li>
+<li><a href="https://besibo.github.io/Biometrie3/data/plantbiomass.csv"><code>plantbiomass.csv</code></a></li>
+<li><a href="https://besibo.github.io/Biometrie3/data/hockey.csv"><code>hockey.csv</code></a></li>
 </ul>
 </div>
 <div id="corrélation" class="section level2">
@@ -232,7 +233,7 @@ code span.wa { color: #bf0303; } /* Warning */
 Le coefficient de corrélation est la quantité qui décrit la force et la direction de l’association entre deux variables numériques mesurées sur un échantillon de sujets ou d’unités d’observation. La corrélation reflète la quantité de dispersion dans un nuage de points entre deux variables. Contrairement à la régression linéaire, la corrélation n’ajuste aucune droite à des données et ne permet donc pas de mesurer à quel point le changement d’une variable entraîne un changement rapide ou lent de l’autre variable.</p>
 <p>Ainsi, sur la figure ci-dessous, le coefficient de corrélation entre <code>X</code> et <code>Y</code> est le même pour les deux graphiques : il vaut 1.</p>
 <p><img src="figure/unnamed-chunk-95-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>Ici, le coefficient de corrélation (noté <span class="math inline">\(r\)</span>) vaut 1 dans les deux cas, car tous les points sont alignés sur une droite. La pente de la droite n’influence en rien la valeur corrélation. En revanche, la dispersion des points autour d’une droite parfaite a une influence :</p>
+<p>Ici, le coefficient de corrélation (noté <span class="math inline">\(r\)</span>) vaut 1 dans les deux cas, car tous les points sont alignés sur une droite. La pente de la droite n’influence en rien la valeur de corrélation. En revanche, la dispersion des points autour d’une droite parfaite a une influence :</p>
 <p><img src="figure/unnamed-chunk-96-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Plus la dispersion autour d’une droite parfaite sera grande, plus la corrélation sera faible. C’est la raison pour laquelle lorsque l’on parle de “corrélation”, on sous-entend généralement <strong>corrélation linéaire</strong>. Ainsi, 2 variables peuvent avoir une relation très forte, mais un coefficient de corrélation nul, si leur relation n’est pas linéaire :</p>
 <p><img src="figure/unnamed-chunk-97-1.png" width="90%" style="display: block; margin: auto;" /></p>
@@ -240,10 +241,10 @@ Le coefficient de corrélation est la quantité qui décrit la force et la direc
 <p><img src="figure/unnamed-chunk-98-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>En bref, le coefficient de corrélation <span class="math inline">\(r\)</span> est compris entre -1 et +1 :</p>
 <ul>
-<li>une forte valeur absolue (<span class="math inline">\(r\)</span> proche de -1 ou +1), indique une relation presque linéaire</li>
-<li>une faible valeur absolue indique soit une absence de relation, soit une relation non linéaire (la visualisation graphique permet généralement d’en savoir plus)</li>
-<li>une valeur positive indique qu’une augmentation de la première variable est associée à une augmentation de la seconde variable</li>
-<li>une valeur négative indique qu’une augmentation de la première variable est associée à une diminution de la seconde variable.</li>
+<li>Une forte valeur absolue (<span class="math inline">\(r\)</span> proche de -1 ou +1), indique une relation presque linéaire.</li>
+<li>Une faible valeur absolue indique soit une absence de relation, soit une relation non linéaire (la visualisation graphique permet généralement d’en savoir plus).</li>
+<li>Une valeur positive indique qu’une augmentation de la première variable est associée à une augmentation de la seconde variable.</li>
+<li>Une valeur négative indique qu’une augmentation de la première variable est associée à une diminution de la seconde variable.</li>
 </ul>
 <p>Dans la suite de ce chapitre, nous allons voir comment calculer le coefficient de corrélation entre 2 variables numériques, et puisque nous travaillons avec des <strong>échantillons</strong>, ce calcul sera nécessairement entaché d’<strong>incertitude</strong>. Tout comme la moyenne ou la variance d’un échantillon, la corrélation est un paramètre des populations dont nous ne pourrons qu’estimer la valeur. Toute estimation de corrélation devra donc être encadrée par un intervalle d’incertitude, généralement, il s’agit de l’intervalle de confiance à 95% de la corrélation. Enfin, outre l’estimation de la valeur de la corrélation et de son incertitude, nous pourrons aussi faire des tests d’hypothèses au sujet des corrélations que nous estimerons.</p>
 </div>
@@ -251,7 +252,7 @@ Le coefficient de corrélation est la quantité qui décrit la force et la direc
 <h3><span class="header-section-number">5.2.2</span> Exploration préalable des données</h3>
 <div id="importation-et-examen-visuel-4" class="section level4">
 <h4><span class="header-section-number">5.2.2.1</span> Importation et examen visuel</h4>
-<p>Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d’autres espèces animales, chez qui cette relation pourrait-être étudiée plus facilement ? <span class="citation">Müller et al. (<a href="#ref-muller2011">2011</a>)</span> ont étudié cette possibilité chez le Fou de Grant (<em>Sula granti</em>), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d’autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d’une bague d’identification individuelle. Ces 24 individus ont ensuite été suivis à l’âge adulte, lorsqu’ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier <code>birds.csv</code>. Importez ces données dans <code>R</code> dans un objet noté <code>birds</code>.</p>
+<p>Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d’autres espèces animales, chez qui cette relation pourrait être étudiée plus facilement ? <span class="citation">Müller et al. (<a href="#ref-muller2011">2011</a>)</span> ont étudié cette possibilité chez le fou de Grant (<em>Sula granti</em>), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d’autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d’une bague d’identification individuelle. Ces 24 individus ont ensuite été suivis à l’âge adulte, lorsqu’ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier <a href="https://besibo.github.io/Biometrie3/data/birds.csv"><code>birds.csv</code></a>. Importez ces données dans <code>R</code> dans un objet noté <code>birds</code>.</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1">birds</a></code></pre></div>
 <pre><code># A tibble: 24 x 2
    nVisitsNestling futureBehavior
@@ -267,7 +268,7 @@ Le coefficient de corrélation est la quantité qui décrit la force et la direc
  9               9          -0.23
 10               5          -0.23
 # … with 14 more rows</code></pre>
-<p>La première colonne de ce tableau indique, pour chaque individu suivi, le nombre de visites reçues au nid de la part d’adultes agressifs. La seconde colonne indique, pour ces même individus, le nombre de visites agressives effectuées à des nids d’autres poussins. Ce nombre n’est pas dans la même unité que la première variable puisqu’il a été corrigé par d’autres variables d’intérêt pour les chercheurs.</p>
+<p>La première colonne de ce tableau indique, pour chaque individu suivi, le nombre de visites reçues au nid de la part d’adultes agressifs lorsqu’ils étaient poussins. La seconde colonne indique, pour ces mêmes individus devenus adultes, le nombre de visites agressives effectuées à des nids d’autres poussins. Ce nombre n’est pas dans la même unité que la première variable car il a été corrigé par d’autres variables d’intérêt pour les chercheurs.</p>
 <p>Il manque à ce tableau une variable indiquant le code des individus. Elle n’est pas indispensable, mais la rajouter est une bonne habitude à prendre pour toujours travailler avec des “données rangées” :</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1">birds &lt;-<span class="st"> </span>birds <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb160-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ID =</span> <span class="kw">factor</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">24</span>))</a>
@@ -321,7 +322,7 @@ futureBehavior        0.5337225      1.0000000</code></pre>
 <p>Le résultat est obtenu sous la forme d’une matrice symétrique :</p>
 <ul>
 <li>Sur la diagonale, les corrélations valent 1 (le coefficient de corrélation d’une variable avec elle-même vaut toujours 1).</li>
-<li>En dehors de la diagonale, on trouve le coefficient de corrélation linéaire entre les 2 variables d’intérêt. Ici, il est positif et vaut 0.533, ce qui est une valeur relativement élevée dans le domaine de la biologie ou de l’écologie.</li>
+<li>En dehors de la diagonale, on trouve le coefficient de corrélation linéaire entre les 2 variables d’intérêt. Ici, il est positif et vaut 0.534, ce qui est une valeur relativement élevée dans le domaine de la biologie ou de l’écologie.</li>
 </ul>
 </div>
 <div id="exploration-graphique-4" class="section level4">
@@ -334,7 +335,7 @@ futureBehavior        0.5337225      1.0000000</code></pre>
 <a class="sourceLine" id="cb166-5" title="5">       <span class="dt">y =</span> <span class="st">&quot;Comportement futur&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb166-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <p><img src="figure/unnamed-chunk-103-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>On constate ici que la corrélation moyenne obtenue plus haut est due au fait que les points sont assez dispersés, et non au fait que la relation n’est pas linéaire. On peut donc dire que la relation, si elle existe, n’est pas parfaite. Un test d’hypothèse devrait nous permettre de déterminer si la corrélation linéaire observée ici est significativement différente de 0 ou non</p>
+<p>On constate ici que la corrélation moyenne obtenue plus haut est due au fait que les points sont assez dispersés, et non au fait que la relation n’est pas linéaire. On peut donc dire que la relation, si elle existe, n’est pas parfaite. Le comportement des individus devenus adultes semble donc en partie lié au nombre de visites agessives qu’ils ont reçues étant jeunes, mais ce n’est certainement pas le seul facteur influençant leur comportement. Un test d’hypothèses devrait nous permettre de déterminer si la corrélation linéaire observée ici est significativement différente de 0 ou non.</p>
 </div>
 </div>
 <div id="le-test-paramétrique-4" class="section level3">
@@ -342,8 +343,8 @@ futureBehavior        0.5337225      1.0000000</code></pre>
 <p>Comme pour la plupart des grandeurs calculées à partir d’un échantillon, la corrélation <span class="math inline">\(r\)</span> n’est qu’un estimateur de la corrélation qui existe réellement entre ces deux variables dans la population générale. Dans la population générale, la corrélation linéaire est généralement notée <span class="math inline">\(\rho\)</span>. Son estimateur, <span class="math inline">\(r\)</span> est donc souvent noté <span class="math inline">\(\hat{\rho}\)</span>.</p>
 <p>Le test d’hypothèses que nous allons faire maintenant permet de vérifier si le coefficient de corrélation <span class="math inline">\(\rho\)</span> dans la population générale est différent de 0 ou non. Les hypothèses de ce test sont les suivantes :</p>
 <ul>
-<li>H<span class="math inline">\(_0\)</span> : le coefficient de corrélation entre les deux variables étudiées vaut 0 dans la population générale (<span class="math inline">\(\rho = 0\)</span>)</li>
-<li>H<span class="math inline">\(_1\)</span> : le coefficient de corrélation entre les deux variables étudiées est différent de 0 dans la population générale (<span class="math inline">\(\rho \neq 0\)</span>)</li>
+<li>H<span class="math inline">\(_0\)</span> : le coefficient de corrélation entre les deux variables étudiées vaut 0 dans la population générale (<span class="math inline">\(\rho = 0\)</span>).</li>
+<li>H<span class="math inline">\(_1\)</span> : le coefficient de corrélation entre les deux variables étudiées est différent de 0 dans la population générale (<span class="math inline">\(\rho \neq 0\)</span>).</li>
 </ul>
 <p>Ce test est réalisé dans <code>R</code> grâce à la fonction <code>cor.test()</code>.</p>
 <div id="résultats-du-test-et-interprétation" class="section level4">
@@ -366,7 +367,7 @@ sample estimates:
 </blockquote>
 <p>Ce test prouve donc que <span class="math inline">\(\rho\)</span> est statistiquement différent de 0. La valeur de 0.53 observée ici n’est pas due au hasard de l’échantillonnage.</p>
 <p>Comme toujours, les résultats du test que nous avons réalisé ne nous disent rien de la valeur de la corrélation estimée, ni de son incertitude. Il nous faut pour cela examiner les autres lignes fournies par <code>R</code> lorsque nous faisons ce test et qui relèvent de l’estimation (voir section suivante).</p>
-<p>Dernière chose concernant ce test : nous avons fait ici un test bilatéral comme nous le rappelle cette ligne des résultats :</p>
+<p>Dernière chose concernant ce test, nous avons fait ici un test bilatéral comme nous le rappelle cette ligne des résultats :</p>
 <p><code>alternative hypothesis: true correlation is not equal to 0</code></p>
 <p>Comme pour les tests de comparaisons de moyennes, il est possible de réaliser un test unilatéral, à condition que cela ait un sens, à condition que nous soyons en mesure d’expliquer le choix de notre hypothèse alternative. La syntaxe est la même que pour les tests de Student ou de Wilcoxon : on utilise l’argument <code>alternative = &quot;less&quot;</code> ou <code>alternative = &quot;greater&quot;</code> au moment de faire le test, selon l’hypothèse que l’on souhaite tester.</p>
 <p>Ici, si les hypothèses que nous souhaitons tester sont les suivantes :</p>
@@ -392,7 +393,7 @@ sample estimates:
 </div>
 <div id="estimation-et-intervalle-de-confiance" class="section level4">
 <h4><span class="header-section-number">5.2.3.2</span> Estimation et intervalle de confiance</h4>
-<p>Revenons à notre test bilatéral. La section “estimation” des résultats de ce test nous indique que la meilleure estimation du coefficient de corrélation lineeaire de Pearson dans la population générale vaut <span class="math inline">\(\hat{\rho} = 0.533\)</span>. C’est la valeur que nous avions calculé à la main avec la fonction <code>cor()</code>.</p>
+<p>Revenons à notre test bilatéral. La section “estimation” des résultats de ce test nous indique que la meilleure estimation du coefficient de corrélation linéaire de Pearson dans la population générale vaut <span class="math inline">\(\hat{\rho} = 0.533\)</span>. C’est la valeur que nous avions calculé à la main avec la fonction <code>cor()</code>.</p>
 <p>L’intervalle de confiance à 95% de cette valeur estimée est également fourni. La conclusion de cette procédure pourrait donc être formulée de la façon suivante :</p>
 <blockquote>
 <p>Au seuil <span class="math inline">\(\alpha = 0.05\)</span>, le test de corrélation de Pearson a permis de rejeter l’hypothèse nulle selon laquelle la corrélation entre le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants (<span class="math inline">\(t = 2.96\)</span>, <span class="math inline">\(ddl = 22\)</span>, <span class="math inline">\(p = 0.007\)</span>). La meilleure estimation de ce coefficient de corrélation dans la population générale vaut <span class="math inline">\(\hat{\rho} = 0.533\)</span>. La vraie valeur dans la population générale a de bonnes chances de se trouver dans l’inervalle [0.17 ; 0.77] (intervalle de confiance à 95%).</p>
@@ -402,10 +403,10 @@ sample estimates:
 <h4><span class="header-section-number">5.2.3.3</span> Conditions d’application</h4>
 <p>Ce test est un test paramétrique. Pour avoir le droit de le réaliser, il nous faut donc vérifier les conditions d’application suivantes :</p>
 <ol style="list-style-type: decimal">
-<li>Les individus doivent être <em>indépendants</em> les uns des autres</li>
+<li>Les individus doivent être indépendants les uns des autres</li>
 <li>Les mesures effectuées doivent suivre une <strong>distribution Normale bivariée</strong></li>
 </ol>
-<p>Sauf si on a de bonnes raisons de penser le contraire, on considère généalement que si l’échantillonnage a été fait de façon aléatoire, l’indépendance des observations est garantie. La condition de “distribution Normale bivariée” des données est en revanche nouvelle. Elle suppose essentiellement que les 3 critères suivants soient vérifiés :</p>
+<p>Sauf si on a de bonnes raisons de penser le contraire, on considère généralement que si l’échantillonnage a été fait de façon aléatoire, l’indépendance des observations est garantie. La condition de “distribution Normale bivariée” des données est en revanche nouvelle. Elle suppose essentiellement que les 3 critères suivants soient vérifiés :</p>
 <ol style="list-style-type: decimal">
 <li>La relation entre les 2 variables doit être linéaire. C’est que nous tentons de vérifier visuellement en réalisant un nuage de points des données.</li>
 <li>Sur un graphique représentant une variable en fonction de l’autre, le nuage de points doit avoir une forme circulaire ou elliptique. Là encore, une représentation graphique nous permet d’apprécier cette condition.</li>
@@ -413,9 +414,9 @@ sample estimates:
 </ol>
 <p>Pour résumer, l’examen du nuage de points permet de vérifier les 2 premières conditions et 2 tests de Shapiro permettent de vérifier la troisième. Pour l’examen du nuage de points, les conditions ne seront pas remplies dans les situations suivantes (voir les exemples du graphique ci-dessous) :</p>
 <ul>
-<li>Le nuage de points a une forme d’entonnoir ou de nœud papillon</li>
-<li>Des ouliers sont présents (quelques points fortement éloignés du reste des observations)</li>
-<li>Une relation non linéaire entre les deux variables.</li>
+<li>Le nuage de points a une forme d’entonnoir ou de nœud papillon.</li>
+<li>Des ouliers sont présents (quelques points fortement éloignés du reste des observations).</li>
+<li>Une relation non linéaire existe entre les deux variables.</li>
 </ul>
 <p><img src="figure/unnamed-chunk-106-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Enfin, si l’une, l’autre ou les deux séries de données ne suivent pas la loi Normale, il faudra faire un test non paramétrique.</p>
@@ -437,10 +438,10 @@ alternative hypothesis: true rho is not equal to 0
 sample estimates:
      rho 
 0.472374 </code></pre>
-<p>Les test de Spearman est au test de Pearson ce que le test de Wilcoxon est au test de Student. Il travaille non pas sur les données brutes (ici, les mesures des scientifiques), mais sur des données modifiées, en l’occurence, sur les rangs des données. La première conséquence évidente est une perte de puissance notable par rapport au test de Pearson. Cette perte de puissance peut être ici observée par le biais de la <span class="math inline">\(p-\)</span>value plus faible que pour le test précédent. Cela indique que même si la conclusion est la même, on rejette ici l’hypothèse nulle avec moins de confiance que pour le test de Peasron.</p>
+<p>Le test de Spearman est au test de Pearson ce que le test de Wilcoxon est au test de Student. Il travaille non pas sur les données brutes (ici, les mesures des scientifiques), mais sur des données modifiées, en l’occurence, sur les rangs des données. La première conséquence évidente est une perte de puissance notable par rapport au test de Pearson. Cette perte de puissance peut être ici observée par le biais de la <span class="math inline">\(p-\)</span>value plus élevée (donc moins significative) que pour le test précédent. Cela indique que même si la conclusion est la même, on rejette ici l’hypothèse nulle avec moins de confiance que pour le test de Pearson.</p>
 <p>Le <span class="math inline">\(\rho\)</span> de Spearman est équivalent au <span class="math inline">\(r\)</span> de Pearson calculé sur les rangs des données. Lorsque plusieurs valeurs observées sont égales, plusieurs valeurs ont le même rang, ce qui cause l’apparition du message d’avertissement suivant :</p>
 <p><code>Impossible de calculer la p-value exacte avec des ex-aequos</code></p>
-<p>Ce message est sans conséquence tant que la <span class="math inline">\(p-\)</span>value du test de Spearman est éloignée du seuil <span class="math inline">\(\alpha\)</span>. Mais quans <span class="math inline">\(p \approx \alpha\)</span>, il faut être particulièrement prudent quant à l’interprétation qui est faite des résultats.</p>
+<p>Ce message est sans conséquence tant que la <span class="math inline">\(p-\)</span>value du test de Spearman est éloignée du seuil <span class="math inline">\(\alpha\)</span> (ce qui est le cas ici). Mais quand <span class="math inline">\(p \approx \alpha\)</span>, il faut être particulièrement prudent quant à l’interprétation qui est faite des résultats.</p>
 <p>Enfin, comme pour le test de Pearson, il est possible de réaliser un test de Spearman unilatéral en utilisant l’argument <code>alternative = &quot;less&quot;</code> ou <code>alternative = &quot;greater&quot;</code>. Les précautions à prendre pour utiliser ce genre de test sont toujours les mêmes.</p>
 </div>
 <div id="exercices" class="section level3">
@@ -449,36 +450,38 @@ sample estimates:
 <h4><span class="header-section-number">5.2.5.1</span> <em>Canis lupus</em></h4>
 <p>En 1970, le loup <em>canis lupus</em> a été éradiqué en Norvège et en Suède. Autour de 1980, un couple de loups, originaire d’une population plus à l’Est, a fondé une nouvelle population en Suède. En l’espace de 20 ans, cette population comptait approximativement 100 loups. Il y a toutefois fort à craindre qu’une population fondée par un si petit nombre d’individus souffre de consanguinité. <span class="citation">Liberg et al. (<a href="#ref-liberg2005">2005</a>)</span> ont compilé les informations sur la reproduction dans cette population entre 1983 et 2002, et ils ont pu reconstruire le pédigrée des individus la composant. Ils ont ainsi été en mesure de déterminer avec précision le coefficient individuel de consanguinité dans 24 portées de louveteaux.
 Pour mémoire, le coefficient individuel de consanguinité vaut 0 si ses parents ne sont pas apparentés, 0.25 si ses parents sont frères et sœurs issus de grands-parents non apparentés, et plus de 0.25 si les associations consanguines se répètent depuis plusieurs générations.</p>
-<p>On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de <span class="citation">Liberg et al. (<a href="#ref-liberg2005">2005</a>)</span> sont disponibles dans le fichier <code>loups.csv</code>. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l’ordre des étapes suivies jusqu’ici. En particulier, vous prendrez soin de :
-- vérifier la qualité des données
-- mettre les données dans un format approprié si besoin
-- réaliser une exploration statistique puis visuelle des données
-- vérifier les conditions d’application d’un test paramétrique
-- faire le test approprié en posant les hypothèses nulles et alternatives judicieuses
-- répondre à la question posée en intégrant tous les éléments utiles.</p>
+<p>On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de <span class="citation">Liberg et al. (<a href="#ref-liberg2005">2005</a>)</span> sont disponibles dans le fichier <a href="https://besibo.github.io/Biometrie3/data/loups.csv"><code>loups.csv</code></a>. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l’ordre des étapes décrites plus haut. En particulier, vous prendrez soin de :</p>
+<ul>
+<li>Vérifier la qualité des données.</li>
+<li>Mettre les données dans un format approprié si besoin.</li>
+<li>Réaliser une exploration statistique puis visuelle des données.</li>
+<li>Vérifier les conditions d’application d’un test paramétrique.</li>
+<li>Faire le test approprié en posant les hypothèses nulles et alternatives judicieuses.</li>
+<li>Répondre à la question posée en intégrant tous les éléments utiles.</li>
+</ul>
 </div>
 <div id="les-miracles-de-la-mémoire" class="section level4">
 <h4><span class="header-section-number">5.2.5.2</span> Les miracles de la mémoire</h4>
-<p>À quel point les souvenirs d’évènements miraculeux sont-il fiables ? Une façon d’étudier cette question est de comparer différents récits de tours de magie extraordinaires. Parmis les tours les plus célèbres, on trouve celui de la corde du fakir. Dans l’une de ces versions, un magicien jette l’extrémité une corde d’apparence normale en l’air et cette corde devient rigide. Un garçon grimpe à la corde et finit par disparaître en huat de la scène. Le magicien lui demande de répondre mais n’obtient pas de réponse. Il attrape alors un couoteau, grimpe à son tour, et le garçon, découpé en morceaux, tombe du ciel dans un panier posé par terre. Le magicien redescent de la corde et aide le garçon vivant, en un seul morceau et non blessé, à sortir du panier.</p>
-<p><span class="citation">Wiseman &amp; Lamont (<a href="#ref-wiseman1996">1996</a>)</span> ont retrouvé 21 récits écrits de ce tour par des personnes ayant elles-mêmes assisté à ce tour. Ils ont attribué un score à chaque description selon le caractère plus ou moins impressionnant de la description. Par exemple, un score de 1 était attribué si le récit faisait état que “le garçon grimpe à la corde, puis il en redescend”. Les récits les plus impressionnants se sont vus attribués la note de 5 (“le garçon grimpe, disparaît, est découpé en morceaux et réapparait en chair et en os devant le public”).
+<p>À quel point les souvenirs d’évènements miraculeux sont-il fiables ? Une façon d’étudier cette question est de comparer différents récits de tours de magie extraordinaires. Parmis les tours les plus célèbres, on trouve celui de la corde du fakir. Dans l’une de ces versions, un magicien jette l’extrémité une corde d’apparence normale en l’air et cette corde devient rigide. Un garçon grimpe à la corde et finit par disparaître en haut de la scène. Le magicien lui demande de répondre mais n’obtient pas de réponse. Il attrape alors un couteau, grimpe à son tour, et le garçon, découpé en morceaux, tombe du ciel dans un panier posé par terre. Le magicien redescent de la corde et aide le garçon vivant, en un seul morceau et non blessé, à sortir du panier.</p>
+<p><span class="citation">Wiseman &amp; Lamont (<a href="#ref-wiseman1996">1996</a>)</span> ont retrouvé 21 récits écrits de ce tour par des personnes ayant elles-mêmes assisté à ce tour. Ils ont attribué un score à chaque description selon le caractère plus ou moins impressionnant de la description. Par exemple, un score de 1 était attribué si le récit faisait état que “le garçon grimpe à la corde, puis il en redescend”. Les récits les plus impressionnants se sont vus attribuer la note de 5 (“le garçon grimpe, disparaît, est découpé en morceaux et réapparaît en chair et en os devant le public”).
 Pour chaque récit, les chercheurs ont également enregistré le nombre d’années écoulées entre le moment où le témoin a assisté au tour de magie, et le moment où il a consigné son récit par écrit.</p>
-<p>Y a-t’il un lien entre le caractère impressionnant (“impressiveness”) d’un souvenir et le temps écoulé jusqu’à l’écriture de sa description (“years”) ? Si oui, cela pourrait indiquer une tendance de la mémoire humaine à exagérer et à perdre en précision avec le temps.</p>
-<p>Les données de <span class="citation">Wiseman &amp; Lamont (<a href="#ref-wiseman1996">1996</a>)</span> sont disponibles dans le fichier <code>ropetrick.csv</code>. Importez ces données et analysez-les en respectant les consignes de l’exercice précédent.</p>
+<p>Y a-t’il un lien entre le caractère impressionnant (“<code>impressiveness</code>”) d’un souvenir et le temps écoulé jusqu’à l’écriture de sa description (“<code>years</code>”) ? Si oui, cela pourrait indiquer une tendance de la mémoire humaine à exagérer et à perdre en précision avec le temps.</p>
+<p>Les données de <span class="citation">Wiseman &amp; Lamont (<a href="#ref-wiseman1996">1996</a>)</span> sont disponibles dans le fichier <a href="https://besibo.github.io/Biometrie3/data/ropetrick.csv"><code>ropetrick.csv</code></a>. Importez ces données et analysez-les en respectant les consignes de l’exercice précédent.</p>
 </div>
 </div>
 </div>
 <div id="régression-linéaire" class="section level2">
 <h2><span class="header-section-number">5.3</span> Régression linéaire</h2>
-<p>La régression est une méthode utilisée pour prédire les valeurs d’une variable numérique à partir des valeurs d’une seconde variable. Par exemple, le nuage de ooints de la figure ci-dessous montre comment la diversitee génétique dans une population humaine locale peut être prédite par sa distance de dispersion depuis l’Est africain en ajustant une droite aux données <span class="citation">(d’après Whitlock &amp; Schluter, <a href="#ref-whitlock2015">2015</a>)</span>. L’homme moderne est apparu en Afrique et nos ancêtres ont perdu un peu de diversité génétique à chaque étape de leur colonisation de nouveaux territoires.</p>
+<p>La régression est une méthode utilisée pour prédire les valeurs d’une variable numérique à partir des valeurs d’une seconde variable. Par exemple, le nuage de points de la figure ci-dessous montre comment la diversité génétique dans une population humaine locale peut être prédite par sa distance de dispersion depuis l’Est africain en ajustant une droite aux données <span class="citation">(d’après Whitlock &amp; Schluter, <a href="#ref-whitlock2015">2015</a>)</span>. L’homme moderne est apparu en Afrique et nos ancêtres ont perdu un peu de diversité génétique à chaque étape de leur colonisation de nouveaux territoires.</p>
 <p><img src="images/genetics.jpg" /></p>
 <p>Contrairement à la corrélation, ici, on n’examine pas seulement une éventuelle liaison : on suppose qu’une variable peut-être (en partie) expliquée par une autre. Nous aurons donc à distinguer les variables expliquées (ou dépendantes) qui figureront sur l’axe des y et seront nos variables prédites, et les variables explicatives (ou indépendantes) qui figureront sur l’axe des abscisses et seront les prédicteurs.</p>
-<p>Une façon de distinguer corrélation et régression consiste à dire que “corrélation n’est pas causalité”. Si on compare un nombre de variables suffisamment important, on finira toujours par en trouver qui seront corrélées. Cela ne veut pas dire pour autant qu’il existe un lien de cause à effet entre l’une et l’autre. Pour vous en convaincre, examinez <a href="http://www.tylervigen.com/spurious-correlations">cette page</a>. Lorsque l’on s’intéresse à la régression linéaire, on essaie de prédire ou d’expliquer. En d’autres termes, on considère que les variations de la variabkle explicative sont au moins en partie la cause des variations de la variable expliquée.</p>
-<p>Lorsque l’on s’intéresse à la régression linéaire, on considère que la relation qui lie les deux variables est linéaire, et on souhaite quantifier l’intensité de la relation. Nous allons examiner maintenant comment faire ça dans <code>R</code>.</p>
+<p>Une façon de distinguer corrélation et régression consiste à dire que “corrélation n’est pas causalité”. Si on compare un nombre de variables suffisamment important, on finira toujours par en trouver qui seront corrélées. Cela ne veut pas dire pour autant qu’il existe un lien de cause à effet entre l’une et l’autre. Pour vous en convaincre, examinez <a href="http://www.tylervigen.com/spurious-correlations">cette page</a>. Lorsque l’on s’intéresse à la régression linéaire, on essaie au contraire de prédire ou d’expliquer. En d’autres termes, on considère que les variations de la variable explicative sont au moins en partie la cause des variations de la variable expliquée.</p>
+<p>Lorsque l’on s’intéresse à la régression linéaire, on considère que la relation qui lie les deux variables est linéaire, et on souhaite <strong>quantifier l’intensité de la relation</strong>. Nous allons examiner maintenant comment faire ça dans <code>R</code>.</p>
 <div id="exploration-préalable-des-données-3" class="section level3">
 <h3><span class="header-section-number">5.3.1</span> Exploration préalable des données</h3>
 <p>Les activités humaines réduisent le nombre d’espèces dans un grand nombre d’écosystèmes à la surface du globe. Est-ce que cette diminution du nombre d’espèces affecte le fonctionnement de base des écosystèmes ? Où est-ce qu’au contraire, les espèces végétales sont majoritairement interchangeables, les fonctions des espèces disparues pouvants être assurées par les espèces toujours présentes ?</p>
-<p>Pour tenter de répondre à cette question, <span class="citation">Tilman et al. (<a href="#ref-tilman2006">2006</a>)</span> ont ensemencé 161 parcelle de 9 mètres sur 9 mètres dans la réserve de Cedar Creek (Minesota, USA). Ils ont utilisé un nombre d’espèces variables typiques des prairies et ont mesuré la production de biomasse de chaque parcelle pendant 10 ans. Des lots de 1, 2, 4, 8 ou 16 plantes pluriannuelles (choisies au hasard parmi une liste de 18 espèces possibles) ont été assignés au hasard dans chacune des 161 parcelles. À l’issue des 10 années d’étude, les chercheurs ont mesuré un indice de stabilité de la biomasse en divisant la moyenne des biomasses sur 10 ans, par l’écart-type de ces mêmes biomasses.</p>
-<p>Les données de cette expérience sont disponible dans le fichier <code>plantbiomass.csv</code>.</p>
+<p>Pour tenter de répondre à cette question, <span class="citation">Tilman et al. (<a href="#ref-tilman2006">2006</a>)</span> ont ensemencé 161 parcelles de 9 mètres sur 9 mètres dans la réserve de Cedar Creek (Minesota, USA). Ils ont utilisé un nombre variable d’espèces typiques des prairies et ont mesuré la production de biomasse de chaque parcelle pendant 10 ans. Des lots de 1, 2, 4, 8 ou 16 plantes pluriannuelles (choisies au hasard parmi une liste de 18 espèces possibles) ont été assignés au hasard dans chacune des 161 parcelles. À l’issue des 10 années d’étude, les chercheurs ont mesuré un indice de stabilité de la biomasse en divisant la moyenne des biomasses sur 10 ans, par l’écart-type de ces mêmes biomasses.</p>
+<p>Les données de cette expérience sont disponibles dans le fichier <a href="https://besibo.github.io/Biometrie3/data/plantbiomass.csv"><code>plantbiomass.csv</code></a>.</p>
 <div id="importation-examen-visuel-et-statistiques-descriptives" class="section level4">
 <h4><span class="header-section-number">5.3.1.1</span> Importation, examen visuel et statistiques descriptives</h4>
 <p>Comme toujours, on importe les données et on commence par un examen visuel afin de détecter les éventuels problèmes et pour savoir où l’on va.</p>
@@ -538,7 +541,7 @@ cols(
   7.41 ▅▇▃▆▃▂▁▁
   7.74 ▂▇▇▆▁▃▂▁
  15.76 ▇▆▅▂▁▁▁▁</code></pre>
-<p>Cette fois, on obtient des informations pour chaque valeur de nombre d’espèce par parcelle. On constate par exemple que les moyennes de l’indice de stabilité de la biomasse augmentent très peu entre les catégories 1, 2 et 4 espèces par parcelle, mais que l’augmentation semble plus fort pour 8 et 16 espèces par parcelle. Tous les écarts-types semblent très proches, sauf peut-être pour la catégorie 16 espèces.</p>
+<p>Cette fois, on obtient des informations pour chaque valeur de nombre d’espèce par parcelle. On constate par exemple que les moyennes de l’indice de stabilité de la biomasse augmentent très peu entre les catégories 1, 2 et 4 espèces par parcelle, mais que l’augmentation semble plus forte pour 8 et 16 espèces par parcelle. Tous les écarts-types semblent très proches, sauf peut-être pour la catégorie 16 espèces.</p>
 <p>Une visualisation des données est toujours indispensable :</p>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1">plant <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb182-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies, <span class="dt">y =</span> biomassStability)) <span class="op">+</span></a>
@@ -549,16 +552,18 @@ cols(
 <p><img src="figure/unnamed-chunk-113-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Ce graphique nous apprend plusieurs choses :</p>
 <ol style="list-style-type: decimal">
-<li>Contrairement à la plupart des méthodes statistiques vues jusqu’ici, il n’est pas nécessaire que les données des variables soient distribuées selon une loi Normale. Ici, nous avons des données qui sont tout sauf normales pour la variable expliquée puisque nous avons seulement les entiers 1, 2, 4, 8 et 16. Un histogramme ou une courbe de densité montre que la distribution de cette variable est très loin de la Normalité :</li>
+<li>Contrairement à la plupart des méthodes statistiques vues jusqu’ici, il n’est pas nécessaire que les données des variables soient distribuées selon une loi Normale. Ici, nous avons des données qui sont tout sauf normales pour la variable explicative puisque nous avons seulement les entiers 1, 2, 4, 8 et 16. Un histogramme ou une courbe de densité montre que la distribution de cette variable est très loin de la Normalité :</li>
 </ol>
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1">plant <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb183-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb183-3" title="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb183-3" title="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">adjust =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb183-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre d&#39;espèces par parcelle&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb183-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <p><img src="figure/unnamed-chunk-114-1.png" width="90%" style="display: block; margin: auto;" />
-Cela n’est pas du tout problématique : comme pour l’ANOVA, les conditions d’application porteront sur les <strong>résidus de la régression</strong>, pas sur les variables elles-mêmes.
-2. Afin de limiter la sur-dispersion de la variable expliquée, notamment pour la catégorie <code>16</code> plantes par parcelle, nous allons transformer l’indice de stabilité en logarithme (attention, la fonction <code>log()</code> permet de calculer des logarithmes népériens ou logarithmes naturels) :</p>
+Cela n’est pas du tout problématique : comme pour l’ANOVA, les conditions d’application porteront sur les <strong>résidus de la régression</strong>, pas sur les variables elles-mêmes.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Afin de limiter la sur-dispersion de la variable expliquée, notamment pour la catégorie <code>16</code> plantes par parcelle, nous allons transformer l’indice de stabilité en logarithme (attention, la fonction <code>log()</code> permet de calculer des logarithmes népériens ou logarithmes naturels) :</li>
+</ol>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1">plant &lt;-<span class="st"> </span>plant <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb184-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">log_biomass =</span> <span class="kw">log</span>(biomassStability))</a>
 <a class="sourceLine" id="cb184-3" title="3">plant</a></code></pre></div>
@@ -597,19 +602,19 @@ Cela n’est pas du tout problématique : comme pour l’ANOVA, les conditions d
 </div>
 <div id="le-test-paramétrique-5" class="section level3">
 <h3><span class="header-section-number">5.3.2</span> Le test paramétrique</h3>
-<p>À une exception près, la procédure de régression linéaire est en tout points identique à l’analyse de variance. Quand on fait une ANOVA, la variable expliquée est numérique est la variable explicative est catégorielle (c’est un facteur). Quand on fait une régression linéaire, les 2 variables sont numériques. Pour le reste, tout est identique : on exprime la variable expliquée en fonction de la variable explicative et on vérifie après coup, grâce aux résidus, si nous avions le droit ou non de faire l’analyse.</p>
-<p>Pour faire une régression linéaire dans <code>R</code>, on utilise la fonction <code>lm()</code> (comme <strong>l</strong>inear <strong>m</strong>odel). Et comme pour l’ANOVA, les résultats de l’analyse doivent être stockés dans un objet puisque cet obket contiendra tous les éléments utiles pour vérifier les conditions d’application :</p>
+<p>À une exception près, la procédure de régression linéaire est en tous points identique à l’analyse de variance. Quand on fait une ANOVA, la variable expliquée est numérique et la variable explicative est catégorielle (c’est un facteur). Quand on fait une régression linéaire, les 2 variables sont numériques. Pour le reste, tout est identique : on exprime la variable expliquée en fonction de la variable explicative et on vérifie après coup, grâce aux résidus, si nous avions le droit ou non de faire l’analyse.</p>
+<p>Pour faire une régression linéaire dans <code>R</code>, on utilise la fonction <code>lm()</code> (comme <strong>l</strong>inear <strong>m</strong>odel). Et comme pour l’ANOVA, les résultats de l’analyse doivent être stockés dans un objet puisque cet objet contiendra tous les éléments utiles pour vérifier les conditions d’application :</p>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1">reg1 &lt;-<span class="st"> </span><span class="kw">lm</span>(log_biomass <span class="op">~</span><span class="st"> </span>nSpecies, <span class="dt">data =</span> plant)</a></code></pre></div>
-<p>Faire une régression linéaire avec cette commande revient à effectuer en même temps 2 tests d’hypothèses indépendants : le premier concerne l’ordonnée à l’origine de la droite de régression et le secon concerne la pente de la droite de régression. Les hypothèses de ces tests sont les suivantes :</p>
-<p><strong>Pour l’ordonnée à l’origine</strong> (“intercept” en anglais) :</p>
+<p>Faire une régression linéaire avec cette commande revient à effectuer en même temps 2 tests d’hypothèses indépendants : le premier concerne l’ordonnée à l’origine de la droite de régression et le second concerne la pente de la droite de régression. Les hypothèses de ces tests sont les suivantes :</p>
+<p><em>Pour l’ordonnée à l’origine</em> (“intercept” en anglais) :</p>
 <ul>
-<li>H<span class="math inline">\(_0\)</span> : l’ordonnée à l’origine de la droite de régression vaut 0 dans la population générale</li>
-<li>H<span class="math inline">\(_1\)</span> : l’ordonnée à l’origine de la droite de régression est différente de 0 dans la population générale</li>
+<li>H<span class="math inline">\(_0\)</span> : l’ordonnée à l’origine de la droite de régression vaut 0 dans la population générale.</li>
+<li>H<span class="math inline">\(_1\)</span> : l’ordonnée à l’origine de la droite de régression est différente de 0 dans la population générale.</li>
 </ul>
-<p><strong>Pour la pente</strong> (“slope” en anglais) :</p>
+<p><em>Pour la pente</em> (“slope” en anglais) :</p>
 <ul>
-<li>H<span class="math inline">\(_0\)</span> : la pente de la droite de régression vaut 0 dans la population générale</li>
-<li>H<span class="math inline">\(_1\)</span> : la pente de la droite de régression est différente de 0 dans la population générale</li>
+<li>H<span class="math inline">\(_0\)</span> : la pente de la droite de régression vaut 0 dans la population générale.</li>
+<li>H<span class="math inline">\(_1\)</span> : la pente de la droite de régression est différente de 0 dans la population. générale</li>
 </ul>
 <div id="résultats-du-test-et-interprétation-1" class="section level4">
 <h4><span class="header-section-number">5.3.2.1</span> Résultats du test et interprétation</h4>
@@ -633,18 +638,18 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 0.3484 on 159 degrees of freedom
 Multiple R-squared:  0.2223,    Adjusted R-squared:  0.2174 
 F-statistic: 45.45 on 1 and 159 DF,  p-value: 2.733e-10</code></pre>
-<p>Dans la forme, ces résultats sont très proches de ceux de l’ANOVA. La rubrique <code>Residuals</code> donne des informations sommaires sur les résidus. Ces informations sont utiles puisque les résidus serviront à vérifier les rconditions d’application de la régression. À ce stade, on regarde surtout si la médiane des résidus est proche de 0 et si les résidus sont à peu près symétriques (les premier et troisième quartiles ont à peu près la même valeur absolue, idem pour le minimum et le maximum).</p>
-<p>Le tableau <code>Coefficients</code> est celui qui nous intéresse le plus puisqu’il nous fournit, outre la réponse aux 2 tests, les estimations pour l’ordonnée à l’origine et la pente de la droite de régression. Ici, l’ordonnée à l’origine (intercept) est estimée à 1.198 (rappelez-vous que cette valeur fait référence au logarithme de la stabilité de la biomasse) et la pente à 0.033 (quand le nombre d’espèce augmente d’une unité, le logarithme de l’indice de stabilité de la biomasse augmente de 0.033 unités). Les <span class="math inline">\(p-\)</span>values de chacun des 2 tests sont fournies dans la dernière colonne et sont ici très inférieure à <span class="math inline">\(\alpha\)</span> : on rejette donc les 2 hypothèses nulles. En particulier, puisque l’hypothèse nulle est rejetée pour le test qui concerne le pente de la droite, on peut considérer que le nombre de plantes dans les parcelles influence bel et bien l’indice de stabilité de la biomasse. Autrement dit, le nombre de plantes dans les parcelles, permet, dans une certaine mesure, de prédire la valeur de l’indice de stabilité de la biomasse.</p>
-<p>La relation n’est pas parfaite : le nombre de plantes dans chaque parcelle ne permet de prédire l’indice de stabilitee de la biomasse que dans une mesure assez faible. C’est le <code>Adjusted R-squared</code> qui nous indique quelle est la “qualité” de prédiction du modèle. Ici, il vaut 0.22. Cela signifie que 22% des variations de l’indice de stabilité de la biomasse sont prédits par le nombre de plantes dans les parcelles. Une autre façon de présenter les choses consiste à dire que 78% des variations de l’indice de stabilité de biomasse sont expliqués par d’autres facteurs que le nombre d’espèces par parcelles. Le <span class="math inline">\(R^2\)</span> (à en pas confondre avec le coefficient de corrélation <span class="math inline">\(r\)</span>) renseigne donc sur la qualité de l’ajustement des données à la droite de régression. Il nous indique ici que le pouvoir prédictif de notre modèle linéaire est assez faible. Il est néanmoins significatif, ce qui indique que notre variable explicative joue bel et bien un rôle non négligeable dans les variations de la variable expliquée.</p>
+<p>Dans la forme, ces résultats sont très proches de ceux de l’ANOVA. La rubrique <code>Residuals</code> donne des informations sommaires sur les résidus. Ces informations sont utiles puisque les résidus serviront à vérifier les conditions d’application de la régression. À ce stade, on regarde surtout si la médiane des résidus est proche de 0 et si les résidus sont à peu près symétriques (les premier et troisième quartiles ont à peu près la même valeur absolue, idem pour le minimum et le maximum).</p>
+<p>Le tableau <code>Coefficients</code> est celui qui nous intéresse le plus puisqu’il nous fournit, outre la réponse aux 2 tests, les estimations pour l’ordonnée à l’origine et la pente de la droite de régression. Ici, l’ordonnée à l’origine (intercept) est estimée à 1.198 (rappelez-vous que cette valeur fait référence au logarithme de la stabilité de la biomasse) et la pente à 0.033 (quand le nombre d’espèces augmente d’une unité, le logarithme de l’indice de stabilité de la biomasse augmente de 0.033 unités). Les <span class="math inline">\(p-\)</span>values de chacun des 2 tests sont fournies dans la dernière colonne et sont ici très inférieures à <span class="math inline">\(\alpha\)</span> : on rejette donc les 2 hypothèses nulles. En particulier, puisque l’hypothèse nulle est rejetée pour le test qui concerne la pente de la droite, on peut considérer que le nombre de plantes dans les parcelles influence bel et bien l’indice de stabilité de la biomasse. Autrement dit, le nombre de plantes dans les parcelles, permet, dans une certaine mesure, de prédire la valeur de l’indice de stabilité de la biomasse.</p>
+<p>La relation n’est pas parfaite : le nombre de plantes dans chaque parcelle ne permet de prédire l’indice de stabilité de la biomasse que dans une mesure assez faible. C’est le <code>Adjusted R-squared</code> qui nous indique quelle est la “qualité” de prédiction du modèle. Ici, il vaut 0.22. Cela signifie que 22% des variations de l’indice de stabilité de la biomasse sont prédits par le nombre de plantes dans les parcelles. Une autre façon de présenter les choses consiste à dire que 78% des variations de l’indice de stabilité de biomasse sont expliqués par d’autres facteurs que le nombre d’espèces par parcelle. Le <span class="math inline">\(R^2\)</span> (à en pas confondre avec le coefficient de corrélation <span class="math inline">\(r\)</span>) renseigne donc sur la qualité de l’ajustement des données à la droite de régression. Il nous indique ici que le pouvoir prédictif de notre modèle linéaire est assez faible. Il est néanmoins significatif, ce qui indique que notre variable explicative joue bel et bien un rôle non négligeable dans les variations de la variable expliquée.</p>
 </div>
 <div id="intervalle-de-confiance-de-la-régression" class="section level4">
 <h4><span class="header-section-number">5.3.2.2</span> Intervalle de confiance de la régression</h4>
-<p>La pente et l’ordonnée à l’origine de la droite de régression ont été obtenues à partir des données d’un échantillon (ici, 161 parcelles). Il s’agit donc d’estimations des pentes et ordonnées à l’origine de la relation plus générale qui concerne la population globale. Comme toute estimation, les pentes et ordonnées à l’origine de la droite de régression sont donc entâchées d’incertitudes. Nous pouvons quantifier cette incertitude grâce au calcul des intervalle de confiance à 95% de ces 2 paramètres :</p>
+<p>La pente et l’ordonnée à l’origine de la droite de régression ont été obtenues à partir des données d’un échantillon (ici, 161 parcelles). Il s’agit donc d’estimations des pentes et ordonnées à l’origine de la relation plus générale qui concerne la population globale. Comme toute estimation, les pentes et ordonnées à l’origine de la droite de régression sont donc entâchées d’incertitudes. Nous pouvons quantifier ces incertitudes grâce au calcul des intervalles de confiance à 95% de ces 2 paramètres :</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1"><span class="kw">confint</span>(reg1)</a></code></pre></div>
 <pre><code>                 2.5 %     97.5 %
 (Intercept) 1.11673087 1.27985782
 nSpecies    0.02328063 0.04257117</code></pre>
-<p>Ces résultats nous indiquent que les valeurs d’ordonnées à l’origine les plus probables dans la population générale son vraisemblablement comprises entre 1.117 et 1.280. De même, les valeurs de pentes les plus probables dans la population générale sont vraisemblablement situées dans l’intervalle [0.023 ; 0.043].</p>
+<p>Ces résultats nous indiquent que les valeurs d’ordonnées à l’origine les plus probables dans la population générale sont vraisemblablement comprises entre 1.117 et 1.280. De même, les valeurs de pentes les plus probables dans la population générale sont vraisemblablement situées dans l’intervalle [0.023 ; 0.043].</p>
 <p>Il est possible de visualiser cette incertitude grâce à la fonction <code>geom_smooth()</code> utilisée plus tôt :</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1">plant <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb193-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies, <span class="dt">y =</span> log_biomass)) <span class="op">+</span></a>
@@ -654,7 +659,7 @@ nSpecies    0.02328063 0.04257117</code></pre>
 <a class="sourceLine" id="cb193-6" title="6">       <span class="dt">y =</span> <span class="st">&quot;Transformation log</span><span class="ch">\n</span><span class="st"> de l&#39;indice de stabilité de la biomasse&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb193-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <p><img src="figure/unnamed-chunk-121-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>Cette intervalle d’incertitude correspond à l’incertitude de la moyenne de la variable expliquée pour une valeur donnée de la variable explicative. Ainsi, apr exemple, si le nombre d’espèces d’une parcelle est égal à 8, alors, la régression et son incertitude associée nous dit que le logarithme de l’lindice de stabilité de la biomasse vaudra <strong>en moyenne</strong> environ 1.46, avec un intervalle de confiance de [1.40 ; 1.51]</p>
+<p>Cet intervalle d’incertitude correspond à l’incertitude de la moyenne de la variable expliquée pour une valeur donnée de la variable explicative. Ainsi, par exemple, si le nombre d’espèces d’une parcelle est égal à 8, alors, la régression et son incertitude associée nous dit que le logarithme de l’indice de stabilité de la biomasse vaudra <strong>en moyenne</strong> environ 1.46, avec un intervalle de confiance de [1.40 ; 1.51]</p>
 </div>
 <div id="conditions-dapplication-4" class="section level4">
 <h4><span class="header-section-number">5.3.2.3</span> Conditions d’application</h4>
@@ -680,14 +685,13 @@ nSpecies    0.02328063 0.04257117</code></pre>
 <h4><span class="header-section-number">5.3.4.1</span> Le quartet d’Anscombe</h4>
 <p>Exécutez la commande suivante (il vous faudra peut-être presser la touche <code>Entrée</code> dans la console) pour produire les 4 graphiques d’Anscombe :</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="kw">example</span>(anscombe)</a></code></pre></div>
-<p>Examinez attentivement les nombreux résultats produits par cette commande dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 4 jeux de données, 2 variables numériques sont mises en relation. Les variables <code>x1</code>, <code>x2</code>, <code>x3</code> et <code>x4</code> ont toutes même moyenne et même variance. Les variables <code>y1</code>, <code>y2</code>, <code>y3</code> et <code>y4</code> ont toutes même moyenne et même variance. Les coefficients de corrélation entre <code>x1</code> et <code>y1</code>, <code>x2</code> et <code>y2</code>, <code>x3</code> et <code>y3</code>, <code>x4</code> et <code>y4</code> sont tous les mêmes. Enfin, les ordonnées à l’origine et les pentes de ces 4 droites de régression linéaires sont identiques Pourtant, seule la première régression linéaire est valide. Pourquoi ?</p>
+<p>Examinez attentivement les nombreux résultats produits par cette commande dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 4 jeux de données, 2 variables numériques sont mises en relation. Les variables <code>x1</code>, <code>x2</code>, <code>x3</code> et <code>x4</code> ont toutes la même moyenne et la même variance. Les variables <code>y1</code>, <code>y2</code>, <code>y3</code> et <code>y4</code> ont toutes la même moyenne et la même variance. Les coefficients de corrélation entre <code>x1</code> et <code>y1</code>, <code>x2</code> et <code>y2</code>, <code>x3</code> et <code>y3</code>, <code>x4</code> et <code>y4</code> sont tous les mêmes. Enfin, les ordonnées à l’origine et les pentes de ces 4 droites de régression linéaires sont identiques. Pourtant, seule la première régression linéaire est valide. Pourquoi ?</p>
 </div>
 <div id="in-your-face" class="section level4">
 <h4><span class="header-section-number">5.3.4.2</span> In your face</h4>
-<p>Les hommes ont en moyenne un ratio “largeur du visage sur longueur du visage” supérieur à celui des femmes. Cela reflète des niveaux d’expression de la testostérone différents entre homme et femmes au moment de la puberté. On sait aussi que les niveaux de testosteronne permettent de prédire, dans une certaine mesure, l’agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire les agressions (ou tout au moins l’agressivité) ?</p>
-<p>Pour tester cela, <span class="citation">Carré &amp; McCormick (<a href="#ref-carre2008">2008</a>)</span> ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d’abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier <code>hockey.csv</code>.</p>
+<p>Les hommes ont en moyenne un ratio “largeur du visage sur longueur du visage” supérieur à celui des femmes. Cela reflète des niveaux d’expression de la testostérone différents entre hommes et femmes au moment de la puberté. On sait aussi que les niveaux de testosterone permettent de prédire, dans une certaine mesure, l’agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire l’agressivité ?</p>
+<p>Pour tester cela, <span class="citation">Carré &amp; McCormick (<a href="#ref-carre2008">2008</a>)</span> ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d’abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier <a href="https://besibo.github.io/Biometrie3/data/hockey.csv"><code>hockey.csv</code></a>.</p>
 <p>Importez, examinez et analysez ces données pour répondre à la question posée.</p>
-
 </div>
 </div>
 </div>
@@ -719,7 +723,7 @@ nSpecies    0.02328063 0.04257117</code></pre>
         </div>
       </div>
 <a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bibliographie.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
