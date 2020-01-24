@@ -125,7 +125,7 @@ birds
 
 Comme toujours, la première chose à faire est d'examiner quelques statistiques descriptives pour se faire une idée de la forme des données et pour repérer les éventuelles données manquantes ou aberrantes.
 
-```{r}
+```{r, render = normal_print}
 skim(birds)
 ```
 
@@ -310,7 +310,7 @@ On souhaite déterminer si le coefficient de consanguinité est associé à la p
 - Faire le test approprié en posant les hypothèses nulles et alternatives judicieuses.
 - Répondre à la question posée en intégrant tous les éléments utiles.
 
-```{r include=FALSE}
+```{r include=FALSE, render = normal_print}
 loups <- read_csv("data/loups.csv")
 loups %>% 
   ggplot(aes(x = inbreedCoef, y = nPups)) +
@@ -340,7 +340,7 @@ Y a-t'il un lien entre le caractère impressionnant ("`impressiveness`") d'un so
 
 Les données de @wiseman1996 sont disponibles dans le fichier [`ropetrick.csv`](https://besibo.github.io/Biometrie3/data/ropetrick.csv). Importez ces données et analysez-les en respectant les consignes de l'exercice précédent.
 
-```{r include=FALSE}
+```{r include=FALSE, render = normal_print}
 rope <- read_csv("data/ropetrick.csv")
 rope %>% 
   ggplot(aes(x = years, y = impressiveness)) +
@@ -391,12 +391,12 @@ plant
 
 Ce premier examen nous montre que nous disposons bien de 161 observations pour 2 variables : le nombre d'espèces présentes dans la parcelle pendant 10 ans, et l'indice de stabilité de la biomasse de chaque parcelle.
 
-```{r}
+```{r, render = normal_print}
 skim(plant)
 ```
 
 Ce premier examen nous montre que nous n'avons aucune données manquantes et que l'indice de stabilité a une distribution asymétrique (asymétrie droite) et qu'il varie d'un peu plus de 1 à près de 16. Pour en apprendre un peu plus, nous avons intérêt à examiner les données en groupes :
-```{r}
+```{r, render = normal_print}
 plant %>% 
   group_by(nSpecies) %>% 
   skim()
@@ -555,7 +555,7 @@ Pour tester cela, @carre2008 ont suivi 21 joueurs de hockey sur glace au niveau 
 
 Importez, examinez et analysez ces données pour répondre à la question posée.
 
-```{r, include = FALSE}
+```{r, include = FALSE, render = normal_print}
 hockey <- read_csv("data/hockey.csv")
 
 skim(hockey)
@@ -574,6 +574,4 @@ plot(reg2)
 par(mfrow = c(1,1))
 ```
 
-
-# Bibliographie
 

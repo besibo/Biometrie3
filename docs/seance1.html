@@ -24,7 +24,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2019-10-21" />
+<meta name="date" content="2020-01-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -187,7 +187,6 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.3.4" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#exercices-1"><i class="fa fa-check"></i><b>5.3.4</b> Exercices</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="bibliographie.html"><a href="bibliographie.html"><i class="fa fa-check"></i><b>6</b> Bibliographie</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publié avec bookdown</a></li>
@@ -214,7 +213,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="packages" class="section level2">
 <h2><span class="header-section-number">3.1</span> Packages et données</h2>
 <p>Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d’utiliser des packages spécifiques et d’importer des données depuis des fichiers externes disponibles sur l’ENT (ou directement depuis ce document).</p>
-<p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du <code>tidyverse</code> <span class="citation">(Wickham, <a href="#ref-R-tidyverse">2017</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(Wickham et al., <a href="#ref-R-readr">2018</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(Wickham &amp; Bryan, <a href="#ref-R-readxl">2019</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(Quinn et al., <a href="#ref-R-skimr">2019</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(Fox et al., <a href="#ref-R-car">2019</a>)</span>, qui permet d’effectuer le test de comparaison des variances de Levene :</p>
+<p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du <code>tidyverse</code> <span class="citation">(Wickham, <a href="#ref-R-tidyverse">2017</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(Wickham et al., <a href="#ref-R-readr">2018</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(Wickham &amp; Bryan, <a href="#ref-R-readxl">2019</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(Waring et al., <a href="#ref-R-skimr">2019</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(Fox et al., <a href="#ref-R-car">2019</a>)</span>, qui permet d’effectuer le test de comparaison des variances de Levene :</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">library</span>(tidyverse)</a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw">library</span>(readr)</a>
 <a class="sourceLine" id="cb4-3" title="3"><span class="kw">library</span>(readxl)</a>
@@ -330,15 +329,22 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>On constate ici que l’intervalle inter quartile a une largeur de 0.55 degrés Celsius. Cela signifie que les 50% des températures les plus centrales sont situées dans un intervalle d’environ un demi-degré celsius.</p>
 <p>Enfin, une autre façon d’obtenir des informations rapidement consiste à utiliser la fonction <code>skim()</code> du package <code>skimr</code> :</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">skim</span>(Temp_clean)</a></code></pre></div>
-<pre><code>Skim summary statistics
- n obs: 25 
- n variables: 1 
+<pre><code>── Data Summary ────────────────────────
+                           Values    
+Name                       Temp_clean
+Number of rows             25        
+Number of columns          1         
+_______________________              
+Column type frequency:               
+  numeric                  1         
+________________________             
+Group variables            None      
 
-── Variable type:numeric ───────────────────────────────────────────────────────────────────────
-    variable missing complete  n  mean   sd    p0   p25 p50   p75  p100
- temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22 37.78
-     hist
- ▅▃▁▇▇▂▂▁</code></pre>
+── Variable type: numeric ──────────────────────────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate  mean    sd    p0   p25   p50   p75
+1 temperature           0             1  37.0 0.377  36.3  36.7  37.0  37.2
+   p100 hist 
+1  37.8 ▇▇▇▇▂</code></pre>
 <p>Toute comme <code>summary()</code>, la fonction <code>skim()</code> renvoie les valeurs minimales et maximales, les premiers et troisièmes quartiles ainsi que la moyenne et la médiane. Elle nous indique en outre la valeur de l’écart-type de l’échantillon, ainsi que le nombre d’observations et le nombre de données manquantes. Enfin, elle fournit un histogramme très schématique et sans échelle. Cet histogramme nous permet de nous faire une première idée de la distribution des données.</p>
 <p>Outre ces 3 fonctions (<code>summary()</code>, <code>IQR()</code>, et <code>skim()</code>), il est bien sûr possible de calculer toutes ces valeurs manuellement si besoin :</p>
 <ul>
@@ -620,42 +626,60 @@ sample estimates:
 <p>On constate ici que pour les 2 traitements, les valeurs des différents indices sont très proches entre les 2 séries de données, avec des valeurs de densité optiques (DO) légèrement supérieures après l’opération chirurgicale (sauf pour le premier quartile).</p>
 <p>Pour la fonction <code>skim()</code> le plus simple est là aussi d’utiliser le tableau large :</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="kw">skim</span>(Testo_large)</a></code></pre></div>
-<pre><code>Skim summary statistics
- n obs: 13 
- n variables: 3 
+<pre><code>── Data Summary ────────────────────────
+                           Values     
+Name                       Testo_large
+Number of rows             13         
+Number of columns          3          
+_______________________               
+Column type frequency:                
+  factor                   1          
+  numeric                  2          
+________________________              
+Group variables            None       
 
-── Variable type:factor ────────────────────────────────────────────────────────────────────────
- variable missing complete  n n_unique             top_counts ordered
-       ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1   FALSE
+── Variable type: factor ───────────────────────────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate ordered n_unique top_counts            
+1 ID                    0             1 FALSE         13 1: 1, 2: 1, 3: 1, 4: 1
 
-── Variable type:numeric ───────────────────────────────────────────────────────────────────────
- variable missing complete  n mean   sd   p0 p25  p50  p75 p100     hist
-    After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02 ▁▂▁▁▁▁▁▇
-   Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98 ▁▁▁▁▁▂▃▇</code></pre>
+── Variable type: numeric ──────────────────────────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate  mean    sd    p0   p25   p50   p75
+1 Before                0             1  4.73 0.280  3.91   4.7  4.8   4.88
+2 After                 0             1  4.79 0.262  4.3    4.6  4.96  5   
+   p100 hist 
+1  4.98 ▁▁▁▃▇
+2  5.02 ▂▁▂▁▇</code></pre>
 <p>On arrive toutefois aux mêmes résultats avec le tableau long, à condition de grouper les données par traitement (variable <code>Traitement</code>) avec <code>group_by()</code> :</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">Testo_long <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb45-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(Traitement) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb45-3" title="3"><span class="st">  </span><span class="kw">skim</span>()</a></code></pre></div>
-<pre><code>Skim summary statistics
- n obs: 26 
- n variables: 3 
- group variables: Traitement 
+<pre><code>── Data Summary ────────────────────────
+                           Values    
+Name                       Piped data
+Number of rows             26        
+Number of columns          3         
+_______________________              
+Column type frequency:               
+  factor                   1         
+  numeric                  1         
+________________________             
+Group variables            Traitement
 
-── Variable type:factor ────────────────────────────────────────────────────────────────────────
- Traitement variable missing complete  n n_unique             top_counts
-     Before       ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1
-      After       ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1
- ordered
-   FALSE
-   FALSE
+── Variable type: factor ───────────────────────────────────────────────────────────────────────────
+  skim_variable Traitement n_missing complete_rate ordered n_unique
+1 ID            Before             0             1 FALSE         13
+2 ID            After              0             1 FALSE         13
+  top_counts            
+1 1: 1, 2: 1, 3: 1, 4: 1
+2 1: 1, 2: 1, 3: 1, 4: 1
 
-── Variable type:numeric ───────────────────────────────────────────────────────────────────────
- Traitement variable missing complete  n mean   sd   p0 p25  p50  p75 p100
-     Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
-      After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
-     hist
- ▁▁▁▁▁▂▃▇
- ▁▂▁▁▁▁▁▇</code></pre>
+── Variable type: numeric ──────────────────────────────────────────────────────────────────────────
+  skim_variable Traitement n_missing complete_rate  mean    sd    p0   p25   p50
+1 DO            Before             0             1  4.73 0.280  3.91   4.7  4.8 
+2 DO            After              0             1  4.79 0.262  4.3    4.6  4.96
+    p75  p100 hist 
+1  4.88  4.98 ▁▁▁▃▇
+2  5     5.02 ▂▁▂▁▇</code></pre>
 </div>
 <div id="exploration-graphique-1" class="section level4">
 <h4><span class="header-section-number">3.3.1.3</span> Exploration graphique</h4>
@@ -941,18 +965,24 @@ sample estimates:
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1">Lizard <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb76-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(Survival) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb76-3" title="3"><span class="st">  </span><span class="kw">skim</span>()</a></code></pre></div>
-<pre><code>Skim summary statistics
- n obs: 184 
- n variables: 2 
- group variables: Survival 
+<pre><code>── Data Summary ────────────────────────
+                           Values    
+Name                       Piped data
+Number of rows             184       
+Number of columns          2         
+_______________________              
+Column type frequency:               
+  numeric                  1         
+________________________             
+Group variables            Survival  
 
-── Variable type:numeric ───────────────────────────────────────────────────────────────────────
- Survival variable missing complete   n  mean   sd   p0  p25   p50  p75 p100
-   killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25 23.8 26.7
-   living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55 26   30.3
-     hist
- ▂▁▂▂▇▇▆▂
- ▁▁▁▃▅▇▅▁</code></pre>
+── Variable type: numeric ──────────────────────────────────────────────────────────────────────────
+  skim_variable Survival n_missing complete_rate  mean    sd    p0   p25   p50
+1 Horn_len      killed           0             1  22.0  2.71  15.2  21.1  22.2
+2 Horn_len      living           0             1  24.3  2.63  13.1  23    24.6
+    p75  p100 hist 
+1  23.8  26.7 ▂▂▇▇▃
+2  26    30.3 ▁▁▅▇▂</code></pre>
 <p>On constate ici que les tailles d’échantillons sont très différentes. C’est normal compte tenu de la difficulté de repérer des individus morts dans la nature, et ce n’est pas gênant pour nos analyses puisque la taille des deux échantillons reste élevée.</p>
 <p>On constate également que si les écarts-types des 2 groupes sont proches, les moyennes et médianes sont plus élévées dans le groupe des individus vivants que dans celui des individus morts (c’est le cas également des quartiles 1 et 3).</p>
 </div>
@@ -1326,7 +1356,7 @@ Levels: killed living</code></pre>
 <p><span class="smallcaps">Hasselquist D, Marsh JA, Sherman PW, &amp; Wingfield JC</span>. (1999). Is avian humoral immunocompetence suppressed by testosterone? <em>Behavioral Ecology and Sociobiology</em>, <strong>45</strong>(3), 167–175. <a href="https://doi.org/10.1007/s002650050550">https://doi.org/10.1007/s002650050550</a></p>
 </div>
 <div id="ref-R-skimr">
-<p><span class="smallcaps">Quinn M, McNamara A, Arino de la Rubia E, Zhu H, &amp; Ellis S</span>. (2019). <em>Skimr: Compact and flexible summaries of data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=skimr">https://CRAN.R-project.org/package=skimr</a></p>
+<p><span class="smallcaps">Waring E, Quinn M, McNamara A, Arino de la Rubia E, Zhu H, &amp; Ellis S</span>. (2019). <em>Skimr: Compact and flexible summaries of data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=skimr">https://CRAN.R-project.org/package=skimr</a></p>
 </div>
 <div id="ref-R-tidyverse">
 <p><span class="smallcaps">Wickham H</span>. (2017). <em>Tidyverse: Easily install and load the ’tidyverse’</em>. Retrieved from <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a></p>

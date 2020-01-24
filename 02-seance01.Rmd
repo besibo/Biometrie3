@@ -124,7 +124,7 @@ Temp_clean %>%
 
 Enfin, une autre façon d'obtenir des informations rapidement consiste à utiliser la fonction `skim()` du package `skimr` :
 
-```{r}
+```{r,  render = normal_print}
 skim(Temp_clean)
 ```
 
@@ -421,13 +421,13 @@ On constate ici que pour les 2 traitements, les valeurs des différents indices 
 
 Pour la fonction `skim()` le plus simple est là aussi d'utiliser le tableau large :
 
-```{r}
+```{r,  render = normal_print}
 skim(Testo_large)
 ```
 
 On arrive toutefois aux mêmes résultats avec le tableau long, à condition de grouper les données par traitement (variable `Traitement`) avec `group_by()` :
 
-```{r}
+```{r, render = normal_print}
 Testo_long %>% 
   group_by(Traitement) %>% 
   skim()
@@ -660,7 +660,7 @@ Lizard
 
 Comme dans la partie précédente sur les données appariées, les statistiques descriptives doivent être réalisées pour chaque groupe d'individus. Ici, le plus simple est d'utiliser la fonction `skim()` sur les données groupées par niveau du facteur `Survival` (avec la fonction `group_by()`) :
 
-```{r}
+```{r, render = normal_print}
 Lizard %>% 
   group_by(Survival) %>% 
   skim()

@@ -127,7 +127,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-10-21}
+    \date{2020-01-24}
 
 \usepackage[french]{babel}
 \usepackage{mathspec}  % \usepackage{fontspec}
@@ -267,7 +267,7 @@ Si vous suivez rigoureusement ces étapes, vous devriez être dans la situation 
 
 Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes disponibles sur l'ENT (ou directement depuis ce document).
 
-Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2017}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham et al., \protect\hyperlink{ref-R-readr}{2018}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Quinn et al., \protect\hyperlink{ref-R-skimr}{2019}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2019}), qui permet d'effectuer le test de comparaison des variances de Levene :
+Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2017}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham et al., \protect\hyperlink{ref-R-readr}{2018}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Waring et al., \protect\hyperlink{ref-R-skimr}{2019}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2019}), qui permet d'effectuer le test de comparaison des variances de Levene :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -489,15 +489,22 @@ Enfin, une autre façon d'obtenir des informations rapidement consiste à utilis
 \end{Shaded}
 
 \begin{verbatim}
-Skim summary statistics
- n obs: 25 
- n variables: 1 
+-- Data Summary ------------------------
+                           Values    
+Name                       Temp_clean
+Number of rows             25        
+Number of columns          1         
+_______________________              
+Column type frequency:               
+  numeric                  1         
+________________________             
+Group variables            None      
 
--- Variable type:numeric -----------------------------------------------------------------------
-    variable missing complete  n  mean   sd    p0   p25 p50   p75  p100
- temperature       0       25 25 36.96 0.38 36.33 36.67  37 37.22 37.78
-     hist
- ▅▃▁▇▇▂▂▁
+-- Variable type: numeric --------------------------------------------------------------------------
+  skim_variable n_missing complete_rate  mean    sd    p0   p25   p50   p75
+1 temperature           0             1  37.0 0.377  36.3  36.7  37.0  37.2
+   p100 hist 
+1  37.8 ▇▇▇▇▂
 \end{verbatim}
 
 Toute comme \texttt{summary()}, la fonction \texttt{skim()} renvoie les valeurs minimales et maximales, les premiers et troisièmes quartiles ainsi que la moyenne et la médiane. Elle nous indique en outre la valeur de l'écart-type de l'échantillon, ainsi que le nombre d'observations et le nombre de données manquantes. Enfin, elle fournit un histogramme très schématique et sans échelle. Cet histogramme nous permet de nous faire une première idée de la distribution des données.
@@ -1004,18 +1011,29 @@ Pour la fonction \texttt{skim()} le plus simple est là aussi d'utiliser le tabl
 \end{Shaded}
 
 \begin{verbatim}
-Skim summary statistics
- n obs: 13 
- n variables: 3 
+-- Data Summary ------------------------
+                           Values     
+Name                       Testo_large
+Number of rows             13         
+Number of columns          3          
+_______________________               
+Column type frequency:                
+  factor                   1          
+  numeric                  2          
+________________________              
+Group variables            None       
 
--- Variable type:factor ------------------------------------------------------------------------
- variable missing complete  n n_unique             top_counts ordered
-       ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1   FALSE
+-- Variable type: factor ---------------------------------------------------------------------------
+  skim_variable n_missing complete_rate ordered n_unique top_counts            
+1 ID                    0             1 FALSE         13 1: 1, 2: 1, 3: 1, 4: 1
 
--- Variable type:numeric -----------------------------------------------------------------------
- variable missing complete  n mean   sd   p0 p25  p50  p75 p100     hist
-    After       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02 ▁▂▁▁▁▁▁▇
-   Before       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98 ▁▁▁▁▁▂▃▇
+-- Variable type: numeric --------------------------------------------------------------------------
+  skim_variable n_missing complete_rate  mean    sd    p0   p25   p50   p75
+1 Before                0             1  4.73 0.280  3.91   4.7  4.8   4.88
+2 After                 0             1  4.79 0.262  4.3    4.6  4.96  5   
+   p100 hist 
+1  4.98 ▁▁▁▃▇
+2  5.02 ▂▁▂▁▇
 \end{verbatim}
 
 On arrive toutefois aux mêmes résultats avec le tableau long, à condition de grouper les données par traitement (variable \texttt{Traitement}) avec \texttt{group\_by()} :
@@ -1029,26 +1047,33 @@ On arrive toutefois aux mêmes résultats avec le tableau long, à condition de 
 \end{Shaded}
 
 \begin{verbatim}
-Skim summary statistics
- n obs: 26 
- n variables: 3 
- group variables: Traitement 
+-- Data Summary ------------------------
+                           Values    
+Name                       Piped data
+Number of rows             26        
+Number of columns          3         
+_______________________              
+Column type frequency:               
+  factor                   1         
+  numeric                  1         
+________________________             
+Group variables            Traitement
 
--- Variable type:factor ------------------------------------------------------------------------
- Traitement variable missing complete  n n_unique             top_counts
-     Before       ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1
-      After       ID       0       13 13       13 1: 1, 2: 1, 3: 1, 4: 1
- ordered
-   FALSE
-   FALSE
+-- Variable type: factor ---------------------------------------------------------------------------
+  skim_variable Traitement n_missing complete_rate ordered n_unique
+1 ID            Before             0             1 FALSE         13
+2 ID            After              0             1 FALSE         13
+  top_counts            
+1 1: 1, 2: 1, 3: 1, 4: 1
+2 1: 1, 2: 1, 3: 1, 4: 1
 
--- Variable type:numeric -----------------------------------------------------------------------
- Traitement variable missing complete  n mean   sd   p0 p25  p50  p75 p100
-     Before       DO       0       13 13 4.73 0.28 3.91 4.7 4.8  4.88 4.98
-      After       DO       0       13 13 4.79 0.26 4.3  4.6 4.96 5    5.02
-     hist
- ▁▁▁▁▁▂▃▇
- ▁▂▁▁▁▁▁▇
+-- Variable type: numeric --------------------------------------------------------------------------
+  skim_variable Traitement n_missing complete_rate  mean    sd    p0   p25   p50
+1 DO            Before             0             1  4.73 0.280  3.91   4.7  4.8 
+2 DO            After              0             1  4.79 0.262  4.3    4.6  4.96
+    p75  p100 hist 
+1  4.88  4.98 ▁▁▁▃▇
+2  5     5.02 ▂▁▂▁▇
 \end{verbatim}
 
 \hypertarget{exploration-graphique-1}{%
@@ -1556,18 +1581,24 @@ Comme dans la partie précédente sur les données appariées, les statistiques 
 \end{Shaded}
 
 \begin{verbatim}
-Skim summary statistics
- n obs: 184 
- n variables: 2 
- group variables: Survival 
+-- Data Summary ------------------------
+                           Values    
+Name                       Piped data
+Number of rows             184       
+Number of columns          2         
+_______________________              
+Column type frequency:               
+  numeric                  1         
+________________________             
+Group variables            Survival  
 
--- Variable type:numeric -----------------------------------------------------------------------
- Survival variable missing complete   n  mean   sd   p0  p25   p50  p75 p100
-   killed Horn_len       0       30  30 21.99 2.71 15.2 21.1 22.25 23.8 26.7
-   living Horn_len       0      154 154 24.28 2.63 13.1 23   24.55 26   30.3
-     hist
- ▂▁▂▂▇▇▆▂
- ▁▁▁▃▅▇▅▁
+-- Variable type: numeric --------------------------------------------------------------------------
+  skim_variable Survival n_missing complete_rate  mean    sd    p0   p25   p50
+1 Horn_len      killed           0             1  22.0  2.71  15.2  21.1  22.2
+2 Horn_len      living           0             1  24.3  2.63  13.1  23    24.6
+    p75  p100 hist 
+1  23.8  26.7 ▂▂▇▇▃
+2  26    30.3 ▁▁▅▇▂
 \end{verbatim}
 
 On constate ici que les tailles d'échantillons sont très différentes. C'est normal compte tenu de la difficulté de repérer des individus morts dans la nature, et ce n'est pas gênant pour nos analyses puisque la taille des deux échantillons reste élevée.
@@ -2215,7 +2246,7 @@ Reprenez chaque exemple et exercice de cette séance de TP et identifiez les sit
 
 Avant toute chose, merci de relire l'introduction (section \ref{intro}) de ce document, et de suivre toutes les étapes qui y sont décrites (création d'un nouveau sous-dossier nommé \texttt{TP\_2} dans votre dossier \texttt{Biometrie3}, changement du répertoire de travail et création d'un nouveau script).
 
-Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2017}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham et al., \protect\hyperlink{ref-R-readr}{2018}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Quinn et al., \protect\hyperlink{ref-R-skimr}{2019}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2019}), qui permet d'effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package \texttt{broom} (Robinson \& Hayes, \protect\hyperlink{ref-R-broom}{2019}), qui fait partie du \texttt{tidyverse} mais qu'il faut charger explicitement. La fonction \texttt{tidy()} de ce package nous permettra de ``ranger'' correctement les résultats de tests dans un \texttt{tibble} :
+Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2017}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham et al., \protect\hyperlink{ref-R-readr}{2018}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Waring et al., \protect\hyperlink{ref-R-skimr}{2019}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2019}), qui permet d'effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package \texttt{broom} (Robinson \& Hayes, \protect\hyperlink{ref-R-broom}{2019}), qui fait partie du \texttt{tidyverse} mais qu'il faut charger explicitement. La fonction \texttt{tidy()} de ce package nous permettra de ``ranger'' correctement les résultats de tests dans un \texttt{tibble} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2395,20 +2426,26 @@ Comme toujours, et maintenant que nos données sont au bon format, il est néces
 \end{Shaded}
 
 \begin{verbatim}
-Skim summary statistics
- n obs: 22 
- n variables: 2 
- group variables: treatment 
+-- Data Summary ------------------------
+                           Values    
+Name                       Piped data
+Number of rows             22        
+Number of columns          2         
+_______________________              
+Column type frequency:               
+  numeric                  1         
+________________________             
+Group variables            treatment 
 
--- Variable type:numeric -----------------------------------------------------------------------
- treatment variable missing complete n  mean   sd    p0   p25   p50   p75  p100
-   control    shift       0        8 8 -0.31 0.62 -1.27 -0.65 -0.48  0.24  0.53
-      knee    shift       0        7 7 -0.34 0.79 -1.61 -0.76 -0.29  0.17  0.73
-      eyes    shift       0        7 7 -1.55 0.71 -2.83 -1.78 -1.48 -1.1  -0.78
-     hist
- ▂▁▇▂▁▁▂▅
- ▇▁▇▇▇▇▇▇
- ▂▁▁▂▁▇▁▅
+-- Variable type: numeric --------------------------------------------------------------------------
+  skim_variable treatment n_missing complete_rate   mean    sd    p0   p25
+1 shift         control           0             1 -0.309 0.618 -1.27 -0.65
+2 shift         knee              0             1 -0.336 0.791 -1.61 -0.76
+3 shift         eyes              0             1 -1.55  0.706 -2.83 -1.78
+     p50   p75  p100 hist 
+1 -0.485  0.24  0.53 ▂▇▂▁▇
+2 -0.290  0.17  0.73 ▃▃▇▃▇
+3 -1.48  -1.10 -0.78 ▂▂▁▇▅
 \end{verbatim}
 
 Nous avons ici la confirmation que le design expérimental n'est pas équilibré, puisque le groupe \texttt{control} compte un individu de plus. Il semble que le groupe \texttt{eyes} se comporte un peu différemment des autres groupes. En effet, pour les groupes \texttt{control} et \texttt{knee}, les valeurs observées sont très proches :
@@ -3129,21 +3166,29 @@ Comme toujours, la première chose à faire est d'examiner quelques statistiques
 \end{Shaded}
 
 \begin{verbatim}
-Skim summary statistics
- n obs: 24 
- n variables: 3 
+-- Data Summary ------------------------
+                           Values
+Name                       birds 
+Number of rows             24    
+Number of columns          3     
+_______________________          
+Column type frequency:           
+  factor                   1     
+  numeric                  2     
+________________________         
+Group variables            None  
 
--- Variable type:factor ------------------------------------------------------------------------
- variable missing complete  n n_unique             top_counts ordered
-       ID       0       24 24       24 1: 1, 2: 1, 3: 1, 4: 1   FALSE
+-- Variable type: factor ---------------------------------------------------------------------------
+  skim_variable n_missing complete_rate ordered n_unique top_counts            
+1 ID                    0             1 FALSE         24 1: 1, 2: 1, 3: 1, 4: 1
 
--- Variable type:numeric -----------------------------------------------------------------------
-        variable missing complete  n  mean   sd    p0   p25  p50   p75  p100
-  futureBehavior       0       24 24 -0.12 0.37 -0.92 -0.29 -0.1  0.18  0.39
- nVisitsNestling       0       24 24 13.12 7.21  1     8.75 13   15.75 31   
-     hist
- ▅▁▅▁▇▅▇▇
- ▃▃▆▇▁▅▁▁
+-- Variable type: numeric --------------------------------------------------------------------------
+  skim_variable   n_missing complete_rate   mean    sd    p0    p25   p50    p75
+1 nVisitsNestling         0             1 13.1   7.21   1     8.75   13   15.8  
+2 futureBehavior          0             1 -0.119 0.374 -0.92 -0.288  -0.1  0.182
+   p100 hist 
+1 31    ▅▇▅▃▁
+2  0.39 ▂▂▃▂▇
 \end{verbatim}
 
 Outre le facteur \texttt{ID} que nous venons de créer, nous disposons donc de 2 variables numériques qui ne contiennent pas de données manquantes.
@@ -3499,17 +3544,24 @@ Ce premier examen nous montre que nous disposons bien de 161 observations pour 2
 \end{Shaded}
 
 \begin{verbatim}
-Skim summary statistics
- n obs: 161 
- n variables: 2 
+-- Data Summary ------------------------
+                           Values
+Name                       plant 
+Number of rows             161   
+Number of columns          2     
+_______________________          
+Column type frequency:           
+  numeric                  2     
+________________________         
+Group variables            None  
 
--- Variable type:numeric -----------------------------------------------------------------------
-         variable missing complete   n mean   sd   p0  p25 p50 p75  p100
- biomassStability       0      161 161 4.42 1.95 1.34 3.07   4 5.2 15.76
-         nSpecies       0      161 161 6.32 5.64 1    2      4 8   16   
-     hist
- ▅▇▃▁▁▁▁▁
- ▇▃▁▃▁▁▁▅
+-- Variable type: numeric --------------------------------------------------------------------------
+  skim_variable    n_missing complete_rate  mean    sd    p0   p25   p50   p75
+1 nSpecies                 0             1  6.32  5.64  1     2        4   8  
+2 biomassStability         0             1  4.42  1.95  1.34  3.07     4   5.2
+   p100 hist 
+1  16   ▇▁▂▁▃
+2  15.8 ▇▆▁▁▁
 \end{verbatim}
 
 Ce premier examen nous montre que nous n'avons aucune données manquantes et que l'indice de stabilité a une distribution asymétrique (asymétrie droite) et qu'il varie d'un peu plus de 1 à près de 16. Pour en apprendre un peu plus, nous avons intérêt à examiner les données en groupes :
@@ -3523,24 +3575,30 @@ Ce premier examen nous montre que nous n'avons aucune données manquantes et que
 \end{Shaded}
 
 \begin{verbatim}
-Skim summary statistics
- n obs: 161 
- n variables: 2 
- group variables: nSpecies 
+-- Data Summary ------------------------
+                           Values    
+Name                       Piped data
+Number of rows             161       
+Number of columns          2         
+_______________________              
+Column type frequency:               
+  numeric                  1         
+________________________             
+Group variables            nSpecies  
 
--- Variable type:numeric -----------------------------------------------------------------------
- nSpecies         variable missing complete  n mean   sd   p0  p25  p50  p75
-        1 biomassStability       0       33 33 3.63 1.54 2.07 2.41 3.01 4.4 
-        2 biomassStability       0       34 34 3.83 1.35 1.34 2.97 3.73 4.51
-        4 biomassStability       0       29 29 3.88 1.24 2.13 3    3.86 4.54
-        8 biomassStability       0       30 30 4.62 1.19 2.53 3.75 4.4  5.03
-       16 biomassStability       0       35 35 6.03 2.73 2.93 4.03 5.27 7.07
-  p100     hist
-  7.47 ▇▅▁▂▁▁▂▁
-  7.41 ▂▅▆▇▅▁▁▂
-  7.41 ▅▇▃▆▃▂▁▁
-  7.74 ▂▇▇▆▁▃▂▁
- 15.76 ▇▆▅▂▁▁▁▁
+-- Variable type: numeric --------------------------------------------------------------------------
+  skim_variable    nSpecies n_missing complete_rate  mean    sd    p0   p25
+1 biomassStability        1         0             1  3.63  1.54  2.07  2.41
+2 biomassStability        2         0             1  3.83  1.35  1.34  2.97
+3 biomassStability        4         0             1  3.88  1.24  2.13  3   
+4 biomassStability        8         0             1  4.62  1.19  2.53  3.75
+5 biomassStability       16         0             1  6.03  2.73  2.93  4.03
+    p50   p75  p100 hist 
+1  3.01  4.4   7.47 ▇▂▂▁▂
+2  3.73  4.51  7.41 ▃▇▆▂▁
+3  3.86  4.54  7.41 ▇▆▆▂▁
+4  4.40  5.03  7.74 ▃▇▃▃▁
+5  5.27  7.07 15.8  ▇▅▂▁▁
 \end{verbatim}
 
 Cette fois, on obtient des informations pour chaque valeur de nombre d'espèce par parcelle. On constate par exemple que les moyennes de l'indice de stabilité de la biomasse augmentent très peu entre les catégories 1, 2 et 4 espèces par parcelle, mais que l'augmentation semble plus forte pour 8 et 16 espèces par parcelle. Tous les écarts-types semblent très proches, sauf peut-être pour la catégorie 16 espèces.
@@ -3813,9 +3871,6 @@ Pour tester cela, Carré \& McCormick (\protect\hyperlink{ref-carre2008}{2008}) 
 
 Importez, examinez et analysez ces données pour répondre à la question posée.
 
-\hypertarget{bibliographie}{%
-\section{Bibliographie}\label{bibliographie}}
-
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-Campbell1998}{}%
 \textsc{Campbell SS, \& Murphy PJ}. (1998). Extraocular circadian phototransduction in humans. \emph{Science}, \textbf{279}(5349), 396--399. \url{https://doi.org/10.1126/science.279.5349.396}
@@ -3844,14 +3899,14 @@ Importez, examinez et analysez ces données pour répondre à la question posée
 \leavevmode\hypertarget{ref-muller2011}{}%
 \textsc{Müller MS, Porter ET, Grace JK, Awkerman JA, Birchler KT, Gunderson AR, \ldots{} Anderson DJ}. (2011). Maltreated nestlings exhibit correlated maltreatment as adults: Evidence of a ``cycle of violence'' in Nazca Boobies ( \emph{Sula} \emph{Granti} ). \emph{The Auk}, \textbf{128}(4), 615--619. \url{https://doi.org/10.1525/auk.2011.11008}
 
-\leavevmode\hypertarget{ref-R-skimr}{}%
-\textsc{Quinn M, McNamara A, Arino de la Rubia E, Zhu H, \& Ellis S}. (2019). \emph{Skimr: Compact and flexible summaries of data}. Retrieved from \url{https://CRAN.R-project.org/package=skimr}
-
 \leavevmode\hypertarget{ref-R-broom}{}%
 \textsc{Robinson D, \& Hayes A}. (2019). \emph{Broom: Convert statistical analysis objects into tidy tibbles}. Retrieved from \url{https://CRAN.R-project.org/package=broom}
 
 \leavevmode\hypertarget{ref-tilman2006}{}%
 \textsc{Tilman D, Reich PB, \& Knops JMH}. (2006). Biodiversity and ecosystem stability in a decade-long grassland experiment. \emph{Nature}, \textbf{441}(7093), 629. \url{https://doi.org/10.1038/nature04742}
+
+\leavevmode\hypertarget{ref-R-skimr}{}%
+\textsc{Waring E, Quinn M, McNamara A, Arino de la Rubia E, Zhu H, \& Ellis S}. (2019). \emph{Skimr: Compact and flexible summaries of data}. Retrieved from \url{https://CRAN.R-project.org/package=skimr}
 
 \leavevmode\hypertarget{ref-whitlock2015}{}%
 \textsc{Whitlock M, \& Schluter D}. (2015). \emph{The analysis of biological data} (Second edition). Greenwood Village, Colorado: Roberts and Company Publishers.

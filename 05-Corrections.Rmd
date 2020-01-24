@@ -20,7 +20,7 @@ On fait ensuite appel à la fonction `skim()` du package `skimr` afin d'en appre
 skim(loups)
 ```
 
-On constate qu'il n'y a pas de données manquantes et les histogrammes laissent penser qu'il n'y a pas non plus de valeurs aberrantes. On constate également quand dans chaque portée, au moins un louveteau a survécu à son premier hiver. Un examen graphique des données devrait nous permettre de mieux voir quelle est la structure des données :
+On constate qu'il n'y a pas de données manquantes et les histogrammes laissent penser qu'il n'y a pas non plus de valeurs aberrantes. On constate également que dans chaque portée, au moins un louveteau a survécu à son premier hiver. Un examen graphique des données devrait nous permettre de mieux voir quelle est la structure des données :
 
 ```{r}
 loups %>% 
@@ -30,10 +30,10 @@ loups %>%
 
 Comme on pouvait s'y attendre, on constate une relation plutôt négative entre les 2 variables étudiées : lorsque le coefficient de consanguinité dans une portée est élevé le nombre de jeunes qui parviennent à survivre à leur premier hiver est faible. C'est tout à fait logique compte tenu de ce que l'on sait de la consanguinité : elle augmente la proportion du génome qui sera homozygote et favorise donc l'apparition de tares génétiques qui sont très majoritairement codées par des allèles récessifs (ces allèles ne s'expriment qu'à l'état homozygote). Le coefficient de corrélation linéaire entre ces deux variables devrait donc être négatif. Nous souhaitons maintenant le calculer, estimer son intervalle de confiance, et tester si ce coefficient est significativement différent de 0 ou non.
 
-Pour cela, il nous faut commencer par verifier les conditions d'application. La relation entre les deux variables a l'air à peu près linéaire et le nuage de points a une forme à peu près elliptique. Les 2 premières conditions permettant de garantir une distribution Normale Bivariée des données sont donc vérifiées. Il nous faut maintenant tester la normalité des 2 variables étudiées dans la population générale. Nous allons donc faire 2 tests dont les hypothèses nulles et alternatives sont les suivantes :
+Pour cela, il nous faut commencer par vérifier les conditions d'application. La relation entre les deux variables a l'air à peu près linéaire et le nuage de points a une forme à peu près elliptique. Les 2 premières conditions permettant de garantir une distribution Normale Bivariée des données sont donc vérifiées. Il nous faut maintenant tester la normalité des 2 variables étudiées dans la population générale. Nous allons donc faire 2 tests dont les hypothèses nulles et alternatives sont les suivantes :
 
-- H$_0$ : les données sont distribuées selon une loi Normale dans la population générale
-- H$_1$ : les données ne sont pas distribuées selon une loi Normale dans la population générale
+- H$_0$ : les données sont distribuées selon une loi Normale dans la population générale.
+- H$_1$ : les données ne sont pas distribuées selon une loi Normale dans la population. générale
 
 ```{r}
 loups %>% 
@@ -44,12 +44,12 @@ loups %>%
   pull(nPups) %>% 
   shapiro.test
 ```
-Pour les 2 tests de Normalité de Shapiro-Wilk, la $p-$ value est supérieure au seuil $\alpha = 0.05$. On ne peut donc pas rejeter l'hypothèse nulle de Normalité pour nos deux variables (pour la consanguinité, $W = 0.93$, $p = 0.11$, et pour le nombre de jeunes ayant survécu à leur premier hiver, $W = 0.92$, $p = 0.05$).
+Pour les 2 tests de normalité de Shapiro-Wilk, la $p-$value est supérieure au seuil $\alpha = 0.05$. On ne peut donc pas rejeter l'hypothèse nulle de normalité pour nos deux variables (pour la consanguinité, $W = 0.93$, $p = 0.11$, et pour le nombre de jeunes ayant survécu à leur premier hiver, $W = 0.92$, $p = 0.05$).
 
 Toutes les conditions d'application du test de corrélation de Pearson sont donc réunies.
 
-- H$_0$ : dans la population générale, le coefficient de corrélation entre les deux variables est égal à 0 ($\rho = 0$)
-- H$_1$ : dans la population générale, le coefficient de corrélation entre les deux variables est différent de 0 ($\rho \neq 0$)
+- H$_0$ : dans la population générale, le coefficient de corrélation entre les deux variables est égal à 0 ($\rho = 0$).
+- H$_1$ : dans la population générale, le coefficient de corrélation entre les deux variables est différent de 0 ($\rho \neq 0$).
 
 ```{r}
 cor.test(loups$inbreedCoef, loups$nPups)
@@ -74,7 +74,7 @@ rope
 skim(rope)
 ```
 
-L'examen préliminaire des donnés montre que nous disposons de 21 observations pour 2 variables. Aucune donnée manquante ni aberrante ne semble présente. Le temps écoulé entre l'observation du tour de magie et son récit écrit est très variable puisqu'il est cmopris entre 2 et 50 ans, avec un écart-type de 15 ans.
+L'examen préliminaire des données montre que nous disposons de 21 observations pour 2 variables. Aucune donnée manquante ni aberrante ne semble présente. Le temps écoulé entre l'observation du tour de magie et son récit écrit est très variable puisqu'il est compris entre 2 et 50 ans, avec un écart-type de 15 ans.
 ```{r}
 table(rope$impressiveness)
 ```
@@ -98,7 +98,7 @@ rope %>%
   shapiro.test
 ```
 
-L'examen visuel et les tests de Shapiro montrent que si une relation linéaire semble bel et bien présente entre les 2 variables, les conditions d'application du test de corrélation de Pearson ne sont pas réunies. Le nuage de points n'a en effet pas une forme circulaire ou elliptique, mais plutôt une forme d'entonnoir, et le test de Shapiro-Wilk pour la variable `impressiveness` confirme que cette variable ne suit pas une distribution normale dans la population générale. Il nous faut donc effectuer un test non paramétrique ed Spearman.
+L'examen visuel et les tests de Shapiro montrent que si une relation linéaire semble bel et bien présente entre les 2 variables, les conditions d'application du test de corrélation de Pearson ne sont pas réunies. Le nuage de points n'a en effet pas une forme circulaire ou elliptique, mais plutôt une forme d'entonnoir, et le test de Shapiro-Wilk Normale dans la population générale. Il nous faut donc effectuer un test non paramétrique de Spearman.
 
 ```{r}
 cor.test(rope$years, rope$impressiveness, 
@@ -213,4 +213,7 @@ summary(reg3)
 On constate ici que la pente (et  l'ordonnées à l'origine) de la droite de régression ne sont plus significativement différentes de 0 et que la qualité de l'ajustement est très faible ($R^2$ = 0.088), ce qui traduit le fait que la variable explicative ne permet de prédire que 8,8% de la variable expliquée. La $p-$value globale de la régression (0.11) nous confirme que ces deux variables ne sont pas significativement reliée.
 
 Nous voyons bien ici que le point problématique a une très forte influence sur les résultats de la régression. Mais cela ne suffit pas à justifier que nous le retirions des données. Il faut une raison objective pour cela et le fait que le retirer change les résultats n'en est pas une. Si nous n'avons pas de raison de penser que ce point a été obtenu différemment des autres, si nous n'avons pas de raison de penser qu'une erreur a été comise quelque part, il nous faut conserver le point problématique, et simplement être très prudent quant à nos conclusions.
+
+
+# Bibliographie
 

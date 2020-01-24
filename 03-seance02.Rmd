@@ -95,7 +95,7 @@ Attention à bien respecter la casse (le respect des majuscules/minuscules est t
 
 Comme toujours, et maintenant que nos données sont au bon format, il est nécessaire d'examiner quelques statistiques descriptives pour chaque catégorie étudiée. Le plus simple est ici d'utiliser la fonction `skim` du package `skimr` :
 
-```{r}
+```{r, render = normal_print}
 Light %>% 
   group_by(treatment) %>% 
   skim()
