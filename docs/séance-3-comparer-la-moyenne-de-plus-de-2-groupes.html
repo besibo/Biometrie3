@@ -24,7 +24,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2020-01-24" />
+<meta name="date" content="2020-02-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -214,14 +214,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <h2><span class="header-section-number">4.1</span> Packages et données</h2>
 <p>Avant toute chose, merci de relire l’introduction (section <a href="intro.html#intro">2</a>) de ce document, et de suivre toutes les étapes qui y sont décrites (création d’un nouveau sous-dossier nommé <code>TP_2</code> dans votre dossier <code>Biometrie3</code>, changement du répertoire de travail et création d’un nouveau script).</p>
 <p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du <code>tidyverse</code> <span class="citation">(Wickham, <a href="#ref-R-tidyverse">2017</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(Wickham et al., <a href="#ref-R-readr">2018</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(Wickham &amp; Bryan, <a href="#ref-R-readxl">2019</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(Waring et al., <a href="#ref-R-skimr">2019</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(Fox et al., <a href="#ref-R-car">2019</a>)</span>, qui permet d’effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package <code>broom</code> <span class="citation">(Robinson &amp; Hayes, <a href="#ref-R-broom">2019</a>)</span>, qui fait partie du <code>tidyverse</code> mais qu’il faut charger explicitement. La fonction <code>tidy()</code> de ce package nous permettra de “ranger” correctement les résultats de tests dans un <code>tibble</code> :</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw">library</span>(readr)</a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="kw">library</span>(skimr)</a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="kw">library</span>(car)</a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="kw">library</span>(broom)</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb109-2" title="2"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb109-3" title="3"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb109-4" title="4"><span class="kw">library</span>(skimr)</a>
+<a class="sourceLine" id="cb109-5" title="5"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb109-6" title="6"><span class="kw">library</span>(broom)</a></code></pre></div>
 <p>Enfin, nous aurons besoin du package <code>DescTools</code> <span class="citation">(Ken Aho et al., <a href="#ref-R-DescTools">2019</a>)</span> afin de réaliser un test spécifique de comparaisons multiples. N’oubliez pas de l’installer si nécessaire, avant de le charger en mémoire :</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">library</span>(DescTools)</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="kw">library</span>(DescTools)</a></code></pre></div>
 <p>Ces commandes (que vous devez taper dans vos scripts avant de les exécuter dans la console de RStudio) ne devraient pas renvoyer de messages d’erreur puisque vous avez dû les installer pour reproduire les exemples et réaliser les exercices de la séance 1. Si vous rencontrez des problèmes, merci de consulter la section <a href="seance1.html#packages">3.1</a> de cet ouvrage, ainsi que <a href="https://besibo.github.io/Biometrie2/bases.html#charger-un-package-en-memoire">la section 2.3</a> du livre de biométrie 2 disponible en ligne.</p>
 <p>Vous aurez également besoin des jeux de données suivants :</p>
 <ul>
@@ -245,92 +245,92 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
 <div id="importation-et-examen-visuel-3" class="section level4">
 <h4><span class="header-section-number">4.2.1.1</span> Importation et examen visuel</h4>
 <p>Les données brutes de cette étude sont fournies dans le fichier <a href="https://besibo.github.io/Biometrie3/data/Light.csv"><code>Light.csv</code></a>. Importez ces données dans RStudio et examinez les données brutes grâce à la fonction <code>View()</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">Light</a></code></pre></div>
-<pre><code>## # A tibble: 22 x 2
-##    treatment shift
-##    &lt;chr&gt;     &lt;dbl&gt;
-##  1 control    0.53
-##  2 control    0.36
-##  3 control    0.2 
-##  4 control   -0.37
-##  5 control   -0.6 
-##  6 control   -0.64
-##  7 control   -0.68
-##  8 control   -1.27
-##  9 knee       0.73
-## 10 knee       0.31
-## # … with 12 more rows</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1">Light</a></code></pre></div>
+<pre><code># A tibble: 22 x 2
+   treatment shift
+   &lt;chr&gt;     &lt;dbl&gt;
+ 1 control    0.53
+ 2 control    0.36
+ 3 control    0.2 
+ 4 control   -0.37
+ 5 control   -0.6 
+ 6 control   -0.64
+ 7 control   -0.68
+ 8 control   -1.27
+ 9 knee       0.73
+10 knee       0.31
+# … with 12 more rows</code></pre>
 <p>Le tableau obtenu est-il au format long ou au format court/large ? Pourquoi un tableau au format suivant n’aurait-il pas de sens ?</p>
-<pre><code>## # A tibble: 8 x 3
-##   control  eyes   knee
-##     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-## 1    0.53 -0.78  0.73 
-## 2    0.36 -0.86  0.31 
-## 3    0.2  -1.35  0.03 
-## 4   -0.37 -1.48 -0.290
-## 5   -0.6  -1.52 -0.56 
-## 6   -0.64 -2.04 -0.96 
-## 7   -0.68 -2.83 -1.61 
-## 8   -1.27 NA    NA</code></pre>
+<pre><code># A tibble: 8 x 3
+  control  eyes   knee
+    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1    0.53 -0.78  0.73 
+2    0.36 -0.86  0.31 
+3    0.2  -1.35  0.03 
+4   -0.37 -1.48 -0.290
+5   -0.6  -1.52 -0.56 
+6   -0.64 -2.04 -0.96 
+7   -0.68 -2.83 -1.61 
+8   -1.27 NA    NA    </code></pre>
 <p>Lorsque l’on réalise une analyse de variance, puisque les effectifs ne sont pas nécessairement identiques dans tous les groupes (c’est ce qu’on appelle un design déséquilibré, ou “unbalanced design”), présenter les tableaux au format long est indispensable. Par ailleurs, notez que les ANOVAs réalisées sur des “balanced design” (ou designs équilibrés, pour lesquels tous les groupes sont de même taille), sont beaucoup plus puissantes que les ANOVAs réalisées sur des “unbalanced designs”.</p>
 <p>Ici, le tableau de données est très simple (et de petite taille). Il n’y a pas de données manquantes et aucune création de nouvelle variable n’est nécessaire. La seule modification que nous devrions faire est de transformer la variable <code>treatment</code> en facteur :</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">Light &lt;-<span class="st"> </span>Light <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> <span class="kw">factor</span>(treatment))</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1">Light &lt;-<span class="st"> </span>Light <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> <span class="kw">factor</span>(treatment))</a></code></pre></div>
 <p>Comme toujours, les niveaux du facteur sont automatiquement classés par ordre alphabétique :</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">levels</span>(Light<span class="op">$</span>treatment)</a></code></pre></div>
-<pre><code>## [1] &quot;control&quot; &quot;eyes&quot;    &quot;knee&quot;</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">levels</span>(Light<span class="op">$</span>treatment)</a></code></pre></div>
+<pre><code>[1] &quot;control&quot; &quot;eyes&quot;    &quot;knee&quot;   </code></pre>
 <p>Pour les statistiques descriptives et les graphiques qui viendront après, nous souhaitons indiquer l’ordre suivant : <code>control</code>, puis <code>knee</code>, puis <code>eyes</code> :</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">Light &lt;-<span class="st"> </span>Light <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> <span class="kw">fct_relevel</span>(treatment, <span class="st">&quot;control&quot;</span>, <span class="st">&quot;knee&quot;</span>, <span class="st">&quot;eyes&quot;</span>))</a>
-<a class="sourceLine" id="cb12-3" title="3"></a>
-<a class="sourceLine" id="cb12-4" title="4">Light</a></code></pre></div>
-<pre><code>## # A tibble: 22 x 2
-##    treatment shift
-##    &lt;fct&gt;     &lt;dbl&gt;
-##  1 control    0.53
-##  2 control    0.36
-##  3 control    0.2 
-##  4 control   -0.37
-##  5 control   -0.6 
-##  6 control   -0.64
-##  7 control   -0.68
-##  8 control   -1.27
-##  9 knee       0.73
-## 10 knee       0.31
-## # … with 12 more rows</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">Light<span class="op">$</span>treatment</a></code></pre></div>
-<pre><code>##  [1] control control control control control control control control
-##  [9] knee    knee    knee    knee    knee    knee    knee    eyes   
-## [17] eyes    eyes    eyes    eyes    eyes    eyes   
-## Levels: control knee eyes</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1">Light &lt;-<span class="st"> </span>Light <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb117-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> <span class="kw">fct_relevel</span>(treatment, <span class="st">&quot;control&quot;</span>, <span class="st">&quot;knee&quot;</span>, <span class="st">&quot;eyes&quot;</span>))</a>
+<a class="sourceLine" id="cb117-3" title="3"></a>
+<a class="sourceLine" id="cb117-4" title="4">Light</a></code></pre></div>
+<pre><code># A tibble: 22 x 2
+   treatment shift
+   &lt;fct&gt;     &lt;dbl&gt;
+ 1 control    0.53
+ 2 control    0.36
+ 3 control    0.2 
+ 4 control   -0.37
+ 5 control   -0.6 
+ 6 control   -0.64
+ 7 control   -0.68
+ 8 control   -1.27
+ 9 knee       0.73
+10 knee       0.31
+# … with 12 more rows</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1">Light<span class="op">$</span>treatment</a></code></pre></div>
+<pre><code> [1] control control control control control control control control knee   
+[10] knee    knee    knee    knee    knee    knee    eyes    eyes    eyes   
+[19] eyes    eyes    eyes    eyes   
+Levels: control knee eyes</code></pre>
 <p>Attention à bien respecter la casse (le respect des majuscules/minuscules est toujours aussi important dans R).</p>
 </div>
 <div id="statistiques-descriptives-3" class="section level4">
 <h4><span class="header-section-number">4.2.1.2</span> Statistiques descriptives</h4>
 <p>Comme toujours, et maintenant que nos données sont au bon format, il est nécessaire d’examiner quelques statistiques descriptives pour chaque catégorie étudiée. Le plus simple est ici d’utiliser la fonction <code>skim</code> du package <code>skimr</code> :</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">Light <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(treatment) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-3" title="3"><span class="st">  </span><span class="kw">skim</span>()</a></code></pre></div>
-<pre><code>## ── Data Summary ────────────────────────
-##                            Values    
-## Name                       Piped data
-## Number of rows             22        
-## Number of columns          2         
-## _______________________              
-## Column type frequency:               
-##   numeric                  1         
-## ________________________             
-## Group variables            treatment 
-## 
-## ── Variable type: numeric ────────────────────────────────────────────────────────────────────────────────────────────
-##   skim_variable treatment n_missing complete_rate   mean    sd    p0   p25
-## 1 shift         control           0             1 -0.309 0.618 -1.27 -0.65
-## 2 shift         knee              0             1 -0.336 0.791 -1.61 -0.76
-## 3 shift         eyes              0             1 -1.55  0.706 -2.83 -1.78
-##      p50   p75  p100 hist 
-## 1 -0.485  0.24  0.53 ▂▇▂▁▇
-## 2 -0.290  0.17  0.73 ▃▃▇▃▇
-## 3 -1.48  -1.10 -0.78 ▂▂▁▇▅</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">Light <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb121-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(treatment) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb121-3" title="3"><span class="st">  </span><span class="kw">skim</span>()</a></code></pre></div>
+<pre><code>── Data Summary ────────────────────────
+                           Values    
+Name                       Piped data
+Number of rows             22        
+Number of columns          2         
+_______________________              
+Column type frequency:               
+  numeric                  1         
+________________________             
+Group variables            treatment 
+
+── Variable type: numeric ────
+  skim_variable treatment n_missing complete_rate   mean    sd    p0   p25
+1 shift         control           0             1 -0.309 0.618 -1.27 -0.65
+2 shift         knee              0             1 -0.336 0.791 -1.61 -0.76
+3 shift         eyes              0             1 -1.55  0.706 -2.83 -1.78
+     p50   p75  p100 hist 
+1 -0.485  0.24  0.53 ▂▇▂▁▇
+2 -0.290  0.17  0.73 ▃▃▇▃▇
+3 -1.48  -1.10 -0.78 ▂▂▁▇▅</code></pre>
 <p>Nous avons ici la confirmation que le design expérimental n’est pas équilibré, puisque le groupe <code>control</code> compte un individu de plus. Il semble que le groupe <code>eyes</code> se comporte un peu différemment des autres groupes. En effet, pour les groupes <code>control</code> et <code>knee</code>, les valeurs observées sont très proches :</p>
 <ul>
 <li>les moyennes et les médianes sont négatives mais proches de 0.</li>
@@ -344,25 +344,25 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
 <div id="exploration-graphique-3" class="section level4">
 <h4><span class="header-section-number">4.2.1.3</span> Exploration graphique</h4>
 <p>Comme toujours, il est indispensable de regarder à quoi ressemblent les données brutes sur un ou des graphiques. Les statistiques descriptives ne racontent en effet pas toujours toute l’histoire. Ici, nous allons superposer les données brutes, sous forme de nuage de points, aux boites à moustaches :</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">Light <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> treatment, <span class="dt">y =</span> shift)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb18-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb18-4" title="4"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.2</span>)</a></code></pre></div>
-<pre><code>## notch went outside hinges. Try setting notch=FALSE.
-## notch went outside hinges. Try setting notch=FALSE.
-## notch went outside hinges. Try setting notch=FALSE.</code></pre>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1">Light <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb123-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> treatment, <span class="dt">y =</span> shift)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb123-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb123-4" title="4"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<pre><code>notch went outside hinges. Try setting notch=FALSE.
+notch went outside hinges. Try setting notch=FALSE.
+notch went outside hinges. Try setting notch=FALSE.</code></pre>
+<p><img src="figure/unnamed-chunk-75-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Puisqu’il y a peu de données, les intervalles de confiance à 95% sont très larges. Ils dépassent d’ailleurs presque systématiquement les quartiles, ce qui explique l’apparence bizarre des boîtes à moustaches et les messages d’avertissement affichés lors de la création du graphique. Il vaudait donc mieux représenter cette figure sans ces intervalles de confiance. Toutefois, avant de les retirer, on peut constater ici que les IC 95% se chevauchent complètement pour les séries <code>control</code> et <code>knee</code>. En revanche, il n’y a aucun chevauchement de l’IC 95% du groupe <code>eyes</code> avec les 2 autres groupes. On s’attend donc à trouver une différence de moyenne significative entre le groupe <code>eyes</code> d’une part, et les groupes <code>control</code> et <code>knee</code> d’autre part, mais pas de différence de moyenne entre les groupes <code>control</code> et <code>knee</code>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">Light <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb20-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> treatment, <span class="dt">y =</span> shift, <span class="dt">fill =</span> treatment)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-4" title="4"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-6" title="6"><span class="st">  </span><span class="kw">scale_fill_brewer</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-7" title="7"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb20-8" title="8">       <span class="dt">y =</span> <span class="st">&quot;Décalage de phase&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-9" title="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1">Light <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb125-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> treatment, <span class="dt">y =</span> shift, <span class="dt">fill =</span> treatment)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb125-3" title="3"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb125-4" title="4"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb125-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb125-6" title="6"><span class="st">  </span><span class="kw">scale_fill_brewer</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb125-7" title="7"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb125-8" title="8">       <span class="dt">y =</span> <span class="st">&quot;Décalage de phase&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb125-9" title="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
+<p><img src="figure/unnamed-chunk-76-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>On constate ici visuellement que les 3 séries ont une étendue à peu près similaire, et que le groupe <code>eyes</code> semble se distinguer des 2 autres par des valeurs plus faibles. Enfin, les boîtes contenant 50% des valeurs centrales (donc l’étendue des valeurs entre les premiers et troisièmes quartiles) recouvrent le 0 pour les 2 groupes <code>control</code> et <code>knee</code>, mais par pour <code>eyes</code>.</p>
 </div>
 </div>
@@ -378,28 +378,28 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
 <li>H<span class="math inline">\(_0\)</span> : les moyennes de toutes les populations sont égales (<span class="math inline">\(\mu_{\textrm{control}} = \mu_{\textrm{knee}} = \mu_{\textrm{eyes}}\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : toutes les moyennes ne sont pas égales. Au moins l’une d’entre elles diffère des autres.</li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Réalisation de l&#39;ANOVA 1 facteur</span></a>
-<a class="sourceLine" id="cb21-2" title="2">res &lt;-<span class="st"> </span><span class="kw">aov</span>(shift <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> Light)</a>
-<a class="sourceLine" id="cb21-3" title="3"></a>
-<a class="sourceLine" id="cb21-4" title="4"><span class="co"># Affichage des résultats</span></a>
-<a class="sourceLine" id="cb21-5" title="5">res</a></code></pre></div>
-<pre><code>## Call:
-##    aov(formula = shift ~ treatment, data = Light)
-## 
-## Terms:
-##                 treatment Residuals
-## Sum of Squares   7.224492  9.415345
-## Deg. of Freedom         2        19
-## 
-## Residual standard error: 0.7039492
-## Estimated effects may be unbalanced</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1"><span class="co"># Réalisation de l&#39;ANOVA 1 facteur</span></a>
+<a class="sourceLine" id="cb126-2" title="2">res &lt;-<span class="st"> </span><span class="kw">aov</span>(shift <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> Light)</a>
+<a class="sourceLine" id="cb126-3" title="3"></a>
+<a class="sourceLine" id="cb126-4" title="4"><span class="co"># Affichage des résultats</span></a>
+<a class="sourceLine" id="cb126-5" title="5">res</a></code></pre></div>
+<pre><code>Call:
+   aov(formula = shift ~ treatment, data = Light)
+
+Terms:
+                treatment Residuals
+Sum of Squares   7.224492  9.415345
+Deg. of Freedom         2        19
+
+Residual standard error: 0.7039492
+Estimated effects may be unbalanced</code></pre>
 <p>L’affichage des résultats bruts ne nous apprend que peu de choses. En revanche, la fonction <code>summary()</code> donne la réponse du test :</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">summary</span>(res)</a></code></pre></div>
-<pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
-## treatment    2  7.224   3.612   7.289 0.00447 **
-## Residuals   19  9.415   0.496                   
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1"><span class="kw">summary</span>(res)</a></code></pre></div>
+<pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+treatment    2  7.224   3.612   7.289 0.00447 **
+Residuals   19  9.415   0.496                   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Pour le facteur étudié, on obtient le nombre de degrés de libertés (<code>Df</code>), la somme des carrés (<code>Sum Sq</code>), les carrés moyens (<code>Mean Sq</code>), la statistique du test (<code>F</code>) et la <span class="math inline">\(p\)</span>-value (<code>Pr(&gt;F)</code>). Ici, la <span class="math inline">\(p\)</span>-value est inférieure à <span class="math inline">\(\alpha\)</span>, donc on rejette H<span class="math inline">\(_0\)</span>. Au moins l’une des moyennes est différente des autres.</p>
 </div>
 <div id="CAANOVA" class="section level4">
@@ -412,40 +412,40 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
 </ol>
 <p>L’indépendance des résidus signifie que connaître la valeur d’un résidu ne permet pas de prédire la valeur d’un autre résidu. Si les données ont été collectées correctement (échantillonnage aléatoire simple, indépendance des observations), on considère généralement que cette condition est vérifiée. Les 2 autres conditions d’application se vérifient soit graphiquement, soit avec un test d’hypothèses.</p>
 <p>L’homogénéité des résidus signifie que les résidus doivent avoir à peu près la même variance pour chacun des groupes comparés. On peut vérifier que cette condition d’application est vérifiée grâce à ce graphique :</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">plot</span>(res, <span class="dt">which =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1"><span class="kw">plot</span>(res, <span class="dt">which =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="figure/unnamed-chunk-79-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Ici, les résidus sont considérés comme homogènes car nous avons à peu près autant de résidus positifs que négatifs et que la ligne rouge est très proche du 0. L’étalement des résidus est à peu près le même de la gauche à la droite du graphique. On pourrait donc faire entrer les résidus dans une boite rectangulaire horizontale centrée sur le 0 et de la même largeur d’un bout à l’autre du graphique. Une autre façon de visualiser ces résidus est d’utiliser le graphique suivant :</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">plot</span>(res, <span class="dt">which =</span> <span class="dv">3</span>)</a></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1"><span class="kw">plot</span>(res, <span class="dt">which =</span> <span class="dv">3</span>)</a></code></pre></div>
+<p><img src="figure/unnamed-chunk-80-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Sur ce graphique, ce qui compte principalement, c’est la droite en rouge. Elle est ici presque horizontale, ce qui montre que les résidus de tous les groupes (un groupe à gauche et 2 à droite) ont à peu près même moyenne.</p>
 <p>Cette condition d’homogénéité des résidus entre les groupes peut également être vérifiée grâce au test de Levene. Pour ce test, les hypothèses seront les suivantes :</p>
 <ul>
 <li>H<span class="math inline">\(_0\)</span> : les résidus sont homogènes (<em>i.e.</em> identiques dans tous les groupes).</li>
 <li>H<span class="math inline">\(_1\)</span> : les résidus ne sont pas homogènes (<em>i.e.</em> au moins un groupe présente des résidus dont la variance est différente des autres).</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">leveneTest</span>(res<span class="op">$</span>residuals <span class="op">~</span><span class="st"> </span>Light<span class="op">$</span>treatment)</a></code></pre></div>
-<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
-##       Df F value Pr(&gt;F)
-## group  2  0.1586 0.8545
-##       19</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1"><span class="kw">leveneTest</span>(res<span class="op">$</span>residuals <span class="op">~</span><span class="st"> </span>Light<span class="op">$</span>treatment)</a></code></pre></div>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
+      Df F value Pr(&gt;F)
+group  2  0.1586 0.8545
+      19               </code></pre>
 <p>Ici, puisque <span class="math inline">\(p &gt; \alpha\)</span>, on ne peut pas rejeter l’hypothèse nulle. Les résidus sont donc bien homogènes.</p>
 <p>Reste à vérifier la normalité des résidus. Là encore, on peut faire cela graphiquement ou avec un test de Shapiro-Wilk :</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">plot</span>(res, <span class="dt">which =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1"><span class="kw">plot</span>(res, <span class="dt">which =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="figure/unnamed-chunk-82-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Sur un graphique quantile-quantile comme celui-là, on considère que les observations sont distribuées normalement si les points sont bien alignés sur la droite. Ici, la plupart des points sont très proches de la droite, ce qui laisse penser que les résidus suivent bien la loi Normale. On peut en avoir la confirmation avec le test suivant :</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">shapiro.test</span>(res<span class="op">$</span>residuals)</a></code></pre></div>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  res$residuals
-## W = 0.95893, p-value = 0.468</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1"><span class="kw">shapiro.test</span>(res<span class="op">$</span>residuals)</a></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  res$residuals
+W = 0.95893, p-value = 0.468</code></pre>
 <p>Comme pour tous les tests de Shapiro-Wilk, l’hypothèse nulle est la normalité des observations. Ici, puisque <span class="math inline">\(p &gt; \alpha\)</span>, on ne peut pas rejeter H<span class="math inline">\(_0\)</span>. Les résidus suivent donc bien la loi Normale.</p>
 <p>Toutes les conditions d’application de l’ANOVA sont donc vérifiées. Nous avions donc bien le droit de la réaliser et ses résultats sont valides. On pourrait rédiger les résultats de cette analyse ainsi :</p>
 <blockquote>
 <p>Une analyse de variance montre que la moyenne des 3 groupes n’est pas identique (<span class="math inline">\(F = 7.289\)</span>, <span class="math inline">\(p = 0.004\)</span>). Un test de Levene a permis de vérifier la condition d’homogénéité de la variance des résidus (<span class="math inline">\(F = 0.189\)</span>, <span class="math inline">\(p = 0.855\)</span>), et un test de Shapiro-Wilk a confirmé la normalité des résidus (<span class="math inline">\(W = 0.959\)</span>, <span class="math inline">\(p = 0.468\)</span>).</p>
 </blockquote>
 <p>Dernière chose, il est possible de produire les 3 graphiques ci-dessus (et même un quatrième que nous ne décrirons pas ici), en une seule commande :</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">plot</span>(res)</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1"><span class="kw">plot</span>(res)</a></code></pre></div>
 <p>Il faut alors presser la touche <code>Entrée</code> de votre clavier pour afficher successivement les 4 graphiques produits.</p>
 <p>À l’issue de cette analyse, deux questions restent en suspens :</p>
 <ol style="list-style-type: decimal">
@@ -470,67 +470,67 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
 <li>H<span class="math inline">\(_0\)</span> : la moyenne des deux populations est égale (<span class="math inline">\(\mu_1 = \mu_2\)</span>, soit <span class="math inline">\(\mu_1 - \mu_2\)</span> = 0).</li>
 <li>H<span class="math inline">\(_1\)</span> : la moyenne des deux populations est différente (<span class="math inline">\(\mu_1 \neq \mu_2\)</span>, soit <span class="math inline">\(\mu_1 - \mu_2 \neq 0\)</span>).</li>
 </ul>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Réalisation du test</span></a>
-<a class="sourceLine" id="cb33-2" title="2">post_hoc1 &lt;-<span class="st"> </span><span class="kw">pairwise.t.test</span>(Light<span class="op">$</span>shift, Light<span class="op">$</span>treatment)</a>
-<a class="sourceLine" id="cb33-3" title="3"></a>
-<a class="sourceLine" id="cb33-4" title="4"><span class="co"># affichage des résultats</span></a>
-<a class="sourceLine" id="cb33-5" title="5">post_hoc1</a></code></pre></div>
-<pre><code>## 
-##  Pairwise comparisons using t tests with pooled SD 
-## 
-## data:  Light$shift and Light$treatment 
-## 
-##      control knee  
-## knee 0.9418  -     
-## eyes 0.0088  0.0088
-## 
-## P value adjustment method: holm</code></pre>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1"><span class="co"># Réalisation du test</span></a>
+<a class="sourceLine" id="cb138-2" title="2">post_hoc1 &lt;-<span class="st"> </span><span class="kw">pairwise.t.test</span>(Light<span class="op">$</span>shift, Light<span class="op">$</span>treatment)</a>
+<a class="sourceLine" id="cb138-3" title="3"></a>
+<a class="sourceLine" id="cb138-4" title="4"><span class="co"># affichage des résultats</span></a>
+<a class="sourceLine" id="cb138-5" title="5">post_hoc1</a></code></pre></div>
+<pre><code>
+    Pairwise comparisons using t tests with pooled SD 
+
+data:  Light$shift and Light$treatment 
+
+     control knee  
+knee 0.9418  -     
+eyes 0.0088  0.0088
+
+P value adjustment method: holm </code></pre>
 <p>Seules les <span class="math inline">\(p\)</span>-values de chaque test sont fournies sous la forme d’une demi-matrice. On constate ainsi qu’une seule <span class="math inline">\(p\)</span> value est supérieure à <span class="math inline">\(\alpha = 0.05\)</span> : celle du test comparant les moyennes des groupes <code>knee</code> et <code>control</code>. Une autre façon de visualiser ces résultats consiste à utiliser la fonction <code>tidy()</code> du package <code>broom</code> que nous avons mis en mémoire un peu plus tôt. Les résultats seront les mêmes. Ils seront simplement rangés dans un <code>tibble</code> :</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">tidy</span>(post_hoc1)</a></code></pre></div>
-<pre><code>## # A tibble: 3 x 3
-##   group1 group2  p.value
-##   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
-## 1 knee   control 0.942  
-## 2 eyes   control 0.00879
-## 3 eyes   knee    0.00880</code></pre>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1"><span class="kw">tidy</span>(post_hoc1)</a></code></pre></div>
+<pre><code># A tibble: 3 x 3
+  group1 group2  p.value
+  &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
+1 knee   control 0.942  
+2 eyes   control 0.00879
+3 eyes   knee    0.00880</code></pre>
 <p>Nous avons donc la confirmation que les moyennes des groupes <code>knee</code> et <code>control</code> ne sont pas significativement différentes l’une de l’autre. En revanche, la moyenne du groupe <code>eyes</code> est différente de celle des 2 autres groupes (<span class="math inline">\(p = 0.009\)</span> pour les 2 tests).</p>
 <p>Nous avons donc appris des choses nouvelles, mais nous ne savons toujours pas quelle est la magnitude de la différence détectée entre le groupe <code>eyes</code> et les 2 autres. Le test de Tukey HSD nous permet de répondre à cette question :</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># Réalisation du test de Tukey HSD</span></a>
-<a class="sourceLine" id="cb37-2" title="2">post_hoc2 &lt;-<span class="st"> </span><span class="kw">TukeyHSD</span>(res)</a>
-<a class="sourceLine" id="cb37-3" title="3"></a>
-<a class="sourceLine" id="cb37-4" title="4"><span class="co"># Affichage des résultats</span></a>
-<a class="sourceLine" id="cb37-5" title="5">post_hoc2</a></code></pre></div>
-<pre><code>##   Tukey multiple comparisons of means
-##     95% family-wise confidence level
-## 
-## Fit: aov(formula = shift ~ treatment, data = Light)
-## 
-## $treatment
-##                     diff        lwr        upr     p adj
-## knee-control -0.02696429 -0.9525222  0.8985936 0.9969851
-## eyes-control -1.24267857 -2.1682364 -0.3171207 0.0078656
-## eyes-knee    -1.21571429 -2.1716263 -0.2598022 0.0116776</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"><span class="co"># Réalisation du test de Tukey HSD</span></a>
+<a class="sourceLine" id="cb142-2" title="2">post_hoc2 &lt;-<span class="st"> </span><span class="kw">TukeyHSD</span>(res)</a>
+<a class="sourceLine" id="cb142-3" title="3"></a>
+<a class="sourceLine" id="cb142-4" title="4"><span class="co"># Affichage des résultats</span></a>
+<a class="sourceLine" id="cb142-5" title="5">post_hoc2</a></code></pre></div>
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = shift ~ treatment, data = Light)
+
+$treatment
+                    diff        lwr        upr     p adj
+knee-control -0.02696429 -0.9525222  0.8985936 0.9969851
+eyes-control -1.24267857 -2.1682364 -0.3171207 0.0078656
+eyes-knee    -1.21571429 -2.1716263 -0.2598022 0.0116776</code></pre>
 <p>Cette fois, nous obtenons à la fois la <span class="math inline">\(p\)</span>-value des comparaisons 2 à 2, mais nous obtenons aussi l’estimation des différences de moyennes ainsi que l’intervalle de confiance à 95% de ces différences. Là encore, l’utilisation de la fonction <code>tidy()</code> peut rendre les résultats plus lisibles (ou en tous cas, plus faciles à manipuler) :</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">tidy</span>(post_hoc2)</a></code></pre></div>
-<pre><code>## # A tibble: 3 x 6
-##   term      comparison   estimate conf.low conf.high adj.p.value
-##   &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-## 1 treatment knee-control  -0.0270   -0.953     0.899     0.997  
-## 2 treatment eyes-control  -1.24     -2.17     -0.317     0.00787
-## 3 treatment eyes-knee     -1.22     -2.17     -0.260     0.0117</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="kw">tidy</span>(post_hoc2)</a></code></pre></div>
+<pre><code># A tibble: 3 x 6
+  term      comparison   estimate conf.low conf.high adj.p.value
+  &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1 treatment knee-control  -0.0270   -0.953     0.899     0.997  
+2 treatment eyes-control  -1.24     -2.17     -0.317     0.00787
+3 treatment eyes-knee     -1.22     -2.17     -0.260     0.0117 </code></pre>
 <p>La première ligne de ce tableau nous confirme une absence de différence de moyenne significative entre les groupes <code>knee</code> et <code>control</code>. La différence de moyenne estimée pour ces deux catégories (<span class="math inline">\(\hat{\mu}_{\textrm{knee}} - \hat{\mu}_{\textrm{control}}\)</span>) vaut <span class="math inline">\(-0.027\)</span>, avec un intervalle de confiance à 95% pour cette différence qui vaut <span class="math inline">\([-0.95 ; 0.90]\)</span>. Cet intervalle, qui rassemble les valeurs les plus probables pour cette différence de moyenne, contient la valeur 0, ce qui confirme qu’il n’y a aucune raison de penser qu’une différence réelle existe. Le faible écart de moyennes observé entre ces 2 groupes est très vraisemblablement le fruit du hasard.</p>
 <p>En revanche, les lignes 2 et 3 de ce tableau montrent des différences significatives (<span class="math inline">\(p = 0.008\)</span> et <span class="math inline">\(p = 0.012\)</span> pour les comparaisons <code>eyes</code>/<code>control</code> et <code>eyes</code>/<code>knee</code> respectivement). Les différences sont négatives, de l’ordre de -1.2 pour les 2 comparaisons, ce qui traduit des valeurs plus faibles pour <code>eyes</code> que pour les 2 autres groupes. Pour ces 2 comparaisons, les intervalles de confiance à 95% des différences ne contiennent pas le 0, mais exclusivement des valeurs négatives.</p>
 <p>En utilisant le tableau ci-dessus, nous pouvons synthétiser graphiquement ces résultats :</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">tidy</span>(post_hoc2) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb41-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> comparison, <span class="dt">y =</span> estimate)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb41-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb41-4" title="4"><span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> conf.low, <span class="dt">ymax =</span> conf.high)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb41-5" title="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb41-6" title="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Comparaison&quot;</span>,</a>
-<a class="sourceLine" id="cb41-7" title="7">       <span class="dt">y =</span> <span class="st">&quot;Différence de moyennes (et IC 95%)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb41-8" title="8"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb41-9" title="9"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1"><span class="kw">tidy</span>(post_hoc2) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb146-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> comparison, <span class="dt">y =</span> estimate)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb146-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb146-4" title="4"><span class="st">  </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> conf.low, <span class="dt">ymax =</span> conf.high)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb146-5" title="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb146-6" title="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Comparaison&quot;</span>,</a>
+<a class="sourceLine" id="cb146-7" title="7">       <span class="dt">y =</span> <span class="st">&quot;Différence de moyennes (et IC 95%)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb146-8" title="8"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb146-9" title="9"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="figure/unnamed-chunk-89-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Nous avons donc bien montré ici que la re-synchronisation de l’horloge interne n’est possible que par le biais de l’exposition des yeux à la lumière, et non du creux poplité.</p>
 </div>
 </div>
@@ -550,12 +550,12 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
 <li>H<span class="math inline">\(_0\)</span> : le type de traitement appliqué n’a pas d’effet sur le décalage de phase. Les médianes sont égales dans tous les groupes (<span class="math inline">\(\textrm{med}_\textrm{control} = \textrm{med}_\textrm{knee} = \textrm{med}_\textrm{eyes}\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : le type de traitement appliqué a un d’effet sur le décalage de phase. Les médianes ne sont pas toutes égales, au moins l’une d’entre elles diffère des autres.</li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">kruskal.test</span>(shift <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> Light)</a></code></pre></div>
-<pre><code>## 
-##  Kruskal-Wallis rank sum test
-## 
-## data:  shift by treatment
-## Kruskal-Wallis chi-squared = 9.4231, df = 2, p-value = 0.008991</code></pre>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">kruskal.test</span>(shift <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> Light)</a></code></pre></div>
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  shift by treatment
+Kruskal-Wallis chi-squared = 9.4231, df = 2, p-value = 0.008991</code></pre>
 <p>Ici, la <span class="math inline">\(p\)</span>-value est inférieure à <span class="math inline">\(\alpha\)</span>, on rejette donc H<span class="math inline">\(_0\)</span> : toutes les médianes ne sont pas égales. Comme avec l’ANOVA, il nous faut maintenant déterminer quelles médianes sont différentes et quelle est la magnitude de cette (ou de ces) différence(s). Pour cela, nous devons réaliser un test de comparaisons multiples.</p>
 </div>
 <div id="tests-post-hoc-1" class="section level4">
@@ -565,57 +565,57 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
 <li>H<span class="math inline">\(_0\)</span> : la médiane des deux populations est égale.</li>
 <li>H<span class="math inline">\(_1\)</span> : la médiane des deux populations est différente.</li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="co"># Réalisation du test</span></a>
-<a class="sourceLine" id="cb44-2" title="2">post_hoc3 &lt;-<span class="st"> </span><span class="kw">pairwise.wilcox.test</span>(Light<span class="op">$</span>shift, Light<span class="op">$</span>treatment)</a>
-<a class="sourceLine" id="cb44-3" title="3"></a>
-<a class="sourceLine" id="cb44-4" title="4"><span class="co"># Affichage des résultats</span></a>
-<a class="sourceLine" id="cb44-5" title="5">post_hoc3</a></code></pre></div>
-<pre><code>## 
-##  Pairwise comparisons using Wilcoxon rank sum test 
-## 
-## data:  Light$shift and Light$treatment 
-## 
-##      control knee  
-## knee 0.9551  -     
-## eyes 0.0037  0.0524
-## 
-## P value adjustment method: holm</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co"># Utilisation de la fonction `tidy` pour afficher les résultats dans un tibble</span></a>
-<a class="sourceLine" id="cb46-2" title="2"><span class="kw">tidy</span>(post_hoc3)</a></code></pre></div>
-<pre><code>## # A tibble: 3 x 3
-##   group1 group2  p.value
-##   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
-## 1 knee   control 0.955  
-## 2 eyes   control 0.00373
-## 3 eyes   knee    0.0524</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"><span class="co"># Réalisation du test</span></a>
+<a class="sourceLine" id="cb149-2" title="2">post_hoc3 &lt;-<span class="st"> </span><span class="kw">pairwise.wilcox.test</span>(Light<span class="op">$</span>shift, Light<span class="op">$</span>treatment)</a>
+<a class="sourceLine" id="cb149-3" title="3"></a>
+<a class="sourceLine" id="cb149-4" title="4"><span class="co"># Affichage des résultats</span></a>
+<a class="sourceLine" id="cb149-5" title="5">post_hoc3</a></code></pre></div>
+<pre><code>
+    Pairwise comparisons using Wilcoxon rank sum test 
+
+data:  Light$shift and Light$treatment 
+
+     control knee  
+knee 0.9551  -     
+eyes 0.0037  0.0524
+
+P value adjustment method: holm </code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="co"># Utilisation de la fonction `tidy` pour afficher les résultats dans un tibble</span></a>
+<a class="sourceLine" id="cb151-2" title="2"><span class="kw">tidy</span>(post_hoc3)</a></code></pre></div>
+<pre><code># A tibble: 3 x 3
+  group1 group2  p.value
+  &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
+1 knee   control 0.955  
+2 eyes   control 0.00373
+3 eyes   knee    0.0524 </code></pre>
 <p>Ici, la <span class="math inline">\(p\)</span>-value du premier test est supérieure à <span class="math inline">\(\alpha = 0.05\)</span>. Il n’y a donc pas de différence entre les médianes du groupe <code>control</code> et du groupe <code>knee</code>. Le traitement lumineux appliqué dans le creux poplité n’a donc aucun effet sur le décalage de phase.</p>
 <p>La <span class="math inline">\(p\)</span>-value du second test est en revanche inférieure à <span class="math inline">\(\alpha\)</span>. On rejette l’hypothèse nulle pour ce test ce qui confirme que le traitement lumineux appliqué au niveau des yeux a un effet sur le décalage de phase. Reste toutefois à quantifier l’importance de ce décalage de phase par rapport au groupe <code>control</code>.</p>
 <p>Enfin, la <span class="math inline">\(p\)</span>-value du troisième test est supérieure (tout juste !) à <span class="math inline">\(\alpha\)</span>. La conclusion logique est donc qu’il n’y a pas de différence significative entre les médianes des groupes <code>knee</code> et <code>control</code>. On sait que ce n’est pas le cas puisque nous avons montré plus haut (avec les tests paramétriques), que la différence de moyenne entre ces deux populations était significative. Nous avons ici l’illustration parfaite de la faible puissance des tests non paramétriques : leur capacité à détecter un effet lorsqu’il y en a réellement un est plus faible que celle des tests paramétriques. En outre, les procédures de comparaisons multiples sont très conservatives, et font mécaniquement baisser la puissance des tests pour maintenir constante l’erreur <span class="math inline">\(\alpha\)</span>. Je ne peux donc que vous inciter à la prudence lorsque vous interprétez les résultats d’un test de comparaions multiples (<em>a fortiori</em> un test non paramétrique) pour lequel la <span class="math inline">\(p\)</span>-value obtenue est très proche du seuil <span class="math inline">\(\alpha\)</span>.</p>
 <p>Comme pour son homologue paramétrique, le test de comparaisons multiples de Wilcoxon nous permet de prendre une décision par rapport à H<span class="math inline">\(_0\)</span>, mais il ne nous dit rien de la magnitude des effets mesurés. Pour les connaître, il nous faut réaliser le test de Dunn (le package <code>DescTools</code> doit être chargé) :</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Réalisation du test</span></a>
-<a class="sourceLine" id="cb48-2" title="2">post_hoc4 &lt;-<span class="st"> </span><span class="kw">DunnTest</span>(shift <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> Light)</a>
-<a class="sourceLine" id="cb48-3" title="3"></a>
-<a class="sourceLine" id="cb48-4" title="4"><span class="co"># Affichage des résultats</span></a>
-<a class="sourceLine" id="cb48-5" title="5">post_hoc4</a></code></pre></div>
-<pre><code>## 
-##  Dunn&#39;s test of multiple comparisons using rank sums : holm  
-## 
-##              mean.rank.diff   pval    
-## knee-control     -0.4821429 0.8859    
-## eyes-control     -9.3392857 0.0164 *  
-## eyes-knee        -8.8571429 0.0214 *  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="co"># Réalisation du test</span></a>
+<a class="sourceLine" id="cb153-2" title="2">post_hoc4 &lt;-<span class="st"> </span><span class="kw">DunnTest</span>(shift <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> Light)</a>
+<a class="sourceLine" id="cb153-3" title="3"></a>
+<a class="sourceLine" id="cb153-4" title="4"><span class="co"># Affichage des résultats</span></a>
+<a class="sourceLine" id="cb153-5" title="5">post_hoc4</a></code></pre></div>
+<pre><code>
+ Dunn&#39;s test of multiple comparisons using rank sums : holm  
+
+             mean.rank.diff   pval    
+knee-control     -0.4821429 0.8859    
+eyes-control     -9.3392857 0.0164 *  
+eyes-knee        -8.8571429 0.0214 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Avec ces résultats on progresse un peu, car outre les <span class="math inline">\(p\)</span>-values pour chaque comparaison, le test nous fournit une estimation de la différence des rangs moyens. Malheureusement, ces estimations sont souvent difficiles à interpréter (par exemple, quelle est l’unité utilisée ?) et aucun intervalle de confiance n’est fourni. On constate néanmoins que le test de Dunn donne ici des résultats comparables à ceux fournis par les tests paramétriques : le groupe <code>eyes</code> est significativement différent des deux autres. Pour obtenir les intevalles de confiance dont nous avons besoin, nous n’avons pas d’autre choix que des les calculer à l’aide du test de Wilcoxon classique, en réalisant manuellement les tests dont nous avons besoin. Ici, le test à proprement parler ne nous intéresse pas. La seule chose pertinente est la différence de (pseudo-)médiane estimée et son intervalle de confiance :</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co"># Comparaisons entre les groupes `knee` et `eyes` (dans cet ordre)</span></a>
-<a class="sourceLine" id="cb50-2" title="2">Light <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb50-3" title="3"><span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;knee&quot;</span>, <span class="st">&quot;eyes&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb50-4" title="4"><span class="st">  </span><span class="kw">wilcox.test</span>(shift <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> ., <span class="dt">conf.int =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb50-5" title="5"><span class="st">  </span><span class="kw">tidy</span>()</a></code></pre></div>
-<pre><code>## # A tibble: 1 x 7
-##   estimate statistic p.value conf.low conf.high method          alternative
-##      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;      
-## 1     1.19        42  0.0262    0.300      2.21 Wilcoxon rank … two.sided</code></pre>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="co"># Comparaisons entre les groupes `knee` et `eyes` (dans cet ordre)</span></a>
+<a class="sourceLine" id="cb155-2" title="2">Light <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb155-3" title="3"><span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;knee&quot;</span>, <span class="st">&quot;eyes&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb155-4" title="4"><span class="st">  </span><span class="kw">wilcox.test</span>(shift <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> ., <span class="dt">conf.int =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb155-5" title="5"><span class="st">  </span><span class="kw">tidy</span>()</a></code></pre></div>
+<pre><code># A tibble: 1 x 7
+  estimate statistic p.value conf.low conf.high method               alternative
+     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                &lt;chr&gt;      
+1     1.19        42  0.0262    0.300      2.21 Wilcoxon rank sum t… two.sided  </code></pre>
 <p>Pour le décalage de phase de ces 2 groupes, la différence de médiane estimée vaut donc 1.19, avec un intervalle de confiance à 95% de <span class="math inline">\([0.3 ; 2.21]\)</span>. Toutes les valeurs comprises dans cet intervalle de confiance sont strictement positives. Il y a donc très peu de chances pour que la différence de médiane entre ces deux groupes soit nulle. Le test de Dunn ci-dessus, qui montre une différence significative entre ces groupes, est donc confirmé.</p>
 </div>
 </div>

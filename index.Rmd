@@ -30,16 +30,16 @@ description: "Ce livre est un document permettant de réaliser des analyses stat
 
 # Préambule
 
-Ce livre contient l'ensemble du matériel (contenus, exemples, exercices...) nécessaire à la réalisation des travaux pratiques et TEA de biométrie 3. Ces travaux pratiques ont un seul objectif principal : vous permettre de mettre en œuvre, dans `RStudio`, les méthodes statistiques découvertes en cours magistral et en TD de biométrie 2 (au semestre précédent) et en biométrie 3 depuis début janvier.
+Ce livre contient l'ensemble du matériel (contenus, exemples, exercices...) nécessaire à la réalisation des travaux pratiques et TEA de biométrie 3. L'objectif principal de ces travaux pratiques est de vous permettre de mettre en œuvre, dans `RStudio`, les méthodes statistiques découvertes en cours magistral et en TD de biométrie 2 (au semestre précédent) et en biométrie 3 depuis début janvier.
 
-Je considère qu'à ce stade, vous devez être à l'aise dans RStudio pour effectuer les tâches suivantes :
+Je considère qu'à ce stade, vous devez être à l'aise dans `RStudio` pour effectuer les tâches suivantes :
 
 1. Importer des jeux de données dans RStudio.
 2. Manipuler des tableaux de données avec `tidyr` [@R-tidyr] pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.
 3. Faire des graphiques exploratoires avec `ggplot2` [@R-ggplot2] pour visualiser des données.
-4. Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonction `filter()`, `select()`, `arrange()`, `mutate()`, `summarise()` et `group_by()` du package `dplyr` [@R-dplyr].
+4. Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonctions `filter()`, `select()`, `arrange()`, `mutate()`, `summarise()` et `group_by()` du package `dplyr` [@R-dplyr].
 5. Utiliser le pipe `%>%` afin d'enchaîner plusieurs commandes.
-6. Créer des scripts parlants contenant des commandes et des commentaires utiles.
+6. Créer des scripts clairs et parlants, contenant des commandes et des commentaires utiles.
 7. Spécifier/modifier votre répertoire de travail.
 8. Installer des packages additionnels.
 

@@ -94,8 +94,8 @@ Une fois l'examen préliminaire des données réalisé, on peut passer au calcul
 
 On s'intéresse ici au calcul de grandeurs statistiques nous apportant des renseignements sur la distribution des valeurs de l'échantillon. Les questions auxquelles on tente de répondre à ce stade sont les suivantes :
 
-- Quelle est la tendance moyenne.
-- Quelle est la dispersion des données autour de la moyenne.
+- Quelle est la tendance moyenne ?
+- Quelle est la dispersion des données autour de la moyenne ?
 
 Pour répondre à ces questions, on peut faire appel à de multiples fonctions. J'en évoquerai ici seulement 3 qui permettent d'obtenir la plupart des informations dont nous avons besoin très simplement :
 
