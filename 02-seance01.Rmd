@@ -198,7 +198,7 @@ Temp_clean %>%
   geom_histogram(bins = 10, color = grey(0.8))
 ```
 
-Si vous ne vous rappelez-plus ce qu'est un histogramme où comment le faire, ou la signification de l'argument `bins`, relisez [la section 4.5](https://besibo.github.io/DA/viz.html#histogram) du livre en ligne de Biométrie 2.
+Si vous ne vous rappelez-plus ce qu'est un histogramme ou comment le faire, ou la signification de l'argument `bins`, relisez [la section 4.5](https://besibo.github.io/DA/viz.html#histogram) du livre en ligne de Biométrie 2.
 
 Notez ici que la forme de cet histogramme est très proche de celle présenté plus tôt par la fonction `skim()`. Cet histogramme nous apprend qu'en dehors d'un "trou" autour de la température 36.75 ºC, la distribution des données est proche d'une courbe en cloche. Il y a fort à parier qu'un test de normalité concluerait à la normalité des données de cet échantillon.
 
@@ -223,7 +223,7 @@ Temp_clean %>%
 On retrouve sur ce graphique tous les éléments obtenus avec la fonction `summary()` à l'exception de la moyenne. Assurez-vous que vous êtes bien capables d'identifier tous ces éléments sur le graphique. Assurez-vous aussi que la signification de l'encoche (obtenue avec l'argument `notch = TRUE`) est bien claire pour vous. Comme toujours, si ce n'est pas le cas, consultez [la section dédiée aux boxplots](https://besibo.github.io/DA/viz.html#les-boites-a-moustaches-ou-boxplots) dans le livre en ligne de Biométrie 2.
 
 
-Pour conclure, ces 3 types de représentations graphiques (nuages de points ou stripchart, histogrammes et boxplots) sont complémentaires. Ces trois types de représentations graphiques permettent de visualiser la distribution d'une variable numérique. Les nuages de points permettent de voir toutes les données brutes. Les histogrammes résument les données en quelques valeurs : une valeur d'abondance pour chaque classe de taille. Les boxplots résument encore plus les données avec seulement 7 valeurs qui caractérisent la distribution (voir figure \@ref(fig:compdistr) ci-dessous).
+Pour conclure, ces 3 types de représentations graphiques (nuages de points ou stripchart, histogrammes et boxplots) sont complémentaires. Ces trois types de représentations graphiques permettent de visualiser la distribution d'une variable numérique. Les nuages de points permettent de voir toutes les données brutes. Les histogrammes résument les données en quelques valeurs : une valeur d'abondance pour chaque barre ou classe. Les boxplots résument encore plus les données avec seulement 7 valeurs qui caractérisent la distribution (voir figure \@ref(fig:compdistr) ci-dessous).
 
 ```{r compdistr, warning = FALSE, message = FALSE, echo=FALSE, fig.cap="Comparaison de 2 types de représentations graphiques"}
 library(gridExtra)
