@@ -24,7 +24,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2020-02-03" />
+<meta name="date" content="2020-02-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -340,7 +340,7 @@ Column type frequency:
 ________________________             
 Group variables            None      
 
-── Variable type: numeric ────
+── Variable type: numeric ────────────────────────────────────────
   skim_variable n_missing complete_rate  mean    sd    p0   p25   p50   p75
 1 temperature           0             1  37.0 0.377  36.3  36.7  37.0  37.2
    p100 hist 
@@ -397,7 +397,7 @@ Group variables            None
 <a class="sourceLine" id="cb24-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> temperature)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb24-3" title="3"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">10</span>, <span class="dt">color =</span> <span class="kw">grey</span>(<span class="fl">0.8</span>))</a></code></pre></div>
 <p><img src="figure/unnamed-chunk-18-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>Si vous ne vous rappelez-plus ce qu’est un histogramme où comment le faire, ou la signification de l’argument <code>bins</code>, relisez <a href="https://besibo.github.io/DA/viz.html#histogram">la section 4.5</a> du livre en ligne de Biométrie 2.</p>
+<p>Si vous ne vous rappelez-plus ce qu’est un histogramme ou comment le faire, ou la signification de l’argument <code>bins</code>, relisez <a href="https://besibo.github.io/DA/viz.html#histogram">la section 4.5</a> du livre en ligne de Biométrie 2.</p>
 <p>Notez ici que la forme de cet histogramme est très proche de celle présenté plus tôt par la fonction <code>skim()</code>. Cet histogramme nous apprend qu’en dehors d’un “trou” autour de la température 36.75 ºC, la distribution des données est proche d’une courbe en cloche. Il y a fort à parier qu’un test de normalité concluerait à la normalité des données de cet échantillon.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Les boîtes à moustaches :</li>
@@ -414,7 +414,7 @@ Group variables            None
 <a class="sourceLine" id="cb26-5" title="5">        <span class="dt">axis.ticks.x =</span> <span class="kw">element_blank</span>())</a></code></pre></div>
 <p><img src="figure/unnamed-chunk-20-1.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>On retrouve sur ce graphique tous les éléments obtenus avec la fonction <code>summary()</code> à l’exception de la moyenne. Assurez-vous que vous êtes bien capables d’identifier tous ces éléments sur le graphique. Assurez-vous aussi que la signification de l’encoche (obtenue avec l’argument <code>notch = TRUE</code>) est bien claire pour vous. Comme toujours, si ce n’est pas le cas, consultez <a href="https://besibo.github.io/DA/viz.html#les-boites-a-moustaches-ou-boxplots">la section dédiée aux boxplots</a> dans le livre en ligne de Biométrie 2.</p>
-<p>Pour conclure, ces 3 types de représentations graphiques (nuages de points ou stripchart, histogrammes et boxplots) sont complémentaires. Ces trois types de représentations graphiques permettent de visualiser la distribution d’une variable numérique. Les nuages de points permettent de voir toutes les données brutes. Les histogrammes résument les données en quelques valeurs : une valeur d’abondance pour chaque classe de taille. Les boxplots résument encore plus les données avec seulement 7 valeurs qui caractérisent la distribution (voir figure <a href="seance1.html#fig:compdistr">3.1</a> ci-dessous).</p>
+<p>Pour conclure, ces 3 types de représentations graphiques (nuages de points ou stripchart, histogrammes et boxplots) sont complémentaires. Ces trois types de représentations graphiques permettent de visualiser la distribution d’une variable numérique. Les nuages de points permettent de voir toutes les données brutes. Les histogrammes résument les données en quelques valeurs : une valeur d’abondance pour chaque barre ou classe. Les boxplots résument encore plus les données avec seulement 7 valeurs qui caractérisent la distribution (voir figure <a href="seance1.html#fig:compdistr">3.1</a> ci-dessous).</p>
 <div class="figure" style="text-align: center"><span id="fig:compdistr"></span>
 <img src="figure/compdistr-1.png" alt="Comparaison de 2 types de représentations graphiques" width="90%" />
 <p class="caption">
@@ -524,7 +524,7 @@ sample estimates:
 </div>
 <div id="comparaison-de-la-moyenne-de-2-populations-données-appariées" class="section level2">
 <h2><span class="header-section-number">3.3</span> Comparaison de la moyenne de 2 populations : données appariées</h2>
-<p>On s’intéresse ici à la comparaison de 2 séries de données dont les observations sont liées 2 à 2. C’est par exemple le cas lorsque l’on fait subir un tratiement à différents sujets et que l’on souhaite comparer les mesures obtenues avant et après le traitement.</p>
+<p>On s’intéresse ici à la comparaison de 2 séries de données dont les observations sont liées 2 à 2. C’est par exemple le cas lorsque l’on fait subir un traitement à différents sujets et que l’on souhaite comparer les mesures obtenues avant et après le traitement.</p>
 <p>Autrement dit, dans les plans d’expériences appariés, <strong>les deux traitements</strong> ou modalités <strong>sont appliqués à chaque unité d’échantillonnage</strong>.</p>
 <p>Voici quelques exemples de situations qui devraient être traitées avec des tests sur données appariées :</p>
 <ul>
@@ -638,11 +638,11 @@ Column type frequency:
 ________________________              
 Group variables            None       
 
-── Variable type: factor ─────
+── Variable type: factor ─────────────────────────────────────────
   skim_variable n_missing complete_rate ordered n_unique top_counts            
 1 ID                    0             1 FALSE         13 1: 1, 2: 1, 3: 1, 4: 1
 
-── Variable type: numeric ────
+── Variable type: numeric ────────────────────────────────────────
   skim_variable n_missing complete_rate  mean    sd    p0   p25   p50   p75
 1 Before                0             1  4.73 0.280  3.91   4.7  4.8   4.88
 2 After                 0             1  4.79 0.262  4.3    4.6  4.96  5   
@@ -665,7 +665,7 @@ Column type frequency:
 ________________________             
 Group variables            Traitement
 
-── Variable type: factor ─────
+── Variable type: factor ─────────────────────────────────────────
   skim_variable Traitement n_missing complete_rate ordered n_unique
 1 ID            Before             0             1 FALSE         13
 2 ID            After              0             1 FALSE         13
@@ -673,7 +673,7 @@ Group variables            Traitement
 1 1: 1, 2: 1, 3: 1, 4: 1
 2 1: 1, 2: 1, 3: 1, 4: 1
 
-── Variable type: numeric ────
+── Variable type: numeric ────────────────────────────────────────
   skim_variable Traitement n_missing complete_rate  mean    sd    p0   p25   p50
 1 DO            Before             0             1  4.73 0.280  3.91   4.7  4.8 
 2 DO            After              0             1  4.79 0.262  4.3    4.6  4.96
@@ -976,7 +976,7 @@ Column type frequency:
 ________________________             
 Group variables            Survival  
 
-── Variable type: numeric ────
+── Variable type: numeric ────────────────────────────────────────
   skim_variable Survival n_missing complete_rate  mean    sd    p0   p25   p50
 1 Horn_len      killed           0             1  22.0  2.71  15.2  21.1  22.2
 2 Horn_len      living           0             1  24.3  2.63  13.1  23    24.6

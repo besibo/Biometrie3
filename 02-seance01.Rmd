@@ -342,7 +342,7 @@ Enfin, les tests de Wilcoxon renvoient souvent des messages d'avretissement. Il 
 
 ## Comparaison de la moyenne de 2 populations : données appariées
 
-On s'intéresse ici à la comparaison de 2 séries de données dont les observations sont liées 2 à 2. C'est par exemple le cas lorsque l'on fait subir un tratiement à différents sujets et que l'on souhaite comparer les mesures obtenues avant et après le traitement. 
+On s'intéresse ici à la comparaison de 2 séries de données dont les observations sont liées 2 à 2. C'est par exemple le cas lorsque l'on fait subir un traitement à différents sujets et que l'on souhaite comparer les mesures obtenues avant et après le traitement. 
 
 Autrement dit, dans les plans d'expériences appariés, **les deux traitements** ou modalités **sont appliqués à chaque unité d'échantillonnage**.
 
