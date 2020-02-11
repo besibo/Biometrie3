@@ -758,7 +758,7 @@ Si l'on examine l'histogramme des 2 échantillons, on constate toutefois que la 
 
 **2. Homogénéité des variances**
 
-Le test le plus simple pour comparer la variance de 2 échantillons est le test $F$ :
+Le test le plus simple pour comparer la variance de 2 populations est le test $F$ :
 
 - H$_0$ : la variance des 2 populations est égale, leur ratio vaut 1 $\left(\frac{\sigma^2_{killed}}{\sigma^2_{living}} = 1\right)$.
 - H$_1$ : la variance des 2 populations est différente, leur ratio ne vaut pas 1 $\left(\frac{\sigma^2_{killed}}{\sigma^2_{living}} \neq 1\right)$.
