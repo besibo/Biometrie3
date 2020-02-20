@@ -16,7 +16,7 @@ Nous disposons ici de 24 observations (24 portées de louveteaux) et 2 variables
 
 On fait ensuite appel à la fonction `skim()` du package `skimr` afin d'en apprendre plus sur nos variables :
 
-```{r}
+```{r, render = normal_print}
 skim(loups)
 ```
 
@@ -63,7 +63,7 @@ NB. : j'insiste ici sur le fait que nous n'avons pas regardé de relation de cau
 
 On suit exactement la même démarche que pour l'exercice précédent, je vais donc être plus succinct dans ma correction.
 
-```{r include=FALSE}
+```{r include=FALSE, render = normal_print}
 # Importation des données
 rope <- read_csv("data/ropetrick.csv")
 
@@ -124,14 +124,8 @@ example(anscombe)
 
 ### In your face
 
-```{r}
-
-
-```
-
-
 Comme toujours, on commence par importer et examiner les données brutes
-```{r, include = FALSE}
+```{r}
 hockey <- read_csv("data/hockey.csv")
 hockey
 ```
@@ -139,7 +133,7 @@ hockey
 Nous disposons bien de 21 observation pour 2 variables numériques : le ratio largeur / longueur du visage, et le nombre moyen de minutes de pénalité de chacun des 21 joueurs de hockey suivis.
 
 
-```{r}
+```{r, render = normal_print}
 skim(hockey)
 ```
 
