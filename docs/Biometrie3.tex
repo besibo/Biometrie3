@@ -127,7 +127,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2020-02-20}
+    \date{2020-02-25}
 
 \usepackage[french]{babel}
 \usepackage{mathspec}  % \usepackage{fontspec}
@@ -2840,7 +2840,7 @@ Dans la suite de cette section, nous faisons l'hypothèse, bien que ça ne soit 
 \hypertarget{ruxe9alisation-du-tests-et-interpruxe9tation}{%
 \paragraph{Réalisation du tests et interprétation}\label{ruxe9alisation-du-tests-et-interpruxe9tation}}
 
-Si les conditions d'application de l'ANOVA ne sont pas remplies, il est nécessaire d'utiliser un test non-paramétrique afin de comparer la moyenne de plus de deux groupes à la fois. La particularité de l'ANOVA est sa \textbf{robustesse} vis-à-vis d'un viol modéré de ses coditions d'application. La robustesse est la capacité d'un test à fournir des résultats qui restent valides même si toutes ses conditions d'application ne sont pas remplies. L'ANOVA étant particulièrement robuste, ses résultats resteront valides dans les situations suivantes :
+Si les conditions d'application de l'ANOVA ne sont pas remplies, il est nécessaire d'utiliser un test non-paramétrique afin de comparer la moyenne de plus de deux groupes à la fois. La particularité de l'ANOVA est sa \textbf{robustesse} vis-à-vis d'un viol modéré de ses conditions d'application. La robustesse est la capacité d'un test à fournir des résultats qui restent valides même si toutes ses conditions d'application ne sont pas remplies. L'ANOVA étant particulièrement robuste, ses résultats resteront valides dans les situations suivantes :
 
 \begin{itemize}
 \tightlist
@@ -2859,7 +2859,7 @@ L'alternative non paramétrique à l'ANOVA à un facteur est le test de la somme
 \item
   H\(_0\) : le type de traitement appliqué n'a pas d'effet sur le décalage de phase. Les médianes sont égales dans tous les groupes (\(\textrm{med}_\textrm{control} = \textrm{med}_\textrm{knee} = \textrm{med}_\textrm{eyes}\)).
 \item
-  H\(_1\) : le type de traitement appliqué a un d'effet sur le décalage de phase. Les médianes ne sont pas toutes égales, au moins l'une d'entre elles diffère des autres.
+  H\(_1\) : le type de traitement appliqué a un effet sur le décalage de phase. Les médianes ne sont pas toutes égales, au moins l'une d'entre elles diffère des autres.
 \end{itemize}
 
 \begin{Shaded}
@@ -3291,10 +3291,10 @@ sample estimates:
 Le test réalisé ici est le \textbf{test de corrélation de Pearson}. Il s'agit d'un test paramétrique dont les conditions d'application sont expliquées plus bas. Comme pour tous les tests examinés jusqu'ici, les premières lignes des résultats fournissent toutes les informations utiles au sujet du test. Ici, on peut dire :
 
 \begin{quote}
-Au seuil \(\alpha = 0.05\), le test de corrélation de Pearson a permis de rejeter l'hypothèse nulle selon laquelle la corrélation entre le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants (\(t = 2.96\), \(ddl = 22\), \(p = 0.007\)).
+Au seuil \(\alpha = 0.05\), le test de corrélation de Pearson a permis de rejeter l'hypothèse nulle selon laquelle le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants (\(t = 2.96\), \(ddl = 22\), \(p = 0.007\)).
 \end{quote}
 
-Ce test prouve donc que \(\rho\) est statistiquement différent de 0. La valeur de 0.53 observée ici n'est pas due au hasard de l'échantillonnage.
+Ce test prouve donc que \(\rho\) est significativement différent de 0. La valeur de 0.53 observée ici n'est pas due au hasard de l'échantillonnage.
 
 Comme toujours, les résultats du test que nous avons réalisé ne nous disent rien de la valeur de la corrélation estimée, ni de son incertitude. Il nous faut pour cela examiner les autres lignes fournies par \texttt{R} lorsque nous faisons ce test et qui relèvent de l'estimation (voir section suivante).
 
@@ -3347,7 +3347,7 @@ Revenons à notre test bilatéral. La section ``estimation'' des résultats de c
 L'intervalle de confiance à 95\% de cette valeur estimée est également fourni. La conclusion de cette procédure pourrait donc être formulée de la façon suivante :
 
 \begin{quote}
-Au seuil \(\alpha = 0.05\), le test de corrélation de Pearson a permis de rejeter l'hypothèse nulle selon laquelle la corrélation entre le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants (\(t = 2.96\), \(ddl = 22\), \(p = 0.007\)). La meilleure estimation de ce coefficient de corrélation dans la population générale vaut \(\hat{\rho} = 0.533\). La vraie valeur dans la population générale a de bonnes chances de se trouver dans l'inervalle {[}0.17 ; 0.77{]} (intervalle de confiance à 95\%).
+Au seuil \(\alpha = 0.05\), le test de corrélation de Pearson a permis de rejeter l'hypothèse nulle selon laquelle le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants (\(t = 2.96\), \(ddl = 22\), \(p = 0.007\)). La meilleure estimation du coefficient de corrélation dans la population générale vaut \(\hat{\rho} = 0.533\). La vraie valeur dans la population générale a de bonnes chances de se trouver dans l'intervalle {[}0.17 ; 0.77{]} (intervalle de confiance à 95\%).
 \end{quote}
 
 \hypertarget{conditions-dapplication-3}{%

@@ -24,7 +24,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2020-02-20" />
+<meta name="date" content="2020-02-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -381,9 +381,9 @@ sample estimates:
 0.5337225 </code></pre>
 <p>Le test réalisé ici est le <strong>test de corrélation de Pearson</strong>. Il s’agit d’un test paramétrique dont les conditions d’application sont expliquées plus bas. Comme pour tous les tests examinés jusqu’ici, les premières lignes des résultats fournissent toutes les informations utiles au sujet du test. Ici, on peut dire :</p>
 <blockquote>
-<p>Au seuil <span class="math inline">\(\alpha = 0.05\)</span>, le test de corrélation de Pearson a permis de rejeter l’hypothèse nulle selon laquelle la corrélation entre le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants (<span class="math inline">\(t = 2.96\)</span>, <span class="math inline">\(ddl = 22\)</span>, <span class="math inline">\(p = 0.007\)</span>).</p>
+<p>Au seuil <span class="math inline">\(\alpha = 0.05\)</span>, le test de corrélation de Pearson a permis de rejeter l’hypothèse nulle selon laquelle le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants (<span class="math inline">\(t = 2.96\)</span>, <span class="math inline">\(ddl = 22\)</span>, <span class="math inline">\(p = 0.007\)</span>).</p>
 </blockquote>
-<p>Ce test prouve donc que <span class="math inline">\(\rho\)</span> est statistiquement différent de 0. La valeur de 0.53 observée ici n’est pas due au hasard de l’échantillonnage.</p>
+<p>Ce test prouve donc que <span class="math inline">\(\rho\)</span> est significativement différent de 0. La valeur de 0.53 observée ici n’est pas due au hasard de l’échantillonnage.</p>
 <p>Comme toujours, les résultats du test que nous avons réalisé ne nous disent rien de la valeur de la corrélation estimée, ni de son incertitude. Il nous faut pour cela examiner les autres lignes fournies par <code>R</code> lorsque nous faisons ce test et qui relèvent de l’estimation (voir section suivante).</p>
 <p>Dernière chose concernant ce test, nous avons fait ici un test bilatéral comme nous le rappelle cette ligne des résultats :</p>
 <p><code>alternative hypothesis: true correlation is not equal to 0</code></p>
@@ -414,7 +414,7 @@ sample estimates:
 <p>Revenons à notre test bilatéral. La section “estimation” des résultats de ce test nous indique que la meilleure estimation du coefficient de corrélation linéaire de Pearson dans la population générale vaut <span class="math inline">\(\hat{\rho} = 0.533\)</span>. C’est la valeur que nous avions calculé à la main avec la fonction <code>cor()</code>.</p>
 <p>L’intervalle de confiance à 95% de cette valeur estimée est également fourni. La conclusion de cette procédure pourrait donc être formulée de la façon suivante :</p>
 <blockquote>
-<p>Au seuil <span class="math inline">\(\alpha = 0.05\)</span>, le test de corrélation de Pearson a permis de rejeter l’hypothèse nulle selon laquelle la corrélation entre le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants (<span class="math inline">\(t = 2.96\)</span>, <span class="math inline">\(ddl = 22\)</span>, <span class="math inline">\(p = 0.007\)</span>). La meilleure estimation de ce coefficient de corrélation dans la population générale vaut <span class="math inline">\(\hat{\rho} = 0.533\)</span>. La vraie valeur dans la population générale a de bonnes chances de se trouver dans l’inervalle [0.17 ; 0.77] (intervalle de confiance à 95%).</p>
+<p>Au seuil <span class="math inline">\(\alpha = 0.05\)</span>, le test de corrélation de Pearson a permis de rejeter l’hypothèse nulle selon laquelle le nombre de visites agressives au nid des poussins et leur futur comportement agressif sont indépendants (<span class="math inline">\(t = 2.96\)</span>, <span class="math inline">\(ddl = 22\)</span>, <span class="math inline">\(p = 0.007\)</span>). La meilleure estimation du coefficient de corrélation dans la population générale vaut <span class="math inline">\(\hat{\rho} = 0.533\)</span>. La vraie valeur dans la population générale a de bonnes chances de se trouver dans l’intervalle [0.17 ; 0.77] (intervalle de confiance à 95%).</p>
 </blockquote>
 </div>
 <div id="conditions-dapplication-3" class="section level4">
