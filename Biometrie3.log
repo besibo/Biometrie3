@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  25 FEB 2020 15:28
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  28 FEB 2020 17:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1788,7 +1788,13 @@ LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/bx/n' will be
 [3] [4]
 Missing character: There is no º in font lmmi10!
 Missing character: There is no º in font lmmi10!
-[5] [6] [7] [8]
+[5] [6] [7]
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 508--508
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: numeric --------------------
+-------------------------------------[] 
+ []
+
+[8]
 File: figure/unnamed-chunk-15-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-15-1.pdf>
 File: figure/unnamed-chunk-16-1.pdf Graphic file (type pdf)
@@ -1813,12 +1819,36 @@ LaTeX Font Warning: Font shape `TU/FuturaLT-Book(0)/m/sc' undefined
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/sc' will be
 (Font)              scaled to size 9.0886pt on input line 673.
 [12] [13] [14] [15] [16] [17] [18] [19] [20]
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 1037--1037
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: factor ---------------------
+-------------------------------------[] 
+ []
+
+
 Overfull \hbox (2.00356pt too wide) in paragraph at lines 1037--1037
 []\TU/FiraCode-Regular(0)/m/n/10 1 ID                    0             1 FALSE 
         13 1: 1, 2: 1, 3: 1, 4: 1[] 
  []
 
+
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 1037--1037
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: numeric --------------------
+-------------------------------------[] 
+ []
+
+
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 1077--1077
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: factor ---------------------
+-------------------------------------[] 
+ []
+
 [21]
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 1077--1077
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: numeric --------------------
+-------------------------------------[] 
+ []
+
+
 Overfull \hbox (7.10359pt too wide) in paragraph at lines 1077--1077
 []  \TU/FiraCode-Regular(0)/m/n/10 skim_variable Traitement n_missing complete_
 rate  mean    sd    p0   p25   p50[] 
@@ -1855,6 +1885,11 @@ File: figure/unnamed-chunk-36-1.pdf Graphic file (type pdf)
 File: figure/unnamed-chunk-38-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-38-1.pdf>
 [26] [27] [28] [29] [30] [31] [32] [33]
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 1602--1602
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: numeric --------------------
+-------------------------------------[] 
+ []
+
 File: figure/unnamed-chunk-49-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-49-1.pdf>
 [34]
@@ -1864,6 +1899,12 @@ File: figure/unnamed-chunk-50-1.pdf Graphic file (type pdf)
 File: figure/unnamed-chunk-51-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-51-1.pdf>
 [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51]
+
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 2449--2449
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: numeric --------------------
+-------------------------------------[] 
+ []
+
 [52]
 File: figure/unnamed-chunk-75-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-75-1.pdf>
@@ -1900,9 +1941,21 @@ File: figure/unnamed-chunk-97-1.pdf Graphic file (type pdf)
 File: figure/unnamed-chunk-98-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-98-1.pdf>
 [68] [69] [70]
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 3192--3192
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: factor ---------------------
+-------------------------------------[] 
+ []
+
+
 Overfull \hbox (2.00356pt too wide) in paragraph at lines 3192--3192
 []\TU/FiraCode-Regular(0)/m/n/10 1 ID                    0             1 FALSE 
         24 1: 1, 2: 1, 3: 1, 4: 1[] 
+ []
+
+
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 3192--3192
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: numeric --------------------
+-------------------------------------[] 
  []
 
 
@@ -1926,7 +1979,19 @@ File: figure/unnamed-chunk-106-1.pdf Graphic file (type pdf)
 [75] [76] [77]
 File: images/genetics.jpg Graphic file (type bmp)
 <images/genetics.jpg>
-[78] [79] [80] [81]
+[78] [79]
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 3565--3565
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: numeric --------------------
+-------------------------------------[] 
+ []
+
+[80]
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 3602--3602
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: numeric --------------------
+-------------------------------------[] 
+ []
+
+[81]
 File: figure/unnamed-chunk-113-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-113-1.pdf>
 File: figure/unnamed-chunk-114-1.pdf Graphic file (type pdf)
@@ -1942,7 +2007,13 @@ File: figure/unnamed-chunk-121-1.pdf Graphic file (type pdf)
 [87]
 File: figure/unnamed-chunk-122-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-122-1.pdf>
-[88] [89] [90] [91]
+[88] [89] [90]
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 3953--3953
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: numeric --------------------
+-------------------------------------[] 
+ []
+
+[91]
 File: figure/unnamed-chunk-127-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-127-1.pdf>
 [92] [93] [94]
@@ -1952,6 +2023,11 @@ File: figure/unnamed-chunk-132-1.pdf Graphic file (type pdf)
 File: figure/unnamed-chunk-134-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-134-1.pdf>
 [96] [97]
+Overfull \hbox (22.4037pt too wide) in paragraph at lines 4227--4227
+[]\TU/FiraCode-Regular(0)/m/n/10 -- Variable type: numeric --------------------
+-------------------------------------[] 
+ []
+
 File: figure/unnamed-chunk-137-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-137-1.pdf>
 [98] [99]
