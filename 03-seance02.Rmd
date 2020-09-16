@@ -300,7 +300,7 @@ En utilisant le tableau ci-dessus, nous pouvons synthétiser graphiquement ces r
 
 ```{r}
 tidy(post_hoc2) %>% 
-  ggplot(aes(x = comparison, y = estimate)) +
+  ggplot(aes(x = contrast, y = estimate)) +
   geom_point() + 
   geom_linerange(aes(ymin = conf.low, ymax = conf.high)) +
   geom_hline(yintercept = 0, linetype = 2) +
