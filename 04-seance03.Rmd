@@ -539,7 +539,7 @@ Lorsque les conditions d'application de la régression linéaire ne sont pas vé
 
 #### Datasaurus et Anscombe
 
-Exécutez les commandes suivantes
+Exécutez les commandes suivantes :
 
 ```{r, eval = FALSE}
 library(datasauRus)
@@ -557,9 +557,9 @@ datasaurus_dozen %>%
     )
 ```
 
-Examinez attentivement les nombreux résultats produits par cette commande. dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 13 jeux de données, 2 variables numériques `x` et `y` sont mises en relation. Pour tous ces jeux de données, on observe que la moyenne des `x` est la même, la moyenne de tous les `y` est la même, les écarts-types des `x` sont identiques, les écarts-types des `y` aussi, la corrélation entre `x` et `y` est également extrêmement proche, et lorsque l'on effectue une régression linéaire de `y` en fonction de `x`, les ordonnées à l'origine et les pentes des droites de régression sont extrêmement proches pour les 13 jeux de données. 
+Examinez attentivement les nombreux résultats produits par cette commande. Vous devriez remarquer que pour ces 13 jeux de données, 2 variables numériques `x` et `y` sont mises en relation. Pour tous ces jeux de données, on observe que la moyenne de tous les `x` est la même, la moyenne de tous les `y` est la même, les écarts-types des `x` sont identiques, les écarts-types des `y` aussi, la corrélation entre `x` et `y` est également extrêmement proche pour tous les jeux de données, et lorsque l'on effectue une régression linéaire de `y` en fonction de `x`, les ordonnées à l'origine et les pentes des droites de régression sont extrêmement proches pour les 13 jeux de données. 
 
-Si on s'en tient à ces calculs d'indices synthétiques, on pourrait croire que ces jeux de données sont identiques ou presque. Pourtant, ce n'est pas par hasard que je vous répète à longueur de temps qu'il est **indispensable de regarder les données** avant de se lancer dans les analyses et les statistiques. Car ici, ces jeux de données sont très différents, et conclure qu'ils sont identiques simplement parce que les statistiques descriptives sont égales, serait une erreur majeure :
+Si on s'en tient à ces calculs d'indices synthétiques, on pourrait croire que ces jeux de données sont identiques ou presque. Pourtant, ce n'est pas par hasard que je vous répète à longueur de temps qu'il est **indispensable de regarder les données** avant de se lancer dans les analyses et les statistiques. Car ici, ces jeux de données sont très différents ! Conclure qu'ils sont identiques simplement parce que les statistiques descriptives sont égales, serait une erreur majeure :
 
 ```{r, fig.asp = 1, echo = -1}
 library(datasauRus)
