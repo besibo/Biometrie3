@@ -7,12 +7,13 @@
   a4paper,
 ]{article}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath}
+\usepackage{amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -89,6 +90,7 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{#1}}
 \usepackage{longtable,booktabs}
+\usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -97,7 +99,7 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -131,10 +133,33 @@
 \setmainfont[Ligatures = TeX]{FuturaLT-Book}
 \setmonofont[Scale=0.85]{FiraCode-Regular}
 \onehalfspace
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{Travaux Pratiques de Biométrie 3}
 \author{Benoît Simon-Bouhet}
-\date{2020-09-17}
+\date{2021-02-12}
 
 \begin{document}
 \maketitle
@@ -157,11 +182,11 @@ Je considère qu'à ce stade, vous devez être à l'aise dans \texttt{RStudio} p
 \item
   Importer des jeux de données dans RStudio.
 \item
-  Manipuler des tableaux de données avec \texttt{tidyr} (Wickham \& Henry, \protect\hyperlink{ref-R-tidyr}{2020}) pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.
+  Manipuler des tableaux de données avec \texttt{tidyr} (\protect\hyperlink{ref-R-tidyr}{Wickham, 2020}) pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.
 \item
-  Faire des graphiques exploratoires avec \texttt{ggplot2} (Wickham, Chang, et al., \protect\hyperlink{ref-R-ggplot2}{2020}) pour visualiser des données.
+  Faire des graphiques exploratoires avec \texttt{ggplot2} (\protect\hyperlink{ref-R-ggplot2}{Wickham, Chang, et al., 2020}) pour visualiser des données.
 \item
-  Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonctions \texttt{filter()}, \texttt{select()}, \texttt{arrange()}, \texttt{mutate()}, \texttt{summarise()} et \texttt{group\_by()} du package \texttt{dplyr} (Wickham, François, et al., \protect\hyperlink{ref-R-dplyr}{2020}).
+  Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonctions \texttt{filter()}, \texttt{select()}, \texttt{arrange()}, \texttt{mutate()}, \texttt{summarise()} et \texttt{group\_by()} du package \texttt{dplyr} (\protect\hyperlink{ref-R-dplyr}{Wickham, François, et al., 2020}).
 \item
   Utiliser le pipe \texttt{\%\textgreater{}\%} afin d'enchaîner plusieurs commandes.
 \item
@@ -198,7 +223,7 @@ Au début de chaque nouvelle séance de TP, vous devrez ensuite effectuer les op
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Créez, dans votre dossier ``Biometrie3'', un sous-dossier nommé ``TP\_1'', ``TP\_2'', etc.
+  Créez, dans votre dossier ``Biometrie3,'' un sous-dossier nommé ``TP\_1,'' ``TP\_2,'' etc.
 \item
   Téléchargez les fichiers utiles disponibles sur l'ENT et placez-les dans le dossier du TP correspondant.
 \item
@@ -209,7 +234,7 @@ Au début de chaque nouvelle séance de TP, vous devrez ensuite effectuer les op
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{setwd}\NormalTok{(}\StringTok{"C:/.........../Biometrie3/TP_X"}\NormalTok{)}
+\FunctionTok{setwd}\NormalTok{(}\StringTok{"C:/.........../Biometrie3/TP\_X"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -223,7 +248,7 @@ Au début de chaque nouvelle séance de TP, vous devrez ensuite effectuer les op
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{list.files}\NormalTok{()}
+\FunctionTok{list.files}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -231,7 +256,7 @@ La liste des fichiers contenus dans votre répertoire de travail (donc le nom de
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{getwd}\NormalTok{()}
+\FunctionTok{getwd}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -257,15 +282,15 @@ Si vous suivez rigoureusement ces étapes, vous devriez être dans la situation 
 
 Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes disponibles sur l'ENT (ou directement depuis ce document).
 
-Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2019}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham et al., \protect\hyperlink{ref-R-readr}{2018}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Waring et al., \protect\hyperlink{ref-R-skimr}{2020}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2020}), qui permet d'effectuer le test de comparaison des variances de Levene :
+Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du \texttt{tidyverse} (\protect\hyperlink{ref-R-tidyverse}{Wickham, 2019}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (\protect\hyperlink{ref-R-readr}{Wickham \& Hester, 2020}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (\protect\hyperlink{ref-R-readxl}{Wickham \& Bryan, 2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (\protect\hyperlink{ref-R-skimr}{Waring et al., 2020}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (\protect\hyperlink{ref-R-car}{Fox et al., 2020}), qui permet d'effectuer le test de comparaison des variances de Levene :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(readr)}
-\KeywordTok{library}\NormalTok{(readxl)}
-\KeywordTok{library}\NormalTok{(skimr)}
-\KeywordTok{library}\NormalTok{(car)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(readxl)}
+\FunctionTok{library}\NormalTok{(skimr)}
+\FunctionTok{library}\NormalTok{(car)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -273,7 +298,7 @@ Si ces commandes (que vous devez taper dans vos scripts avant de les exécuter d
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"nom_du_package"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"nom\_du\_package"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -341,7 +366,7 @@ La première chose à faire quand on travaille avec des données inconnues, c'es
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{View}\NormalTok{(Temperature)}
+\FunctionTok{View}\NormalTok{(Temperature)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -362,13 +387,13 @@ On constate ici 2 choses que nous allons modifier :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Temp_clean <-}\StringTok{ }\NormalTok{Temperature }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{individual) }\OperatorTok{%>%}\StringTok{      }\CommentTok{# Suppression de la première colonne}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(                      }\CommentTok{# Transformation des températures en Celsius}
-    \DataTypeTok{temperature =}\NormalTok{ (temperature }\OperatorTok{-}\StringTok{ }\DecValTok{32}\NormalTok{) }\OperatorTok{/}\StringTok{ }\FloatTok{1.8}
+\NormalTok{Temp\_clean }\OtherTok{\textless{}{-}}\NormalTok{ Temperature }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{individual) }\SpecialCharTok{\%\textgreater{}\%}      \CommentTok{\# Suppression de la première colonne}
+  \FunctionTok{mutate}\NormalTok{(                      }\CommentTok{\# Transformation des températures en Celsius}
+    \AttributeTok{temperature =}\NormalTok{ (temperature }\SpecialCharTok{{-}} \DecValTok{32}\NormalTok{) }\SpecialCharTok{/} \FloatTok{1.8}
 \NormalTok{    )}
 
-\NormalTok{Temp_clean}
+\NormalTok{Temp\_clean}
 \end{Highlighting}
 \end{Shaded}
 
@@ -424,7 +449,7 @@ Pour répondre à ces questions, on peut faire appel à de multiples fonctions. 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(Temp_clean)}
+\FunctionTok{summary}\NormalTok{(Temp\_clean)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -458,9 +483,9 @@ La seconde fonction utile est la fonction \texttt{IQR()}, comme ``Inter Quartile
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pull}\NormalTok{(temperature) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{IQR}\NormalTok{()}
+\NormalTok{Temp\_clean }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(temperature) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{IQR}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -474,7 +499,7 @@ Enfin, une autre façon d'obtenir des informations rapidement consiste à utilis
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{skim}\NormalTok{(Temp_clean)}
+\FunctionTok{skim}\NormalTok{(Temp\_clean)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -521,9 +546,9 @@ Toutes ces fonctions prennent seulement un vecteur en guise d'argument. Il faut 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pull}\NormalTok{(temperature) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{var}\NormalTok{()}
+\NormalTok{Temp\_clean }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(temperature) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{var}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -535,7 +560,7 @@ ou :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{var}\NormalTok{(Temp_clean}\OperatorTok{$}\NormalTok{temperature)}
+\FunctionTok{var}\NormalTok{(Temp\_clean}\SpecialCharTok{$}\NormalTok{temperature)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -557,9 +582,9 @@ Ici, il s'agit d'examiner la distribution des données. Pour cela, 3 types de gr
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{y =}\NormalTok{ temperature)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{Temp\_clean }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \DecValTok{1}\NormalTok{, }\AttributeTok{y =}\NormalTok{ temperature)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -569,10 +594,10 @@ Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{y =}\NormalTok{ temperature)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{height =} \DecValTok{0}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.1}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{xlim}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{)}
+\NormalTok{Temp\_clean }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \DecValTok{1}\NormalTok{, }\AttributeTok{y =}\NormalTok{ temperature)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{height =} \DecValTok{0}\NormalTok{, }\AttributeTok{width =} \FloatTok{0.1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlim}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -582,13 +607,13 @@ La fonction \texttt{xlim()} permet de spéccifier manuellement les valeurs limit
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{y =}\NormalTok{ temperature)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{height =} \DecValTok{0}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.1}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{xlim}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_blank}\NormalTok{(),}
-        \DataTypeTok{axis.ticks.x =} \KeywordTok{element_blank}\NormalTok{(),}
-        \DataTypeTok{axis.title.x =} \KeywordTok{element_blank}\NormalTok{())}
+\NormalTok{Temp\_clean }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \DecValTok{1}\NormalTok{, }\AttributeTok{y =}\NormalTok{ temperature)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{height =} \DecValTok{0}\NormalTok{, }\AttributeTok{width =} \FloatTok{0.1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlim}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+        \AttributeTok{axis.ticks.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+        \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
 
@@ -606,9 +631,9 @@ On constate ici que la répartition des points est assez régulière, avec néan
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ temperature)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{10}\NormalTok{, }\DataTypeTok{color =} \KeywordTok{grey}\NormalTok{(}\FloatTok{0.8}\NormalTok{))}
+\NormalTok{Temp\_clean }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ temperature)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{10}\NormalTok{, }\AttributeTok{color =} \FunctionTok{grey}\NormalTok{(}\FloatTok{0.8}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -628,9 +653,9 @@ Notez ici que la forme de cet histogramme est très proche de celle présenté p
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ temperature)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{Temp\_clean }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ temperature)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{notch =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -640,11 +665,11 @@ Comme pour le stripchart présenté plus haut, l'axe des abscisses n'a ici aucun
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ temperature)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_blank}\NormalTok{(),}
-        \DataTypeTok{axis.ticks.x =} \KeywordTok{element_blank}\NormalTok{())}
+\NormalTok{Temp\_clean }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ temperature)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{notch =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+        \AttributeTok{axis.ticks.x =} \FunctionTok{element\_blank}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
 
@@ -711,14 +736,13 @@ Le test de Shapiro-Wilk se réalise de la façon suivante :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pull}\NormalTok{(temperature) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{shapiro.test}\NormalTok{()}
+\NormalTok{Temp\_clean }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(temperature) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{shapiro.test}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Shapiro-Wilk normality test
 
 data:  .
@@ -744,14 +768,13 @@ On réalise ensuite le test de la façon suivante :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pull}\NormalTok{(temperature) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{t.test}\NormalTok{(}\DataTypeTok{mu =} \DecValTok{37}\NormalTok{)}
+\NormalTok{Temp\_clean }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(temperature) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{t.test}\NormalTok{(}\AttributeTok{mu =} \DecValTok{37}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     One Sample t-test
 
 data:  .
@@ -783,9 +806,9 @@ Si jamais les conditions d'application du test de Student à un échantillon n'�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Temp_clean }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pull}\NormalTok{(temperature) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{wilcox.test}\NormalTok{(}\DataTypeTok{mu =} \DecValTok{37}\NormalTok{, }\DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{Temp\_clean }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(temperature) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{wilcox.test}\NormalTok{(}\AttributeTok{mu =} \DecValTok{37}\NormalTok{, }\AttributeTok{conf.int =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -800,7 +823,6 @@ exact confidence interval with ties
 \end{verbatim}
 
 \begin{verbatim}
-
     Wilcoxon signed rank test with continuity correction
 
 data:  .
@@ -823,7 +845,7 @@ Au seuil \(\alpha\) de 5\%, on ne peut pas rejeter l'hypothèse nulle (test de W
 
 Si les données ne suivent pas la loi Normale, la médiane est bien la métrique la plus intéressante puisque c'est elle qui nous renseigne sur la tendance centrale des données.
 
-Enfin, les tests de Wilcoxon renvoient souvent des messages d'avretissement. Il ne s'agit que de ça : des avertissements. Tant que la \(p\)-value des tests est éloignée de la valeur seuil \(\alpha\), cela n'a pas d'importance. Quand en revanche la \(p\)-value est très proche de \(\alpha\), il faut être très prudent face aux conclusions du test qui peuvent alors être assez ``fragiles''.
+Enfin, les tests de Wilcoxon renvoient souvent des messages d'avretissement. Il ne s'agit que de ça : des avertissements. Tant que la \(p\)-value des tests est éloignée de la valeur seuil \(\alpha\), cela n'a pas d'importance. Quand en revanche la \(p\)-value est très proche de \(\alpha\), il faut être très prudent face aux conclusions du test qui peuvent alors être assez ``fragiles.''
 
 (Notez que pour le test de Student à un échantillon comme pour le test de Wilcoxon des rangs signés, les conclusions sont en accord avec nos observations initiales réalisées à partir du boxplot).
 
@@ -864,7 +886,7 @@ Ici, nous allons nous intéresser au lien qui pourrait exister entre la producti
 
 Chez de nombreuses espèces, les mâles ont plus de chances d'attirer des femelles s'ils produisent des niveaux de testostérone élevés. Est-ce que la forte production de testostérone de certains mâle a un coût, notamment en terme d'immuno-compétence ? Autrement dit, est-ce que produire beaucoup de testostérone au moment de la reproduction (ce qui fournit un avantage sélectif) se traduit par une immunité plus faible par la suite, et donc une plus forte susceptibilité de contracter des maladies (ce qui constitue donc un désavantage sélectif) ?
 
-Pour étudier cette question, une équipe de chercheurs (Hasselquist et al., \protect\hyperlink{ref-Hasselquist1999}{1999}) a mis en place le dispositif expérimental suivant. Les niveaux de testostérone de 13 carouges à épaulettes mâles ont été artificiellement augmentés par l'implantation chirurgicale d'un microtube perméable contenant de la testostérone. L'immunocompétence a été mesurée pour chaque oiseau avant et après l'opération chirurgicale. La variable mesurée est la production d'anticorps suite à l'exposition des oiseaux avec un antigène non pathogène mais censé déclencher une réponse immunitaire. Les taux de production d'anticorps sont exprimés en logarithmes de densité optique par minute \(\left(\ln\frac{mOD}{min}\right)\).
+Pour étudier cette question, une équipe de chercheurs (\protect\hyperlink{ref-Hasselquist1999}{Hasselquist et al., 1999}) a mis en place le dispositif expérimental suivant. Les niveaux de testostérone de 13 carouges à épaulettes mâles ont été artificiellement augmentés par l'implantation chirurgicale d'un microtube perméable contenant de la testostérone. L'immunocompétence a été mesurée pour chaque oiseau avant et après l'opération chirurgicale. La variable mesurée est la production d'anticorps suite à l'exposition des oiseaux avec un antigène non pathogène mais censé déclencher une réponse immunitaire. Les taux de production d'anticorps sont exprimés en logarithmes de densité optique par minute \(\left(\ln\frac{mOD}{min}\right)\).
 
 \hypertarget{importation-et-examen-visuel-1}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-1}}
@@ -902,13 +924,13 @@ Commençons par créer un tableau ``large'' pour les statistiques descriptives :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Testo_large <-}\StringTok{ }\NormalTok{Testo }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{blackbird =} \KeywordTok{factor}\NormalTok{(blackbird)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\DataTypeTok{ID =}\NormalTok{ blackbird,}
-         \DataTypeTok{Before =}\NormalTok{ logBeforeImplant,}
-         \DataTypeTok{After =}\NormalTok{ logAfterImplant)}
+\NormalTok{Testo\_large }\OtherTok{\textless{}{-}}\NormalTok{ Testo }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{blackbird =} \FunctionTok{factor}\NormalTok{(blackbird)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\AttributeTok{ID =}\NormalTok{ blackbird,}
+         \AttributeTok{Before =}\NormalTok{ logBeforeImplant,}
+         \AttributeTok{After =}\NormalTok{ logAfterImplant)}
 
-\NormalTok{Testo_large}
+\NormalTok{Testo\_large}
 \end{Highlighting}
 \end{Shaded}
 
@@ -935,13 +957,13 @@ Il nous faut maintenant transformer ce tableau en format ``long'' pour les repr�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Testo_long <-}\StringTok{ }\NormalTok{Testo_large }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ Traitement, }
-         \DataTypeTok{value =}\NormalTok{ DO, }
-\NormalTok{         Before, After, }
-         \DataTypeTok{factor_key =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{Testo\_long }\OtherTok{\textless{}{-}}\NormalTok{ Testo\_large }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(Before, After),}
+               \AttributeTok{names\_to =} \StringTok{"Traitement"}\NormalTok{, }
+               \AttributeTok{values\_to =} \StringTok{"DO"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Traitement =} \FunctionTok{factor}\NormalTok{(Traitement))}
 
-\NormalTok{Testo_long}
+\NormalTok{Testo\_long}
 \end{Highlighting}
 \end{Shaded}
 
@@ -950,19 +972,19 @@ Il nous faut maintenant transformer ce tableau en format ``long'' pour les repr�
    ID    Traitement    DO
    <fct> <fct>      <dbl>
  1 1     Before      4.65
- 2 2     Before      3.91
- 3 3     Before      4.91
- 4 4     Before      4.5 
- 5 5     Before      4.8 
- 6 6     Before      4.88
- 7 7     Before      4.88
- 8 8     Before      4.78
- 9 9     Before      4.98
-10 10    Before      4.87
+ 2 1     After       4.44
+ 3 2     Before      3.91
+ 4 2     After       4.3 
+ 5 3     Before      4.91
+ 6 3     After       4.98
+ 7 4     Before      4.5 
+ 8 4     After       4.45
+ 9 5     Before      4.8 
+10 5     After       5   
 # ... with 16 more rows
 \end{verbatim}
 
-Si vous ne comprenez pas ces commandes, je vous conseille vivement de reprendre \href{https://besibo.github.io/DA/tidyr.html}{les chapitres 5 et 6} du livre en ligne de Biométrie 2. Dans l'idéal, depuis les TP de biométrie 2, vous devriez être capables de construire de telles séquences de commandes pour aboutir à un tableau rangé ne contenant que les variables utiles, au format long comme au format court (ou large). Mais évidemment, de telles groupes de commandes se construisent étape par étape, et pas d'un seul coup comme les comande précédentes pourraient le laisser croire.
+Si vous ne comprenez pas ces commandes, je vous conseille vivement de reprendre \href{https://besibo.github.io/DA/tidyr.html}{les chapitres 5 et 6} du livre en ligne de Biométrie 2. Dans l'idéal, depuis les TP de biométrie 2, vous devriez être capables de construire de telles séquences de commandes pour aboutir à un tableau rangé ne contenant que les variables utiles, au format long comme au format court (ou large). Mais évidemment, de telles groupes de commandes se construisent étape par étape, et pas d'un seul coup, contrairement à ce que les commandes précédentes pourraient laisser croire.
 
 Maintenant que nous disposons de ces 2 tableaux, nous pouvons commencer à décrire nos données.
 
@@ -975,7 +997,7 @@ Pour la fonction \texttt{summary()}, le plus simple est toujours d'utiliser le t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(Testo_large)}
+\FunctionTok{summary}\NormalTok{(Testo\_large)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -996,7 +1018,7 @@ Pour la fonction \texttt{skim()} le plus simple est là aussi d'utiliser le tabl
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{skim}\NormalTok{(Testo_large)}
+\FunctionTok{skim}\NormalTok{(Testo\_large)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1030,9 +1052,9 @@ On arrive toutefois aux mêmes résultats avec le tableau long, à condition de 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Testo_long }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(Traitement) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{skim}\NormalTok{()}
+\NormalTok{Testo\_long }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(Traitement) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{skim}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1051,19 +1073,19 @@ Group variables            Traitement
 
 -- Variable type: factor -------------------------------------------------------
   skim_variable Traitement n_missing complete_rate ordered n_unique
-1 ID            Before             0             1 FALSE         13
-2 ID            After              0             1 FALSE         13
+1 ID            After              0             1 FALSE         13
+2 ID            Before             0             1 FALSE         13
   top_counts            
 1 1: 1, 2: 1, 3: 1, 4: 1
 2 1: 1, 2: 1, 3: 1, 4: 1
 
 -- Variable type: numeric ------------------------------------------------------
   skim_variable Traitement n_missing complete_rate  mean    sd    p0   p25   p50
-1 DO            Before             0             1  4.73 0.280  3.91   4.7  4.8 
-2 DO            After              0             1  4.79 0.262  4.3    4.6  4.96
+1 DO            After              0             1  4.79 0.262  4.3    4.6  4.96
+2 DO            Before             0             1  4.73 0.280  3.91   4.7  4.8 
     p75  p100 hist 
-1  4.88  4.98 ▁▁▁▃▇
-2  5     5.02 ▂▁▂▁▇
+1  5     5.02 ▂▁▂▁▇
+2  4.88  4.98 ▁▁▁▃▇
 \end{verbatim}
 
 \hypertarget{exploration-graphique-1}{%
@@ -1080,9 +1102,9 @@ Ici, c'est le tableau rangé au format long qui sera le plus adapté. Lorsque no
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Testo_long }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Traitement, }\DataTypeTok{y =}\NormalTok{ DO)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{Testo\_long }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Traitement, }\AttributeTok{y =}\NormalTok{ DO)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1092,9 +1114,9 @@ Comme toujours, on peut réaliser un stripchart pour limiter les problèmes d'ov
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Testo_long }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Traitement, }\DataTypeTok{y =}\NormalTok{ DO)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{height =} \DecValTok{0}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.25}\NormalTok{)}
+\NormalTok{Testo\_long }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Traitement, }\AttributeTok{y =}\NormalTok{ DO)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{height =} \DecValTok{0}\NormalTok{, }\AttributeTok{width =} \FloatTok{0.25}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1112,10 +1134,10 @@ Nous allons faire un histogramme pour chaque série de données en utilisant des
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Testo_long }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ DO)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{10}\NormalTok{, }\DataTypeTok{color =} \KeywordTok{grey}\NormalTok{(}\FloatTok{0.8}\NormalTok{))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{Traitement, }\DataTypeTok{ncol =} \DecValTok{1}\NormalTok{)}
+\NormalTok{Testo\_long }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ DO)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{10}\NormalTok{, }\AttributeTok{color =} \FunctionTok{grey}\NormalTok{(}\FloatTok{0.8}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Traitement, }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1131,9 +1153,9 @@ Nous allons faire un histogramme pour chaque série de données en utilisant des
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Testo_long }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Traitement, }\DataTypeTok{y =}\NormalTok{ DO)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{Testo\_long }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Traitement, }\AttributeTok{y =}\NormalTok{ DO)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{notch =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1147,9 +1169,9 @@ Ici, l'intervalle de confiance à 95\% de la médiane pour la série ``After'' e
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Testo_long }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Traitement, }\DataTypeTok{y =}\NormalTok{ DO)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{()}
+\NormalTok{Testo\_long }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Traitement, }\AttributeTok{y =}\NormalTok{ DO)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1161,10 +1183,10 @@ Toutes ces représentations graphiques sont certes utiles, mais elles masquent u
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Testo_long }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Traitement, }\DataTypeTok{y =}\NormalTok{ DO, }\DataTypeTok{group =}\NormalTok{ ID, }\DataTypeTok{color =}\NormalTok{ ID)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.7}\NormalTok{)}
+\NormalTok{Testo\_long }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Traitement, }\AttributeTok{y =}\NormalTok{ DO, }\AttributeTok{group =}\NormalTok{ ID, }\AttributeTok{color =}\NormalTok{ ID)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1204,10 +1226,10 @@ Les conditions d'application de ce test paramétrique sont presque les mêmes qu
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Testo_large <-}\StringTok{ }\NormalTok{Testo_large }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Diff =}\NormalTok{ After }\OperatorTok{-}\StringTok{ }\NormalTok{Before)}
+\NormalTok{Testo\_large }\OtherTok{\textless{}{-}}\NormalTok{ Testo\_large }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Diff =}\NormalTok{ After }\SpecialCharTok{{-}}\NormalTok{ Before)}
 
-\NormalTok{Testo_large}
+\NormalTok{Testo\_large}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1234,9 +1256,9 @@ Il nous faut donc tester la normalité de la nouvelle variable \texttt{Diff}. Co
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Testo_large }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Diff)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{10}\NormalTok{, }\DataTypeTok{color =} \KeywordTok{grey}\NormalTok{(}\FloatTok{0.8}\NormalTok{))}
+\NormalTok{Testo\_large }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Diff)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{10}\NormalTok{, }\AttributeTok{color =} \FunctionTok{grey}\NormalTok{(}\FloatTok{0.8}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1254,14 +1276,13 @@ Compte tenu du faible nombre d'individus, la forme de l'histogramme n'est pas si
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Testo_large }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pull}\NormalTok{(Diff) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{shapiro.test}\NormalTok{()}
+\NormalTok{Testo\_large }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(Diff) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{shapiro.test}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Shapiro-Wilk normality test
 
 data:  .
@@ -1289,23 +1310,22 @@ Le test de Student sur données appariées peut se faire de 3 façons distinctes
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Méthode nº1 : avec une formule et le tableau au format long}
-\KeywordTok{t.test}\NormalTok{(DO }\OperatorTok{~}\StringTok{ }\NormalTok{Traitement, }\DataTypeTok{data =}\NormalTok{ Testo_long, }\DataTypeTok{paired =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{\# Méthode nº1 : avec une formule et le tableau au format long}
+\FunctionTok{t.test}\NormalTok{(DO }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Traitement, }\AttributeTok{data =}\NormalTok{ Testo\_long, }\AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Paired t-test
 
 data:  DO by Traitement
-t = -1.2714, df = 12, p-value = 0.2277
+t = 1.2714, df = 12, p-value = 0.2277
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -0.15238464  0.04007695
+ -0.04007695  0.15238464
 sample estimates:
 mean of the differences 
-            -0.05615385 
+             0.05615385 
 \end{verbatim}
 
 Plusieurs remarques concernant cette première syntaxe :
@@ -1314,7 +1334,7 @@ Plusieurs remarques concernant cette première syntaxe :
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  On utilise le symbole ``\texttt{\textasciitilde{}}'' pour indiquer une formule. On cherche à regarder l'effet du \texttt{Traitement} sur la \texttt{DO} qui traduit l'immuno-compétence. Le ``\texttt{\textasciitilde{}}'' se lit : ``en fonction de''.
+  On utilise le symbole ``\texttt{\textasciitilde{}}'' pour indiquer une formule. On cherche à regarder l'effet du \texttt{Traitement} sur la \texttt{DO} qui traduit l'immuno-compétence. Le ``\texttt{\textasciitilde{}}'' se lit : ``en fonction de.''
 \item
   Avec la syntaxe utilisant les formules, on doit spécifier l'argument \texttt{data\ =\ Testo\_long} pour indiquer à RStudio que les variables \texttt{DO} et \texttt{Traitement} sont des colonnes de ce tableau.
 \item
@@ -1331,13 +1351,12 @@ Donc visiblement, une forte production de testostérone n'est pas significativem
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Méthode nº2 : avec les 2 séries de données et le tableau au format large}
-\KeywordTok{t.test}\NormalTok{(Testo_large}\OperatorTok{$}\NormalTok{Before, Testo_large}\OperatorTok{$}\NormalTok{After, }\DataTypeTok{paired =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{\# Méthode nº2 : avec les 2 séries de données et le tableau au format large}
+\FunctionTok{t.test}\NormalTok{(Testo\_large}\SpecialCharTok{$}\NormalTok{Before, Testo\_large}\SpecialCharTok{$}\NormalTok{After, }\AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Paired t-test
 
 data:  Testo_large$Before and Testo_large$After
@@ -1350,19 +1369,18 @@ mean of the differences
             -0.05615385 
 \end{verbatim}
 
-Cette deuxième syntaxe est différente de la première puisque nous n'utilisons plus le format \texttt{formule}. Ici, on indique le nom des 2 colonnes du tableau \texttt{Testo\_large} qui contiennent les 2 séries de données. Puisque nous n'utilisons plus de formule, l'argument ``\texttt{data\ =\ ...}'' n'existe plus. C'est pourquoi il nous faut taper spécifiquement ``\texttt{Testo\_large\$Before}'' et ``\texttt{Testo\_large\$After}'', et non pas simplement le nom des colonnes. En revanche, comme pour le test précédent, il est indispensable d'indiquer ``\texttt{paired\ =\ TRUE}'' pour faire un test de Student sur données appariées.
+Cette deuxième syntaxe est différente de la première puisque nous n'utilisons plus le format \texttt{formule}. Ici, on indique le nom des 2 colonnes du tableau \texttt{Testo\_large} qui contiennent les 2 séries de données. Puisque nous n'utilisons plus de formule, l'argument ``\texttt{data\ =\ ...}'' n'existe plus. C'est pourquoi il nous faut taper spécifiquement ``\texttt{Testo\_large\$Before}'' et ``\texttt{Testo\_large\$After},'' et non pas simplement le nom des colonnes. En revanche, comme pour le test précédent, il est indispensable d'indiquer ``\texttt{paired\ =\ TRUE}'' pour faire un test de Student sur données appariées.
 
 Les résultats fournis et leur interprétation sont identiques à ceux de la syntaxe précédente.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Méthode nº3 : avec la variable Diff, mu = 0, et le tableau au format large}
-\KeywordTok{t.test}\NormalTok{(Testo_large}\OperatorTok{$}\NormalTok{Diff, }\DataTypeTok{mu =} \DecValTok{0}\NormalTok{)}
+\CommentTok{\# Méthode nº3 : avec la variable Diff, mu = 0, et le tableau au format large}
+\FunctionTok{t.test}\NormalTok{(Testo\_large}\SpecialCharTok{$}\NormalTok{Diff, }\AttributeTok{mu =} \DecValTok{0}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     One Sample t-test
 
 data:  Testo_large$Diff
@@ -1398,33 +1416,31 @@ Comme pour le test de Student, 3 syntaxes sont possibles et strictement équival
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{wilcox.test}\NormalTok{(DO }\OperatorTok{~}\StringTok{ }\NormalTok{Traitement, }\DataTypeTok{data =}\NormalTok{ Testo_long, }\DataTypeTok{paired =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{)}
+\FunctionTok{wilcox.test}\NormalTok{(DO }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Traitement, }\AttributeTok{data =}\NormalTok{ Testo\_long, }\AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{conf.int =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Wilcoxon signed rank exact test
 
 data:  DO by Traitement
-V = 30, p-value = 0.3054
+V = 61, p-value = 0.3054
 alternative hypothesis: true location shift is not equal to 0
 95 percent confidence interval:
- -0.145  0.040
+ -0.040  0.145
 sample estimates:
 (pseudo)median 
-        -0.055 
+         0.055 
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{wilcox.test}\NormalTok{(Testo_large}\OperatorTok{$}\NormalTok{Before, Testo_large}\OperatorTok{$}\NormalTok{After, }\DataTypeTok{paired =} \OtherTok{TRUE}\NormalTok{, }
-            \DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{)}
+\FunctionTok{wilcox.test}\NormalTok{(Testo\_large}\SpecialCharTok{$}\NormalTok{Before, Testo\_large}\SpecialCharTok{$}\NormalTok{After, }\AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{, }
+            \AttributeTok{conf.int =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Wilcoxon signed rank exact test
 
 data:  Testo_large$Before and Testo_large$After
@@ -1439,12 +1455,11 @@ sample estimates:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{wilcox.test}\NormalTok{(Testo_large}\OperatorTok{$}\NormalTok{Diff, }\DataTypeTok{mu =} \DecValTok{0}\NormalTok{, }\DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{)}
+\FunctionTok{wilcox.test}\NormalTok{(Testo\_large}\SpecialCharTok{$}\NormalTok{Diff, }\AttributeTok{mu =} \DecValTok{0}\NormalTok{, }\AttributeTok{conf.int =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Wilcoxon signed rank exact test
 
 data:  Testo_large$Diff
@@ -1466,7 +1481,7 @@ Le test de Wilcoxon des rangs signés n'a pas permis de montrer de changement d'
 \hypertarget{exercice-dapplication-1}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication-1}}
 
-Les autruches vivent dans des environnements chauds et elles sont donc fréquemment exposées au soleil durant de longues périodes. Dans des environnements similaires, les mammifères ont des mécanismes physiologiques leur permettant de réduire la température de leur cerveau par rapport à celle de leur corps. Une équipe de chercheurs (Fuller et al., \protect\hyperlink{ref-Fuller2003}{2003}) a testé si les autruches pouvaient faire de même. La température du corps et du cerveau de 37 autruches a été enregistrée par une journée chaude typique. Les résultats, exprimés en degrés Celsius, figurent dans \href{https://besibo.github.io/Biometrie3/data/Autruches.csv}{le fichier \texttt{Autruches.csv}}.
+Les autruches vivent dans des environnements chauds et elles sont donc fréquemment exposées au soleil durant de longues périodes. Dans des environnements similaires, les mammifères ont des mécanismes physiologiques leur permettant de réduire la température de leur cerveau par rapport à celle de leur corps. Une équipe de chercheurs (\protect\hyperlink{ref-Fuller2003}{Fuller et al., 2003}) a testé si les autruches pouvaient faire de même. La température du corps et du cerveau de 37 autruches a été enregistrée par une journée chaude typique. Les résultats, exprimés en degrés Celsius, figurent dans \href{https://besibo.github.io/Biometrie3/data/Autruches.csv}{le fichier \texttt{Autruches.csv}}.
 
 Importez ces données et faites-en l'analyse pour savoir s'il existe une différence de température moyenne entre le corps et le cerveau des autruches. Comparez ces résultats avec les prédictions faites pour les mammifères dans un environnement similaire. Comme toujours, vous commencerez par faire une analyse descriptive des données, sous forme numérique et graphique, avant de vous lancer dans les tests d'hypothèses.
 
@@ -1478,7 +1493,7 @@ On s'intéresse maintenant aux méthodes permettant de comparer la moyenne de de
 \hypertarget{exploration-pruxe9alable-des-donnuxe9es}{%
 \subsubsection{Exploration préalable des données}\label{exploration-pruxe9alable-des-donnuxe9es}}
 
-Chez \href{https://fr.wikipedia.org/wiki/Phrynosoma_mcallii}{le lézard cornu \emph{Phrynosoma mcallii}}, une frange de piquants entoure la tête. Une équipe d'herpétologues (Young et al., \protect\hyperlink{ref-Young2004}{2004}) a étudié la question suivante : des piquants plus longs autour de la tête protègent-ils le lézard cornu de son prédateur naturel, \href{https://fr.wikipedia.org/wiki/Pie-grièche_migratrice}{la pie grièche migratrice \emph{Lanius ludovicianus}} ? Ce prédateur a en effet une particularité : il accroche ses proies mortes à des barbelés ou des branches pour les consommer plus tard. Les chercheurs ont donc mesuré la longueur des cornes de 30 lézards retrouvés morts et accrochés dans des arbres par la pie grièche migratrice. Et en parallèle, ils ont mesuré les cornes de 154 individus vivants et en bonne santé choisis au hasard dans la population.
+Chez \href{https://fr.wikipedia.org/wiki/Phrynosoma_mcallii}{le lézard cornu \emph{Phrynosoma mcallii}}, une frange de piquants entoure la tête. Une équipe d'herpétologues (\protect\hyperlink{ref-Young2004}{Young et al., 2004}) a étudié la question suivante : des piquants plus longs autour de la tête protègent-ils le lézard cornu de son prédateur naturel, \href{https://fr.wikipedia.org/wiki/Pie-grièche_migratrice}{la pie grièche migratrice \emph{Lanius ludovicianus}} ? Ce prédateur a en effet une particularité : il accroche ses proies mortes à des barbelés ou des branches pour les consommer plus tard. Les chercheurs ont donc mesuré la longueur des cornes de 30 lézards retrouvés morts et accrochés dans des arbres par la pie grièche migratrice. Et en parallèle, ils ont mesuré les cornes de 154 individus vivants et en bonne santé choisis au hasard dans la population.
 
 \hypertarget{importation-et-examen-visuel-2}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-2}}
@@ -1510,7 +1525,7 @@ Les données de cette étude sont stockées dans \href{https://besibo.github.io/
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{View}\NormalTok{(Lizard)}
+\FunctionTok{View}\NormalTok{(Lizard)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1531,10 +1546,10 @@ Nous pouvons facilement réaliser les 3 modifications d'un coup :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Lizard <-}\StringTok{ }\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Survival =} \KeywordTok{factor}\NormalTok{(Survival)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{Horn_len =}\NormalTok{ squamosalHornLength) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(Horn_len))}
+\NormalTok{Lizard }\OtherTok{\textless{}{-}}\NormalTok{ Lizard }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Survival =} \FunctionTok{factor}\NormalTok{(Survival)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{Horn\_len =}\NormalTok{ squamosalHornLength) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(Horn\_len))}
 
 \NormalTok{Lizard}
 \end{Highlighting}
@@ -1564,9 +1579,9 @@ Comme dans la partie précédente sur les données appariées, les statistiques 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(Survival) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{skim}\NormalTok{()}
+\NormalTok{Lizard }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(Survival) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{skim}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1598,7 +1613,7 @@ On constate également que si les écarts-types des 2 groupes sont proches, les 
 \hypertarget{exploration-graphique-2}{%
 \paragraph{Exploration graphique}\label{exploration-graphique-2}}
 
-Comme toujours, nous pouvons réaliser 3 types de graphiques pour en apprendre plus sur la distribution des données dans les deux groupes. En revanche, sur le graphique de type ``nuage de points'', il est ici impossible de relier les points deux à deux. Non seulement cela n'aurait aucun sens puisque les échantillons sont indépendants, mais en outre, nous ne disposons pas du même nombre d'individus dans les 2 échantillons.
+Comme toujours, nous pouvons réaliser 3 types de graphiques pour en apprendre plus sur la distribution des données dans les deux groupes. En revanche, sur le graphique de type ``nuage de points,'' il est ici impossible de relier les points deux à deux. Non seulement cela n'aurait aucun sens puisque les échantillons sont indépendants, mais en outre, nous ne disposons pas du même nombre d'individus dans les 2 échantillons.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1609,9 +1624,9 @@ Comme toujours, nous pouvons réaliser 3 types de graphiques pour en apprendre p
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Survival, }\DataTypeTok{y =}\NormalTok{ Horn_len)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{height =} \DecValTok{0}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.2}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
+\NormalTok{Lizard }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Survival, }\AttributeTok{y =}\NormalTok{ Horn\_len)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{height =} \DecValTok{0}\NormalTok{, }\AttributeTok{width =} \FloatTok{0.2}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1629,10 +1644,10 @@ Ce premier graphique permet de visualiser très clairement les différences de t
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Horn_len)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{15}\NormalTok{, }\DataTypeTok{color =} \KeywordTok{grey}\NormalTok{(}\FloatTok{0.8}\NormalTok{)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{Survival, }\DataTypeTok{ncol =} \DecValTok{1}\NormalTok{, }\DataTypeTok{scales =} \StringTok{"free_y"}\NormalTok{)}
+\NormalTok{Lizard }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Horn\_len)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{15}\NormalTok{, }\AttributeTok{color =} \FunctionTok{grey}\NormalTok{(}\FloatTok{0.8}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Survival, }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{, }\AttributeTok{scales =} \StringTok{"free\_y"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1652,9 +1667,9 @@ Cette visualisation nous montre que les données doivent suivre à peu près une
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Survival, }\DataTypeTok{y =}\NormalTok{ Horn_len)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{Lizard }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Survival, }\AttributeTok{y =}\NormalTok{ Horn\_len)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{notch =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1703,15 +1718,14 @@ Nous commençons donc par tester la Normalité des 2 populations dont sont issus
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(Survival }\OperatorTok{==}\StringTok{ "killed"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pull}\NormalTok{(Horn_len) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{shapiro.test}\NormalTok{()}
+\NormalTok{Lizard }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(Survival }\SpecialCharTok{==} \StringTok{"killed"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(Horn\_len) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{shapiro.test}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Shapiro-Wilk normality test
 
 data:  .
@@ -1734,15 +1748,14 @@ Pour les individus vivants :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Lizard }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(Survival }\OperatorTok{==}\StringTok{ "living"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pull}\NormalTok{(Horn_len) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{shapiro.test}\NormalTok{()}
+\NormalTok{Lizard }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(Survival }\SpecialCharTok{==} \StringTok{"living"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(Horn\_len) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{shapiro.test}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Shapiro-Wilk normality test
 
 data:  .
@@ -1769,12 +1782,11 @@ Le test le plus simple pour comparer la variance de 2 populations est le test \(
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{var.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard)}
+\FunctionTok{var.test}\NormalTok{(Horn\_len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Survival, }\AttributeTok{data =}\NormalTok{ Lizard)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     F test to compare two variances
 
 data:  Horn_len by Survival
@@ -1803,12 +1815,11 @@ Le test de Bartlett est un autre test qui permet de comparer la variance de plus
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{bartlett.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard)}
+\FunctionTok{bartlett.test}\NormalTok{(Horn\_len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Survival, }\AttributeTok{data =}\NormalTok{ Lizard)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Bartlett test of homogeneity of variances
 
 data:  Horn_len by Survival
@@ -1827,9 +1838,9 @@ Enfin, le test de Levene devrait être préféré la plupart du temps. Comme le 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Le test de Levene fait partie du package car. Il doit être chargé en mémoire}
-\CommentTok{# library(car)}
-\KeywordTok{leveneTest}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard)}
+\CommentTok{\# Le test de Levene fait partie du package car. Il doit être chargé en mémoire}
+\CommentTok{\# library(car)}
+\FunctionTok{leveneTest}\NormalTok{(Horn\_len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Survival, }\AttributeTok{data =}\NormalTok{ Lizard)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1861,12 +1872,11 @@ Puisque la taille des cornes du lézard cornu suit approximativement la même di
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(Horn\_len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Survival, }\AttributeTok{data =}\NormalTok{ Lizard, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Two Sample t-test
 
 data:  Horn_len by Survival
@@ -1884,7 +1894,7 @@ Notez bien la syntaxe :
 \begin{itemize}
 \tightlist
 \item
-  Nous utilisons ici la syntaxe du type ``formule'' faisant appel au symbole ``\texttt{\textasciitilde{}}'' (Longueur des cornes en fonction de la Survie) et à l'argument ``\texttt{data\ =}''.
+  Nous utilisons ici la syntaxe du type ``formule'' faisant appel au symbole ``\texttt{\textasciitilde{}}'' (Longueur des cornes en fonction de la Survie) et à l'argument ``\texttt{data\ =}.''
 \item
   L'argument ``\texttt{paired\ =\ TRUE}'' a disparu puisque nous avons ici deux échantillons indépendants
 \item
@@ -1912,12 +1922,11 @@ Si les conditions d'application du test de Student ne sont pas vérifiées, nous
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{wilcox.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{)}
+\FunctionTok{wilcox.test}\NormalTok{(Horn\_len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Survival, }\AttributeTok{data =}\NormalTok{ Lizard, }\AttributeTok{conf.int =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Wilcoxon rank sum test with continuity correction
 
 data:  Horn_len by Survival
@@ -1946,12 +1955,11 @@ Enfin, dans le cas où la variable étudiée suit la loi Normale dans les deux p
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard)}
+\FunctionTok{t.test}\NormalTok{(Horn\_len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Survival, }\AttributeTok{data =}\NormalTok{ Lizard)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Welch Two Sample t-test
 
 data:  Horn_len by Survival
@@ -2022,9 +2030,9 @@ Dans R, la syntaxe permettant de spécifier l'hypothèse alternative que nous so
 \item
   \texttt{alternative\ =\ "two.sided"} : pour faire un test bilatéral. Si on ne le fait pas explicitement, c'est de toutes façons cette valeur qui est utilisée par défaut.
 \item
-  \texttt{alternative\ =\ "greater"} : pour choisir l'hypothèse unilatérale ``\texttt{\textgreater{}}''.
+  \texttt{alternative\ =\ "greater"} : pour choisir l'hypothèse unilatérale ``\texttt{\textgreater{}}.''
 \item
-  \texttt{alternative\ =\ "less"} : pour choisir l'hypothèse unilatérale ``\texttt{\textless{}}''.
+  \texttt{alternative\ =\ "less"} : pour choisir l'hypothèse unilatérale ``\texttt{\textless{}}.''
 \end{itemize}
 
 Attention : le choix d'utiliser ``greater'' ou ``less'' dépend donc de l'ordre dans lequel les échantillons sont spécifiés. Cette synatxe est valable pour tous les tests de Student vus jusqu'ici (un échantillon, deux échantillons appariés, deux échantillons indépendants) et pour leurs alternatives non paramétriques (test de Wilcoxon des rangs signés, test de Wilcoxon de la somme des rangs, test du \(t\) de Welch).
@@ -2040,12 +2048,11 @@ Lorsque nous avons examiné cette question, nous avons fait le test du \(t\) de 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }\DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(Horn\_len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Survival, }\AttributeTok{data =}\NormalTok{ Lizard, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Two Sample t-test
 
 data:  Horn_len by Survival
@@ -2058,7 +2065,7 @@ mean in group killed mean in group living
             21.98667             24.28117 
 \end{verbatim}
 
-Comme l'indiquent les résultats fournis, l'hypothèse alternative utilisée pour faire le test est : ``La vraie différence de moyenne n'est pas égale à 0''. Autrement dit, nous avons fait un test bilatéral avec les hypothèses suivantes :
+Comme l'indiquent les résultats fournis, l'hypothèse alternative utilisée pour faire le test est : ``La vraie différence de moyenne n'est pas égale à 0.'' Autrement dit, nous avons fait un test bilatéral avec les hypothèses suivantes :
 
 \begin{itemize}
 \tightlist
@@ -2072,14 +2079,13 @@ Ce test est donc rigoureusement équivalent à celui-ci :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }
-       \DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{,}
-       \DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(Horn\_len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Survival, }
+       \AttributeTok{data =}\NormalTok{ Lizard, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Two Sample t-test
 
 data:  Horn_len by Survival
@@ -2104,14 +2110,13 @@ Ici, nous souhaitons en fait réaliser un \textbf{test unilatéral} avec les hyp
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }
-       \DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{,}
-       \DataTypeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(Horn\_len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Survival, }
+       \AttributeTok{data =}\NormalTok{ Lizard, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Two Sample t-test
 
 data:  Horn_len by Survival
@@ -2140,14 +2145,13 @@ Ce test est normalement exactement le même que précédemment. Toutefois, si on
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }
-       \DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{,}
-       \DataTypeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(Horn\_len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Survival, }
+       \AttributeTok{data =}\NormalTok{ Lizard, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Two Sample t-test
 
 data:  Horn_len by Survival
@@ -2162,11 +2166,11 @@ mean in group killed mean in group living
 
 Ici, la \(p\)-value est très supérieure à \(\alpha\) puisqu'elle vaut 1. Une \(p\)-value de 1 devrait toujours attirer votre attention. La conclusion devrait donc être que l'on ne peut pas rejeter H\(_0\) : les lézards morts et vivants ont en moyenne des cornes de même longueur. Nous savons pourtant que c'est faux.
 
-Le problème est ici liè à l'ordre des catégories ``vivant'' ou ``mort'' dans le facteur \texttt{Survival} du tableau \texttt{Lizard}. Les dernières lignes des tests que nous venons de faire indiquent la moyenne de chaque groupe, mais le groupe ``killed'' apparaît toujours avant le groupe ``living''. C'est l'ordre des niveaux dans le facteur \texttt{Survival} qui doit dicter la syntaxe appropriée :
+Le problème est ici liè à l'ordre des catégories ``vivant'' ou ``mort'' dans le facteur \texttt{Survival} du tableau \texttt{Lizard}. Les dernières lignes des tests que nous venons de faire indiquent la moyenne de chaque groupe, mais le groupe ``killed'' apparaît toujours avant le groupe ``living.'' C'est l'ordre des niveaux dans le facteur \texttt{Survival} qui doit dicter la syntaxe appropriée :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Lizard}\OperatorTok{$}\NormalTok{Survival}
+\NormalTok{Lizard}\SpecialCharTok{$}\NormalTok{Survival}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2193,13 +2197,13 @@ Le problème est ici liè à l'ordre des catégories ``vivant'' ou ``mort'' dans
 Levels: killed living
 \end{verbatim}
 
-Par défaut, dans R, les niveaux d'un facteur sont classés par ordre alphabétique sauf si on spécifie manuellement un ordre différent. Ici, le niveau ``killed'' est donc le premier niveau du facteur, et ``living'' le second. Lorsque l'on réalise un test de Student avec ces données (ou un test de Wilcoxon d'ailleurs), la différence de moyenne qui est examinée par le test est donc ``moyenne des \texttt{killed} - moyenne des \texttt{living}''. Lorsque nous avons tapé ceci :
+Par défaut, dans R, les niveaux d'un facteur sont classés par ordre alphabétique sauf si on spécifie manuellement un ordre différent. Ici, le niveau ``killed'' est donc le premier niveau du facteur, et ``living'' le second. Lorsque l'on réalise un test de Student avec ces données (ou un test de Wilcoxon d'ailleurs), la différence de moyenne qui est examinée par le test est donc ``moyenne des \texttt{killed} - moyenne des \texttt{living}.'' Lorsque nous avons tapé ceci :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }
-       \DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{,}
-       \DataTypeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(Horn\_len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Survival, }
+       \AttributeTok{data =}\NormalTok{ Lizard, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2217,9 +2221,9 @@ Ce test est donc erronné, ce qui explique qu'il nous renvoie un résultat faux 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(Horn_len }\OperatorTok{~}\StringTok{ }\NormalTok{Survival, }
-       \DataTypeTok{data =}\NormalTok{ Lizard, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{,}
-       \DataTypeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(Horn\_len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Survival, }
+       \AttributeTok{data =}\NormalTok{ Lizard, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2236,24 +2240,24 @@ Reprenez chaque exemple et exercice de cette séance de TP et identifiez les sit
 
 Avant toute chose, merci de relire l'introduction (section \ref{intro}) de ce document, et de suivre toutes les étapes qui y sont décrites (création d'un nouveau sous-dossier nommé \texttt{TP\_2} dans votre dossier \texttt{Biometrie3}, changement du répertoire de travail et création d'un nouveau script).
 
-Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2019}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham et al., \protect\hyperlink{ref-R-readr}{2018}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Waring et al., \protect\hyperlink{ref-R-skimr}{2020}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2020}), qui permet d'effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package \texttt{broom} (Robinson et al., \protect\hyperlink{ref-R-broom}{2020}), qui fait partie du \texttt{tidyverse} mais qu'il faut charger explicitement. La fonction \texttt{tidy()} de ce package nous permettra de ``ranger'' correctement les résultats de tests dans un \texttt{tibble} :
+Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du \texttt{tidyverse} (\protect\hyperlink{ref-R-tidyverse}{Wickham, 2019}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (\protect\hyperlink{ref-R-readr}{Wickham \& Hester, 2020}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (\protect\hyperlink{ref-R-readxl}{Wickham \& Bryan, 2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (\protect\hyperlink{ref-R-skimr}{Waring et al., 2020}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (\protect\hyperlink{ref-R-car}{Fox et al., 2020}), qui permet d'effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package \texttt{broom} (\protect\hyperlink{ref-R-broom}{Robinson et al., 2020}), qui fait partie du \texttt{tidyverse} mais qu'il faut charger explicitement. La fonction \texttt{tidy()} de ce package nous permettra de ``ranger'' correctement les résultats de tests dans un \texttt{tibble} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(readr)}
-\KeywordTok{library}\NormalTok{(readxl)}
-\KeywordTok{library}\NormalTok{(skimr)}
-\KeywordTok{library}\NormalTok{(car)}
-\KeywordTok{library}\NormalTok{(broom)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(readxl)}
+\FunctionTok{library}\NormalTok{(skimr)}
+\FunctionTok{library}\NormalTok{(car)}
+\FunctionTok{library}\NormalTok{(broom)}
 \end{Highlighting}
 \end{Shaded}
 
-Enfin, nous aurons besoin du package \texttt{DescTools} (Signorell, \protect\hyperlink{ref-R-DescTools}{2020}) afin de réaliser un test spécifique de comparaisons multiples. N'oubliez pas de l'installer si nécessaire, avant de le charger en mémoire :
+Enfin, nous aurons besoin du package \texttt{DescTools} (\protect\hyperlink{ref-R-DescTools}{Signorell, 2020}) afin de réaliser un test spécifique de comparaisons multiples. N'oubliez pas de l'installer si nécessaire, avant de le charger en mémoire :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(DescTools)}
+\FunctionTok{library}\NormalTok{(DescTools)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2276,8 +2280,8 @@ Vous aurez également besoin des jeux de données suivants :
 \subsubsection{Exploration préalable des données}\label{exploration-pruxe9alable-des-donnuxe9es-1}}
 
 Voyager dans un pays éloigné peut faire souffrir de décallage horaire. Habituellement, la resynchronisation de l'horloge interne circadienne dans le nouveau fuseau horaire est réalisée grâce à la perception de la lumière
-par les yeux. Ce changement progressif du rythme de notre horloge interne est appelé ``décalage de phase''. Ce phénomène a été étudié par 2 chercheurs en 1998 (Campbell \& Murphy, \protect\hyperlink{ref-Campbell1998}{1998}), qui ont montré que ce décallage de phase pouvait également être obtenu en exposant des sujets à la lumière, non pas au niveau de leurs yeux, mais au niveau de leur \href{https://fr.wikipedia.org/wiki/Fosse_poplitée}{fosse (ou creux) poplitée}, c'est-à-dire, derrière les genoux.\\
-Cette découverte a été vivement critiquée par certains, et saluée comme une découverte majeure par d'autres. Toutefois, certains aspects du design expérimental de l'étude de 1998 ont été mis en doute en 2002 : il semble en effet que lors de l'exposition du creux poplité, les yeux de certains patients ont été également exposés à de faibles intensités lumineuses. Pour vérifier les trouvailles de Campbell et Murphy, Wright et Czeisler (Wright \& Czeisler, \protect\hyperlink{ref-Wright2002}{2002}) ont ré-examiné ce phénomène. La nouvelle expérience a évalué les rythmes circadiens en mesurant les cycles quotidiens de production de mélatonine chez 22 participants placés au hasard dans 3 groupes. Les patients étaient réveillés en pleine nuit et exposés :
+par les yeux. Ce changement progressif du rythme de notre horloge interne est appelé ``décalage de phase.'' Ce phénomène a été étudié par 2 chercheurs en 1998 (\protect\hyperlink{ref-Campbell1998}{Campbell \& Murphy, 1998}), qui ont montré que ce décallage de phase pouvait également être obtenu en exposant des sujets à la lumière, non pas au niveau de leurs yeux, mais au niveau de leur \href{https://fr.wikipedia.org/wiki/Fosse_poplitée}{fosse (ou creux) poplitée}, c'est-à-dire, derrière les genoux.\\
+Cette découverte a été vivement critiquée par certains, et saluée comme une découverte majeure par d'autres. Toutefois, certains aspects du design expérimental de l'étude de 1998 ont été mis en doute en 2002 : il semble en effet que lors de l'exposition du creux poplité, les yeux de certains patients ont été également exposés à de faibles intensités lumineuses. Pour vérifier les trouvailles de Campbell et Murphy, Wright et Czeisler (\protect\hyperlink{ref-Wright2002}{Wright \& Czeisler, 2002}) ont ré-examiné ce phénomène. La nouvelle expérience a évalué les rythmes circadiens en mesurant les cycles quotidiens de production de mélatonine chez 22 participants placés au hasard dans 3 groupes. Les patients étaient réveillés en pleine nuit et exposés :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2336,14 +2340,14 @@ Le tableau obtenu est-il au format long ou au format court/large ? Pourquoi un t
 8   -1.27 NA    NA    
 \end{verbatim}
 
-Lorsque l'on réalise une analyse de variance, puisque les effectifs ne sont pas nécessairement identiques dans tous les groupes (c'est ce qu'on appelle un design déséquilibré, ou ``unbalanced design''), présenter les tableaux au format long est indispensable. Par ailleurs, notez que les ANOVAs réalisées sur des ``balanced design'' (ou designs équilibrés, pour lesquels tous les groupes sont de même taille), sont beaucoup plus puissantes que les ANOVAs réalisées sur des ``unbalanced designs''.
+Lorsque l'on réalise une analyse de variance, puisque les effectifs ne sont pas nécessairement identiques dans tous les groupes (c'est ce qu'on appelle un design déséquilibré, ou ``unbalanced design''), présenter les tableaux au format long est indispensable. Par ailleurs, notez que les ANOVAs réalisées sur des ``balanced design'' (ou designs équilibrés, pour lesquels tous les groupes sont de même taille), sont beaucoup plus puissantes que les ANOVAs réalisées sur des ``unbalanced designs.''
 
 Ici, le tableau de données est très simple (et de petite taille). Il n'y a pas de données manquantes et aucune création de nouvelle variable n'est nécessaire. La seule modification que nous devrions faire est de transformer la variable \texttt{treatment} en facteur :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Light <-}\StringTok{ }\NormalTok{Light }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{treatment =} \KeywordTok{factor}\NormalTok{(treatment))}
+\NormalTok{Light }\OtherTok{\textless{}{-}}\NormalTok{ Light }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{treatment =} \FunctionTok{factor}\NormalTok{(treatment))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2351,7 +2355,7 @@ Comme toujours, les niveaux du facteur sont automatiquement classés par ordre a
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{levels}\NormalTok{(Light}\OperatorTok{$}\NormalTok{treatment)}
+\FunctionTok{levels}\NormalTok{(Light}\SpecialCharTok{$}\NormalTok{treatment)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2363,8 +2367,8 @@ Pour les statistiques descriptives et les graphiques qui viendront après, nous 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Light <-}\StringTok{ }\NormalTok{Light }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{treatment =} \KeywordTok{fct_relevel}\NormalTok{(treatment, }\StringTok{"control"}\NormalTok{, }\StringTok{"knee"}\NormalTok{, }\StringTok{"eyes"}\NormalTok{))}
+\NormalTok{Light }\OtherTok{\textless{}{-}}\NormalTok{ Light }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{treatment =} \FunctionTok{fct\_relevel}\NormalTok{(treatment, }\StringTok{"control"}\NormalTok{, }\StringTok{"knee"}\NormalTok{, }\StringTok{"eyes"}\NormalTok{))}
 
 \NormalTok{Light}
 \end{Highlighting}
@@ -2389,7 +2393,7 @@ Pour les statistiques descriptives et les graphiques qui viendront après, nous 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Light}\OperatorTok{$}\NormalTok{treatment}
+\NormalTok{Light}\SpecialCharTok{$}\NormalTok{treatment}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2409,9 +2413,9 @@ Comme toujours, et maintenant que nos données sont au bon format, il est néces
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Light }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(treatment) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{skim}\NormalTok{()}
+\NormalTok{Light }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(treatment) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{skim}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2463,10 +2467,10 @@ Comme toujours, il est indispensable de regarder à quoi ressemblent les donnée
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Light }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ treatment, }\DataTypeTok{y =}\NormalTok{ shift)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.2}\NormalTok{)}
+\NormalTok{Light }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ treatment, }\AttributeTok{y =}\NormalTok{ shift)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{notch =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2482,15 +2486,15 @@ Puisqu'il y a peu de données, les intervalles de confiance à 95\% sont très l
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Light }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ treatment, }\DataTypeTok{y =}\NormalTok{ shift, }\DataTypeTok{fill =}\NormalTok{ treatment)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.2}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{""}\NormalTok{,}
-       \DataTypeTok{y =} \StringTok{"Décalage de phase"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\NormalTok{Light }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ treatment, }\AttributeTok{y =}\NormalTok{ shift, }\AttributeTok{fill =}\NormalTok{ treatment)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{""}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Décalage de phase"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2522,10 +2526,10 @@ Les hypothèses testées sont les suivantes :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Réalisation de l'ANOVA 1 facteur}
-\NormalTok{res <-}\StringTok{ }\KeywordTok{aov}\NormalTok{(shift }\OperatorTok{~}\StringTok{ }\NormalTok{treatment, }\DataTypeTok{data =}\NormalTok{ Light)}
+\CommentTok{\# Réalisation de l\textquotesingle{}ANOVA 1 facteur}
+\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(shift }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment, }\AttributeTok{data =}\NormalTok{ Light)}
 
-\CommentTok{# Affichage des résultats}
+\CommentTok{\# Affichage des résultats}
 \NormalTok{res}
 \end{Highlighting}
 \end{Shaded}
@@ -2547,7 +2551,7 @@ L'affichage des résultats bruts ne nous apprend que peu de choses. En revanche,
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(res)}
+\FunctionTok{summary}\NormalTok{(res)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2583,7 +2587,7 @@ L'homogénéité des résidus signifie que les résidus doivent avoir à peu pr�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(res, }\DataTypeTok{which =} \DecValTok{1}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(res, }\AttributeTok{which =} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2593,7 +2597,7 @@ Ici, les résidus sont considérés comme homogènes car nous avons à peu près
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(res, }\DataTypeTok{which =} \DecValTok{3}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(res, }\AttributeTok{which =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2613,7 +2617,7 @@ Cette condition d'homogénéité des résidus entre les groupes peut également 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{leveneTest}\NormalTok{(res}\OperatorTok{$}\NormalTok{residuals }\OperatorTok{~}\StringTok{ }\NormalTok{Light}\OperatorTok{$}\NormalTok{treatment)}
+\FunctionTok{leveneTest}\NormalTok{(res}\SpecialCharTok{$}\NormalTok{residuals }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Light}\SpecialCharTok{$}\NormalTok{treatment)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2630,7 +2634,7 @@ Reste à vérifier la normalité des résidus. Là encore, on peut faire cela gr
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(res, }\DataTypeTok{which =} \DecValTok{2}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(res, }\AttributeTok{which =} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2640,12 +2644,11 @@ Sur un graphique quantile-quantile comme celui-là, on considère que les observ
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{shapiro.test}\NormalTok{(res}\OperatorTok{$}\NormalTok{residuals)}
+\FunctionTok{shapiro.test}\NormalTok{(res}\SpecialCharTok{$}\NormalTok{residuals)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Shapiro-Wilk normality test
 
 data:  res$residuals
@@ -2664,7 +2667,7 @@ Dernière chose, il est possible de produire les 3 graphiques ci-dessus (et mêm
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(res)}
+\FunctionTok{plot}\NormalTok{(res)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2716,16 +2719,15 @@ Le test de comparaisons multiples de Student est réalisé avec la fonction \tex
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Réalisation du test}
-\NormalTok{post_hoc1 <-}\StringTok{ }\KeywordTok{pairwise.t.test}\NormalTok{(Light}\OperatorTok{$}\NormalTok{shift, Light}\OperatorTok{$}\NormalTok{treatment)}
+\CommentTok{\# Réalisation du test}
+\NormalTok{post\_hoc1 }\OtherTok{\textless{}{-}} \FunctionTok{pairwise.t.test}\NormalTok{(Light}\SpecialCharTok{$}\NormalTok{shift, Light}\SpecialCharTok{$}\NormalTok{treatment)}
 
-\CommentTok{# affichage des résultats}
-\NormalTok{post_hoc1}
+\CommentTok{\# affichage des résultats}
+\NormalTok{post\_hoc1}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Pairwise comparisons using t tests with pooled SD 
 
 data:  Light$shift and Light$treatment 
@@ -2741,7 +2743,7 @@ Seules les \(p\)-values de chaque test sont fournies sous la forme d'une demi-ma
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{tidy}\NormalTok{(post_hoc1)}
+\FunctionTok{tidy}\NormalTok{(post\_hoc1)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2760,11 +2762,11 @@ Nous avons donc appris des choses nouvelles, mais nous ne savons toujours pas qu
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Réalisation du test de Tukey HSD}
-\NormalTok{post_hoc2 <-}\StringTok{ }\KeywordTok{TukeyHSD}\NormalTok{(res)}
+\CommentTok{\# Réalisation du test de Tukey HSD}
+\NormalTok{post\_hoc2 }\OtherTok{\textless{}{-}} \FunctionTok{TukeyHSD}\NormalTok{(res)}
 
-\CommentTok{# Affichage des résultats}
-\NormalTok{post_hoc2}
+\CommentTok{\# Affichage des résultats}
+\NormalTok{post\_hoc2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2785,7 +2787,7 @@ Cette fois, nous obtenons à la fois la \(p\)-value des comparaisons 2 à 2, mai
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{tidy}\NormalTok{(post_hoc2)}
+\FunctionTok{tidy}\NormalTok{(post\_hoc2)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2806,15 +2808,15 @@ En utilisant le tableau ci-dessus, nous pouvons synthétiser graphiquement ces r
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{tidy}\NormalTok{(post_hoc2) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ contrast, }\DataTypeTok{y =}\NormalTok{ estimate)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_linerange}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ conf.low, }\DataTypeTok{ymax =}\NormalTok{ conf.high)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_hline}\NormalTok{(}\DataTypeTok{yintercept =} \DecValTok{0}\NormalTok{, }\DataTypeTok{linetype =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Comparaison"}\NormalTok{,}
-       \DataTypeTok{y =} \StringTok{"Différence de moyennes (et IC 95%)"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{coord_flip}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
+\FunctionTok{tidy}\NormalTok{(post\_hoc2) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ contrast, }\AttributeTok{y =}\NormalTok{ estimate)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_linerange}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{ymin =}\NormalTok{ conf.low, }\AttributeTok{ymax =}\NormalTok{ conf.high)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{linetype =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Comparaison"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Différence de moyennes (et IC 95\%)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2854,12 +2856,11 @@ L'alternative non paramétrique à l'ANOVA à un facteur est le test de la somme
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{kruskal.test}\NormalTok{(shift }\OperatorTok{~}\StringTok{ }\NormalTok{treatment, }\DataTypeTok{data =}\NormalTok{ Light)}
+\FunctionTok{kruskal.test}\NormalTok{(shift }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment, }\AttributeTok{data =}\NormalTok{ Light)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Kruskal-Wallis rank sum test
 
 data:  shift by treatment
@@ -2883,16 +2884,15 @@ Comme pour les tests \emph{post-hoc} de l'ANOVA, nous allons voir ici 2 tests de
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Réalisation du test}
-\NormalTok{post_hoc3 <-}\StringTok{ }\KeywordTok{pairwise.wilcox.test}\NormalTok{(Light}\OperatorTok{$}\NormalTok{shift, Light}\OperatorTok{$}\NormalTok{treatment)}
+\CommentTok{\# Réalisation du test}
+\NormalTok{post\_hoc3 }\OtherTok{\textless{}{-}} \FunctionTok{pairwise.wilcox.test}\NormalTok{(Light}\SpecialCharTok{$}\NormalTok{shift, Light}\SpecialCharTok{$}\NormalTok{treatment)}
 
-\CommentTok{# Affichage des résultats}
-\NormalTok{post_hoc3}
+\CommentTok{\# Affichage des résultats}
+\NormalTok{post\_hoc3}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Pairwise comparisons using Wilcoxon rank sum exact test 
 
 data:  Light$shift and Light$treatment 
@@ -2906,8 +2906,8 @@ P value adjustment method: holm
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Utilisation de la fonction `tidy` pour afficher les résultats dans un tibble}
-\KeywordTok{tidy}\NormalTok{(post_hoc3)}
+\CommentTok{\# Utilisation de la fonction \textasciigrave{}tidy\textasciigrave{} pour afficher les résultats dans un tibble}
+\FunctionTok{tidy}\NormalTok{(post\_hoc3)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2930,16 +2930,15 @@ Comme pour son homologue paramétrique, le test de comparaisons multiples de Wil
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Réalisation du test}
-\NormalTok{post_hoc4 <-}\StringTok{ }\KeywordTok{DunnTest}\NormalTok{(shift }\OperatorTok{~}\StringTok{ }\NormalTok{treatment, }\DataTypeTok{data =}\NormalTok{ Light)}
+\CommentTok{\# Réalisation du test}
+\NormalTok{post\_hoc4 }\OtherTok{\textless{}{-}} \FunctionTok{DunnTest}\NormalTok{(shift }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment, }\AttributeTok{data =}\NormalTok{ Light)}
 
-\CommentTok{# Affichage des résultats}
-\NormalTok{post_hoc4}
+\CommentTok{\# Affichage des résultats}
+\NormalTok{post\_hoc4}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
  Dunn's test of multiple comparisons using rank sums : holm  
 
              mean.rank.diff   pval    
@@ -2954,11 +2953,11 @@ Avec ces résultats on progresse un peu, car outre les \(p\)-values pour chaque 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Comparaisons entre les groupes `knee` et `eyes` (dans cet ordre)}
-\NormalTok{Light }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(treatment }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"knee"}\NormalTok{, }\StringTok{"eyes"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{wilcox.test}\NormalTok{(shift }\OperatorTok{~}\StringTok{ }\NormalTok{treatment, }\DataTypeTok{data =}\NormalTok{ ., }\DataTypeTok{conf.int =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
+\CommentTok{\# Comparaisons entre les groupes \textasciigrave{}knee\textasciigrave{} et \textasciigrave{}eyes\textasciigrave{} (dans cet ordre)}
+\NormalTok{Light }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(treatment }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"knee"}\NormalTok{, }\StringTok{"eyes"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{wilcox.test}\NormalTok{(shift }\SpecialCharTok{\textasciitilde{}}\NormalTok{ treatment, }\AttributeTok{data =}\NormalTok{ ., }\AttributeTok{conf.int =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2977,7 +2976,7 @@ Pour le décalage de phase de ces 2 groupes, la différence de médiane estimée
 \hypertarget{cardamine-pensylvanica}{%
 \paragraph{\texorpdfstring{\emph{Cardamine pensylvanica}}{Cardamine pensylvanica}}\label{cardamine-pensylvanica}}
 
-En biologie de la conservation, la question de l'existence d'un lien entre la capacité de dispersion des organismes et le maintien durable des populations dans le temps est étudié de près, notamment en raison de l'anthropisation des milieux qui conduit très souvent à la fragmentation des habitats. Cette question a été étudiée par 2 chercheurs (Molofsky \& Ferdy, \protect\hyperlink{ref-Molofsky2005}{2005}) chez \emph{Cardamine pensylvanica}, une \href{https://en.wikipedia.org/wiki/Cardamine_pensylvanica}{plante annuelle d'Amérique du Nord} qui produit des graines qui sont dispersées de façon explosive. Quatre traitements ont été utilisés pour modifier expérimentalement la dispersion des graines. La distance entre populations contigües a été définie comme suit :
+En biologie de la conservation, la question de l'existence d'un lien entre la capacité de dispersion des organismes et le maintien durable des populations dans le temps est étudié de près, notamment en raison de l'anthropisation des milieux qui conduit très souvent à la fragmentation des habitats. Cette question a été étudiée par 2 chercheurs (\protect\hyperlink{ref-Molofsky2005}{Molofsky \& Ferdy, 2005}) chez \emph{Cardamine pensylvanica}, une \href{https://en.wikipedia.org/wiki/Cardamine_pensylvanica}{plante annuelle d'Amérique du Nord} qui produit des graines qui sont dispersées de façon explosive. Quatre traitements ont été utilisés pour modifier expérimentalement la dispersion des graines. La distance entre populations contigües a été définie comme suit :
 
 \begin{itemize}
 \tightlist
@@ -3022,8 +3021,8 @@ Comme dans tous les chapitres de cet ouvrage, nous aurons besoin ici du \texttt{
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(skimr)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(skimr)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3060,7 +3059,7 @@ Ici, le coefficient de corrélation (noté \(r\)) vaut 1 dans les deux cas, car 
 
 \begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-96-1} \end{center}
 
-Plus la dispersion autour d'une droite parfaite sera grande, plus la corrélation sera faible. C'est la raison pour laquelle lorsque l'on parle de ``corrélation'', on sous-entend généralement \textbf{corrélation linéaire}. Ainsi, 2 variables peuvent avoir une relation très forte, mais un coefficient de corrélation nul, si leur relation n'est pas linéaire :
+Plus la dispersion autour d'une droite parfaite sera grande, plus la corrélation sera faible. C'est la raison pour laquelle lorsque l'on parle de ``corrélation,'' on sous-entend généralement \textbf{corrélation linéaire}. Ainsi, 2 variables peuvent avoir une relation très forte, mais un coefficient de corrélation nul, si leur relation n'est pas linéaire :
 
 \begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-97-1} \end{center}
 
@@ -3090,7 +3089,7 @@ Dans la suite de ce chapitre, nous allons voir comment calculer le coefficient d
 \hypertarget{importation-et-examen-visuel-4}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-4}}
 
-Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d'autres espèces animales, chez qui cette relation pourrait être étudiée plus facilement ? Müller et al. (\protect\hyperlink{ref-muller2011}{2011}) ont étudié cette possibilité chez le fou de Grant (\emph{Sula granti}), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d'autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d'une bague d'identification individuelle. Ces 24 individus ont ensuite été suivis à l'âge adulte, lorsqu'ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier \href{https://besibo.github.io/Biometrie3/data/birds.csv}{\texttt{birds.csv}}. Importez ces données dans \texttt{R} dans un objet noté \texttt{birds}.
+Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d'autres espèces animales, chez qui cette relation pourrait être étudiée plus facilement ? \protect\hyperlink{ref-muller2011}{Müller et al.} (\protect\hyperlink{ref-muller2011}{2011}) ont étudié cette possibilité chez le fou de Grant (\emph{Sula granti}), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d'autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d'une bague d'identification individuelle. Ces 24 individus ont ensuite été suivis à l'âge adulte, lorsqu'ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier \href{https://besibo.github.io/Biometrie3/data/birds.csv}{\texttt{birds.csv}}. Importez ces données dans \texttt{R} dans un objet noté \texttt{birds}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3121,8 +3120,8 @@ Il manque à ce tableau une variable indiquant le code des individus. Elle n'est
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{birds <-}\StringTok{ }\NormalTok{birds }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ID =} \KeywordTok{factor}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{24}\NormalTok{))}
+\NormalTok{birds }\OtherTok{\textless{}{-}}\NormalTok{ birds }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{ID =} \FunctionTok{factor}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{24}\NormalTok{))}
 \NormalTok{birds}
 \end{Highlighting}
 \end{Shaded}
@@ -3151,7 +3150,7 @@ Comme toujours, la première chose à faire est d'examiner quelques statistiques
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{skim}\NormalTok{(birds)}
+\FunctionTok{skim}\NormalTok{(birds)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3196,9 +3195,9 @@ Outre le facteur \texttt{ID} que nous venons de créer, nous disposons donc de 2
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{birds }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(nVisitsNestling, futureBehavior) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{cor}\NormalTok{()}
+\NormalTok{birds }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(nVisitsNestling, futureBehavior) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{cor}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3225,12 +3224,12 @@ Afin de savoir si la valeur moyenne de \(r\) calculée précédemment reflète u
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{birds }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ nVisitsNestling, }\DataTypeTok{y =}\NormalTok{ futureBehavior)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Nombre de visites reçues par le poussin"}\NormalTok{,}
-       \DataTypeTok{y =} \StringTok{"Comportement futur"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
+\NormalTok{birds }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ nVisitsNestling, }\AttributeTok{y =}\NormalTok{ futureBehavior)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Nombre de visites reçues par le poussin"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Comportement futur"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3260,12 +3259,11 @@ Ce test est réalisé dans \texttt{R} grâce à la fonction \texttt{cor.test()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{cor.test}\NormalTok{(birds}\OperatorTok{$}\NormalTok{nVisitsNestling, birds}\OperatorTok{$}\NormalTok{futureBehavior)}
+\FunctionTok{cor.test}\NormalTok{(birds}\SpecialCharTok{$}\NormalTok{nVisitsNestling, birds}\SpecialCharTok{$}\NormalTok{futureBehavior)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Pearson's product-moment correlation
 
 data:  birds$nVisitsNestling and birds$futureBehavior
@@ -3308,13 +3306,12 @@ On utilise la syntaxe suivante :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{cor.test}\NormalTok{(birds}\OperatorTok{$}\NormalTok{nVisitsNestling, birds}\OperatorTok{$}\NormalTok{futureBehavior,}
-         \DataTypeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\FunctionTok{cor.test}\NormalTok{(birds}\SpecialCharTok{$}\NormalTok{nVisitsNestling, birds}\SpecialCharTok{$}\NormalTok{futureBehavior,}
+         \AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
     Pearson's product-moment correlation
 
 data:  birds$nVisitsNestling and birds$futureBehavior
@@ -3390,8 +3387,8 @@ Quand les conditions d'application du test de corrélation de Pearson ne sont pa
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{cor.test}\NormalTok{(birds}\OperatorTok{$}\NormalTok{nVisitsNestling, birds}\OperatorTok{$}\NormalTok{futureBehavior,}
-         \DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{)}
+\FunctionTok{cor.test}\NormalTok{(birds}\SpecialCharTok{$}\NormalTok{nVisitsNestling, birds}\SpecialCharTok{$}\NormalTok{futureBehavior,}
+         \AttributeTok{method =} \StringTok{"spearman"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3401,7 +3398,6 @@ Cannot compute exact p-value with ties
 \end{verbatim}
 
 \begin{verbatim}
-
     Spearman's rank correlation rho
 
 data:  birds$nVisitsNestling and birds$futureBehavior
@@ -3428,10 +3424,10 @@ Enfin, comme pour le test de Pearson, il est possible de réaliser un test de Sp
 \hypertarget{canis-lupus}{%
 \paragraph{\texorpdfstring{\emph{Canis lupus}}{Canis lupus}}\label{canis-lupus}}
 
-En 1970, le loup \emph{canis lupus} a été éradiqué en Norvège et en Suède. Autour de 1980, un couple de loups, originaire d'une population plus à l'Est, a fondé une nouvelle population en Suède. En l'espace de 20 ans, cette population comptait approximativement 100 loups. Il y a toutefois fort à craindre qu'une population fondée par un si petit nombre d'individus souffre de consanguinité. Liberg et al. (\protect\hyperlink{ref-liberg2005}{2005}) ont compilé les informations sur la reproduction dans cette population entre 1983 et 2002, et ils ont pu reconstruire le pédigrée des individus la composant. Ils ont ainsi été en mesure de déterminer avec précision le coefficient individuel de consanguinité dans 24 portées de louveteaux.
+En 1970, le loup \emph{canis lupus} a été éradiqué en Norvège et en Suède. Autour de 1980, un couple de loups, originaire d'une population plus à l'Est, a fondé une nouvelle population en Suède. En l'espace de 20 ans, cette population comptait approximativement 100 loups. Il y a toutefois fort à craindre qu'une population fondée par un si petit nombre d'individus souffre de consanguinité. \protect\hyperlink{ref-liberg2005}{Liberg et al.} (\protect\hyperlink{ref-liberg2005}{2005}) ont compilé les informations sur la reproduction dans cette population entre 1983 et 2002, et ils ont pu reconstruire le pédigrée des individus la composant. Ils ont ainsi été en mesure de déterminer avec précision le coefficient individuel de consanguinité dans 24 portées de louveteaux.
 Pour mémoire, le coefficient individuel de consanguinité vaut 0 si ses parents ne sont pas apparentés, 0.25 si ses parents sont frères et sœurs issus de grands-parents non apparentés, et plus de 0.25 si les associations consanguines se répètent depuis plusieurs générations.
 
-On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de Liberg et al. (\protect\hyperlink{ref-liberg2005}{2005}) sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/loups.csv}{\texttt{loups.csv}}. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l'ordre des étapes décrites plus haut. En particulier, vous prendrez soin de :
+On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de \protect\hyperlink{ref-liberg2005}{Liberg et al.} (\protect\hyperlink{ref-liberg2005}{2005}) sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/loups.csv}{\texttt{loups.csv}}. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l'ordre des étapes décrites plus haut. En particulier, vous prendrez soin de :
 
 \begin{itemize}
 \tightlist
@@ -3454,23 +3450,23 @@ On souhaite déterminer si le coefficient de consanguinité est associé à la p
 
 À quel point les souvenirs d'évènements miraculeux sont-il fiables ? Une façon d'étudier cette question est de comparer différents récits de tours de magie extraordinaires. Parmis les tours les plus célèbres, on trouve celui de la corde du fakir. Dans l'une de ces versions, un magicien jette l'extrémité une corde d'apparence normale en l'air et cette corde devient rigide. Un garçon grimpe à la corde et finit par disparaître en haut de la scène. Le magicien lui demande de répondre mais n'obtient pas de réponse. Il attrape alors un couteau, grimpe à son tour, et le garçon, découpé en morceaux, tombe du ciel dans un panier posé par terre. Le magicien redescent de la corde et aide le garçon vivant, en un seul morceau et non blessé, à sortir du panier.
 
-Wiseman \& Lamont (\protect\hyperlink{ref-wiseman1996}{1996}) ont retrouvé 21 récits écrits de ce tour par des personnes ayant elles-mêmes assisté à ce tour. Ils ont attribué un score à chaque description selon le caractère plus ou moins impressionnant de la description. Par exemple, un score de 1 était attribué si le récit faisait état que ``le garçon grimpe à la corde, puis il en redescend''. Les récits les plus impressionnants se sont vus attribuer la note de 5 (``le garçon grimpe, disparaît, est découpé en morceaux et réapparaît en chair et en os devant le public'').
+\protect\hyperlink{ref-wiseman1996}{Wiseman \& Lamont} (\protect\hyperlink{ref-wiseman1996}{1996}) ont retrouvé 21 récits écrits de ce tour par des personnes ayant elles-mêmes assisté à ce tour. Ils ont attribué un score à chaque description selon le caractère plus ou moins impressionnant de la description. Par exemple, un score de 1 était attribué si le récit faisait état que ``le garçon grimpe à la corde, puis il en redescend.'' Les récits les plus impressionnants se sont vus attribuer la note de 5 (``le garçon grimpe, disparaît, est découpé en morceaux et réapparaît en chair et en os devant le public'').
 Pour chaque récit, les chercheurs ont également enregistré le nombre d'années écoulées entre le moment où le témoin a assisté au tour de magie, et le moment où il a consigné son récit par écrit.
 
 Y a-t'il un lien entre le caractère impressionnant (``\texttt{impressiveness}'') d'un souvenir et le temps écoulé jusqu'à l'écriture de sa description (``\texttt{years}'') ? Si oui, cela pourrait indiquer une tendance de la mémoire humaine à exagérer et à perdre en précision avec le temps.
 
-Les données de Wiseman \& Lamont (\protect\hyperlink{ref-wiseman1996}{1996}) sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/ropetrick.csv}{\texttt{ropetrick.csv}}. Importez ces données et analysez-les en respectant les consignes de l'exercice précédent.
+Les données de \protect\hyperlink{ref-wiseman1996}{Wiseman \& Lamont} (\protect\hyperlink{ref-wiseman1996}{1996}) sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/ropetrick.csv}{\texttt{ropetrick.csv}}. Importez ces données et analysez-les en respectant les consignes de l'exercice précédent.
 
 \hypertarget{ruxe9gression-linuxe9aire}{%
 \subsection{Régression linéaire}\label{ruxe9gression-linuxe9aire}}
 
-La régression est une méthode utilisée pour prédire les valeurs d'une variable numérique à partir des valeurs d'une seconde variable. Par exemple, le nuage de points de la figure ci-dessous montre comment la diversité génétique dans une population humaine locale peut être prédite par sa distance de dispersion depuis l'Est africain en ajustant une droite aux données (d'après Whitlock \& Schluter, \protect\hyperlink{ref-whitlock2015}{2015}). L'homme moderne est apparu en Afrique et nos ancêtres ont perdu un peu de diversité génétique à chaque étape de leur colonisation de nouveaux territoires.
+La régression est une méthode utilisée pour prédire les valeurs d'une variable numérique à partir des valeurs d'une seconde variable. Par exemple, le nuage de points de la figure ci-dessous montre comment la diversité génétique dans une population humaine locale peut être prédite par sa distance de dispersion depuis l'Est africain en ajustant une droite aux données (d'après \protect\hyperlink{ref-whitlock2015}{Whitlock \& Schluter, 2015}). L'homme moderne est apparu en Afrique et nos ancêtres ont perdu un peu de diversité génétique à chaque étape de leur colonisation de nouveaux territoires.
 
 \includegraphics{images/genetics.jpg}
 
 Contrairement à la corrélation, ici, on n'examine pas seulement une éventuelle liaison : on suppose qu'une variable peut-être (en partie) expliquée par une autre. Nous aurons donc à distinguer les variables expliquées (ou dépendantes) qui figureront sur l'axe des y et seront nos variables prédites, et les variables explicatives (ou indépendantes) qui figureront sur l'axe des abscisses et seront les prédicteurs.
 
-Une façon de distinguer corrélation et régression consiste à dire que ``corrélation n'est pas causalité''. Si on compare un nombre de variables suffisamment important, on finira toujours par en trouver qui seront corrélées. Cela ne veut pas dire pour autant qu'il existe un lien de cause à effet entre l'une et l'autre. Pour vous en convaincre, examinez \href{http://www.tylervigen.com/spurious-correlations}{cette page}. Lorsque l'on s'intéresse à la régression linéaire, on essaie au contraire de prédire ou d'expliquer. En d'autres termes, on considère que les variations de la variable explicative sont au moins en partie la cause des variations de la variable expliquée.
+Une façon de distinguer corrélation et régression consiste à dire que ``corrélation n'est pas causalité.'' Si on compare un nombre de variables suffisamment important, on finira toujours par en trouver qui seront corrélées. Cela ne veut pas dire pour autant qu'il existe un lien de cause à effet entre l'une et l'autre. Pour vous en convaincre, examinez \href{http://www.tylervigen.com/spurious-correlations}{cette page}. Lorsque l'on s'intéresse à la régression linéaire, on essaie au contraire de prédire ou d'expliquer. En d'autres termes, on considère que les variations de la variable explicative sont au moins en partie la cause des variations de la variable expliquée.
 
 Lorsque l'on s'intéresse à la régression linéaire, on considère que la relation qui lie les deux variables est linéaire, et on souhaite \textbf{quantifier l'intensité de la relation}. Nous allons examiner maintenant comment faire ça dans \texttt{R}.
 
@@ -3479,7 +3475,7 @@ Lorsque l'on s'intéresse à la régression linéaire, on considère que la rela
 
 Les activités humaines réduisent le nombre d'espèces dans un grand nombre d'écosystèmes à la surface du globe. Est-ce que cette diminution du nombre d'espèces affecte le fonctionnement de base des écosystèmes ? Où est-ce qu'au contraire, les espèces végétales sont majoritairement interchangeables, les fonctions des espèces disparues pouvants être assurées par les espèces toujours présentes ?
 
-Pour tenter de répondre à cette question, Tilman et al. (\protect\hyperlink{ref-tilman2006}{2006}) ont ensemencé 161 parcelles de 9 mètres sur 9 mètres dans la réserve de Cedar Creek (Minesota, USA). Ils ont utilisé un nombre variable d'espèces typiques des prairies et ont mesuré la production de biomasse de chaque parcelle pendant 10 ans. Des lots de 1, 2, 4, 8 ou 16 plantes pluriannuelles (choisies au hasard parmi une liste de 18 espèces possibles) ont été assignés au hasard dans chacune des 161 parcelles. À l'issue des 10 années d'étude, les chercheurs ont mesuré un indice de stabilité de la biomasse en divisant la moyenne des biomasses sur 10 ans, par l'écart-type de ces mêmes biomasses.
+Pour tenter de répondre à cette question, \protect\hyperlink{ref-tilman2006}{Tilman et al.} (\protect\hyperlink{ref-tilman2006}{2006}) ont ensemencé 161 parcelles de 9 mètres sur 9 mètres dans la réserve de Cedar Creek (Minesota, USA). Ils ont utilisé un nombre variable d'espèces typiques des prairies et ont mesuré la production de biomasse de chaque parcelle pendant 10 ans. Des lots de 1, 2, 4, 8 ou 16 plantes pluriannuelles (choisies au hasard parmi une liste de 18 espèces possibles) ont été assignés au hasard dans chacune des 161 parcelles. À l'issue des 10 années d'étude, les chercheurs ont mesuré un indice de stabilité de la biomasse en divisant la moyenne des biomasses sur 10 ans, par l'écart-type de ces mêmes biomasses.
 
 Les données de cette expérience sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/plantbiomass.csv}{\texttt{plantbiomass.csv}}.
 
@@ -3490,12 +3486,12 @@ Comme toujours, on importe les données et on commence par un examen visuel afin
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{plant <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/plantbiomass.csv"}\NormalTok{)}
+\NormalTok{plant }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/plantbiomass.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-Parsed with column specification:
+-- Column specification --------------------------------------------------------
 cols(
   nSpecies = col_double(),
   biomassStability = col_double()
@@ -3529,7 +3525,7 @@ Ce premier examen nous montre que nous disposons bien de 161 observations pour 2
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{skim}\NormalTok{(plant)}
+\FunctionTok{skim}\NormalTok{(plant)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3558,9 +3554,9 @@ Ce premier examen nous montre que nous n'avons aucune données manquantes et que
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{plant }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(nSpecies) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{skim}\NormalTok{()}
+\NormalTok{plant }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(nSpecies) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{skim}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3597,12 +3593,12 @@ Une visualisation des données est toujours indispensable :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{plant }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ nSpecies, }\DataTypeTok{y =}\NormalTok{ biomassStability)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Nombre d'espèces par parcelle"}\NormalTok{,}
-       \DataTypeTok{y =} \StringTok{"Indice de stabilité de la biomasse"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
+\NormalTok{plant }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ nSpecies, }\AttributeTok{y =}\NormalTok{ biomassStability)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Nombre d\textquotesingle{}espèces par parcelle"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Indice de stabilité de la biomasse"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3619,11 +3615,11 @@ Ce graphique nous apprend plusieurs choses :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{plant }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ nSpecies)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"steelblue"}\NormalTok{, }\DataTypeTok{adjust =} \FloatTok{0.2}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Nombre d'espèces par parcelle"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
+\NormalTok{plant }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ nSpecies)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{fill =} \StringTok{"steelblue"}\NormalTok{, }\AttributeTok{adjust =} \FloatTok{0.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Nombre d\textquotesingle{}espèces par parcelle"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3641,8 +3637,8 @@ Cela n'est pas du tout problématique : comme pour l'ANOVA, les conditions d'app
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{plant <-}\StringTok{ }\NormalTok{plant }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{log_biomass =} \KeywordTok{log}\NormalTok{(biomassStability))}
+\NormalTok{plant }\OtherTok{\textless{}{-}}\NormalTok{ plant }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{log\_biomass =} \FunctionTok{log}\NormalTok{(biomassStability))}
 \NormalTok{plant}
 \end{Highlighting}
 \end{Shaded}
@@ -3666,12 +3662,12 @@ Cela n'est pas du tout problématique : comme pour l'ANOVA, les conditions d'app
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{plant }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ nSpecies, }\DataTypeTok{y =}\NormalTok{ log_biomass)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Nombre d'espèces par parcelle"}\NormalTok{,}
-       \DataTypeTok{y =} \StringTok{"Transformation log}\CharTok{\textbackslash{}n}\StringTok{ de l'indice de stabilité de la biomasse"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
+\NormalTok{plant }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ nSpecies, }\AttributeTok{y =}\NormalTok{ log\_biomass)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Nombre d\textquotesingle{}espèces par parcelle"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Transformation log}\SpecialCharTok{\textbackslash{}n}\StringTok{ de l\textquotesingle{}indice de stabilité de la biomasse"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3681,13 +3677,13 @@ On peut visualiser dès maintenant la droite de régression linéaire qui permet
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{plant }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ nSpecies, }\DataTypeTok{y =}\NormalTok{ log_biomass)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Nombre d'espèces par parcelle"}\NormalTok{,}
-       \DataTypeTok{y =} \StringTok{"Transformation log}\CharTok{\textbackslash{}n}\StringTok{ de l'indice de stabilité de la biomasse"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
+\NormalTok{plant }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ nSpecies, }\AttributeTok{y =}\NormalTok{ log\_biomass)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Nombre d\textquotesingle{}espèces par parcelle"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Transformation log}\SpecialCharTok{\textbackslash{}n}\StringTok{ de l\textquotesingle{}indice de stabilité de la biomasse"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3708,7 +3704,7 @@ Pour faire une régression linéaire dans \texttt{R}, on utilise la fonction \te
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{reg1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(log_biomass }\OperatorTok{~}\StringTok{ }\NormalTok{nSpecies, }\DataTypeTok{data =}\NormalTok{ plant)}
+\NormalTok{reg1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(log\_biomass }\SpecialCharTok{\textasciitilde{}}\NormalTok{ nSpecies, }\AttributeTok{data =}\NormalTok{ plant)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3741,12 +3737,11 @@ Comme pour l'ANOVA, on affiche les résultats de ces tests à l'aide de la fonct
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(reg1)}
+\FunctionTok{summary}\NormalTok{(reg1)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-
 Call:
 lm(formula = log_biomass ~ nSpecies, data = plant)
 
@@ -3779,7 +3774,7 @@ La pente et l'ordonnée à l'origine de la droite de régression ont été obten
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{confint}\NormalTok{(reg1)}
+\FunctionTok{confint}\NormalTok{(reg1)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3795,13 +3790,13 @@ Il est possible de visualiser cette incertitude grâce à la fonction \texttt{ge
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{plant }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ nSpecies, }\DataTypeTok{y =}\NormalTok{ log_biomass)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{se =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Nombre d'espèces par parcelle"}\NormalTok{,}
-       \DataTypeTok{y =} \StringTok{"Transformation log}\CharTok{\textbackslash{}n}\StringTok{ de l'indice de stabilité de la biomasse"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
+\NormalTok{plant }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ nSpecies, }\AttributeTok{y =}\NormalTok{ log\_biomass)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Nombre d\textquotesingle{}espèces par parcelle"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Transformation log}\SpecialCharTok{\textbackslash{}n}\StringTok{ de l\textquotesingle{}indice de stabilité de la biomasse"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3820,9 +3815,9 @@ Les conditions d'application de la régression sont les mêmes que celles de l'A
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(reg1)}
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(reg1)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3847,25 +3842,63 @@ Lorsque les conditions d'application de la régression linéaire ne sont pas vé
 \hypertarget{exercices-1}{%
 \subsubsection{Exercices}\label{exercices-1}}
 
-\hypertarget{le-quartet-danscombe}{%
-\paragraph{Le quartet d'Anscombe}\label{le-quartet-danscombe}}
+\hypertarget{datasaurus-et-anscombe}{%
+\paragraph{Datasaurus et Anscombe}\label{datasaurus-et-anscombe}}
 
-Exécutez la commande suivante (il vous faudra peut-être presser la touche \texttt{Entrée} dans la console) pour produire les 4 graphiques d'Anscombe :
+Exécutez les commandes suivantes
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{example}\NormalTok{(anscombe)}
+\FunctionTok{library}\NormalTok{(datasauRus)}
+
+\NormalTok{datasaurus\_dozen }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{group\_by}\NormalTok{(dataset) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{summarize}\NormalTok{(}
+      \AttributeTok{moy\_x    =} \FunctionTok{mean}\NormalTok{(x),}
+      \AttributeTok{moy\_y    =} \FunctionTok{mean}\NormalTok{(y),}
+      \AttributeTok{ecart\_type\_x =} \FunctionTok{sd}\NormalTok{(x),}
+      \AttributeTok{ecart\_type\_y =} \FunctionTok{sd}\NormalTok{(y),}
+      \AttributeTok{correl\_x\_y  =} \FunctionTok{cor}\NormalTok{(x, y),}
+      \AttributeTok{pente =} \FunctionTok{coef}\NormalTok{(}\FunctionTok{lm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x))[}\DecValTok{2}\NormalTok{],}
+      \AttributeTok{ordonnee\_origine =} \FunctionTok{coef}\NormalTok{(}\FunctionTok{lm}\NormalTok{(y}\SpecialCharTok{\textasciitilde{}}\NormalTok{x))[}\DecValTok{1}\NormalTok{]}
+\NormalTok{    )}
 \end{Highlighting}
 \end{Shaded}
 
-Examinez attentivement les nombreux résultats produits par cette commande dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 4 jeux de données, 2 variables numériques sont mises en relation. Les variables \texttt{x1}, \texttt{x2}, \texttt{x3} et \texttt{x4} ont toutes la même moyenne et la même variance. Les variables \texttt{y1}, \texttt{y2}, \texttt{y3} et \texttt{y4} ont toutes la même moyenne et la même variance. Les coefficients de corrélation entre \texttt{x1} et \texttt{y1}, \texttt{x2} et \texttt{y2}, \texttt{x3} et \texttt{y3}, \texttt{x4} et \texttt{y4} sont tous les mêmes. Enfin, les ordonnées à l'origine et les pentes de ces 4 droites de régression linéaires sont identiques. Pourtant, seule la première régression linéaire est valide. Pourquoi ?
+Examinez attentivement les nombreux résultats produits par cette commande. dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 13 jeux de données, 2 variables numériques \texttt{x} et \texttt{y} sont mises en relation. Pour tous ces jeux de données, on observe que la moyenne des \texttt{x} est la même, la moyenne de tous les \texttt{y} est la même, les écarts-types des \texttt{x} sont identiques, les écarts-types des \texttt{y} aussi, la corrélation entre \texttt{x} et \texttt{y} est également extrêmement proche, et lorsque l'on effectue une régression linéaire de \texttt{y} en fonction de \texttt{x}, les ordonnées à l'origine et les pentes des droites de régression sont extrêmement proches pour les 13 jeux de données.
+
+Si on s'en tient à ces calculs d'indices synthétiques, on pourrait croire que ces jeux de données sont identiques ou presque. Pourtant, ce n'est pas par hasard que je vous répète à longueur de temps qu'il est \textbf{indispensable de regarder les données} avant de se lancer dans les analyses et les statistiques. Car ici, ces jeux de données sont très différents, et conclure qu'ils sont identiques simplement parce que les statistiques descriptives sont égales, serait une erreur majeure :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datasaurus\_dozen }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(x, y, }\AttributeTok{color =}\NormalTok{ dataset)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{dataset, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-124-1} \end{center}
+
+Le quartet d'Anscombe est un autre exemple de ce type de problème.
+
+Dans la console, exécutez la commande suivante (il vous faudra peut-être presser la touche Entrée plusieurs fois) pour produire les 4 graphiques d'Anscombe :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{example}\NormalTok{(anscombe)}
+\end{Highlighting}
+\end{Shaded}
+
+Examinez attentivement les nombreux résultats produits par cette commande dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 4 jeux de données, 2 variables numériques sont là encore mises en relation, et qu'elles présentent toutes les mêmes caractéristiques. En particulier, les régressions linéaires ont toutes les mêmes pentes et ordonnées à l'origine. Pourtant, seule l'une de ces régressions linéaires est valide. Pourquoi ?
 
 \hypertarget{in-your-face}{%
 \paragraph{In your face}\label{in-your-face}}
 
 Les hommes ont en moyenne un ratio ``largeur du visage sur longueur du visage'' supérieur à celui des femmes. Cela reflète des niveaux d'expression de la testostérone différents entre hommes et femmes au moment de la puberté. On sait aussi que les niveaux de testosterone permettent de prédire, dans une certaine mesure, l'agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire l'agressivité ?
 
-Pour tester cela, Carré \& McCormick (\protect\hyperlink{ref-carre2008}{2008}) ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d'abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier \href{https://besibo.github.io/Biometrie3/data/hockey.csv}{\texttt{hockey.csv}}.
+Pour tester cela, \protect\hyperlink{ref-carre2008}{Carré \& McCormick} (\protect\hyperlink{ref-carre2008}{2008}) ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d'abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier \href{https://besibo.github.io/Biometrie3/data/hockey.csv}{\texttt{hockey.csv}}.
 
 Importez, examinez et analysez ces données pour répondre à la question posée.
 
@@ -3874,6 +3907,7 @@ Importez, examinez et analysez ces données pour répondre à la question posée
 \addcontentsline{toc}{section}{References}
 
 \hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
 \leavevmode\hypertarget{ref-Campbell1998}{}%
 \textsc{Campbell SS, \& Murphy PJ}. (1998). Extraocular circadian phototransduction in humans. \emph{Science}, \textbf{279}(5349), 396--399. \url{https://doi.org/10.1126/science.279.5349.396}
 
@@ -3890,13 +3924,13 @@ Importez, examinez et analysez ces données pour répondre à la question posée
 \textsc{Hasselquist D, Marsh JA, Sherman PW, \& Wingfield JC}. (1999). Is avian humoral immunocompetence suppressed by testosterone? \emph{Behavioral Ecology and Sociobiology}, \textbf{45}(3), 167--175. \url{https://doi.org/10.1007/s002650050550}
 
 \leavevmode\hypertarget{ref-liberg2005}{}%
-\textsc{Liberg O, Andrén H, Pedersen H-C, Sand H, Sejberg, Wabakken P, \ldots{} Bensch S}. (2005). Severe inbreeding depression in a wild wolf Canis lupus population. \emph{Biology Letters}, \textbf{1}(1), 17--20. \url{https://doi.org/10.1098/rsbl.2004.0266}
+\textsc{Liberg O, Andrén H, Pedersen H-C, Sand H, Sejberg, Wabakken P, \ldots{} Bensch S}. (2005). Severe inbreeding depression in a wild wolf {Canis} lupus population. \emph{Biology Letters}, \textbf{1}(1), 17--20. \url{https://doi.org/10.1098/rsbl.2004.0266}
 
 \leavevmode\hypertarget{ref-Molofsky2005}{}%
 \textsc{Molofsky J, \& Ferdy J-B}. (2005). Extinction dynamics in experimental metapopulations. \emph{Proceedings of the National Academy of Sciences}, \textbf{102}(10), 3726--3731. \url{https://doi.org/10.1073/pnas.0404576102}
 
 \leavevmode\hypertarget{ref-muller2011}{}%
-\textsc{Müller MS, Porter ET, Grace JK, Awkerman JA, Birchler KT, Gunderson AR, \ldots{} Anderson DJ}. (2011). Maltreated nestlings exhibit correlated maltreatment as adults: Evidence of a ``cycle of violence'' in Nazca Boobies ( \emph{Sula} \emph{Granti} ). \emph{The Auk}, \textbf{128}(4), 615--619. \url{https://doi.org/10.1525/auk.2011.11008}
+\textsc{Müller MS, Porter ET, Grace JK, Awkerman JA, Birchler KT, Gunderson AR, \ldots{} Anderson DJ}. (2011). Maltreated nestlings exhibit correlated maltreatment as adults: {Evidence} of a {``cycle of violence''} in {Nazca Boobies} ( {\emph{Sula}}{ \emph{Granti}} ). \emph{The Auk}, \textbf{128}(4), 615--619. \url{https://doi.org/10.1525/auk.2011.11008}
 
 \leavevmode\hypertarget{ref-R-broom}{}%
 \textsc{Robinson D, Hayes A, \& Couch S}. (2020). \emph{Broom: Convert statistical objects into tidy tibbles}. Retrieved from \url{https://CRAN.R-project.org/package=broom}
@@ -3911,33 +3945,35 @@ Importez, examinez et analysez ces données pour répondre à la question posée
 \textsc{Waring E, Quinn M, McNamara A, Arino de la Rubia E, Zhu H, \& Ellis S}. (2020). \emph{Skimr: Compact and flexible summaries of data}. Retrieved from \url{https://CRAN.R-project.org/package=skimr}
 
 \leavevmode\hypertarget{ref-whitlock2015}{}%
-\textsc{Whitlock M, \& Schluter D}. (2015). \emph{The analysis of biological data} (Second edition). Greenwood Village, Colorado: Roberts and Company Publishers.
+\textsc{Whitlock M, \& Schluter D}. (2015). \emph{The analysis of biological data} (Second edition). Greenwood Village, Colorado: {Roberts and Company Publishers}.
 
 \leavevmode\hypertarget{ref-R-tidyverse}{}%
-\textsc{Wickham H}. (2019). \emph{Tidyverse: Easily install and load the 'tidyverse'}. Retrieved from \url{https://CRAN.R-project.org/package=tidyverse}
+\textsc{Wickham H}. (2019). \emph{Tidyverse: Easily install and load the tidyverse}. Retrieved from \url{https://CRAN.R-project.org/package=tidyverse}
+
+\leavevmode\hypertarget{ref-R-tidyr}{}%
+\textsc{Wickham H}. (2020). \emph{Tidyr: Tidy messy data}. Retrieved from \url{https://CRAN.R-project.org/package=tidyr}
 
 \leavevmode\hypertarget{ref-R-readxl}{}%
 \textsc{Wickham H, \& Bryan J}. (2019). \emph{Readxl: Read excel files}. Retrieved from \url{https://CRAN.R-project.org/package=readxl}
 
 \leavevmode\hypertarget{ref-R-ggplot2}{}%
-\textsc{Wickham H, Chang W, Henry L, Pedersen TL, Takahashi K, Wilke C, \ldots{} Dunnington D}. (2020). \emph{Ggplot2: Create elegant data visualisations using the grammar of graphics}. Retrieved from \url{https://CRAN.R-project.org/package=ggplot2}
+\textsc{Wickham H, Chang W, Henry L, Pedersen TL, Takahashi K, Wilke C, \ldots{} Dunnington D}. (2020). \emph{ggplot2: Create elegant data visualisations using the grammar of graphics}. Retrieved from \url{https://CRAN.R-project.org/package=ggplot2}
 
 \leavevmode\hypertarget{ref-R-dplyr}{}%
 \textsc{Wickham H, François R, Henry L, \& Müller K}. (2020). \emph{Dplyr: A grammar of data manipulation}. Retrieved from \url{https://CRAN.R-project.org/package=dplyr}
 
-\leavevmode\hypertarget{ref-R-tidyr}{}%
-\textsc{Wickham H, \& Henry L}. (2020). \emph{Tidyr: Tidy messy data}. Retrieved from \url{https://CRAN.R-project.org/package=tidyr}
-
 \leavevmode\hypertarget{ref-R-readr}{}%
-\textsc{Wickham H, Hester J, \& Francois R}. (2018). \emph{Readr: Read rectangular text data}. Retrieved from \url{https://CRAN.R-project.org/package=readr}
+\textsc{Wickham H, \& Hester J}. (2020). \emph{Readr: Read rectangular text data}. Retrieved from \url{https://CRAN.R-project.org/package=readr}
 
 \leavevmode\hypertarget{ref-wiseman1996}{}%
-\textsc{Wiseman R, \& Lamont P}. (1996). Unravelling the Indian rope-trick. \emph{Nature}, \textbf{383}(6597), 212. \url{https://doi.org/10.1038/383212a0}
+\textsc{Wiseman R, \& Lamont P}. (1996). Unravelling the {Indian} rope-trick. \emph{Nature}, \textbf{383}(6597), 212. \url{https://doi.org/10.1038/383212a0}
 
 \leavevmode\hypertarget{ref-Wright2002}{}%
 \textsc{Wright KP, \& Czeisler CA}. (2002). Absence of circadian phase resetting in response to bright light behind the knees. \emph{Science}, \textbf{297}(5581), 571--571. \url{https://doi.org/10.1126/science.1071697}
 
 \leavevmode\hypertarget{ref-Young2004}{}%
 \textsc{Young KV, Brodie ED, \& Brodie ED}. (2004). How the horned lizard got its horns. \emph{Science}, \textbf{304}(5667), 65--65. \url{https://doi.org/10.1126/science.1094790}
+
+\end{CSLReferences}
 
 \end{document}

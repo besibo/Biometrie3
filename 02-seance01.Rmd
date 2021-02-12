@@ -394,15 +394,15 @@ Il nous faut maintenant transformer ce tableau en format "long" pour les représ
 
 ```{r}
 Testo_long <- Testo_large %>% 
-  gather(key = Traitement, 
-         value = DO, 
-         Before, After, 
-         factor_key = TRUE)
+  pivot_longer(cols = c(Before, After),
+               names_to = "Traitement", 
+               values_to = "DO") %>% 
+  mutate(Traitement = factor(Traitement))
 
 Testo_long
 ```
 
-Si vous ne comprenez pas ces commandes, je vous conseille vivement de reprendre [les chapitres 5 et 6](https://besibo.github.io/DA/tidyr.html) du livre en ligne de Biométrie 2. Dans l'idéal, depuis les TP de biométrie 2, vous devriez être capables de construire de telles séquences de commandes pour aboutir à un tableau rangé ne contenant que les variables utiles, au format long comme au format court (ou large). Mais évidemment, de telles groupes de commandes se construisent étape par étape, et pas d'un seul coup comme les comande précédentes pourraient le laisser croire.
+Si vous ne comprenez pas ces commandes, je vous conseille vivement de reprendre [les chapitres 5 et 6](https://besibo.github.io/DA/tidyr.html) du livre en ligne de Biométrie 2. Dans l'idéal, depuis les TP de biométrie 2, vous devriez être capables de construire de telles séquences de commandes pour aboutir à un tableau rangé ne contenant que les variables utiles, au format long comme au format court (ou large). Mais évidemment, de telles groupes de commandes se construisent étape par étape, et pas d'un seul coup, contrairement à ce que les commandes précédentes pourraient laisser croire.
 
 Maintenant que nous disposons de ces 2 tableaux, nous pouvons commencer à décrire nos données.
 

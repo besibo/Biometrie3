@@ -537,15 +537,50 @@ Lorsque les conditions d'application de la régression linéaire ne sont pas vé
 
 ### Exercices
 
-#### Le quartet d'Anscombe
+#### Datasaurus et Anscombe
 
-Exécutez la commande suivante (il vous faudra peut-être presser la touche `Entrée` dans la console) pour produire les 4 graphiques d'Anscombe :
+Exécutez les commandes suivantes
+
+```{r, eval = FALSE}
+library(datasauRus)
+
+datasaurus_dozen %>% 
+    group_by(dataset) %>% 
+    summarize(
+      moy_x    = mean(x),
+      moy_y    = mean(y),
+      ecart_type_x = sd(x),
+      ecart_type_y = sd(y),
+      correl_x_y  = cor(x, y),
+      pente = coef(lm(y~x))[2],
+      ordonnee_origine = coef(lm(y~x))[1]
+    )
+```
+
+Examinez attentivement les nombreux résultats produits par cette commande. dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 13 jeux de données, 2 variables numériques `x` et `y` sont mises en relation. Pour tous ces jeux de données, on observe que la moyenne des `x` est la même, la moyenne de tous les `y` est la même, les écarts-types des `x` sont identiques, les écarts-types des `y` aussi, la corrélation entre `x` et `y` est également extrêmement proche, et lorsque l'on effectue une régression linéaire de `y` en fonction de `x`, les ordonnées à l'origine et les pentes des droites de régression sont extrêmement proches pour les 13 jeux de données. 
+
+Si on s'en tient à ces calculs d'indices synthétiques, on pourrait croire que ces jeux de données sont identiques ou presque. Pourtant, ce n'est pas par hasard que je vous répète à longueur de temps qu'il est **indispensable de regarder les données** avant de se lancer dans les analyses et les statistiques. Car ici, ces jeux de données sont très différents, et conclure qu'ils sont identiques simplement parce que les statistiques descriptives sont égales, serait une erreur majeure :
+
+```{r, fig.asp = 1, echo = -1}
+library(datasauRus)
+datasaurus_dozen %>% 
+  ggplot(aes(x, y, color = dataset)) +
+  geom_point(show.legend = FALSE) +
+  facet_wrap(~dataset, ncol = 3) +
+  theme_bw()
+```
+
+Le quartet d'Anscombe est un autre exemple de ce type de problème.
+
+Dans la console, exécutez la commande suivante (il vous faudra peut-être presser la touche Entrée plusieurs fois) pour produire les 4 graphiques d’Anscombe :
 
 ```{r, eval = FALSE}
 example(anscombe)
 ```
 
-Examinez attentivement les nombreux résultats produits par cette commande dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 4 jeux de données, 2 variables numériques sont mises en relation. Les variables `x1`, `x2`, `x3` et `x4` ont toutes la même moyenne et la même variance. Les variables `y1`, `y2`, `y3` et `y4` ont toutes la même moyenne et la même variance. Les coefficients de corrélation entre `x1` et `y1`, `x2` et `y2`, `x3` et `y3`, `x4` et `y4` sont tous les mêmes. Enfin, les ordonnées à l'origine et les pentes de ces 4 droites de régression linéaires sont identiques. Pourtant, seule la première régression linéaire est valide. Pourquoi ?
+Examinez attentivement les nombreux résultats produits par cette commande dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 4 jeux de données, 2 variables numériques sont là encore mises en relation, et qu'elles présentent toutes les mêmes caractéristiques. En particulier, les régressions linéaires ont toutes les mêmes pentes et ordonnées à l'origine. Pourtant, seule l'une de ces régressions linéaires est valide. Pourquoi ?
+
+
 
 #### In your face
 

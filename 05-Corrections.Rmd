@@ -110,7 +110,7 @@ Le test de Spearman confirme la présence d'une relation significative entre les
 
 ## Régression linéaire
 
-### Le quartet d'Anscombe
+### Datasaurus et Anscombe
 
 Seule la première régression linéaire est valide (en haut à gauche) car pour les 3 autres situations, les conditions d'application de la régression ne sont pas vérifiées. Pour le prouver, il faudrait faire l'analyse des résidus de ces 4 régressions. Toutefois, on peut dire les choses suivantes :
 
