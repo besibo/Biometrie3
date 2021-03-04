@@ -256,20 +256,20 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Commencez par importer les données contenues dans <a href="https://besibo.github.io/Biometrie3/data/Temperature.csv">le fichier <code>Temperature.csv</code></a>. Pour cela, utilisez l’assistant d’importation de RStudio. Si vous ne savez plus comment faire, consultez <a href="https://besibo.github.io/Biometrie2/tidyr.html#importer-des-donnees-depuis-un-tableur">la section 5.3</a> du livre en ligne de Biométrie 2.</p>
 <p>Vous stockerez les données dans un objet que vous nommerez <code>Temperature</code>. Après l’importation, taper son nom dans la console de RStudio doit produire le résultat suivant :</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="seance1.html#cb6-1" aria-hidden="true" tabindex="-1"></a>Temperature</span></code></pre></div>
-<pre><code>## # A tibble: 25 x 2
-##    individual temperature
-##         &lt;dbl&gt;       &lt;dbl&gt;
-##  1          1        98.4
-##  2          2        98.6
-##  3          3        97.8
-##  4          4        98.8
-##  5          5        97.9
-##  6          6        99  
-##  7          7        98.2
-##  8          8        98.8
-##  9          9        98.8
-## 10         10        99  
-## # … with 15 more rows</code></pre>
+<pre><code># A tibble: 25 x 2
+   individual temperature
+        &lt;dbl&gt;       &lt;dbl&gt;
+ 1          1        98.4
+ 2          2        98.6
+ 3          3        97.8
+ 4          4        98.8
+ 5          5        97.9
+ 6          6        99  
+ 7          7        98.2
+ 8          8        98.8
+ 9          9        98.8
+10         10        99  
+# … with 15 more rows</code></pre>
 <p>Ce tableau contient les températures corporelles de 25 adultes en bonne santé choisis au hasard parmi la population américaine. On souhaite examiner la croyance populaire indiquant que la température moyenne d’adultes en bonne santé vaut 37ºC.</p>
 <p>La première chose à faire quand on travaille avec des données inconnues, c’est d’examiner les données brutes. Ici, les données sont importées au format <code>tibble</code>, donc seules les premières lignes sont visibles. Pour visualiser l’ensemble du tableau, utilisez la fonction <code>View()</code> :</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="seance1.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Temperature)</span></code></pre></div>
@@ -287,20 +287,20 @@ code span.wa { color: #bf0303; } /* Warning */
 <span id="cb9-5"><a href="seance1.html#cb9-5" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb9-6"><a href="seance1.html#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-7"><a href="seance1.html#cb9-7" aria-hidden="true" tabindex="-1"></a>Temp_clean</span></code></pre></div>
-<pre><code>## # A tibble: 25 x 1
-##    temperature
-##          &lt;dbl&gt;
-##  1        36.9
-##  2        37.0
-##  3        36.6
-##  4        37.1
-##  5        36.6
-##  6        37.2
-##  7        36.8
-##  8        37.1
-##  9        37.1
-## 10        37.2
-## # … with 15 more rows</code></pre>
+<pre><code># A tibble: 25 x 1
+   temperature
+         &lt;dbl&gt;
+ 1        36.9
+ 2        37.0
+ 3        36.6
+ 4        37.1
+ 5        36.6
+ 6        37.2
+ 7        36.8
+ 8        37.1
+ 9        37.1
+10        37.2
+# … with 15 more rows</code></pre>
 <p>Il nous est maintenant possible d’examiner à nouveau les données avec la fonction <code>View()</code>. Avec des valeurs de températures comprises entre 36.3 ºC et 37.8 ºC, il n’y a visiblement pas de données aberrantes.</p>
 <p>C’est toujours la première chose à faire : regarder les données brutes pour repérer :</p>
 <ul>
@@ -320,13 +320,13 @@ code span.wa { color: #bf0303; } /* Warning */
 </ul>
 <p>Pour répondre à ces questions, on peut faire appel à de multiples fonctions. J’en évoquerai ici seulement 3 qui permettent d’obtenir la plupart des informations dont nous avons besoin très simplement :</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="seance1.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Temp_clean)</span></code></pre></div>
-<pre><code>##   temperature   
-##  Min.   :36.33  
-##  1st Qu.:36.67  
-##  Median :37.00  
-##  Mean   :36.96  
-##  3rd Qu.:37.22  
-##  Max.   :37.78</code></pre>
+<pre><code>  temperature   
+ Min.   :36.33  
+ 1st Qu.:36.67  
+ Median :37.00  
+ Mean   :36.96  
+ 3rd Qu.:37.22  
+ Max.   :37.78  </code></pre>
 <p>Comme son nom l’indique, la fonction <code>summary()</code> renvoie un résumé des données :</p>
 <ul>
 <li>les valeurs extrêmes (minimum et maximum)</li>
@@ -339,80 +339,26 @@ code span.wa { color: #bf0303; } /* Warning */
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="seance1.html#cb13-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
 <span id="cb13-2"><a href="seance1.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(temperature) <span class="sc">%&gt;%</span> </span>
 <span id="cb13-3"><a href="seance1.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">IQR</span>()</span></code></pre></div>
-<pre><code>## [1] 0.5555556</code></pre>
+<pre><code>[1] 0.5555556</code></pre>
 <p>On constate ici que l’intervalle inter quartile a une largeur de 0.55 degrés Celsius. Cela signifie que les 50% des températures les plus centrales sont situées dans un intervalle d’environ un demi-degré celsius.</p>
 <p>Enfin, une autre façon d’obtenir des informations rapidement consiste à utiliser la fonction <code>skim()</code> du package <code>skimr</code> :</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="seance1.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(Temp_clean)</span></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-12">Table 3.1: </span>Data summary</caption>
-<tbody>
-<tr class="odd">
-<td align="left">Name</td>
-<td align="left">Temp_clean</td>
-</tr>
-<tr class="even">
-<td align="left">Number of rows</td>
-<td align="left">25</td>
-</tr>
-<tr class="odd">
-<td align="left">Number of columns</td>
-<td align="left">1</td>
-</tr>
-<tr class="even">
-<td align="left">_______________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Column type frequency:</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">numeric</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="left">________________________</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">Group variables</td>
-<td align="left">None</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: numeric</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">p0</th>
-<th align="right">p25</th>
-<th align="right">p50</th>
-<th align="right">p75</th>
-<th align="right">p100</th>
-<th align="left">hist</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">temperature</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">36.96</td>
-<td align="right">0.38</td>
-<td align="right">36.33</td>
-<td align="right">36.67</td>
-<td align="right">37</td>
-<td align="right">37.22</td>
-<td align="right">37.78</td>
-<td align="left">▇▇▇▇▂</td>
-</tr>
-</tbody>
-</table>
+<pre><code>── Data Summary ────────────────────────
+                           Values    
+Name                       Temp_clean
+Number of rows             25        
+Number of columns          1         
+_______________________              
+Column type frequency:               
+  numeric                  1         
+________________________             
+Group variables            None      
+
+── Variable type: numeric ──────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate  mean    sd    p0   p25   p50   p75
+1 temperature           0             1  37.0 0.377  36.3  36.7  37.0  37.2
+   p100 hist 
+1  37.8 ▇▇▇▇▂</code></pre>
 <p>Tout comme <code>summary()</code>, la fonction <code>skim()</code> renvoie les valeurs minimales et maximales, les premiers et troisièmes quartiles ainsi que la moyenne et la médiane. Elle nous indique en outre la valeur de l’écart-type de l’échantillon, ainsi que le nombre d’observations et le nombre de données manquantes. Enfin, elle fournit un histogramme très schématique et sans échelle. Cet histogramme nous permet de nous faire une première idée de la distribution des données.</p>
 <p>Outre ces 3 fonctions (<code>summary()</code>, <code>IQR()</code>, et <code>skim()</code>), il est bien sûr possible de calculer toutes ces valeurs manuellement si besoin :</p>
 <ul>
@@ -424,13 +370,13 @@ code span.wa { color: #bf0303; } /* Warning */
 <li><code>var()</code> permet de calculer la variance.</li>
 </ul>
 <p>Toutes ces fonctions prennent seulement un vecteur en guise d’argument. Il faut donc procéder comme avec <code>IQR()</code> pour les utiliser. Par exemple, pour calculer la variance, on peut taper :</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="seance1.html#cb16-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="seance1.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(temperature) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="seance1.html#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">var</span>()</span></code></pre></div>
-<pre><code>## [1] 0.1417901</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="seance1.html#cb17-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="seance1.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(temperature) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="seance1.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">var</span>()</span></code></pre></div>
+<pre><code>[1] 0.1417901</code></pre>
 <p>ou :</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="seance1.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Temp_clean<span class="sc">$</span>temperature)</span></code></pre></div>
-<pre><code>## [1] 0.1417901</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="seance1.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Temp_clean<span class="sc">$</span>temperature)</span></code></pre></div>
+<pre><code>[1] 0.1417901</code></pre>
 </div>
 <div id="exploration-graphique" class="section level4" number="3.2.1.3">
 <h4><span class="header-section-number">3.2.1.3</span> Exploration graphique</h4>
@@ -438,53 +384,53 @@ code span.wa { color: #bf0303; } /* Warning */
 <ol style="list-style-type: decimal">
 <li>Les nuages de points ou stripcharts :</li>
 </ol>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="seance1.html#cb20-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb20-2"><a href="seance1.html#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> temperature)) <span class="sc">+</span></span>
-<span id="cb20-3"><a href="seance1.html#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-15-1.png" width="25%" /></p>
-<p>Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut tenir compte de l’over-plotting. Si vous ne vous rappelez plus de quoi il s’agit, consultez <a href="https://besibo.github.io/DA/viz.html#over-plotting">la section 4.3.4</a> du livre en ligne de Biométrie 2. Globalement, pour visualiser correctement les données, on va jouer soit sur la transparence des points, soit sur l’ajout d’un bruit aléatoire horizontal qui permettra de distinguer plus facilement les points et de repérer les zones où les points sont abondants ou rares :</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="seance1.html#cb21-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
 <span id="cb21-2"><a href="seance1.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> temperature)) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="seance1.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="seance1.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>)</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-16-1.png" width="25%" /></p>
-<p>La fonction <code>xlim()</code> permet de spéccifier manuellement les valeurs limites que l’on souhaite pour l’axe des abscisses. Ici, cet axe n’a aucune signification particulière puisque nous n’avons qu’une unique série de données (c’est la raison pour laquelle les points sont centrés sur l’abscisse x = 1). Nous pouvons donc le masquer comme ceci :</p>
+<span id="cb21-3"><a href="seance1.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-15-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut tenir compte de l’over-plotting. Si vous ne vous rappelez plus de quoi il s’agit, consultez <a href="https://besibo.github.io/DA/viz.html#over-plotting">la section 4.3.4</a> du livre en ligne de Biométrie 2. Globalement, pour visualiser correctement les données, on va jouer soit sur la transparence des points, soit sur l’ajout d’un bruit aléatoire horizontal qui permettra de distinguer plus facilement les points et de repérer les zones où les points sont abondants ou rares :</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="seance1.html#cb22-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
 <span id="cb22-2"><a href="seance1.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> temperature)) <span class="sc">+</span></span>
 <span id="cb22-3"><a href="seance1.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="seance1.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb22-5"><a href="seance1.html#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb22-6"><a href="seance1.html#cb22-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb22-7"><a href="seance1.html#cb22-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-17-1.png" width="25%" /></p>
+<span id="cb22-4"><a href="seance1.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-16-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>La fonction <code>xlim()</code> permet de spéccifier manuellement les valeurs limites que l’on souhaite pour l’axe des abscisses. Ici, cet axe n’a aucune signification particulière puisque nous n’avons qu’une unique série de données (c’est la raison pour laquelle les points sont centrés sur l’abscisse x = 1). Nous pouvons donc le masquer comme ceci :</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="seance1.html#cb23-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="seance1.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> temperature)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="seance1.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="seance1.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="seance1.html#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-6"><a href="seance1.html#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-7"><a href="seance1.html#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-17-1.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>On constate ici que la répartition des points est assez régulière, avec néanmoins une majorité de points entre 36.8 et 37.3 degrés Celsius.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>L’histogramme :</li>
 </ol>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="seance1.html#cb23-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb23-2"><a href="seance1.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> temperature)) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="seance1.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="fu">grey</span>(<span class="fl">0.8</span>))</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="seance1.html#cb24-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a href="seance1.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> temperature)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="seance1.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="fu">grey</span>(<span class="fl">0.8</span>))</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-18-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Si vous ne vous rappelez-plus ce qu’est un histogramme ou comment le faire, ou la signification de l’argument <code>bins</code>, relisez <a href="https://besibo.github.io/DA/viz.html#histogram">la section 4.5</a> du livre en ligne de Biométrie 2.</p>
 <p>Notez ici que la forme de cet histogramme est très proche de celle présenté plus tôt par la fonction <code>skim()</code>. Cet histogramme nous apprend qu’en dehors d’un “trou” autour de la température 36.75 ºC, la distribution des données est proche d’une courbe en cloche. Il y a fort à parier qu’un test de normalité concluerait à la normalité des données de cet échantillon.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Les boîtes à moustaches :</li>
 </ol>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="seance1.html#cb24-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb24-2"><a href="seance1.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> temperature)) <span class="sc">+</span></span>
-<span id="cb24-3"><a href="seance1.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-19-1.png" width="25%" /></p>
-<p>Comme pour le stripchart présenté plus haut, l’axe des abscisses n’a ici aucun sens. Nous n’avons qu’une unique série de données, l’axe des <code>x</code> est donc inutile et nous pouvons donc le retirer :</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="seance1.html#cb25-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
 <span id="cb25-2"><a href="seance1.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> temperature)) <span class="sc">+</span></span>
-<span id="cb25-3"><a href="seance1.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb25-4"><a href="seance1.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb25-5"><a href="seance1.html#cb25-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-20-1.png" width="25%" /></p>
+<span id="cb25-3"><a href="seance1.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-19-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>Comme pour le stripchart présenté plus haut, l’axe des abscisses n’a ici aucun sens. Nous n’avons qu’une unique série de données, l’axe des <code>x</code> est donc inutile et nous pouvons donc le retirer :</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="seance1.html#cb26-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="seance1.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> temperature)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="seance1.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="seance1.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-5"><a href="seance1.html#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-20-1.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>On retrouve sur ce graphique tous les éléments obtenus avec la fonction <code>summary()</code> à l’exception de la moyenne. Assurez-vous que vous êtes bien capables d’identifier tous ces éléments sur le graphique. Assurez-vous aussi que la signification de l’encoche (obtenue avec l’argument <code>notch = TRUE</code>) est bien claire pour vous. Comme toujours, si ce n’est pas le cas, consultez <a href="https://besibo.github.io/DA/viz.html#les-boites-a-moustaches-ou-boxplots">la section dédiée aux boxplots</a> dans le livre en ligne de Biométrie 2.</p>
 <p>Pour conclure, ces 3 types de représentations graphiques (nuages de points ou stripchart, histogrammes et boxplots) sont complémentaires. Ces trois types de représentations graphiques permettent de visualiser la distribution d’une variable numérique. Les nuages de points permettent de voir toutes les données brutes. Les histogrammes résument les données en quelques valeurs : une valeur d’abondance pour chaque barre ou classe. Les boxplots résument encore plus les données avec seulement 7 valeurs qui caractérisent la distribution (voir figure <a href="seance1.html#fig:compdistr">3.1</a> ci-dessous).</p>
-<div class="figure"><span id="fig:compdistr"></span>
-<img src="Biometrie3_files/figure-html/compdistr-1.png" alt="Comparaison de 2 types de représentations graphiques" width="672" />
+<div class="figure" style="text-align: center"><span id="fig:compdistr"></span>
+<img src="figure/compdistr-1.png" alt="Comparaison de 2 types de représentations graphiques" width="90%" />
 <p class="caption">
 Figure 3.1: Comparaison de 2 types de représentations graphiques
 </p>
@@ -514,14 +460,14 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>H<span class="math inline">\(_1\)</span> : la variable étudiée ne suit pas une distribution Normale dans la population générale.</li>
 </ul>
 <p>Le test de Shapiro-Wilk se réalise de la façon suivante :</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="seance1.html#cb26-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb26-2"><a href="seance1.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(temperature) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-3"><a href="seance1.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  .
-## W = 0.97216, p-value = 0.7001</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="seance1.html#cb27-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="seance1.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(temperature) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="seance1.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.97216, p-value = 0.7001</code></pre>
 <p><code>W</code> est la statistique du test. Elle permet à RStudio de calculer la <em>p</em>-value du test. Ici, <span class="math inline">\(p &gt; \alpha\)</span>. On ne peut donc pas rejeter l’hypothèse nulle de normalité : on ne peut pas exclure que dans la population générale, la température suive bel et bien une distribution Normale. Les conditions d’application du test de Student sont bien vérifiées.</p>
 </div>
 <div id="réalisation-du-test-et-interprétation" class="section level4" number="3.2.2.2">
@@ -532,20 +478,20 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>H<span class="math inline">\(_1\)</span> : dans la population générale, la température corporelle moyenne des adultes en bonne santé est différente de 37ºC (<span class="math inline">\(\mu \neq 37\)</span>).</li>
 </ul>
 <p>On réalise ensuite le test de la façon suivante :</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="seance1.html#cb28-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb28-2"><a href="seance1.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(temperature) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-3"><a href="seance1.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(<span class="at">mu =</span> <span class="dv">37</span>)</span></code></pre></div>
-<pre><code>## 
-##  One Sample t-test
-## 
-## data:  .
-## t = -0.56065, df = 24, p-value = 0.5802
-## alternative hypothesis: true mean is not equal to 37
-## 95 percent confidence interval:
-##  36.80235 37.11321
-## sample estimates:
-## mean of x 
-##  36.95778</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="seance1.html#cb29-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="seance1.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(temperature) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="seance1.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(<span class="at">mu =</span> <span class="dv">37</span>)</span></code></pre></div>
+<pre><code>
+    One Sample t-test
+
+data:  .
+t = -0.56065, df = 24, p-value = 0.5802
+alternative hypothesis: true mean is not equal to 37
+95 percent confidence interval:
+ 36.80235 37.11321
+sample estimates:
+mean of x 
+ 36.95778 </code></pre>
 <p>Sur la première ligne, R nous confirme que nous avons bien réalisé un test de Student à un échantillon. La première ligne de résultats fournit la valeur du <span class="math inline">\(t\)</span> calculé (ici, -0.56), le nombre de degrés de libertés (ici, <code>df</code> = 24), et la <span class="math inline">\(p\)</span>-value (ici, 0.58, soit une valeur supérieure à <span class="math inline">\(\alpha\)</span>). Cette première ligne contient donc tous les résultats du test qu’il conviendrait de rappeler dans un rapport. On devrait ainsi dire :</p>
 <blockquote>
 <p>Au seuil <span class="math inline">\(\alpha\)</span> de 5%, on ne peut pas rejeter l’hypothèse nulle <span class="math inline">\(\mu = 37\)</span> (<span class="math inline">\(t = -0.56\)</span>, ddl = 24, <span class="math inline">\(p = 0.58\)</span>). Les données observées sont donc compatibles avec l’hypothèse selon laquelle la température corporelle moyenne des adultes en bonne santé vaut 37ºC.</p>
@@ -558,24 +504,24 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <div id="lalternative-non-paramétrique" class="section level3" number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> L’alternative non paramétrique</h3>
 <p>Si jamais les conditions d’application du test de Student à un échantillon n’étaient pas remplies, il faudrait alors réaliser son équivalent non paramétrique : le <strong>test de Wilcoxon des rangs signés</strong>. Ce test est moins puissant que son homologue paramétrique. On ne l’effectue donc que lorsque l’on n’a pas le choix :</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="seance1.html#cb30-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb30-2"><a href="seance1.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(temperature) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-3"><a href="seance1.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox.test</span>(<span class="at">mu =</span> <span class="dv">37</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot compute
-## exact p-value with ties</code></pre>
-<pre><code>## Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot compute
-## exact confidence interval with ties</code></pre>
-<pre><code>## 
-##  Wilcoxon signed rank test with continuity correction
-## 
-## data:  .
-## V = 143, p-value = 0.6077
-## alternative hypothesis: true location is not equal to 37
-## 95 percent confidence interval:
-##  36.77780 37.11114
-## sample estimates:
-## (pseudo)median 
-##       36.94446</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="seance1.html#cb31-1" aria-hidden="true" tabindex="-1"></a>Temp_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="seance1.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(temperature) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="seance1.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox.test</span>(<span class="at">mu =</span> <span class="dv">37</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot compute
+exact p-value with ties</code></pre>
+<pre><code>Warning in wilcox.test.default(., mu = 37, conf.int = TRUE): cannot compute
+exact confidence interval with ties</code></pre>
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  .
+V = 143, p-value = 0.6077
+alternative hypothesis: true location is not equal to 37
+95 percent confidence interval:
+ 36.77780 37.11114
+sample estimates:
+(pseudo)median 
+      36.94446 </code></pre>
 <p>La syntaxe est identique à celle du test de Student à un échantillon à une exception près : l’ajout de l’argument <code>conf.int = TRUE</code> qui permet d’afficher la (pseudo)médiane de l’échantillon et son intervalle de confiance à 95%.</p>
 <p>Les hypothèses nulles et alternatives de ce test sont les mêmes que celles du test de Student à un échantillon. En toute rigueur, on teste l’égalité de la médiane à une valeur théorique, et non l’égalité de la moyenne. Mais dans la pratique, la grande majorité des utilisateurs de ce test font l’amalgame entre moyenne et médiane. Ici, la conclusion correcte devrait être :</p>
 <blockquote>
@@ -611,70 +557,70 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <div id="importation-et-examen-visuel-1" class="section level4" number="3.3.1.1">
 <h4><span class="header-section-number">3.3.1.1</span> Importation et examen visuel</h4>
 <p>Les données se trouvent dans <a href="https://besibo.github.io/Biometrie3/data/Testosterone.csv">le fichier <code>Testosterone.csv</code></a>. Importez ces données dans un objet nommé <code>Testo</code> et examinez le tableau obtenu.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="seance1.html#cb34-1" aria-hidden="true" tabindex="-1"></a>Testo</span></code></pre></div>
-<pre><code>## # A tibble: 13 x 5
-##    blackbird beforeImplant afterImplant logBeforeImplant logAfterImplant
-##        &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;
-##  1         1           105           85             4.65            4.44
-##  2         2            50           74             3.91            4.3 
-##  3         3           136          145             4.91            4.98
-##  4         4            90           86             4.5             4.45
-##  5         5           122          148             4.8             5   
-##  6         6           132          148             4.88            5   
-##  7         7           131          150             4.88            5.01
-##  8         8           119          142             4.78            4.96
-##  9         9           145          151             4.98            5.02
-## 10        10           130          113             4.87            4.73
-## 11        11           116          118             4.75            4.77
-## 12        12           110           99             4.7             4.6 
-## 13        13           138          150             4.93            5.01</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="seance1.html#cb35-1" aria-hidden="true" tabindex="-1"></a>Testo</span></code></pre></div>
+<pre><code># A tibble: 13 x 5
+   blackbird beforeImplant afterImplant logBeforeImplant logAfterImplant
+       &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;
+ 1         1           105           85             4.65            4.44
+ 2         2            50           74             3.91            4.3 
+ 3         3           136          145             4.91            4.98
+ 4         4            90           86             4.5             4.45
+ 5         5           122          148             4.8             5   
+ 6         6           132          148             4.88            5   
+ 7         7           131          150             4.88            5.01
+ 8         8           119          142             4.78            4.96
+ 9         9           145          151             4.98            5.02
+10        10           130          113             4.87            4.73
+11        11           116          118             4.75            4.77
+12        12           110           99             4.7             4.6 
+13        13           138          150             4.93            5.01</code></pre>
 <p>Visiblement, il n’y a pas de données manquantes mais certaines variables sont inutiles. En réalité, nous aurons besoin des données sous 2 formats disctincts : un format “large” pour les statistiques descriptives et les tests d’hypothèses, et un format “long” pour les représentations graphiques. Et dans tous les cas, l’identifiant individuel devrait être considéré comme un facteur, et non comme une variable numérique comme c’est le cas actuellement.</p>
 <p>Commençons par créer un tableau “large” pour les statistiques descriptives :</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="seance1.html#cb36-1" aria-hidden="true" tabindex="-1"></a>Testo_large <span class="ot">&lt;-</span> Testo <span class="sc">%&gt;%</span> </span>
-<span id="cb36-2"><a href="seance1.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">blackbird =</span> <span class="fu">factor</span>(blackbird)) <span class="sc">%&gt;%</span></span>
-<span id="cb36-3"><a href="seance1.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">ID =</span> blackbird,</span>
-<span id="cb36-4"><a href="seance1.html#cb36-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">Before =</span> logBeforeImplant,</span>
-<span id="cb36-5"><a href="seance1.html#cb36-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">After =</span> logAfterImplant)</span>
-<span id="cb36-6"><a href="seance1.html#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-7"><a href="seance1.html#cb36-7" aria-hidden="true" tabindex="-1"></a>Testo_large</span></code></pre></div>
-<pre><code>## # A tibble: 13 x 3
-##    ID    Before After
-##    &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1 1       4.65  4.44
-##  2 2       3.91  4.3 
-##  3 3       4.91  4.98
-##  4 4       4.5   4.45
-##  5 5       4.8   5   
-##  6 6       4.88  5   
-##  7 7       4.88  5.01
-##  8 8       4.78  4.96
-##  9 9       4.98  5.02
-## 10 10      4.87  4.73
-## 11 11      4.75  4.77
-## 12 12      4.7   4.6 
-## 13 13      4.93  5.01</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="seance1.html#cb37-1" aria-hidden="true" tabindex="-1"></a>Testo_large <span class="ot">&lt;-</span> Testo <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="seance1.html#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">blackbird =</span> <span class="fu">factor</span>(blackbird)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="seance1.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">ID =</span> blackbird,</span>
+<span id="cb37-4"><a href="seance1.html#cb37-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">Before =</span> logBeforeImplant,</span>
+<span id="cb37-5"><a href="seance1.html#cb37-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">After =</span> logAfterImplant)</span>
+<span id="cb37-6"><a href="seance1.html#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="seance1.html#cb37-7" aria-hidden="true" tabindex="-1"></a>Testo_large</span></code></pre></div>
+<pre><code># A tibble: 13 x 3
+   ID    Before After
+   &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1 1       4.65  4.44
+ 2 2       3.91  4.3 
+ 3 3       4.91  4.98
+ 4 4       4.5   4.45
+ 5 5       4.8   5   
+ 6 6       4.88  5   
+ 7 7       4.88  5.01
+ 8 8       4.78  4.96
+ 9 9       4.98  5.02
+10 10      4.87  4.73
+11 11      4.75  4.77
+12 12      4.7   4.6 
+13 13      4.93  5.01</code></pre>
 <p>Il nous faut maintenant transformer ce tableau en format “long” pour les représentations graphiques :</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="seance1.html#cb38-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="ot">&lt;-</span> Testo_large <span class="sc">%&gt;%</span> </span>
-<span id="cb38-2"><a href="seance1.html#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Before, After),</span>
-<span id="cb38-3"><a href="seance1.html#cb38-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Traitement&quot;</span>, </span>
-<span id="cb38-4"><a href="seance1.html#cb38-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;DO&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb38-5"><a href="seance1.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Traitement =</span> <span class="fu">factor</span>(Traitement))</span>
-<span id="cb38-6"><a href="seance1.html#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-7"><a href="seance1.html#cb38-7" aria-hidden="true" tabindex="-1"></a>Testo_long</span></code></pre></div>
-<pre><code>## # A tibble: 26 x 3
-##    ID    Traitement    DO
-##    &lt;fct&gt; &lt;fct&gt;      &lt;dbl&gt;
-##  1 1     Before      4.65
-##  2 1     After       4.44
-##  3 2     Before      3.91
-##  4 2     After       4.3 
-##  5 3     Before      4.91
-##  6 3     After       4.98
-##  7 4     Before      4.5 
-##  8 4     After       4.45
-##  9 5     Before      4.8 
-## 10 5     After       5   
-## # … with 16 more rows</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="seance1.html#cb39-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="ot">&lt;-</span> Testo_large <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="seance1.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Before, After),</span>
+<span id="cb39-3"><a href="seance1.html#cb39-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Traitement&quot;</span>, </span>
+<span id="cb39-4"><a href="seance1.html#cb39-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;DO&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-5"><a href="seance1.html#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Traitement =</span> <span class="fu">factor</span>(Traitement))</span>
+<span id="cb39-6"><a href="seance1.html#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="seance1.html#cb39-7" aria-hidden="true" tabindex="-1"></a>Testo_long</span></code></pre></div>
+<pre><code># A tibble: 26 x 3
+   ID    Traitement    DO
+   &lt;fct&gt; &lt;fct&gt;      &lt;dbl&gt;
+ 1 1     Before      4.65
+ 2 1     After       4.44
+ 3 2     Before      3.91
+ 4 2     After       4.3 
+ 5 3     Before      4.91
+ 6 3     After       4.98
+ 7 4     Before      4.5 
+ 8 4     After       4.45
+ 9 5     Before      4.8 
+10 5     After       5   
+# … with 16 more rows</code></pre>
 <p>Si vous ne comprenez pas ces commandes, je vous conseille vivement de reprendre <a href="https://besibo.github.io/DA/tidyr.html">les chapitres 5 et 6</a> du livre en ligne de Biométrie 2. Dans l’idéal, depuis les TP de biométrie 2, vous devriez être capables de construire de telles séquences de commandes pour aboutir à un tableau rangé ne contenant que les variables utiles, au format long comme au format court (ou large). Mais évidemment, de telles groupes de commandes se construisent étape par étape, et pas d’un seul coup, contrairement à ce que les commandes précédentes pourraient laisser croire.</p>
 <p>Maintenant que nous disposons de ces 2 tableaux, nous pouvons commencer à décrire nos données.</p>
 </div>
@@ -682,256 +628,72 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <h4><span class="header-section-number">3.3.1.2</span> Statistiques descriptives</h4>
 <p>Pour décrire simplement les données, nous nous en tiendront ici à l’utilisation des fonctions <code>summary()</code> et <code>skim()</code>.</p>
 <p>Pour la fonction <code>summary()</code>, le plus simple est toujours d’utiliser le tableau au format large :</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="seance1.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Testo_large)</span></code></pre></div>
-<pre><code>##        ID        Before          After     
-##  1      :1   Min.   :3.910   Min.   :4.30  
-##  2      :1   1st Qu.:4.700   1st Qu.:4.60  
-##  3      :1   Median :4.800   Median :4.96  
-##  4      :1   Mean   :4.734   Mean   :4.79  
-##  5      :1   3rd Qu.:4.880   3rd Qu.:5.00  
-##  6      :1   Max.   :4.980   Max.   :5.02  
-##  (Other):7</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="seance1.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Testo_large)</span></code></pre></div>
+<pre><code>       ID        Before          After     
+ 1      :1   Min.   :3.910   Min.   :4.30  
+ 2      :1   1st Qu.:4.700   1st Qu.:4.60  
+ 3      :1   Median :4.800   Median :4.96  
+ 4      :1   Mean   :4.734   Mean   :4.79  
+ 5      :1   3rd Qu.:4.880   3rd Qu.:5.00  
+ 6      :1   Max.   :4.980   Max.   :5.02  
+ (Other):7                                 </code></pre>
 <p>On constate ici que pour les 2 traitements, les valeurs des différents indices sont très proches entre les 2 séries de données, avec des valeurs de densité optiques (DO) légèrement supérieures après l’opération chirurgicale (sauf pour le premier quartile).</p>
 <p>Pour la fonction <code>skim()</code> le plus simple est là aussi d’utiliser le tableau large :</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="seance1.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(Testo_large)</span></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-29">Table 3.2: </span>Data summary</caption>
-<tbody>
-<tr class="odd">
-<td align="left">Name</td>
-<td align="left">Testo_large</td>
-</tr>
-<tr class="even">
-<td align="left">Number of rows</td>
-<td align="left">13</td>
-</tr>
-<tr class="odd">
-<td align="left">Number of columns</td>
-<td align="left">3</td>
-</tr>
-<tr class="even">
-<td align="left">_______________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Column type frequency:</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">factor</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="left">numeric</td>
-<td align="left">2</td>
-</tr>
-<tr class="even">
-<td align="left">________________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Group variables</td>
-<td align="left">None</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: factor</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="left">ordered</th>
-<th align="right">n_unique</th>
-<th align="left">top_counts</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">ID</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="left">FALSE</td>
-<td align="right">13</td>
-<td align="left">1: 1, 2: 1, 3: 1, 4: 1</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: numeric</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">p0</th>
-<th align="right">p25</th>
-<th align="right">p50</th>
-<th align="right">p75</th>
-<th align="right">p100</th>
-<th align="left">hist</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Before</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4.73</td>
-<td align="right">0.28</td>
-<td align="right">3.91</td>
-<td align="right">4.7</td>
-<td align="right">4.80</td>
-<td align="right">4.88</td>
-<td align="right">4.98</td>
-<td align="left">▁▁▁▃▇</td>
-</tr>
-<tr class="even">
-<td align="left">After</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4.79</td>
-<td align="right">0.26</td>
-<td align="right">4.30</td>
-<td align="right">4.6</td>
-<td align="right">4.96</td>
-<td align="right">5.00</td>
-<td align="right">5.02</td>
-<td align="left">▂▁▂▁▇</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="seance1.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(Testo_large)</span></code></pre></div>
+<pre><code>── Data Summary ────────────────────────
+                           Values     
+Name                       Testo_large
+Number of rows             13         
+Number of columns          3          
+_______________________               
+Column type frequency:                
+  factor                   1          
+  numeric                  2          
+________________________              
+Group variables            None       
+
+── Variable type: factor ───────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate ordered n_unique top_counts            
+1 ID                    0             1 FALSE         13 1: 1, 2: 1, 3: 1, 4: 1
+
+── Variable type: numeric ──────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate  mean    sd    p0   p25   p50   p75
+1 Before                0             1  4.73 0.280  3.91   4.7  4.8   4.88
+2 After                 0             1  4.79 0.262  4.3    4.6  4.96  5   
+   p100 hist 
+1  4.98 ▁▁▁▃▇
+2  5.02 ▂▁▂▁▇</code></pre>
 <p>On arrive toutefois aux mêmes résultats avec le tableau long, à condition de grouper les données par traitement (variable <code>Traitement</code>) avec <code>group_by()</code> :</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="seance1.html#cb43-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
-<span id="cb43-2"><a href="seance1.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Traitement) <span class="sc">%&gt;%</span> </span>
-<span id="cb43-3"><a href="seance1.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>()</span></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-30">Table 3.3: </span>Data summary</caption>
-<tbody>
-<tr class="odd">
-<td align="left">Name</td>
-<td align="left">Piped data</td>
-</tr>
-<tr class="even">
-<td align="left">Number of rows</td>
-<td align="left">26</td>
-</tr>
-<tr class="odd">
-<td align="left">Number of columns</td>
-<td align="left">3</td>
-</tr>
-<tr class="even">
-<td align="left">_______________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Column type frequency:</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">factor</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="left">numeric</td>
-<td align="left">1</td>
-</tr>
-<tr class="even">
-<td align="left">________________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Group variables</td>
-<td align="left">Traitement</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: factor</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">skim_variable</th>
-<th align="left">Traitement</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="left">ordered</th>
-<th align="right">n_unique</th>
-<th align="left">top_counts</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">ID</td>
-<td align="left">After</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="left">FALSE</td>
-<td align="right">13</td>
-<td align="left">1: 1, 2: 1, 3: 1, 4: 1</td>
-</tr>
-<tr class="even">
-<td align="left">ID</td>
-<td align="left">Before</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="left">FALSE</td>
-<td align="right">13</td>
-<td align="left">1: 1, 2: 1, 3: 1, 4: 1</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: numeric</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">skim_variable</th>
-<th align="left">Traitement</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">p0</th>
-<th align="right">p25</th>
-<th align="right">p50</th>
-<th align="right">p75</th>
-<th align="right">p100</th>
-<th align="left">hist</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">DO</td>
-<td align="left">After</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4.79</td>
-<td align="right">0.26</td>
-<td align="right">4.30</td>
-<td align="right">4.6</td>
-<td align="right">4.96</td>
-<td align="right">5.00</td>
-<td align="right">5.02</td>
-<td align="left">▂▁▂▁▇</td>
-</tr>
-<tr class="even">
-<td align="left">DO</td>
-<td align="left">Before</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4.73</td>
-<td align="right">0.28</td>
-<td align="right">3.91</td>
-<td align="right">4.7</td>
-<td align="right">4.80</td>
-<td align="right">4.88</td>
-<td align="right">4.98</td>
-<td align="left">▁▁▁▃▇</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="seance1.html#cb45-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
+<span id="cb45-2"><a href="seance1.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Traitement) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-3"><a href="seance1.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>()</span></code></pre></div>
+<pre><code>── Data Summary ────────────────────────
+                           Values    
+Name                       Piped data
+Number of rows             26        
+Number of columns          3         
+_______________________              
+Column type frequency:               
+  factor                   1         
+  numeric                  1         
+________________________             
+Group variables            Traitement
+
+── Variable type: factor ───────────────────────────────────────────────────────
+  skim_variable Traitement n_missing complete_rate ordered n_unique
+1 ID            After              0             1 FALSE         13
+2 ID            Before             0             1 FALSE         13
+  top_counts            
+1 1: 1, 2: 1, 3: 1, 4: 1
+2 1: 1, 2: 1, 3: 1, 4: 1
+
+── Variable type: numeric ──────────────────────────────────────────────────────
+  skim_variable Traitement n_missing complete_rate  mean    sd    p0   p25   p50
+1 DO            After              0             1  4.79 0.262  4.3    4.6  4.96
+2 DO            Before             0             1  4.73 0.280  3.91   4.7  4.8 
+    p75  p100 hist 
+1  5     5.02 ▂▁▂▁▇
+2  4.88  4.98 ▁▁▁▃▇</code></pre>
 </div>
 <div id="exploration-graphique-1" class="section level4" number="3.3.1.3">
 <h4><span class="header-section-number">3.3.1.3</span> Exploration graphique</h4>
@@ -939,44 +701,44 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <ol style="list-style-type: decimal">
 <li>Données brutes sous forme de nuage de points (ou de stripchart) :</li>
 </ol>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="seance1.html#cb44-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
-<span id="cb44-2"><a href="seance1.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Traitement, <span class="at">y =</span> DO)) <span class="sc">+</span></span>
-<span id="cb44-3"><a href="seance1.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-31-1.png" width="25%" /></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="seance1.html#cb47-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
+<span id="cb47-2"><a href="seance1.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Traitement, <span class="at">y =</span> DO)) <span class="sc">+</span></span>
+<span id="cb47-3"><a href="seance1.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-31-1.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>Comme toujours, on peut réaliser un stripchart pour limiter les problèmes d’over-plotting (qui sont ici quasi-inexistants).</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="seance1.html#cb45-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
-<span id="cb45-2"><a href="seance1.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Traitement, <span class="at">y =</span> DO)) <span class="sc">+</span></span>
-<span id="cb45-3"><a href="seance1.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.25</span>)</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-32-1.png" width="25%" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="seance1.html#cb48-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
+<span id="cb48-2"><a href="seance1.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Traitement, <span class="at">y =</span> DO)) <span class="sc">+</span></span>
+<span id="cb48-3"><a href="seance1.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.25</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-32-1.png" width="25%" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Histogrammes</li>
 </ol>
 <p>Nous allons faire un histogramme pour chaque série de données en utilisant des facettes :</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="seance1.html#cb46-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
-<span id="cb46-2"><a href="seance1.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> DO)) <span class="sc">+</span></span>
-<span id="cb46-3"><a href="seance1.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="fu">grey</span>(<span class="fl">0.8</span>))<span class="sc">+</span></span>
-<span id="cb46-4"><a href="seance1.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Traitement, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="seance1.html#cb49-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
+<span id="cb49-2"><a href="seance1.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> DO)) <span class="sc">+</span></span>
+<span id="cb49-3"><a href="seance1.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="fu">grey</span>(<span class="fl">0.8</span>))<span class="sc">+</span></span>
+<span id="cb49-4"><a href="seance1.html#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Traitement, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-33-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Boxplots</li>
 </ol>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="seance1.html#cb47-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
-<span id="cb47-2"><a href="seance1.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Traitement, <span class="at">y =</span> DO)) <span class="sc">+</span></span>
-<span id="cb47-3"><a href="seance1.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## notch went outside hinges. Try setting notch=FALSE.</code></pre>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-34-1.png" width="25%" /></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="seance1.html#cb50-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
+<span id="cb50-2"><a href="seance1.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Traitement, <span class="at">y =</span> DO)) <span class="sc">+</span></span>
+<span id="cb50-3"><a href="seance1.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>notch went outside hinges. Try setting notch=FALSE.</code></pre>
+<p><img src="figure/unnamed-chunk-34-1.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>Ici, l’intervalle de confiance à 95% de la médiane pour la série “After” est tellement large que son extrémité supérieure dépasse la valeur du troisième quartile, la valeur maximale observée, et la limite supérieure de l’axe des ordonnées. Il vaut donc mieux ne pas faire figurer les encoches pour avoir un graphique plus présentable :</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="seance1.html#cb49-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
-<span id="cb49-2"><a href="seance1.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Traitement, <span class="at">y =</span> DO)) <span class="sc">+</span></span>
-<span id="cb49-3"><a href="seance1.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-35-1.png" width="25%" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="seance1.html#cb52-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
+<span id="cb52-2"><a href="seance1.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Traitement, <span class="at">y =</span> DO)) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="seance1.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-35-1.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>À première vue, ces 3 représentations graphiques semblent montrer que la seconde série de données (après l’opération chirurgicale) présente des valeurs légèrement plus élevées que la première (avant l’opération). Toutefois, il semble que la dispersion des données soit aussi plus importante après l’opération qu’avant, sauf pour un individu outlier qui présente une immuno-compétence très faible avant l’opération.</p>
 <p>Toutes ces représentations graphiques sont certes utiles, mais elles masquent un élément crucial : ce sont les mêmes individus qui sont étudiés avant et après l’opération. Il s’agit de données appariées ! Pour avoir une bonne vision de ce qui se passe, il nous faut faire apparaître ce lien entre les 2 séries de données :</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="seance1.html#cb50-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
-<span id="cb50-2"><a href="seance1.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Traitement, <span class="at">y =</span> DO, <span class="at">group =</span> ID, <span class="at">color =</span> ID)) <span class="sc">+</span></span>
-<span id="cb50-3"><a href="seance1.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb50-4"><a href="seance1.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>)</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-36-1.png" width="33%" /></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="seance1.html#cb53-1" aria-hidden="true" tabindex="-1"></a>Testo_long <span class="sc">%&gt;%</span> </span>
+<span id="cb53-2"><a href="seance1.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Traitement, <span class="at">y =</span> DO, <span class="at">group =</span> ID, <span class="at">color =</span> ID)) <span class="sc">+</span></span>
+<span id="cb53-3"><a href="seance1.html#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb53-4"><a href="seance1.html#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-36-1.png" width="33%" style="display: block; margin: auto;" /></p>
 <p>Ce graphique nous donne une image très différente de la réalité des données. On constate ici que l’immuno-compétence de certains individus augmente, alors que pour d’autres, elle diminue.</p>
 <p>Une façon d’estimer si les changements d’immuno-compétence sont majoritairement orientés dans un sens ou non est de calculer l’intervalle de confiance à 95% de la différence d’immuno-compétence entre avant et après l’opération.</p>
 </div>
@@ -995,44 +757,44 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>Les individus sur lesquels portent la comparaison doivent être issus d’un échantillonnage aléatoire. Comme toujours, en l’absence d’indication contraire, on considère que cette condition est vérifiée.</li>
 <li>Les différences par paires entre les 2 modalités du traitement doivent suivre une distribution Normale. Ce n’est donc pas les données brutes de chaque série qui doivent suivre une loi Normale, mais bien la différence “après” - “avant” calculée pour chaque individu. Commençons donc par calculer ces différences :</li>
 </ol>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="seance1.html#cb51-1" aria-hidden="true" tabindex="-1"></a>Testo_large <span class="ot">&lt;-</span> Testo_large <span class="sc">%&gt;%</span> </span>
-<span id="cb51-2"><a href="seance1.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Diff =</span> After <span class="sc">-</span> Before)</span>
-<span id="cb51-3"><a href="seance1.html#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-4"><a href="seance1.html#cb51-4" aria-hidden="true" tabindex="-1"></a>Testo_large</span></code></pre></div>
-<pre><code>## # A tibble: 13 x 4
-##    ID    Before After    Diff
-##    &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-##  1 1       4.65  4.44 -0.210 
-##  2 2       3.91  4.3   0.390 
-##  3 3       4.91  4.98  0.07  
-##  4 4       4.5   4.45 -0.0500
-##  5 5       4.8   5     0.2   
-##  6 6       4.88  5     0.12  
-##  7 7       4.88  5.01  0.130 
-##  8 8       4.78  4.96  0.180 
-##  9 9       4.98  5.02  0.0400
-## 10 10      4.87  4.73 -0.140 
-## 11 11      4.75  4.77  0.0200
-## 12 12      4.7   4.6  -0.1   
-## 13 13      4.93  5.01  0.08</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="seance1.html#cb54-1" aria-hidden="true" tabindex="-1"></a>Testo_large <span class="ot">&lt;-</span> Testo_large <span class="sc">%&gt;%</span> </span>
+<span id="cb54-2"><a href="seance1.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Diff =</span> After <span class="sc">-</span> Before)</span>
+<span id="cb54-3"><a href="seance1.html#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="seance1.html#cb54-4" aria-hidden="true" tabindex="-1"></a>Testo_large</span></code></pre></div>
+<pre><code># A tibble: 13 x 4
+   ID    Before After    Diff
+   &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+ 1 1       4.65  4.44 -0.210 
+ 2 2       3.91  4.3   0.390 
+ 3 3       4.91  4.98  0.07  
+ 4 4       4.5   4.45 -0.0500
+ 5 5       4.8   5     0.2   
+ 6 6       4.88  5     0.12  
+ 7 7       4.88  5.01  0.130 
+ 8 8       4.78  4.96  0.180 
+ 9 9       4.98  5.02  0.0400
+10 10      4.87  4.73 -0.140 
+11 11      4.75  4.77  0.0200
+12 12      4.7   4.6  -0.1   
+13 13      4.93  5.01  0.08  </code></pre>
 <p>Il nous faut donc tester la normalité de la nouvelle variable <code>Diff</code>. Commençons par en faire un graphique :</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="seance1.html#cb53-1" aria-hidden="true" tabindex="-1"></a>Testo_large <span class="sc">%&gt;%</span> </span>
-<span id="cb53-2"><a href="seance1.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Diff)) <span class="sc">+</span></span>
-<span id="cb53-3"><a href="seance1.html#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="fu">grey</span>(<span class="fl">0.8</span>))</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="seance1.html#cb56-1" aria-hidden="true" tabindex="-1"></a>Testo_large <span class="sc">%&gt;%</span> </span>
+<span id="cb56-2"><a href="seance1.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Diff)) <span class="sc">+</span></span>
+<span id="cb56-3"><a href="seance1.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="fu">grey</span>(<span class="fl">0.8</span>))</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-38-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Compte tenu du faible nombre d’individus, la forme de l’histogramme n’est pas si éloignée que ça d’une courbe en cloche (notez que ce n’était pas du tout le cas pour les données brutes de chaque série de départ qui ont toutes les deux des distributions non Normales). On le vérifie avec un test de normalité de Shapiro-Wilk :</p>
 <ul>
 <li>H<span class="math inline">\(_0\)</span> : la différence d’immuno-compétence des individus suit une distribution Normale.</li>
 <li>H<span class="math inline">\(_1\)</span> : la différence d’immuno-compétence des individus ne suit pas une distribution Normale.</li>
 </ul>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="seance1.html#cb54-1" aria-hidden="true" tabindex="-1"></a>Testo_large <span class="sc">%&gt;%</span> </span>
-<span id="cb54-2"><a href="seance1.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Diff) <span class="sc">%&gt;%</span> </span>
-<span id="cb54-3"><a href="seance1.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  .
-## W = 0.97949, p-value = 0.977</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="seance1.html#cb57-1" aria-hidden="true" tabindex="-1"></a>Testo_large <span class="sc">%&gt;%</span> </span>
+<span id="cb57-2"><a href="seance1.html#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Diff) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-3"><a href="seance1.html#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.97949, p-value = 0.977</code></pre>
 <blockquote>
 <p>Au seuil <span class="math inline">\(\alpha = 0.05\)</span>, on ne peut pas rejeter l’hypothèse nulle de normalité pour la différence d’immuno-compétence entre après et avant l’intervention chirurgicale (test de Shapiro-Wilk, <span class="math inline">\(W = 0.98\)</span>, <span class="math inline">\(p = 0.977\)</span>).</p>
 </blockquote>
@@ -1045,19 +807,19 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>H<span class="math inline">\(_0\)</span> : le changement moyen de production d’anticorps après la pose chirurgicale de l’implant de testostérone est nul (<span class="math inline">\(\mu_{Diff} = 0\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : le changement moyen de production d’anticorps après la pose chirurgicale de l’implant de testostérone n’est pas nul (<span class="math inline">\(\mu_{Diff} \neq 0\)</span>).</li>
 </ul>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="seance1.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode nº1 : avec une formule et le tableau au format long</span></span>
-<span id="cb56-2"><a href="seance1.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(DO <span class="sc">~</span> Traitement, <span class="at">data =</span> Testo_long, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
-##  Paired t-test
-## 
-## data:  DO by Traitement
-## t = 1.2714, df = 12, p-value = 0.2277
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -0.04007695  0.15238464
-## sample estimates:
-## mean of the differences 
-##              0.05615385</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="seance1.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode nº1 : avec une formule et le tableau au format long</span></span>
+<span id="cb59-2"><a href="seance1.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(DO <span class="sc">~</span> Traitement, <span class="at">data =</span> Testo_long, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>
+    Paired t-test
+
+data:  DO by Traitement
+t = 1.2714, df = 12, p-value = 0.2277
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.04007695  0.15238464
+sample estimates:
+mean of the differences 
+             0.05615385 </code></pre>
 <p>Plusieurs remarques concernant cette première syntaxe :</p>
 <ol style="list-style-type: decimal">
 <li>On utilise le symbole “<code>~</code>” pour indiquer une formule. On cherche à regarder l’effet du <code>Traitement</code> sur la <code>DO</code> qui traduit l’immuno-compétence. Le “<code>~</code>” se lit : “en fonction de.”</li>
@@ -1069,34 +831,34 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <p>Le test de Student sur données appariées ne permet pas de montrer de changement d’immuno-compétence suite à l’intégration de l’implant chirurgical de testostérone. On ne peut pas rejeter l’hypothèse nulle au seuil <span class="math inline">\(\alpha = 0.05\)</span> (<span class="math inline">\(t = -1.27\)</span>, <span class="math inline">\(ddl = 12\)</span>, <span class="math inline">\(p = 0.223\)</span>). La moyenne des différences de densités optiques observées entre avant et après l’intervention chirurgicale vaut -0.056 (intervalle de confiance à 95% de cette différence : [-0.152 ; 0.040])</p>
 </blockquote>
 <p>Donc visiblement, une forte production de testostérone n’est pas significativement associée à une baisse de l’immuno-compétence.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="seance1.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode nº2 : avec les 2 séries de données et le tableau au format large</span></span>
-<span id="cb58-2"><a href="seance1.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Testo_large<span class="sc">$</span>Before, Testo_large<span class="sc">$</span>After, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
-##  Paired t-test
-## 
-## data:  Testo_large$Before and Testo_large$After
-## t = -1.2714, df = 12, p-value = 0.2277
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -0.15238464  0.04007695
-## sample estimates:
-## mean of the differences 
-##             -0.05615385</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="seance1.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode nº2 : avec les 2 séries de données et le tableau au format large</span></span>
+<span id="cb61-2"><a href="seance1.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Testo_large<span class="sc">$</span>Before, Testo_large<span class="sc">$</span>After, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>
+    Paired t-test
+
+data:  Testo_large$Before and Testo_large$After
+t = -1.2714, df = 12, p-value = 0.2277
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.15238464  0.04007695
+sample estimates:
+mean of the differences 
+            -0.05615385 </code></pre>
 <p>Cette deuxième syntaxe est différente de la première puisque nous n’utilisons plus le format <code>formule</code>. Ici, on indique le nom des 2 colonnes du tableau <code>Testo_large</code> qui contiennent les 2 séries de données. Puisque nous n’utilisons plus de formule, l’argument “<code>data = ...</code>” n’existe plus. C’est pourquoi il nous faut taper spécifiquement “<code>Testo_large$Before</code>” et “<code>Testo_large$After</code>,” et non pas simplement le nom des colonnes. En revanche, comme pour le test précédent, il est indispensable d’indiquer “<code>paired = TRUE</code>” pour faire un test de Student sur données appariées.</p>
 <p>Les résultats fournis et leur interprétation sont identiques à ceux de la syntaxe précédente.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="seance1.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode nº3 : avec la variable Diff, mu = 0, et le tableau au format large</span></span>
-<span id="cb60-2"><a href="seance1.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Testo_large<span class="sc">$</span>Diff, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
-<pre><code>## 
-##  One Sample t-test
-## 
-## data:  Testo_large$Diff
-## t = 1.2714, df = 12, p-value = 0.2277
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  -0.04007695  0.15238464
-## sample estimates:
-##  mean of x 
-## 0.05615385</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="seance1.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode nº3 : avec la variable Diff, mu = 0, et le tableau au format large</span></span>
+<span id="cb63-2"><a href="seance1.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Testo_large<span class="sc">$</span>Diff, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>
+    One Sample t-test
+
+data:  Testo_large$Diff
+t = 1.2714, df = 12, p-value = 0.2277
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ -0.04007695  0.15238464
+sample estimates:
+ mean of x 
+0.05615385 </code></pre>
 <p>Enfin, comme expliqué plus haut, le test de Student sur données appariées est strictement équivalent à un test de Student à un échantillon pour lequel on compare la moyenne des différences individuelles à 0. Là encore, les résultats produits et leur interprétation sont identiques aux deux tests précédents. La seule différence concerne les signes puisque les deux premiers tests regardaient la différence “Before - After” alors que ce troisième test regarde la différence “After - Before” (que nous avons calculée manuellement).</p>
 <p>À vous donc de choisir la syntaxe qui vous paraît la plus parlante ou celle que vous avez le plus de facilité à retenir.</p>
 </div>
@@ -1110,43 +872,43 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>H<span class="math inline">\(_1\)</span> : le changement <strong>médian</strong> de production d’anticorps après la pose chirurgicale de l’implant de testostérone n’est pas nul (<span class="math inline">\(med_{Diff} \neq 0\)</span>).</li>
 </ul>
 <p>Comme pour le test de Student, 3 syntaxes sont possibles et strictement équivalentes. Il est important de ne pas oublier l’argument <code>paired = TRUE</code> pour les 2 premières syntaxes afin de s’assurer que l’on réalise bien un test sur données appariées. Enfin, l’argument <code>conf.int = TRUE</code> doit être ajouté pour les 3 syntaxes afin que la (pseudo-) médiane et son intervalle de confiance à 95% soient calculés et affichés.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="seance1.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(DO <span class="sc">~</span> Traitement, <span class="at">data =</span> Testo_long, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
-##  Wilcoxon signed rank exact test
-## 
-## data:  DO by Traitement
-## V = 61, p-value = 0.3054
-## alternative hypothesis: true location shift is not equal to 0
-## 95 percent confidence interval:
-##  -0.040  0.145
-## sample estimates:
-## (pseudo)median 
-##          0.055</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="seance1.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(Testo_large<span class="sc">$</span>Before, Testo_large<span class="sc">$</span>After, <span class="at">paired =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb64-2"><a href="seance1.html#cb64-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
-##  Wilcoxon signed rank exact test
-## 
-## data:  Testo_large$Before and Testo_large$After
-## V = 30, p-value = 0.3054
-## alternative hypothesis: true location shift is not equal to 0
-## 95 percent confidence interval:
-##  -0.145  0.040
-## sample estimates:
-## (pseudo)median 
-##         -0.055</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="seance1.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(Testo_large<span class="sc">$</span>Diff, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
-##  Wilcoxon signed rank exact test
-## 
-## data:  Testo_large$Diff
-## V = 61, p-value = 0.3054
-## alternative hypothesis: true location is not equal to 0
-## 95 percent confidence interval:
-##  -0.040  0.145
-## sample estimates:
-## (pseudo)median 
-##          0.055</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="seance1.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(DO <span class="sc">~</span> Traitement, <span class="at">data =</span> Testo_long, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>
+    Wilcoxon signed rank exact test
+
+data:  DO by Traitement
+V = 61, p-value = 0.3054
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -0.040  0.145
+sample estimates:
+(pseudo)median 
+         0.055 </code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="seance1.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(Testo_large<span class="sc">$</span>Before, Testo_large<span class="sc">$</span>After, <span class="at">paired =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb67-2"><a href="seance1.html#cb67-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>
+    Wilcoxon signed rank exact test
+
+data:  Testo_large$Before and Testo_large$After
+V = 30, p-value = 0.3054
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -0.145  0.040
+sample estimates:
+(pseudo)median 
+        -0.055 </code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="seance1.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(Testo_large<span class="sc">$</span>Diff, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>
+    Wilcoxon signed rank exact test
+
+data:  Testo_large$Diff
+V = 61, p-value = 0.3054
+alternative hypothesis: true location is not equal to 0
+95 percent confidence interval:
+ -0.040  0.145
+sample estimates:
+(pseudo)median 
+         0.055 </code></pre>
 <p>Ici, la conclusion de ce test est :</p>
 <blockquote>
 <p>Le test de Wilcoxon des rangs signés n’a pas permis de montrer de changement d’immuno-compétence suite à l’intégration de l’implant chirurgical de testostérone. On ne peut pas rejeter l’hypothèse nulle au seuil <span class="math inline">\(\alpha = 0.05\)</span> (<span class="math inline">\(V = 61\)</span>, <span class="math inline">\(p = 0.305\)</span>). La médiane des différences de densités optiques observées entre après et avant l’intervention chirurgicale vaut 0.055 (intervalle de confiance à 95% de cette différence : [-0.040 ; 0.145]).</p>
@@ -1167,22 +929,22 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <div id="importation-et-examen-visuel-2" class="section level4" number="3.4.1.1">
 <h4><span class="header-section-number">3.4.1.1</span> Importation et examen visuel</h4>
 <p>Les données de cette étude sont stockées dans <a href="https://besibo.github.io/Biometrie3/data/HornedLizards.csv">le fichier <code>HornedLizards.csv</code></a>. Importez ces données dans un objet nommé <code>Lizard</code> et examinez le tableau obtenu.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="seance1.html#cb68-1" aria-hidden="true" tabindex="-1"></a>Lizard</span></code></pre></div>
-<pre><code>## # A tibble: 185 x 2
-##    squamosalHornLength Survival
-##                  &lt;dbl&gt; &lt;chr&gt;   
-##  1                25.2 living  
-##  2                26.9 living  
-##  3                26.6 living  
-##  4                25.6 living  
-##  5                25.7 living  
-##  6                25.9 living  
-##  7                27.3 living  
-##  8                25.1 living  
-##  9                30.3 living  
-## 10                25.6 living  
-## # … with 175 more rows</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="seance1.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Lizard)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="seance1.html#cb71-1" aria-hidden="true" tabindex="-1"></a>Lizard</span></code></pre></div>
+<pre><code># A tibble: 185 x 2
+   squamosalHornLength Survival
+                 &lt;dbl&gt; &lt;chr&gt;   
+ 1                25.2 living  
+ 2                26.9 living  
+ 3                26.6 living  
+ 4                25.6 living  
+ 5                25.7 living  
+ 6                25.9 living  
+ 7                27.3 living  
+ 8                25.1 living  
+ 9                30.3 living  
+10                25.6 living  
+# … with 175 more rows</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="seance1.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Lizard)</span></code></pre></div>
 <p>On constate ici 3 choses :</p>
 <ol style="list-style-type: decimal">
 <li>la variable <code>Survival</code> devrait être un facteur.</li>
@@ -1190,119 +952,51 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>pour un animal vivant, la mesure de longueur des cornes est manquante. Il nous faut donc retirer cet individu.</li>
 </ol>
 <p>Nous pouvons facilement réaliser les 3 modifications d’un coup :</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="seance1.html#cb71-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="ot">&lt;-</span> Lizard <span class="sc">%&gt;%</span> </span>
-<span id="cb71-2"><a href="seance1.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Survival =</span> <span class="fu">factor</span>(Survival)) <span class="sc">%&gt;%</span> </span>
-<span id="cb71-3"><a href="seance1.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Horn_len =</span> squamosalHornLength) <span class="sc">%&gt;%</span> </span>
-<span id="cb71-4"><a href="seance1.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Horn_len))</span>
-<span id="cb71-5"><a href="seance1.html#cb71-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-6"><a href="seance1.html#cb71-6" aria-hidden="true" tabindex="-1"></a>Lizard</span></code></pre></div>
-<pre><code>## # A tibble: 184 x 2
-##    Horn_len Survival
-##       &lt;dbl&gt; &lt;fct&gt;   
-##  1     25.2 living  
-##  2     26.9 living  
-##  3     26.6 living  
-##  4     25.6 living  
-##  5     25.7 living  
-##  6     25.9 living  
-##  7     27.3 living  
-##  8     25.1 living  
-##  9     30.3 living  
-## 10     25.6 living  
-## # … with 174 more rows</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="seance1.html#cb74-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="ot">&lt;-</span> Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb74-2"><a href="seance1.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Survival =</span> <span class="fu">factor</span>(Survival)) <span class="sc">%&gt;%</span> </span>
+<span id="cb74-3"><a href="seance1.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Horn_len =</span> squamosalHornLength) <span class="sc">%&gt;%</span> </span>
+<span id="cb74-4"><a href="seance1.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Horn_len))</span>
+<span id="cb74-5"><a href="seance1.html#cb74-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-6"><a href="seance1.html#cb74-6" aria-hidden="true" tabindex="-1"></a>Lizard</span></code></pre></div>
+<pre><code># A tibble: 184 x 2
+   Horn_len Survival
+      &lt;dbl&gt; &lt;fct&gt;   
+ 1     25.2 living  
+ 2     26.9 living  
+ 3     26.6 living  
+ 4     25.6 living  
+ 5     25.7 living  
+ 6     25.9 living  
+ 7     27.3 living  
+ 8     25.1 living  
+ 9     30.3 living  
+10     25.6 living  
+# … with 174 more rows</code></pre>
 </div>
 <div id="statistiques-descriptives-2" class="section level4" number="3.4.1.2">
 <h4><span class="header-section-number">3.4.1.2</span> Statistiques descriptives</h4>
 <p>Comme dans la partie précédente sur les données appariées, les statistiques descriptives doivent être réalisées pour chaque groupe d’individus. Ici, le plus simple est d’utiliser la fonction <code>skim()</code> sur les données groupées par niveau du facteur <code>Survival</code> (avec la fonction <code>group_by()</code>) :</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="seance1.html#cb73-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
-<span id="cb73-2"><a href="seance1.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Survival) <span class="sc">%&gt;%</span> </span>
-<span id="cb73-3"><a href="seance1.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>()</span></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-48">Table 3.4: </span>Data summary</caption>
-<tbody>
-<tr class="odd">
-<td align="left">Name</td>
-<td align="left">Piped data</td>
-</tr>
-<tr class="even">
-<td align="left">Number of rows</td>
-<td align="left">184</td>
-</tr>
-<tr class="odd">
-<td align="left">Number of columns</td>
-<td align="left">2</td>
-</tr>
-<tr class="even">
-<td align="left">_______________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Column type frequency:</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">numeric</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="left">________________________</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">Group variables</td>
-<td align="left">Survival</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: numeric</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">skim_variable</th>
-<th align="left">Survival</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">p0</th>
-<th align="right">p25</th>
-<th align="right">p50</th>
-<th align="right">p75</th>
-<th align="right">p100</th>
-<th align="left">hist</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Horn_len</td>
-<td align="left">killed</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">21.99</td>
-<td align="right">2.71</td>
-<td align="right">15.2</td>
-<td align="right">21.1</td>
-<td align="right">22.25</td>
-<td align="right">23.8</td>
-<td align="right">26.7</td>
-<td align="left">▂▂▇▇▃</td>
-</tr>
-<tr class="even">
-<td align="left">Horn_len</td>
-<td align="left">living</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">24.28</td>
-<td align="right">2.63</td>
-<td align="right">13.1</td>
-<td align="right">23.0</td>
-<td align="right">24.55</td>
-<td align="right">26.0</td>
-<td align="right">30.3</td>
-<td align="left">▁▁▅▇▂</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="seance1.html#cb76-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb76-2"><a href="seance1.html#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Survival) <span class="sc">%&gt;%</span> </span>
+<span id="cb76-3"><a href="seance1.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>()</span></code></pre></div>
+<pre><code>── Data Summary ────────────────────────
+                           Values    
+Name                       Piped data
+Number of rows             184       
+Number of columns          2         
+_______________________              
+Column type frequency:               
+  numeric                  1         
+________________________             
+Group variables            Survival  
+
+── Variable type: numeric ──────────────────────────────────────────────────────
+  skim_variable Survival n_missing complete_rate  mean    sd    p0   p25   p50
+1 Horn_len      killed           0             1  22.0  2.71  15.2  21.1  22.2
+2 Horn_len      living           0             1  24.3  2.63  13.1  23    24.6
+    p75  p100 hist 
+1  23.8  26.7 ▂▂▇▇▃
+2  26    30.3 ▁▁▅▇▂</code></pre>
 <p>On constate ici que les tailles d’échantillons sont très différentes. C’est normal compte tenu de la difficulté de repérer des individus morts dans la nature, et ce n’est pas gênant pour nos analyses puisque la taille des deux échantillons reste élevée.</p>
 <p>On constate également que si les écarts-types des 2 groupes sont proches, les moyennes et médianes sont plus élévées dans le groupe des individus vivants que dans celui des individus morts (c’est le cas également des quartiles 1 et 3).</p>
 </div>
@@ -1312,28 +1006,28 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <ol style="list-style-type: decimal">
 <li>Stripchart</li>
 </ol>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="seance1.html#cb74-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
-<span id="cb74-2"><a href="seance1.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Survival, <span class="at">y =</span> Horn_len)) <span class="sc">+</span></span>
-<span id="cb74-3"><a href="seance1.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-49-1.png" width="25%" /></p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="seance1.html#cb78-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb78-2"><a href="seance1.html#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Survival, <span class="at">y =</span> Horn_len)) <span class="sc">+</span></span>
+<span id="cb78-3"><a href="seance1.html#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-49-1.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>Ce premier graphique permet de visualiser très clairement les différences de tailles d’échantillons entre les deux groupes. Il permet également de voir que l’étendue des longueurs de cornes est plus importante dans le groupe des individus vivants que dans celui des individus morts.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Histogrammes</li>
 </ol>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="seance1.html#cb75-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
-<span id="cb75-2"><a href="seance1.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Horn_len)) <span class="sc">+</span></span>
-<span id="cb75-3"><a href="seance1.html#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>, <span class="at">color =</span> <span class="fu">grey</span>(<span class="fl">0.8</span>)) <span class="sc">+</span></span>
-<span id="cb75-4"><a href="seance1.html#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Survival, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="seance1.html#cb79-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb79-2"><a href="seance1.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Horn_len)) <span class="sc">+</span></span>
+<span id="cb79-3"><a href="seance1.html#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>, <span class="at">color =</span> <span class="fu">grey</span>(<span class="fl">0.8</span>)) <span class="sc">+</span></span>
+<span id="cb79-4"><a href="seance1.html#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Survival, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-50-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Notez ici l’utilisation de l’argument <code>scales = "free_y"</code> dans la fonction <code>facet_wrap()</code>. Cet argument permet de ne pas imposer la même échelle pour l’axe des ordonnées des 2 graphiques. Ce choix est ici pertinent puisque les effectifs des 2 groupes sont très différents. Faîtes un essai sans cet argument pour voir la différence.</p>
 <p>Cette visualisation nous montre que les données doivent suivre à peu près une distribution Normale dans les 2 groupes, et que globalement la longueur des cornes semble légèrement plus élevée dans le groupe des vivants (avec un mode autour de 25-26 mm) que dans le groupes des morts (avec un mode autour de 23-24 mm).</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Boxplots</li>
 </ol>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="seance1.html#cb76-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
-<span id="cb76-2"><a href="seance1.html#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Survival, <span class="at">y =</span> Horn_len)) <span class="sc">+</span></span>
-<span id="cb76-3"><a href="seance1.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="Biometrie3_files/figure-html/unnamed-chunk-51-1.png" width="25%" /></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="seance1.html#cb80-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb80-2"><a href="seance1.html#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Survival, <span class="at">y =</span> Horn_len)) <span class="sc">+</span></span>
+<span id="cb80-3"><a href="seance1.html#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-51-1.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>Nous visualisons ici encore plus clairement que sur les histogrammes le fait que les longueurs de cornes des individus vivants sont légèrement plus longues que celles des individus morts. D’ailleurs, puisque les intervalles de confiance à 95% des médianes des 2 groupes (les encoches) ne se chevauchent pas, un test de comparaison des moyennes devrait logiquement conclure à une différence significative en faveur des individus vivants. On peut également noter que la largeur de l’encoche pour les individus morts est plus importante que celle des vivants. Cela traduit une incertitude plus grande autour de la médiane estimée dans le groupe des individus morts. C’est tout à fait logique compte tenu des effectifs modestes dans ce groupe.</p>
 </div>
 </div>
@@ -1357,15 +1051,15 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>H<span class="math inline">\(_0\)</span> : la taille des cornes suit une distribution Normale dans la population des lézards cornus morts.</li>
 <li>H<span class="math inline">\(_1\)</span> : la taille des cornes ne suit pas une distribution Normale dans la population des lézards cornus morts.</li>
 </ul>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="seance1.html#cb77-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
-<span id="cb77-2"><a href="seance1.html#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Survival <span class="sc">==</span> <span class="st">&quot;killed&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb77-3"><a href="seance1.html#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Horn_len) <span class="sc">%&gt;%</span> </span>
-<span id="cb77-4"><a href="seance1.html#cb77-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  .
-## W = 0.93452, p-value = 0.06482</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="seance1.html#cb81-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb81-2"><a href="seance1.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Survival <span class="sc">==</span> <span class="st">&quot;killed&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb81-3"><a href="seance1.html#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Horn_len) <span class="sc">%&gt;%</span> </span>
+<span id="cb81-4"><a href="seance1.html#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.93452, p-value = 0.06482</code></pre>
 <blockquote>
 <p>La <span class="math inline">\(p\)</span>-value est supérieure à <span class="math inline">\(\alpha = 0.05\)</span>, donc on ne peut pas rejeter l’hypothèse nulle de normalité pour la taille des cornes de la population des lézards cornus morts (test de Shapiro-Wilk, <span class="math inline">\(W = 0.93\)</span>, <span class="math inline">\(p = 0.065\)</span>).</p>
 </blockquote>
@@ -1374,15 +1068,15 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>H<span class="math inline">\(_0\)</span> : la taille des cornes suit une distribution Normale dans la population des lézards cornus vivants.</li>
 <li>H<span class="math inline">\(_1\)</span> : la taille des cornes ne suit pas une distribution Normale dans la population des lézards cornus vivants.</li>
 </ul>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="seance1.html#cb79-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
-<span id="cb79-2"><a href="seance1.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Survival <span class="sc">==</span> <span class="st">&quot;living&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb79-3"><a href="seance1.html#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Horn_len) <span class="sc">%&gt;%</span> </span>
-<span id="cb79-4"><a href="seance1.html#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  .
-## W = 0.96055, p-value = 0.0002234</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="seance1.html#cb83-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb83-2"><a href="seance1.html#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Survival <span class="sc">==</span> <span class="st">&quot;living&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb83-3"><a href="seance1.html#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Horn_len) <span class="sc">%&gt;%</span> </span>
+<span id="cb83-4"><a href="seance1.html#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.96055, p-value = 0.0002234</code></pre>
 <blockquote>
 <p>La <span class="math inline">\(p\)</span>-value est inférieure à <span class="math inline">\(\alpha = 0.05\)</span>, donc on rejette l’hypothèse nulle de normalité pour la taille des cornes de la population des lézards cornus vivants (test de Shapiro-Wilk, <span class="math inline">\(W = 0.96\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>).</p>
 </blockquote>
@@ -1393,18 +1087,18 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>H<span class="math inline">\(_0\)</span> : la variance des 2 populations est égale, leur ratio vaut 1 <span class="math inline">\(\left(\frac{\sigma^2_{killed}}{\sigma^2_{living}} = 1\right)\)</span>.</li>
 <li>H<span class="math inline">\(_1\)</span> : la variance des 2 populations est différente, leur ratio ne vaut pas 1 <span class="math inline">\(\left(\frac{\sigma^2_{killed}}{\sigma^2_{living}} \neq 1\right)\)</span>.</li>
 </ul>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="seance1.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
-<pre><code>## 
-##  F test to compare two variances
-## 
-## data:  Horn_len by Survival
-## F = 1.0607, num df = 29, denom df = 153, p-value = 0.7859
-## alternative hypothesis: true ratio of variances is not equal to 1
-## 95 percent confidence interval:
-##  0.6339331 1.9831398
-## sample estimates:
-## ratio of variances 
-##           1.060711</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="seance1.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
+<pre><code>
+    F test to compare two variances
+
+data:  Horn_len by Survival
+F = 1.0607, num df = 29, denom df = 153, p-value = 0.7859
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.6339331 1.9831398
+sample estimates:
+ratio of variances 
+          1.060711 </code></pre>
 <blockquote>
 <p>Ici, le ratio des variances (la variance des individus morts divisée par la variance des individus vivants) est très proche de 1 (<span class="math inline">\(F = 1.06\)</span>, IC 95% : [0.63 ; 1.98]). Le test <span class="math inline">\(F\)</span> nous montre qu’il est impossible de rejeter H<span class="math inline">\(_0\)</span> : au seuil <span class="math inline">\(\alpha = 0.05\)</span>, le ratio des variances n’est pas significativement différent de 1 (ddl = 29 et 153, <span class="math inline">\(p = 0.79\)</span>), les variances sont homogènes.</p>
 </blockquote>
@@ -1413,24 +1107,24 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>H<span class="math inline">\(_0\)</span> : toutes les populations ont même variance (<span class="math inline">\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : au moins une population a une variance différente des autres.</li>
 </ul>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="seance1.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
-<pre><code>## 
-##  Bartlett test of homogeneity of variances
-## 
-## data:  Horn_len by Survival
-## Bartlett&#39;s K-squared = 0.042411, df = 1, p-value = 0.8368</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="seance1.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
+<pre><code>
+    Bartlett test of homogeneity of variances
+
+data:  Horn_len by Survival
+Bartlett&#39;s K-squared = 0.042411, df = 1, p-value = 0.8368</code></pre>
 <p>Enfin, le test de Levene devrait être préféré la plupart du temps. Comme le test de Bartlett, il permet de comparer la variance de plusieurs populations, mais il est plus robuste vis à vis de la non-normalité des données.</p>
 <ul>
 <li>H<span class="math inline">\(_0\)</span> : toutes les populations ont même variance (<span class="math inline">\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : au moins une population a une variance différente des autres.</li>
 </ul>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="seance1.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Le test de Levene fait partie du package car. Il doit être chargé en mémoire</span></span>
-<span id="cb85-2"><a href="seance1.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
-<span id="cb85-3"><a href="seance1.html#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
-<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
-##        Df F value Pr(&gt;F)
-## group   1  0.0035  0.953
-##       182</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="seance1.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Le test de Levene fait partie du package car. Il doit être chargé en mémoire</span></span>
+<span id="cb89-2"><a href="seance1.html#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
+<span id="cb89-3"><a href="seance1.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
+       Df F value Pr(&gt;F)
+group   1  0.0035  0.953
+      182               </code></pre>
 <p>Ici encore, les conclusions sont les mêmes :</p>
 <blockquote>
 <p>Il est impossible de rejeter l’hypothèse nulle d’homogénéité des variances au seuil <span class="math inline">\(\alpha = 0.05\)</span> (test de Levene, <span class="math inline">\(F\)</span> = 0.004, ddl = 1, <span class="math inline">\(p = 0.953\)</span>).</p>
@@ -1443,18 +1137,18 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>H<span class="math inline">\(_0\)</span> : la moyenne des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} \neq 0\)</span>).</li>
 </ul>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="seance1.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
-##  Two Sample t-test
-## 
-## data:  Horn_len by Survival
-## t = -4.3494, df = 182, p-value = 2.27e-05
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -3.335402 -1.253602
-## sample estimates:
-## mean in group killed mean in group living 
-##             21.98667             24.28117</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="seance1.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 2.27e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.335402 -1.253602
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
 <p>Notez bien la syntaxe :</p>
 <ul>
 <li>Nous utilisons ici la syntaxe du type “formule” faisant appel au symbole “<code>~</code>” (Longueur des cornes en fonction de la Survie) et à l’argument “<code>data =</code>.”</li>
@@ -1474,18 +1168,18 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>H<span class="math inline">\(_0\)</span> : la médiane des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(med_{killed}-med_{living} = 0\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : la médiane des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(med_{killed}-med_{living}\neq 0\)</span>).</li>
 </ul>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="seance1.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
-##  Wilcoxon rank sum test with continuity correction
-## 
-## data:  Horn_len by Survival
-## W = 1181.5, p-value = 2.366e-05
-## alternative hypothesis: true location shift is not equal to 0
-## 95 percent confidence interval:
-##  -3.200076 -1.300067
-## sample estimates:
-## difference in location 
-##              -2.200031</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="seance1.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  Horn_len by Survival
+W = 1181.5, p-value = 2.366e-05
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -3.200076 -1.300067
+sample estimates:
+difference in location 
+             -2.200031 </code></pre>
 <p>L’argument <code>var.equal = TRUE</code> n’existe pas pour ce test puisque c’est justement un test non paramétrique qui ne requiert pas l’homogénéité des variances. En revanche, comme pour tous les autres tests de Wilcoxon que nous avons réalisés dans ce TP, l’argument <code>conf.int = TRUE</code> permet d’afficher les estimateurs pertinents, ici, la différence de médiane entre les 2 populations et l’intervalle de confiance à 95% de cette différence de médiane.</p>
 <p>La conclusion est ici la même que pour le test de Student : puisque la <span class="math inline">\(p\)</span>-value est très inférieure à <span class="math inline">\(\alpha\)</span>, on rejette l’hypothèse nulle : les médianes sont bel et bien différentes.</p>
 <p>Enfin, dans le cas où la variable étudiée suit la loi Normale dans les deux populations mais qu’elle n’a pas la même variance dans les deux populations, il est toujours possible de réaliser un test de Wilcoxon, mais il est souvent préférable de réaliser un test de Student modifié : le <strong>test approché du <span class="math inline">\(t\)</span> de Welch</strong>. Ce test est moins puissant que le test de Student classique, mais il reste plus puissant que le test de Wilcoxon, et surtout, il permet de comparer les moyennes et non les médianes</p>
@@ -1493,18 +1187,18 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>H<span class="math inline">\(_0\)</span> : la moyenne des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} \neq 0\)</span>).</li>
 </ul>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="seance1.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
-<pre><code>## 
-##  Welch Two Sample t-test
-## 
-## data:  Horn_len by Survival
-## t = -4.2634, df = 40.372, p-value = 0.0001178
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -3.381912 -1.207092
-## sample estimates:
-## mean in group killed mean in group living 
-##             21.98667             24.28117</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="seance1.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.2634, df = 40.372, p-value = 0.0001178
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.381912 -1.207092
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
 <p>La seule différence par rapport à la syntaxe du test <span class="math inline">\(t\)</span> de Student paramétrique est la suppression de l’argument <code>var.equal = TRUE</code>. Attention donc, à bien utiliser la syntaxe correcte. Le test du <span class="math inline">\(t\)</span> de Welch ne devrait être réalisé que lorsque la normalité est vérifiée pour les 2 populations, mais pas l’homoscédasticité. Par rapport au test de Student classique, on constate que le nombre de degrés de libertés est très différent, et donc la <span class="math inline">\(p\)</span>-value également. Les bornes de l’intervalle de confiance à 95% de la différence de moyenne sont différentes également puisque leur calcul a été fait en supposant que les 2 populations n’avaient pas même variance.</p>
 </div>
 <div id="exercice-dapplication-2" class="section level3" number="3.4.4">
@@ -1548,57 +1242,57 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <h3><span class="header-section-number">3.5.2</span> Un exemple pas à pas</h3>
 <p>Reprenons l’exemple des lézards cornus. L’étude a été réalisée parce que les chercheurs supposaient que la longueur des cornes des lézards était susceptible de leur fournir une protection face à la prédation. Autrement dit, les chercheurs supposaient que des cornes <em>plus longues</em> devaient fournir une meilleure protection vis à vis de la prédation. Ainsi, les lézards morts devaient avoir des cornes moins longues en moyenne que les les lézards vivants, simplement parce que porter des cornes courtes expose plus fortement les individus à la prédation. Nous avons donc une bonne raison “écologique” de considérer un test unilatéral (la susceptibilité face à la prédation).</p>
 <p>Lorsque nous avons examiné cette question, nous avons fait le test du <span class="math inline">\(t\)</span> de Student sur échantillons indépendants de la façon suivante :</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="seance1.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
-##  Two Sample t-test
-## 
-## data:  Horn_len by Survival
-## t = -4.3494, df = 182, p-value = 2.27e-05
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -3.335402 -1.253602
-## sample estimates:
-## mean in group killed mean in group living 
-##             21.98667             24.28117</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="seance1.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 2.27e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.335402 -1.253602
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
 <p>Comme l’indiquent les résultats fournis, l’hypothèse alternative utilisée pour faire le test est : “La vraie différence de moyenne n’est pas égale à 0.” Autrement dit, nous avons fait un test bilatéral avec les hypothèses suivantes :</p>
 <ul>
 <li>H<span class="math inline">\(_0\)</span> : la moyenne des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} \neq 0\)</span>).</li>
 </ul>
 <p>Ce test est donc rigoureusement équivalent à celui-ci :</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="seance1.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
-<span id="cb95-2"><a href="seance1.html#cb95-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb95-3"><a href="seance1.html#cb95-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-##  Two Sample t-test
-## 
-## data:  Horn_len by Survival
-## t = -4.3494, df = 182, p-value = 2.27e-05
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -3.335402 -1.253602
-## sample estimates:
-## mean in group killed mean in group living 
-##             21.98667             24.28117</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="seance1.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
+<span id="cb99-2"><a href="seance1.html#cb99-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb99-3"><a href="seance1.html#cb99-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 2.27e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.335402 -1.253602
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
 <p>Ici, nous souhaitons en fait réaliser un <strong>test unilatéral</strong> avec les hypothèses suivantes :</p>
 <ul>
 <li>H<span class="math inline">\(_0\)</span> : la moyenne de longueur des cornes de la population des lézards morts est égale à celle des lézards vivants. Leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : la moyenne de longueur des cornes de la population des lézards morts est <strong>inférieure</strong> à celle des lézards vivants. Leur différence est inférieure à 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} &lt; 0\)</span>).</li>
 </ul>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="seance1.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
-<span id="cb97-2"><a href="seance1.html#cb97-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb97-3"><a href="seance1.html#cb97-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-##  Two Sample t-test
-## 
-## data:  Horn_len by Survival
-## t = -4.3494, df = 182, p-value = 1.135e-05
-## alternative hypothesis: true difference in means is less than 0
-## 95 percent confidence interval:
-##       -Inf -1.422321
-## sample estimates:
-## mean in group killed mean in group living 
-##             21.98667             24.28117</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="seance1.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
+<span id="cb101-2"><a href="seance1.html#cb101-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb101-3"><a href="seance1.html#cb101-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 1.135e-05
+alternative hypothesis: true difference in means is less than 0
+95 percent confidence interval:
+      -Inf -1.422321
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
 <p>Puisque la <span class="math inline">\(p\)</span>-value de ce test est inferieure à <span class="math inline">\(\alpha = 0.05\)</span>, on rejette l’hypothèse nulle de l’égalité des moyennes. On valide donc l’hypothèse alternative : les lézards cornus morts ont en moyenne des cornes plus courtes que les lézards vivants. Cette différence de longueur de cornes est en faveur des lézards vivants et vaut très probablement au moins <span class="math inline">\(1.4\)</span> millimètres (c’est l’intervalle de confiance à 95% de la différence de moyennes qui nous le dit).</p>
 <p>Dernière chose importante : il ne faut pas se tromper dans le choix de l’hypothèse alternative. En effet, nous aurions pu tenter de tester exactement la même chose en formulant les hypothèses suivantes :</p>
 <ul>
@@ -1606,56 +1300,56 @@ Figure 3.1: Comparaison de 2 types de représentations graphiques
 <li>H<span class="math inline">\(_1\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>vivants</strong> est <strong>supérieure</strong> à celle des lézards <strong>morts</strong>. Leur différence est <strong>supérieure</strong> à 0 (<span class="math inline">\(\mu_{living}-\mu_{killed} &gt; 0\)</span>).</li>
 </ul>
 <p>Ce test est normalement exactement le même que précédemment. Toutefois, si on essaie de le réaliser, on rencontre un problème :</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="seance1.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
-<span id="cb99-2"><a href="seance1.html#cb99-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb99-3"><a href="seance1.html#cb99-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-##  Two Sample t-test
-## 
-## data:  Horn_len by Survival
-## t = -4.3494, df = 182, p-value = 1
-## alternative hypothesis: true difference in means is greater than 0
-## 95 percent confidence interval:
-##  -3.166684       Inf
-## sample estimates:
-## mean in group killed mean in group living 
-##             21.98667             24.28117</code></pre>
-<p>Ici, la <span class="math inline">\(p\)</span>-value est très supérieure à <span class="math inline">\(\alpha\)</span> puisqu’elle vaut 1. Une <span class="math inline">\(p\)</span>-value de 1 devrait toujours attirer votre attention. La conclusion devrait donc être que l’on ne peut pas rejeter H<span class="math inline">\(_0\)</span> : les lézards morts et vivants ont en moyenne des cornes de même longueur. Nous savons pourtant que c’est faux.</p>
-<p>Le problème est ici liè à l’ordre des catégories “vivant” ou “mort” dans le facteur <code>Survival</code> du tableau <code>Lizard</code>. Les dernières lignes des tests que nous venons de faire indiquent la moyenne de chaque groupe, mais le groupe “killed” apparaît toujours avant le groupe “living.” C’est l’ordre des niveaux dans le facteur <code>Survival</code> qui doit dicter la syntaxe appropriée :</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="seance1.html#cb101-1" aria-hidden="true" tabindex="-1"></a>Lizard<span class="sc">$</span>Survival</span></code></pre></div>
-<pre><code>##   [1] living living living living living living living living living living
-##  [11] living living living living living living living living living living
-##  [21] living living living living living living living living living living
-##  [31] living living living living living living living living living living
-##  [41] living living living living living living living living living living
-##  [51] living living living living living living living living living living
-##  [61] living living living living living living living living living living
-##  [71] living living living living living living living living living living
-##  [81] living living living living living living living living living living
-##  [91] living living living living living living living living living living
-## [101] living living living living living living living living living living
-## [111] living living living living living living living living living living
-## [121] living living living living living living living living living living
-## [131] living living living living living living living living living living
-## [141] living living living living living living living living living living
-## [151] living living living living killed killed killed killed killed killed
-## [161] killed killed killed killed killed killed killed killed killed killed
-## [171] killed killed killed killed killed killed killed killed killed killed
-## [181] killed killed killed killed
-## Levels: killed living</code></pre>
-<p>Par défaut, dans R, les niveaux d’un facteur sont classés par ordre alphabétique sauf si on spécifie manuellement un ordre différent. Ici, le niveau “killed” est donc le premier niveau du facteur, et “living” le second. Lorsque l’on réalise un test de Student avec ces données (ou un test de Wilcoxon d’ailleurs), la différence de moyenne qui est examinée par le test est donc “moyenne des <code>killed</code> - moyenne des <code>living</code>.” Lorsque nous avons tapé ceci :</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="seance1.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
 <span id="cb103-2"><a href="seance1.html#cb103-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb103-3"><a href="seance1.html#cb103-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code>
+    Two Sample t-test
+
+data:  Horn_len by Survival
+t = -4.3494, df = 182, p-value = 1
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ -3.166684       Inf
+sample estimates:
+mean in group killed mean in group living 
+            21.98667             24.28117 </code></pre>
+<p>Ici, la <span class="math inline">\(p\)</span>-value est très supérieure à <span class="math inline">\(\alpha\)</span> puisqu’elle vaut 1. Une <span class="math inline">\(p\)</span>-value de 1 devrait toujours attirer votre attention. La conclusion devrait donc être que l’on ne peut pas rejeter H<span class="math inline">\(_0\)</span> : les lézards morts et vivants ont en moyenne des cornes de même longueur. Nous savons pourtant que c’est faux.</p>
+<p>Le problème est ici liè à l’ordre des catégories “vivant” ou “mort” dans le facteur <code>Survival</code> du tableau <code>Lizard</code>. Les dernières lignes des tests que nous venons de faire indiquent la moyenne de chaque groupe, mais le groupe “killed” apparaît toujours avant le groupe “living.” C’est l’ordre des niveaux dans le facteur <code>Survival</code> qui doit dicter la syntaxe appropriée :</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="seance1.html#cb105-1" aria-hidden="true" tabindex="-1"></a>Lizard<span class="sc">$</span>Survival</span></code></pre></div>
+<pre><code>  [1] living living living living living living living living living living
+ [11] living living living living living living living living living living
+ [21] living living living living living living living living living living
+ [31] living living living living living living living living living living
+ [41] living living living living living living living living living living
+ [51] living living living living living living living living living living
+ [61] living living living living living living living living living living
+ [71] living living living living living living living living living living
+ [81] living living living living living living living living living living
+ [91] living living living living living living living living living living
+[101] living living living living living living living living living living
+[111] living living living living living living living living living living
+[121] living living living living living living living living living living
+[131] living living living living living living living living living living
+[141] living living living living living living living living living living
+[151] living living living living killed killed killed killed killed killed
+[161] killed killed killed killed killed killed killed killed killed killed
+[171] killed killed killed killed killed killed killed killed killed killed
+[181] killed killed killed killed
+Levels: killed living</code></pre>
+<p>Par défaut, dans R, les niveaux d’un facteur sont classés par ordre alphabétique sauf si on spécifie manuellement un ordre différent. Ici, le niveau “killed” est donc le premier niveau du facteur, et “living” le second. Lorsque l’on réalise un test de Student avec ces données (ou un test de Wilcoxon d’ailleurs), la différence de moyenne qui est examinée par le test est donc “moyenne des <code>killed</code> - moyenne des <code>living</code>.” Lorsque nous avons tapé ceci :</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="seance1.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
+<span id="cb107-2"><a href="seance1.html#cb107-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb107-3"><a href="seance1.html#cb107-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <p>nous avons en réalité posé les hypothèses suivantes :</p>
 <ul>
 <li>H<span class="math inline">\(_0\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>morts</strong> est égale à celle des lézards <strong>vivants</strong>. Leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>morts</strong> est <strong>supérieure</strong> à celle des lézards <strong>vivants</strong>. Leur différence est <strong>supérieure</strong> à 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} &gt; 0\)</span>).</li>
 </ul>
 <p>Ce test est donc erronné, ce qui explique qu’il nous renvoie un résultat faux et une <span class="math inline">\(p\)</span>-value de 1. Ici, puisque l’ordre des catégories est “killed” d’abord et “living” ensuite, la seule façon correcte de faire un test unilatéral qui a du sens est donc celle que nous avons réalisée en premier :</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="seance1.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
-<span id="cb104-2"><a href="seance1.html#cb104-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb104-3"><a href="seance1.html#cb104-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="seance1.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
+<span id="cb108-2"><a href="seance1.html#cb108-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb108-3"><a href="seance1.html#cb108-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 </div>
 <div id="exercice-dapplication-3" class="section level3" number="3.5.3">
 <h3><span class="header-section-number">3.5.3</span> Exercice d’application</h3>
