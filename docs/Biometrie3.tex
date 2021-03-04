@@ -159,7 +159,7 @@
 
 \title{Travaux Pratiques de Biométrie 3}
 \author{Benoît Simon-Bouhet}
-\date{2021-03-04}
+\date{2021-03-05}
 
 \begin{document}
 \maketitle
@@ -590,7 +590,7 @@ Ici, il s'agit d'examiner la distribution des données. Pour cela, 3 types de gr
 
 \begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-15-1} \end{center}
 
-Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut tenir compte de l'over-plotting. Si vous ne vous rappelez plus de quoi il s'agit, consultez \href{https://besibo.github.io/DA/viz.html\#over-plotting}{la section 4.3.4} du livre en ligne de Biométrie 2. Globalement, pour visualiser correctement les données, on va jouer soit sur la transparence des points, soit sur l'ajout d'un bruit aléatoire horizontal qui permettra de distinguer plus facilement les points et de repérer les zones où les points sont abondants ou rares :
+Dans la mesure où souvent, plusieurs observations ont la même valeur, il faut tenir compte de l'over-plotting. Si vous ne vous rappelez plus de quoi il s'agit, consultez \href{https://besibo.github.io/DA/viz.html\#over-plotting}{la section 4.3.4} du livre en ligne de Biométrie 2. Globalement, pour visualiser correctement les données, on va jouer soit sur la transparence des points, soit sur l'ajout d'un bruit aléatoire horizontal qui permettra de distinguer plus facilement les points et de repérer les zones où les points sont abondants ou rares :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -603,7 +603,7 @@ Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut t
 
 \begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-16-1} \end{center}
 
-La fonction \texttt{xlim()} permet de spéccifier manuellement les valeurs limites que l'on souhaite pour l'axe des abscisses. Ici, cet axe n'a aucune signification particulière puisque nous n'avons qu'une unique série de données (c'est la raison pour laquelle les points sont centrés sur l'abscisse x = 1). Nous pouvons donc le masquer comme ceci :
+La fonction \texttt{xlim()} permet de spécifier manuellement les valeurs limites que l'on souhaite pour l'axe des abscisses. Ici, cet axe n'a aucune signification particulière puisque nous n'avons qu'une unique série de données (c'est la raison pour laquelle les points sont centrés sur l'abscisse x = 1). Nous pouvons donc le masquer comme ceci :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -641,7 +641,7 @@ On constate ici que la répartition des points est assez régulière, avec néan
 
 Si vous ne vous rappelez-plus ce qu'est un histogramme ou comment le faire, ou la signification de l'argument \texttt{bins}, relisez \href{https://besibo.github.io/DA/viz.html\#histogram}{la section 4.5} du livre en ligne de Biométrie 2.
 
-Notez ici que la forme de cet histogramme est très proche de celle présenté plus tôt par la fonction \texttt{skim()}. Cet histogramme nous apprend qu'en dehors d'un ``trou'' autour de la température 36.75 ºC, la distribution des données est proche d'une courbe en cloche. Il y a fort à parier qu'un test de normalité concluerait à la normalité des données de cet échantillon.
+Notez ici que la forme de cet histogramme est relativement proche de celle présentée plus tôt par la fonction \texttt{skim()}. Cet histogramme nous apprend qu'en dehors d'un ``trou'' autour de la température 36.75 ºC, la distribution des données est proche d'une courbe en cloche. Il y a fort à parier qu'un test de normalité concluerait à la normalité des données de cet échantillon.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -852,7 +852,7 @@ Enfin, les tests de Wilcoxon renvoient souvent des messages d'avretissement. Il 
 \hypertarget{exercice-dapplication}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication}}
 
-\href{https://besibo.github.io/Biometrie3/data/Temperature2.csv}{Le fichier \texttt{Temperature2.csv}} contient les données brutes d'une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d'examiner vos données comme nous l'avons décrit dans la section \ref{Explo}, afin de savoir où vous allez, de repérer les éventuelles données manquantes ou aberrantes.
+\href{https://besibo.github.io/Biometrie3/data/Temperature2.csv}{Le fichier \texttt{Temperature2.csv}} contient les données brutes d'une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d'examiner vos données comme nous l'avons décrit dans la section \ref{Explo}, afin de savoir où vous allez, et de repérer les éventuelles données manquantes ou aberrantes.
 
 \hypertarget{comparaison-de-la-moyenne-de-2-populations-donnuxe9es-appariuxe9es}{%
 \subsection{Comparaison de la moyenne de 2 populations : données appariées}\label{comparaison-de-la-moyenne-de-2-populations-donnuxe9es-appariuxe9es}}
@@ -872,7 +872,7 @@ Voici quelques exemples de situations qui devraient être traitées avec des tes
 \item
   Test des effets d'une crème solaire appliquée sur un bras de chaque volontaire alors que l'autre bras ne reçoit qu'un placébo.
 \item
-  Test des effets du tabagisme dans un échantillon de fumeurs, dont chaque membre est comparé à un non fumeur choisi pour qu'il lui ressemble le plus possible en terme d'âge, de masse, d'origine éthnique et sociale
+  Test des effets du tabagisme dans un échantillon de fumeurs, dont chaque membre est comparé à un non fumeur choisi pour qu'il lui ressemble le plus possible en terme d'âge, de masse, d'origine éthnique et sociale, etc.
 \item
   Test des effets que les conditions socio-économiques ont sur les préférences alimentaires en comparant des vrais jumaux élevés dans des familles adoptives séparées qui diffèrent en termes de conditions socio-économiques.
 \end{itemize}
@@ -884,7 +884,7 @@ Les 2 derniers exemples montrent que même des individus séparés peuvent const
 
 Ici, nous allons nous intéresser au lien qui pourrait exister entre la production de testostérone et l'immunité chez une espèce d'oiseau vivant en Amérique du Nord, \href{https://fr.wikipedia.org/wiki/Carouge_à_épaulettes}{le carouge à épaulettes}.
 
-Chez de nombreuses espèces, les mâles ont plus de chances d'attirer des femelles s'ils produisent des niveaux de testostérone élevés. Est-ce que la forte production de testostérone de certains mâle a un coût, notamment en terme d'immuno-compétence ? Autrement dit, est-ce que produire beaucoup de testostérone au moment de la reproduction (ce qui fournit un avantage sélectif) se traduit par une immunité plus faible par la suite, et donc une plus forte susceptibilité de contracter des maladies (ce qui constitue donc un désavantage sélectif) ?
+Chez de nombreuses espèces, les mâles ont plus de chances d'attirer des femelles s'ils produisent des niveaux de testostérone élevés. Est-ce que la forte production de testostérone de certains mâles a un coût, notamment en terme d'immuno-compétence ? Autrement dit, est-ce que produire beaucoup de testostérone au moment de la reproduction (ce qui fournit un avantage sélectif) se traduit par une immunité plus faible par la suite, et donc une plus forte susceptibilité de contracter des maladies (ce qui constitue donc un désavantage sélectif) ?
 
 Pour étudier cette question, une équipe de chercheurs (\protect\hyperlink{ref-Hasselquist1999}{Hasselquist et al., 1999}) a mis en place le dispositif expérimental suivant. Les niveaux de testostérone de 13 carouges à épaulettes mâles ont été artificiellement augmentés par l'implantation chirurgicale d'un microtube perméable contenant de la testostérone. L'immunocompétence a été mesurée pour chaque oiseau avant et après l'opération chirurgicale. La variable mesurée est la production d'anticorps suite à l'exposition des oiseaux avec un antigène non pathogène mais censé déclencher une réponse immunitaire. Les taux de production d'anticorps sont exprimés en logarithmes de densité optique par minute \(\left(\ln\frac{mOD}{min}\right)\).
 
@@ -961,7 +961,7 @@ Il nous faut maintenant transformer ce tableau en format ``long'' pour les repr�
   \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \FunctionTok{c}\NormalTok{(Before, After),}
                \AttributeTok{names\_to =} \StringTok{"Traitement"}\NormalTok{, }
                \AttributeTok{values\_to =} \StringTok{"DO"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Traitement =} \FunctionTok{factor}\NormalTok{(Traitement))}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Traitement =} \FunctionTok{factor}\NormalTok{(Traitement, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Before"}\NormalTok{, }\StringTok{"After"}\NormalTok{)))}
 
 \NormalTok{Testo\_long}
 \end{Highlighting}
@@ -984,7 +984,7 @@ Il nous faut maintenant transformer ce tableau en format ``long'' pour les repr�
 # ... with 16 more rows
 \end{verbatim}
 
-Si vous ne comprenez pas ces commandes, je vous conseille vivement de reprendre \href{https://besibo.github.io/DA/tidyr.html}{les chapitres 5 et 6} du livre en ligne de Biométrie 2. Dans l'idéal, depuis les TP de biométrie 2, vous devriez être capables de construire de telles séquences de commandes pour aboutir à un tableau rangé ne contenant que les variables utiles, au format long comme au format court (ou large). Mais évidemment, de telles groupes de commandes se construisent étape par étape, et pas d'un seul coup, contrairement à ce que les commandes précédentes pourraient laisser croire.
+Si vous ne comprenez pas ces commandes, je vous conseille vivement de reprendre \href{https://besibo.github.io/DA/tidyr.html}{les chapitres 5 et 6} du livre en ligne de Biométrie 2. Dans l'idéal, depuis les TP de biométrie 2, vous devriez être capables de construire de telles séquences de commandes pour aboutir à un tableau rangé ne contenant que les variables utiles, au format long comme au format court (ou large). Mais évidemment, de tels groupes de commandes se construisent étape par étape, et pas d'un seul coup, contrairement à ce que les commandes précédentes pourraient laisser croire.
 
 Maintenant que nous disposons de ces 2 tableaux, nous pouvons commencer à décrire nos données.
 
@@ -1073,19 +1073,19 @@ Group variables            Traitement
 
 -- Variable type: factor -------------------------------------------------------
   skim_variable Traitement n_missing complete_rate ordered n_unique
-1 ID            After              0             1 FALSE         13
-2 ID            Before             0             1 FALSE         13
+1 ID            Before             0             1 FALSE         13
+2 ID            After              0             1 FALSE         13
   top_counts            
 1 1: 1, 2: 1, 3: 1, 4: 1
 2 1: 1, 2: 1, 3: 1, 4: 1
 
 -- Variable type: numeric ------------------------------------------------------
   skim_variable Traitement n_missing complete_rate  mean    sd    p0   p25   p50
-1 DO            After              0             1  4.79 0.262  4.3    4.6  4.96
-2 DO            Before             0             1  4.73 0.280  3.91   4.7  4.8 
+1 DO            Before             0             1  4.73 0.280  3.91   4.7  4.8 
+2 DO            After              0             1  4.79 0.262  4.3    4.6  4.96
     p75  p100 hist 
-1  5     5.02 ▂▁▂▁▇
-2  4.88  4.98 ▁▁▁▃▇
+1  4.88  4.98 ▁▁▁▃▇
+2  5     5.02 ▂▁▂▁▇
 \end{verbatim}
 
 \hypertarget{exploration-graphique-1}{%
@@ -1110,7 +1110,7 @@ Ici, c'est le tableau rangé au format long qui sera le plus adapté. Lorsque no
 
 \begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-31-1} \end{center}
 
-Comme toujours, on peut réaliser un stripchart pour limiter les problèmes d'over-plotting (qui sont ici quasi-inexistants).
+Comme toujours, on peut réaliser un stripchart pour limiter les problèmes d'over-plotting :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1319,13 +1319,13 @@ Le test de Student sur données appariées peut se faire de 3 façons distinctes
     Paired t-test
 
 data:  DO by Traitement
-t = 1.2714, df = 12, p-value = 0.2277
+t = -1.2714, df = 12, p-value = 0.2277
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -0.04007695  0.15238464
+ -0.15238464  0.04007695
 sample estimates:
 mean of the differences 
-             0.05615385 
+            -0.05615385 
 \end{verbatim}
 
 Plusieurs remarques concernant cette première syntaxe :
@@ -1424,13 +1424,13 @@ Comme pour le test de Student, 3 syntaxes sont possibles et strictement équival
     Wilcoxon signed rank exact test
 
 data:  DO by Traitement
-V = 61, p-value = 0.3054
+V = 30, p-value = 0.3054
 alternative hypothesis: true location shift is not equal to 0
 95 percent confidence interval:
- -0.040  0.145
+ -0.145  0.040
 sample estimates:
 (pseudo)median 
-         0.055 
+        -0.055 
 \end{verbatim}
 
 \begin{Shaded}

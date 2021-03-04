@@ -124,7 +124,7 @@ Temp_clean %>%
 
 Enfin, une autre façon d'obtenir des informations rapidement consiste à utiliser la fonction `skim()` du package `skimr` :
 
-```{r,  render = knitr::normal_print, size = 'footnotesize'}
+```{r,  render = knitr::normal_print, size = 'small'}
 skim(Temp_clean)
 ```
 
@@ -167,7 +167,7 @@ Temp_clean %>%
   geom_point()
 ```
 
-Dans la mesure ou souvent, plusieurs observations ont la même valeur, il faut tenir compte de l'over-plotting. Si vous ne vous rappelez plus de quoi il s'agit, consultez [la section 4.3.4](https://besibo.github.io/DA/viz.html#over-plotting) du livre en ligne de Biométrie 2. Globalement, pour visualiser correctement les données, on va jouer soit sur la transparence des points, soit sur l'ajout d'un bruit aléatoire horizontal qui permettra de distinguer plus facilement les points et de repérer les zones où les points sont abondants ou rares :
+Dans la mesure où souvent, plusieurs observations ont la même valeur, il faut tenir compte de l'over-plotting. Si vous ne vous rappelez plus de quoi il s'agit, consultez [la section 4.3.4](https://besibo.github.io/DA/viz.html#over-plotting) du livre en ligne de Biométrie 2. Globalement, pour visualiser correctement les données, on va jouer soit sur la transparence des points, soit sur l'ajout d'un bruit aléatoire horizontal qui permettra de distinguer plus facilement les points et de repérer les zones où les points sont abondants ou rares :
 
 ```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
 Temp_clean %>% 
@@ -176,7 +176,7 @@ Temp_clean %>%
   xlim(0.5, 1.5)
 ```
 
-La fonction `xlim()` permet de spéccifier manuellement les valeurs limites que l'on souhaite pour l'axe des abscisses. Ici, cet axe n'a aucune signification particulière puisque nous n'avons qu'une unique série de données (c'est la raison pour laquelle les points sont centrés sur l'abscisse x = 1). Nous pouvons donc le masquer comme ceci :
+La fonction `xlim()` permet de spécifier manuellement les valeurs limites que l'on souhaite pour l'axe des abscisses. Ici, cet axe n'a aucune signification particulière puisque nous n'avons qu'une unique série de données (c'est la raison pour laquelle les points sont centrés sur l'abscisse x = 1). Nous pouvons donc le masquer comme ceci :
 
 ```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
 Temp_clean %>% 
@@ -200,7 +200,7 @@ Temp_clean %>%
 
 Si vous ne vous rappelez-plus ce qu'est un histogramme ou comment le faire, ou la signification de l'argument `bins`, relisez [la section 4.5](https://besibo.github.io/DA/viz.html#histogram) du livre en ligne de Biométrie 2.
 
-Notez ici que la forme de cet histogramme est très proche de celle présenté plus tôt par la fonction `skim()`. Cet histogramme nous apprend qu'en dehors d'un "trou" autour de la température 36.75 ºC, la distribution des données est proche d'une courbe en cloche. Il y a fort à parier qu'un test de normalité concluerait à la normalité des données de cet échantillon.
+Notez ici que la forme de cet histogramme est relativement proche de celle présentée plus tôt par la fonction `skim()`. Cet histogramme nous apprend qu'en dehors d'un "trou" autour de la température 36.75 ºC, la distribution des données est proche d'une courbe en cloche. Il y a fort à parier qu'un test de normalité concluerait à la normalité des données de cet échantillon.
 
 3. Les boîtes à moustaches :
 
@@ -226,29 +226,30 @@ On retrouve sur ce graphique tous les éléments obtenus avec la fonction `summa
 Pour conclure, ces 3 types de représentations graphiques (nuages de points ou stripchart, histogrammes et boxplots) sont complémentaires. Ces trois types de représentations graphiques permettent de visualiser la distribution d'une variable numérique. Les nuages de points permettent de voir toutes les données brutes. Les histogrammes résument les données en quelques valeurs : une valeur d'abondance pour chaque barre ou classe. Les boxplots résument encore plus les données avec seulement 7 valeurs qui caractérisent la distribution (voir figure \@ref(fig:compdistr) ci-dessous).
 
 ```{r compdistr, warning = FALSE, message = FALSE, echo=FALSE, fig.cap="Comparaison de 2 types de représentations graphiques"}
-library(gridExtra)
+library(patchwork)
 
 pl1 <- Temp_clean %>% 
-  ggplot(aes(x = temperature)) +
+  ggplot(aes(y = temperature)) +
     geom_histogram(bins = 10) +
-    coord_flip()
+    expand_limits(y = c(36.25, 37.8))
 
 pl2 <- Temp_clean %>% 
   ggplot(aes(y = temperature)) +
     geom_boxplot(notch = TRUE) +
+    expand_limits(y = c(36.08, 37.8)) +
     theme(axis.text.x = element_blank(),
           axis.ticks.x = element_blank())
 
 pl3 <- Temp_clean %>% 
   ggplot(aes(x = 1, y = temperature)) +
-  xlim(0.5, 1.5) +
-  geom_jitter(width = 0.2, height=1) +
-  theme(axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.title.x = element_blank())
+    geom_jitter(width = 0.2, height = 0) +
+    expand_limits(y = c(36.08, 37.8)) +
+    xlim(0.5, 1.5) +
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(),
+          axis.title.x = element_blank())
 
-
-grid.arrange(pl3, pl1, pl2, nrow=1)
+pl3+pl1+pl2
 ```
 
 À chaque nouvelle analyse statistique, il sera donc important de visualiser les données afin de repérer les éventuels problèmes et afin d'anticiper sur les résultats que fourniront les tests d'hypothèses ultérieurs. Ici, l'examen de ces graphiques nous permet de dire les choses suivantes :
@@ -337,7 +338,7 @@ Enfin, les tests de Wilcoxon renvoient souvent des messages d'avretissement. Il 
 
 ### Exercice d'application
 
-[Le fichier `Temperature2.csv`](https://besibo.github.io/Biometrie3/data/Temperature2.csv) contient les données brutes d'une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d'examiner vos données comme nous l'avons décrit dans la section \@ref(Explo), afin de savoir où vous allez, de repérer les éventuelles données manquantes ou aberrantes.
+[Le fichier `Temperature2.csv`](https://besibo.github.io/Biometrie3/data/Temperature2.csv) contient les données brutes d'une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d'examiner vos données comme nous l'avons décrit dans la section \@ref(Explo), afin de savoir où vous allez, et de repérer les éventuelles données manquantes ou aberrantes.
 
 
 ## Comparaison de la moyenne de 2 populations : données appariées
@@ -351,7 +352,7 @@ Voici quelques exemples de situations qui devraient être traitées avec des tes
 - Comparaison de la masse de patients avant et après une hospitalisation.
 - Comparaison de la diversité de peuplements de poissons dans des lacs avant et après contamination par des métaux lourds.
 - Test des effets d'une crème solaire appliquée sur un bras de chaque volontaire alors que l'autre bras ne reçoit qu'un placébo.
-- Test des effets du tabagisme dans un échantillon de fumeurs, dont chaque membre est comparé à un non fumeur choisi pour qu'il lui ressemble le plus possible en terme d'âge, de masse, d'origine éthnique et sociale
+- Test des effets du tabagisme dans un échantillon de fumeurs, dont chaque membre est comparé à un non fumeur choisi pour qu'il lui ressemble le plus possible en terme d'âge, de masse, d'origine éthnique et sociale, etc.
 - Test des effets que les conditions socio-économiques ont sur les préférences alimentaires en comparant des vrais jumaux élevés dans des familles adoptives séparées qui diffèrent en termes de conditions socio-économiques.
 
 Les 2 derniers exemples montrent que même des individus séparés peuvent constituer une  "paire statistique" s'ils partagent un certain nombre de caractéristiques (physiques, environnementales, génétiques, comportementales, etc.) pertinentes pour l'étude.
@@ -360,7 +361,7 @@ Les 2 derniers exemples montrent que même des individus séparés peuvent const
 
 Ici, nous allons nous intéresser au lien qui pourrait exister entre la production de testostérone et l'immunité chez une espèce d'oiseau vivant en Amérique du Nord, [le carouge à épaulettes](https://fr.wikipedia.org/wiki/Carouge_à_épaulettes).
 
-Chez de nombreuses espèces, les mâles ont plus de chances d'attirer des femelles s'ils produisent des niveaux de testostérone élevés. Est-ce que la forte production de testostérone de certains mâle a un coût, notamment en terme d'immuno-compétence ? Autrement dit, est-ce que produire beaucoup de testostérone au moment de la reproduction (ce qui fournit un avantage sélectif) se traduit par une immunité plus faible par la suite, et donc une plus forte susceptibilité de contracter des maladies (ce qui constitue donc un désavantage sélectif) ?
+Chez de nombreuses espèces, les mâles ont plus de chances d'attirer des femelles s'ils produisent des niveaux de testostérone élevés. Est-ce que la forte production de testostérone de certains mâles a un coût, notamment en terme d'immuno-compétence ? Autrement dit, est-ce que produire beaucoup de testostérone au moment de la reproduction (ce qui fournit un avantage sélectif) se traduit par une immunité plus faible par la suite, et donc une plus forte susceptibilité de contracter des maladies (ce qui constitue donc un désavantage sélectif) ?
 
 Pour étudier cette question, une équipe de chercheurs [@Hasselquist1999] a mis en place le dispositif expérimental suivant. Les niveaux de testostérone de 13 carouges à épaulettes mâles ont été artificiellement augmentés par l'implantation chirurgicale d'un microtube perméable contenant de la testostérone. L'immunocompétence a été mesurée pour chaque oiseau avant et après l'opération chirurgicale. La variable mesurée est la production d'anticorps suite à l'exposition des oiseaux avec un antigène non pathogène mais censé déclencher une réponse immunitaire. Les taux de production d'anticorps sont exprimés en logarithmes de densité optique par minute $\left(\ln\frac{mOD}{min}\right)$.
 
@@ -397,12 +398,12 @@ Testo_long <- Testo_large %>%
   pivot_longer(cols = c(Before, After),
                names_to = "Traitement", 
                values_to = "DO") %>% 
-  mutate(Traitement = factor(Traitement))
+  mutate(Traitement = factor(Traitement, levels = c("Before", "After")))
 
 Testo_long
 ```
 
-Si vous ne comprenez pas ces commandes, je vous conseille vivement de reprendre [les chapitres 5 et 6](https://besibo.github.io/DA/tidyr.html) du livre en ligne de Biométrie 2. Dans l'idéal, depuis les TP de biométrie 2, vous devriez être capables de construire de telles séquences de commandes pour aboutir à un tableau rangé ne contenant que les variables utiles, au format long comme au format court (ou large). Mais évidemment, de telles groupes de commandes se construisent étape par étape, et pas d'un seul coup, contrairement à ce que les commandes précédentes pourraient laisser croire.
+Si vous ne comprenez pas ces commandes, je vous conseille vivement de reprendre [les chapitres 5 et 6](https://besibo.github.io/DA/tidyr.html) du livre en ligne de Biométrie 2. Dans l'idéal, depuis les TP de biométrie 2, vous devriez être capables de construire de telles séquences de commandes pour aboutir à un tableau rangé ne contenant que les variables utiles, au format long comme au format court (ou large). Mais évidemment, de tels groupes de commandes se construisent étape par étape, et pas d'un seul coup, contrairement à ce que les commandes précédentes pourraient laisser croire.
 
 Maintenant que nous disposons de ces 2 tableaux, nous pouvons commencer à décrire nos données.
 
@@ -446,7 +447,7 @@ Testo_long %>%
   geom_point()
 ```
 
-Comme toujours, on peut réaliser un stripchart pour limiter les problèmes d'over-plotting (qui sont ici quasi-inexistants).
+Comme toujours, on peut réaliser un stripchart pour limiter les problèmes d'over-plotting :
 
 ```{r, fig.asp = 1.5, out.width = '25%', fig.width = 2}
 Testo_long %>% 
