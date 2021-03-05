@@ -997,8 +997,16 @@ Group variables            Survival
     p75  p100 hist 
 1  23.8  26.7 ▂▂▇▇▃
 2  26    30.3 ▁▁▅▇▂</code></pre>
+<p>Outre ces informations sur les ordres de grandeurs observés dans chaque groupe de lézards (vivants ou morts), la fonction <code>skim()</code> ne fournit pas les effectifs observés dans chaque groupe. Pour cela, on peut utiliser une fonction décrite en biométrie 2, la fonction <code>count()</code> :</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="seance1.html#cb78-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb78-2"><a href="seance1.html#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Survival)</span></code></pre></div>
+<pre><code># A tibble: 2 x 2
+  Survival     n
+  &lt;fct&gt;    &lt;int&gt;
+1 killed      30
+2 living     154</code></pre>
 <p>On constate ici que les tailles d’échantillons sont très différentes. C’est normal compte tenu de la difficulté de repérer des individus morts dans la nature, et ce n’est pas gênant pour nos analyses puisque la taille des deux échantillons reste élevée.</p>
-<p>On constate également que si les écarts-types des 2 groupes sont proches, les moyennes et médianes sont plus élévées dans le groupe des individus vivants que dans celui des individus morts (c’est le cas également des quartiles 1 et 3).</p>
+<p>On constate également que si les écarts-types des 2 groupes sont proches, les moyennes et médianes sont plus élevées dans le groupe des individus vivants que dans celui des individus morts (c’est le cas également des quartiles 1 et 3).</p>
 </div>
 <div id="exploration-graphique-2" class="section level4" number="3.4.1.3">
 <h4><span class="header-section-number">3.4.1.3</span> Exploration graphique</h4>
@@ -1006,28 +1014,28 @@ Group variables            Survival
 <ol style="list-style-type: decimal">
 <li>Stripchart</li>
 </ol>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="seance1.html#cb78-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
-<span id="cb78-2"><a href="seance1.html#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Survival, <span class="at">y =</span> Horn_len)) <span class="sc">+</span></span>
-<span id="cb78-3"><a href="seance1.html#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="figure/unnamed-chunk-49-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="seance1.html#cb80-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb80-2"><a href="seance1.html#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Survival, <span class="at">y =</span> Horn_len)) <span class="sc">+</span></span>
+<span id="cb80-3"><a href="seance1.html#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-50-1.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>Ce premier graphique permet de visualiser très clairement les différences de tailles d’échantillons entre les deux groupes. Il permet également de voir que l’étendue des longueurs de cornes est plus importante dans le groupe des individus vivants que dans celui des individus morts.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Histogrammes</li>
 </ol>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="seance1.html#cb79-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
-<span id="cb79-2"><a href="seance1.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Horn_len)) <span class="sc">+</span></span>
-<span id="cb79-3"><a href="seance1.html#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>, <span class="at">color =</span> <span class="fu">grey</span>(<span class="fl">0.8</span>)) <span class="sc">+</span></span>
-<span id="cb79-4"><a href="seance1.html#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Survival, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
-<p><img src="figure/unnamed-chunk-50-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="seance1.html#cb81-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb81-2"><a href="seance1.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Horn_len)) <span class="sc">+</span></span>
+<span id="cb81-3"><a href="seance1.html#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>, <span class="at">color =</span> <span class="fu">grey</span>(<span class="fl">0.8</span>)) <span class="sc">+</span></span>
+<span id="cb81-4"><a href="seance1.html#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Survival, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-51-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Notez ici l’utilisation de l’argument <code>scales = "free_y"</code> dans la fonction <code>facet_wrap()</code>. Cet argument permet de ne pas imposer la même échelle pour l’axe des ordonnées des 2 graphiques. Ce choix est ici pertinent puisque les effectifs des 2 groupes sont très différents. Faîtes un essai sans cet argument pour voir la différence.</p>
 <p>Cette visualisation nous montre que les données doivent suivre à peu près une distribution Normale dans les 2 groupes, et que globalement la longueur des cornes semble légèrement plus élevée dans le groupe des vivants (avec un mode autour de 25-26 mm) que dans le groupes des morts (avec un mode autour de 23-24 mm).</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Boxplots</li>
 </ol>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="seance1.html#cb80-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
-<span id="cb80-2"><a href="seance1.html#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Survival, <span class="at">y =</span> Horn_len)) <span class="sc">+</span></span>
-<span id="cb80-3"><a href="seance1.html#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="figure/unnamed-chunk-51-1.png" width="25%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="seance1.html#cb82-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb82-2"><a href="seance1.html#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Survival, <span class="at">y =</span> Horn_len)) <span class="sc">+</span></span>
+<span id="cb82-3"><a href="seance1.html#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-52-1.png" width="25%" style="display: block; margin: auto;" /></p>
 <p>Nous visualisons ici encore plus clairement que sur les histogrammes le fait que les longueurs de cornes des individus vivants sont légèrement plus longues que celles des individus morts. D’ailleurs, puisque les intervalles de confiance à 95% des médianes des 2 groupes (les encoches) ne se chevauchent pas, un test de comparaison des moyennes devrait logiquement conclure à une différence significative en faveur des individus vivants. On peut également noter que la largeur de l’encoche pour les individus morts est plus importante que celle des vivants. Cela traduit une incertitude plus grande autour de la médiane estimée dans le groupe des individus morts. C’est tout à fait logique compte tenu des effectifs modestes dans ce groupe.</p>
 </div>
 </div>
@@ -1042,19 +1050,19 @@ Group variables            Survival
 <li>La variable numérique étudiée est distribuée normalement dans les deux populations. Il nous faudra donc faire deux test de Shapiro-Wilk, un pour chaque échantillon.</li>
 <li>L’écart-type (et la variance) de la variable numérique est la même dans les deux populations. C’est ce que l’on appelle l’homoscédasticité.</li>
 </ol>
-<p>En réalité, le test du <span class="math inline">\(t\)</span> de Student sur deux échantillons indépendants est assez robuste face au non respect de cette troisième condition d’application. Cela signifie que si cette troisième condition d’application n’est pas strictement vérifiée, les résultats du tests peuvent malgré tout rester valides. Lorsque les 2 échantillons comparés ont des tailles supérieures ou égales à 30, ce test fonctionne bien même si l’écart-type d’un groupe est jusqu’à 3 fois supérieur ou inférieur à l’écart-type du second groupe, à condition que la taille des 2 échantillons soit proche (ce qui n’est pas le cas ici !). En revanche, s’il les écart-types diffèrent de plus d’un facteur 3, ou si les tailles d’échantillons sont très différentes, le test du <span class="math inline">\(t\)</span> de Student ne devrait pas être utilisé. De même, si la taille des échantillons est inférieure à 30 et que les variances ne sont pas homogènes, ce test ne devrait pas être réalisé. En conclusion, les résultats du test du <span class="math inline">\(t\)</span> de Student à deux échantillons indépendants peuvent rester valides si la troisième condition d’homoscédasticité est violée, mais dans certains cas seulement.</p>
+<p>En réalité, le test du <span class="math inline">\(t\)</span> de Student sur deux échantillons indépendants est assez robuste face au non respect de cette troisième condition d’application. Cela signifie que si cette troisième condition d’application n’est pas strictement vérifiée, les résultats du tests peuvent malgré tout rester valides. Lorsque les 2 échantillons comparés ont des tailles supérieures ou égales à 30, ce test fonctionne bien même si l’écart-type d’un groupe est jusqu’à 3 fois supérieur ou inférieur à l’écart-type du second groupe, à condition que la taille des 2 échantillons soit proche (ce qui n’est pas le cas ici !). En revanche, si les écart-types diffèrent de plus d’un facteur 3, ou si les tailles d’échantillons sont très différentes, le test du <span class="math inline">\(t\)</span> de Student ne devrait pas être utilisé. De même, si la taille des échantillons est inférieure à 30 et que les variances ne sont pas homogènes, ce test ne devrait pas être réalisé. En conclusion, les résultats du test du <span class="math inline">\(t\)</span> de Student à deux échantillons indépendants peuvent rester valides si la troisième condition d’homoscédasticité est violée, mais dans certains cas seulement.</p>
 <p>Le test du <span class="math inline">\(t\)</span> de Student sur deux échantillons indépendants est également assez robuste face à des écarts mineurs à la distribution Normale, tant que la forme des deux distributions comparées reste similaire. En outre, la robustesse de ce test augmente avec la taille des échantillons.</p>
 <p>Ici, nous allons donc commencer par vérifier la normalité de chacun des 2 échantillons en réalisant 2 tests de Shapiro-Wilk. Si ces tests confirment que la taille des cornes suit une distribution Normale dans la population générale, nous comparerons alors la variance des 2 populations (nous verrons 3 méthodes pour cela). Les statistiques descriptives réalisées plus haut nous ont montré que les écarts-types des 2 échantillons sont proches, mais que les tailles d’échantillons sont très différentes. L’homoscédasticité doit donc être vérifiée pour que nous ayons le droit de faire le test de Student.</p>
 <p><strong>1. Normalité des données</strong></p>
-<p>Nous commençons donc par tester la Normalité des 2 populations dont sont issus les échantillons. Pour les individus morts les hypothèses sont les suivantes :</p>
+<p>Nous commençons donc par tester la Normalité des 2 populations dont sont issus les échantillons. Pour les individus morts, les hypothèses sont les suivantes :</p>
 <ul>
 <li>H<span class="math inline">\(_0\)</span> : la taille des cornes suit une distribution Normale dans la population des lézards cornus morts.</li>
 <li>H<span class="math inline">\(_1\)</span> : la taille des cornes ne suit pas une distribution Normale dans la population des lézards cornus morts.</li>
 </ul>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="seance1.html#cb81-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
-<span id="cb81-2"><a href="seance1.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Survival <span class="sc">==</span> <span class="st">&quot;killed&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb81-3"><a href="seance1.html#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Horn_len) <span class="sc">%&gt;%</span> </span>
-<span id="cb81-4"><a href="seance1.html#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="seance1.html#cb83-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb83-2"><a href="seance1.html#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Survival <span class="sc">==</span> <span class="st">&quot;killed&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb83-3"><a href="seance1.html#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Horn_len) <span class="sc">%&gt;%</span> </span>
+<span id="cb83-4"><a href="seance1.html#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
@@ -1068,10 +1076,10 @@ W = 0.93452, p-value = 0.06482</code></pre>
 <li>H<span class="math inline">\(_0\)</span> : la taille des cornes suit une distribution Normale dans la population des lézards cornus vivants.</li>
 <li>H<span class="math inline">\(_1\)</span> : la taille des cornes ne suit pas une distribution Normale dans la population des lézards cornus vivants.</li>
 </ul>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="seance1.html#cb83-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
-<span id="cb83-2"><a href="seance1.html#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Survival <span class="sc">==</span> <span class="st">&quot;living&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb83-3"><a href="seance1.html#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Horn_len) <span class="sc">%&gt;%</span> </span>
-<span id="cb83-4"><a href="seance1.html#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="seance1.html#cb85-1" aria-hidden="true" tabindex="-1"></a>Lizard <span class="sc">%&gt;%</span> </span>
+<span id="cb85-2"><a href="seance1.html#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Survival <span class="sc">==</span> <span class="st">&quot;living&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-3"><a href="seance1.html#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Horn_len) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-4"><a href="seance1.html#cb85-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro.test</span>()</span></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
@@ -1080,14 +1088,14 @@ W = 0.96055, p-value = 0.0002234</code></pre>
 <blockquote>
 <p>La <span class="math inline">\(p\)</span>-value est inférieure à <span class="math inline">\(\alpha = 0.05\)</span>, donc on rejette l’hypothèse nulle de normalité pour la taille des cornes de la population des lézards cornus vivants (test de Shapiro-Wilk, <span class="math inline">\(W = 0.96\)</span>, <span class="math inline">\(p &lt; 0.001\)</span>).</p>
 </blockquote>
-<p>Si l’on examine l’histogramme des 2 échantillons, on constate toutefois que la forme des distributions des 2 séries de données est très proche. Pour les 2 échantillons, la distribution est en effet unimodale, avec une asymétrie gauche assez marquée (une longue queue de distribution du côté gauche). La forme des distributions étant similaire (on parle bien de la forme des histogrammes et non de la position du pic), et les histogrammes étant proches de la forme typique d’une courbe en cloche, le test de Student devrait rester valide. En toute rigueur, il faudrait cependant préférer son alternative non paramétrique.</p>
+<p>Si l’on examine l’histogramme des 2 échantillons, on constate toutefois que la forme des distributions des 2 séries de données est très proche. Pour les 2 échantillons, la distribution est en effet uni-modale, avec une asymétrie gauche assez marquée (une longue queue de distribution du côté gauche). La forme des distributions étant similaire (on parle bien de la forme des histogrammes et non de la position du pic), et les histogrammes étant proches de la forme typique d’une courbe en cloche, le test de Student devrait rester valide. En toute rigueur, il faudrait cependant préférer son alternative non paramétrique.</p>
 <p><strong>2. Homogénéité des variances</strong></p>
 <p>Le test le plus simple pour comparer la variance de 2 populations est le test <span class="math inline">\(F\)</span> :</p>
 <ul>
 <li>H<span class="math inline">\(_0\)</span> : la variance des 2 populations est égale, leur ratio vaut 1 <span class="math inline">\(\left(\frac{\sigma^2_{killed}}{\sigma^2_{living}} = 1\right)\)</span>.</li>
 <li>H<span class="math inline">\(_1\)</span> : la variance des 2 populations est différente, leur ratio ne vaut pas 1 <span class="math inline">\(\left(\frac{\sigma^2_{killed}}{\sigma^2_{living}} \neq 1\right)\)</span>.</li>
 </ul>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="seance1.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="seance1.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
 <pre><code>
     F test to compare two variances
 
@@ -1107,7 +1115,7 @@ ratio of variances
 <li>H<span class="math inline">\(_0\)</span> : toutes les populations ont même variance (<span class="math inline">\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : au moins une population a une variance différente des autres.</li>
 </ul>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="seance1.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="seance1.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
 <pre><code>
     Bartlett test of homogeneity of variances
 
@@ -1118,9 +1126,9 @@ Bartlett&#39;s K-squared = 0.042411, df = 1, p-value = 0.8368</code></pre>
 <li>H<span class="math inline">\(_0\)</span> : toutes les populations ont même variance (<span class="math inline">\(\sigma^2_A = \sigma^2_B = \sigma^2_C = \cdots = \sigma^2_N\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : au moins une population a une variance différente des autres.</li>
 </ul>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="seance1.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Le test de Levene fait partie du package car. Il doit être chargé en mémoire</span></span>
-<span id="cb89-2"><a href="seance1.html#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
-<span id="cb89-3"><a href="seance1.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="seance1.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Le test de Levene fait partie du package car. Il doit être chargé en mémoire</span></span>
+<span id="cb91-2"><a href="seance1.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(car)</span></span>
+<span id="cb91-3"><a href="seance1.html#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
 <pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
        Df F value Pr(&gt;F)
 group   1  0.0035  0.953
@@ -1137,7 +1145,7 @@ group   1  0.0035  0.953
 <li>H<span class="math inline">\(_0\)</span> : la moyenne des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} \neq 0\)</span>).</li>
 </ul>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="seance1.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="seance1.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>
     Two Sample t-test
 
@@ -1168,7 +1176,7 @@ mean in group killed mean in group living
 <li>H<span class="math inline">\(_0\)</span> : la médiane des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(med_{killed}-med_{living} = 0\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : la médiane des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(med_{killed}-med_{living}\neq 0\)</span>).</li>
 </ul>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="seance1.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="seance1.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>
     Wilcoxon rank sum test with continuity correction
 
@@ -1187,7 +1195,7 @@ difference in location
 <li>H<span class="math inline">\(_0\)</span> : la moyenne des 2 populations est égale, leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} \neq 0\)</span>).</li>
 </ul>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="seance1.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="seance1.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard)</span></code></pre></div>
 <pre><code>
     Welch Two Sample t-test
 
@@ -1242,7 +1250,7 @@ mean in group killed mean in group living
 <h3><span class="header-section-number">3.5.2</span> Un exemple pas à pas</h3>
 <p>Reprenons l’exemple des lézards cornus. L’étude a été réalisée parce que les chercheurs supposaient que la longueur des cornes des lézards était susceptible de leur fournir une protection face à la prédation. Autrement dit, les chercheurs supposaient que des cornes <em>plus longues</em> devaient fournir une meilleure protection vis à vis de la prédation. Ainsi, les lézards morts devaient avoir des cornes moins longues en moyenne que les les lézards vivants, simplement parce que porter des cornes courtes expose plus fortement les individus à la prédation. Nous avons donc une bonne raison “écologique” de considérer un test unilatéral (la susceptibilité face à la prédation).</p>
 <p>Lorsque nous avons examiné cette question, nous avons fait le test du <span class="math inline">\(t\)</span> de Student sur échantillons indépendants de la façon suivante :</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="seance1.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="seance1.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>
     Two Sample t-test
 
@@ -1260,9 +1268,9 @@ mean in group killed mean in group living
 <li>H<span class="math inline">\(_1\)</span> : la moyenne des 2 populations est différente, leur différence ne vaut pas 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} \neq 0\)</span>).</li>
 </ul>
 <p>Ce test est donc rigoureusement équivalent à celui-ci :</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="seance1.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
-<span id="cb99-2"><a href="seance1.html#cb99-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb99-3"><a href="seance1.html#cb99-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="seance1.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
+<span id="cb101-2"><a href="seance1.html#cb101-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb101-3"><a href="seance1.html#cb101-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>
     Two Sample t-test
 
@@ -1279,9 +1287,9 @@ mean in group killed mean in group living
 <li>H<span class="math inline">\(_0\)</span> : la moyenne de longueur des cornes de la population des lézards morts est égale à celle des lézards vivants. Leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : la moyenne de longueur des cornes de la population des lézards morts est <strong>inférieure</strong> à celle des lézards vivants. Leur différence est inférieure à 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} &lt; 0\)</span>).</li>
 </ul>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="seance1.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
-<span id="cb101-2"><a href="seance1.html#cb101-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb101-3"><a href="seance1.html#cb101-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="seance1.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
+<span id="cb103-2"><a href="seance1.html#cb103-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb103-3"><a href="seance1.html#cb103-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <pre><code>
     Two Sample t-test
 
@@ -1300,9 +1308,9 @@ mean in group killed mean in group living
 <li>H<span class="math inline">\(_1\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>vivants</strong> est <strong>supérieure</strong> à celle des lézards <strong>morts</strong>. Leur différence est <strong>supérieure</strong> à 0 (<span class="math inline">\(\mu_{living}-\mu_{killed} &gt; 0\)</span>).</li>
 </ul>
 <p>Ce test est normalement exactement le même que précédemment. Toutefois, si on essaie de le réaliser, on rencontre un problème :</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="seance1.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
-<span id="cb103-2"><a href="seance1.html#cb103-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb103-3"><a href="seance1.html#cb103-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="seance1.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
+<span id="cb105-2"><a href="seance1.html#cb105-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb105-3"><a href="seance1.html#cb105-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>
     Two Sample t-test
 
@@ -1316,7 +1324,7 @@ mean in group killed mean in group living
             21.98667             24.28117 </code></pre>
 <p>Ici, la <span class="math inline">\(p\)</span>-value est très supérieure à <span class="math inline">\(\alpha\)</span> puisqu’elle vaut 1. Une <span class="math inline">\(p\)</span>-value de 1 devrait toujours attirer votre attention. La conclusion devrait donc être que l’on ne peut pas rejeter H<span class="math inline">\(_0\)</span> : les lézards morts et vivants ont en moyenne des cornes de même longueur. Nous savons pourtant que c’est faux.</p>
 <p>Le problème est ici liè à l’ordre des catégories “vivant” ou “mort” dans le facteur <code>Survival</code> du tableau <code>Lizard</code>. Les dernières lignes des tests que nous venons de faire indiquent la moyenne de chaque groupe, mais le groupe “killed” apparaît toujours avant le groupe “living.” C’est l’ordre des niveaux dans le facteur <code>Survival</code> qui doit dicter la syntaxe appropriée :</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="seance1.html#cb105-1" aria-hidden="true" tabindex="-1"></a>Lizard<span class="sc">$</span>Survival</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="seance1.html#cb107-1" aria-hidden="true" tabindex="-1"></a>Lizard<span class="sc">$</span>Survival</span></code></pre></div>
 <pre><code>  [1] living living living living living living living living living living
  [11] living living living living living living living living living living
  [21] living living living living living living living living living living
@@ -1338,18 +1346,18 @@ mean in group killed mean in group living
 [181] killed killed killed killed
 Levels: killed living</code></pre>
 <p>Par défaut, dans R, les niveaux d’un facteur sont classés par ordre alphabétique sauf si on spécifie manuellement un ordre différent. Ici, le niveau “killed” est donc le premier niveau du facteur, et “living” le second. Lorsque l’on réalise un test de Student avec ces données (ou un test de Wilcoxon d’ailleurs), la différence de moyenne qui est examinée par le test est donc “moyenne des <code>killed</code> - moyenne des <code>living</code>.” Lorsque nous avons tapé ceci :</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="seance1.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
-<span id="cb107-2"><a href="seance1.html#cb107-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb107-3"><a href="seance1.html#cb107-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="seance1.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
+<span id="cb109-2"><a href="seance1.html#cb109-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb109-3"><a href="seance1.html#cb109-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <p>nous avons en réalité posé les hypothèses suivantes :</p>
 <ul>
 <li>H<span class="math inline">\(_0\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>morts</strong> est égale à celle des lézards <strong>vivants</strong>. Leur différence vaut 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} = 0\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : la moyenne de longueur des cornes de la population des lézards <strong>morts</strong> est <strong>supérieure</strong> à celle des lézards <strong>vivants</strong>. Leur différence est <strong>supérieure</strong> à 0 (<span class="math inline">\(\mu_{killed}-\mu_{living} &gt; 0\)</span>).</li>
 </ul>
 <p>Ce test est donc erronné, ce qui explique qu’il nous renvoie un résultat faux et une <span class="math inline">\(p\)</span>-value de 1. Ici, puisque l’ordre des catégories est “killed” d’abord et “living” ensuite, la seule façon correcte de faire un test unilatéral qui a du sens est donc celle que nous avons réalisée en premier :</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="seance1.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
-<span id="cb108-2"><a href="seance1.html#cb108-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb108-3"><a href="seance1.html#cb108-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="seance1.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, </span>
+<span id="cb110-2"><a href="seance1.html#cb110-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb110-3"><a href="seance1.html#cb110-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 </div>
 <div id="exercice-dapplication-3" class="section level3" number="3.5.3">
 <h3><span class="header-section-number">3.5.3</span> Exercice d’application</h3>

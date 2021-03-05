@@ -1606,9 +1606,26 @@ Group variables            Survival
 2  26    30.3 ▁▁▅▇▂
 \end{verbatim}
 
+Outre ces informations sur les ordres de grandeurs observés dans chaque groupe de lézards (vivants ou morts), la fonction \texttt{skim()} ne fournit pas les effectifs observés dans chaque groupe. Pour cela, on peut utiliser une fonction décrite en biométrie 2, la fonction \texttt{count()} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lizard }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{count}\NormalTok{(Survival)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 2 x 2
+  Survival     n
+  <fct>    <int>
+1 killed      30
+2 living     154
+\end{verbatim}
+
 On constate ici que les tailles d'échantillons sont très différentes. C'est normal compte tenu de la difficulté de repérer des individus morts dans la nature, et ce n'est pas gênant pour nos analyses puisque la taille des deux échantillons reste élevée.
 
-On constate également que si les écarts-types des 2 groupes sont proches, les moyennes et médianes sont plus élévées dans le groupe des individus vivants que dans celui des individus morts (c'est le cas également des quartiles 1 et 3).
+On constate également que si les écarts-types des 2 groupes sont proches, les moyennes et médianes sont plus élevées dans le groupe des individus vivants que dans celui des individus morts (c'est le cas également des quartiles 1 et 3).
 
 \hypertarget{exploration-graphique-2}{%
 \paragraph{Exploration graphique}\label{exploration-graphique-2}}
@@ -1630,7 +1647,7 @@ Comme toujours, nous pouvons réaliser 3 types de graphiques pour en apprendre p
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-49-1} \end{center}
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-50-1} \end{center}
 
 Ce premier graphique permet de visualiser très clairement les différences de tailles d'échantillons entre les deux groupes. Il permet également de voir que l'étendue des longueurs de cornes est plus importante dans le groupe des individus vivants que dans celui des individus morts.
 
@@ -1651,7 +1668,7 @@ Ce premier graphique permet de visualiser très clairement les différences de t
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-50-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-51-1} \end{center}
 
 Notez ici l'utilisation de l'argument \texttt{scales\ =\ "free\_y"} dans la fonction \texttt{facet\_wrap()}. Cet argument permet de ne pas imposer la même échelle pour l'axe des ordonnées des 2 graphiques. Ce choix est ici pertinent puisque les effectifs des 2 groupes sont très différents. Faîtes un essai sans cet argument pour voir la différence.
 
@@ -1673,7 +1690,7 @@ Cette visualisation nous montre que les données doivent suivre à peu près une
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-51-1} \end{center}
+\begin{center}\includegraphics[width=0.25\linewidth]{figure/unnamed-chunk-52-1} \end{center}
 
 Nous visualisons ici encore plus clairement que sur les histogrammes le fait que les longueurs de cornes des individus vivants sont légèrement plus longues que celles des individus morts. D'ailleurs, puisque les intervalles de confiance à 95\% des médianes des 2 groupes (les encoches) ne se chevauchent pas, un test de comparaison des moyennes devrait logiquement conclure à une différence significative en faveur des individus vivants. On peut également noter que la largeur de l'encoche pour les individus morts est plus importante que celle des vivants. Cela traduit une incertitude plus grande autour de la médiane estimée dans le groupe des individus morts. C'est tout à fait logique compte tenu des effectifs modestes dans ce groupe.
 
@@ -1698,7 +1715,7 @@ Les conditions d'application de ce test sont au nombre de 3 :
   L'écart-type (et la variance) de la variable numérique est la même dans les deux populations. C'est ce que l'on appelle l'homoscédasticité.
 \end{enumerate}
 
-En réalité, le test du \(t\) de Student sur deux échantillons indépendants est assez robuste face au non respect de cette troisième condition d'application. Cela signifie que si cette troisième condition d'application n'est pas strictement vérifiée, les résultats du tests peuvent malgré tout rester valides. Lorsque les 2 échantillons comparés ont des tailles supérieures ou égales à 30, ce test fonctionne bien même si l'écart-type d'un groupe est jusqu'à 3 fois supérieur ou inférieur à l'écart-type du second groupe, à condition que la taille des 2 échantillons soit proche (ce qui n'est pas le cas ici !). En revanche, s'il les écart-types diffèrent de plus d'un facteur 3, ou si les tailles d'échantillons sont très différentes, le test du \(t\) de Student ne devrait pas être utilisé. De même, si la taille des échantillons est inférieure à 30 et que les variances ne sont pas homogènes, ce test ne devrait pas être réalisé. En conclusion, les résultats du test du \(t\) de Student à deux échantillons indépendants peuvent rester valides si la troisième condition d'homoscédasticité est violée, mais dans certains cas seulement.
+En réalité, le test du \(t\) de Student sur deux échantillons indépendants est assez robuste face au non respect de cette troisième condition d'application. Cela signifie que si cette troisième condition d'application n'est pas strictement vérifiée, les résultats du tests peuvent malgré tout rester valides. Lorsque les 2 échantillons comparés ont des tailles supérieures ou égales à 30, ce test fonctionne bien même si l'écart-type d'un groupe est jusqu'à 3 fois supérieur ou inférieur à l'écart-type du second groupe, à condition que la taille des 2 échantillons soit proche (ce qui n'est pas le cas ici !). En revanche, si les écart-types diffèrent de plus d'un facteur 3, ou si les tailles d'échantillons sont très différentes, le test du \(t\) de Student ne devrait pas être utilisé. De même, si la taille des échantillons est inférieure à 30 et que les variances ne sont pas homogènes, ce test ne devrait pas être réalisé. En conclusion, les résultats du test du \(t\) de Student à deux échantillons indépendants peuvent rester valides si la troisième condition d'homoscédasticité est violée, mais dans certains cas seulement.
 
 Le test du \(t\) de Student sur deux échantillons indépendants est également assez robuste face à des écarts mineurs à la distribution Normale, tant que la forme des deux distributions comparées reste similaire. En outre, la robustesse de ce test augmente avec la taille des échantillons.
 
@@ -1706,7 +1723,7 @@ Ici, nous allons donc commencer par vérifier la normalité de chacun des 2 éch
 
 \textbf{1. Normalité des données}
 
-Nous commençons donc par tester la Normalité des 2 populations dont sont issus les échantillons. Pour les individus morts les hypothèses sont les suivantes :
+Nous commençons donc par tester la Normalité des 2 populations dont sont issus les échantillons. Pour les individus morts, les hypothèses sont les suivantes :
 
 \begin{itemize}
 \tightlist
@@ -1766,7 +1783,7 @@ W = 0.96055, p-value = 0.0002234
 La \(p\)-value est inférieure à \(\alpha = 0.05\), donc on rejette l'hypothèse nulle de normalité pour la taille des cornes de la population des lézards cornus vivants (test de Shapiro-Wilk, \(W = 0.96\), \(p < 0.001\)).
 \end{quote}
 
-Si l'on examine l'histogramme des 2 échantillons, on constate toutefois que la forme des distributions des 2 séries de données est très proche. Pour les 2 échantillons, la distribution est en effet unimodale, avec une asymétrie gauche assez marquée (une longue queue de distribution du côté gauche). La forme des distributions étant similaire (on parle bien de la forme des histogrammes et non de la position du pic), et les histogrammes étant proches de la forme typique d'une courbe en cloche, le test de Student devrait rester valide. En toute rigueur, il faudrait cependant préférer son alternative non paramétrique.
+Si l'on examine l'histogramme des 2 échantillons, on constate toutefois que la forme des distributions des 2 séries de données est très proche. Pour les 2 échantillons, la distribution est en effet uni-modale, avec une asymétrie gauche assez marquée (une longue queue de distribution du côté gauche). La forme des distributions étant similaire (on parle bien de la forme des histogrammes et non de la position du pic), et les histogrammes étant proches de la forme typique d'une courbe en cloche, le test de Student devrait rester valide. En toute rigueur, il faudrait cependant préférer son alternative non paramétrique.
 
 \textbf{2. Homogénéité des variances}
 
@@ -2480,7 +2497,7 @@ notch went outside hinges. Try setting notch=FALSE.
 notch went outside hinges. Try setting notch=FALSE.
 \end{verbatim}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-75-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-76-1} \end{center}
 
 Puisqu'il y a peu de données, les intervalles de confiance à 95\% sont très larges. Ils dépassent d'ailleurs presque systématiquement les quartiles, ce qui explique l'apparence bizarre des boîtes à moustaches et les messages d'avertissement affichés lors de la création du graphique. Il vaudait donc mieux représenter cette figure sans ces intervalles de confiance. Toutefois, avant de les retirer, on peut constater ici que les IC 95\% se chevauchent complètement pour les séries \texttt{control} et \texttt{knee}. En revanche, il n'y a aucun chevauchement de l'IC 95\% du groupe \texttt{eyes} avec les 2 autres groupes. On s'attend donc à trouver une différence de moyenne significative entre le groupe \texttt{eyes} d'une part, et les groupes \texttt{control} et \texttt{knee} d'autre part, mais pas de différence de moyenne entre les groupes \texttt{control} et \texttt{knee}.
 
@@ -2498,7 +2515,7 @@ Puisqu'il y a peu de données, les intervalles de confiance à 95\% sont très l
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-76-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-77-1} \end{center}
 
 On constate ici visuellement que les 3 séries ont une étendue à peu près similaire, et que le groupe \texttt{eyes} semble se distinguer des 2 autres par des valeurs plus faibles. Enfin, les boîtes contenant 50\% des valeurs centrales (donc l'étendue des valeurs entre les premiers et troisièmes quartiles) recouvrent le 0 pour les 2 groupes \texttt{control} et \texttt{knee}, mais par pour \texttt{eyes}.
 
@@ -2591,7 +2608,7 @@ L'homogénéité des résidus signifie que les résidus doivent avoir à peu pr�
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-79-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-80-1} \end{center}
 
 Ici, les résidus sont considérés comme homogènes car nous avons à peu près autant de résidus positifs que négatifs et que la ligne rouge est très proche du 0. L'étalement des résidus est à peu près le même de la gauche à la droite du graphique. On pourrait donc faire entrer les résidus dans une boite rectangulaire horizontale centrée sur le 0 et de la même largeur d'un bout à l'autre du graphique. Une autre façon de visualiser ces résidus est d'utiliser le graphique suivant :
 
@@ -2601,7 +2618,7 @@ Ici, les résidus sont considérés comme homogènes car nous avons à peu près
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-80-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-81-1} \end{center}
 
 Sur ce graphique, ce qui compte principalement, c'est la droite en rouge. Elle est ici presque horizontale, ce qui montre que les résidus de tous les groupes (un groupe à gauche et 2 à droite) ont à peu près même moyenne.
 
@@ -2638,7 +2655,7 @@ Reste à vérifier la normalité des résidus. Là encore, on peut faire cela gr
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-82-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-83-1} \end{center}
 
 Sur un graphique quantile-quantile comme celui-là, on considère que les observations sont distribuées normalement si les points sont bien alignés sur la droite. Ici, la plupart des points sont très proches de la droite, ce qui laisse penser que les résidus suivent bien la loi Normale. On peut en avoir la confirmation avec le test suivant :
 
@@ -2820,7 +2837,7 @@ En utilisant le tableau ci-dessus, nous pouvons synthétiser graphiquement ces r
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-89-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-90-1} \end{center}
 
 Nous avons donc bien montré ici que la re-synchronisation de l'horloge interne n'est possible que par le biais de l'exposition des yeux à la lumière, et non du creux poplité.
 
@@ -3053,19 +3070,19 @@ Le coefficient de corrélation est la quantité qui décrit la force et la direc
 
 Ainsi, sur la figure ci-dessous, le coefficient de corrélation entre \texttt{X} et \texttt{Y} est le même pour les deux graphiques : il vaut 1.
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-95-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-96-1} \end{center}
 
 Ici, le coefficient de corrélation (noté \(r\)) vaut 1 dans les deux cas, car tous les points sont alignés sur une droite. La pente de la droite n'influence en rien la valeur de corrélation. En revanche, la dispersion des points autour d'une droite parfaite a une influence :
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-96-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-97-1} \end{center}
 
 Plus la dispersion autour d'une droite parfaite sera grande, plus la corrélation sera faible. C'est la raison pour laquelle lorsque l'on parle de ``corrélation,'' on sous-entend généralement \textbf{corrélation linéaire}. Ainsi, 2 variables peuvent avoir une relation très forte, mais un coefficient de corrélation nul, si leur relation n'est pas linéaire :
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-97-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-98-1} \end{center}
 
 L'exploration graphique de vos données devrait donc toujours être une priorité. Calculer un coefficient de corrélation nul ou très faible ne signifie par pour autant une absence de relation entre les 2 variables numériques étudiées. Cela peut signifier une relation non linéaire. La solution la plus simple pour distinguer une relation telle que celle du graphique précédent, et une absence de relation telle que celle présentée dans le graphique ci-dessous, est l'examen visuel des données :
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-98-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-99-1} \end{center}
 
 En bref, le coefficient de corrélation \(r\) est compris entre -1 et +1 :
 
@@ -3233,7 +3250,7 @@ Afin de savoir si la valeur moyenne de \(r\) calculée précédemment reflète u
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-103-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-104-1} \end{center}
 
 On constate ici que la corrélation moyenne obtenue plus haut est due au fait que les points sont assez dispersés, et non au fait que la relation n'est pas linéaire. On peut donc dire que la relation, si elle existe, n'est pas parfaite. Le comportement des individus devenus adultes semble donc en partie lié au nombre de visites agessives qu'ils ont reçues étant jeunes, mais ce n'est certainement pas le seul facteur influençant leur comportement. Un test d'hypothèses devrait nous permettre de déterminer si la corrélation linéaire observée ici est significativement différente de 0 ou non.
 
@@ -3376,7 +3393,7 @@ Pour résumer, l'examen du nuage de points permet de vérifier les 2 premières 
   Une relation non linéaire existe entre les deux variables.
 \end{itemize}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-106-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-107-1} \end{center}
 
 Enfin, si l'une, l'autre ou les deux séries de données ne suivent pas la loi Normale, il faudra faire un test non paramétrique.
 
@@ -3602,7 +3619,7 @@ Une visualisation des données est toujours indispensable :
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-113-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-114-1} \end{center}
 
 Ce graphique nous apprend plusieurs choses :
 
@@ -3623,7 +3640,7 @@ Ce graphique nous apprend plusieurs choses :
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-114-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-115-1} \end{center}
 
 Cela n'est pas du tout problématique : comme pour l'ANOVA, les conditions d'application porteront sur les \textbf{résidus de la régression}, pas sur les variables elles-mêmes.
 
@@ -3671,7 +3688,7 @@ Cela n'est pas du tout problématique : comme pour l'ANOVA, les conditions d'app
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-116-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-117-1} \end{center}
 
 On peut visualiser dès maintenant la droite de régression linéaire qui permet de lier ces deux variables grâce à la fonction \texttt{geom\_smooth(method\ =\ "lm",\ se\ =\ FALSE})` :
 
@@ -3691,7 +3708,7 @@ On peut visualiser dès maintenant la droite de régression linéaire qui permet
 `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-117-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-118-1} \end{center}
 
 À supposer que nous ayons le droit d'effectuer une régression linéaire (ce qu'il faudra vérifier avec les conditions d'application, \textbf{après} avoir fait la régression), la pente devrait être positive.
 
@@ -3804,7 +3821,7 @@ Il est possible de visualiser cette incertitude grâce à la fonction \texttt{ge
 `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-121-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-122-1} \end{center}
 
 Cet intervalle d'incertitude correspond à l'incertitude de la moyenne de la variable expliquée pour une valeur donnée de la variable explicative. Ainsi, par exemple, si le nombre d'espèces d'une parcelle est égal à 8, alors, la régression et son incertitude associée nous dit que le logarithme de l'indice de stabilité de la biomasse vaudra \textbf{en moyenne} environ 1.46, avec un intervalle de confiance de {[}1.40 ; 1.51{]}
 
@@ -3821,7 +3838,7 @@ Les conditions d'application de la régression sont les mêmes que celles de l'A
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-122-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-123-1} \end{center}
 
 C'est seulement après avoir réalisé, examiné et commenté ces graphiques que vous serez en mesure de dire si oui ou non vous aviez le droit de faire la régression linéaire, et donc d'en interpréter les résultats.
 
@@ -3879,7 +3896,7 @@ Si on s'en tient à ces calculs d'indices synthétiques, on pourrait croire que 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-124-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-125-1} \end{center}
 
 Le quartet d'Anscombe est un autre exemple de ce type de problème.
 

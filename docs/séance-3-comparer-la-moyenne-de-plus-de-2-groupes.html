@@ -228,14 +228,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <h2><span class="header-section-number">4.1</span> Packages et données</h2>
 <p>Avant toute chose, merci de relire l’introduction (section <a href="intro.html#intro">2</a>) de ce document, et de suivre toutes les étapes qui y sont décrites (création d’un nouveau sous-dossier nommé <code>TP_2</code> dans votre dossier <code>Biometrie3</code>, changement du répertoire de travail et création d’un nouveau script).</p>
 <p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du <code>tidyverse</code> <span class="citation">(<a href="references.html#ref-R-tidyverse" role="doc-biblioref">Wickham, 2019</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(<a href="references.html#ref-R-readr" role="doc-biblioref">Wickham &amp; Hester, 2020</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(<a href="references.html#ref-R-readxl" role="doc-biblioref">Wickham &amp; Bryan, 2019</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(<a href="references.html#ref-R-skimr" role="doc-biblioref">Waring et al., 2020</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(<a href="references.html#ref-R-car" role="doc-biblioref">Fox et al., 2020</a>)</span>, qui permet d’effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package <code>broom</code> <span class="citation">(<a href="references.html#ref-R-broom" role="doc-biblioref">Robinson et al., 2020</a>)</span>, qui fait partie du <code>tidyverse</code> mais qu’il faut charger explicitement. La fonction <code>tidy()</code> de ce package nous permettra de “ranger” correctement les résultats de tests dans un <code>tibble</code> :</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb109-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb109-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb109-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb109-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb109-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb109-6"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb109-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb111-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb111-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb111-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb111-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb111-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb111-6"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb111-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
 <p>Enfin, nous aurons besoin du package <code>DescTools</code> <span class="citation">(<a href="references.html#ref-R-DescTools" role="doc-biblioref">Signorell, 2020</a>)</span> afin de réaliser un test spécifique de comparaisons multiples. N’oubliez pas de l’installer si nécessaire, avant de le charger en mémoire :</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span></code></pre></div>
 <p>Ces commandes (que vous devez taper dans vos scripts avant de les exécuter dans la console de RStudio) ne devraient pas renvoyer de messages d’erreur puisque vous avez dû les installer pour reproduire les exemples et réaliser les exercices de la séance 1. Si vous rencontrez des problèmes, merci de consulter la section <a href="seance1.html#packages">3.1</a> de cet ouvrage, ainsi que <a href="https://besibo.github.io/Biometrie2/bases.html#charger-un-package-en-memoire">la section 2.3</a> du livre de biométrie 2 disponible en ligne.</p>
 <p>Vous aurez également besoin des jeux de données suivants :</p>
 <ul>
@@ -259,7 +259,7 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
 <div id="importation-et-examen-visuel-3" class="section level4" number="4.2.1.1">
 <h4><span class="header-section-number">4.2.1.1</span> Importation et examen visuel</h4>
 <p>Les données brutes de cette étude sont fournies dans le fichier <a href="https://besibo.github.io/Biometrie3/data/Light.csv"><code>Light.csv</code></a>. Importez ces données dans RStudio et examinez les données brutes grâce à la fonction <code>View()</code>.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb111-1" aria-hidden="true" tabindex="-1"></a>Light</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb113-1" aria-hidden="true" tabindex="-1"></a>Light</span></code></pre></div>
 <pre><code># A tibble: 22 x 2
    treatment shift
    &lt;chr&gt;     &lt;dbl&gt;
@@ -288,16 +288,16 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
 8   -1.27 NA    NA    </code></pre>
 <p>Lorsque l’on réalise une analyse de variance, puisque les effectifs ne sont pas nécessairement identiques dans tous les groupes (c’est ce qu’on appelle un design déséquilibré, ou “unbalanced design”), présenter les tableaux au format long est indispensable. Par ailleurs, notez que les ANOVAs réalisées sur des “balanced design” (ou designs équilibrés, pour lesquels tous les groupes sont de même taille), sont beaucoup plus puissantes que les ANOVAs réalisées sur des “unbalanced designs.”</p>
 <p>Ici, le tableau de données est très simple (et de petite taille). Il n’y a pas de données manquantes et aucune création de nouvelle variable n’est nécessaire. La seule modification que nous devrions faire est de transformer la variable <code>treatment</code> en facteur :</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb114-1" aria-hidden="true" tabindex="-1"></a>Light <span class="ot">&lt;-</span> Light <span class="sc">%&gt;%</span> </span>
-<span id="cb114-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">treatment =</span> <span class="fu">factor</span>(treatment))</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb116-1" aria-hidden="true" tabindex="-1"></a>Light <span class="ot">&lt;-</span> Light <span class="sc">%&gt;%</span> </span>
+<span id="cb116-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb116-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">treatment =</span> <span class="fu">factor</span>(treatment))</span></code></pre></div>
 <p>Comme toujours, les niveaux du facteur sont automatiquement classés par ordre alphabétique :</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(Light<span class="sc">$</span>treatment)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(Light<span class="sc">$</span>treatment)</span></code></pre></div>
 <pre><code>[1] &quot;control&quot; &quot;eyes&quot;    &quot;knee&quot;   </code></pre>
 <p>Pour les statistiques descriptives et les graphiques qui viendront après, nous souhaitons indiquer l’ordre suivant : <code>control</code>, puis <code>knee</code>, puis <code>eyes</code> :</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb117-1" aria-hidden="true" tabindex="-1"></a>Light <span class="ot">&lt;-</span> Light <span class="sc">%&gt;%</span> </span>
-<span id="cb117-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">treatment =</span> <span class="fu">fct_relevel</span>(treatment, <span class="st">&quot;control&quot;</span>, <span class="st">&quot;knee&quot;</span>, <span class="st">&quot;eyes&quot;</span>))</span>
-<span id="cb117-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb117-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb117-4" aria-hidden="true" tabindex="-1"></a>Light</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb119-1" aria-hidden="true" tabindex="-1"></a>Light <span class="ot">&lt;-</span> Light <span class="sc">%&gt;%</span> </span>
+<span id="cb119-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb119-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">treatment =</span> <span class="fu">fct_relevel</span>(treatment, <span class="st">&quot;control&quot;</span>, <span class="st">&quot;knee&quot;</span>, <span class="st">&quot;eyes&quot;</span>))</span>
+<span id="cb119-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb119-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb119-4" aria-hidden="true" tabindex="-1"></a>Light</span></code></pre></div>
 <pre><code># A tibble: 22 x 2
    treatment shift
    &lt;fct&gt;     &lt;dbl&gt;
@@ -312,7 +312,7 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
  9 knee       0.73
 10 knee       0.31
 # … with 12 more rows</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb119-1" aria-hidden="true" tabindex="-1"></a>Light<span class="sc">$</span>treatment</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb121-1" aria-hidden="true" tabindex="-1"></a>Light<span class="sc">$</span>treatment</span></code></pre></div>
 <pre><code> [1] control control control control control control control control knee   
 [10] knee    knee    knee    knee    knee    knee    eyes    eyes    eyes   
 [19] eyes    eyes    eyes    eyes   
@@ -322,9 +322,9 @@ Levels: control knee eyes</code></pre>
 <div id="statistiques-descriptives-3" class="section level4" number="4.2.1.2">
 <h4><span class="header-section-number">4.2.1.2</span> Statistiques descriptives</h4>
 <p>Comme toujours, et maintenant que nos données sont au bon format, il est nécessaire d’examiner quelques statistiques descriptives pour chaque catégorie étudiée. Le plus simple est ici d’utiliser la fonction <code>skim</code> du package <code>skimr</code> :</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb121-1" aria-hidden="true" tabindex="-1"></a>Light <span class="sc">%&gt;%</span> </span>
-<span id="cb121-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb121-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(treatment) <span class="sc">%&gt;%</span> </span>
-<span id="cb121-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb121-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb123-1" aria-hidden="true" tabindex="-1"></a>Light <span class="sc">%&gt;%</span> </span>
+<span id="cb123-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb123-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(treatment) <span class="sc">%&gt;%</span> </span>
+<span id="cb123-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb123-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>()</span></code></pre></div>
 <pre><code>── Data Summary ────────────────────────
                            Values    
 Name                       Piped data
@@ -358,25 +358,25 @@ Group variables            treatment
 <div id="exploration-graphique-3" class="section level4" number="4.2.1.3">
 <h4><span class="header-section-number">4.2.1.3</span> Exploration graphique</h4>
 <p>Comme toujours, il est indispensable de regarder à quoi ressemblent les données brutes sur un ou des graphiques. Les statistiques descriptives ne racontent en effet pas toujours toute l’histoire. Ici, nous allons superposer les données brutes, sous forme de nuage de points, aux boites à moustaches :</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb123-1" aria-hidden="true" tabindex="-1"></a>Light <span class="sc">%&gt;%</span> </span>
-<span id="cb123-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb123-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> treatment, <span class="at">y =</span> shift)) <span class="sc">+</span></span>
-<span id="cb123-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb123-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb123-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb123-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-1" aria-hidden="true" tabindex="-1"></a>Light <span class="sc">%&gt;%</span> </span>
+<span id="cb125-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> treatment, <span class="at">y =</span> shift)) <span class="sc">+</span></span>
+<span id="cb125-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb125-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
 <pre><code>notch went outside hinges. Try setting notch=FALSE.
 notch went outside hinges. Try setting notch=FALSE.
 notch went outside hinges. Try setting notch=FALSE.</code></pre>
-<p><img src="figure/unnamed-chunk-75-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>Puisqu’il y a peu de données, les intervalles de confiance à 95% sont très larges. Ils dépassent d’ailleurs presque systématiquement les quartiles, ce qui explique l’apparence bizarre des boîtes à moustaches et les messages d’avertissement affichés lors de la création du graphique. Il vaudait donc mieux représenter cette figure sans ces intervalles de confiance. Toutefois, avant de les retirer, on peut constater ici que les IC 95% se chevauchent complètement pour les séries <code>control</code> et <code>knee</code>. En revanche, il n’y a aucun chevauchement de l’IC 95% du groupe <code>eyes</code> avec les 2 autres groupes. On s’attend donc à trouver une différence de moyenne significative entre le groupe <code>eyes</code> d’une part, et les groupes <code>control</code> et <code>knee</code> d’autre part, mais pas de différence de moyenne entre les groupes <code>control</code> et <code>knee</code>.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-1" aria-hidden="true" tabindex="-1"></a>Light <span class="sc">%&gt;%</span> </span>
-<span id="cb125-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> treatment, <span class="at">y =</span> shift, <span class="at">fill =</span> treatment)) <span class="sc">+</span></span>
-<span id="cb125-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb125-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb125-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb125-6"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>() <span class="sc">+</span></span>
-<span id="cb125-7"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb125-8"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Décalage de phase&quot;</span>) <span class="sc">+</span></span>
-<span id="cb125-9"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb125-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="figure/unnamed-chunk-76-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Puisqu’il y a peu de données, les intervalles de confiance à 95% sont très larges. Ils dépassent d’ailleurs presque systématiquement les quartiles, ce qui explique l’apparence bizarre des boîtes à moustaches et les messages d’avertissement affichés lors de la création du graphique. Il vaudait donc mieux représenter cette figure sans ces intervalles de confiance. Toutefois, avant de les retirer, on peut constater ici que les IC 95% se chevauchent complètement pour les séries <code>control</code> et <code>knee</code>. En revanche, il n’y a aucun chevauchement de l’IC 95% du groupe <code>eyes</code> avec les 2 autres groupes. On s’attend donc à trouver une différence de moyenne significative entre le groupe <code>eyes</code> d’une part, et les groupes <code>control</code> et <code>knee</code> d’autre part, mais pas de différence de moyenne entre les groupes <code>control</code> et <code>knee</code>.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb127-1" aria-hidden="true" tabindex="-1"></a>Light <span class="sc">%&gt;%</span> </span>
+<span id="cb127-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> treatment, <span class="at">y =</span> shift, <span class="at">fill =</span> treatment)) <span class="sc">+</span></span>
+<span id="cb127-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb127-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb127-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb127-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb127-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb127-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb127-6"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb127-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>() <span class="sc">+</span></span>
+<span id="cb127-7"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb127-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb127-8"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb127-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Décalage de phase&quot;</span>) <span class="sc">+</span></span>
+<span id="cb127-9"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb127-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-77-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>On constate ici visuellement que les 3 séries ont une étendue à peu près similaire, et que le groupe <code>eyes</code> semble se distinguer des 2 autres par des valeurs plus faibles. Enfin, les boîtes contenant 50% des valeurs centrales (donc l’étendue des valeurs entre les premiers et troisièmes quartiles) recouvrent le 0 pour les 2 groupes <code>control</code> et <code>knee</code>, mais par pour <code>eyes</code>.</p>
 </div>
 </div>
@@ -392,11 +392,11 @@ notch went outside hinges. Try setting notch=FALSE.</code></pre>
 <li>H<span class="math inline">\(_0\)</span> : les moyennes de toutes les populations sont égales (<span class="math inline">\(\mu_{\textrm{control}} = \mu_{\textrm{knee}} = \mu_{\textrm{eyes}}\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : toutes les moyennes ne sont pas égales. Au moins l’une d’entre elles diffère des autres.</li>
 </ul>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réalisation de l&#39;ANOVA 1 facteur</span></span>
-<span id="cb126-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb126-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">aov</span>(shift <span class="sc">~</span> treatment, <span class="at">data =</span> Light)</span>
-<span id="cb126-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb126-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb126-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des résultats</span></span>
-<span id="cb126-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb126-5" aria-hidden="true" tabindex="-1"></a>res</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réalisation de l&#39;ANOVA 1 facteur</span></span>
+<span id="cb128-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb128-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">aov</span>(shift <span class="sc">~</span> treatment, <span class="at">data =</span> Light)</span>
+<span id="cb128-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb128-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des résultats</span></span>
+<span id="cb128-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb128-5" aria-hidden="true" tabindex="-1"></a>res</span></code></pre></div>
 <pre><code>Call:
    aov(formula = shift ~ treatment, data = Light)
 
@@ -408,7 +408,7 @@ Deg. of Freedom         2        19
 Residual standard error: 0.7039492
 Estimated effects may be unbalanced</code></pre>
 <p>L’affichage des résultats bruts ne nous apprend que peu de choses. En revanche, la fonction <code>summary()</code> donne la réponse du test :</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code></pre></div>
 <pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 treatment    2  7.224   3.612   7.289 0.00447 **
 Residuals   19  9.415   0.496                   
@@ -426,28 +426,28 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </ol>
 <p>L’indépendance des résidus signifie que connaître la valeur d’un résidu ne permet pas de prédire la valeur d’un autre résidu. Si les données ont été collectées correctement (échantillonnage aléatoire simple, indépendance des observations), on considère généralement que cette condition est vérifiée. Les 2 autres conditions d’application se vérifient soit graphiquement, soit avec un test d’hypothèses.</p>
 <p>L’homogénéité des résidus signifie que les résidus doivent avoir à peu près la même variance pour chacun des groupes comparés. On peut vérifier que cette condition d’application est vérifiée grâce à ce graphique :</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="figure/unnamed-chunk-79-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>Ici, les résidus sont considérés comme homogènes car nous avons à peu près autant de résidus positifs que négatifs et que la ligne rouge est très proche du 0. L’étalement des résidus est à peu près le même de la gauche à la droite du graphique. On pourrait donc faire entrer les résidus dans une boite rectangulaire horizontale centrée sur le 0 et de la même largeur d’un bout à l’autre du graphique. Une autre façon de visualiser ces résidus est d’utiliser le graphique suivant :</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">which =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="figure/unnamed-chunk-80-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Ici, les résidus sont considérés comme homogènes car nous avons à peu près autant de résidus positifs que négatifs et que la ligne rouge est très proche du 0. L’étalement des résidus est à peu près le même de la gauche à la droite du graphique. On pourrait donc faire entrer les résidus dans une boite rectangulaire horizontale centrée sur le 0 et de la même largeur d’un bout à l’autre du graphique. Une autre façon de visualiser ces résidus est d’utiliser le graphique suivant :</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">which =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-81-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Sur ce graphique, ce qui compte principalement, c’est la droite en rouge. Elle est ici presque horizontale, ce qui montre que les résidus de tous les groupes (un groupe à gauche et 2 à droite) ont à peu près même moyenne.</p>
 <p>Cette condition d’homogénéité des résidus entre les groupes peut également être vérifiée grâce au test de Levene. Pour ce test, les hypothèses seront les suivantes :</p>
 <ul>
 <li>H<span class="math inline">\(_0\)</span> : les résidus sont homogènes (<em>i.e.</em> identiques dans tous les groupes).</li>
 <li>H<span class="math inline">\(_1\)</span> : les résidus ne sont pas homogènes (<em>i.e.</em> au moins un groupe présente des résidus dont la variance est différente des autres).</li>
 </ul>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(res<span class="sc">$</span>residuals <span class="sc">~</span> Light<span class="sc">$</span>treatment)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(res<span class="sc">$</span>residuals <span class="sc">~</span> Light<span class="sc">$</span>treatment)</span></code></pre></div>
 <pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
       Df F value Pr(&gt;F)
 group  2  0.1586 0.8545
       19               </code></pre>
 <p>Ici, puisque <span class="math inline">\(p &gt; \alpha\)</span>, on ne peut pas rejeter l’hypothèse nulle. Les résidus sont donc bien homogènes.</p>
 <p>Reste à vérifier la normalité des résidus. Là encore, on peut faire cela graphiquement ou avec un test de Shapiro-Wilk :</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="figure/unnamed-chunk-82-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-83-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Sur un graphique quantile-quantile comme celui-là, on considère que les observations sont distribuées normalement si les points sont bien alignés sur la droite. Ici, la plupart des points sont très proches de la droite, ce qui laisse penser que les résidus suivent bien la loi Normale. On peut en avoir la confirmation avec le test suivant :</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(res<span class="sc">$</span>residuals)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(res<span class="sc">$</span>residuals)</span></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
@@ -459,7 +459,7 @@ W = 0.95893, p-value = 0.468</code></pre>
 <p>Une analyse de variance montre que la moyenne des 3 groupes n’est pas identique (<span class="math inline">\(F = 7.289\)</span>, <span class="math inline">\(p = 0.004\)</span>). Un test de Levene a permis de vérifier la condition d’homogénéité de la variance des résidus (<span class="math inline">\(F = 0.189\)</span>, <span class="math inline">\(p = 0.855\)</span>), et un test de Shapiro-Wilk a confirmé la normalité des résidus (<span class="math inline">\(W = 0.959\)</span>, <span class="math inline">\(p = 0.468\)</span>).</p>
 </blockquote>
 <p>Dernière chose, il est possible de produire les 3 graphiques ci-dessus (et même un quatrième que nous ne décrirons pas ici), en une seule commande :</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res)</span></code></pre></div>
 <p>Il faut alors presser la touche <code>Entrée</code> de votre clavier pour afficher successivement les 4 graphiques produits.</p>
 <p>À l’issue de cette analyse, deux questions restent en suspens :</p>
 <ol style="list-style-type: decimal">
@@ -484,11 +484,11 @@ W = 0.95893, p-value = 0.468</code></pre>
 <li>H<span class="math inline">\(_0\)</span> : la moyenne des deux populations est égale (<span class="math inline">\(\mu_1 = \mu_2\)</span>, soit <span class="math inline">\(\mu_1 - \mu_2\)</span> = 0).</li>
 <li>H<span class="math inline">\(_1\)</span> : la moyenne des deux populations est différente (<span class="math inline">\(\mu_1 \neq \mu_2\)</span>, soit <span class="math inline">\(\mu_1 - \mu_2 \neq 0\)</span>).</li>
 </ul>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réalisation du test</span></span>
-<span id="cb138-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb138-2" aria-hidden="true" tabindex="-1"></a>post_hoc1 <span class="ot">&lt;-</span> <span class="fu">pairwise.t.test</span>(Light<span class="sc">$</span>shift, Light<span class="sc">$</span>treatment)</span>
-<span id="cb138-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb138-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="co"># affichage des résultats</span></span>
-<span id="cb138-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb138-5" aria-hidden="true" tabindex="-1"></a>post_hoc1</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réalisation du test</span></span>
+<span id="cb140-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb140-2" aria-hidden="true" tabindex="-1"></a>post_hoc1 <span class="ot">&lt;-</span> <span class="fu">pairwise.t.test</span>(Light<span class="sc">$</span>shift, Light<span class="sc">$</span>treatment)</span>
+<span id="cb140-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb140-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="co"># affichage des résultats</span></span>
+<span id="cb140-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb140-5" aria-hidden="true" tabindex="-1"></a>post_hoc1</span></code></pre></div>
 <pre><code>
     Pairwise comparisons using t tests with pooled SD 
 
@@ -500,7 +500,7 @@ eyes 0.0088  0.0088
 
 P value adjustment method: holm </code></pre>
 <p>Seules les <span class="math inline">\(p\)</span>-values de chaque test sont fournies sous la forme d’une demi-matrice. On constate ainsi qu’une seule <span class="math inline">\(p\)</span> value est supérieure à <span class="math inline">\(\alpha = 0.05\)</span> : celle du test comparant les moyennes des groupes <code>knee</code> et <code>control</code>. Une autre façon de visualiser ces résultats consiste à utiliser la fonction <code>tidy()</code> du package <code>broom</code> que nous avons mis en mémoire un peu plus tôt. Les résultats seront les mêmes. Ils seront simplement rangés dans un <code>tibble</code> :</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(post_hoc1)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(post_hoc1)</span></code></pre></div>
 <pre><code># A tibble: 3 x 3
   group1 group2  p.value
   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
@@ -509,11 +509,11 @@ P value adjustment method: holm </code></pre>
 3 eyes   knee    0.00880</code></pre>
 <p>Nous avons donc la confirmation que les moyennes des groupes <code>knee</code> et <code>control</code> ne sont pas significativement différentes l’une de l’autre. En revanche, la moyenne du groupe <code>eyes</code> est différente de celle des 2 autres groupes (<span class="math inline">\(p = 0.009\)</span> pour les 2 tests).</p>
 <p>Nous avons donc appris des choses nouvelles, mais nous ne savons toujours pas quelle est la magnitude de la différence détectée entre le groupe <code>eyes</code> et les 2 autres. Le test de Tukey HSD nous permet de répondre à cette question :</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réalisation du test de Tukey HSD</span></span>
-<span id="cb142-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb142-2" aria-hidden="true" tabindex="-1"></a>post_hoc2 <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(res)</span>
-<span id="cb142-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb142-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb142-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb142-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des résultats</span></span>
-<span id="cb142-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb142-5" aria-hidden="true" tabindex="-1"></a>post_hoc2</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réalisation du test de Tukey HSD</span></span>
+<span id="cb144-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb144-2" aria-hidden="true" tabindex="-1"></a>post_hoc2 <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(res)</span>
+<span id="cb144-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb144-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb144-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des résultats</span></span>
+<span id="cb144-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb144-5" aria-hidden="true" tabindex="-1"></a>post_hoc2</span></code></pre></div>
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
 
@@ -525,7 +525,7 @@ knee-control -0.02696429 -0.9525222  0.8985936 0.9969851
 eyes-control -1.24267857 -2.1682364 -0.3171207 0.0078656
 eyes-knee    -1.21571429 -2.1716263 -0.2598022 0.0116776</code></pre>
 <p>Cette fois, nous obtenons à la fois la <span class="math inline">\(p\)</span>-value des comparaisons 2 à 2, mais nous obtenons aussi l’estimation des différences de moyennes ainsi que l’intervalle de confiance à 95% de ces différences. Là encore, l’utilisation de la fonction <code>tidy()</code> peut rendre les résultats plus lisibles (ou en tous cas, plus faciles à manipuler) :</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(post_hoc2)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(post_hoc2)</span></code></pre></div>
 <pre><code># A tibble: 3 x 7
   term      contrast     null.value estimate conf.low conf.high adj.p.value
   &lt;chr&gt;     &lt;chr&gt;             &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
@@ -535,16 +535,16 @@ eyes-knee    -1.21571429 -2.1716263 -0.2598022 0.0116776</code></pre>
 <p>La première ligne de ce tableau nous confirme une absence de différence de moyenne significative entre les groupes <code>knee</code> et <code>control</code>. La différence de moyenne estimée pour ces deux catégories (<span class="math inline">\(\hat{\mu}_{\textrm{knee}} - \hat{\mu}_{\textrm{control}}\)</span>) vaut <span class="math inline">\(-0.027\)</span>, avec un intervalle de confiance à 95% pour cette différence qui vaut <span class="math inline">\([-0.95 ; 0.90]\)</span>. Cet intervalle, qui rassemble les valeurs les plus probables pour cette différence de moyenne, contient la valeur 0, ce qui confirme qu’il n’y a aucune raison de penser qu’une différence réelle existe. Le faible écart de moyennes observé entre ces 2 groupes est très vraisemblablement le fruit du hasard.</p>
 <p>En revanche, les lignes 2 et 3 de ce tableau montrent des différences significatives (<span class="math inline">\(p = 0.008\)</span> et <span class="math inline">\(p = 0.012\)</span> pour les comparaisons <code>eyes</code>/<code>control</code> et <code>eyes</code>/<code>knee</code> respectivement). Les différences sont négatives, de l’ordre de -1.2 pour les 2 comparaisons, ce qui traduit des valeurs plus faibles pour <code>eyes</code> que pour les 2 autres groupes. Pour ces 2 comparaisons, les intervalles de confiance à 95% des différences ne contiennent pas le 0, mais exclusivement des valeurs négatives.</p>
 <p>En utilisant le tableau ci-dessus, nous pouvons synthétiser graphiquement ces résultats :</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(post_hoc2) <span class="sc">%&gt;%</span> </span>
-<span id="cb146-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> contrast, <span class="at">y =</span> estimate)) <span class="sc">+</span></span>
-<span id="cb146-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb146-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb146-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb146-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_linerange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high)) <span class="sc">+</span></span>
-<span id="cb146-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb146-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb146-6"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb146-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Comparaison&quot;</span>,</span>
-<span id="cb146-7"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb146-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Différence de moyennes (et IC 95%)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb146-8"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb146-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb146-9"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb146-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="figure/unnamed-chunk-89-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(post_hoc2) <span class="sc">%&gt;%</span> </span>
+<span id="cb148-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb148-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> contrast, <span class="at">y =</span> estimate)) <span class="sc">+</span></span>
+<span id="cb148-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb148-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb148-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_linerange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high)) <span class="sc">+</span></span>
+<span id="cb148-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb148-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb148-6"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb148-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Comparaison&quot;</span>,</span>
+<span id="cb148-7"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb148-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Différence de moyennes (et IC 95%)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb148-8"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb148-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb148-9"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb148-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-90-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Nous avons donc bien montré ici que la re-synchronisation de l’horloge interne n’est possible que par le biais de l’exposition des yeux à la lumière, et non du creux poplité.</p>
 </div>
 </div>
@@ -564,7 +564,7 @@ eyes-knee    -1.21571429 -2.1716263 -0.2598022 0.0116776</code></pre>
 <li>H<span class="math inline">\(_0\)</span> : le type de traitement appliqué n’a pas d’effet sur le décalage de phase. Les médianes sont égales dans tous les groupes (<span class="math inline">\(\textrm{med}_\textrm{control} = \textrm{med}_\textrm{knee} = \textrm{med}_\textrm{eyes}\)</span>).</li>
 <li>H<span class="math inline">\(_1\)</span> : le type de traitement appliqué a un effet sur le décalage de phase. Les médianes ne sont pas toutes égales, au moins l’une d’entre elles diffère des autres.</li>
 </ul>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(shift <span class="sc">~</span> treatment, <span class="at">data =</span> Light)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(shift <span class="sc">~</span> treatment, <span class="at">data =</span> Light)</span></code></pre></div>
 <pre><code>
     Kruskal-Wallis rank sum test
 
@@ -579,11 +579,11 @@ Kruskal-Wallis chi-squared = 9.4231, df = 2, p-value = 0.008991</code></pre>
 <li>H<span class="math inline">\(_0\)</span> : la médiane des deux populations est égale.</li>
 <li>H<span class="math inline">\(_1\)</span> : la médiane des deux populations est différente.</li>
 </ul>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réalisation du test</span></span>
-<span id="cb149-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb149-2" aria-hidden="true" tabindex="-1"></a>post_hoc3 <span class="ot">&lt;-</span> <span class="fu">pairwise.wilcox.test</span>(Light<span class="sc">$</span>shift, Light<span class="sc">$</span>treatment)</span>
-<span id="cb149-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb149-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb149-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb149-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des résultats</span></span>
-<span id="cb149-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb149-5" aria-hidden="true" tabindex="-1"></a>post_hoc3</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réalisation du test</span></span>
+<span id="cb151-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb151-2" aria-hidden="true" tabindex="-1"></a>post_hoc3 <span class="ot">&lt;-</span> <span class="fu">pairwise.wilcox.test</span>(Light<span class="sc">$</span>shift, Light<span class="sc">$</span>treatment)</span>
+<span id="cb151-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb151-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb151-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des résultats</span></span>
+<span id="cb151-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb151-5" aria-hidden="true" tabindex="-1"></a>post_hoc3</span></code></pre></div>
 <pre><code>
     Pairwise comparisons using Wilcoxon rank sum exact test 
 
@@ -594,8 +594,8 @@ knee 0.9551  -
 eyes 0.0037  0.0524
 
 P value adjustment method: holm </code></pre>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilisation de la fonction `tidy` pour afficher les résultats dans un tibble</span></span>
-<span id="cb151-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(post_hoc3)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilisation de la fonction `tidy` pour afficher les résultats dans un tibble</span></span>
+<span id="cb153-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(post_hoc3)</span></code></pre></div>
 <pre><code># A tibble: 3 x 3
   group1 group2  p.value
   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
@@ -606,11 +606,11 @@ P value adjustment method: holm </code></pre>
 <p>La <span class="math inline">\(p\)</span>-value du second test est en revanche inférieure à <span class="math inline">\(\alpha\)</span>. On rejette l’hypothèse nulle pour ce test ce qui confirme que le traitement lumineux appliqué au niveau des yeux a un effet sur le décalage de phase. Reste toutefois à quantifier l’importance de ce décalage de phase par rapport au groupe <code>control</code>.</p>
 <p>Enfin, la <span class="math inline">\(p\)</span>-value du troisième test est supérieure (tout juste !) à <span class="math inline">\(\alpha\)</span>. La conclusion logique est donc qu’il n’y a pas de différence significative entre les médianes des groupes <code>knee</code> et <code>eyes</code>. On sait que ce n’est pas le cas puisque nous avons montré plus haut (avec les tests paramétriques), que la différence de moyennes entre ces deux populations était significative. Nous avons ici l’illustration parfaite de la faible puissance des tests non paramétriques : leur capacité à détecter un effet lorsqu’il y en a réellement un est plus faible que celle des tests paramétriques. En outre, les procédures de comparaisons multiples sont très conservatives, et font mécaniquement baisser la puissance des tests pour maintenir constante l’erreur <span class="math inline">\(\alpha\)</span>. Je ne peux donc que vous inciter à la prudence lorsque vous interprétez les résultats d’un test de comparaions multiples (<em>a fortiori</em> un test non paramétrique) pour lequel la <span class="math inline">\(p\)</span>-value obtenue est très proche du seuil <span class="math inline">\(\alpha\)</span>.</p>
 <p>Comme pour son homologue paramétrique, le test de comparaisons multiples de Wilcoxon nous permet de prendre une décision par rapport à H<span class="math inline">\(_0\)</span>, mais il ne nous dit rien de la magnitude des effets mesurés. Pour les connaître, il nous faut réaliser le test de Dunn (le package <code>DescTools</code> doit être chargé) :</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réalisation du test</span></span>
-<span id="cb153-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb153-2" aria-hidden="true" tabindex="-1"></a>post_hoc4 <span class="ot">&lt;-</span> <span class="fu">DunnTest</span>(shift <span class="sc">~</span> treatment, <span class="at">data =</span> Light)</span>
-<span id="cb153-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb153-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des résultats</span></span>
-<span id="cb153-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb153-5" aria-hidden="true" tabindex="-1"></a>post_hoc4</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Réalisation du test</span></span>
+<span id="cb155-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb155-2" aria-hidden="true" tabindex="-1"></a>post_hoc4 <span class="ot">&lt;-</span> <span class="fu">DunnTest</span>(shift <span class="sc">~</span> treatment, <span class="at">data =</span> Light)</span>
+<span id="cb155-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb155-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb155-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des résultats</span></span>
+<span id="cb155-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb155-5" aria-hidden="true" tabindex="-1"></a>post_hoc4</span></code></pre></div>
 <pre><code>
  Dunn&#39;s test of multiple comparisons using rank sums : holm  
 
@@ -621,11 +621,11 @@ eyes-knee        -8.8571429 0.0214 *
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Avec ces résultats on progresse un peu, car outre les <span class="math inline">\(p\)</span>-values pour chaque comparaison, le test nous fournit une estimation de la différence des rangs moyens. Malheureusement, ces estimations sont souvent difficiles à interpréter (par exemple, quelle est l’unité utilisée ?) et aucun intervalle de confiance n’est fourni. On constate néanmoins que le test de Dunn donne ici des résultats comparables à ceux fournis par les tests paramétriques : le groupe <code>eyes</code> est significativement différent des deux autres. Pour obtenir les intevalles de confiance dont nous avons besoin, nous n’avons pas d’autre choix que des les calculer à l’aide du test de Wilcoxon classique, en réalisant manuellement les tests dont nous avons besoin. Ici, le test à proprement parler ne nous intéresse pas. La seule chose pertinente est la différence de (pseudo-)médiane estimée et son intervalle de confiance :</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparaisons entre les groupes `knee` et `eyes` (dans cet ordre)</span></span>
-<span id="cb155-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb155-2" aria-hidden="true" tabindex="-1"></a>Light <span class="sc">%&gt;%</span> </span>
-<span id="cb155-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treatment <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;knee&quot;</span>, <span class="st">&quot;eyes&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb155-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb155-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox.test</span>(shift <span class="sc">~</span> treatment, <span class="at">data =</span> ., <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb155-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb155-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparaisons entre les groupes `knee` et `eyes` (dans cet ordre)</span></span>
+<span id="cb157-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb157-2" aria-hidden="true" tabindex="-1"></a>Light <span class="sc">%&gt;%</span> </span>
+<span id="cb157-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb157-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(treatment <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;knee&quot;</span>, <span class="st">&quot;eyes&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb157-4"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb157-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox.test</span>(shift <span class="sc">~</span> treatment, <span class="at">data =</span> ., <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb157-5"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb157-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code># A tibble: 1 x 7
   estimate statistic p.value conf.low conf.high method               alternative
      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                &lt;chr&gt;      
