@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.5.6)  15 MAR 2021 13:05
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.5.6)  15 MAR 2021 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1612,9 +1612,9 @@ File: figure/unnamed-chunk-77-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-77-1.pdf>
 [50]
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 2539.
+(Font)              scaled to size 7.0pt on input line 2540.
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 2539.
+(Font)              scaled to size 5.0pt on input line 2540.
 [51] [52]
 File: figure/unnamed-chunk-80-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-80-1.pdf>
@@ -1625,9 +1625,9 @@ File: figure/unnamed-chunk-83-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-83-1.pdf>
 [54]
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/b/it' will be
-(Font)              scaled to size 10.0pt on input line 2709.
+(Font)              scaled to size 10.0pt on input line 2710.
 
-Underfull \hbox (badness 1424) in paragraph at lines 2727--2728
+Underfull \hbox (badness 1424) in paragraph at lines 2728--2729
 []\TU/FuturaLT-Book(1)/m/n/10 Le test de comparaisons multiples de Student est 
 réalisé avec la fonction \TU/FiraCode-Regular(0)/m/n/10 pair-
  []
@@ -1675,12 +1675,12 @@ File: figure/unnamed-chunk-123-1.pdf Graphic file (type pdf)
 File: figure/unnamed-chunk-125-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-125-1.pdf>
 [85] [86] [87]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3996.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3997.
 [88]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3996.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3997.
 (./Biometrie3.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3996.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 3996.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3997.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 3997.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
