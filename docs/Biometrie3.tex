@@ -159,7 +159,7 @@
 
 \title{Travaux Pratiques de Biométrie 3}
 \author{Benoît Simon-Bouhet}
-\date{2021-03-05}
+\date{2021-03-15}
 
 \begin{document}
 \maketitle
@@ -1922,7 +1922,7 @@ Notez bien la syntaxe :
 Au seuil \(\alpha\) de 5\%, on rejette l'hypothèse nulle d'égalité des moyennes de la longueur des cornes entre lézards vivants et morts (test \(t\) de Student sur deux échantillons indépendant, \(t = -4.35\), ddl = 182, \(p < 0.001\)). Les lézards morts ont en moyenne des cornes plus courtes (\(\hat{\mu}_{killed} = 21.99\) millimètres) que les lézards vivants (\(\hat{\mu}_{living} = 24.28\) millimètres). La gamme des valeurs les plus probables pour la différence de moyenne entre les deux populations est fournie par l'intervalle de confiance à 95\% de la différence de moyennes : {[}-3.34 ; -1.25{]}.
 \end{quote}
 
-Ce test confirme donc bien l'impression des chercheurs : les lézards principalement pris pour cibles par les pies grièches migratrices ont des cornes en moyenne plus courtes que les lézards de la population générale. Avoir des cornes plus longues protège donc les lézards de la prédation, du moins dans une certaine mesure.
+Ce test confirme donc bien l'impression des chercheurs : les lézards principalement pris pour cibles par les pies grièches migratrices ont des cornes en moyenne plus courtes (probablement entre 1.25 et 3.34 millimètres de moins) que les lézards de la population générale. Avoir des cornes plus longues semble donc protéger les lézards de la prédation, du moins dans une certaine mesure.
 
 \hypertarget{lalternative-non-paramuxe9trique-2}{%
 \subsubsection{L'alternative non paramétrique}\label{lalternative-non-paramuxe9trique-2}}
@@ -1956,7 +1956,7 @@ difference in location
              -2.200031 
 \end{verbatim}
 
-L'argument \texttt{var.equal\ =\ TRUE} n'existe pas pour ce test puisque c'est justement un test non paramétrique qui ne requiert pas l'homogénéité des variances. En revanche, comme pour tous les autres tests de Wilcoxon que nous avons réalisés dans ce TP, l'argument \texttt{conf.int\ =\ TRUE} permet d'afficher les estimateurs pertinents, ici, la différence de médiane entre les 2 populations et l'intervalle de confiance à 95\% de cette différence de médiane.
+L'argument \texttt{var.equal\ =\ TRUE} n'existe pas pour ce test, puisque c'est justement un test non paramétrique qui ne requiert pas l'homogénéité des variances. En revanche, comme pour tous les autres tests de Wilcoxon que nous avons réalisés dans ce TP, l'argument \texttt{conf.int\ =\ TRUE} permet d'afficher les estimateurs pertinents, ici, la différence de médiane entre les 2 populations et l'intervalle de confiance à 95\% de cette différence de médiane.
 
 La conclusion est ici la même que pour le test de Student : puisque la \(p\)-value est très inférieure à \(\alpha\), on rejette l'hypothèse nulle : les médianes sont bel et bien différentes.
 
@@ -1994,7 +1994,7 @@ La seule différence par rapport à la syntaxe du test \(t\) de Student paramét
 \hypertarget{exercice-dapplication-2}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication-2}}
 
-On s'intéresse à la différence de taille supposée entre hommes et femmes. \href{https://besibo.github.io/Biometrie3/data/HommesFemmes.xls}{Le fichier \texttt{HommesFemmes.xls}} contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à La Rochelle Université. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à La Rochelle Université ont-il la même taille ?
+On s'intéresse à la différence de taille supposée entre hommes et femmes. \href{https://besibo.github.io/Biometrie3/data/HommesFemmes.xls}{Le fichier \texttt{HommesFemmes.xls}} contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à La Rochelle Université. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à La Rochelle Université ont-il la même taille ? Si non, caractérisez cette différence de taille.
 
 \hypertarget{tests-bilatuxe9raux-et-unilatuxe9raux}{%
 \subsection{Tests bilatéraux et unilatéraux}\label{tests-bilatuxe9raux-et-unilatuxe9raux}}
@@ -2007,9 +2007,9 @@ Jusqu'à maintenant, tous les tests que nous avons réalisés sont des tests bit
 \begin{itemize}
 \tightlist
 \item
-  1 hypothèse bilatérale. C'est celle qui est utilisée par défaut si l'utilisateur ne précise rien.
+  Une hypothèse bilatérale. C'est celle qui est utilisée par défaut si l'utilisateur ne précise rien.
 \item
-  2 hypothèses unilatérales possibles, qui doivent être spécifiées explicitement par l'utilisateur.
+  Deux hypothèses unilatérales possibles, qui doivent être spécifiées explicitement par l'utilisateur.
 \end{itemize}
 
 Les tests unilatéraux peuvent concerner tous les tests pour lesquels les hypothèses sont de la forme suivante :
@@ -2054,12 +2054,12 @@ Dans R, la syntaxe permettant de spécifier l'hypothèse alternative que nous so
 
 Attention : le choix d'utiliser ``greater'' ou ``less'' dépend donc de l'ordre dans lequel les échantillons sont spécifiés. Cette synatxe est valable pour tous les tests de Student vus jusqu'ici (un échantillon, deux échantillons appariés, deux échantillons indépendants) et pour leurs alternatives non paramétriques (test de Wilcoxon des rangs signés, test de Wilcoxon de la somme des rangs, test du \(t\) de Welch).
 
-\textbf{Attention} : comme indiqué en TD, l'utilisation de tests unilatéraux doit être réservée exclusivement aux situations pour lesquelles le choix de l'hypothèse unilatérale est possible à justifier par un mécanisme quelconque (biologique, physiologique, comportemental, écologique, génétique, etc.). Observer que l'un des échantillons a une moyenne plus grande ou plus faible qu'un autre lors de la phase des statstiques descriptives des données n'est pas du tout une raison suffisante. Il faut pouvoir justifier le choix de l'hypothèse alternative par une explication valable. Reprenons l'un des exemples examinés précédemment pour mieux comprendre comment tout cela fonctionne.
+\textbf{Attention} : comme indiqué en TD, l'utilisation de tests unilatéraux doit être réservée exclusivement aux situations pour lesquelles le choix de l'hypothèse unilatérale est possible à justifier par un mécanisme quelconque (biologique, physiologique, comportemental, écologique, génétique, évolutif, biochimique, etc.). Observer que l'un des échantillons a une moyenne plus grande ou plus faible qu'un autre lors de la phase des statstiques descriptives des données n'est pas du tout une raison suffisante. Il faut pouvoir justifier le choix de l'hypothèse alternative par une explication valable. Reprenons l'un des exemples examinés précédemment pour mieux comprendre comment tout cela fonctionne.
 
 \hypertarget{un-exemple-pas-uxe0-pas}{%
 \subsubsection{Un exemple pas à pas}\label{un-exemple-pas-uxe0-pas}}
 
-Reprenons l'exemple des lézards cornus. L'étude a été réalisée parce que les chercheurs supposaient que la longueur des cornes des lézards était susceptible de leur fournir une protection face à la prédation. Autrement dit, les chercheurs supposaient que des cornes \emph{plus longues} devaient fournir une meilleure protection vis à vis de la prédation. Ainsi, les lézards morts devaient avoir des cornes moins longues en moyenne que les les lézards vivants, simplement parce que porter des cornes courtes expose plus fortement les individus à la prédation. Nous avons donc une bonne raison ``écologique'' de considérer un test unilatéral (la susceptibilité face à la prédation).
+Reprenons l'exemple des lézards cornus. L'étude a été réalisée parce que les chercheurs supposaient que la longueur des cornes des lézards était susceptible de leur fournir une protection face à la prédation. Autrement dit, les chercheurs supposaient que des cornes \emph{plus longues} devaient fournir une meilleure protection vis à vis de la prédation. Ainsi, les lézards morts devaient avoir des cornes moins longues en moyenne que les les lézards vivants, simplement parce que porter des cornes courtes expose plus fortement les individus à la prédation. Nous avons donc une bonne raison ``écologique/évolutive'' de considérer un test unilatéral (la susceptibilité face à la prédation).
 
 Lorsque nous avons examiné cette question, nous avons fait le test du \(t\) de Student sur échantillons indépendants de la façon suivante :
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2021-03-05" />
+<meta name="date" content="2021-03-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1166,7 +1166,7 @@ mean in group killed mean in group living
 <blockquote>
 <p>Au seuil <span class="math inline">\(\alpha\)</span> de 5%, on rejette l’hypothèse nulle d’égalité des moyennes de la longueur des cornes entre lézards vivants et morts (test <span class="math inline">\(t\)</span> de Student sur deux échantillons indépendant, <span class="math inline">\(t = -4.35\)</span>, ddl = 182, <span class="math inline">\(p &lt; 0.001\)</span>). Les lézards morts ont en moyenne des cornes plus courtes (<span class="math inline">\(\hat{\mu}_{killed} = 21.99\)</span> millimètres) que les lézards vivants (<span class="math inline">\(\hat{\mu}_{living} = 24.28\)</span> millimètres). La gamme des valeurs les plus probables pour la différence de moyenne entre les deux populations est fournie par l’intervalle de confiance à 95% de la différence de moyennes : [-3.34 ; -1.25].</p>
 </blockquote>
-<p>Ce test confirme donc bien l’impression des chercheurs : les lézards principalement pris pour cibles par les pies grièches migratrices ont des cornes en moyenne plus courtes que les lézards de la population générale. Avoir des cornes plus longues protège donc les lézards de la prédation, du moins dans une certaine mesure.</p>
+<p>Ce test confirme donc bien l’impression des chercheurs : les lézards principalement pris pour cibles par les pies grièches migratrices ont des cornes en moyenne plus courtes (probablement entre 1.25 et 3.34 millimètres de moins) que les lézards de la population générale. Avoir des cornes plus longues semble donc protéger les lézards de la prédation, du moins dans une certaine mesure.</p>
 </div>
 </div>
 <div id="lalternative-non-paramétrique-2" class="section level3" number="3.4.3">
@@ -1188,7 +1188,7 @@ alternative hypothesis: true location shift is not equal to 0
 sample estimates:
 difference in location 
              -2.200031 </code></pre>
-<p>L’argument <code>var.equal = TRUE</code> n’existe pas pour ce test puisque c’est justement un test non paramétrique qui ne requiert pas l’homogénéité des variances. En revanche, comme pour tous les autres tests de Wilcoxon que nous avons réalisés dans ce TP, l’argument <code>conf.int = TRUE</code> permet d’afficher les estimateurs pertinents, ici, la différence de médiane entre les 2 populations et l’intervalle de confiance à 95% de cette différence de médiane.</p>
+<p>L’argument <code>var.equal = TRUE</code> n’existe pas pour ce test, puisque c’est justement un test non paramétrique qui ne requiert pas l’homogénéité des variances. En revanche, comme pour tous les autres tests de Wilcoxon que nous avons réalisés dans ce TP, l’argument <code>conf.int = TRUE</code> permet d’afficher les estimateurs pertinents, ici, la différence de médiane entre les 2 populations et l’intervalle de confiance à 95% de cette différence de médiane.</p>
 <p>La conclusion est ici la même que pour le test de Student : puisque la <span class="math inline">\(p\)</span>-value est très inférieure à <span class="math inline">\(\alpha\)</span>, on rejette l’hypothèse nulle : les médianes sont bel et bien différentes.</p>
 <p>Enfin, dans le cas où la variable étudiée suit la loi Normale dans les deux populations mais qu’elle n’a pas la même variance dans les deux populations, il est toujours possible de réaliser un test de Wilcoxon, mais il est souvent préférable de réaliser un test de Student modifié : le <strong>test approché du <span class="math inline">\(t\)</span> de Welch</strong>. Ce test est moins puissant que le test de Student classique, mais il reste plus puissant que le test de Wilcoxon, et surtout, il permet de comparer les moyennes et non les médianes</p>
 <ul>
@@ -1211,7 +1211,7 @@ mean in group killed mean in group living
 </div>
 <div id="exercice-dapplication-2" class="section level3" number="3.4.4">
 <h3><span class="header-section-number">3.4.4</span> Exercice d’application</h3>
-<p>On s’intéresse à la différence de taille supposée entre hommes et femmes. <a href="https://besibo.github.io/Biometrie3/data/HommesFemmes.xls">Le fichier <code>HommesFemmes.xls</code></a> contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à La Rochelle Université. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d’examiner les données à l’aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à La Rochelle Université ont-il la même taille ?</p>
+<p>On s’intéresse à la différence de taille supposée entre hommes et femmes. <a href="https://besibo.github.io/Biometrie3/data/HommesFemmes.xls">Le fichier <code>HommesFemmes.xls</code></a> contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à La Rochelle Université. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d’examiner les données à l’aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à La Rochelle Université ont-il la même taille ? Si non, caractérisez cette différence de taille.</p>
 </div>
 </div>
 <div id="tests-bilatéraux-et-unilatéraux" class="section level2" number="3.5">
@@ -1220,8 +1220,8 @@ mean in group killed mean in group living
 <h3><span class="header-section-number">3.5.1</span> Principe</h3>
 <p>Jusqu’à maintenant, tous les tests que nous avons réalisés sont des tests bitaléraux. Pour chaque test, l’hypothèse nulle est imposée. En revanche, pour certains tests, l’hypothèse alternative est à choisir (et à spécifier) par l’utilisateur parmi 3 possibilités :</p>
 <ul>
-<li>1 hypothèse bilatérale. C’est celle qui est utilisée par défaut si l’utilisateur ne précise rien.</li>
-<li>2 hypothèses unilatérales possibles, qui doivent être spécifiées explicitement par l’utilisateur.</li>
+<li>Une hypothèse bilatérale. C’est celle qui est utilisée par défaut si l’utilisateur ne précise rien.</li>
+<li>Deux hypothèses unilatérales possibles, qui doivent être spécifiées explicitement par l’utilisateur.</li>
 </ul>
 <p>Les tests unilatéraux peuvent concerner tous les tests pour lesquels les hypothèses sont de la forme suivante :</p>
 <ul>
@@ -1244,11 +1244,11 @@ mean in group killed mean in group living
 <li><code>alternative = "less"</code> : pour choisir l’hypothèse unilatérale “<code>&lt;</code>.”</li>
 </ul>
 <p>Attention : le choix d’utiliser “greater” ou “less” dépend donc de l’ordre dans lequel les échantillons sont spécifiés. Cette synatxe est valable pour tous les tests de Student vus jusqu’ici (un échantillon, deux échantillons appariés, deux échantillons indépendants) et pour leurs alternatives non paramétriques (test de Wilcoxon des rangs signés, test de Wilcoxon de la somme des rangs, test du <span class="math inline">\(t\)</span> de Welch).</p>
-<p><strong>Attention</strong> : comme indiqué en TD, l’utilisation de tests unilatéraux doit être réservée exclusivement aux situations pour lesquelles le choix de l’hypothèse unilatérale est possible à justifier par un mécanisme quelconque (biologique, physiologique, comportemental, écologique, génétique, etc.). Observer que l’un des échantillons a une moyenne plus grande ou plus faible qu’un autre lors de la phase des statstiques descriptives des données n’est pas du tout une raison suffisante. Il faut pouvoir justifier le choix de l’hypothèse alternative par une explication valable. Reprenons l’un des exemples examinés précédemment pour mieux comprendre comment tout cela fonctionne.</p>
+<p><strong>Attention</strong> : comme indiqué en TD, l’utilisation de tests unilatéraux doit être réservée exclusivement aux situations pour lesquelles le choix de l’hypothèse unilatérale est possible à justifier par un mécanisme quelconque (biologique, physiologique, comportemental, écologique, génétique, évolutif, biochimique, etc.). Observer que l’un des échantillons a une moyenne plus grande ou plus faible qu’un autre lors de la phase des statstiques descriptives des données n’est pas du tout une raison suffisante. Il faut pouvoir justifier le choix de l’hypothèse alternative par une explication valable. Reprenons l’un des exemples examinés précédemment pour mieux comprendre comment tout cela fonctionne.</p>
 </div>
 <div id="un-exemple-pas-à-pas" class="section level3" number="3.5.2">
 <h3><span class="header-section-number">3.5.2</span> Un exemple pas à pas</h3>
-<p>Reprenons l’exemple des lézards cornus. L’étude a été réalisée parce que les chercheurs supposaient que la longueur des cornes des lézards était susceptible de leur fournir une protection face à la prédation. Autrement dit, les chercheurs supposaient que des cornes <em>plus longues</em> devaient fournir une meilleure protection vis à vis de la prédation. Ainsi, les lézards morts devaient avoir des cornes moins longues en moyenne que les les lézards vivants, simplement parce que porter des cornes courtes expose plus fortement les individus à la prédation. Nous avons donc une bonne raison “écologique” de considérer un test unilatéral (la susceptibilité face à la prédation).</p>
+<p>Reprenons l’exemple des lézards cornus. L’étude a été réalisée parce que les chercheurs supposaient que la longueur des cornes des lézards était susceptible de leur fournir une protection face à la prédation. Autrement dit, les chercheurs supposaient que des cornes <em>plus longues</em> devaient fournir une meilleure protection vis à vis de la prédation. Ainsi, les lézards morts devaient avoir des cornes moins longues en moyenne que les les lézards vivants, simplement parce que porter des cornes courtes expose plus fortement les individus à la prédation. Nous avons donc une bonne raison “écologique/évolutive” de considérer un test unilatéral (la susceptibilité face à la prédation).</p>
 <p>Lorsque nous avons examiné cette question, nous avons fait le test du <span class="math inline">\(t\)</span> de Student sur échantillons indépendants de la façon suivante :</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="seance1.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Horn_len <span class="sc">~</span> Survival, <span class="at">data =</span> Lizard, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>
