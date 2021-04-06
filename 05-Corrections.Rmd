@@ -76,10 +76,11 @@ skim(rope)
 
 L'examen préliminaire des données montre que nous disposons de 21 observations pour 2 variables. Aucune donnée manquante ni aberrante ne semble présente. Le temps écoulé entre l'observation du tour de magie et son récit écrit est très variable puisqu'il est compris entre 2 et 50 ans, avec un écart-type de 15 ans.
 ```{r}
-table(rope$impressiveness)
+rope %>% 
+  count(impressiveness)
 ```
 
-Globalement, la catégorie 4 est la plus fortement représentée pour la variable "caractère impressionant" du tour de magie.
+Globalement, la catégorie 4 est la plus fortement représentée pour la variable "caractère impressionnant" du tour de magie.
 
 ```{r}
 # Représentation graphique

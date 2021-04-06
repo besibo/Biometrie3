@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.5.6)  22 MAR 2021 12:44
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.5.6)  29 MAR 2021 23:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1538,18 +1538,14 @@ LaTeX Font Info:    Font shape `TU/FiraCode-Regular(0)/m/n' will be
 ] [2]
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/b/n' will be
 (Font)              scaled to size 12.0pt on input line 281.
-[3] [4]
+[3] [4] [5]
 Missing character: There is no º in font lmmi10!
 Missing character: There is no º in font lmmi10!
-[5] [6] [7] [8]
+[6] [7] [8]
 File: figure/unnamed-chunk-15-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-15-1.pdf>
 File: figure/unnamed-chunk-16-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-16-1.pdf>
-
-Overfull \vbox (0.33223pt too high) detected at line 618
- []
-
 [9]
 File: figure/unnamed-chunk-17-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-17-1.pdf>
@@ -1558,6 +1554,7 @@ File: figure/unnamed-chunk-18-1.pdf Graphic file (type pdf)
 [10]
 File: figure/unnamed-chunk-19-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-19-1.pdf>
+[11]
 File: figure/unnamed-chunk-20-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-20-1.pdf>
 File: figure/compdistr-1.pdf Graphic file (type pdf)
@@ -1568,10 +1565,10 @@ LaTeX Font Warning: Font shape `TU/FuturaLT-Book(0)/m/sc' undefined
 
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/sc' will be
 (Font)              scaled to size 10.0pt on input line 688.
-[11] [12]
+[12] [13]
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/it' will be
 (Font)              scaled to size 10.0pt on input line 752.
-[13] [14] [15] [16]
+[14] [15] [16]
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(1)/m/n' will be
 (Font)              scaled to size 10.0pt on input line 889.
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(1)/m/n' will be
@@ -1581,49 +1578,50 @@ LaTeX Font Info:    Font shape `TU/FuturaLT-Book(1)/m/n' will be
 [17] [18] [19] [20]
 File: figure/unnamed-chunk-31-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-31-1.pdf>
+[21]
 File: figure/unnamed-chunk-32-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-32-1.pdf>
-[21]
 File: figure/unnamed-chunk-33-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-33-1.pdf>
+[22]
 File: figure/unnamed-chunk-34-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-34-1.pdf>
 File: figure/unnamed-chunk-35-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-35-1.pdf>
-[22]
+[23]
 File: figure/unnamed-chunk-36-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-36-1.pdf>
-[23] [24]
+[24] [25]
 File: figure/unnamed-chunk-38-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-38-1.pdf>
-[25] [26] [27] [28] [29] [30] [31]
+[26] [27] [28] [29] [30] [31] [32]
 File: figure/unnamed-chunk-50-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-50-1.pdf>
 File: figure/unnamed-chunk-51-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-51-1.pdf>
-[32]
+[33]
 File: figure/unnamed-chunk-52-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-52-1.pdf>
-[33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+[34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49]
 File: figure/unnamed-chunk-76-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-76-1.pdf>
-[49]
+[50]
 File: figure/unnamed-chunk-77-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-77-1.pdf>
-[50]
+[51]
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/n' will be
 (Font)              scaled to size 7.0pt on input line 2540.
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/n' will be
 (Font)              scaled to size 5.0pt on input line 2540.
-[51] [52]
+[52] [53]
 File: figure/unnamed-chunk-80-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-80-1.pdf>
 File: figure/unnamed-chunk-81-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-81-1.pdf>
-[53]
+[54]
 File: figure/unnamed-chunk-83-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-83-1.pdf>
-[54]
+[55]
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/b/it' will be
 (Font)              scaled to size 10.0pt on input line 2710.
 
@@ -1632,55 +1630,79 @@ Underfull \hbox (badness 1424) in paragraph at lines 2728--2729
 réalisé avec la fonction \TU/FiraCode-Regular(0)/m/n/10 pair-
  []
 
-[55] [56]
+[56] [57]
 File: figure/unnamed-chunk-90-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-90-1.pdf>
-[57] [58] [59] [60] [61] [62]
+[58] [59] [60] [61] [62] [63]
 File: figure/unnamed-chunk-96-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-96-1.pdf>
 File: figure/unnamed-chunk-97-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-97-1.pdf>
-[63]
+[64]
 File: figure/unnamed-chunk-98-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-98-1.pdf>
 File: figure/unnamed-chunk-99-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-99-1.pdf>
-[64] [65] [66] [67]
+[65] [66] [67] [68]
 File: figure/unnamed-chunk-104-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-104-1.pdf>
-[68] [69] [70]
+[69] [70] [71]
 File: figure/unnamed-chunk-107-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-107-1.pdf>
-[71] [72] [73]
+[72] [73] [74]
 File: images/genetics.jpg Graphic file (type bmp)
 <images/genetics.jpg>
-[74] [75] [76]
+[75] [76] [77]
 File: figure/unnamed-chunk-114-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-114-1.pdf>
-[77]
+[78]
 File: figure/unnamed-chunk-115-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-115-1.pdf>
-[78]
+[79]
 File: figure/unnamed-chunk-117-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-117-1.pdf>
 File: figure/unnamed-chunk-118-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-118-1.pdf>
-[79] [80] [81]
+[80] [81] [82]
 File: figure/unnamed-chunk-122-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-122-1.pdf>
-[82]
+[83]
 File: figure/unnamed-chunk-123-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-123-1.pdf>
-[83] [84]
+[84] [85]
 File: figure/unnamed-chunk-125-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-125-1.pdf>
-[85] [86] [87]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3997.
-[88]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3997.
+[86] [87] [88]
+File: figure/unnamed-chunk-130-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-130-1.pdf>
+[89] [90] [91]
+File: figure/unnamed-chunk-135-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-135-1.pdf>
+[92]
+File: figure/unnamed-chunk-137-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-137-1.pdf>
+[93] [94]
+File: figure/unnamed-chunk-140-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-140-1.pdf>
+[95] [96]
+File: figure/unnamed-chunk-143-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-143-1.pdf>
+
+Overfull \vbox (0.83888pt too high) detected at line 4366
+ []
+
+[97]
+File: figure/unnamed-chunk-144-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-144-1.pdf>
+File: figure/unnamed-chunk-145-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-145-1.pdf>
+[98] [99] [100]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4505.
+[101]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4505.
 (./Biometrie3.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3997.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 3997.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 4505.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 4505.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1690,12 +1712,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 ### semi simple group (level 1) entered at line 135 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 22815 strings out of 479418
- 405768 string characters out of 5884586
- 901299 words of memory out of 5000000
- 39939 multiletter control sequences out of 15000+600000
+ 22876 strings out of 479418
+ 407573 string characters out of 5884586
+ 900728 words of memory out of 5000000
+ 39993 multiletter control sequences out of 15000+600000
  536437 words of font info for 81 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  59i,6n,121p,1318b,8399s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Biometrie3.pdf (88 pages).
+Output written on Biometrie3.pdf (101 pages).
