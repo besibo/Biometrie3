@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.com/besibo/Biometrie3.svg?branch=master)](https://travis-ci.com/besibo/Biometrie3)
+![example workflow](https://github.com/besibo/Biometrie3/actions/workflows/renderbook/badge.svg)
+
 
 Ce dépôt contient le document permettant de réaliser les travaux pratiques de Biométrie 3 (Licence 3, Semestre 6).
 
