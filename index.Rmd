@@ -44,16 +44,16 @@ Je considère qu'à ce stade, vous devez être à l'aise dans `RStudio` pour eff
 7. Spécifier/modifier votre répertoire de travail.
 8. Installer des packages additionnels.
 
-Si vous pensez avoir besoin de rappels sur ces notions, je vous encourrage vivement à consulter [le livre en ligne](https://besibo.github.io/Biometrie2/) dédié aux travaux pratiques de Biométrie 2 pour vous rafraîchir la mémoire.
+Si vous pensez avoir besoin de rappels sur ces notions, je vous encourage vivement à consulter [le livre en ligne](https://besibo.github.io/Biometrie2/) dédié aux travaux pratiques de Biométrie 2 pour vous rafraîchir la mémoire.
 
 L'organisation des TP et TEA de biométrie 3 sera la suivante :
 
-- Séance 1 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Rappels concernant les statistiques descriptives et les visualisations graphiques utiles pour déméler la complexité de certains jeux de données. Comparaisons (paramétriques et non paramétriques) de la moyenne de 2 populations.
+- Séance 1 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Rappels concernant les statistiques descriptives et les visualisations graphiques utiles pour démêler la complexité de certains jeux de données. Comparaisons (paramétriques et non paramétriques) de la moyenne de 2 populations.
 - Séance 2 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Comparaisons (paramétriques et non paramétriques) la moyenne de plus de 2 populations : analyse de variance, hypothèses et conditions d'application.
 - Séance 3 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Étude de la liaison entre 2 variables. Corrélation (paramétrique et non paramétrique) et régression linéaire. Tests d'hypothèses, estimation et conditions d'application.
 - Séance 4 : 1h30 de TP. Exercices d'application et corrections en guise de préparation pour l'examen.
 
-Les exercices seront corrigés au fur et à mesure du déroulement des séances de TP. Le corrigé des derniers exercices de la dernière séance (chapitre 5) sera mis à disposition dans un chapitre supplémentaire de ce livre en temps utile.
+<!-- Les exercices seront corrigés au fur et à mesure du déroulement des séances de TP. Le corrigé des derniers exercices de la dernière séance (chapitre 5) sera mis à disposition dans un chapitre supplémentaire de ce livre en temps utile. -->
 
 ```{r package_bibliography, include=FALSE}
 # automatically create a bib database for R packages
