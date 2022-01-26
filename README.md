@@ -4,4 +4,4 @@ Ce dépôt contient le document permettant de réaliser les travaux pratiques de
 
 Le livre est consultable à cette adresse : https://besibo.github.io/Biometrie3/
 
-Ce livre est écrit en R Markdown et repose sur le package **bookdown** (https://github.com/rstudio/bookdown). Merci de consulter la page "Get Started" à https://bookdown.org/ pour apprendre comment compiler ce livre.
+Ce livre est écrit en R Markdown et repose sur le package **bookdown** (https://github.com/rstudio/bookdown). Merci de consulter la page "Get Started" à https://bookdown.org/ pour savoir comment compiler ce livre.
