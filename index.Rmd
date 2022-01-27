@@ -1,4 +1,4 @@
---- 
+---
 title: "Travaux Pratiques de Biométrie 3"
 author: "Benoît Simon-Bouhet"
 date: "`r Sys.Date()`"
@@ -35,23 +35,23 @@ Ce livre contient l'ensemble du matériel (contenus, exemples, exercices...) né
 
 Je considère qu'à ce stade, vous devez être à l'aise dans `RStudio` pour effectuer les tâches suivantes :
 
-1. Importer des jeux de données dans RStudio.
-2. Manipuler des tableaux de données avec `tidyr` [@R-tidyr] pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.
-3. Faire des graphiques exploratoires avec `ggplot2` [@R-ggplot2] pour visualiser des données.
-4. Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonctions `filter()`, `select()`, `arrange()`, `mutate()`, `summarise()` et `group_by()` du package `dplyr` [@R-dplyr].
-5. Utiliser le pipe `%>%` afin d'enchaîner plusieurs commandes.
-6. Créer des scripts clairs et parlants, contenant des commandes et des commentaires utiles.
-7. Spécifier/modifier votre répertoire de travail.
-8. Installer des packages additionnels.
+1.  Importer des jeux de données dans RStudio.
+2.  Manipuler des tableaux de données avec `tidyr` [@R-tidyr] pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.
+3.  Faire des graphiques exploratoires avec `ggplot2` [@R-ggplot2] pour visualiser des données.
+4.  Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonctions `filter()`, `select()`, `arrange()`, `mutate()`, `summarise()` et `group_by()` du package `dplyr` [@R-dplyr].
+5.  Utiliser le pipe `%>%` afin d'enchaîner plusieurs commandes.
+6.  Créer des scripts clairs et parlants, contenant des commandes et des commentaires utiles.
+7.  Spécifier/modifier votre répertoire de travail.
+8.  Installer des packages additionnels.
 
 Si vous pensez avoir besoin de rappels sur ces notions, je vous encourage vivement à consulter [le livre en ligne](https://besibo.github.io/Biometrie2/) dédié aux travaux pratiques de Biométrie 2 pour vous rafraîchir la mémoire.
 
 L'organisation des TP et TEA de biométrie 3 sera la suivante :
 
-- Séance 1 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Rappels concernant les statistiques descriptives et les visualisations graphiques utiles pour démêler la complexité de certains jeux de données. Comparaisons (paramétriques et non paramétriques) de la moyenne de 2 populations.
-- Séance 2 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Comparaisons (paramétriques et non paramétriques) la moyenne de plus de 2 populations : analyse de variance, hypothèses et conditions d'application.
-- Séance 3 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Étude de la liaison entre 2 variables. Corrélation (paramétrique et non paramétrique) et régression linéaire. Tests d'hypothèses, estimation et conditions d'application.
-- Séance 4 : 1h30 de TP. Exercices d'application et corrections en guise de préparation pour l'examen.
+-   Séance 1 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Rappels concernant les statistiques descriptives et les visualisations graphiques utiles pour démêler la complexité de certains jeux de données. Comparaisons (paramétriques et non paramétriques) de la moyenne de 2 populations.
+-   Séance 2 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Comparaisons (paramétriques et non paramétriques) la moyenne de plus de 2 populations : analyse de variance, hypothèses et conditions d'application.
+-   Séance 3 : 1h30 de TP suivie d'une séance de 1h30 de TEA. Étude de la liaison entre 2 variables. Corrélation (paramétrique et non paramétrique) et régression linéaire. Tests d'hypothèses, estimation et conditions d'application.
+-   Séance 4 : 1h30 de TP. Exercices d'application et corrections en guise de préparation pour l'examen.
 
 <!-- Les exercices seront corrigés au fur et à mesure du déroulement des séances de TP. Le corrigé des derniers exercices de la dernière séance (chapitre 5) sera mis à disposition dans un chapitre supplémentaire de ce livre en temps utile. -->
 
@@ -60,7 +60,6 @@ L'organisation des TP et TEA de biométrie 3 sera la suivante :
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2', 'gridExtra', 'skimr', 'bindrcpp', 'tidyr', 'dplyr', 'readr', "car", "readxl", "broom", "DescTools", "patchwork"), 'packages.bib')
 ```
-
 
 ```{r setup, include=FALSE, cache=FALSE, results=FALSE, message=FALSE}
 options(replace.assign = TRUE, width = 80)
@@ -83,8 +82,6 @@ opts_chunk$set(fig.path = 'figure/', cache.path = 'cache/', tidy = FALSE,
                fig.show = 'hold', fig.pos = 'htpb', par = TRUE, comment = NA, cache = TRUE)
 ```
 
-
-
-<!-- Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab). -->
+<!-- Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure @ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table @ref(tab:nice-tab). -->
 
 <!-- You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015]. -->
