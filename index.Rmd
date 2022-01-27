@@ -20,7 +20,7 @@ output:
     keep_tex: yes
 url: 'https\://besibo.github.io/Biometrie3/'
 github-repo: "besibo/Biometrie3"
-bibliography: [book.bib, packages.bib]
+bibliography: [all.bib]
 csl : "my-apa.csl"
 papersize: a4
 geometry: "left=3.75cm, right=3.75cm, top=3cm, bottom=3cm"
@@ -58,7 +58,9 @@ L'organisation des TP et TEA de biométrie 3 sera la suivante :
 ```{r package_bibliography, include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2', 'gridExtra', 'skimr', 'bindrcpp', 'tidyr', 'dplyr', 'readr', "car", "readxl", "broom", "DescTools", "patchwork"), 'book.bib')
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2', 'gridExtra', 'skimr', 'bindrcpp', 'tidyr', 'dplyr', 'readr', "car", "readxl", "broom", "DescTools", "patchwork"), 'packages.bib')
+
+system("cat book.bib packages.bib > all.bib")
 ```
 
 ```{r setup, include=FALSE, cache=FALSE, results=FALSE, message=FALSE}
