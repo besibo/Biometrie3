@@ -55,14 +55,6 @@ L'organisation des TP et TEA de biométrie 3 sera la suivante :
 
 <!-- Les exercices seront corrigés au fur et à mesure du déroulement des séances de TP. Le corrigé des derniers exercices de la dernière séance (chapitre 5) sera mis à disposition dans un chapitre supplémentaire de ce livre en temps utile. -->
 
-```{r package_bibliography, include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2', 'gridExtra', 'skimr', 'bindrcpp', 'tidyr', 'dplyr', 'readr', "car", "readxl", "broom", "DescTools", "patchwork"), 'packages.bib')
-
-system("cat book.bib packages.bib > all.bib")
-```
-
 ```{r setup, include=FALSE, cache=FALSE, results=FALSE, message=FALSE}
 options(replace.assign = TRUE, width = 80)
 options(repos = "http://cran.r-project.org/")
@@ -83,6 +75,15 @@ opts_chunk$set(fig.path = 'figure/', cache.path = 'cache/', tidy = FALSE,
                fig.align = 'center', out.width = '90%', fig.asp = 0.618,
                fig.show = 'hold', fig.pos = 'htpb', par = TRUE, comment = NA, cache = TRUE)
 ```
+
+```{r package_bibliography, include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2', 'gridExtra', 'skimr', 'bindrcpp', 'tidyr', 'dplyr', 'readr', "car", "readxl", "broom", "DescTools", "patchwork"), 'packages.bib')
+
+system("cat book.bib packages.bib > all.bib")
+```
+
 
 <!-- Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure @ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table @ref(tab:nice-tab). -->
 
