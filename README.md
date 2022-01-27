@@ -1,4 +1,4 @@
-![example workflow](https://github.com/besibo/Biometrie3/actions/workflows/pages/pages-build-deployment/badge.svg)
+![example workflow](https://github.com/besibo/Biometrie3/workflows/renderbook/badge.svg)
 
 Ce dépôt contient le document permettant de réaliser les travaux pratiques de Biométrie 3 (Licence 3, Semestre 6).
 
