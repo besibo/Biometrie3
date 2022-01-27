@@ -58,7 +58,7 @@ L'organisation des TP et TEA de biométrie 3 sera la suivante :
 ```{r package_bibliography, include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2', 'gridExtra', 'skimr', 'bindrcpp', 'tidyr', 'dplyr', 'readr', "car", "readxl", "broom", "DescTools", "patchwork"), 'packages.bib')
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2', 'gridExtra', 'skimr', 'bindrcpp', 'tidyr', 'dplyr', 'readr', "car", "readxl", "broom", "DescTools", "patchwork"), 'book.bib')
 ```
 
 ```{r setup, include=FALSE, cache=FALSE, results=FALSE, message=FALSE}
