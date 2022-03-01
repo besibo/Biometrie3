@@ -1,15 +1,15 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
   a4paper,
 ]{article}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -41,10 +41,10 @@
   pdftitle={Travaux Pratiques de Biométrie 3},
   pdfauthor={Benoît Simon-Bouhet},
   colorlinks=true,
-  linkcolor=Maroon,
-  filecolor=Maroon,
-  citecolor=Blue,
-  urlcolor=blue,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
 \usepackage[left=3.75cm, right=3.75cm, top=3cm, bottom=3cm]{geometry}
@@ -115,6 +115,29 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 \usepackage[french]{babel}
 \usepackage{fontspec}
 % \usepackage{natbib}
@@ -132,33 +155,13 @@
 \setmainfont[Ligatures = TeX]{Gill Sans}
 \setmonofont[Scale=0.85, ExternalLocation={fonts/}]{FiraCode-Regular.ttf}
 \onehalfspace
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
-  % turn on hanging indent if param 1 is 1
-  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
-  % set entry spacing
-  \ifnum #2 > 0
-  \setlength{\parskip}{#2\baselineskip}
-  \fi
- }%
- {}
-\usepackage{calc}
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{Travaux Pratiques de Biométrie 3}
 \author{Benoît Simon-Bouhet}
-\date{2022-01-26}
+\date{2022-03-01}
 
 \begin{document}
 \maketitle
@@ -222,7 +225,7 @@ Au début de chaque nouvelle séance de TP, vous devrez ensuite effectuer les op
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Créez, dans votre dossier ``Biometrie3,'' un sous-dossier nommé ``TP\_1,'' ``TP\_2,'' etc.
+  Créez, dans votre dossier ``Biometrie3'', un sous-dossier nommé ``TP\_1'', ``TP\_2'', etc.
 \item
   Téléchargez les fichiers utiles disponibles sur l'ENT et placez-les dans le dossier du TP correspondant.
 \item
@@ -844,7 +847,7 @@ Au seuil \(\alpha\) de 5\%, on ne peut pas rejeter l'hypothèse nulle (test de W
 
 Si les données ne suivent pas la loi Normale, la médiane est bien la métrique la plus intéressante puisque c'est elle qui nous renseigne sur la tendance centrale des données.
 
-Enfin, les tests de Wilcoxon renvoient souvent des messages d'avretissement. Il ne s'agit que de ça : des avertissements. Tant que la \(p\)-value des tests est éloignée de la valeur seuil \(\alpha\), cela n'a pas d'importance. Quand en revanche la \(p\)-value est très proche de \(\alpha\), il faut être très prudent face aux conclusions du test qui peuvent alors être assez ``fragiles.''
+Enfin, les tests de Wilcoxon renvoient souvent des messages d'avretissement. Il ne s'agit que de ça : des avertissements. Tant que la \(p\)-value des tests est éloignée de la valeur seuil \(\alpha\), cela n'a pas d'importance. Quand en revanche la \(p\)-value est très proche de \(\alpha\), il faut être très prudent face aux conclusions du test qui peuvent alors être assez ``fragiles''.
 
 (Notez que pour le test de Student à un échantillon comme pour le test de Wilcoxon des rangs signés, les conclusions sont en accord avec nos observations initiales réalisées à partir du boxplot).
 
@@ -1333,7 +1336,7 @@ Plusieurs remarques concernant cette première syntaxe :
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  On utilise le symbole ``\texttt{\textasciitilde{}}'' pour indiquer une formule. On cherche à regarder l'effet du \texttt{Traitement} sur la \texttt{DO} qui traduit l'immuno-compétence. Le ``\texttt{\textasciitilde{}}'' se lit : ``en fonction de.''
+  On utilise le symbole ``\texttt{\textasciitilde{}}'' pour indiquer une formule. On cherche à regarder l'effet du \texttt{Traitement} sur la \texttt{DO} qui traduit l'immuno-compétence. Le ``\texttt{\textasciitilde{}}'' se lit : ``en fonction de''.
 \item
   Avec la syntaxe utilisant les formules, on doit spécifier l'argument \texttt{data\ =\ Testo\_long} pour indiquer à RStudio que les variables \texttt{DO} et \texttt{Traitement} sont des colonnes de ce tableau.
 \item
@@ -1368,7 +1371,7 @@ mean of the differences
             -0.05615385 
 \end{verbatim}
 
-Cette deuxième syntaxe est différente de la première puisque nous n'utilisons plus le format \texttt{formule}. Ici, on indique le nom des 2 colonnes du tableau \texttt{Testo\_large} qui contiennent les 2 séries de données. Puisque nous n'utilisons plus de formule, l'argument ``\texttt{data\ =\ ...}'' n'existe plus. C'est pourquoi il nous faut taper spécifiquement ``\texttt{Testo\_large\$Before}'' et ``\texttt{Testo\_large\$After},'' et non pas simplement le nom des colonnes. En revanche, comme pour le test précédent, il est indispensable d'indiquer ``\texttt{paired\ =\ TRUE}'' pour faire un test de Student sur données appariées.
+Cette deuxième syntaxe est différente de la première puisque nous n'utilisons plus le format \texttt{formule}. Ici, on indique le nom des 2 colonnes du tableau \texttt{Testo\_large} qui contiennent les 2 séries de données. Puisque nous n'utilisons plus de formule, l'argument ``\texttt{data\ =\ ...}'' n'existe plus. C'est pourquoi il nous faut taper spécifiquement ``\texttt{Testo\_large\$Before}'' et ``\texttt{Testo\_large\$After}'', et non pas simplement le nom des colonnes. En revanche, comme pour le test précédent, il est indispensable d'indiquer ``\texttt{paired\ =\ TRUE}'' pour faire un test de Student sur données appariées.
 
 Les résultats fournis et leur interprétation sont identiques à ceux de la syntaxe précédente.
 
@@ -1629,7 +1632,7 @@ On constate également que si les écarts-types des 2 groupes sont proches, les 
 \hypertarget{exploration-graphique-2}{%
 \paragraph{Exploration graphique}\label{exploration-graphique-2}}
 
-Comme toujours, nous pouvons réaliser 3 types de graphiques pour en apprendre plus sur la distribution des données dans les deux groupes. En revanche, sur le graphique de type ``nuage de points,'' il est ici impossible de relier les points deux à deux. Non seulement cela n'aurait aucun sens puisque les échantillons sont indépendants, mais en outre, nous ne disposons pas du même nombre d'individus dans les 2 échantillons.
+Comme toujours, nous pouvons réaliser 3 types de graphiques pour en apprendre plus sur la distribution des données dans les deux groupes. En revanche, sur le graphique de type ``nuage de points'', il est ici impossible de relier les points deux à deux. Non seulement cela n'aurait aucun sens puisque les échantillons sont indépendants, mais en outre, nous ne disposons pas du même nombre d'individus dans les 2 échantillons.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1910,7 +1913,7 @@ Notez bien la syntaxe :
 \begin{itemize}
 \tightlist
 \item
-  Nous utilisons ici la syntaxe du type ``formule'' faisant appel au symbole ``\texttt{\textasciitilde{}}'' (Longueur des cornes en fonction de la Survie) et à l'argument ``\texttt{data\ =}.''
+  Nous utilisons ici la syntaxe du type ``formule'' faisant appel au symbole ``\texttt{\textasciitilde{}}'' (Longueur des cornes en fonction de la Survie) et à l'argument ``\texttt{data\ =}''.
 \item
   L'argument ``\texttt{paired\ =\ TRUE}'' a disparu puisque nous avons ici deux échantillons indépendants
 \item
@@ -2046,9 +2049,9 @@ Dans R, la syntaxe permettant de spécifier l'hypothèse alternative que nous so
 \item
   \texttt{alternative\ =\ "two.sided"} : pour faire un test bilatéral. Si on ne le fait pas explicitement, c'est de toutes façons cette valeur qui est utilisée par défaut.
 \item
-  \texttt{alternative\ =\ "greater"} : pour choisir l'hypothèse unilatérale ``\texttt{\textgreater{}}.''
+  \texttt{alternative\ =\ "greater"} : pour choisir l'hypothèse unilatérale ``\texttt{\textgreater{}}''.
 \item
-  \texttt{alternative\ =\ "less"} : pour choisir l'hypothèse unilatérale ``\texttt{\textless{}}.''
+  \texttt{alternative\ =\ "less"} : pour choisir l'hypothèse unilatérale ``\texttt{\textless{}}''.
 \end{itemize}
 
 Attention : le choix d'utiliser ``greater'' ou ``less'' dépend donc de l'ordre dans lequel les échantillons sont spécifiés. Cette synatxe est valable pour tous les tests de Student vus jusqu'ici (un échantillon, deux échantillons appariés, deux échantillons indépendants) et pour leurs alternatives non paramétriques (test de Wilcoxon des rangs signés, test de Wilcoxon de la somme des rangs, test du \(t\) de Welch).
@@ -2082,7 +2085,7 @@ mean in group killed mean in group living
             21.98667             24.28117 
 \end{verbatim}
 
-Comme l'indiquent les résultats fournis, l'hypothèse alternative utilisée pour faire le test est : ``La vraie différence de moyenne n'est pas égale à 0.'' Autrement dit, nous avons fait un test bilatéral avec les hypothèses suivantes :
+Comme l'indiquent les résultats fournis, l'hypothèse alternative utilisée pour faire le test est : ``La vraie différence de moyenne n'est pas égale à 0''. Autrement dit, nous avons fait un test bilatéral avec les hypothèses suivantes :
 
 \begin{itemize}
 \tightlist
@@ -2183,7 +2186,7 @@ mean in group killed mean in group living
 
 Ici, la \(p\)-value est très supérieure à \(\alpha\) puisqu'elle vaut 1. Une \(p\)-value de 1 devrait toujours attirer votre attention. La conclusion devrait donc être que l'on ne peut pas rejeter H\(_0\) : les lézards morts et vivants ont en moyenne des cornes de même longueur. Nous savons pourtant que c'est faux.
 
-Le problème est ici liè à l'ordre des catégories ``vivant'' ou ``mort'' dans le facteur \texttt{Survival} du tableau \texttt{Lizard}. Les dernières lignes des tests que nous venons de faire indiquent la moyenne de chaque groupe, mais le groupe ``killed'' apparaît toujours avant le groupe ``living.'' C'est l'ordre des niveaux dans le facteur \texttt{Survival} qui doit dicter la syntaxe appropriée :
+Le problème est ici liè à l'ordre des catégories ``vivant'' ou ``mort'' dans le facteur \texttt{Survival} du tableau \texttt{Lizard}. Les dernières lignes des tests que nous venons de faire indiquent la moyenne de chaque groupe, mais le groupe ``killed'' apparaît toujours avant le groupe ``living''. C'est l'ordre des niveaux dans le facteur \texttt{Survival} qui doit dicter la syntaxe appropriée :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2214,7 +2217,7 @@ Le problème est ici liè à l'ordre des catégories ``vivant'' ou ``mort'' dans
 Levels: killed living
 \end{verbatim}
 
-Par défaut, dans R, les niveaux d'un facteur sont classés par ordre alphabétique sauf si on spécifie manuellement un ordre différent. Ici, le niveau ``killed'' est donc le premier niveau du facteur, et ``living'' le second. Lorsque l'on réalise un test de Student avec ces données (ou un test de Wilcoxon d'ailleurs), la différence de moyenne qui est examinée par le test est donc ``moyenne des \texttt{killed} - moyenne des \texttt{living}.'' Lorsque nous avons tapé ceci :
+Par défaut, dans R, les niveaux d'un facteur sont classés par ordre alphabétique sauf si on spécifie manuellement un ordre différent. Ici, le niveau ``killed'' est donc le premier niveau du facteur, et ``living'' le second. Lorsque l'on réalise un test de Student avec ces données (ou un test de Wilcoxon d'ailleurs), la différence de moyenne qui est examinée par le test est donc ``moyenne des \texttt{killed} - moyenne des \texttt{living}''. Lorsque nous avons tapé ceci :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2257,7 +2260,7 @@ Reprenez chaque exemple et exercice de cette séance de TP et identifiez les sit
 
 Avant toute chose, merci de relire l'introduction (section \ref{intro}) de ce document, et de suivre toutes les étapes qui y sont décrites (création d'un nouveau sous-dossier nommé \texttt{TP\_2} dans votre dossier \texttt{Biometrie3}, changement du répertoire de travail et création d'un nouveau script).
 
-Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du \texttt{tidyverse} (\protect\hyperlink{ref-R-tidyverse}{Wickham, 2021b}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (\protect\hyperlink{ref-R-readr}{Wickham \& Hester, 2021}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (\protect\hyperlink{ref-R-readxl}{Wickham \& Bryan, 2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (\protect\hyperlink{ref-R-skimr}{Waring et al., 2021}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (\protect\hyperlink{ref-R-car}{Fox et al., 2021}), qui permet d'effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package \texttt{broom} (\protect\hyperlink{ref-R-broom}{Robinson et al., 2021}), qui fait partie du \texttt{tidyverse} mais qu'il faut charger explicitement. La fonction \texttt{tidy()} de ce package nous permettra de ``ranger'' correctement les résultats de tests dans un \texttt{tibble} :
+Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du \texttt{tidyverse} (\protect\hyperlink{ref-tidyverse2019}{Wickham et al., 2019}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (\protect\hyperlink{ref-R-readr}{Wickham \& Hester, 2021}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (\protect\hyperlink{ref-R-readxl}{Wickham \& Bryan, 2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (\protect\hyperlink{ref-R-skimr}{Waring et al., 2021}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (\protect\hyperlink{ref-R-car}{Fox et al., 2021}), qui permet d'effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package \texttt{broom} (\protect\hyperlink{ref-R-broom}{Robinson et al., 2021}), qui fait partie du \texttt{tidyverse} mais qu'il faut charger explicitement. La fonction \texttt{tidy()} de ce package nous permettra de ``ranger'' correctement les résultats de tests dans un \texttt{tibble} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2296,8 +2299,8 @@ Vous aurez également besoin des jeux de données suivants :
 \hypertarget{exploration-pruxe9alable-des-donnuxe9es-1}{%
 \subsubsection{Exploration préalable des données}\label{exploration-pruxe9alable-des-donnuxe9es-1}}
 
-Voyager dans un pays éloigné peut faire souffrir de décallage horaire. Habituellement, la resynchronisation de l'horloge interne circadienne dans le nouveau fuseau horaire est réalisée grâce à la perception de la lumière
-par les yeux. Ce changement progressif du rythme de notre horloge interne est appelé ``décalage de phase.'' Ce phénomène a été étudié par 2 chercheurs en 1998 (\protect\hyperlink{ref-Campbell1998}{Campbell \& Murphy, 1998}), qui ont montré que ce décallage de phase pouvait également être obtenu en exposant des sujets à la lumière, non pas au niveau de leurs yeux, mais au niveau de leur \href{https://fr.wikipedia.org/wiki/Fosse_poplitée}{fosse (ou creux) poplitée}, c'est-à-dire, derrière les genoux.\\
+Voyager dans un pays éloigné peut faire souffrir de décalage horaire. Habituellement, la resynchronisation de l'horloge interne circadienne dans le nouveau fuseau horaire est réalisée grâce à la perception de la lumière
+par les yeux. Ce changement progressif du rythme de notre horloge interne est appelé ``décalage de phase''. Ce phénomène a été étudié par 2 chercheurs en 1998 (\protect\hyperlink{ref-Campbell1998}{Campbell \& Murphy, 1998}), qui ont montré que ce décalage de phase pouvait également être obtenu en exposant des sujets à la lumière, non pas au niveau de leurs yeux, mais au niveau de leur \href{https://fr.wikipedia.org/wiki/Fosse_poplitée}{fosse (ou creux) poplitée}, c'est-à-dire, derrière les genoux.\\
 Cette découverte a été vivement critiquée par certains, et saluée comme une découverte majeure par d'autres. Toutefois, certains aspects du design expérimental de l'étude de 1998 ont été mis en doute en 2002 : il semble en effet que lors de l'exposition du creux poplité, les yeux de certains patients ont été également exposés à de faibles intensités lumineuses. Pour vérifier les trouvailles de Campbell et Murphy, Wright et Czeisler (\protect\hyperlink{ref-Wright2002}{Wright \& Czeisler, 2002}) ont ré-examiné ce phénomène. La nouvelle expérience a évalué les rythmes circadiens en mesurant les cycles quotidiens de production de mélatonine chez 22 participants placés au hasard dans 3 groupes. Les patients étaient réveillés en pleine nuit et exposés :
 
 \begin{enumerate}
@@ -2357,7 +2360,7 @@ Le tableau obtenu est-il au format long ou au format court/large ? Pourquoi un t
 8   -1.27 NA    NA   
 \end{verbatim}
 
-Lorsque l'on réalise une analyse de variance, puisque les effectifs ne sont pas nécessairement identiques dans tous les groupes (c'est ce qu'on appelle un design déséquilibré, ou ``unbalanced design''), présenter les tableaux au format long est indispensable. Par ailleurs, notez que les ANOVAs réalisées sur des ``balanced design'' (ou designs équilibrés, pour lesquels tous les groupes sont de même taille), sont beaucoup plus puissantes que les ANOVAs réalisées sur des ``unbalanced designs.''
+Lorsque l'on réalise une analyse de variance, puisque les effectifs ne sont pas nécessairement identiques dans tous les groupes (c'est ce qu'on appelle un design déséquilibré, ou ``unbalanced design''), présenter les tableaux au format long est indispensable. Par ailleurs, notez que les ANOVAs réalisées sur des ``balanced design'' (ou designs équilibrés, pour lesquels tous les groupes sont de même taille), sont beaucoup plus puissantes que les ANOVAs réalisées sur des ``unbalanced designs''.
 
 Ici, le tableau de données est très simple (et de petite taille). Il n'y a pas de données manquantes et aucune création de nouvelle variable n'est nécessaire. La seule modification que nous devrions faire est de transformer la variable \texttt{treatment} en facteur :
 
@@ -3076,7 +3079,7 @@ Ici, le coefficient de corrélation (noté \(r\)) vaut 1 dans les deux cas, car 
 
 \begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-97-1} \end{center}
 
-Plus la dispersion autour d'une droite parfaite sera grande, plus la corrélation sera faible. C'est la raison pour laquelle lorsque l'on parle de ``corrélation,'' on sous-entend généralement \textbf{corrélation linéaire}. Ainsi, 2 variables peuvent avoir une relation très forte, mais un coefficient de corrélation nul, si leur relation n'est pas linéaire :
+Plus la dispersion autour d'une droite parfaite sera grande, plus la corrélation sera faible. C'est la raison pour laquelle lorsque l'on parle de ``corrélation'', on sous-entend généralement \textbf{corrélation linéaire}. Ainsi, 2 variables peuvent avoir une relation très forte, mais un coefficient de corrélation nul, si leur relation n'est pas linéaire :
 
 \begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-98-1} \end{center}
 
@@ -3106,7 +3109,7 @@ Dans la suite de ce chapitre, nous allons voir comment calculer le coefficient d
 \hypertarget{importation-et-examen-visuel-4}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-4}}
 
-Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation exsite-t-elle également chez d'autres espèces animales, chez qui cette relation pourrait être étudiée plus facilement ? \protect\hyperlink{ref-muller2011}{Müller et al.} (\protect\hyperlink{ref-muller2011}{2011}) ont étudié cette possibilité chez le fou de Grant (\emph{Sula granti}), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d'autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d'une bague d'identification individuelle. Ces 24 individus ont ensuite été suivis à l'âge adulte, lorsqu'ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier \href{https://besibo.github.io/Biometrie3/data/birds.csv}{\texttt{birds.csv}}. Importez ces données dans \texttt{R} dans un objet noté \texttt{birds}.
+Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation existe-t-elle également chez d'autres espèces animales, chez qui cette relation pourrait être étudiée plus facilement ? Müller et al. (\protect\hyperlink{ref-muller2011}{2011}) ont étudié cette possibilité chez le fou de Grant (\emph{Sula granti}), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d'autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d'une bague d'identification individuelle. Ces 24 individus ont ensuite été suivis à l'âge adulte, lorsqu'ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier \href{https://besibo.github.io/Biometrie3/data/birds.csv}{\texttt{birds.csv}}. Importez ces données dans \texttt{R} dans un objet noté \texttt{birds}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3441,10 +3444,10 @@ Enfin, comme pour le test de Pearson, il est possible de réaliser un test de Sp
 \hypertarget{canis-lupus}{%
 \paragraph{\texorpdfstring{\emph{Canis lupus}}{Canis lupus}}\label{canis-lupus}}
 
-En 1970, le loup \emph{canis lupus} a été éradiqué en Norvège et en Suède. Autour de 1980, un couple de loups, originaire d'une population plus à l'Est, a fondé une nouvelle population en Suède. En l'espace de 20 ans, cette population comptait approximativement 100 loups. Il y a toutefois fort à craindre qu'une population fondée par un si petit nombre d'individus souffre de consanguinité. \protect\hyperlink{ref-liberg2005}{Liberg et al.} (\protect\hyperlink{ref-liberg2005}{2005}) ont compilé les informations sur la reproduction dans cette population entre 1983 et 2002, et ils ont pu reconstruire le pédigrée des individus la composant. Ils ont ainsi été en mesure de déterminer avec précision le coefficient individuel de consanguinité dans 24 portées de louveteaux.
+En 1970, le loup \emph{canis lupus} a été éradiqué en Norvège et en Suède. Autour de 1980, un couple de loups, originaire d'une population plus à l'Est, a fondé une nouvelle population en Suède. En l'espace de 20 ans, cette population comptait approximativement 100 loups. Il y a toutefois fort à craindre qu'une population fondée par un si petit nombre d'individus souffre de consanguinité. Liberg et al. (\protect\hyperlink{ref-liberg2005}{2005}) ont compilé les informations sur la reproduction dans cette population entre 1983 et 2002, et ils ont pu reconstruire le pédigrée des individus la composant. Ils ont ainsi été en mesure de déterminer avec précision le coefficient individuel de consanguinité dans 24 portées de louveteaux.
 Pour mémoire, le coefficient individuel de consanguinité vaut 0 si ses parents ne sont pas apparentés, 0.25 si ses parents sont frères et sœurs issus de grands-parents non apparentés, et plus de 0.25 si les associations consanguines se répètent depuis plusieurs générations.
 
-On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de \protect\hyperlink{ref-liberg2005}{Liberg et al.} (\protect\hyperlink{ref-liberg2005}{2005}) sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/loups.csv}{\texttt{loups.csv}}. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l'ordre des étapes décrites plus haut. En particulier, vous prendrez soin de :
+On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de Liberg et al. (\protect\hyperlink{ref-liberg2005}{2005}) sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/loups.csv}{\texttt{loups.csv}}. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l'ordre des étapes décrites plus haut. En particulier, vous prendrez soin de :
 
 \begin{itemize}
 \tightlist
@@ -3467,12 +3470,12 @@ On souhaite déterminer si le coefficient de consanguinité est associé à la p
 
 À quel point les souvenirs d'évènements miraculeux sont-il fiables ? Une façon d'étudier cette question est de comparer différents récits de tours de magie extraordinaires. Parmis les tours les plus célèbres, on trouve celui de la corde du fakir. Dans l'une de ces versions, un magicien jette l'extrémité une corde d'apparence normale en l'air et cette corde devient rigide. Un garçon grimpe à la corde et finit par disparaître en haut de la scène. Le magicien lui demande de répondre mais n'obtient pas de réponse. Il attrape alors un couteau, grimpe à son tour, et le garçon, découpé en morceaux, tombe du ciel dans un panier posé par terre. Le magicien redescent de la corde et aide le garçon vivant, en un seul morceau et non blessé, à sortir du panier.
 
-\protect\hyperlink{ref-wiseman1996}{Wiseman \& Lamont} (\protect\hyperlink{ref-wiseman1996}{1996}) ont retrouvé 21 récits écrits de ce tour par des personnes ayant elles-mêmes assisté à ce tour. Ils ont attribué un score à chaque description selon le caractère plus ou moins impressionnant de la description. Par exemple, un score de 1 était attribué si le récit faisait état que ``le garçon grimpe à la corde, puis il en redescend.'' Les récits les plus impressionnants se sont vus attribuer la note de 5 (``le garçon grimpe, disparaît, est découpé en morceaux et réapparaît en chair et en os devant le public'').
+Wiseman \& Lamont (\protect\hyperlink{ref-wiseman1996}{1996}) ont retrouvé 21 récits écrits de ce tour par des personnes ayant elles-mêmes assisté à ce tour. Ils ont attribué un score à chaque description selon le caractère plus ou moins impressionnant de la description. Par exemple, un score de 1 était attribué si le récit faisait état que ``le garçon grimpe à la corde, puis il en redescend''. Les récits les plus impressionnants se sont vus attribuer la note de 5 (``le garçon grimpe, disparaît, est découpé en morceaux et réapparaît en chair et en os devant le public'').
 Pour chaque récit, les chercheurs ont également enregistré le nombre d'années écoulées entre le moment où le témoin a assisté au tour de magie, et le moment où il a consigné son récit par écrit.
 
 Y a-t'il un lien entre le caractère impressionnant (``\texttt{impressiveness}'') d'un souvenir et le temps écoulé jusqu'à l'écriture de sa description (``\texttt{years}'') ? Si oui, cela pourrait indiquer une tendance de la mémoire humaine à exagérer et à perdre en précision avec le temps.
 
-Les données de \protect\hyperlink{ref-wiseman1996}{Wiseman \& Lamont} (\protect\hyperlink{ref-wiseman1996}{1996}) sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/ropetrick.csv}{\texttt{ropetrick.csv}}. Importez ces données et analysez-les en respectant les consignes de l'exercice précédent.
+Les données de Wiseman \& Lamont (\protect\hyperlink{ref-wiseman1996}{1996}) sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/ropetrick.csv}{\texttt{ropetrick.csv}}. Importez ces données et analysez-les en respectant les consignes de l'exercice précédent.
 
 \hypertarget{ruxe9gression-linuxe9aire}{%
 \subsection{Régression linéaire}\label{ruxe9gression-linuxe9aire}}
@@ -3483,16 +3486,16 @@ La régression est une méthode utilisée pour prédire les valeurs d'une variab
 
 Contrairement à la corrélation, ici, on n'examine pas seulement une éventuelle liaison : on suppose qu'une variable peut-être (en partie) expliquée par une autre. Nous aurons donc à distinguer les variables expliquées (ou dépendantes) qui figureront sur l'axe des y et seront nos variables prédites, et les variables explicatives (ou indépendantes) qui figureront sur l'axe des abscisses et seront les prédicteurs.
 
-Une façon de distinguer corrélation et régression consiste à dire que ``corrélation n'est pas causalité.'' Si on compare un nombre de variables suffisamment important, on finira toujours par en trouver qui seront corrélées. Cela ne veut pas dire pour autant qu'il existe un lien de cause à effet entre l'une et l'autre. Pour vous en convaincre, examinez \href{http://www.tylervigen.com/spurious-correlations}{cette page}. Lorsque l'on s'intéresse à la régression linéaire, on essaie au contraire de prédire ou d'expliquer. En d'autres termes, on considère que les variations de la variable explicative sont au moins en partie la cause des variations de la variable expliquée.
+Une façon de distinguer corrélation et régression consiste à dire que ``corrélation n'est pas causalité''. Si on compare un nombre de variables suffisamment important, on finira toujours par en trouver qui seront corrélées. Cela ne veut pas dire pour autant qu'il existe un lien de cause à effet entre l'une et l'autre. Pour vous en convaincre, examinez \href{http://www.tylervigen.com/spurious-correlations}{cette page}. Lorsque l'on s'intéresse à la régression linéaire, on essaie au contraire de prédire ou d'expliquer. En d'autres termes, on considère que les variations de la variable explicative sont au moins en partie la cause des variations de la variable expliquée.
 
 Lorsque l'on s'intéresse à la régression linéaire, on considère que la relation qui lie les deux variables est linéaire, et on souhaite \textbf{quantifier l'intensité de la relation}. Nous allons examiner maintenant comment faire ça dans \texttt{R}.
 
 \hypertarget{exploration-pruxe9alable-des-donnuxe9es-3}{%
 \subsubsection{Exploration préalable des données}\label{exploration-pruxe9alable-des-donnuxe9es-3}}
 
-Les activités humaines réduisent le nombre d'espèces dans un grand nombre d'écosystèmes à la surface du globe. Est-ce que cette diminution du nombre d'espèces affecte le fonctionnement de base des écosystèmes ? Où est-ce qu'au contraire, les espèces végétales sont majoritairement interchangeables, les fonctions des espèces disparues pouvants être assurées par les espèces toujours présentes ?
+Les activités humaines réduisent le nombre d'espèces dans un grand nombre d'écosystèmes à la surface du globe. Est-ce que cette diminution du nombre d'espèces affecte le fonctionnement de base des écosystèmes ? Où est-ce qu'au contraire, les espèces végétales sont majoritairement interchangeables, les fonctions des espèces disparues pouvant être assurées par les espèces toujours présentes ?
 
-Pour tenter de répondre à cette question, \protect\hyperlink{ref-tilman2006}{Tilman et al.} (\protect\hyperlink{ref-tilman2006}{2006}) ont ensemencé 161 parcelles de 9 mètres sur 9 mètres dans la réserve de Cedar Creek (Minesota, USA). Ils ont utilisé un nombre variable d'espèces typiques des prairies et ont mesuré la production de biomasse de chaque parcelle pendant 10 ans. Des lots de 1, 2, 4, 8 ou 16 plantes pluriannuelles (choisies au hasard parmi une liste de 18 espèces possibles) ont été assignés au hasard dans chacune des 161 parcelles. À l'issue des 10 années d'étude, les chercheurs ont mesuré un indice de stabilité de la biomasse en divisant la moyenne des biomasses sur 10 ans, par l'écart-type de ces mêmes biomasses.
+Pour tenter de répondre à cette question, Tilman et al. (\protect\hyperlink{ref-tilman2006}{2006}) ont ensemencé 161 parcelles de 9 mètres sur 9 mètres dans la réserve de Cedar Creek (Minesota, USA). Ils ont utilisé un nombre variable d'espèces typiques des prairies et ont mesuré la production de biomasse de chaque parcelle pendant 10 ans. Des lots de 1, 2, 4, 8 ou 16 plantes pluriannuelles (choisies au hasard parmi une liste de 18 espèces possibles) ont été assignés au hasard dans chacune des 161 parcelles. À l'issue des 10 années d'étude, les chercheurs ont mesuré un indice de stabilité de la biomasse en divisant la moyenne des biomasses sur 10 ans, par l'écart-type de ces mêmes biomasses.
 
 Les données de cette expérience sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/plantbiomass.csv}{\texttt{plantbiomass.csv}}.
 
@@ -3922,7 +3925,7 @@ Examinez attentivement les nombreux résultats produits par cette commande dans 
 
 Les hommes ont en moyenne un ratio ``largeur du visage sur longueur du visage'' supérieur à celui des femmes. Cela reflète des niveaux d'expression de la testostérone différents entre hommes et femmes au moment de la puberté. On sait aussi que les niveaux de testosterone permettent de prédire, dans une certaine mesure, l'agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire l'agressivité ?
 
-Pour tester cela, \protect\hyperlink{ref-carre2008}{Carré \& McCormick} (\protect\hyperlink{ref-carre2008}{2008}) ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d'abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier \href{https://besibo.github.io/Biometrie3/data/hockey.csv}{\texttt{hockey.csv}}.
+Pour tester cela, Carré \& McCormick (\protect\hyperlink{ref-carre2008}{2008}) ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d'abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier \href{https://besibo.github.io/Biometrie3/data/hockey.csv}{\texttt{hockey.csv}}.
 
 Importez, examinez et analysez ces données pour répondre à la question posée.
 
@@ -3932,71 +3935,74 @@ Importez, examinez et analysez ces données pour répondre à la question posée
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
-\leavevmode\hypertarget{ref-Campbell1998}{}%
-\textsc{Campbell SS, \& Murphy PJ}. (1998). Extraocular circadian phototransduction in humans. \emph{Science}, \textbf{279}(5349), 396--399. \url{https://doi.org/10.1126/science.279.5349.396}
+\leavevmode\vadjust pre{\hypertarget{ref-Campbell1998}{}}%
+\textsc{Campbell SS}, \& \textsc{Murphy PJ}. (1998). Extraocular circadian phototransduction in humans. \emph{Science}, \textbf{279}(5349), 396--399. \url{https://doi.org/10.1126/science.279.5349.396}
 
-\leavevmode\hypertarget{ref-carre2008}{}%
-\textsc{Carré JM, \& McCormick CM}. (2008). In your face: Facial metrics predict aggressive behaviour in the laboratory and in varsity and professional hockey players. \emph{Proceedings of the Royal Society B: Biological Sciences}, \textbf{275}(1651), 2651--2656. \url{https://doi.org/10.1098/rspb.2008.0873}
+\leavevmode\vadjust pre{\hypertarget{ref-carre2008}{}}%
+\textsc{Carré JM}, \& \textsc{McCormick CM}. (2008). In your face: Facial metrics predict aggressive behaviour in the laboratory and in varsity and professional hockey players. \emph{Proceedings of the Royal Society B: Biological Sciences}, \textbf{275}(1651), 2651--2656. \url{https://doi.org/10.1098/rspb.2008.0873}
 
-\leavevmode\hypertarget{ref-R-car}{}%
-\textsc{Fox J, Weisberg S, \& Price B}. (2021). \emph{Car: Companion to applied regression}. Retrieved from \url{https://CRAN.R-project.org/package=car}
+\leavevmode\vadjust pre{\hypertarget{ref-R-car}{}}%
+\textsc{Fox J}, \textsc{Weisberg S}, \& \textsc{Price B}. (2021). \emph{Car: Companion to applied regression}. Retrieved from \url{https://CRAN.R-project.org/package=car}
 
-\leavevmode\hypertarget{ref-Fuller2003}{}%
-\textsc{Fuller A, Kamerman PR, Maloney SK, Mitchell G, \& Mitchell D}. (2003). Variability in brain and arterial blood temperatures in free-ranging ostriches in their natural habitat. \emph{Journal of Experimental Biology}, \textbf{206}(7), 1171--1181. \url{https://doi.org/10.1242/jeb.00230}
+\leavevmode\vadjust pre{\hypertarget{ref-Fuller2003}{}}%
+\textsc{Fuller A}, \textsc{Kamerman PR}, \textsc{Maloney SK}, \textsc{Mitchell G}, \& \textsc{Mitchell D}. (2003). Variability in brain and arterial blood temperatures in free-ranging ostriches in their natural habitat. \emph{Journal of Experimental Biology}, \textbf{206}(7), 1171--1181. \url{https://doi.org/10.1242/jeb.00230}
 
-\leavevmode\hypertarget{ref-Hasselquist1999}{}%
-\textsc{Hasselquist D, Marsh JA, Sherman PW, \& Wingfield JC}. (1999). Is avian humoral immunocompetence suppressed by testosterone? \emph{Behavioral Ecology and Sociobiology}, \textbf{45}(3), 167--175. \url{https://doi.org/10.1007/s002650050550}
+\leavevmode\vadjust pre{\hypertarget{ref-Hasselquist1999}{}}%
+\textsc{Hasselquist D}, \textsc{Marsh JA}, \textsc{Sherman PW}, \& \textsc{Wingfield JC}. (1999). Is avian humoral immunocompetence suppressed by testosterone? \emph{Behavioral Ecology and Sociobiology}, \textbf{45}(3), 167--175. \url{https://doi.org/10.1007/s002650050550}
 
-\leavevmode\hypertarget{ref-liberg2005}{}%
-\textsc{Liberg O, Andrén H, Pedersen H-C, Sand H, Sejberg, Wabakken P, \ldots{} Bensch S}. (2005). Severe inbreeding depression in a wild wolf {Canis} lupus population. \emph{Biology Letters}, \textbf{1}(1), 17--20. \url{https://doi.org/10.1098/rsbl.2004.0266}
+\leavevmode\vadjust pre{\hypertarget{ref-liberg2005}{}}%
+\textsc{Liberg O}, \textsc{Andrén H}, \textsc{Pedersen H-C}, \textsc{Sand H}, \textsc{Sejberg}, \textsc{Wabakken P}, \ldots{} \textsc{Bensch S}. (2005). Severe inbreeding depression in a wild wolf {Canis} lupus population. \emph{Biology Letters}, \textbf{1}(1), 17--20. \url{https://doi.org/10.1098/rsbl.2004.0266}
 
-\leavevmode\hypertarget{ref-Molofsky2005}{}%
-\textsc{Molofsky J, \& Ferdy J-B}. (2005). Extinction dynamics in experimental metapopulations. \emph{Proceedings of the National Academy of Sciences}, \textbf{102}(10), 3726--3731. \url{https://doi.org/10.1073/pnas.0404576102}
+\leavevmode\vadjust pre{\hypertarget{ref-Molofsky2005}{}}%
+\textsc{Molofsky J}, \& \textsc{Ferdy J-B}. (2005). Extinction dynamics in experimental metapopulations. \emph{Proceedings of the National Academy of Sciences}, \textbf{102}(10), 3726--3731. \url{https://doi.org/10.1073/pnas.0404576102}
 
-\leavevmode\hypertarget{ref-muller2011}{}%
-\textsc{Müller MS, Porter ET, Grace JK, Awkerman JA, Birchler KT, Gunderson AR, \ldots{} Anderson DJ}. (2011). Maltreated nestlings exhibit correlated maltreatment as adults: {Evidence} of a {``cycle of violence''} in {Nazca Boobies} ( {\emph{Sula}}{ \emph{Granti}} ). \emph{The Auk}, \textbf{128}(4), 615--619. \url{https://doi.org/10.1525/auk.2011.11008}
+\leavevmode\vadjust pre{\hypertarget{ref-muller2011}{}}%
+\textsc{Müller MS}, \textsc{Porter ET}, \textsc{Grace JK}, \textsc{Awkerman JA}, \textsc{Birchler KT}, \textsc{Gunderson AR}, \ldots{} \textsc{Anderson DJ}. (2011). Maltreated nestlings exhibit correlated maltreatment as adults: {Evidence} of a {``cycle of violence''} in {Nazca Boobies} ( {\emph{Sula}}{ \emph{Granti}} ). \emph{The Auk}, \textbf{128}(4), 615--619. \url{https://doi.org/10.1525/auk.2011.11008}
 
-\leavevmode\hypertarget{ref-R-broom}{}%
-\textsc{Robinson D, Hayes A, \& Couch S}. (2021). \emph{Broom: Convert statistical objects into tidy tibbles}. Retrieved from \url{https://CRAN.R-project.org/package=broom}
+\leavevmode\vadjust pre{\hypertarget{ref-R-broom}{}}%
+\textsc{Robinson D}, \textsc{Hayes A}, \& \textsc{Couch S}. (2021). \emph{Broom: Convert statistical objects into tidy tibbles}. Retrieved from \url{https://CRAN.R-project.org/package=broom}
 
-\leavevmode\hypertarget{ref-R-DescTools}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-R-DescTools}{}}%
 \textsc{Signorell A}. (2021). \emph{DescTools: Tools for descriptive statistics}. Retrieved from \url{https://CRAN.R-project.org/package=DescTools}
 
-\leavevmode\hypertarget{ref-tilman2006}{}%
-\textsc{Tilman D, Reich PB, \& Knops JMH}. (2006). Biodiversity and ecosystem stability in a decade-long grassland experiment. \emph{Nature}, \textbf{441}(7093), 629. \url{https://doi.org/10.1038/nature04742}
+\leavevmode\vadjust pre{\hypertarget{ref-tilman2006}{}}%
+\textsc{Tilman D}, \textsc{Reich PB}, \& \textsc{Knops JMH}. (2006). Biodiversity and ecosystem stability in a decade-long grassland experiment. \emph{Nature}, \textbf{441}(7093), 629. \url{https://doi.org/10.1038/nature04742}
 
-\leavevmode\hypertarget{ref-R-skimr}{}%
-\textsc{Waring E, Quinn M, McNamara A, Arino de la Rubia E, Zhu H, \& Ellis S}. (2021). \emph{Skimr: Compact and flexible summaries of data}. Retrieved from \url{https://CRAN.R-project.org/package=skimr}
+\leavevmode\vadjust pre{\hypertarget{ref-R-skimr}{}}%
+\textsc{Waring E}, \textsc{Quinn M}, \textsc{McNamara A}, \textsc{Arino de la Rubia E}, \textsc{Zhu H}, \& \textsc{Ellis S}. (2021). \emph{Skimr: Compact and flexible summaries of data}. Retrieved from \url{https://CRAN.R-project.org/package=skimr}
 
-\leavevmode\hypertarget{ref-whitlock2015}{}%
-\textsc{Whitlock M, \& Schluter D}. (2015). \emph{The analysis of biological data} (Second edition). Greenwood Village, Colorado: {Roberts and Company Publishers}.
+\leavevmode\vadjust pre{\hypertarget{ref-whitlock2015}{}}%
+\textsc{Whitlock M}, \& \textsc{Schluter D}. (2015). \emph{The analysis of biological data} (Second edition). Greenwood Village, Colorado: {Roberts and Company Publishers}.
 
-\leavevmode\hypertarget{ref-R-tidyr}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-R-tidyr}{}}%
 \textsc{Wickham H}. (2021a). \emph{Tidyr: Tidy messy data}. Retrieved from \url{https://CRAN.R-project.org/package=tidyr}
 
-\leavevmode\hypertarget{ref-R-tidyverse}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-R-tidyverse}{}}%
 \textsc{Wickham H}. (2021b). \emph{Tidyverse: Easily install and load the tidyverse}. Retrieved from \url{https://CRAN.R-project.org/package=tidyverse}
 
-\leavevmode\hypertarget{ref-R-readxl}{}%
-\textsc{Wickham H, \& Bryan J}. (2019). \emph{Readxl: Read excel files}. Retrieved from \url{https://CRAN.R-project.org/package=readxl}
+\leavevmode\vadjust pre{\hypertarget{ref-tidyverse2019}{}}%
+\textsc{Wickham H}, \textsc{Averick M}, \textsc{Bryan J}, \textsc{Chang W}, \textsc{McGowan LD}, \textsc{François R}, \ldots{} \textsc{Yutani H}. (2019). Welcome to the {tidyverse}. \emph{Journal of Open Source Software}, \textbf{4}(43), 1686. \url{https://doi.org/10.21105/joss.01686}
 
-\leavevmode\hypertarget{ref-R-ggplot2}{}%
-\textsc{Wickham H, Chang W, Henry L, Pedersen TL, Takahashi K, Wilke C, \ldots{} Dunnington D}. (2021). \emph{ggplot2: Create elegant data visualisations using the grammar of graphics}. Retrieved from \url{https://CRAN.R-project.org/package=ggplot2}
+\leavevmode\vadjust pre{\hypertarget{ref-R-readxl}{}}%
+\textsc{Wickham H}, \& \textsc{Bryan J}. (2019). \emph{Readxl: Read excel files}. Retrieved from \url{https://CRAN.R-project.org/package=readxl}
 
-\leavevmode\hypertarget{ref-R-dplyr}{}%
-\textsc{Wickham H, François R, Henry L, \& Müller K}. (2021). \emph{Dplyr: A grammar of data manipulation}. Retrieved from \url{https://CRAN.R-project.org/package=dplyr}
+\leavevmode\vadjust pre{\hypertarget{ref-R-ggplot2}{}}%
+\textsc{Wickham H}, \textsc{Chang W}, \textsc{Henry L}, \textsc{Pedersen TL}, \textsc{Takahashi K}, \textsc{Wilke C}, \ldots{} \textsc{Dunnington D}. (2021). \emph{ggplot2: Create elegant data visualisations using the grammar of graphics}. Retrieved from \url{https://CRAN.R-project.org/package=ggplot2}
 
-\leavevmode\hypertarget{ref-R-readr}{}%
-\textsc{Wickham H, \& Hester J}. (2021). \emph{Readr: Read rectangular text data}. Retrieved from \url{https://CRAN.R-project.org/package=readr}
+\leavevmode\vadjust pre{\hypertarget{ref-R-dplyr}{}}%
+\textsc{Wickham H}, \textsc{François R}, \textsc{Henry L}, \& \textsc{Müller K}. (2021). \emph{Dplyr: A grammar of data manipulation}. Retrieved from \url{https://CRAN.R-project.org/package=dplyr}
 
-\leavevmode\hypertarget{ref-wiseman1996}{}%
-\textsc{Wiseman R, \& Lamont P}. (1996). Unravelling the {Indian} rope-trick. \emph{Nature}, \textbf{383}(6597), 212. \url{https://doi.org/10.1038/383212a0}
+\leavevmode\vadjust pre{\hypertarget{ref-R-readr}{}}%
+\textsc{Wickham H}, \& \textsc{Hester J}. (2021). \emph{Readr: Read rectangular text data}. Retrieved from \url{https://CRAN.R-project.org/package=readr}
 
-\leavevmode\hypertarget{ref-Wright2002}{}%
-\textsc{Wright KP, \& Czeisler CA}. (2002). Absence of circadian phase resetting in response to bright light behind the knees. \emph{Science}, \textbf{297}(5581), 571--571. \url{https://doi.org/10.1126/science.1071697}
+\leavevmode\vadjust pre{\hypertarget{ref-wiseman1996}{}}%
+\textsc{Wiseman R}, \& \textsc{Lamont P}. (1996). Unravelling the {Indian} rope-trick. \emph{Nature}, \textbf{383}(6597), 212. \url{https://doi.org/10.1038/383212a0}
 
-\leavevmode\hypertarget{ref-Young2004}{}%
-\textsc{Young KV, Brodie ED, \& Brodie ED}. (2004). How the horned lizard got its horns. \emph{Science}, \textbf{304}(5667), 65--65. \url{https://doi.org/10.1126/science.1094790}
+\leavevmode\vadjust pre{\hypertarget{ref-Wright2002}{}}%
+\textsc{Wright KP}, \& \textsc{Czeisler CA}. (2002). Absence of circadian phase resetting in response to bright light behind the knees. \emph{Science}, \textbf{297}(5581), 571--571. \url{https://doi.org/10.1126/science.1071697}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Young2004}{}}%
+\textsc{Young KV}, \textsc{Brodie ED}, \& \textsc{Brodie ED}. (2004). How the horned lizard got its horns. \emph{Science}, \textbf{304}(5667), 65--65. \url{https://doi.org/10.1126/science.1094790}
 
 \end{CSLReferences}
 

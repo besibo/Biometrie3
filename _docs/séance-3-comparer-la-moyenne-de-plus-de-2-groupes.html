@@ -24,7 +24,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2022-01-26" />
+<meta name="date" content="2022-03-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -251,7 +251,7 @@ div.csl-indent {
 <div id="packages-et-données" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Packages et données</h2>
 <p>Avant toute chose, merci de relire l’introduction (section <a href="intro.html#intro">2</a>) de ce document, et de suivre toutes les étapes qui y sont décrites (création d’un nouveau sous-dossier nommé <code>TP_2</code> dans votre dossier <code>Biometrie3</code>, changement du répertoire de travail et création d’un nouveau script).</p>
-<p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du <code>tidyverse</code> <span class="citation">(<a href="#ref-R-tidyverse" role="doc-biblioref">Wickham, 2021b</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(<a href="#ref-R-readr" role="doc-biblioref">Wickham &amp; Hester, 2021</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(<a href="#ref-R-readxl" role="doc-biblioref">Wickham &amp; Bryan, 2019</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(<a href="#ref-R-skimr" role="doc-biblioref">Waring et al., 2021</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(<a href="#ref-R-car" role="doc-biblioref">Fox et al., 2021</a>)</span>, qui permet d’effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package <code>broom</code> <span class="citation">(<a href="#ref-R-broom" role="doc-biblioref">Robinson et al., 2021</a>)</span>, qui fait partie du <code>tidyverse</code> mais qu’il faut charger explicitement. La fonction <code>tidy()</code> de ce package nous permettra de “ranger” correctement les résultats de tests dans un <code>tibble</code> :</p>
+<p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du <code>tidyverse</code> <span class="citation">(<a href="#ref-tidyverse2019" role="doc-biblioref">Wickham et al., 2019</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(<a href="#ref-R-readr" role="doc-biblioref">Wickham &amp; Hester, 2021</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(<a href="#ref-R-readxl" role="doc-biblioref">Wickham &amp; Bryan, 2019</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(<a href="#ref-R-skimr" role="doc-biblioref">Waring et al., 2021</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(<a href="#ref-R-car" role="doc-biblioref">Fox et al., 2021</a>)</span>, qui permet d’effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package <code>broom</code> <span class="citation">(<a href="#ref-R-broom" role="doc-biblioref">Robinson et al., 2021</a>)</span>, qui fait partie du <code>tidyverse</code> mais qu’il faut charger explicitement. La fonction <code>tidy()</code> de ce package nous permettra de “ranger” correctement les résultats de tests dans un <code>tibble</code> :</p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb111-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb111-3"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
@@ -271,8 +271,8 @@ div.csl-indent {
 <h2><span class="header-section-number">4.2</span> L’analyse de variance à un facteur</h2>
 <div id="exploration-préalable-des-données-1" class="section level3" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Exploration préalable des données</h3>
-<p>Voyager dans un pays éloigné peut faire souffrir de décallage horaire. Habituellement, la resynchronisation de l’horloge interne circadienne dans le nouveau fuseau horaire est réalisée grâce à la perception de la lumière
-par les yeux. Ce changement progressif du rythme de notre horloge interne est appelé “décalage de phase.” Ce phénomène a été étudié par 2 chercheurs en 1998 <span class="citation">(<a href="#ref-Campbell1998" role="doc-biblioref">Campbell &amp; Murphy, 1998</a>)</span>, qui ont montré que ce décallage de phase pouvait également être obtenu en exposant des sujets à la lumière, non pas au niveau de leurs yeux, mais au niveau de leur <a href="https://fr.wikipedia.org/wiki/Fosse_poplitée">fosse (ou creux) poplitée</a>, c’est-à-dire, derrière les genoux.<br />
+<p>Voyager dans un pays éloigné peut faire souffrir de décalage horaire. Habituellement, la resynchronisation de l’horloge interne circadienne dans le nouveau fuseau horaire est réalisée grâce à la perception de la lumière
+par les yeux. Ce changement progressif du rythme de notre horloge interne est appelé “décalage de phase”. Ce phénomène a été étudié par 2 chercheurs en 1998 <span class="citation">(<a href="#ref-Campbell1998" role="doc-biblioref">Campbell &amp; Murphy, 1998</a>)</span>, qui ont montré que ce décalage de phase pouvait également être obtenu en exposant des sujets à la lumière, non pas au niveau de leurs yeux, mais au niveau de leur <a href="https://fr.wikipedia.org/wiki/Fosse_poplitée">fosse (ou creux) poplitée</a>, c’est-à-dire, derrière les genoux.<br />
 Cette découverte a été vivement critiquée par certains, et saluée comme une découverte majeure par d’autres. Toutefois, certains aspects du design expérimental de l’étude de 1998 ont été mis en doute en 2002 : il semble en effet que lors de l’exposition du creux poplité, les yeux de certains patients ont été également exposés à de faibles intensités lumineuses. Pour vérifier les trouvailles de Campbell et Murphy, Wright et Czeisler <span class="citation">(<a href="#ref-Wright2002" role="doc-biblioref">Wright &amp; Czeisler, 2002</a>)</span> ont ré-examiné ce phénomène. La nouvelle expérience a évalué les rythmes circadiens en mesurant les cycles quotidiens de production de mélatonine chez 22 participants placés au hasard dans 3 groupes. Les patients étaient réveillés en pleine nuit et exposés :</p>
 <ol style="list-style-type: decimal">
 <li>Soit à 3 heures de lumière appliquée exclusivement derrière leurs genoux (groupe <code>knee</code>).</li>
@@ -310,7 +310,7 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
 6   -0.64 -2.04 -0.96
 7   -0.68 -2.83 -1.61
 8   -1.27 NA    NA   </code></pre>
-<p>Lorsque l’on réalise une analyse de variance, puisque les effectifs ne sont pas nécessairement identiques dans tous les groupes (c’est ce qu’on appelle un design déséquilibré, ou “unbalanced design”), présenter les tableaux au format long est indispensable. Par ailleurs, notez que les ANOVAs réalisées sur des “balanced design” (ou designs équilibrés, pour lesquels tous les groupes sont de même taille), sont beaucoup plus puissantes que les ANOVAs réalisées sur des “unbalanced designs.”</p>
+<p>Lorsque l’on réalise une analyse de variance, puisque les effectifs ne sont pas nécessairement identiques dans tous les groupes (c’est ce qu’on appelle un design déséquilibré, ou “unbalanced design”), présenter les tableaux au format long est indispensable. Par ailleurs, notez que les ANOVAs réalisées sur des “balanced design” (ou designs équilibrés, pour lesquels tous les groupes sont de même taille), sont beaucoup plus puissantes que les ANOVAs réalisées sur des “unbalanced designs”.</p>
 <p>Ici, le tableau de données est très simple (et de petite taille). Il n’y a pas de données manquantes et aucune création de nouvelle variable n’est nécessaire. La seule modification que nous devrions faire est de transformer la variable <code>treatment</code> en facteur :</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb116-1" aria-hidden="true" tabindex="-1"></a>Light <span class="ot">&lt;-</span> Light <span class="sc">%&gt;%</span> </span>
 <span id="cb116-2"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb116-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">treatment =</span> <span class="fu">factor</span>(treatment))</span></code></pre></div>
@@ -688,34 +688,34 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-Campbell1998" class="csl-entry">
-<span class="smallcaps">Campbell SS, &amp; Murphy PJ</span>. (1998). Extraocular circadian phototransduction in humans. <em>Science</em>, <strong>279</strong>(5349), 396–399. <a href="https://doi.org/10.1126/science.279.5349.396">https://doi.org/10.1126/science.279.5349.396</a>
+<span class="smallcaps">Campbell SS</span>, &amp; <span class="smallcaps">Murphy PJ</span>. (1998). Extraocular circadian phototransduction in humans. <em>Science</em>, <strong>279</strong>(5349), 396–399. <a href="https://doi.org/10.1126/science.279.5349.396">https://doi.org/10.1126/science.279.5349.396</a>
 </div>
 <div id="ref-R-car" class="csl-entry">
-<span class="smallcaps">Fox J, Weisberg S, &amp; Price B</span>. (2021). <em>Car: Companion to applied regression</em>. Retrieved from <a href="https://CRAN.R-project.org/package=car">https://CRAN.R-project.org/package=car</a>
+<span class="smallcaps">Fox J</span>, <span class="smallcaps">Weisberg S</span>, &amp; <span class="smallcaps">Price B</span>. (2021). <em>Car: Companion to applied regression</em>. Retrieved from <a href="https://CRAN.R-project.org/package=car">https://CRAN.R-project.org/package=car</a>
 </div>
 <div id="ref-Molofsky2005" class="csl-entry">
-<span class="smallcaps">Molofsky J, &amp; Ferdy J-B</span>. (2005). Extinction dynamics in experimental metapopulations. <em>Proceedings of the National Academy of Sciences</em>, <strong>102</strong>(10), 3726–3731. <a href="https://doi.org/10.1073/pnas.0404576102">https://doi.org/10.1073/pnas.0404576102</a>
+<span class="smallcaps">Molofsky J</span>, &amp; <span class="smallcaps">Ferdy J-B</span>. (2005). Extinction dynamics in experimental metapopulations. <em>Proceedings of the National Academy of Sciences</em>, <strong>102</strong>(10), 3726–3731. <a href="https://doi.org/10.1073/pnas.0404576102">https://doi.org/10.1073/pnas.0404576102</a>
 </div>
 <div id="ref-R-broom" class="csl-entry">
-<span class="smallcaps">Robinson D, Hayes A, &amp; Couch S</span>. (2021). <em>Broom: Convert statistical objects into tidy tibbles</em>. Retrieved from <a href="https://CRAN.R-project.org/package=broom">https://CRAN.R-project.org/package=broom</a>
+<span class="smallcaps">Robinson D</span>, <span class="smallcaps">Hayes A</span>, &amp; <span class="smallcaps">Couch S</span>. (2021). <em>Broom: Convert statistical objects into tidy tibbles</em>. Retrieved from <a href="https://CRAN.R-project.org/package=broom">https://CRAN.R-project.org/package=broom</a>
 </div>
 <div id="ref-R-DescTools" class="csl-entry">
 <span class="smallcaps">Signorell A</span>. (2021). <em>DescTools: Tools for descriptive statistics</em>. Retrieved from <a href="https://CRAN.R-project.org/package=DescTools">https://CRAN.R-project.org/package=DescTools</a>
 </div>
 <div id="ref-R-skimr" class="csl-entry">
-<span class="smallcaps">Waring E, Quinn M, McNamara A, Arino de la Rubia E, Zhu H, &amp; Ellis S</span>. (2021). <em>Skimr: Compact and flexible summaries of data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=skimr">https://CRAN.R-project.org/package=skimr</a>
+<span class="smallcaps">Waring E</span>, <span class="smallcaps">Quinn M</span>, <span class="smallcaps">McNamara A</span>, <span class="smallcaps">Arino de la Rubia E</span>, <span class="smallcaps">Zhu H</span>, &amp; <span class="smallcaps">Ellis S</span>. (2021). <em>Skimr: Compact and flexible summaries of data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=skimr">https://CRAN.R-project.org/package=skimr</a>
 </div>
-<div id="ref-R-tidyverse" class="csl-entry">
-<span class="smallcaps">Wickham H</span>. (2021b). <em>Tidyverse: Easily install and load the tidyverse</em>. Retrieved from <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>
+<div id="ref-tidyverse2019" class="csl-entry">
+<span class="smallcaps">Wickham H</span>, <span class="smallcaps">Averick M</span>, <span class="smallcaps">Bryan J</span>, <span class="smallcaps">Chang W</span>, <span class="smallcaps">McGowan LD</span>, <span class="smallcaps">François R</span>, … <span class="smallcaps">Yutani H</span>. (2019). Welcome to the <span class="nocase">tidyverse</span>. <em>Journal of Open Source Software</em>, <strong>4</strong>(43), 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>
 </div>
 <div id="ref-R-readxl" class="csl-entry">
-<span class="smallcaps">Wickham H, &amp; Bryan J</span>. (2019). <em>Readxl: Read excel files</em>. Retrieved from <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a>
+<span class="smallcaps">Wickham H</span>, &amp; <span class="smallcaps">Bryan J</span>. (2019). <em>Readxl: Read excel files</em>. Retrieved from <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a>
 </div>
 <div id="ref-R-readr" class="csl-entry">
-<span class="smallcaps">Wickham H, &amp; Hester J</span>. (2021). <em>Readr: Read rectangular text data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>
+<span class="smallcaps">Wickham H</span>, &amp; <span class="smallcaps">Hester J</span>. (2021). <em>Readr: Read rectangular text data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>
 </div>
 <div id="ref-Wright2002" class="csl-entry">
-<span class="smallcaps">Wright KP, &amp; Czeisler CA</span>. (2002). Absence of circadian phase resetting in response to bright light behind the knees. <em>Science</em>, <strong>297</strong>(5581), 571–571. <a href="https://doi.org/10.1126/science.1071697">https://doi.org/10.1126/science.1071697</a>
+<span class="smallcaps">Wright KP</span>, &amp; <span class="smallcaps">Czeisler CA</span>. (2002). Absence of circadian phase resetting in response to bright light behind the knees. <em>Science</em>, <strong>297</strong>(5581), 571–571. <a href="https://doi.org/10.1126/science.1071697">https://doi.org/10.1126/science.1071697</a>
 </div>
 </div>
             </section>
