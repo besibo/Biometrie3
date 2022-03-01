@@ -134,7 +134,7 @@
 
 \title{Travaux Pratiques de Biométrie 3}
 \author{Benoît Simon-Bouhet}
-\date{2022-01-27}
+\date{2022-03-01}
 
 \begin{document}
 \maketitle
@@ -157,11 +157,11 @@ Je considère qu'à ce stade, vous devez être à l'aise dans \texttt{RStudio} p
 \item
   Importer des jeux de données dans RStudio.
 \item
-  Manipuler des tableaux de données avec \texttt{tidyr} (Wickham, \protect\hyperlink{ref-R-tidyr}{2021}\protect\hyperlink{ref-R-tidyr}{a}) pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.
+  Manipuler des tableaux de données avec \texttt{tidyr} (Wickham \& Girlich, \protect\hyperlink{ref-R-tidyr}{2022}) pour les mettre dans un format permettant les analyses statistiques et les représentations graphiques.
 \item
   Faire des graphiques exploratoires avec \texttt{ggplot2} (Wickham, Chang, et al., \protect\hyperlink{ref-R-ggplot2}{2021}) pour visualiser des données.
 \item
-  Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonctions \texttt{filter()}, \texttt{select()}, \texttt{arrange()}, \texttt{mutate()}, \texttt{summarise()} et \texttt{group\_by()} du package \texttt{dplyr} (Wickham, François, et al., \protect\hyperlink{ref-R-dplyr}{2021}).
+  Filtrer des lignes, sélectionner des colonnes, trier, créer de nouvelles variables et calculer des résumés des données avec les fonctions \texttt{filter()}, \texttt{select()}, \texttt{arrange()}, \texttt{mutate()}, \texttt{summarise()} et \texttt{group\_by()} du package \texttt{dplyr} (Wickham, François, et al., \protect\hyperlink{ref-R-dplyr}{2022}).
 \item
   Utiliser le pipe \texttt{\%\textgreater{}\%} afin d'enchaîner plusieurs commandes.
 \item
@@ -257,7 +257,7 @@ Si vous suivez rigoureusement ces étapes, vous devriez être dans la situation 
 
 Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d'utiliser des packages spécifiques et d'importer des données depuis des fichiers externes disponibles sur l'ENT (ou directement depuis ce document).
 
-Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2021}\protect\hyperlink{ref-R-tidyverse}{b}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham, Hester, et al., \protect\hyperlink{ref-R-readr}{2021}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Waring et al., \protect\hyperlink{ref-R-skimr}{2021}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2021}), qui permet d'effectuer le test de comparaison des variances de Levene :
+Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du \texttt{tidyverse} (Wickham, \protect\hyperlink{ref-R-tidyverse}{2021}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham, Hester, et al., \protect\hyperlink{ref-R-readr}{2022}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Waring et al., \protect\hyperlink{ref-R-skimr}{2021}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2021}), qui permet d'effectuer le test de comparaison des variances de Levene :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2254,7 +2254,7 @@ Reprenez chaque exemple et exercice de cette séance de TP et identifiez les sit
 
 Avant toute chose, merci de relire l'introduction (section \ref{intro}) de ce document, et de suivre toutes les étapes qui y sont décrites (création d'un nouveau sous-dossier nommé \texttt{TP\_2} dans votre dossier \texttt{Biometrie3}, changement du répertoire de travail et création d'un nouveau script).
 
-Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du \texttt{tidyverse} (Wickham, Averick, et al., \protect\hyperlink{ref-tidyverse2019}{2019}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham, Hester, et al., \protect\hyperlink{ref-R-readr}{2021}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Waring et al., \protect\hyperlink{ref-R-skimr}{2021}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2021}), qui permet d'effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package \texttt{broom} (Robinson et al., \protect\hyperlink{ref-R-broom}{2022}), qui fait partie du \texttt{tidyverse} mais qu'il faut charger explicitement. La fonction \texttt{tidy()} de ce package nous permettra de ``ranger'' correctement les résultats de tests dans un \texttt{tibble} :
+Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les mêmes que pour la section précédente : les packages du \texttt{tidyverse} (Wickham, Averick, et al., \protect\hyperlink{ref-tidyverse2019}{2019}), qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package \texttt{readr} (Wickham, Hester, et al., \protect\hyperlink{ref-R-readr}{2022}), pour importer facilement des fichiers \texttt{.csv} au format \texttt{tibble}, le package \texttt{readxl} (Wickham \& Bryan, \protect\hyperlink{ref-R-readxl}{2019}), pour importer facilement des fichiers Excel au format \texttt{tibble}, le package \texttt{skimr} (Waring et al., \protect\hyperlink{ref-R-skimr}{2021}), qui permet de calculer des résumés de données très informatifs, et le package \texttt{car} (Fox et al., \protect\hyperlink{ref-R-car}{2021}), qui permet d'effectuer le test de comparaison de variances de Levene. Nous utiliserons aussi le package \texttt{broom} (Robinson et al., \protect\hyperlink{ref-R-broom}{2022}), qui fait partie du \texttt{tidyverse} mais qu'il faut charger explicitement. La fonction \texttt{tidy()} de ce package nous permettra de ``ranger'' correctement les résultats de tests dans un \texttt{tibble} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3971,11 +3971,8 @@ Importez, examinez et analysez ces données pour répondre à la question posée
 \leavevmode\hypertarget{ref-whitlock2015}{}%
 \textsc{Whitlock M, \& Schluter D}. (2015). \emph{The analysis of biological data} (Second edition). Greenwood Village, Colorado: Roberts and Company Publishers.
 
-\leavevmode\hypertarget{ref-R-tidyr}{}%
-\textsc{Wickham H}. (2021a). \emph{Tidyr: Tidy messy data}. Retrieved from \url{https://CRAN.R-project.org/package=tidyr}
-
 \leavevmode\hypertarget{ref-R-tidyverse}{}%
-\textsc{Wickham H}. (2021b). \emph{Tidyverse: Easily install and load the tidyverse}. Retrieved from \url{https://CRAN.R-project.org/package=tidyverse}
+\textsc{Wickham H}. (2021). \emph{Tidyverse: Easily install and load the tidyverse}. Retrieved from \url{https://CRAN.R-project.org/package=tidyverse}
 
 \leavevmode\hypertarget{ref-tidyverse2019}{}%
 \textsc{Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, \ldots{} Yutani H}. (2019). Welcome to the tidyverse. \emph{Journal of Open Source Software}, \textbf{4}(43), 1686. \url{https://doi.org/10.21105/joss.01686}
@@ -3987,10 +3984,13 @@ Importez, examinez et analysez ces données pour répondre à la question posée
 \textsc{Wickham H, Chang W, Henry L, Pedersen TL, Takahashi K, Wilke C, \ldots{} Dunnington D}. (2021). \emph{Ggplot2: Create elegant data visualisations using the grammar of graphics}. Retrieved from \url{https://CRAN.R-project.org/package=ggplot2}
 
 \leavevmode\hypertarget{ref-R-dplyr}{}%
-\textsc{Wickham H, François R, Henry L, \& Müller K}. (2021). \emph{Dplyr: A grammar of data manipulation}. Retrieved from \url{https://CRAN.R-project.org/package=dplyr}
+\textsc{Wickham H, François R, Henry L, \& Müller K}. (2022). \emph{Dplyr: A grammar of data manipulation}. Retrieved from \url{https://CRAN.R-project.org/package=dplyr}
+
+\leavevmode\hypertarget{ref-R-tidyr}{}%
+\textsc{Wickham H, \& Girlich M}. (2022). \emph{Tidyr: Tidy messy data}. Retrieved from \url{https://CRAN.R-project.org/package=tidyr}
 
 \leavevmode\hypertarget{ref-R-readr}{}%
-\textsc{Wickham H, Hester J, \& Bryan J}. (2021). \emph{Readr: Read rectangular text data}. Retrieved from \url{https://CRAN.R-project.org/package=readr}
+\textsc{Wickham H, Hester J, \& Bryan J}. (2022). \emph{Readr: Read rectangular text data}. Retrieved from \url{https://CRAN.R-project.org/package=readr}
 
 \leavevmode\hypertarget{ref-wiseman1996}{}%
 \textsc{Wiseman R, \& Lamont P}. (1996). Unravelling the Indian rope-trick. \emph{Nature}, \textbf{383}(6597), 212. \url{https://doi.org/10.1038/383212a0}
