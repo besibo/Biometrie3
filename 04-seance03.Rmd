@@ -1,6 +1,6 @@
 # Séance 4 : corrélations et régressions
 
-## Packages et données
+## Packages et données {#packages3}
 
 Comme dans tous les chapitres de cet ouvrage, nous aurons besoin ici du `tidyverse` et du package `skimr`. Noubliez pas de les charger en mémoire avant d'aller plus loin.
 

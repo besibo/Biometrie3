@@ -1,7 +1,7 @@
 # Séance 3 : comparer la moyenne de plus de 2 groupes
 
 
-## Packages et données
+## Packages et données {#packages2}
 
 Avant toute chose, merci de relire l'introduction (section \@ref(intro)) de ce document, et de suivre toutes les étapes qui y sont décrites (création d'un nouveau sous-dossier nommé `TP_2` dans votre dossier `Biometrie3`, changement du répertoire de travail et création d'un nouveau script).
 
