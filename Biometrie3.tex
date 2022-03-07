@@ -134,7 +134,7 @@
 
 \title{Travaux Pratiques de Biométrie 3}
 \author{Benoît Simon-Bouhet}
-\date{2022-03-01}
+\date{2022-03-07}
 
 \begin{document}
 \maketitle
@@ -200,7 +200,7 @@ Au début de chaque nouvelle séance de TP, vous devrez ensuite effectuer les op
 \item
   Créez, dans votre dossier ``Biometrie3'', un sous-dossier nommé ``TP\_1'', ``TP\_2'', etc.
 \item
-  Téléchargez les fichiers utiles disponibles sur l'ENT et placez-les dans le dossier du TP correspondant.
+  Téléchargez les fichiers de données disponibles dans ce document (chapitres ``Packages et données'' de chaque section principale : \ref{packages}, \ref{packages2} et \ref{packages3}) et placez-les dans le dossier du TP correspondant.
 \item
   Lancez RStudio.
 \item
@@ -284,17 +284,17 @@ Vous aurez également besoin des jeux de données suivants :
 \begin{itemize}
 \tightlist
 \item
-  \href{https://besibo.github.io/Biometrie3/data/Autruches.csv}{\texttt{Autruches.csv}}
+  \href{data/Autruches.csv}{\texttt{Autruches.csv}}
 \item
-  \href{https://besibo.github.io/Biometrie3/data/HommesFemmes.xls}{\texttt{HommesFemmes.xls}}
+  \href{data/HommesFemmes.xls}{\texttt{HommesFemmes.xls}}
 \item
-  \href{https://besibo.github.io/Biometrie3/data/HornedLizards.csv}{\texttt{HornedLizards.csv}}
+  \href{data/HornedLizards.csv}{\texttt{HornedLizards.csv}}
 \item
-  \href{https://besibo.github.io/Biometrie3/data/Temperature.csv}{\texttt{Temperature.csv}}
+  \href{data/Temperature.csv}{\texttt{Temperature.csv}}
 \item
-  \href{https://besibo.github.io/Biometrie3/data/Temperature2.csv}{\texttt{Temperature2.csv}}
+  \href{data/Temperature2.csv}{\texttt{Temperature2.csv}}
 \item
-  \href{https://besibo.github.io/Biometrie3/data/Testosterone.csv}{\texttt{Testosterone.csv}}
+  \href{data/Testosterone.csv}{\texttt{Testosterone.csv}}
 \end{itemize}
 
 \hypertarget{comparaison-de-la-moyenne-dune-population-uxe0-une-valeur-thuxe9orique}{%
@@ -308,7 +308,7 @@ Avant de se lancer dans les tests d'hypothèses, il est \textbf{toujours indispe
 \hypertarget{importation-et-examen-visuel}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel}}
 
-Commencez par importer les données contenues dans \href{https://besibo.github.io/Biometrie3/data/Temperature.csv}{le fichier \texttt{Temperature.csv}}. Pour cela, utilisez l'assistant d'importation de RStudio. Si vous ne savez plus comment faire, consultez \href{https://besibo.github.io/Biometrie2/tidyr.html\#importer-des-donnees-depuis-un-tableur}{la section 5.3} du livre en ligne de Biométrie 2.
+Commencez par importer les données contenues dans \href{data/Temperature.csv}{le fichier \texttt{Temperature.csv}}. Pour cela, utilisez l'assistant d'importation de RStudio. Si vous ne savez plus comment faire, consultez \href{https://besibo.github.io/Biometrie2/tidyr.html\#importer-des-donnees-depuis-un-tableur}{la section 5.3} du livre en ligne de Biométrie 2.
 
 Vous stockerez les données dans un objet que vous nommerez \texttt{Temperature}. Après l'importation, taper son nom dans la console de RStudio doit produire le résultat suivant :
 
@@ -830,7 +830,7 @@ Enfin, les tests de Wilcoxon renvoient souvent des messages d'avretissement. Il 
 \hypertarget{exercice-dapplication}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication}}
 
-\href{https://besibo.github.io/Biometrie3/data/Temperature2.csv}{Le fichier \texttt{Temperature2.csv}} contient les données brutes d'une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d'examiner vos données comme nous l'avons décrit dans la section \ref{Explo}, afin de savoir où vous allez, et de repérer les éventuelles données manquantes ou aberrantes.
+\href{data/Temperature2.csv}{Le fichier \texttt{Temperature2.csv}} contient les données brutes d'une seconde étude similaire, réalisée à plus grande échelle. Importez ces données et analysez-les afin de vérifier si la température corporelle moyenne des adultes en bonne santé vaut bien 37ºC. Comme toujours, avant de vous lancer dans la réalisation des tests statistiques, prenez le temps d'examiner vos données comme nous l'avons décrit dans la section \ref{Explo}, afin de savoir où vous allez, et de repérer les éventuelles données manquantes ou aberrantes.
 
 \hypertarget{comparaison-de-la-moyenne-de-2-populations-donnuxe9es-appariuxe9es}{%
 \subsection{Comparaison de la moyenne de 2 populations : données appariées}\label{comparaison-de-la-moyenne-de-2-populations-donnuxe9es-appariuxe9es}}
@@ -869,7 +869,7 @@ Pour étudier cette question, une équipe de chercheurs (Hasselquist et al., \pr
 \hypertarget{importation-et-examen-visuel-1}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-1}}
 
-Les données se trouvent dans \href{https://besibo.github.io/Biometrie3/data/Testosterone.csv}{le fichier \texttt{Testosterone.csv}}. Importez ces données dans un objet nommé \texttt{Testo} et examinez le tableau obtenu.
+Les données se trouvent dans \href{data/Testosterone.csv}{le fichier \texttt{Testosterone.csv}}. Importez ces données dans un objet nommé \texttt{Testo} et examinez le tableau obtenu.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1466,7 +1466,7 @@ Le test de Wilcoxon des rangs signés n'a pas permis de montrer de changement d'
 \hypertarget{exercice-dapplication-1}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication-1}}
 
-Les autruches vivent dans des environnements chauds et elles sont donc fréquemment exposées au soleil durant de longues périodes. Dans des environnements similaires, les mammifères ont des mécanismes physiologiques leur permettant de réduire la température de leur cerveau par rapport à celle de leur corps. Une équipe de chercheurs (Fuller et al., \protect\hyperlink{ref-Fuller2003}{2003}) a testé si les autruches pouvaient faire de même. La température du corps et du cerveau de 37 autruches a été enregistrée par une journée chaude typique. Les résultats, exprimés en degrés Celsius, figurent dans \href{https://besibo.github.io/Biometrie3/data/Autruches.csv}{le fichier \texttt{Autruches.csv}}.
+Les autruches vivent dans des environnements chauds et elles sont donc fréquemment exposées au soleil durant de longues périodes. Dans des environnements similaires, les mammifères ont des mécanismes physiologiques leur permettant de réduire la température de leur cerveau par rapport à celle de leur corps. Une équipe de chercheurs (Fuller et al., \protect\hyperlink{ref-Fuller2003}{2003}) a testé si les autruches pouvaient faire de même. La température du corps et du cerveau de 37 autruches a été enregistrée par une journée chaude typique. Les résultats, exprimés en degrés Celsius, figurent dans \href{data/Autruches.csv}{le fichier \texttt{Autruches.csv}}.
 
 Importez ces données et faites-en l'analyse pour savoir s'il existe une différence de température moyenne entre le corps et le cerveau des autruches. Comparez ces résultats avec les prédictions faites pour les mammifères dans un environnement similaire. Comme toujours, vous commencerez par faire une analyse descriptive des données, sous forme numérique et graphique, avant de vous lancer dans les tests d'hypothèses.
 
@@ -1483,7 +1483,7 @@ Chez \href{https://fr.wikipedia.org/wiki/Phrynosoma_mcallii}{le lézard cornu \e
 \hypertarget{importation-et-examen-visuel-2}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-2}}
 
-Les données de cette étude sont stockées dans \href{https://besibo.github.io/Biometrie3/data/HornedLizards.csv}{le fichier \texttt{HornedLizards.csv}}. Importez ces données dans un objet nommé \texttt{Lizard} et examinez le tableau obtenu.
+Les données de cette étude sont stockées dans \href{data/HornedLizards.csv}{le fichier \texttt{HornedLizards.csv}}. Importez ces données dans un objet nommé \texttt{Lizard} et examinez le tableau obtenu.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1986,7 +1986,7 @@ La seule différence par rapport à la syntaxe du test \(t\) de Student paramét
 \hypertarget{exercice-dapplication-2}{%
 \subsubsection{Exercice d'application}\label{exercice-dapplication-2}}
 
-On s'intéresse à la différence de taille supposée entre hommes et femmes. \href{https://besibo.github.io/Biometrie3/data/HommesFemmes.xls}{Le fichier \texttt{HommesFemmes.xls}} contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à La Rochelle Université. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à La Rochelle Université ont-il la même taille ? Si non, caractérisez cette différence de taille.
+On s'intéresse à la différence de taille supposée entre hommes et femmes. \href{data/HommesFemmes.xls}{Le fichier \texttt{HommesFemmes.xls}} contient les tailles en centimètres de 38 hommes et 43 femmes choisis au hasard parmi les étudiants de première année à La Rochelle Université. Importez, mettez en forme et analysez ces données. Vous prendrez soin de retirer les éventuelles valeurs manquantes, vous prendrez le temps d'examiner les données à l'aide de statistiques descriptives et de représentations graphiques adaptées, puis vous tenterez de répondre à la question suivante : les hommes et les femmes inscrits en première année à La Rochelle Université ont-il la même taille ? Si non, caractérisez cette différence de taille.
 
 \hypertarget{tests-bilatuxe9raux-et-unilatuxe9raux}{%
 \subsection{Tests bilatéraux et unilatéraux}\label{tests-bilatuxe9raux-et-unilatuxe9raux}}
@@ -2249,8 +2249,8 @@ Reprenez chaque exemple et exercice de cette séance de TP et identifiez les sit
 \hypertarget{suxe9ance-3-comparer-la-moyenne-de-plus-de-2-groupes}{%
 \section{Séance 3 : comparer la moyenne de plus de 2 groupes}\label{suxe9ance-3-comparer-la-moyenne-de-plus-de-2-groupes}}
 
-\hypertarget{packages-et-donnuxe9es}{%
-\subsection{Packages et données}\label{packages-et-donnuxe9es}}
+\hypertarget{packages2}{%
+\subsection{Packages et données}\label{packages2}}
 
 Avant toute chose, merci de relire l'introduction (section \ref{intro}) de ce document, et de suivre toutes les étapes qui y sont décrites (création d'un nouveau sous-dossier nommé \texttt{TP\_2} dans votre dossier \texttt{Biometrie3}, changement du répertoire de travail et création d'un nouveau script).
 
@@ -2282,9 +2282,9 @@ Vous aurez également besoin des jeux de données suivants :
 \begin{itemize}
 \tightlist
 \item
-  \href{https://besibo.github.io/Biometrie3/data/Light.csv}{\texttt{Light.csv}}
+  \href{data/Light.csv}{\texttt{Light.csv}}
 \item
-  \href{https://besibo.github.io/Biometrie3/data/Insectes.csv}{\texttt{Insectes.csv}}
+  \href{data/Insectes.csv}{\texttt{Insectes.csv}}
 \end{itemize}
 
 \hypertarget{lanalyse-de-variance-uxe0-un-facteur}{%
@@ -2313,7 +2313,7 @@ Le décalage de phase du cycle de production de mélatonine était mesuré 48h p
 \hypertarget{importation-et-examen-visuel-3}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-3}}
 
-Les données brutes de cette étude sont fournies dans le fichier \href{https://besibo.github.io/Biometrie3/data/Light.csv}{\texttt{Light.csv}}. Importez ces données dans RStudio et examinez les données brutes grâce à la fonction \texttt{View()}.
+Les données brutes de cette étude sont fournies dans le fichier \href{data/Light.csv}{\texttt{Light.csv}}. Importez ces données dans RStudio et examinez les données brutes grâce à la fonction \texttt{View()}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3028,13 +3028,13 @@ Saisissez ces données dans \texttt{R} et faites-en l'analyse. Vous tenterez de 
 \hypertarget{insecticides}{%
 \paragraph{Insecticides}\label{insecticides}}
 
-L'efficacité de 6 insecticides nommés A, B, C, D, E et F a été testée sur 6 parcelles agricoles. Chaque insecticide de cette liste a été appliqué sur une parcelle agricole choisie au hasard. Deux semaines plus tard, 12 plants ont été collectés dans chaque parcelle agricole et le nombre d'insectes toujours vivants sur chacun d'entre eux a été compté. Les résultats sont présentés dans le fichier \href{https://besibo.github.io/Biometrie3/data/Insectes.csv}{\texttt{Insectes.csv}}. Importez ces données dans \texttt{R} et faites-en l'analyse. Tous les insecticides ont-ils la même efficacité ? Si la réponse est non, quels sont les insecticides les plus (ou les moins) efficaces.
+L'efficacité de 6 insecticides nommés A, B, C, D, E et F a été testée sur 6 parcelles agricoles. Chaque insecticide de cette liste a été appliqué sur une parcelle agricole choisie au hasard. Deux semaines plus tard, 12 plants ont été collectés dans chaque parcelle agricole et le nombre d'insectes toujours vivants sur chacun d'entre eux a été compté. Les résultats sont présentés dans le fichier \href{data/Insectes.csv}{\texttt{Insectes.csv}}. Importez ces données dans \texttt{R} et faites-en l'analyse. Tous les insecticides ont-ils la même efficacité ? Si la réponse est non, quels sont les insecticides les plus (ou les moins) efficaces.
 
 \hypertarget{suxe9ance-4-corruxe9lations-et-ruxe9gressions}{%
 \section{Séance 4 : corrélations et régressions}\label{suxe9ance-4-corruxe9lations-et-ruxe9gressions}}
 
-\hypertarget{packages-et-donnuxe9es-1}{%
-\subsection{Packages et données}\label{packages-et-donnuxe9es-1}}
+\hypertarget{packages3}{%
+\subsection{Packages et données}\label{packages3}}
 
 Comme dans tous les chapitres de cet ouvrage, nous aurons besoin ici du \texttt{tidyverse} et du package \texttt{skimr}. Noubliez pas de les charger en mémoire avant d'aller plus loin.
 
@@ -3050,15 +3050,15 @@ Vous aurez également besoin des jeux de données suivants, disponibles sur l'EN
 \begin{itemize}
 \tightlist
 \item
-  \href{https://besibo.github.io/Biometrie3/data/birds.csv}{\texttt{birds.csv}}
+  \href{data/birds.csv}{\texttt{birds.csv}}
 \item
-  \href{https://besibo.github.io/Biometrie3/data/loups.csv}{\texttt{loups.csv}}
+  \href{data/loups.csv}{\texttt{loups.csv}}
 \item
-  \href{https://besibo.github.io/Biometrie3/data/ropetrick.csv}{\texttt{ropetrick.csv}}
+  \href{data/ropetrick.csv}{\texttt{ropetrick.csv}}
 \item
-  \href{https://besibo.github.io/Biometrie3/data/plantbiomass.csv}{\texttt{plantbiomass.csv}}
+  \href{data/plantbiomass.csv}{\texttt{plantbiomass.csv}}
 \item
-  \href{https://besibo.github.io/Biometrie3/data/hockey.csv}{\texttt{hockey.csv}}
+  \href{data/hockey.csv}{\texttt{hockey.csv}}
 \end{itemize}
 
 \hypertarget{corruxe9lation}{%
@@ -3108,7 +3108,7 @@ Dans la suite de ce chapitre, nous allons voir comment calculer le coefficient d
 \hypertarget{importation-et-examen-visuel-4}{%
 \paragraph{Importation et examen visuel}\label{importation-et-examen-visuel-4}}
 
-Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation existe-t-elle également chez d'autres espèces animales, chez qui cette relation pourrait être étudiée plus facilement ? Müller et al. (\protect\hyperlink{ref-muller2011}{2011}) ont étudié cette possibilité chez le fou de Grant (\emph{Sula granti}), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d'autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d'une bague d'identification individuelle. Ces 24 individus ont ensuite été suivis à l'âge adulte, lorsqu'ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier \href{https://besibo.github.io/Biometrie3/data/birds.csv}{\texttt{birds.csv}}. Importez ces données dans \texttt{R} dans un objet noté \texttt{birds}.
+Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation existe-t-elle également chez d'autres espèces animales, chez qui cette relation pourrait être étudiée plus facilement ? Müller et al. (\protect\hyperlink{ref-muller2011}{2011}) ont étudié cette possibilité chez le fou de Grant (\emph{Sula granti}), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d'autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d'une bague d'identification individuelle. Ces 24 individus ont ensuite été suivis à l'âge adulte, lorsqu'ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier \href{data/birds.csv}{\texttt{birds.csv}}. Importez ces données dans \texttt{R} dans un objet noté \texttt{birds}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3449,7 +3449,7 @@ Enfin, comme pour le test de Pearson, il est possible de réaliser un test de Sp
 En 1970, le loup \emph{canis lupus} a été éradiqué en Norvège et en Suède. Autour de 1980, un couple de loups, originaire d'une population plus à l'Est, a fondé une nouvelle population en Suède. En l'espace de 20 ans, cette population comptait approximativement 100 loups. Il y a toutefois fort à craindre qu'une population fondée par un si petit nombre d'individus souffre de consanguinité. Liberg et al. (\protect\hyperlink{ref-liberg2005}{2005}) ont compilé les informations sur la reproduction dans cette population entre 1983 et 2002, et ils ont pu reconstruire le pédigrée des individus la composant. Ils ont ainsi été en mesure de déterminer avec précision le coefficient individuel de consanguinité dans 24 portées de louveteaux.
 Pour mémoire, le coefficient individuel de consanguinité vaut 0 si ses parents ne sont pas apparentés, 0.25 si ses parents sont frères et sœurs issus de grands-parents non apparentés, et plus de 0.25 si les associations consanguines se répètent depuis plusieurs générations.
 
-On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de Liberg et al. (\protect\hyperlink{ref-liberg2005}{2005}) sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/loups.csv}{\texttt{loups.csv}}. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l'ordre des étapes décrites plus haut. En particulier, vous prendrez soin de :
+On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de Liberg et al. (\protect\hyperlink{ref-liberg2005}{2005}) sont disponibles dans le fichier \href{data/loups.csv}{\texttt{loups.csv}}. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l'ordre des étapes décrites plus haut. En particulier, vous prendrez soin de :
 
 \begin{itemize}
 \tightlist
@@ -3477,7 +3477,7 @@ Pour chaque récit, les chercheurs ont également enregistré le nombre d'année
 
 Y a-t'il un lien entre le caractère impressionnant (``\texttt{impressiveness}'') d'un souvenir et le temps écoulé jusqu'à l'écriture de sa description (``\texttt{years}'') ? Si oui, cela pourrait indiquer une tendance de la mémoire humaine à exagérer et à perdre en précision avec le temps.
 
-Les données de Wiseman \& Lamont (\protect\hyperlink{ref-wiseman1996}{1996}) sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/ropetrick.csv}{\texttt{ropetrick.csv}}. Importez ces données et analysez-les en respectant les consignes de l'exercice précédent.
+Les données de Wiseman \& Lamont (\protect\hyperlink{ref-wiseman1996}{1996}) sont disponibles dans le fichier \href{data/ropetrick.csv}{\texttt{ropetrick.csv}}. Importez ces données et analysez-les en respectant les consignes de l'exercice précédent.
 
 \hypertarget{ruxe9gression-linuxe9aire}{%
 \subsection{Régression linéaire}\label{ruxe9gression-linuxe9aire}}
@@ -3499,7 +3499,7 @@ Les activités humaines réduisent le nombre d'espèces dans un grand nombre d'�
 
 Pour tenter de répondre à cette question, Tilman et al. (\protect\hyperlink{ref-tilman2006}{2006}) ont ensemencé 161 parcelles de 9 mètres sur 9 mètres dans la réserve de Cedar Creek (Minesota, USA). Ils ont utilisé un nombre variable d'espèces typiques des prairies et ont mesuré la production de biomasse de chaque parcelle pendant 10 ans. Des lots de 1, 2, 4, 8 ou 16 plantes pluriannuelles (choisies au hasard parmi une liste de 18 espèces possibles) ont été assignés au hasard dans chacune des 161 parcelles. À l'issue des 10 années d'étude, les chercheurs ont mesuré un indice de stabilité de la biomasse en divisant la moyenne des biomasses sur 10 ans, par l'écart-type de ces mêmes biomasses.
 
-Les données de cette expérience sont disponibles dans le fichier \href{https://besibo.github.io/Biometrie3/data/plantbiomass.csv}{\texttt{plantbiomass.csv}}.
+Les données de cette expérience sont disponibles dans le fichier \href{data/plantbiomass.csv}{\texttt{plantbiomass.csv}}.
 
 \hypertarget{importation-examen-visuel-et-statistiques-descriptives}{%
 \paragraph{Importation, examen visuel et statistiques descriptives}\label{importation-examen-visuel-et-statistiques-descriptives}}
@@ -3923,7 +3923,7 @@ Examinez attentivement les nombreux résultats produits par cette commande dans 
 
 Les hommes ont en moyenne un ratio ``largeur du visage sur longueur du visage'' supérieur à celui des femmes. Cela reflète des niveaux d'expression de la testostérone différents entre hommes et femmes au moment de la puberté. On sait aussi que les niveaux de testosterone permettent de prédire, dans une certaine mesure, l'agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire l'agressivité ?
 
-Pour tester cela, Carré \& McCormick (\protect\hyperlink{ref-carre2008}{2008}) ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d'abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier \href{https://besibo.github.io/Biometrie3/data/hockey.csv}{\texttt{hockey.csv}}.
+Pour tester cela, Carré \& McCormick (\protect\hyperlink{ref-carre2008}{2008}) ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d'abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier \href{data/hockey.csv}{\texttt{hockey.csv}}.
 
 Importez, examinez et analysez ces données pour répondre à la question posée.
 
