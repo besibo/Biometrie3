@@ -24,7 +24,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2022-03-01" />
+<meta name="date" content="2022-03-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -255,11 +255,11 @@ div.csl-indent {
 <span id="cb159-2"><a href="séance-4-corrélations-et-régressions.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span></code></pre></div>
 <p>Vous aurez également besoin des jeux de données suivants, disponibles sur l’ENT ou directement téléchargeables depuis ce document :</p>
 <ul>
-<li><a href="https://besibo.github.io/Biometrie3/data/birds.csv"><code>birds.csv</code></a></li>
-<li><a href="https://besibo.github.io/Biometrie3/data/loups.csv"><code>loups.csv</code></a></li>
-<li><a href="https://besibo.github.io/Biometrie3/data/ropetrick.csv"><code>ropetrick.csv</code></a></li>
-<li><a href="https://besibo.github.io/Biometrie3/data/plantbiomass.csv"><code>plantbiomass.csv</code></a></li>
-<li><a href="https://besibo.github.io/Biometrie3/data/hockey.csv"><code>hockey.csv</code></a></li>
+<li><a href="data/birds.csv"><code>birds.csv</code></a></li>
+<li><a href="data/loups.csv"><code>loups.csv</code></a></li>
+<li><a href="data/ropetrick.csv"><code>ropetrick.csv</code></a></li>
+<li><a href="data/plantbiomass.csv"><code>plantbiomass.csv</code></a></li>
+<li><a href="data/hockey.csv"><code>hockey.csv</code></a></li>
 </ul>
 </div>
 <div id="corrélation" class="section level2" number="5.2">
@@ -289,7 +289,7 @@ Le coefficient de corrélation est la quantité qui décrit la force et la direc
 <h3><span class="header-section-number">5.2.2</span> Exploration préalable des données</h3>
 <div id="importation-et-examen-visuel-4" class="section level4" number="5.2.2.1">
 <h4><span class="header-section-number">5.2.2.1</span> Importation et examen visuel</h4>
-<p>Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation existe-t-elle également chez d’autres espèces animales, chez qui cette relation pourrait être étudiée plus facilement ? <span class="citation">Müller et al. (<a href="#ref-muller2011" role="doc-biblioref">2011</a>)</span> ont étudié cette possibilité chez le fou de Grant (<em>Sula granti</em>), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d’autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d’une bague d’identification individuelle. Ces 24 individus ont ensuite été suivis à l’âge adulte, lorsqu’ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier <a href="https://besibo.github.io/Biometrie3/data/birds.csv"><code>birds.csv</code></a>. Importez ces données dans <code>R</code> dans un objet noté <code>birds</code>.</p>
+<p>Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation existe-t-elle également chez d’autres espèces animales, chez qui cette relation pourrait être étudiée plus facilement ? <span class="citation">Müller et al. (<a href="#ref-muller2011" role="doc-biblioref">2011</a>)</span> ont étudié cette possibilité chez le fou de Grant (<em>Sula granti</em>), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d’autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d’une bague d’identification individuelle. Ces 24 individus ont ensuite été suivis à l’âge adulte, lorsqu’ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier <a href="data/birds.csv"><code>birds.csv</code></a>. Importez ces données dans <code>R</code> dans un objet noté <code>birds</code>.</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="séance-4-corrélations-et-régressions.html#cb160-1" aria-hidden="true" tabindex="-1"></a>birds</span></code></pre></div>
 <pre><code># A tibble: 24 × 2
    nVisitsNestling futureBehavior
@@ -495,7 +495,7 @@ sample estimates:
 <h4><span class="header-section-number">5.2.5.1</span> <em>Canis lupus</em></h4>
 <p>En 1970, le loup <em>canis lupus</em> a été éradiqué en Norvège et en Suède. Autour de 1980, un couple de loups, originaire d’une population plus à l’Est, a fondé une nouvelle population en Suède. En l’espace de 20 ans, cette population comptait approximativement 100 loups. Il y a toutefois fort à craindre qu’une population fondée par un si petit nombre d’individus souffre de consanguinité. <span class="citation">Liberg et al. (<a href="#ref-liberg2005" role="doc-biblioref">2005</a>)</span> ont compilé les informations sur la reproduction dans cette population entre 1983 et 2002, et ils ont pu reconstruire le pédigrée des individus la composant. Ils ont ainsi été en mesure de déterminer avec précision le coefficient individuel de consanguinité dans 24 portées de louveteaux.
 Pour mémoire, le coefficient individuel de consanguinité vaut 0 si ses parents ne sont pas apparentés, 0.25 si ses parents sont frères et sœurs issus de grands-parents non apparentés, et plus de 0.25 si les associations consanguines se répètent depuis plusieurs générations.</p>
-<p>On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de <span class="citation">Liberg et al. (<a href="#ref-liberg2005" role="doc-biblioref">2005</a>)</span> sont disponibles dans le fichier <a href="https://besibo.github.io/Biometrie3/data/loups.csv"><code>loups.csv</code></a>. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l’ordre des étapes décrites plus haut. En particulier, vous prendrez soin de :</p>
+<p>On souhaite déterminer si le coefficient de consanguinité est associé à la probabilité de survie des jeunes durant leur premier hiver. Les données de <span class="citation">Liberg et al. (<a href="#ref-liberg2005" role="doc-biblioref">2005</a>)</span> sont disponibles dans le fichier <a href="data/loups.csv"><code>loups.csv</code></a>. La première colonne contient les coefficients de consanguinité et la seconde, le nombre de jeunes de chaque portée ayant survécu à leur premier hiver. Vous analyserez ces données en suivant l’ordre des étapes décrites plus haut. En particulier, vous prendrez soin de :</p>
 <ul>
 <li>Vérifier la qualité des données.</li>
 <li>Mettre les données dans un format approprié si besoin.</li>
@@ -511,7 +511,7 @@ Pour mémoire, le coefficient individuel de consanguinité vaut 0 si ses parents
 <p><span class="citation">Wiseman &amp; Lamont (<a href="#ref-wiseman1996" role="doc-biblioref">1996</a>)</span> ont retrouvé 21 récits écrits de ce tour par des personnes ayant elles-mêmes assisté à ce tour. Ils ont attribué un score à chaque description selon le caractère plus ou moins impressionnant de la description. Par exemple, un score de 1 était attribué si le récit faisait état que “le garçon grimpe à la corde, puis il en redescend”. Les récits les plus impressionnants se sont vus attribuer la note de 5 (“le garçon grimpe, disparaît, est découpé en morceaux et réapparaît en chair et en os devant le public”).
 Pour chaque récit, les chercheurs ont également enregistré le nombre d’années écoulées entre le moment où le témoin a assisté au tour de magie, et le moment où il a consigné son récit par écrit.</p>
 <p>Y a-t’il un lien entre le caractère impressionnant (“<code>impressiveness</code>”) d’un souvenir et le temps écoulé jusqu’à l’écriture de sa description (“<code>years</code>”) ? Si oui, cela pourrait indiquer une tendance de la mémoire humaine à exagérer et à perdre en précision avec le temps.</p>
-<p>Les données de <span class="citation">Wiseman &amp; Lamont (<a href="#ref-wiseman1996" role="doc-biblioref">1996</a>)</span> sont disponibles dans le fichier <a href="https://besibo.github.io/Biometrie3/data/ropetrick.csv"><code>ropetrick.csv</code></a>. Importez ces données et analysez-les en respectant les consignes de l’exercice précédent.</p>
+<p>Les données de <span class="citation">Wiseman &amp; Lamont (<a href="#ref-wiseman1996" role="doc-biblioref">1996</a>)</span> sont disponibles dans le fichier <a href="data/ropetrick.csv"><code>ropetrick.csv</code></a>. Importez ces données et analysez-les en respectant les consignes de l’exercice précédent.</p>
 </div>
 </div>
 </div>
@@ -526,7 +526,7 @@ Pour chaque récit, les chercheurs ont également enregistré le nombre d’ann�
 <h3><span class="header-section-number">5.3.1</span> Exploration préalable des données</h3>
 <p>Les activités humaines réduisent le nombre d’espèces dans un grand nombre d’écosystèmes à la surface du globe. Est-ce que cette diminution du nombre d’espèces affecte le fonctionnement de base des écosystèmes ? Où est-ce qu’au contraire, les espèces végétales sont majoritairement interchangeables, les fonctions des espèces disparues pouvant être assurées par les espèces toujours présentes ?</p>
 <p>Pour tenter de répondre à cette question, <span class="citation">Tilman et al. (<a href="#ref-tilman2006" role="doc-biblioref">2006</a>)</span> ont ensemencé 161 parcelles de 9 mètres sur 9 mètres dans la réserve de Cedar Creek (Minesota, USA). Ils ont utilisé un nombre variable d’espèces typiques des prairies et ont mesuré la production de biomasse de chaque parcelle pendant 10 ans. Des lots de 1, 2, 4, 8 ou 16 plantes pluriannuelles (choisies au hasard parmi une liste de 18 espèces possibles) ont été assignés au hasard dans chacune des 161 parcelles. À l’issue des 10 années d’étude, les chercheurs ont mesuré un indice de stabilité de la biomasse en divisant la moyenne des biomasses sur 10 ans, par l’écart-type de ces mêmes biomasses.</p>
-<p>Les données de cette expérience sont disponibles dans le fichier <a href="https://besibo.github.io/Biometrie3/data/plantbiomass.csv"><code>plantbiomass.csv</code></a>.</p>
+<p>Les données de cette expérience sont disponibles dans le fichier <a href="data/plantbiomass.csv"><code>plantbiomass.csv</code></a>.</p>
 <div id="importation-examen-visuel-et-statistiques-descriptives" class="section level4" number="5.3.1.1">
 <h4><span class="header-section-number">5.3.1.1</span> Importation, examen visuel et statistiques descriptives</h4>
 <p>Comme toujours, on importe les données et on commence par un examen visuel afin de détecter les éventuels problèmes et pour savoir où l’on va.</p>
@@ -775,7 +775,7 @@ nSpecies    0.02328063 0.04257117</code></pre>
 <div id="in-your-face" class="section level4" number="5.3.4.2">
 <h4><span class="header-section-number">5.3.4.2</span> In your face</h4>
 <p>Les hommes ont en moyenne un ratio “largeur du visage sur longueur du visage” supérieur à celui des femmes. Cela reflète des niveaux d’expression de la testostérone différents entre hommes et femmes au moment de la puberté. On sait aussi que les niveaux de testosterone permettent de prédire, dans une certaine mesure, l’agressivité chez les mâles de nombreuses espèces. On peut donc poser la question suivante : la forme du visage permet-elle de prédire l’agressivité ?</p>
-<p>Pour tester cela, <span class="citation">Carré &amp; McCormick (<a href="#ref-carre2008" role="doc-biblioref">2008</a>)</span> ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d’abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier <a href="https://besibo.github.io/Biometrie3/data/hockey.csv"><code>hockey.csv</code></a>.</p>
+<p>Pour tester cela, <span class="citation">Carré &amp; McCormick (<a href="#ref-carre2008" role="doc-biblioref">2008</a>)</span> ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d’abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier <a href="data/hockey.csv"><code>hockey.csv</code></a>.</p>
 <p>Importez, examinez et analysez ces données pour répondre à la question posée.</p>
 
 </div>

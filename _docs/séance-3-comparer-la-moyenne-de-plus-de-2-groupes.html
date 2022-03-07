@@ -24,7 +24,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2022-03-01" />
+<meta name="date" content="2022-03-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -263,8 +263,8 @@ div.csl-indent {
 <p>Ces commandes (que vous devez taper dans vos scripts avant de les exécuter dans la console de RStudio) ne devraient pas renvoyer de messages d’erreur puisque vous avez dû les installer pour reproduire les exemples et réaliser les exercices de la séance 1. Si vous rencontrez des problèmes, merci de consulter la section <a href="seance1.html#packages">3.1</a> de cet ouvrage, ainsi que <a href="https://besibo.github.io/Biometrie2/bases.html#charger-un-package-en-memoire">la section 2.3</a> du livre de biométrie 2 disponible en ligne.</p>
 <p>Vous aurez également besoin des jeux de données suivants :</p>
 <ul>
-<li><a href="https://besibo.github.io/Biometrie3/data/Light.csv"><code>Light.csv</code></a></li>
-<li><a href="https://besibo.github.io/Biometrie3/data/Insectes.csv"><code>Insectes.csv</code></a></li>
+<li><a href="data/Light.csv"><code>Light.csv</code></a></li>
+<li><a href="data/Insectes.csv"><code>Insectes.csv</code></a></li>
 </ul>
 </div>
 <div id="lanalyse-de-variance-à-un-facteur" class="section level2" number="4.2">
@@ -282,7 +282,7 @@ Cette découverte a été vivement critiquée par certains, et saluée comme une
 <p>Le décalage de phase du cycle de production de mélatonine était mesuré 48h plus tard. Des chiffres négatifs indiquent un retard de production de mélatonine. C’est l’effet théorique attendu du traitement lumineux administré. Un décalage de phase positif indique une production de mélatonine plus précoce. Une absence de changement se traduit par un décalage de phase de 0.</p>
 <div id="importation-et-examen-visuel-3" class="section level4" number="4.2.1.1">
 <h4><span class="header-section-number">4.2.1.1</span> Importation et examen visuel</h4>
-<p>Les données brutes de cette étude sont fournies dans le fichier <a href="https://besibo.github.io/Biometrie3/data/Light.csv"><code>Light.csv</code></a>. Importez ces données dans RStudio et examinez les données brutes grâce à la fonction <code>View()</code>.</p>
+<p>Les données brutes de cette étude sont fournies dans le fichier <a href="data/Light.csv"><code>Light.csv</code></a>. Importez ces données dans RStudio et examinez les données brutes grâce à la fonction <code>View()</code>.</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#cb113-1" aria-hidden="true" tabindex="-1"></a>Light</span></code></pre></div>
 <pre><code># A tibble: 22 × 2
    treatment shift
@@ -679,7 +679,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div id="insecticides" class="section level4" number="4.2.4.2">
 <h4><span class="header-section-number">4.2.4.2</span> Insecticides</h4>
-<p>L’efficacité de 6 insecticides nommés A, B, C, D, E et F a été testée sur 6 parcelles agricoles. Chaque insecticide de cette liste a été appliqué sur une parcelle agricole choisie au hasard. Deux semaines plus tard, 12 plants ont été collectés dans chaque parcelle agricole et le nombre d’insectes toujours vivants sur chacun d’entre eux a été compté. Les résultats sont présentés dans le fichier <a href="https://besibo.github.io/Biometrie3/data/Insectes.csv"><code>Insectes.csv</code></a>. Importez ces données dans <code>R</code> et faites-en l’analyse. Tous les insecticides ont-ils la même efficacité ? Si la réponse est non, quels sont les insecticides les plus (ou les moins) efficaces.</p>
+<p>L’efficacité de 6 insecticides nommés A, B, C, D, E et F a été testée sur 6 parcelles agricoles. Chaque insecticide de cette liste a été appliqué sur une parcelle agricole choisie au hasard. Deux semaines plus tard, 12 plants ont été collectés dans chaque parcelle agricole et le nombre d’insectes toujours vivants sur chacun d’entre eux a été compté. Les résultats sont présentés dans le fichier <a href="data/Insectes.csv"><code>Insectes.csv</code></a>. Importez ces données dans <code>R</code> et faites-en l’analyse. Tous les insecticides ont-ils la même efficacité ? Si la réponse est non, quels sont les insecticides les plus (ou les moins) efficaces.</p>
 
 </div>
 </div>

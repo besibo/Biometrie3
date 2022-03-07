@@ -27,8 +27,8 @@ Ces commandes (que vous devez taper dans vos scripts avant de les exécuter dans
 
 Vous aurez également besoin des jeux de données suivants :
 
-- [`Light.csv`](https://besibo.github.io/Biometrie3/data/Light.csv)
-- [`Insectes.csv`](https://besibo.github.io/Biometrie3/data/Insectes.csv)
+- [`Light.csv`](data/Light.csv)
+- [`Insectes.csv`](data/Insectes.csv)
 
 
 ## L'analyse de variance à un facteur
@@ -48,7 +48,7 @@ Le décalage de phase du cycle de production de mélatonine était mesuré 48h p
 
 #### Importation et examen visuel
 
-Les données brutes de cette étude sont fournies dans le fichier [`Light.csv`](https://besibo.github.io/Biometrie3/data/Light.csv). Importez ces données dans RStudio et examinez les données brutes grâce à la fonction `View()`.
+Les données brutes de cette étude sont fournies dans le fichier [`Light.csv`](data/Light.csv). Importez ces données dans RStudio et examinez les données brutes grâce à la fonction `View()`.
 
 ```{r, echo = -1, message = FALSE}
 Light <- read_csv("data/Light.csv")
@@ -408,5 +408,5 @@ Saisissez ces données dans `R` et faites-en l'analyse. Vous tenterez de déterm
 
 #### Insecticides
 
-L'efficacité de 6 insecticides nommés A, B, C, D, E et F a été testée sur 6 parcelles agricoles. Chaque insecticide de cette liste a été appliqué sur une parcelle agricole choisie au hasard. Deux semaines plus tard, 12 plants ont été collectés dans chaque parcelle agricole et le nombre d'insectes toujours vivants sur chacun d'entre eux a été compté. Les résultats sont présentés dans le fichier [`Insectes.csv`](https://besibo.github.io/Biometrie3/data/Insectes.csv). Importez ces données dans `R` et faites-en l'analyse. Tous les insecticides ont-ils la même efficacité ? Si la réponse est non, quels sont les insecticides les plus (ou les moins) efficaces.
+L'efficacité de 6 insecticides nommés A, B, C, D, E et F a été testée sur 6 parcelles agricoles. Chaque insecticide de cette liste a été appliqué sur une parcelle agricole choisie au hasard. Deux semaines plus tard, 12 plants ont été collectés dans chaque parcelle agricole et le nombre d'insectes toujours vivants sur chacun d'entre eux a été compté. Les résultats sont présentés dans le fichier [`Insectes.csv`](data/Insectes.csv). Importez ces données dans `R` et faites-en l'analyse. Tous les insecticides ont-ils la même efficacité ? Si la réponse est non, quels sont les insecticides les plus (ou les moins) efficaces.
 
