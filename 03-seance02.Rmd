@@ -93,7 +93,14 @@ Attention à bien respecter la casse (le respect des majuscules/minuscules est t
 
 #### Statistiques descriptives
 
-Comme toujours, et maintenant que nos données sont au bon format, il est nécessaire d'examiner quelques statistiques descriptives pour chaque catégorie étudiée. Le plus simple est ici d'utiliser la fonction `skim` du package `skimr` :
+Comme toujours, et maintenant que nos données sont au bon format, il est nécessaire d'examiner quelques statistiques descriptives pour chaque catégorie étudiée. On peut tout d'abord commencer par examiner la taille de chaque échantillon :
+
+```{r}
+Light %>% 
+  count(treatment)
+```
+
+Nous avons ici la confirmation que le design expérimental n'est pas équilibré, puisque le groupe `control` compte un individu de plus. Nous pouvons ensuite utiliser la fonction `skim` du package `skimr` pour obtenir un résumé des données :
 
 ```{r, render = normal_print}
 Light %>% 
@@ -101,7 +108,7 @@ Light %>%
   skim()
 ```
 
-Nous avons ici la confirmation que le design expérimental n'est pas équilibré, puisque le groupe `control` compte un individu de plus. Il semble que le groupe `eyes` se comporte un peu différemment des autres groupes. En effet, pour les groupes `control` et `knee`, les valeurs observées sont très proches :
+Il semble que le groupe `eyes` se comporte un peu différemment des autres groupes. En effet, pour les groupes `control` et `knee`, les valeurs observées sont très proches :
 
 - les moyennes et les médianes sont négatives mais proches de 0.
 - les valeurs observées sont négatives pour certaines, et positives pour d'autres (la colonne `p0` contient les minimas et la colonne `p100` contient les maximas).

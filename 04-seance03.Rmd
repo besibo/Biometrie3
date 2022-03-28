@@ -9,7 +9,7 @@ library(tidyverse)
 library(skimr)
 ```
 
-Vous aurez également besoin des jeux de données suivants, disponibles sur l'ENT ou directement téléchargeables depuis ce document :
+Vous aurez également besoin des jeux de données suivants, qu'il vous faut donc télécharger dans votre répertoire de travail :
 
 - [`birds.csv`](data/birds.csv)
 - [`loups.csv`](data/loups.csv)
