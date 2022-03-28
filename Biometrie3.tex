@@ -134,7 +134,7 @@
 
 \title{Travaux Pratiques de Biométrie 3}
 \author{Benoît Simon-Bouhet}
-\date{2022-03-07}
+\date{2022-03-28}
 
 \begin{document}
 \maketitle
@@ -2423,7 +2423,25 @@ Attention à bien respecter la casse (le respect des majuscules/minuscules est t
 \hypertarget{statistiques-descriptives-3}{%
 \paragraph{Statistiques descriptives}\label{statistiques-descriptives-3}}
 
-Comme toujours, et maintenant que nos données sont au bon format, il est nécessaire d'examiner quelques statistiques descriptives pour chaque catégorie étudiée. Le plus simple est ici d'utiliser la fonction \texttt{skim} du package \texttt{skimr} :
+Comme toujours, et maintenant que nos données sont au bon format, il est nécessaire d'examiner quelques statistiques descriptives pour chaque catégorie étudiée. On peut tout d'abord commencer par examiner la taille de chaque échantillon :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Light }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{count}\NormalTok{(treatment)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 3 x 2
+  treatment     n
+  <fct>     <int>
+1 control       8
+2 knee          7
+3 eyes          7
+\end{verbatim}
+
+Nous avons ici la confirmation que le design expérimental n'est pas équilibré, puisque le groupe \texttt{control} compte un individu de plus. Nous pouvons ensuite utiliser la fonction \texttt{skim} du package \texttt{skimr} pour obtenir un résumé des données :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2456,7 +2474,7 @@ Group variables            treatment
 3 -1.48  -1.10 -0.78 ▂▂▁▇▅
 \end{verbatim}
 
-Nous avons ici la confirmation que le design expérimental n'est pas équilibré, puisque le groupe \texttt{control} compte un individu de plus. Il semble que le groupe \texttt{eyes} se comporte un peu différemment des autres groupes. En effet, pour les groupes \texttt{control} et \texttt{knee}, les valeurs observées sont très proches :
+Il semble que le groupe \texttt{eyes} se comporte un peu différemment des autres groupes. En effet, pour les groupes \texttt{control} et \texttt{knee}, les valeurs observées sont très proches :
 
 \begin{itemize}
 \tightlist
@@ -2494,7 +2512,7 @@ notch went outside hinges. Try setting notch=FALSE.
 notch went outside hinges. Try setting notch=FALSE.
 \end{verbatim}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-76-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-77-1} \end{center}
 
 Puisqu'il y a peu de données, les intervalles de confiance à 95\% sont très larges. Ils dépassent d'ailleurs presque systématiquement les quartiles, ce qui explique l'apparence bizarre des boîtes à moustaches et les messages d'avertissement affichés lors de la création du graphique. Il vaudait donc mieux représenter cette figure sans ces intervalles de confiance. Toutefois, avant de les retirer, on peut constater ici que les IC 95\% se chevauchent complètement pour les séries \texttt{control} et \texttt{knee}. En revanche, il n'y a aucun chevauchement de l'IC 95\% du groupe \texttt{eyes} avec les 2 autres groupes. On s'attend donc à trouver une différence de moyenne significative entre le groupe \texttt{eyes} d'une part, et les groupes \texttt{control} et \texttt{knee} d'autre part, mais pas de différence de moyenne entre les groupes \texttt{control} et \texttt{knee}.
 
@@ -2512,7 +2530,7 @@ Puisqu'il y a peu de données, les intervalles de confiance à 95\% sont très l
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-77-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-78-1} \end{center}
 
 On constate ici visuellement que les 3 séries ont une étendue à peu près similaire, et que le groupe \texttt{eyes} semble se distinguer des 2 autres par des valeurs plus faibles. Enfin, les boîtes contenant 50\% des valeurs centrales (donc l'étendue des valeurs entre les premiers et troisièmes quartiles) recouvrent le 0 pour les 2 groupes \texttt{control} et \texttt{knee}, mais par pour \texttt{eyes}.
 
@@ -2605,7 +2623,7 @@ L'homogénéité des résidus signifie que les résidus doivent avoir à peu pr�
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-80-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-81-1} \end{center}
 
 Ici, les résidus sont considérés comme homogènes car nous avons à peu près autant de résidus positifs que négatifs et que la ligne rouge est très proche du 0. L'étalement des résidus est à peu près le même de la gauche à la droite du graphique. On pourrait donc faire entrer les résidus dans une boite rectangulaire horizontale centrée sur le 0 et de la même largeur d'un bout à l'autre du graphique. Une autre façon de visualiser ces résidus est d'utiliser le graphique suivant :
 
@@ -2615,7 +2633,7 @@ Ici, les résidus sont considérés comme homogènes car nous avons à peu près
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-81-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-82-1} \end{center}
 
 Sur ce graphique, ce qui compte principalement, c'est la droite en rouge. Elle est ici presque horizontale, ce qui montre que les résidus de tous les groupes (un groupe à gauche et 2 à droite) ont à peu près même moyenne.
 
@@ -2652,7 +2670,7 @@ Reste à vérifier la normalité des résidus. Là encore, on peut faire cela gr
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-83-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-84-1} \end{center}
 
 Sur un graphique quantile-quantile comme celui-là, on considère que les observations sont distribuées normalement si les points sont bien alignés sur la droite. Ici, la plupart des points sont très proches de la droite, ce qui laisse penser que les résidus suivent bien la loi Normale. On peut en avoir la confirmation avec le test suivant :
 
@@ -2836,7 +2854,7 @@ En utilisant le tableau ci-dessus, nous pouvons synthétiser graphiquement ces r
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-90-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-91-1} \end{center}
 
 Nous avons donc bien montré ici que la re-synchronisation de l'horloge interne n'est possible que par le biais de l'exposition des yeux à la lumière, et non du creux poplité.
 
@@ -3045,7 +3063,7 @@ Comme dans tous les chapitres de cet ouvrage, nous aurons besoin ici du \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-Vous aurez également besoin des jeux de données suivants, disponibles sur l'ENT ou directement téléchargeables depuis ce document :
+Vous aurez également besoin des jeux de données suivants, qu'il vous faut donc télécharger dans votre répertoire de travail :
 
 \begin{itemize}
 \tightlist
@@ -3072,19 +3090,19 @@ Le coefficient de corrélation est la quantité qui décrit la force et la direc
 
 Ainsi, sur la figure ci-dessous, le coefficient de corrélation entre \texttt{X} et \texttt{Y} est le même pour les deux graphiques : il vaut 1.
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-96-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-97-1} \end{center}
 
 Ici, le coefficient de corrélation (noté \(r\)) vaut 1 dans les deux cas, car tous les points sont alignés sur une droite. La pente de la droite n'influence en rien la valeur de corrélation. En revanche, la dispersion des points autour d'une droite parfaite a une influence :
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-97-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-98-1} \end{center}
 
 Plus la dispersion autour d'une droite parfaite sera grande, plus la corrélation sera faible. C'est la raison pour laquelle lorsque l'on parle de ``corrélation'', on sous-entend généralement \textbf{corrélation linéaire}. Ainsi, 2 variables peuvent avoir une relation très forte, mais un coefficient de corrélation nul, si leur relation n'est pas linéaire :
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-98-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-99-1} \end{center}
 
 L'exploration graphique de vos données devrait donc toujours être une priorité. Calculer un coefficient de corrélation nul ou très faible ne signifie par pour autant une absence de relation entre les 2 variables numériques étudiées. Cela peut signifier une relation non linéaire. La solution la plus simple pour distinguer une relation telle que celle du graphique précédent, et une absence de relation telle que celle présentée dans le graphique ci-dessous, est l'examen visuel des données :
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-99-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-100-1} \end{center}
 
 En bref, le coefficient de corrélation \(r\) est compris entre -1 et +1 :
 
@@ -3252,7 +3270,7 @@ Afin de savoir si la valeur moyenne de \(r\) calculée précédemment reflète u
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-104-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-105-1} \end{center}
 
 On constate ici que la corrélation moyenne obtenue plus haut est due au fait que les points sont assez dispersés, et non au fait que la relation n'est pas linéaire. On peut donc dire que la relation, si elle existe, n'est pas parfaite. Le comportement des individus devenus adultes semble donc en partie lié au nombre de visites agessives qu'ils ont reçues étant jeunes, mais ce n'est certainement pas le seul facteur influençant leur comportement. Un test d'hypothèses devrait nous permettre de déterminer si la corrélation linéaire observée ici est significativement différente de 0 ou non.
 
@@ -3397,7 +3415,7 @@ Pour résumer, l'examen du nuage de points permet de vérifier les 2 premières 
   Une relation non linéaire existe entre les deux variables.
 \end{itemize}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-107-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-108-1} \end{center}
 
 Enfin, si l'une, l'autre ou les deux séries de données ne suivent pas la loi Normale, il faudra faire un test non paramétrique.
 
@@ -3626,7 +3644,7 @@ Une visualisation des données est toujours indispensable :
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-114-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-115-1} \end{center}
 
 Ce graphique nous apprend plusieurs choses :
 
@@ -3647,7 +3665,7 @@ Ce graphique nous apprend plusieurs choses :
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-115-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-116-1} \end{center}
 
 Cela n'est pas du tout problématique : comme pour l'ANOVA, les conditions d'application porteront sur les \textbf{résidus de la régression}, pas sur les variables elles-mêmes.
 
@@ -3695,7 +3713,7 @@ Cela n'est pas du tout problématique : comme pour l'ANOVA, les conditions d'app
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-117-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-118-1} \end{center}
 
 On peut visualiser dès maintenant la droite de régression linéaire qui permet de lier ces deux variables grâce à la fonction \texttt{geom\_smooth(method\ =\ "lm",\ se\ =\ FALSE})` :
 
@@ -3715,7 +3733,7 @@ On peut visualiser dès maintenant la droite de régression linéaire qui permet
 `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-118-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-119-1} \end{center}
 
 À supposer que nous ayons le droit d'effectuer une régression linéaire (ce qu'il faudra vérifier avec les conditions d'application, \textbf{après} avoir fait la régression), la pente devrait être positive.
 
@@ -3829,7 +3847,7 @@ Il est possible de visualiser cette incertitude grâce à la fonction \texttt{ge
 `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-122-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-123-1} \end{center}
 
 Cet intervalle d'incertitude correspond à l'incertitude de la moyenne de la variable expliquée pour une valeur donnée de la variable explicative. Ainsi, par exemple, si le nombre d'espèces d'une parcelle est égal à 8, alors, la régression et son incertitude associée nous dit que le logarithme de l'indice de stabilité de la biomasse vaudra \textbf{en moyenne} environ 1.46, avec un intervalle de confiance de {[}1.40 ; 1.51{]}
 
@@ -3846,7 +3864,7 @@ Les conditions d'application de la régression sont les mêmes que celles de l'A
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-123-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-124-1} \end{center}
 
 C'est seulement après avoir réalisé, examiné et commenté ces graphiques que vous serez en mesure de dire si oui ou non vous aviez le droit de faire la régression linéaire, et donc d'en interpréter les résultats.
 
@@ -3904,7 +3922,7 @@ Si on s'en tient à ces calculs d'indices synthétiques, on pourrait croire que 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-125-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-126-1} \end{center}
 
 Le quartet d'Anscombe est un autre exemple de ce type de problème.
 

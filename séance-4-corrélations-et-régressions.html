@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Séance 4 : corrélations et régressions | Travaux Pratiques de Biométrie 3</title>
   <meta name="description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Séance 4 : corrélations et régressions | Travaux Pratiques de Biométrie 3" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://besibo.github.io/Biometrie3/" />
   
   <meta property="og:description" content="Ce livre est un document permettant de réaliser des analyses statistiques descriptives, des tests d’hypothèse, des régressions linéaires et des analyses de variances dans le cadre des travaux pratiques de Biométrie 3." />
   <meta name="github-repo" content="besibo/Biometrie3" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2022-03-07" />
+<meta name="date" content="2022-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -220,9 +219,9 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="packages3" class="section level2 hasAnchor">
 <h2><span class="header-section-number">5.1</span> Packages et données<a href="séance-4-corrélations-et-régressions.html#packages3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Comme dans tous les chapitres de cet ouvrage, nous aurons besoin ici du <code>tidyverse</code> et du package <code>skimr</code>. Noubliez pas de les charger en mémoire avant d’aller plus loin.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="séance-4-corrélations-et-régressions.html#cb159-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb159-2"><a href="séance-4-corrélations-et-régressions.html#cb159-2"></a><span class="kw">library</span>(skimr)</span></code></pre></div>
-<p>Vous aurez également besoin des jeux de données suivants, disponibles sur l’ENT ou directement téléchargeables depuis ce document :</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="séance-4-corrélations-et-régressions.html#cb161-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb161-2"><a href="séance-4-corrélations-et-régressions.html#cb161-2"></a><span class="kw">library</span>(skimr)</span></code></pre></div>
+<p>Vous aurez également besoin des jeux de données suivants, qu’il vous faut donc télécharger dans votre répertoire de travail :</p>
 <ul>
 <li><a href="data/birds.csv"><code>birds.csv</code></a></li>
 <li><a href="data/loups.csv"><code>loups.csv</code></a></li>
@@ -238,13 +237,13 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Lorsque des variables numériques sont associées ont dit qu’elles sont <strong>corrélées</strong>. Par exemple, la taille du cerveau et la taille du corps sont corrélées positivement parmi les espèces de mammifères. Les espèces de grande taille ont tendance à avoir un cerveau plus grand et les petites espèces ont tendance à avoir un cerveau plus petit.<br />
 Le coefficient de corrélation est la quantité qui décrit la force et la direction de l’association entre deux variables numériques mesurées sur un échantillon de sujets ou d’unités d’observation. La corrélation reflète la quantité de dispersion dans un nuage de points entre deux variables. Contrairement à la régression linéaire, la corrélation n’ajuste aucune droite à des données et ne permet donc pas de mesurer à quel point le changement d’une variable entraîne un changement rapide ou lent de l’autre variable.</p>
 <p>Ainsi, sur la figure ci-dessous, le coefficient de corrélation entre <code>X</code> et <code>Y</code> est le même pour les deux graphiques : il vaut 1.</p>
-<p><img src="figure/unnamed-chunk-96-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>Ici, le coefficient de corrélation (noté <span class="math inline">\(r\)</span>) vaut 1 dans les deux cas, car tous les points sont alignés sur une droite. La pente de la droite n’influence en rien la valeur de corrélation. En revanche, la dispersion des points autour d’une droite parfaite a une influence :</p>
 <p><img src="figure/unnamed-chunk-97-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>Plus la dispersion autour d’une droite parfaite sera grande, plus la corrélation sera faible. C’est la raison pour laquelle lorsque l’on parle de “corrélation”, on sous-entend généralement <strong>corrélation linéaire</strong>. Ainsi, 2 variables peuvent avoir une relation très forte, mais un coefficient de corrélation nul, si leur relation n’est pas linéaire :</p>
+<p>Ici, le coefficient de corrélation (noté <span class="math inline">\(r\)</span>) vaut 1 dans les deux cas, car tous les points sont alignés sur une droite. La pente de la droite n’influence en rien la valeur de corrélation. En revanche, la dispersion des points autour d’une droite parfaite a une influence :</p>
 <p><img src="figure/unnamed-chunk-98-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>L’exploration graphique de vos données devrait donc toujours être une priorité. Calculer un coefficient de corrélation nul ou très faible ne signifie par pour autant une absence de relation entre les 2 variables numériques étudiées. Cela peut signifier une relation non linéaire. La solution la plus simple pour distinguer une relation telle que celle du graphique précédent, et une absence de relation telle que celle présentée dans le graphique ci-dessous, est l’examen visuel des données :</p>
+<p>Plus la dispersion autour d’une droite parfaite sera grande, plus la corrélation sera faible. C’est la raison pour laquelle lorsque l’on parle de “corrélation”, on sous-entend généralement <strong>corrélation linéaire</strong>. Ainsi, 2 variables peuvent avoir une relation très forte, mais un coefficient de corrélation nul, si leur relation n’est pas linéaire :</p>
 <p><img src="figure/unnamed-chunk-99-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>L’exploration graphique de vos données devrait donc toujours être une priorité. Calculer un coefficient de corrélation nul ou très faible ne signifie par pour autant une absence de relation entre les 2 variables numériques étudiées. Cela peut signifier une relation non linéaire. La solution la plus simple pour distinguer une relation telle que celle du graphique précédent, et une absence de relation telle que celle présentée dans le graphique ci-dessous, est l’examen visuel des données :</p>
+<p><img src="figure/unnamed-chunk-100-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>En bref, le coefficient de corrélation <span class="math inline">\(r\)</span> est compris entre -1 et +1 :</p>
 <ul>
 <li>Une forte valeur absolue (<span class="math inline">\(r\)</span> proche de -1 ou +1), indique une relation presque linéaire.</li>
@@ -259,7 +258,7 @@ Le coefficient de corrélation est la quantité qui décrit la force et la direc
 <div id="importation-et-examen-visuel-4" class="section level4 hasAnchor">
 <h4><span class="header-section-number">5.2.2.1</span> Importation et examen visuel<a href="séance-4-corrélations-et-régressions.html#importation-et-examen-visuel-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Les adultes qui infligent des mauvais traitements à leurs enfants ont souvent été maltraités dans leur enfance. Une telle relation existe-t-elle également chez d’autres espèces animales, chez qui cette relation pourrait être étudiée plus facilement ? <span class="citation">Müller et al. (<a href="#ref-muller2011" role="doc-biblioref">2011</a>)</span> ont étudié cette possibilité chez le fou de Grant (<em>Sula granti</em>), un oiseau marin colonial vivant entre autres aux Galápagos. Les jeunes laissés au nid sans attention parentale reçoivent fréquemment la visite d’autres oiseaux, qui se comportent souvent de manière agressive à leur encontre. Les chercheurs ont compté le nombre de ces visites dans le nid de 24 poussins dotés d’une bague d’identification individuelle. Ces 24 individus ont ensuite été suivis à l’âge adulte, lorsqu’ils sont à leur tour devenus parents. Les données récoltées par les chercheurs figurent dans le fichier <a href="data/birds.csv"><code>birds.csv</code></a>. Importez ces données dans <code>R</code> dans un objet noté <code>birds</code>.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="séance-4-corrélations-et-régressions.html#cb160-1"></a>birds</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="séance-4-corrélations-et-régressions.html#cb162-1"></a>birds</span></code></pre></div>
 <pre><code># A tibble: 24 × 2
    nVisitsNestling futureBehavior
              &lt;dbl&gt;          &lt;dbl&gt;
@@ -276,9 +275,9 @@ Le coefficient de corrélation est la quantité qui décrit la force et la direc
 # … with 14 more rows</code></pre>
 <p>La première colonne de ce tableau indique, pour chaque individu suivi, le nombre de visites reçues au nid de la part d’adultes agressifs lorsqu’ils étaient poussins. La seconde colonne indique, pour ces mêmes individus devenus adultes, le nombre de visites agressives effectuées à des nids d’autres poussins. Ce nombre n’est pas dans la même unité que la première variable car il a été corrigé par d’autres variables d’intérêt pour les chercheurs.</p>
 <p>Il manque à ce tableau une variable indiquant le code des individus. Elle n’est pas indispensable, mais la rajouter est une bonne habitude à prendre pour toujours travailler avec des “données rangées” :</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="séance-4-corrélations-et-régressions.html#cb162-1"></a>birds &lt;-<span class="st"> </span>birds <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb162-2"><a href="séance-4-corrélations-et-régressions.html#cb162-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ID =</span> <span class="kw">factor</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">24</span>))</span>
-<span id="cb162-3"><a href="séance-4-corrélations-et-régressions.html#cb162-3"></a>birds</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="séance-4-corrélations-et-régressions.html#cb164-1"></a>birds &lt;-<span class="st"> </span>birds <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb164-2"><a href="séance-4-corrélations-et-régressions.html#cb164-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ID =</span> <span class="kw">factor</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">24</span>))</span>
+<span id="cb164-3"><a href="séance-4-corrélations-et-régressions.html#cb164-3"></a>birds</span></code></pre></div>
 <pre><code># A tibble: 24 × 3
    nVisitsNestling futureBehavior ID   
              &lt;dbl&gt;          &lt;dbl&gt; &lt;fct&gt;
@@ -297,7 +296,7 @@ Le coefficient de corrélation est la quantité qui décrit la force et la direc
 <div id="statistiques-descriptives-4" class="section level4 hasAnchor">
 <h4><span class="header-section-number">5.2.2.2</span> Statistiques descriptives<a href="séance-4-corrélations-et-régressions.html#statistiques-descriptives-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Comme toujours, la première chose à faire est d’examiner quelques statistiques descriptives pour se faire une idée de la forme des données et pour repérer les éventuelles données manquantes ou aberrantes.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="séance-4-corrélations-et-régressions.html#cb164-1"></a><span class="kw">skim</span>(birds)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="séance-4-corrélations-et-régressions.html#cb166-1"></a><span class="kw">skim</span>(birds)</span></code></pre></div>
 <pre><code>── Data Summary ────────────────────────
                            Values
 Name                       birds 
@@ -327,9 +326,9 @@ Group variables            None
 <li>La variable <code>futureBehavior</code> varie de -0.92 à 0.39, avec une moyenne et une médiane proche de 0 (-0.12 et -0.1 respectivement).</li>
 </ol>
 <p>À ce stade, il est possible de calculer le coefficient de corrélation linéaire entre les 2 variables :</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="séance-4-corrélations-et-régressions.html#cb166-1"></a>birds <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb166-2"><a href="séance-4-corrélations-et-régressions.html#cb166-2"></a><span class="st">  </span><span class="kw">select</span>(nVisitsNestling, futureBehavior) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb166-3"><a href="séance-4-corrélations-et-régressions.html#cb166-3"></a><span class="st">  </span><span class="kw">cor</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="séance-4-corrélations-et-régressions.html#cb168-1"></a>birds <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-2"><a href="séance-4-corrélations-et-régressions.html#cb168-2"></a><span class="st">  </span><span class="kw">select</span>(nVisitsNestling, futureBehavior) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-3"><a href="séance-4-corrélations-et-régressions.html#cb168-3"></a><span class="st">  </span><span class="kw">cor</span>()</span></code></pre></div>
 <pre><code>                nVisitsNestling futureBehavior
 nVisitsNestling       1.0000000      0.5337225
 futureBehavior        0.5337225      1.0000000</code></pre>
@@ -342,13 +341,13 @@ futureBehavior        0.5337225      1.0000000</code></pre>
 <div id="exploration-graphique-4" class="section level4 hasAnchor">
 <h4><span class="header-section-number">5.2.2.3</span> Exploration graphique<a href="séance-4-corrélations-et-régressions.html#exploration-graphique-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Afin de savoir si la valeur moyenne de <span class="math inline">\(r\)</span> calculée précédemment reflète une relation linéaire mais moyenne, ou une relation qui n’est pas vraiment linéaire, nous devons faire un nuage de points :</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="séance-4-corrélations-et-régressions.html#cb168-1"></a>birds <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb168-2"><a href="séance-4-corrélations-et-régressions.html#cb168-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nVisitsNestling, <span class="dt">y =</span> futureBehavior)) <span class="op">+</span></span>
-<span id="cb168-3"><a href="séance-4-corrélations-et-régressions.html#cb168-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb168-4"><a href="séance-4-corrélations-et-régressions.html#cb168-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre de visites reçues par le poussin&quot;</span>,</span>
-<span id="cb168-5"><a href="séance-4-corrélations-et-régressions.html#cb168-5"></a>       <span class="dt">y =</span> <span class="st">&quot;Comportement futur&quot;</span>) <span class="op">+</span></span>
-<span id="cb168-6"><a href="séance-4-corrélations-et-régressions.html#cb168-6"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="figure/unnamed-chunk-104-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="séance-4-corrélations-et-régressions.html#cb170-1"></a>birds <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb170-2"><a href="séance-4-corrélations-et-régressions.html#cb170-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nVisitsNestling, <span class="dt">y =</span> futureBehavior)) <span class="op">+</span></span>
+<span id="cb170-3"><a href="séance-4-corrélations-et-régressions.html#cb170-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb170-4"><a href="séance-4-corrélations-et-régressions.html#cb170-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre de visites reçues par le poussin&quot;</span>,</span>
+<span id="cb170-5"><a href="séance-4-corrélations-et-régressions.html#cb170-5"></a>       <span class="dt">y =</span> <span class="st">&quot;Comportement futur&quot;</span>) <span class="op">+</span></span>
+<span id="cb170-6"><a href="séance-4-corrélations-et-régressions.html#cb170-6"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-105-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>On constate ici que la corrélation moyenne obtenue plus haut est due au fait que les points sont assez dispersés, et non au fait que la relation n’est pas linéaire. On peut donc dire que la relation, si elle existe, n’est pas parfaite. Le comportement des individus devenus adultes semble donc en partie lié au nombre de visites agessives qu’ils ont reçues étant jeunes, mais ce n’est certainement pas le seul facteur influençant leur comportement. Un test d’hypothèses devrait nous permettre de déterminer si la corrélation linéaire observée ici est significativement différente de 0 ou non.</p>
 </div>
 </div>
@@ -363,7 +362,7 @@ futureBehavior        0.5337225      1.0000000</code></pre>
 <p>Ce test est réalisé dans <code>R</code> grâce à la fonction <code>cor.test()</code>.</p>
 <div id="résultats-du-test-et-interprétation" class="section level4 hasAnchor">
 <h4><span class="header-section-number">5.2.3.1</span> Résultats du test et interprétation<a href="séance-4-corrélations-et-régressions.html#résultats-du-test-et-interprétation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="séance-4-corrélations-et-régressions.html#cb169-1"></a><span class="kw">cor.test</span>(birds<span class="op">$</span>nVisitsNestling, birds<span class="op">$</span>futureBehavior)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="séance-4-corrélations-et-régressions.html#cb171-1"></a><span class="kw">cor.test</span>(birds<span class="op">$</span>nVisitsNestling, birds<span class="op">$</span>futureBehavior)</span></code></pre></div>
 <pre><code>
     Pearson&#39;s product-moment correlation
 
@@ -390,8 +389,8 @@ sample estimates:
 <li>H<span class="math inline">\(_1\)</span> : le coefficient de corrélation entre les deux variables étudiées est positif dans la population générale (<span class="math inline">\(\rho &gt; 0\)</span>)</li>
 </ul>
 <p>On utilise la syntaxe suivante :</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="séance-4-corrélations-et-régressions.html#cb171-1"></a><span class="kw">cor.test</span>(birds<span class="op">$</span>nVisitsNestling, birds<span class="op">$</span>futureBehavior,</span>
-<span id="cb171-2"><a href="séance-4-corrélations-et-régressions.html#cb171-2"></a>         <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="séance-4-corrélations-et-régressions.html#cb173-1"></a><span class="kw">cor.test</span>(birds<span class="op">$</span>nVisitsNestling, birds<span class="op">$</span>futureBehavior,</span>
+<span id="cb173-2"><a href="séance-4-corrélations-et-régressions.html#cb173-2"></a>         <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>
     Pearson&#39;s product-moment correlation
 
@@ -432,15 +431,15 @@ sample estimates:
 <li>Des ouliers sont présents (quelques points fortement éloignés du reste des observations).</li>
 <li>Une relation non linéaire existe entre les deux variables.</li>
 </ul>
-<p><img src="figure/unnamed-chunk-107-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-108-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Enfin, si l’une, l’autre ou les deux séries de données ne suivent pas la loi Normale, il faudra faire un test non paramétrique.</p>
 </div>
 </div>
 <div id="lalternative-non-paramétrique-4" class="section level3 hasAnchor">
 <h3><span class="header-section-number">5.2.4</span> L’alternative non paramétrique<a href="séance-4-corrélations-et-régressions.html#lalternative-non-paramétrique-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Quand les conditions d’application du test de corrélation de Pearson ne sont pas remplies, il faut faire un test équivalent non paramétrique. Le test utilisé le plus fréquemment dans cette situation est le test du <span class="math inline">\(\rho\)</span> de Spearman. On l’effectue comme le test de Pearson en précisant simplement un argument supplémentaire : <code>method = "spearman"</code> (sans maujscule) :</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="séance-4-corrélations-et-régressions.html#cb173-1"></a><span class="kw">cor.test</span>(birds<span class="op">$</span>nVisitsNestling, birds<span class="op">$</span>futureBehavior,</span>
-<span id="cb173-2"><a href="séance-4-corrélations-et-régressions.html#cb173-2"></a>         <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="séance-4-corrélations-et-régressions.html#cb175-1"></a><span class="kw">cor.test</span>(birds<span class="op">$</span>nVisitsNestling, birds<span class="op">$</span>futureBehavior,</span>
+<span id="cb175-2"><a href="séance-4-corrélations-et-régressions.html#cb175-2"></a>         <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
 <pre><code>Warning in cor.test.default(birds$nVisitsNestling, birds$futureBehavior, :
 Cannot compute exact p-value with ties</code></pre>
 <pre><code>
@@ -499,7 +498,7 @@ Pour chaque récit, les chercheurs ont également enregistré le nombre d’ann�
 <div id="importation-examen-visuel-et-statistiques-descriptives" class="section level4 hasAnchor">
 <h4><span class="header-section-number">5.3.1.1</span> Importation, examen visuel et statistiques descriptives<a href="séance-4-corrélations-et-régressions.html#importation-examen-visuel-et-statistiques-descriptives" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Comme toujours, on importe les données et on commence par un examen visuel afin de détecter les éventuels problèmes et pour savoir où l’on va.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="séance-4-corrélations-et-régressions.html#cb176-1"></a>plant &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/plantbiomass.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="séance-4-corrélations-et-régressions.html#cb178-1"></a>plant &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/plantbiomass.csv&quot;</span>)</span></code></pre></div>
 <pre><code>Rows: 161 Columns: 2
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: &quot;,&quot;
@@ -507,7 +506,7 @@ dbl (2): nSpecies, biomassStability
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="séance-4-corrélations-et-régressions.html#cb178-1"></a>plant</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="séance-4-corrélations-et-régressions.html#cb180-1"></a>plant</span></code></pre></div>
 <pre><code># A tibble: 161 × 2
    nSpecies biomassStability
       &lt;dbl&gt;            &lt;dbl&gt;
@@ -523,7 +522,7 @@ dbl (2): nSpecies, biomassStability
 10        1             4.26
 # … with 151 more rows</code></pre>
 <p>Ce premier examen nous montre que nous disposons bien de 161 observations pour 2 variables : le nombre d’espèces présentes dans la parcelle pendant 10 ans, et l’indice de stabilité de la biomasse de chaque parcelle.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="séance-4-corrélations-et-régressions.html#cb180-1"></a><span class="kw">skim</span>(plant)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="séance-4-corrélations-et-régressions.html#cb182-1"></a><span class="kw">skim</span>(plant)</span></code></pre></div>
 <pre><code>── Data Summary ────────────────────────
                            Values
 Name                       plant 
@@ -543,9 +542,9 @@ Group variables            None
 1  16   ▇▁▂▁▃
 2  15.8 ▇▆▁▁▁</code></pre>
 <p>Ce premier examen nous montre que nous n’avons aucune données manquantes et que l’indice de stabilité a une distribution asymétrique (asymétrie droite) et qu’il varie d’un peu plus de 1 à près de 16. Pour en apprendre un peu plus, nous avons intérêt à examiner les données en groupes :</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="séance-4-corrélations-et-régressions.html#cb182-1"></a>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb182-2"><a href="séance-4-corrélations-et-régressions.html#cb182-2"></a><span class="st">  </span><span class="kw">group_by</span>(nSpecies) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb182-3"><a href="séance-4-corrélations-et-régressions.html#cb182-3"></a><span class="st">  </span><span class="kw">skim</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="séance-4-corrélations-et-régressions.html#cb184-1"></a>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb184-2"><a href="séance-4-corrélations-et-régressions.html#cb184-2"></a><span class="st">  </span><span class="kw">group_by</span>(nSpecies) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb184-3"><a href="séance-4-corrélations-et-régressions.html#cb184-3"></a><span class="st">  </span><span class="kw">skim</span>()</span></code></pre></div>
 <pre><code>── Data Summary ────────────────────────
                            Values    
 Name                       Piped data
@@ -572,30 +571,30 @@ Group variables            nSpecies
 5  5.27  7.07 15.8  ▇▅▂▁▁</code></pre>
 <p>Cette fois, on obtient des informations pour chaque valeur de nombre d’espèce par parcelle. On constate par exemple que les moyennes de l’indice de stabilité de la biomasse augmentent très peu entre les catégories 1, 2 et 4 espèces par parcelle, mais que l’augmentation semble plus forte pour 8 et 16 espèces par parcelle. Tous les écarts-types semblent très proches, sauf peut-être pour la catégorie 16 espèces.</p>
 <p>Une visualisation des données est toujours indispensable :</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="séance-4-corrélations-et-régressions.html#cb184-1"></a>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb184-2"><a href="séance-4-corrélations-et-régressions.html#cb184-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies, <span class="dt">y =</span> biomassStability)) <span class="op">+</span></span>
-<span id="cb184-3"><a href="séance-4-corrélations-et-régressions.html#cb184-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
-<span id="cb184-4"><a href="séance-4-corrélations-et-régressions.html#cb184-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre d&#39;espèces par parcelle&quot;</span>,</span>
-<span id="cb184-5"><a href="séance-4-corrélations-et-régressions.html#cb184-5"></a>       <span class="dt">y =</span> <span class="st">&quot;Indice de stabilité de la biomasse&quot;</span>) <span class="op">+</span></span>
-<span id="cb184-6"><a href="séance-4-corrélations-et-régressions.html#cb184-6"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="figure/unnamed-chunk-114-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="séance-4-corrélations-et-régressions.html#cb186-1"></a>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb186-2"><a href="séance-4-corrélations-et-régressions.html#cb186-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies, <span class="dt">y =</span> biomassStability)) <span class="op">+</span></span>
+<span id="cb186-3"><a href="séance-4-corrélations-et-régressions.html#cb186-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb186-4"><a href="séance-4-corrélations-et-régressions.html#cb186-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre d&#39;espèces par parcelle&quot;</span>,</span>
+<span id="cb186-5"><a href="séance-4-corrélations-et-régressions.html#cb186-5"></a>       <span class="dt">y =</span> <span class="st">&quot;Indice de stabilité de la biomasse&quot;</span>) <span class="op">+</span></span>
+<span id="cb186-6"><a href="séance-4-corrélations-et-régressions.html#cb186-6"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-115-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Ce graphique nous apprend plusieurs choses :</p>
 <ol style="list-style-type: decimal">
 <li>Contrairement à la plupart des méthodes statistiques vues jusqu’ici, il n’est pas nécessaire que les données des variables soient distribuées selon une loi Normale. Ici, nous avons des données qui sont tout sauf normales pour la variable explicative puisque nous avons seulement les entiers 1, 2, 4, 8 et 16. Un histogramme ou une courbe de densité montre que la distribution de cette variable est très loin de la Normalité :</li>
 </ol>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="séance-4-corrélations-et-régressions.html#cb185-1"></a>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb185-2"><a href="séance-4-corrélations-et-régressions.html#cb185-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies)) <span class="op">+</span></span>
-<span id="cb185-3"><a href="séance-4-corrélations-et-régressions.html#cb185-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">adjust =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
-<span id="cb185-4"><a href="séance-4-corrélations-et-régressions.html#cb185-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre d&#39;espèces par parcelle&quot;</span>) <span class="op">+</span></span>
-<span id="cb185-5"><a href="séance-4-corrélations-et-régressions.html#cb185-5"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="figure/unnamed-chunk-115-1.png" width="90%" style="display: block; margin: auto;" />
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="séance-4-corrélations-et-régressions.html#cb187-1"></a>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb187-2"><a href="séance-4-corrélations-et-régressions.html#cb187-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies)) <span class="op">+</span></span>
+<span id="cb187-3"><a href="séance-4-corrélations-et-régressions.html#cb187-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">adjust =</span> <span class="fl">0.2</span>) <span class="op">+</span></span>
+<span id="cb187-4"><a href="séance-4-corrélations-et-régressions.html#cb187-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre d&#39;espèces par parcelle&quot;</span>) <span class="op">+</span></span>
+<span id="cb187-5"><a href="séance-4-corrélations-et-régressions.html#cb187-5"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-116-1.png" width="90%" style="display: block; margin: auto;" />
 Cela n’est pas du tout problématique : comme pour l’ANOVA, les conditions d’application porteront sur les <strong>résidus de la régression</strong>, pas sur les variables elles-mêmes.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Afin de limiter la sur-dispersion de la variable expliquée, notamment pour la catégorie <code>16</code> plantes par parcelle, nous allons transformer l’indice de stabilité en logarithme (attention, la fonction <code>log()</code> permet de calculer des logarithmes népériens ou logarithmes naturels) :</li>
 </ol>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="séance-4-corrélations-et-régressions.html#cb186-1"></a>plant &lt;-<span class="st"> </span>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb186-2"><a href="séance-4-corrélations-et-régressions.html#cb186-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">log_biomass =</span> <span class="kw">log</span>(biomassStability))</span>
-<span id="cb186-3"><a href="séance-4-corrélations-et-régressions.html#cb186-3"></a>plant</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="séance-4-corrélations-et-régressions.html#cb188-1"></a>plant &lt;-<span class="st"> </span>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb188-2"><a href="séance-4-corrélations-et-régressions.html#cb188-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">log_biomass =</span> <span class="kw">log</span>(biomassStability))</span>
+<span id="cb188-3"><a href="séance-4-corrélations-et-régressions.html#cb188-3"></a>plant</span></code></pre></div>
 <pre><code># A tibble: 161 × 3
    nSpecies biomassStability log_biomass
       &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt;
@@ -610,23 +609,23 @@ Cela n’est pas du tout problématique : comme pour l’ANOVA, les conditions d
  9        1             4.4         1.48
 10        1             4.26        1.45
 # … with 151 more rows</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="séance-4-corrélations-et-régressions.html#cb188-1"></a>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb188-2"><a href="séance-4-corrélations-et-régressions.html#cb188-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies, <span class="dt">y =</span> log_biomass)) <span class="op">+</span></span>
-<span id="cb188-3"><a href="séance-4-corrélations-et-régressions.html#cb188-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
-<span id="cb188-4"><a href="séance-4-corrélations-et-régressions.html#cb188-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre d&#39;espèces par parcelle&quot;</span>,</span>
-<span id="cb188-5"><a href="séance-4-corrélations-et-régressions.html#cb188-5"></a>       <span class="dt">y =</span> <span class="st">&quot;Transformation log</span><span class="ch">\n</span><span class="st"> de l&#39;indice de stabilité de la biomasse&quot;</span>) <span class="op">+</span></span>
-<span id="cb188-6"><a href="séance-4-corrélations-et-régressions.html#cb188-6"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="figure/unnamed-chunk-117-1.png" width="90%" style="display: block; margin: auto;" /></p>
-<p>On peut visualiser dès maintenant la droite de régression linéaire qui permet de lier ces deux variables grâce à la fonction <code>geom_smooth(method = "lm", se = FALSE</code>)` :</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="séance-4-corrélations-et-régressions.html#cb189-1"></a>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb189-2"><a href="séance-4-corrélations-et-régressions.html#cb189-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies, <span class="dt">y =</span> log_biomass)) <span class="op">+</span></span>
-<span id="cb189-3"><a href="séance-4-corrélations-et-régressions.html#cb189-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
-<span id="cb189-4"><a href="séance-4-corrélations-et-régressions.html#cb189-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb189-5"><a href="séance-4-corrélations-et-régressions.html#cb189-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre d&#39;espèces par parcelle&quot;</span>,</span>
-<span id="cb189-6"><a href="séance-4-corrélations-et-régressions.html#cb189-6"></a>       <span class="dt">y =</span> <span class="st">&quot;Transformation log</span><span class="ch">\n</span><span class="st"> de l&#39;indice de stabilité de la biomasse&quot;</span>) <span class="op">+</span></span>
-<span id="cb189-7"><a href="séance-4-corrélations-et-régressions.html#cb189-7"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="séance-4-corrélations-et-régressions.html#cb190-1"></a>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb190-2"><a href="séance-4-corrélations-et-régressions.html#cb190-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies, <span class="dt">y =</span> log_biomass)) <span class="op">+</span></span>
+<span id="cb190-3"><a href="séance-4-corrélations-et-régressions.html#cb190-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb190-4"><a href="séance-4-corrélations-et-régressions.html#cb190-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre d&#39;espèces par parcelle&quot;</span>,</span>
+<span id="cb190-5"><a href="séance-4-corrélations-et-régressions.html#cb190-5"></a>       <span class="dt">y =</span> <span class="st">&quot;Transformation log</span><span class="ch">\n</span><span class="st"> de l&#39;indice de stabilité de la biomasse&quot;</span>) <span class="op">+</span></span>
+<span id="cb190-6"><a href="séance-4-corrélations-et-régressions.html#cb190-6"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <p><img src="figure/unnamed-chunk-118-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>On peut visualiser dès maintenant la droite de régression linéaire qui permet de lier ces deux variables grâce à la fonction <code>geom_smooth(method = "lm", se = FALSE</code>)` :</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="séance-4-corrélations-et-régressions.html#cb191-1"></a>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb191-2"><a href="séance-4-corrélations-et-régressions.html#cb191-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies, <span class="dt">y =</span> log_biomass)) <span class="op">+</span></span>
+<span id="cb191-3"><a href="séance-4-corrélations-et-régressions.html#cb191-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb191-4"><a href="séance-4-corrélations-et-régressions.html#cb191-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb191-5"><a href="séance-4-corrélations-et-régressions.html#cb191-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre d&#39;espèces par parcelle&quot;</span>,</span>
+<span id="cb191-6"><a href="séance-4-corrélations-et-régressions.html#cb191-6"></a>       <span class="dt">y =</span> <span class="st">&quot;Transformation log</span><span class="ch">\n</span><span class="st"> de l&#39;indice de stabilité de la biomasse&quot;</span>) <span class="op">+</span></span>
+<span id="cb191-7"><a href="séance-4-corrélations-et-régressions.html#cb191-7"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="figure/unnamed-chunk-119-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>À supposer que nous ayons le droit d’effectuer une régression linéaire (ce qu’il faudra vérifier avec les conditions d’application, <strong>après</strong> avoir fait la régression), la pente devrait être positive.</p>
 </div>
 </div>
@@ -634,7 +633,7 @@ Cela n’est pas du tout problématique : comme pour l’ANOVA, les conditions d
 <h3><span class="header-section-number">5.3.2</span> Le test paramétrique<a href="séance-4-corrélations-et-régressions.html#le-test-paramétrique-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>À une exception près, la procédure de régression linéaire est en tous points identique à l’analyse de variance. Quand on fait une ANOVA, la variable expliquée est numérique et la variable explicative est catégorielle (c’est un facteur). Quand on fait une régression linéaire, les 2 variables sont numériques. Pour le reste, tout est identique : on exprime la variable expliquée en fonction de la variable explicative et on vérifie après coup, grâce aux résidus, si nous avions le droit ou non de faire l’analyse.</p>
 <p>Pour faire une régression linéaire dans <code>R</code>, on utilise la fonction <code>lm()</code> (comme <strong>l</strong>inear <strong>m</strong>odel). Et comme pour l’ANOVA, les résultats de l’analyse doivent être stockés dans un objet puisque cet objet contiendra tous les éléments utiles pour vérifier les conditions d’application :</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="séance-4-corrélations-et-régressions.html#cb191-1"></a>reg1 &lt;-<span class="st"> </span><span class="kw">lm</span>(log_biomass <span class="op">~</span><span class="st"> </span>nSpecies, <span class="dt">data =</span> plant)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="séance-4-corrélations-et-régressions.html#cb193-1"></a>reg1 &lt;-<span class="st"> </span><span class="kw">lm</span>(log_biomass <span class="op">~</span><span class="st"> </span>nSpecies, <span class="dt">data =</span> plant)</span></code></pre></div>
 <p>Faire une régression linéaire avec cette commande revient à effectuer en même temps 2 tests d’hypothèses indépendants : le premier concerne l’ordonnée à l’origine de la droite de régression et le second concerne la pente de la droite de régression. Les hypothèses de ces tests sont les suivantes :</p>
 <p><em>Pour l’ordonnée à l’origine</em> (“intercept” en anglais) :</p>
 <ul>
@@ -649,7 +648,7 @@ Cela n’est pas du tout problématique : comme pour l’ANOVA, les conditions d
 <div id="résultats-du-test-et-interprétation-1" class="section level4 hasAnchor">
 <h4><span class="header-section-number">5.3.2.1</span> Résultats du test et interprétation<a href="séance-4-corrélations-et-régressions.html#résultats-du-test-et-interprétation-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Comme pour l’ANOVA, on affiche les résultats de ces tests à l’aide de la fonction <code>summary()</code></p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="séance-4-corrélations-et-régressions.html#cb192-1"></a><span class="kw">summary</span>(reg1)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="séance-4-corrélations-et-régressions.html#cb194-1"></a><span class="kw">summary</span>(reg1)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = log_biomass ~ nSpecies, data = plant)
@@ -675,30 +674,30 @@ F-statistic: 45.45 on 1 and 159 DF,  p-value: 2.733e-10</code></pre>
 <div id="intervalle-de-confiance-de-la-régression" class="section level4 hasAnchor">
 <h4><span class="header-section-number">5.3.2.2</span> Intervalle de confiance de la régression<a href="séance-4-corrélations-et-régressions.html#intervalle-de-confiance-de-la-régression" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>La pente et l’ordonnée à l’origine de la droite de régression ont été obtenues à partir des données d’un échantillon (ici, 161 parcelles). Il s’agit donc d’estimations des pentes et ordonnées à l’origine de la relation plus générale qui concerne la population globale. Comme toute estimation, les pentes et ordonnées à l’origine de la droite de régression sont donc entâchées d’incertitudes. Nous pouvons quantifier ces incertitudes grâce au calcul des intervalles de confiance à 95% de ces 2 paramètres :</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="séance-4-corrélations-et-régressions.html#cb194-1"></a><span class="kw">confint</span>(reg1)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="séance-4-corrélations-et-régressions.html#cb196-1"></a><span class="kw">confint</span>(reg1)</span></code></pre></div>
 <pre><code>                 2.5 %     97.5 %
 (Intercept) 1.11673087 1.27985782
 nSpecies    0.02328063 0.04257117</code></pre>
 <p>Ces résultats nous indiquent que les valeurs d’ordonnées à l’origine les plus probables dans la population générale sont vraisemblablement comprises entre 1.117 et 1.280. De même, les valeurs de pentes les plus probables dans la population générale sont vraisemblablement situées dans l’intervalle [0.023 ; 0.043].</p>
 <p>Il est possible de visualiser cette incertitude grâce à la fonction <code>geom_smooth()</code> utilisée plus tôt :</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="séance-4-corrélations-et-régressions.html#cb196-1"></a>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb196-2"><a href="séance-4-corrélations-et-régressions.html#cb196-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies, <span class="dt">y =</span> log_biomass)) <span class="op">+</span></span>
-<span id="cb196-3"><a href="séance-4-corrélations-et-régressions.html#cb196-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
-<span id="cb196-4"><a href="séance-4-corrélations-et-régressions.html#cb196-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
-<span id="cb196-5"><a href="séance-4-corrélations-et-régressions.html#cb196-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre d&#39;espèces par parcelle&quot;</span>,</span>
-<span id="cb196-6"><a href="séance-4-corrélations-et-régressions.html#cb196-6"></a>       <span class="dt">y =</span> <span class="st">&quot;Transformation log</span><span class="ch">\n</span><span class="st"> de l&#39;indice de stabilité de la biomasse&quot;</span>) <span class="op">+</span></span>
-<span id="cb196-7"><a href="séance-4-corrélations-et-régressions.html#cb196-7"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="séance-4-corrélations-et-régressions.html#cb198-1"></a>plant <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb198-2"><a href="séance-4-corrélations-et-régressions.html#cb198-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> nSpecies, <span class="dt">y =</span> log_biomass)) <span class="op">+</span></span>
+<span id="cb198-3"><a href="séance-4-corrélations-et-régressions.html#cb198-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb198-4"><a href="séance-4-corrélations-et-régressions.html#cb198-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb198-5"><a href="séance-4-corrélations-et-régressions.html#cb198-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Nombre d&#39;espèces par parcelle&quot;</span>,</span>
+<span id="cb198-6"><a href="séance-4-corrélations-et-régressions.html#cb198-6"></a>       <span class="dt">y =</span> <span class="st">&quot;Transformation log</span><span class="ch">\n</span><span class="st"> de l&#39;indice de stabilité de la biomasse&quot;</span>) <span class="op">+</span></span>
+<span id="cb198-7"><a href="séance-4-corrélations-et-régressions.html#cb198-7"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="figure/unnamed-chunk-122-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-123-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Cet intervalle d’incertitude correspond à l’incertitude de la moyenne de la variable expliquée pour une valeur donnée de la variable explicative. Ainsi, par exemple, si le nombre d’espèces d’une parcelle est égal à 8, alors, la régression et son incertitude associée nous dit que le logarithme de l’indice de stabilité de la biomasse vaudra <strong>en moyenne</strong> environ 1.46, avec un intervalle de confiance de [1.40 ; 1.51]</p>
 </div>
 <div id="conditions-dapplication-4" class="section level4 hasAnchor">
 <h4><span class="header-section-number">5.3.2.3</span> Conditions d’application<a href="séance-4-corrélations-et-régressions.html#conditions-dapplication-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Les conditions d’application de la régression sont les mêmes que celles de l’ANOVA. Je vous renvoie donc au chapitre <a href="séance-3-comparer-la-moyenne-de-plus-de-2-groupes.html#CAANOVA">4.2.2.2</a> pour savoir quelles sont ces conditions d’application et comment les vérifier. J’insiste bien sur le fait que les conditions d’application sont absolument identiques à celles de l’ANOVA. Si je fais ici l’économie de la description, vous ne devez <strong>jamais faire l’économie</strong> de la vérification des conditions d’application.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="séance-4-corrélations-et-régressions.html#cb198-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb198-2"><a href="séance-4-corrélations-et-régressions.html#cb198-2"></a><span class="kw">plot</span>(reg1)</span>
-<span id="cb198-3"><a href="séance-4-corrélations-et-régressions.html#cb198-3"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="figure/unnamed-chunk-123-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="séance-4-corrélations-et-régressions.html#cb200-1"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb200-2"><a href="séance-4-corrélations-et-régressions.html#cb200-2"></a><span class="kw">plot</span>(reg1)</span>
+<span id="cb200-3"><a href="séance-4-corrélations-et-régressions.html#cb200-3"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-124-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>C’est seulement après avoir réalisé, examiné et commenté ces graphiques que vous serez en mesure de dire si oui ou non vous aviez le droit de faire la régression linéaire, et donc d’en interpréter les résultats.</p>
 </div>
 </div>
@@ -715,30 +714,30 @@ nSpecies    0.02328063 0.04257117</code></pre>
 <div id="datasaurus-et-anscombe" class="section level4 hasAnchor">
 <h4><span class="header-section-number">5.3.4.1</span> Datasaurus et Anscombe<a href="séance-4-corrélations-et-régressions.html#datasaurus-et-anscombe" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Exécutez les commandes suivantes :</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="séance-4-corrélations-et-régressions.html#cb199-1"></a><span class="kw">library</span>(datasauRus)</span>
-<span id="cb199-2"><a href="séance-4-corrélations-et-régressions.html#cb199-2"></a></span>
-<span id="cb199-3"><a href="séance-4-corrélations-et-régressions.html#cb199-3"></a>datasaurus_dozen <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb199-4"><a href="séance-4-corrélations-et-régressions.html#cb199-4"></a><span class="st">    </span><span class="kw">group_by</span>(dataset) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb199-5"><a href="séance-4-corrélations-et-régressions.html#cb199-5"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
-<span id="cb199-6"><a href="séance-4-corrélations-et-régressions.html#cb199-6"></a>      <span class="dt">moy_x    =</span> <span class="kw">mean</span>(x),</span>
-<span id="cb199-7"><a href="séance-4-corrélations-et-régressions.html#cb199-7"></a>      <span class="dt">moy_y    =</span> <span class="kw">mean</span>(y),</span>
-<span id="cb199-8"><a href="séance-4-corrélations-et-régressions.html#cb199-8"></a>      <span class="dt">ecart_type_x =</span> <span class="kw">sd</span>(x),</span>
-<span id="cb199-9"><a href="séance-4-corrélations-et-régressions.html#cb199-9"></a>      <span class="dt">ecart_type_y =</span> <span class="kw">sd</span>(y),</span>
-<span id="cb199-10"><a href="séance-4-corrélations-et-régressions.html#cb199-10"></a>      <span class="dt">correl_x_y  =</span> <span class="kw">cor</span>(x, y),</span>
-<span id="cb199-11"><a href="séance-4-corrélations-et-régressions.html#cb199-11"></a>      <span class="dt">pente =</span> <span class="kw">coef</span>(<span class="kw">lm</span>(y<span class="op">~</span>x))[<span class="dv">2</span>],</span>
-<span id="cb199-12"><a href="séance-4-corrélations-et-régressions.html#cb199-12"></a>      <span class="dt">ordonnee_origine =</span> <span class="kw">coef</span>(<span class="kw">lm</span>(y<span class="op">~</span>x))[<span class="dv">1</span>]</span>
-<span id="cb199-13"><a href="séance-4-corrélations-et-régressions.html#cb199-13"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="séance-4-corrélations-et-régressions.html#cb201-1"></a><span class="kw">library</span>(datasauRus)</span>
+<span id="cb201-2"><a href="séance-4-corrélations-et-régressions.html#cb201-2"></a></span>
+<span id="cb201-3"><a href="séance-4-corrélations-et-régressions.html#cb201-3"></a>datasaurus_dozen <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb201-4"><a href="séance-4-corrélations-et-régressions.html#cb201-4"></a><span class="st">    </span><span class="kw">group_by</span>(dataset) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb201-5"><a href="séance-4-corrélations-et-régressions.html#cb201-5"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
+<span id="cb201-6"><a href="séance-4-corrélations-et-régressions.html#cb201-6"></a>      <span class="dt">moy_x    =</span> <span class="kw">mean</span>(x),</span>
+<span id="cb201-7"><a href="séance-4-corrélations-et-régressions.html#cb201-7"></a>      <span class="dt">moy_y    =</span> <span class="kw">mean</span>(y),</span>
+<span id="cb201-8"><a href="séance-4-corrélations-et-régressions.html#cb201-8"></a>      <span class="dt">ecart_type_x =</span> <span class="kw">sd</span>(x),</span>
+<span id="cb201-9"><a href="séance-4-corrélations-et-régressions.html#cb201-9"></a>      <span class="dt">ecart_type_y =</span> <span class="kw">sd</span>(y),</span>
+<span id="cb201-10"><a href="séance-4-corrélations-et-régressions.html#cb201-10"></a>      <span class="dt">correl_x_y  =</span> <span class="kw">cor</span>(x, y),</span>
+<span id="cb201-11"><a href="séance-4-corrélations-et-régressions.html#cb201-11"></a>      <span class="dt">pente =</span> <span class="kw">coef</span>(<span class="kw">lm</span>(y<span class="op">~</span>x))[<span class="dv">2</span>],</span>
+<span id="cb201-12"><a href="séance-4-corrélations-et-régressions.html#cb201-12"></a>      <span class="dt">ordonnee_origine =</span> <span class="kw">coef</span>(<span class="kw">lm</span>(y<span class="op">~</span>x))[<span class="dv">1</span>]</span>
+<span id="cb201-13"><a href="séance-4-corrélations-et-régressions.html#cb201-13"></a>    )</span></code></pre></div>
 <p>Examinez attentivement les nombreux résultats produits par cette commande. Vous devriez remarquer que pour ces 13 jeux de données, 2 variables numériques <code>x</code> et <code>y</code> sont mises en relation. Pour tous ces jeux de données, on observe que la moyenne de tous les <code>x</code> est la même, la moyenne de tous les <code>y</code> est la même, les écarts-types des <code>x</code> sont identiques, les écarts-types des <code>y</code> aussi, la corrélation entre <code>x</code> et <code>y</code> est également extrêmement proche pour tous les jeux de données, et lorsque l’on effectue une régression linéaire de <code>y</code> en fonction de <code>x</code>, les ordonnées à l’origine et les pentes des droites de régression sont extrêmement proches pour les 13 jeux de données.</p>
 <p>Si on s’en tient à ces calculs d’indices synthétiques, on pourrait croire que ces jeux de données sont identiques ou presque. Pourtant, ce n’est pas par hasard que je vous répète à longueur de temps qu’il est <strong>indispensable de regarder les données</strong> avant de se lancer dans les analyses et les statistiques. Car ici, ces jeux de données sont très différents ! Conclure qu’ils sont identiques simplement parce que les statistiques descriptives sont égales, serait une erreur majeure :</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="séance-4-corrélations-et-régressions.html#cb200-1"></a>datasaurus_dozen <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb200-2"><a href="séance-4-corrélations-et-régressions.html#cb200-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y, <span class="dt">color =</span> dataset)) <span class="op">+</span></span>
-<span id="cb200-3"><a href="séance-4-corrélations-et-régressions.html#cb200-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb200-4"><a href="séance-4-corrélations-et-régressions.html#cb200-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>dataset, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb200-5"><a href="séance-4-corrélations-et-régressions.html#cb200-5"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="figure/unnamed-chunk-125-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="séance-4-corrélations-et-régressions.html#cb202-1"></a>datasaurus_dozen <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb202-2"><a href="séance-4-corrélations-et-régressions.html#cb202-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y, <span class="dt">color =</span> dataset)) <span class="op">+</span></span>
+<span id="cb202-3"><a href="séance-4-corrélations-et-régressions.html#cb202-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb202-4"><a href="séance-4-corrélations-et-régressions.html#cb202-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>dataset, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb202-5"><a href="séance-4-corrélations-et-régressions.html#cb202-5"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="figure/unnamed-chunk-126-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Le quartet d’Anscombe est un autre exemple de ce type de problème.</p>
 <p>Dans la console, exécutez la commande suivante (il vous faudra peut-être presser la touche Entrée plusieurs fois) pour produire les 4 graphiques d’Anscombe :</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="séance-4-corrélations-et-régressions.html#cb201-1"></a><span class="kw">example</span>(anscombe)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="séance-4-corrélations-et-régressions.html#cb203-1"></a><span class="kw">example</span>(anscombe)</span></code></pre></div>
 <p>Examinez attentivement les nombreux résultats produits par cette commande dans la console, ainsi que les 4 graphiques obtenus. Vous devriez remarquer que pour ces 4 jeux de données, 2 variables numériques sont là encore mises en relation, et qu’elles présentent toutes les mêmes caractéristiques. En particulier, les régressions linéaires ont toutes les mêmes pentes et ordonnées à l’origine. Pourtant, seule l’une de ces régressions linéaires est valide. Pourquoi ?</p>
 </div>
 <div id="in-your-face" class="section level4 hasAnchor">
