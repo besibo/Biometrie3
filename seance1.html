@@ -23,7 +23,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2022-03-28" />
+<meta name="date" content="2022-04-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,6 +193,17 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.3.4" data-path="séance-4-corrélations-et-régressions.html"><a href="séance-4-corrélations-et-régressions.html#exercices-1"><i class="fa fa-check"></i><b>5.3.4</b> Exercices<span></span></a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html"><i class="fa fa-check"></i><b>6</b> Correction des exercices du chapitre 5<span></span></a><ul>
+<li class="chapter" data-level="6.1" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#corrélation-1"><i class="fa fa-check"></i><b>6.1</b> Corrélation<span></span></a><ul>
+<li class="chapter" data-level="6.1.1" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#canis-lupus-1"><i class="fa fa-check"></i><b>6.1.1</b> <em>Canis lupus</em><span></span></a></li>
+<li class="chapter" data-level="6.1.2" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#les-miracles-de-la-mémoire-1"><i class="fa fa-check"></i><b>6.1.2</b> Les miracles de la mémoire<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#régression-linéaire-1"><i class="fa fa-check"></i><b>6.2</b> Régression linéaire<span></span></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#datasaurus-et-anscombe-1"><i class="fa fa-check"></i><b>6.2.1</b> Datasaurus et Anscombe<span></span></a></li>
+<li class="chapter" data-level="6.2.2" data-path="correction-des-exercices-du-chapitre-5.html"><a href="correction-des-exercices-du-chapitre-5.html#in-your-face-1"><i class="fa fa-check"></i><b>6.2.2</b> In your face<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bibliographie.html"><a href="bibliographie.html"><i class="fa fa-check"></i><b>7</b> Bibliographie<span></span></a></li>
 <li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publié avec bookdown</a></li>
@@ -219,7 +230,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="packages" class="section level2 hasAnchor">
 <h2><span class="header-section-number">3.1</span> Packages et données<a href="seance1.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Pour chacune des 4 séances de travaux pratiques (et TEA) qui viennent, vous aurez besoin d’utiliser des packages spécifiques et d’importer des données depuis des fichiers externes disponibles sur l’ENT (ou directement depuis ce document).</p>
-<p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du <code>tidyverse</code> <span class="citation">(Wickham, <a href="#ref-R-tidyverse" role="doc-biblioref">2021</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(Wickham, Hester, et al., <a href="#ref-R-readr" role="doc-biblioref">2022</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(Wickham &amp; Bryan, <a href="#ref-R-readxl" role="doc-biblioref">2019</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(Waring et al., <a href="#ref-R-skimr" role="doc-biblioref">2021</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(Fox et al., <a href="#ref-R-car" role="doc-biblioref">2021</a>)</span>, qui permet d’effectuer le test de comparaison des variances de Levene :</p>
+<p>Les packages dont vous aurez besoin pour cette séance, et que vous devez donc charger en mémoire, sont les packages du <code>tidyverse</code> <span class="citation">(Wickham, <a href="#ref-R-tidyverse" role="doc-biblioref">2021</a>)</span>, qui permettent de manipuler facilement des tableaux de données et de réaliser des graphiques, le package <code>readr</code> <span class="citation">(Wickham, Hester, et al., <a href="#ref-R-readr" role="doc-biblioref">2022</a>)</span>, pour importer facilement des fichiers <code>.csv</code> au format <code>tibble</code>, le package <code>readxl</code> <span class="citation">(Wickham &amp; Bryan, <a href="#ref-R-readxl" role="doc-biblioref">2022</a>)</span>, pour importer facilement des fichiers Excel au format <code>tibble</code>, le package <code>skimr</code> <span class="citation">(Waring et al., <a href="#ref-R-skimr" role="doc-biblioref">2021</a>)</span>, qui permet de calculer des résumés de données très informatifs, et le package <code>car</code> <span class="citation">(Fox et al., <a href="#ref-R-car" role="doc-biblioref">2021</a>)</span>, qui permet d’effectuer le test de comparaison des variances de Levene :</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="seance1.html#cb4-1"></a><span class="kw">library</span>(tidyverse)</span>
 <span id="cb4-2"><a href="seance1.html#cb4-2"></a><span class="kw">library</span>(readr)</span>
 <span id="cb4-3"><a href="seance1.html#cb4-3"></a><span class="kw">library</span>(readxl)</span>
@@ -1377,7 +1388,7 @@ Levels: killed living</code></pre>
 <p><span class="smallcaps">Wickham H</span>. (2021). <em>Tidyverse: Easily install and load the tidyverse</em>. Retrieved from <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a></p>
 </div>
 <div id="ref-R-readxl">
-<p><span class="smallcaps">Wickham H, &amp; Bryan J</span>. (2019). <em>Readxl: Read excel files</em>. Retrieved from <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a></p>
+<p><span class="smallcaps">Wickham H, &amp; Bryan J</span>. (2022). <em>Readxl: Read excel files</em>. Retrieved from <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a></p>
 </div>
 <div id="ref-R-readr">
 <p><span class="smallcaps">Wickham H, Hester J, &amp; Bryan J</span>. (2022). <em>Readr: Read rectangular text data</em>. Retrieved from <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a></p>
