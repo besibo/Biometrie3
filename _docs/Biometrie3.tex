@@ -161,7 +161,7 @@
 
 \title{Travaux Pratiques de Biométrie 3}
 \author{Benoît Simon-Bouhet}
-\date{2022-03-07}
+\date{2022-04-02}
 
 \begin{document}
 \maketitle
@@ -2429,7 +2429,25 @@ Attention à bien respecter la casse (le respect des majuscules/minuscules est t
 \hypertarget{statistiques-descriptives-3}{%
 \paragraph{Statistiques descriptives}\label{statistiques-descriptives-3}}
 
-Comme toujours, et maintenant que nos données sont au bon format, il est nécessaire d'examiner quelques statistiques descriptives pour chaque catégorie étudiée. Le plus simple est ici d'utiliser la fonction \texttt{skim} du package \texttt{skimr} :
+Comme toujours, et maintenant que nos données sont au bon format, il est nécessaire d'examiner quelques statistiques descriptives pour chaque catégorie étudiée. On peut tout d'abord commencer par examiner la taille de chaque échantillon :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Light }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{count}\NormalTok{(treatment)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 3 x 2
+  treatment     n
+  <fct>     <int>
+1 control       8
+2 knee          7
+3 eyes          7
+\end{verbatim}
+
+Nous avons ici la confirmation que le design expérimental n'est pas équilibré, puisque le groupe \texttt{control} compte un individu de plus. Nous pouvons ensuite utiliser la fonction \texttt{skim} du package \texttt{skimr} pour obtenir un résumé des données :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2462,7 +2480,7 @@ Group variables            treatment
 3 -1.48  -1.10 -0.78 ▂▂▁▇▅
 \end{verbatim}
 
-Nous avons ici la confirmation que le design expérimental n'est pas équilibré, puisque le groupe \texttt{control} compte un individu de plus. Il semble que le groupe \texttt{eyes} se comporte un peu différemment des autres groupes. En effet, pour les groupes \texttt{control} et \texttt{knee}, les valeurs observées sont très proches :
+Il semble que le groupe \texttt{eyes} se comporte un peu différemment des autres groupes. En effet, pour les groupes \texttt{control} et \texttt{knee}, les valeurs observées sont très proches :
 
 \begin{itemize}
 \tightlist
@@ -2500,7 +2518,7 @@ notch went outside hinges. Try setting notch=FALSE.
 notch went outside hinges. Try setting notch=FALSE.
 \end{verbatim}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-76-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-77-1} \end{center}
 
 Puisqu'il y a peu de données, les intervalles de confiance à 95\% sont très larges. Ils dépassent d'ailleurs presque systématiquement les quartiles, ce qui explique l'apparence bizarre des boîtes à moustaches et les messages d'avertissement affichés lors de la création du graphique. Il vaudait donc mieux représenter cette figure sans ces intervalles de confiance. Toutefois, avant de les retirer, on peut constater ici que les IC 95\% se chevauchent complètement pour les séries \texttt{control} et \texttt{knee}. En revanche, il n'y a aucun chevauchement de l'IC 95\% du groupe \texttt{eyes} avec les 2 autres groupes. On s'attend donc à trouver une différence de moyenne significative entre le groupe \texttt{eyes} d'une part, et les groupes \texttt{control} et \texttt{knee} d'autre part, mais pas de différence de moyenne entre les groupes \texttt{control} et \texttt{knee}.
 
@@ -2518,7 +2536,7 @@ Puisqu'il y a peu de données, les intervalles de confiance à 95\% sont très l
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-77-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-78-1} \end{center}
 
 On constate ici visuellement que les 3 séries ont une étendue à peu près similaire, et que le groupe \texttt{eyes} semble se distinguer des 2 autres par des valeurs plus faibles. Enfin, les boîtes contenant 50\% des valeurs centrales (donc l'étendue des valeurs entre les premiers et troisièmes quartiles) recouvrent le 0 pour les 2 groupes \texttt{control} et \texttt{knee}, mais par pour \texttt{eyes}.
 
@@ -2611,7 +2629,7 @@ L'homogénéité des résidus signifie que les résidus doivent avoir à peu pr�
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-80-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-81-1} \end{center}
 
 Ici, les résidus sont considérés comme homogènes car nous avons à peu près autant de résidus positifs que négatifs et que la ligne rouge est très proche du 0. L'étalement des résidus est à peu près le même de la gauche à la droite du graphique. On pourrait donc faire entrer les résidus dans une boite rectangulaire horizontale centrée sur le 0 et de la même largeur d'un bout à l'autre du graphique. Une autre façon de visualiser ces résidus est d'utiliser le graphique suivant :
 
@@ -2621,7 +2639,7 @@ Ici, les résidus sont considérés comme homogènes car nous avons à peu près
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-81-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-82-1} \end{center}
 
 Sur ce graphique, ce qui compte principalement, c'est la droite en rouge. Elle est ici presque horizontale, ce qui montre que les résidus de tous les groupes (un groupe à gauche et 2 à droite) ont à peu près même moyenne.
 
@@ -2658,7 +2676,7 @@ Reste à vérifier la normalité des résidus. Là encore, on peut faire cela gr
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-83-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-84-1} \end{center}
 
 Sur un graphique quantile-quantile comme celui-là, on considère que les observations sont distribuées normalement si les points sont bien alignés sur la droite. Ici, la plupart des points sont très proches de la droite, ce qui laisse penser que les résidus suivent bien la loi Normale. On peut en avoir la confirmation avec le test suivant :
 
@@ -2840,7 +2858,7 @@ En utilisant le tableau ci-dessus, nous pouvons synthétiser graphiquement ces r
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-90-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-91-1} \end{center}
 
 Nous avons donc bien montré ici que la re-synchronisation de l'horloge interne n'est possible que par le biais de l'exposition des yeux à la lumière, et non du creux poplité.
 
@@ -3046,7 +3064,7 @@ Comme dans tous les chapitres de cet ouvrage, nous aurons besoin ici du \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-Vous aurez également besoin des jeux de données suivants, disponibles sur l'ENT ou directement téléchargeables depuis ce document :
+Vous aurez également besoin des jeux de données suivants, qu'il vous faut donc télécharger dans votre répertoire de travail :
 
 \begin{itemize}
 \tightlist
@@ -3073,19 +3091,19 @@ Le coefficient de corrélation est la quantité qui décrit la force et la direc
 
 Ainsi, sur la figure ci-dessous, le coefficient de corrélation entre \texttt{X} et \texttt{Y} est le même pour les deux graphiques : il vaut 1.
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-96-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-97-1} \end{center}
 
 Ici, le coefficient de corrélation (noté \(r\)) vaut 1 dans les deux cas, car tous les points sont alignés sur une droite. La pente de la droite n'influence en rien la valeur de corrélation. En revanche, la dispersion des points autour d'une droite parfaite a une influence :
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-97-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-98-1} \end{center}
 
 Plus la dispersion autour d'une droite parfaite sera grande, plus la corrélation sera faible. C'est la raison pour laquelle lorsque l'on parle de ``corrélation'', on sous-entend généralement \textbf{corrélation linéaire}. Ainsi, 2 variables peuvent avoir une relation très forte, mais un coefficient de corrélation nul, si leur relation n'est pas linéaire :
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-98-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-99-1} \end{center}
 
 L'exploration graphique de vos données devrait donc toujours être une priorité. Calculer un coefficient de corrélation nul ou très faible ne signifie par pour autant une absence de relation entre les 2 variables numériques étudiées. Cela peut signifier une relation non linéaire. La solution la plus simple pour distinguer une relation telle que celle du graphique précédent, et une absence de relation telle que celle présentée dans le graphique ci-dessous, est l'examen visuel des données :
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-99-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-100-1} \end{center}
 
 En bref, le coefficient de corrélation \(r\) est compris entre -1 et +1 :
 
@@ -3253,7 +3271,7 @@ Afin de savoir si la valeur moyenne de \(r\) calculée précédemment reflète u
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-104-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-105-1} \end{center}
 
 On constate ici que la corrélation moyenne obtenue plus haut est due au fait que les points sont assez dispersés, et non au fait que la relation n'est pas linéaire. On peut donc dire que la relation, si elle existe, n'est pas parfaite. Le comportement des individus devenus adultes semble donc en partie lié au nombre de visites agessives qu'ils ont reçues étant jeunes, mais ce n'est certainement pas le seul facteur influençant leur comportement. Un test d'hypothèses devrait nous permettre de déterminer si la corrélation linéaire observée ici est significativement différente de 0 ou non.
 
@@ -3396,7 +3414,7 @@ Pour résumer, l'examen du nuage de points permet de vérifier les 2 premières 
   Une relation non linéaire existe entre les deux variables.
 \end{itemize}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-107-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-108-1} \end{center}
 
 Enfin, si l'une, l'autre ou les deux séries de données ne suivent pas la loi Normale, il faudra faire un test non paramétrique.
 
@@ -3484,7 +3502,7 @@ La régression est une méthode utilisée pour prédire les valeurs d'une variab
 
 \includegraphics{images/genetics.jpg}
 
-Contrairement à la corrélation, ici, on n'examine pas seulement une éventuelle liaison : on suppose qu'une variable peut-être (en partie) expliquée par une autre. Nous aurons donc à distinguer les variables expliquées (ou dépendantes) qui figureront sur l'axe des y et seront nos variables prédites, et les variables explicatives (ou indépendantes) qui figureront sur l'axe des abscisses et seront les prédicteurs.
+Contrairement à la corrélation, ici, on n'examine pas seulement une éventuelle liaison : on suppose qu'une variable peut être (en partie) expliquée par une autre. Nous aurons donc à distinguer les variables expliquées (ou dépendantes) qui figureront sur l'axe des y et seront nos variables prédites, et les variables explicatives (ou indépendantes) qui figureront sur l'axe des abscisses et seront les prédicteurs.
 
 Une façon de distinguer corrélation et régression consiste à dire que ``corrélation n'est pas causalité''. Si on compare un nombre de variables suffisamment important, on finira toujours par en trouver qui seront corrélées. Cela ne veut pas dire pour autant qu'il existe un lien de cause à effet entre l'une et l'autre. Pour vous en convaincre, examinez \href{http://www.tylervigen.com/spurious-correlations}{cette page}. Lorsque l'on s'intéresse à la régression linéaire, on essaie au contraire de prédire ou d'expliquer. En d'autres termes, on considère que les variations de la variable explicative sont au moins en partie la cause des variations de la variable expliquée.
 
@@ -3512,15 +3530,10 @@ Comme toujours, on importe les données et on commence par un examen visuel afin
 
 \begin{verbatim}
 Rows: 161 Columns: 2
-\end{verbatim}
-
-\begin{verbatim}
 -- Column specification --------------------------------------------------------
 Delimiter: ","
 dbl (2): nSpecies, biomassStability
-\end{verbatim}
 
-\begin{verbatim}
 i Use `spec()` to retrieve the full column specification for this data.
 i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 \end{verbatim}
@@ -3629,7 +3642,7 @@ Une visualisation des données est toujours indispensable :
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-114-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-115-1} \end{center}
 
 Ce graphique nous apprend plusieurs choses :
 
@@ -3650,7 +3663,7 @@ Ce graphique nous apprend plusieurs choses :
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-115-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-116-1} \end{center}
 
 Cela n'est pas du tout problématique : comme pour l'ANOVA, les conditions d'application porteront sur les \textbf{résidus de la régression}, pas sur les variables elles-mêmes.
 
@@ -3698,7 +3711,7 @@ Cela n'est pas du tout problématique : comme pour l'ANOVA, les conditions d'app
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-117-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-118-1} \end{center}
 
 On peut visualiser dès maintenant la droite de régression linéaire qui permet de lier ces deux variables grâce à la fonction \texttt{geom\_smooth(method\ =\ "lm",\ se\ =\ FALSE})` :
 
@@ -3718,7 +3731,7 @@ On peut visualiser dès maintenant la droite de régression linéaire qui permet
 `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-118-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-119-1} \end{center}
 
 À supposer que nous ayons le droit d'effectuer une régression linéaire (ce qu'il faudra vérifier avec les conditions d'application, \textbf{après} avoir fait la régression), la pente devrait être positive.
 
@@ -3831,7 +3844,7 @@ Il est possible de visualiser cette incertitude grâce à la fonction \texttt{ge
 `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-122-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-123-1} \end{center}
 
 Cet intervalle d'incertitude correspond à l'incertitude de la moyenne de la variable expliquée pour une valeur donnée de la variable explicative. Ainsi, par exemple, si le nombre d'espèces d'une parcelle est égal à 8, alors, la régression et son incertitude associée nous dit que le logarithme de l'indice de stabilité de la biomasse vaudra \textbf{en moyenne} environ 1.46, avec un intervalle de confiance de {[}1.40 ; 1.51{]}
 
@@ -3848,7 +3861,7 @@ Les conditions d'application de la régression sont les mêmes que celles de l'A
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-123-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-124-1} \end{center}
 
 C'est seulement après avoir réalisé, examiné et commenté ces graphiques que vous serez en mesure de dire si oui ou non vous aviez le droit de faire la régression linéaire, et donc d'en interpréter les résultats.
 
@@ -3906,7 +3919,7 @@ Si on s'en tient à ces calculs d'indices synthétiques, on pourrait croire que 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-125-1} \end{center}
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-126-1} \end{center}
 
 Le quartet d'Anscombe est un autre exemple de ce type de problème.
 
@@ -3928,6 +3941,518 @@ Les hommes ont en moyenne un ratio ``largeur du visage sur longueur du visage'' 
 Pour tester cela, Carré \& McCormick (\protect\hyperlink{ref-carre2008}{2008}) ont suivi 21 joueurs de hockey sur glace au niveau universitaire. Ils ont tout d'abord mesuré le ratio largeur du visage sur longueur du visage de chaque sujet, puis, ils ont compté le nombre moyen de minutes de pénalité par match reçu par chaque sujet au cours de la saison, en se limitant aux pénalités infligées pour cause de brutalité. Les données sont fournies dans le fichier \href{data/hockey.csv}{\texttt{hockey.csv}}.
 
 Importez, examinez et analysez ces données pour répondre à la question posée.
+
+\hypertarget{correction-des-exercices-du-chapitre-5}{%
+\section{Correction des exercices du chapitre 5}\label{correction-des-exercices-du-chapitre-5}}
+
+\hypertarget{corruxe9lation-1}{%
+\subsection{Corrélation}\label{corruxe9lation-1}}
+
+\hypertarget{canis-lupus-1}{%
+\subsubsection{\texorpdfstring{\emph{Canis lupus}}{Canis lupus}}\label{canis-lupus-1}}
+
+Comme toujours, on commence par importer et examiner les données brutes :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(skimr)}
+\NormalTok{loups }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/loups.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Rows: 24 Columns: 2
+-- Column specification --------------------------------------------------------
+Delimiter: ","
+dbl (2): inbreedCoef, nPups
+
+i Use `spec()` to retrieve the full column specification for this data.
+i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loups}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 24 x 2
+   inbreedCoef nPups
+         <dbl> <dbl>
+ 1        0        6
+ 2        0        6
+ 3        0.13     7
+ 4        0.13     5
+ 5        0.13     4
+ 6        0.19     8
+ 7        0.19     7
+ 8        0.19     4
+ 9        0.25     6
+10        0.24     3
+# ... with 14 more rows
+\end{verbatim}
+
+Nous disposons ici de 24 observations (24 portées de louveteaux) et 2 variables : le coefficient de consanguinité des louveteaux de chaque portée, et le nombre de louveteaux de chaque portée ayant survécu à leur premier hiver.
+
+On fait ensuite appel à la fonction \texttt{skim()} du package \texttt{skimr} afin d'en apprendre plus sur nos variables :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{skim}\NormalTok{(loups)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+-- Data Summary ------------------------
+                           Values
+Name                       loups 
+Number of rows             24    
+Number of columns          2     
+_______________________          
+Column type frequency:           
+  numeric                  2     
+________________________         
+Group variables            None  
+
+-- Variable type: numeric ------------------------------------------------------
+  skim_variable n_missing complete_rate  mean     sd    p0   p25   p50   p75
+1 inbreedCoef           0             1 0.228 0.0996     0  0.19  0.24  0.3 
+2 nPups                 0             1 3.96  1.88       1  3     3     5.25
+   p100 hist 
+1   0.4 ▂▂▇▅▂
+2   8   ▅▇▅▃▃
+\end{verbatim}
+
+On constate qu'il n'y a pas de données manquantes et les histogrammes laissent penser qu'il n'y a pas non plus de valeurs aberrantes. On constate également que dans chaque portée, au moins un louveteau a survécu à son premier hiver. Un examen graphique des données devrait nous permettre de mieux voir quelle est la structure des données :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loups }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ inbreedCoef, }\AttributeTok{y =}\NormalTok{ nPups)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-131-1} \end{center}
+
+Comme on pouvait s'y attendre, on constate une relation plutôt négative entre les 2 variables étudiées : lorsque le coefficient de consanguinité dans une portée est élevé le nombre de jeunes qui parviennent à survivre à leur premier hiver est faible. C'est tout à fait logique compte tenu de ce que l'on sait de la consanguinité : elle augmente la proportion du génome qui sera homozygote et favorise donc l'apparition de tares génétiques qui sont très majoritairement codées par des allèles récessifs (ces allèles ne s'expriment qu'à l'état homozygote). Le coefficient de corrélation linéaire entre ces deux variables devrait donc être négatif. Nous souhaitons maintenant le calculer, estimer son intervalle de confiance, et tester si ce coefficient est significativement différent de 0 ou non.
+
+Pour cela, il nous faut commencer par vérifier les conditions d'application. La relation entre les deux variables a l'air à peu près linéaire et le nuage de points a une forme à peu près elliptique. Les 2 premières conditions permettant de garantir une distribution Normale Bivariée des données sont donc vérifiées. Il nous faut maintenant tester la normalité des 2 variables étudiées dans la population générale. Nous allons donc faire 2 tests dont les hypothèses nulles et alternatives sont les suivantes :
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : les données sont distribuées selon une loi Normale dans la population générale.
+\item
+  H\(_1\) : les données ne sont pas distribuées selon une loi Normale dans la population. générale
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loups }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(inbreedCoef) }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{  shapiro.test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.93212, p-value = 0.1087
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loups }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(nPups) }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{  shapiro.test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.91711, p-value = 0.05043
+\end{verbatim}
+
+Pour les 2 tests de normalité de Shapiro-Wilk, la \(p-\)value est supérieure au seuil \(\alpha = 0.05\). On ne peut donc pas rejeter l'hypothèse nulle de normalité pour nos deux variables (pour la consanguinité, \(W = 0.93\), \(p = 0.11\), et pour le nombre de jeunes ayant survécu à leur premier hiver, \(W = 0.92\), \(p = 0.05\)).
+
+Toutes les conditions d'application du test de corrélation de Pearson sont donc réunies.
+
+\begin{itemize}
+\tightlist
+\item
+  H\(_0\) : dans la population générale, le coefficient de corrélation entre les deux variables est égal à 0 (\(\rho = 0\)).
+\item
+  H\(_1\) : dans la population générale, le coefficient de corrélation entre les deux variables est différent de 0 (\(\rho \neq 0\)).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor.test}\NormalTok{(loups}\SpecialCharTok{$}\NormalTok{inbreedCoef, loups}\SpecialCharTok{$}\NormalTok{nPups)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    Pearson's product-moment correlation
+
+data:  loups$inbreedCoef and loups$nPups
+t = -3.5893, df = 22, p-value = 0.001633
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.8120418 -0.2706791
+sample estimates:
+       cor 
+-0.6077184 
+\end{verbatim}
+
+Au seuil \(\alpha\) de 5\%, le test de corrélation de Pearson rejette l'hypothèse nulle d'indépendance entre les 2 variables dans la population générale (\(t = -3.59\), \(ddl = 22\), \(p = 0.002\)). Le coefficient de corrélation est donc significativement différent de 0 dans la population. Sa meilleure estimation vaut \(\hat{\rho} = -0.61\), avec un intervalle de confiance à 95\% couvrant les valeurs comprises entre -0.81 et -0.27. Le coefficient de consanguinité des portées de louveteaux est donc bien relié (négativement) au nombre de jeunes capables de survivre à leur premier hiver.
+
+NB. : j'insiste ici sur le fait que nous n'avons pas regardé de relation de cause à effet. Nous nous sommes contenté d'établir un lien (négatif et significatif) entre ces 2 variables. Pour aller plus loin, on pourrait faire une régression linéaire pour tenter de caractériser l'équation d'une éventuelle droite de régression, mesurer la qualité de l'ajustement grâce au \(R^2\) ajusté, et ainsi être en mesure de prédire une variable grâce à l'autre.
+
+\hypertarget{les-miracles-de-la-muxe9moire-1}{%
+\subsubsection{Les miracles de la mémoire}\label{les-miracles-de-la-muxe9moire-1}}
+
+On suit exactement la même démarche que pour l'exercice précédent, je vais donc être plus succinct dans ma correction.
+
+L'examen préliminaire des données montre que nous disposons de 21 observations pour 2 variables. Aucune donnée manquante ni aberrante ne semble présente. Le temps écoulé entre l'observation du tour de magie et son récit écrit est très variable puisqu'il est compris entre 2 et 50 ans, avec un écart-type de 15 ans.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rope }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{count}\NormalTok{(impressiveness)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 5 x 2
+  impressiveness     n
+           <dbl> <int>
+1              1     3
+2              2     3
+3              3     1
+4              4    10
+5              5     4
+\end{verbatim}
+
+Globalement, la catégorie 4 est la plus fortement représentée pour la variable ``caractère impressionnant'' du tour de magie.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Représentation graphique}
+\NormalTok{rope }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ years, }\AttributeTok{y =}\NormalTok{ impressiveness)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+
+\CommentTok{\# Test de Normalité de la première variable}
+\NormalTok{rope }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(years) }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{  shapiro.test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.94557, p-value = 0.2802
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Test de Normalité de la seconde variable}
+\NormalTok{rope }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pull}\NormalTok{(impressiveness) }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{  shapiro.test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    Shapiro-Wilk normality test
+
+data:  .
+W = 0.82319, p-value = 0.001517
+\end{verbatim}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-136-1} \end{center}
+
+L'examen visuel et les tests de Shapiro montrent que si une relation linéaire semble bel et bien présente entre les 2 variables, les conditions d'application du test de corrélation de Pearson ne sont pas réunies. Le nuage de points n'a en effet pas une forme circulaire ou elliptique, mais plutôt une forme d'entonnoir, et le test de Shapiro-Wilk Normale dans la population générale. Il nous faut donc effectuer un test non paramétrique de Spearman.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor.test}\NormalTok{(rope}\SpecialCharTok{$}\NormalTok{years, rope}\SpecialCharTok{$}\NormalTok{impressiveness, }
+         \AttributeTok{method =} \StringTok{"spearman"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning in cor.test.default(rope$years, rope$impressiveness, method =
+"spearman"): Cannot compute exact p-value with ties
+\end{verbatim}
+
+\begin{verbatim}
+    Spearman's rank correlation rho
+
+data:  rope$years and rope$impressiveness
+S = 332.12, p-value = 2.571e-05
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.7843363 
+\end{verbatim}
+
+Le test de Spearman confirme la présence d'une relation significative entre les deux variables (\(S = 332.12\), \(p < 0.001\)). Au seuil \(\alpha = 0.05\), on rejette donc l'hypothèse nulle d'indépendance entre les deux variables. Le coefficient de corrélation de Spearman est positif et estimé à 0.78.
+
+\hypertarget{ruxe9gression-linuxe9aire-1}{%
+\subsection{Régression linéaire}\label{ruxe9gression-linuxe9aire-1}}
+
+\hypertarget{datasaurus-et-anscombe-1}{%
+\subsubsection{Datasaurus et Anscombe}\label{datasaurus-et-anscombe-1}}
+
+Seule la première régression linéaire est valide (en haut à gauche) car pour les 3 autres situations, les conditions d'application de la régression ne sont pas vérifiées. Pour le prouver, il faudrait faire l'analyse des résidus de ces 4 régressions. Toutefois, on peut dire les choses suivantes :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  La relation entre \texttt{x2} et \texttt{y2} est parabolique et non linéaire. Faire une régression linéaire ici n'a pas de sens. L'analyse des résidus montrerait qu'ils ne sont pas homogènes, avec des résidus systématiquement négatifs pour les faibles et les fortes valeur de \texttt{x2}, mais strictement positifs pour les valeurs intermédiaires de \texttt{x2}
+\item
+  La relation entre \texttt{x3} et \texttt{y3} est une relation linéaire parfaite puisque tous les points sont alignés sauf sur une droite sauf un. Ce point a un impact trop fort sur les résultats de la régression puisqu'il ``tire'' artificiellement la droite vers le haut, et augmente ainsi la valeur de sa pente et diminue son ordonnée à l'origine. Ce point serait identifié comme un point ayant un ``leverage'' (ou influence) trop fort lors de l'analyse des résidus.
+\item
+  La relation entre \texttt{x4} et \texttt{y4} est déterminée en totalité par le points le plus à droite. Sans cette unique valeur, il n'y aurait pas de relation entre les deux variables puisque pour une unique valeur de \texttt{x4}, on obtient une grande variété de valeurs possibles pour \texttt{y4}, ce qui montre que les variables sont en réalité indépendantes. L'outlier détermine donc à lui tout seul la pente de la droite de régression. L'analyse des résidus de cette régression montrerait, sur le dernier graphique, que ce point a un ``leverage'' beaucoup trop important et qu'il faut donc le retirer de l'analyse pour espérer avoir des résultats corrects.
+\end{enumerate}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-138-1} \end{center}
+
+\hypertarget{in-your-face-1}{%
+\subsubsection{In your face}\label{in-your-face-1}}
+
+Comme toujours, on commence par importer et examiner les données brutes
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hockey }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/hockey.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Rows: 21 Columns: 2
+-- Column specification --------------------------------------------------------
+Delimiter: ","
+dbl (2): FaceWidthHeightRatio, PenaltyMinutes
+
+i Use `spec()` to retrieve the full column specification for this data.
+i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hockey}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 21 x 2
+   FaceWidthHeightRatio PenaltyMinutes
+                  <dbl>          <dbl>
+ 1                 1.59           0.44
+ 2                 1.67           1.43
+ 3                 1.65           1.57
+ 4                 1.72           0.14
+ 5                 1.79           0.27
+ 6                 1.77           0.35
+ 7                 1.74           0.85
+ 8                 1.74           1.13
+ 9                 1.77           1.47
+10                 1.78           1.51
+# ... with 11 more rows
+\end{verbatim}
+
+Nous disposons bien de 21 observation pour 2 variables numériques : le ratio largeur / longueur du visage, et le nombre moyen de minutes de pénalité de chacun des 21 joueurs de hockey suivis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{skim}\NormalTok{(hockey)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+-- Data Summary ------------------------
+                           Values
+Name                       hockey
+Number of rows             21    
+Number of columns          2     
+_______________________          
+Column type frequency:           
+  numeric                  2     
+________________________         
+Group variables            None  
+
+-- Variable type: numeric ------------------------------------------------------
+  skim_variable        n_missing complete_rate  mean    sd    p0   p25   p50
+1 FaceWidthHeightRatio         0             1  1.81 0.119  1.59  1.74  1.79
+2 PenaltyMinutes               0             1  1.28 0.708  0.14  0.85  1.23
+    p75  p100 hist 
+1  1.87  2.07 ▃▇▇▂▃
+2  1.57  2.95 ▃▇▅▂▂
+\end{verbatim}
+
+Les statsistique descriptives n'indiquent aucune données manquantes, et les minimas et maximas des deux variables ne semblent pas indiquer la présence de valeurs aberrantes. Pour se faire une meilleure idée des données, on en fait une représentation graphique, sous la forme d'un nuage de points puisque nous cherchons à mettre en évidence une éventuelle relation entre ces deux variables numériques :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hockey }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ FaceWidthHeightRatio, }\AttributeTok{y =}\NormalTok{ PenaltyMinutes)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-141-1} \end{center}
+
+On confirme l'absence d'outlier et on observe ici une relation \emph{a priori} positive entre les 2 variables. Plus le ratio largeur du visage sur longueur du visage est important (donc plus le joueur de hockey a un visage large), plus le nombre moyen de temps de pénalité augmente. Une régression linéaire est nécessaire pour quantifier précisément cette relation et évaluer la qualité de l'ajustement du modèle linéaire aux données observées.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reg2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(PenaltyMinutes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ FaceWidthHeightRatio, }\AttributeTok{data =}\NormalTok{ hockey)}
+\FunctionTok{summary}\NormalTok{(reg2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Call:
+lm(formula = PenaltyMinutes ~ FaceWidthHeightRatio, data = hockey)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.9338 -0.3883 -0.1260  0.3381  1.0711 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)  
+(Intercept)            -4.505      2.089  -2.157   0.0440 *
+FaceWidthHeightRatio    3.189      1.150   2.774   0.0121 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.6129 on 19 degrees of freedom
+Multiple R-squared:  0.2882,    Adjusted R-squared:  0.2508 
+F-statistic: 7.694 on 1 and 19 DF,  p-value: 0.0121
+\end{verbatim}
+
+Pour les deux tests d'hypothèses réalisés ici, on rejette l'hypothèse nulle au seuil \(\alpha = 0.05\). Ainsi, l'ordonnée à l'origine est significativement différente de 0 (\(b = -4.51\), \(t = -2.157\), \(p = 0.044\)) et la pente est positive et significativement différente de 0 (\(a = 3.19\), \(t = 2.774\), \(p = 0.012\)). Les intervalles de confiance à 95\% de ces estimations sont données ci-dessous :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint}\NormalTok{(reg2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+                          2.5 %     97.5 %
+(Intercept)          -8.8758898 -0.1331171
+FaceWidthHeightRatio  0.7826085  5.5953569
+\end{verbatim}
+
+Dans la population générale, la pente de la droite permettant de lier les 2 variables étudiées a donc de bonnes chances de se trouver dans l'intervalle {[}0.78 ; 5.60{]}. Cet intervalle est très large et indique une forte incertitude.
+
+Vérifions maintenant que nous avions le droit d'effectuer cette régression linéaire :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(reg2)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-144-1} \end{center}
+
+Le premier graphique (et le troisième en bas à gauche) montre que les résidus sont à peu près homogènes. Le second (en haut à droite) confirme la Normalité des résidus. Puisque les conditions d'application de la régression sont remplies, les résultats énoncés plus haut sont valides.
+Toutefois, le graphique en bas à droite indique qu'un point a probablement une influence trop forte sur les données : le point 21 se trouve au-delà de la ligne rouge poitillée qui indique une distance de Cook de 0.5. Il s'agit de la dernière observation du tableau de données. Nous avons donc deux options :
+1. considérer que ce point est tout à fait normal et que nous n'avons aucune raison de l'exclure de l'analyse. Alors, les résultats énoncés plus haut restent totalement valides.
+2. considérer que ce point est anormal (il faudrait savoir en détail comment les mesures ont été faites, et mieux connaître les données, les joueurs\ldots) et le retirer du tableau de données. Il faut alors refaire l'analyse. Si on retire ce point, il faut avoir une bonne raison pour cela.
+
+Si on ne retire pas le point problématique, voilà ce que nous pouvons dire au final.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hockey }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ FaceWidthHeightRatio, }\AttributeTok{y =}\NormalTok{ PenaltyMinutes)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-145-1} \end{center}
+
+L'intervalle de confiance de la régression est représenté sur ce graphique. On constate qu'il est malgré tout assez large, ce qui reflète l'incertitude importante associée à la relation que nous venons de mettre en évidence. Le \(R^2\) ajusté de la régression vaut 0.25 (voir plus haut), ce qui montre bien que le ratio largeur/longueur du visage joue finalement un rôle assez modeste quand on cherche à expliquer le comportement agressif.
+
+Si maintenant, on décide de retirer le point identifié dans l'analyse des résidus comme ayant une influence problématique (celui pour lequel la valeur dépasse 2 sur l'axe des \texttt{x}), les résultats de la régression sont fortement modifiés :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hockey }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(FaceWidthHeightRatio}\SpecialCharTok{\textless{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ FaceWidthHeightRatio, }\AttributeTok{y =}\NormalTok{ PenaltyMinutes)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\begin{center}\includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-146-1} \end{center}
+
+La pente de la droite de régression est bien plus faible. Et une nouvelle régression linéaire sans le point problématique arrive à une conclusion opposée à celle obtenue précédemment :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reg3 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(PenaltyMinutes }\SpecialCharTok{\textasciitilde{}}\NormalTok{ FaceWidthHeightRatio, }
+           \AttributeTok{data =}\NormalTok{ hockey }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(FaceWidthHeightRatio}\SpecialCharTok{\textless{}}\DecValTok{2}\NormalTok{))}
+\FunctionTok{summary}\NormalTok{(reg3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Call:
+lm(formula = PenaltyMinutes ~ FaceWidthHeightRatio, data = hockey %>% 
+    filter(FaceWidthHeightRatio < 2))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.90184 -0.33403 -0.04149  0.35600  1.18885 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)
+(Intercept)            -2.616      2.270  -1.153    0.264
+FaceWidthHeightRatio    2.116      1.259   1.681    0.110
+
+Residual standard error: 0.5834 on 18 degrees of freedom
+Multiple R-squared:  0.1357,    Adjusted R-squared:  0.08771 
+F-statistic: 2.827 on 1 and 18 DF,  p-value: 0.11
+\end{verbatim}
+
+On constate ici que la pente (et l'ordonnées à l'origine) de la droite de régression ne sont plus significativement différentes de 0 et que la qualité de l'ajustement est très faible (\(R^2\) = 0.088), ce qui traduit le fait que la variable explicative ne permet de prédire que 8,8\% de la variable expliquée. La \(p-\)value globale de la régression (0.11) nous confirme que ces deux variables ne sont pas significativement reliée.
+
+Nous voyons bien ici que le point problématique a une très forte influence sur les résultats de la régression. Mais cela ne suffit pas à justifier que nous le retirions des données. Il faut une raison objective pour cela et le fait que le retirer change les résultats n'en est pas une. Si nous n'avons pas de raison de penser que ce point a été obtenu différemment des autres, si nous n'avons pas de raison de penser qu'une erreur a été comise quelque part, il nous faut conserver le point problématique, et simplement être très prudent quant à nos conclusions.
+
+\hypertarget{bibliographie}{%
+\section{Bibliographie}\label{bibliographie}}
 
 \hypertarget{references}{%
 \section*{References}\label{references}}

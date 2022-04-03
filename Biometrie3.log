@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.12.7)  7 MAR 2022 12:52
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.12.7)  2 APR 2022 11:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1515,89 +1515,87 @@ File: figure/unnamed-chunk-32-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-32-1.pdf>
 File: figure/unnamed-chunk-33-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-33-1.pdf>
+[21]
 File: figure/unnamed-chunk-34-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-34-1.pdf>
-[21]
 File: figure/unnamed-chunk-35-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-35-1.pdf>
+[22]
 File: figure/unnamed-chunk-36-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-36-1.pdf>
-[22] [23]
+[23] [24]
 File: figure/unnamed-chunk-38-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-38-1.pdf>
-[24] [25] [26] [27] [28] [29] [30]
+[25] [26] [27] [28] [29] [30] [31]
 File: figure/unnamed-chunk-50-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-50-1.pdf>
-[31]
 File: figure/unnamed-chunk-51-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-51-1.pdf>
 [32]
 File: figure/unnamed-chunk-52-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-52-1.pdf>
-[33] [34] [35]
+[33] [34] [35] [36]
 Overfull \hbox (131.9942pt too wide) in paragraph at lines 1909--1909
 []\TU/FiraCode-Regular.ttf(0)/m/n/10 alternative hypothesis: true difference in
  means between group killed and group living is not equal to 0[] 
  []
 
-[36] [37]
+[37] [38]
 Overfull \hbox (131.9942pt too wide) in paragraph at lines 1992--1992
 []\TU/FiraCode-Regular.ttf(0)/m/n/10 alternative hypothesis: true difference in
  means between group killed and group living is not equal to 0[] 
  []
 
-[38] [39]
+[39] [40]
 Overfull \hbox (131.9942pt too wide) in paragraph at lines 2086--2086
 []\TU/FiraCode-Regular.ttf(0)/m/n/10 alternative hypothesis: true difference in
  means between group killed and group living is not equal to 0[] 
  []
 
-[40]
+
 Overfull \hbox (131.9942pt too wide) in paragraph at lines 2119--2119
 []\TU/FiraCode-Regular.ttf(0)/m/n/10 alternative hypothesis: true difference in
  means between group killed and group living is not equal to 0[] 
  []
 
-
+[41]
 Overfull \hbox (118.0454pt too wide) in paragraph at lines 2150--2150
 []\TU/FiraCode-Regular.ttf(0)/m/n/10 alternative hypothesis: true difference in
  means between group killed and group living is less than 0[] 
  []
 
-[41]
+[42]
 Overfull \hbox (133.73781pt too wide) in paragraph at lines 2185--2185
 []\TU/FiraCode-Regular.ttf(0)/m/n/10 alternative hypothesis: true difference in
  means between group killed and group living is greater than 0[] 
  []
 
-[42] [43] [44] [45] [46] [47]
-File: figure/unnamed-chunk-76-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-76-1.pdf>
-[48]
+[43] [44] [45] [46] [47] [48]
 File: figure/unnamed-chunk-77-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-77-1.pdf>
 [49]
+File: figure/unnamed-chunk-78-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-78-1.pdf>
+[50]
 LaTeX Font Info:    Font shape `TU/GillSans(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 2542.
+(Font)              scaled to size 7.0pt on input line 2560.
 LaTeX Font Info:    Font shape `TU/GillSans(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 2542.
-[50] [51]
-File: figure/unnamed-chunk-80-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-80-1.pdf>
+(Font)              scaled to size 5.0pt on input line 2560.
+[51]
 File: figure/unnamed-chunk-81-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-81-1.pdf>
+File: figure/unnamed-chunk-82-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-82-1.pdf>
 [52]
-File: figure/unnamed-chunk-83-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-83-1.pdf>
-[53]
+File: figure/unnamed-chunk-84-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-84-1.pdf>
+[53] [54]
 LaTeX Font Info:    Font shape `TU/GillSans(0)/b/it' will be
-(Font)              scaled to size 10.0pt on input line 2712.
-[54] [55]
-File: figure/unnamed-chunk-90-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-90-1.pdf>
-[56] [57] [58] [59] [60] [61]
-File: figure/unnamed-chunk-96-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-96-1.pdf>
+(Font)              scaled to size 10.0pt on input line 2730.
+[55] [56]
+File: figure/unnamed-chunk-91-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-91-1.pdf>
+[57] [58] [59] [60] [61]
 File: figure/unnamed-chunk-97-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-97-1.pdf>
 [62]
@@ -1605,42 +1603,76 @@ File: figure/unnamed-chunk-98-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-98-1.pdf>
 File: figure/unnamed-chunk-99-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-99-1.pdf>
-[63] [64] [65]
-File: figure/unnamed-chunk-104-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-104-1.pdf>
-[66] [67] [68] [69]
-File: figure/unnamed-chunk-107-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-107-1.pdf>
-[70] [71]
+File: figure/unnamed-chunk-100-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-100-1.pdf>
+[63] [64] [65] [66]
+File: figure/unnamed-chunk-105-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-105-1.pdf>
+[67] [68] [69]
+File: figure/unnamed-chunk-108-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-108-1.pdf>
+[70] [71] [72]
 File: images/genetics.jpg Graphic file (type bmp)
 <images/genetics.jpg>
-[72] [73]
-Overfull \hbox (16.91641pt too wide) in paragraph at lines 3526--3526
+[73]
+Overfull \hbox (16.91641pt too wide) in paragraph at lines 3539--3539
 []\TU/FiraCode-Regular.ttf(0)/m/n/10 i Specify the column types or set []show_c
 ol_types = FALSE[] to quiet this message.[] 
  []
 
 [74] [75]
-File: figure/unnamed-chunk-114-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-114-1.pdf>
-[76]
 File: figure/unnamed-chunk-115-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-115-1.pdf>
+[76]
+File: figure/unnamed-chunk-116-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-116-1.pdf>
 [77]
-File: figure/unnamed-chunk-117-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-117-1.pdf>
 File: figure/unnamed-chunk-118-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-118-1.pdf>
+File: figure/unnamed-chunk-119-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-119-1.pdf>
 [78] [79] [80]
-File: figure/unnamed-chunk-122-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-122-1.pdf>
-[81]
 File: figure/unnamed-chunk-123-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-123-1.pdf>
-[82]
-File: figure/unnamed-chunk-125-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-125-1.pdf>
-[83] [84] [85] [86] (./Biometrie3.aux)
+[81]
+File: figure/unnamed-chunk-124-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-124-1.pdf>
+[82] [83]
+File: figure/unnamed-chunk-126-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-126-1.pdf>
+[84] [85]
+Overfull \hbox (16.91641pt too wide) in paragraph at lines 3972--3972
+[]\TU/FiraCode-Regular.ttf(0)/m/n/10 i Specify the column types or set []show_c
+ol_types = FALSE[] to quiet this message.[] 
+ []
+
+[86]
+File: figure/unnamed-chunk-131-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-131-1.pdf>
+[87] [88] [89]
+File: figure/unnamed-chunk-136-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-136-1.pdf>
+[90]
+File: figure/unnamed-chunk-138-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-138-1.pdf>
+[91]
+Overfull \hbox (16.91641pt too wide) in paragraph at lines 4250--4250
+[]\TU/FiraCode-Regular.ttf(0)/m/n/10 i Specify the column types or set []show_c
+ol_types = FALSE[] to quiet this message.[] 
+ []
+
+[92]
+File: figure/unnamed-chunk-141-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-141-1.pdf>
+[93] [94]
+File: figure/unnamed-chunk-144-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-144-1.pdf>
+[95]
+File: figure/unnamed-chunk-145-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-145-1.pdf>
+File: figure/unnamed-chunk-146-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-146-1.pdf>
+[96] [97] [98] [99] (./Biometrie3.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1650,12 +1682,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 ### semi simple group (level 1) entered at line 157 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 23412 strings out of 476919
- 415088 string characters out of 5821840
- 966233 words of memory out of 5000000
- 42980 multiletter control sequences out of 15000+600000
+ 23473 strings out of 476919
+ 416900 string characters out of 5821840
+ 964660 words of memory out of 5000000
+ 43034 multiletter control sequences out of 15000+600000
  409993 words of font info for 94 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 98i,6n,125p,1331b,8442s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 98i,6n,125p,1331b,8440s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Biometrie3.pdf (86 pages).
+Output written on Biometrie3.pdf (99 pages).
